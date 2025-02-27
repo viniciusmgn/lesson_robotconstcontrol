@@ -38,67 +38,11 @@
         <div class="slides">
 
             <section
-            style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
-            <h3 style="font-size: 3.5vw; margin-bottom: 0.5rem;">BASIC CONCEPTS</h3>
+                style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+                <h3 style="font-size: 3.5vw; margin-bottom: 0.5rem;">BASIC CONCEPTS</h3>
 
-            <div style="display: flex; flex-direction: column; align-items: center;">
-                <img src="presentation/images/part1/main.svg" style="max-width: 40%; height: auto;">
-            </div>
-        </section>
-
-            <section style="display: flex; flex-direction: column; height: 100vh;">
-                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    BASIC CONCEPTS
-                </h3>
-                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    <b class="ttext">RIGID TRANSFORMATIONS</b>
-                </h3>
-
-
-
-
-                <div
-                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
-
-                    <div
-                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
-                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify; text-align: justify;">
-                            </br>
-                            <li> A <b class="itext">rigid transformation</b> is a transformation between points \(T:
-                                \mathbb{R}^3 \mapsto \mathbb{R}^3\)
-                                that preserves the Euclidean distance. Thus, for any points \(u,v\): </li>
-                            $$\|T(u)-T(v)\| = \|u-v\|;$$
-                            </br>
-
-                            <div style="background-color: #282828">
-                                <li> <b class="ttext">Theorem:</b>: any rigid transformation can be written as a
-                                    <b class="itext">rotation</b>, followed by a <b class="itext">translation</b>, and
-                                    then a <b class="itext">reflection</b>.
-                                </li>
-                            </div>
-                            </br>
-
-                            <li>So, given a <b class="itext">rotation matrix</b> \(Q\) , i.e., \(QQ^\top = Q^\top Q =\)
-                                \(I_{3 \times 3} \) , \( \det(Q) = +1\),
-                                a vector \(p \in \mathbb{R}^3\), and a diagonal matrix \(D\) with diagonal entries
-                                either +1 or -1, then:</li>
-                            $$T(u) = D(Qu+p);$$
-                        </ul>
-
-
-                        </ul>
-                    </div>
-
-                    <div
-                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
-                        <div style="width: 100%">
-                            <img src="presentation/images/part1/main.svg"
-                                style="max-width: 80%; height: auto; max-height: 60vh;">
-                        </div>
-
-
-                    </div>
-
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                    <img src="presentation/images/part1/main.svg" style="max-width: 40%; height: auto;">
                 </div>
             </section>
 
@@ -110,34 +54,65 @@
                     <b class="ttext">RIGID TRANSFORMATIONS</b>
                 </h3>
 
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <br>
+                            <li> A <b class="itext">rigid transformation</b> is a mapping of points \(T: \mathbb{R}^3
+                                \to \mathbb{R}^3\) that preserves Euclidean distance. Thus, for any points \(u,v\):
+                            </li>
+                            $$\|T(u)-T(v)\| = \|u-v\|;$$
+                            <br>
+
+                            <div style="background-color: #282828">
+                                <li> <b class="ttext">Theorem:</b> Any rigid transformation can be decomposed into a <b
+                                        class="itext">rotation</b>, followed by a <b class="itext">translation</b>, and
+                                    then a <b class="itext">reflection</b>.</li>
+                            </div>
+                            <br>
+
+                            <li>Given a <b class="itext">rotation matrix</b> \(Q\), where \(QQ^\top = Q^\top Q = I_{3
+                                \times 3}\) and \(\det(Q) = +1\), a vector \(p \in \mathbb{R}^3\), and a diagonal matrix
+                                \(D\) with diagonal entries either +1 or -1, the transformation is given by:</li>
+                            $$T(u) = D(Qu+p);$$
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part1/main.svg"
+                                style="max-width: 80%; height: auto; max-height: 60vh;">
+                        </div>
+                    </div>
+                </div>
+            </section>
 
 
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    BASIC CONCEPTS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">RIGID TRANSFORMATIONS</b>
+                </h3>
 
                 <div
                     style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
-
                     <div
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
-                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify; text-align: justify;">
-                            </br>
-                            <li> We can extend this transformation \(T\) from a point to a set by simply applying the
-                                transformation in each point;</li>
-                            </br>
-
-
-                            <li> Reflections are ``unphysical'': in the classical (i.e., not quantum), it is impossible
-                                to physically impart a reflection into an object;
-                                </b>
-                            </li>
-
-                            </br>
-
-                            <li>So, henceforth, rigid translation for us is going to be only about rotations and
-                                translation.</li>
-
-                        </ul>
-
-
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <br>
+                            <li> The transformation \(T\) can be extended from a single point to a set by applying it to
+                                each point individually.</li>
+                            <br>
+                            <li> Reflections are considered "unphysical": In classical (non-quantum) mechanics, it is
+                                impossible to physically impose a reflection on an object.</li>
+                            <br>
+                            <li> Therefore, from this point forward, we will consider rigid transformations to consist
+                                only of rotations and translations.</li>
                         </ul>
                     </div>
 
@@ -147,10 +122,7 @@
                             <img src="presentation/images/part1/image2.svg"
                                 style="max-width: 80%; height: auto; max-height: 60vh;">
                         </div>
-
-
                     </div>
-
                 </div>
             </section>
 
@@ -170,23 +142,18 @@
 
                     <div
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
-                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify; text-align: justify;">
-                            </br>
-                            <li> A <b class="itext">Homogeneous transformation matrix (HTM):</b> is a \(4 \times 4\)
-                                matrix
-                                created as follows:</li>
-                            $$T = \left(\begin{array}{cc} Q & p \\ 0_{1 \times 3} & 1\ \end{array}\right)$$
-                            in which \(Q \in \mathbb{R}^{3 \times 3}\) is a rotation matrix and
-                            \(p \in \mathbb{R}^3\) is a column vector;
-                            </br></br>
-                            <li>It implements a rigid transformation by matrix multiplication. Let \(\tilde{u}\) be the
-                                4D
-                                vector formed from the 3D vector \(u\) by adding 1 at the end, then applying the rigid
-                                transformation
-                                \((Q,p)\) to \(u\) is the same as computing \(T\tilde{u}\) and removing the 1 at the
-                                last entry;
-                            </li>
-
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <br>
+                            <li> A <b class="itext">Homogeneous Transformation Matrix (HTM)</b> is a \(4 \times 4\)
+                                matrix defined as follows:</li>
+                            $$T = \left(\begin{array}{cc} Q & p \\ 0_{1 \times 3} & 1 \end{array}\right)$$
+                            where \(Q \in \mathbb{R}^{3 \times 3}\) is a rotation matrix, and \(p \in \mathbb{R}^3\) is
+                            a column vector.
+                            <br><br>
+                            <li>It represents a rigid transformation through matrix multiplication. Let \( \tilde{u}\)
+                                be a 4D vector obtained from the 3D vector \(u\) by appending 1 at the end. Applying the
+                                rigid transformation \((Q, p)\) to \(u\) is equivalent to computing \(\tilde{u}\) and
+                                removing the last entry.</li>
                         </ul>
                     </div>
 
@@ -221,23 +188,26 @@
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             </br>
-                            <li>Other than representing transformations between points, it has an important relationship
-                                between
-                                <b class="itext">frames</b> (i.e., three orthogonal vectors starting at the same point);
+                            <li>In addition to representing transformations between points, it plays a crucial role in
+                                defining relationships
+                                between <b class="itext">frames</b> (i.e., three orthogonal vectors originating from the
+                                same point).
                             </li>
 
                             </br>
-                            <li>Two (equivalent) different interpretations involving two frames:</li>
+                            <li>Two equivalent interpretations involving two frames:</li>
                             <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
-                                <li>(1) <b class="itext">It represents a frame:</b> the frame \(\mathcal{F}_1\) written
-                                    in another frame \(\mathcal{F}_0\);</li>
-                                <li>(2) <b class="itext">It represents a transformation:</b> a rigid one, the one you
-                                    should apply to
-                                    \(\mathcal{F}_0\), written in \(\mathcal{F}_0\), to obtain \(\mathcal{F}_1\) ;</li>
+                                <li><b class="itext">(1) Represents a frame:</b> frame \(\mathcal{F}_1\) expressed in
+                                    terms of another
+                                    frame \(\mathcal{F}_0\).
+                                </li>
+                                <li><b class="itext">(2) Represents a transformation:</b> a rigid transformation that
+                                    must be applied
+                                    to \(\mathcal{F}_0\), expressed in \(\mathcal{F}_0\), to obtain \(\mathcal{F}_1\).
+                                </li>
                             </ul>
-
-
                         </ul>
+
                     </div>
 
                     <div
@@ -382,7 +352,7 @@
                             data-fragment-index="6">
                             <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                                 <li>
-                                    We finalized drawing the new frame, \(\mathcal{F}_1\), by reading the columns of
+                                    We finalize drawing the new frame, \(\mathcal{F}_1\), by reading the columns of
                                     the matrix as vectors in \(\mathcal{F}_0\), and then identifying the center and
                                     the three axis;
 
@@ -477,40 +447,39 @@
                             data-fragment-index="0">
                             <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                                 <li>
-                                    Lets see now <b class="itext">intepretation (2) (as a transformation)</b>;
-
+                                    Let's now examine <b class="itext">interpretation (2) (as a transformation)</b>.
                                 </li>
                                 </br></br>
                                 <li>
-                                    We must identify which <b class="itext">rigid transformation, i.e., rotation and
-                                        translation,</b> (all of them written in
-                                    \(\mathcal{F}_0\)) we need to apply to \(\mathcal{F}_0\) to obtain
-                                    \(\mathcal{F}_1\);
-
+                                    We need to determine the <b class="itext">rigid transformation (i.e., rotation and
+                                        translation)</b>
+                                    (both expressed in \(\mathcal{F}_0\)) that must be applied to \(\mathcal{F}_0\) to
+                                    obtain \(\mathcal{F}_1\).
                                 </li>
                             </ul>
+
                         </div>
 
                         <div style="position:absolute; width: 50%;" class="vim_indicator current-visible fragment"
                             data-fragment-index="1">
                             <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                                 <li>
-                                    We start with the <b class="itext">rotation</b>. We need to align the two sets of
-                                    axis (disregarding the
-                                    displacement of the center for now). Note that a rotation of \(-90^o\) in \(z_0\)
-                                    (\(90^o\) clockwise),
-                                    will do.
-
+                                    We begin with the <b class="itext">rotation</b>. Our goal is to align the two sets
+                                    of axes while temporarily
+                                    ignoring the displacement of the center. Note that a rotation of \(-90^\circ\) about
+                                    \(z_0\)
+                                    (\(90^\circ\) clockwise) achieves this.
                                 </li>
                                 </br></br>
                                 <li>
-                                    The \(3 \times 3\) block \(Q\) highlighted in green is exactly this transformation:
-                                    when applied to a point \(p\)
-                                    as \(p' = Qp\), the point \(p'\) is the point \(p\) rotated \(-90^o\) in the \(z\)
-                                    axis;
-
+                                    The \(3 \times 3\) block \(Q\), highlighted in green, represents this
+                                    transformation. When applied to a
+                                    point \(p\) as \(p' = Qp\), the resulting point \(p'\) is simply \(p\) rotated by
+                                    \(-90^\circ\)
+                                    about the \(z\)-axis.
                                 </li>
                             </ul>
+
                         </div>
 
                         <div style="position:absolute; width: 50%;" class="vim_indicator current-visible fragment"
@@ -530,21 +499,19 @@
                             data-fragment-index="3">
                             <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                                 <li>
-                                    For the <b class="itext">position</b>, we need to check which translation we need to
-                                    apply
-                                    to the whole frame to finally match to \(\mathcal{F}_1\). This should also be
-                                    written
-                                    in \(\mathcal{F}_0\);
-
+                                    For the <b class="itext">position</b>, we need to determine the translation required
+                                    to align the entire
+                                    frame with \(\mathcal{F}_1\). This translation should also be expressed in
+                                    \(\mathcal{F}_0\).
                                 </li>
-
                                 </br></br>
                                 <li>
-                                    Note that a translation of \(2\) in \(x_0\), \(3\) in \(y_0\) and \(0\) in \(z_0\),
-                                    which is precisely the vector highlighted in green in the right, will do;
-
+                                    Note that a translation of \(2\) along \(x_0\), \(3\) along \(y_0\), and \(0\) along
+                                    \(z_0\) achieves this.
+                                    This corresponds precisely to the vector highlighted in green on the right.
                                 </li>
                             </ul>
+
                         </div>
 
                         <div style="position:absolute; width: 50%;" class="vim_indicator current-visible fragment"
@@ -719,7 +686,7 @@
                                     $$
                                     which can be easily checked by inspection;
                                 </li><br>
-                                <li>These two facts imply that the set of HTMs form a mathematical group structure
+                                <li>These two facts imply that the set of HTMs forms a mathematical structure
                                     called a <b class="itext">group</b> (more specifically, a <b class="itext">Lie
                                         group</b> ). This
                                     fact has profound implications in physics, engineering and robotics, but will not be
@@ -761,31 +728,34 @@
                     <div
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; padding-top: 20px; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
-                            <li> Let \(u_0\) be a point \(U\) written in coordinates of a frame \(\mathcal{F}_0\), and
-                                \(u_1\) be the same points written in coordinates of a frame \(\mathcal{F}_1\). Let
-                                \(T_0^1\) the HTM that transforms \(\mathcal{F}_0\) into \(\mathcal{F}_1\) (or
+                            <li>
+                                Let \(u_0\) be a point \(U\) expressed in the coordinates of frame \(\mathcal{F}_0\),
+                                and
+                                let \(u_1\) be the same point expressed in the coordinates of frame \(\mathcal{F}_1\).
+                                Let \(T_0^1\) be the HTM that transforms \(\mathcal{F}_0\) into \(\mathcal{F}_1\) (or,
                                 equivalently,
-                                \(\mathcal{F}_1\) written in \(\mathcal{F}_0\));
+                                \(\mathcal{F}_1\) expressed in \(\mathcal{F}_0\)).
                             </li>
                             <li>
                                 Let \(\tilde{u}_0\) and \(\tilde{u}_1\) be the 4D points obtained from \(u_0\) and
                                 \(u_1\),
-                                respectively, by adding 1 as a last entry <b class="itext">(augmented point)</b> ;
+                                respectively, by appending 1 as the last entry <b class="itext">(augmented point)</b>.
                             </li>
                             <li>
-                                Then (perhaps a bit counter-intuitively):
+                                Then, perhaps counterintuitively:
                                 <b class="itext">$$\tilde{u}_1 = (T_0^1)^{-1} \tilde{u}_0$$ </b>
                                 That is, even though \(T_0^1\) transforms the <b class="itext">frame</b>
-                                into \(\mathcal{F}_0\) into \(\mathcal{F}_1\), transforming the points from coordinates
-                                uses the <b class="itext">inverse</b> transformation!
-
+                                \(\mathcal{F}_0\)
+                                into \(\mathcal{F}_1\), transforming points between coordinate systems requires the
+                                <b class="itext">inverse</b> transformation!
                             </li>
-                            <li>If you think about a simple case involving translations, you will see that it makes
-                                sense to use the inverse transformation!
+                            <li>
+                                If you consider a simple case involving translations, you will see why it makes sense to
+                                use the
+                                inverse transformation.
                             </li>
-
-
                         </ul>
+
                     </div>
 
                     <div
@@ -960,25 +930,30 @@
                     <div
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; padding-top: 20px; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
-
-                            <li> But we can also read \(BA\) <b class="itext">from the left to the right</b>, that is,
-                                the transformation \(B\)
-                                comes first and then \(A\) comes second!
-                            </li> <br>
-
-                            <li> In that case, <b class="itext">we must interpret these newer transformations in the
-                                    current frame</b>!
-                            </li> <br>
-                            <li>So, if \(A\) is a rotation of \(30^o\)
-                                in \(z\) and \(B\) a rotation of \(60^o\) in \(x\), in \(BA\), the rotation in \(z\)
-                                should be interpreted as a rotation
-                                in the starting axis \(z_0\) (since in the start this is the current frame), and the
-                                rotation in \(x\) should be
-                                <b class="itext">not in \(x_0\) (as before!), but in the \(x\) axis obtained after the
+                            <li>
+                                However, we can also interpret \(BA\) <b class="itext">from left to right</b>, meaning
+                                that
+                                transformation \(B\) is applied first, followed by \(A\)!
+                            </li>
+                            <br>
+                            <li>
+                                In this case, <b class="itext">we must interpret these transformations in the current
+                                    frame</b>.
+                            </li>
+                            <br>
+                            <li>
+                                So, if \(A\) is a rotation of \(30^\circ\) about \(z\) and \(B\) is a rotation of
+                                \(60^\circ\) about \(x\),
+                                in \(BA\), the rotation about \(z\) should be interpreted as a rotation around the
+                                initial axis \(z_0\)
+                                (since this is the current frame at the beginning). Meanwhile, the rotation about \(x\)
+                                should be
+                                <b class="itext">applied not around \(x_0\) (as before!), but around the \(x\)-axis
+                                    obtained after the
                                     first transformation!</b>
                             </li>
-
                         </ul>
+
                     </div>
 
                     <div
@@ -1144,21 +1119,24 @@
                     <div
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; padding-top: 20px; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
-                            <li> Note that, regardless on how you read, <b class="itext">the final result is the
-                                    same</b>!
-                            </li><br>
-
-                            <li> When constructing a HTM, you usually do it by composing the transformations (as we did
-                                here).
-                                It is up to your convenience if you are going to construct by applying to the left to
-                                the right.
-                            </li> <br>
-
-                            <li> You can even do it in a <b class="itext">hybrid way</b>: sometimes interpreting the
-                                product from the left,
-                                sometimes from the right!
+                            <li>
+                                Note that, regardless of how you interpret it, <b class="itext">the final result remains
+                                    the same</b>!
                             </li>
-
+                            <br>
+                            <li>
+                                When constructing an HTM, you typically do so by composing transformations (as we did
+                                here).
+                                It is up to you whether you construct it by applying transformations from left to right
+                                or right to left,
+                                depending on what is most convenient.
+                            </li>
+                            <br>
+                            <li>
+                                You can even take a <b class="itext">hybrid approach</b>: sometimes interpreting the
+                                product from the left,
+                                and other times from the right!
+                            </li>
                         </ul>
                     </div>
 
@@ -1256,7 +1234,8 @@
                                 <li> Suppose \(A\) comes first and then \(B\). Note that \(AB = ABA^{-1}A\). So:
                                     $$\tilde{u}'' = AB\tilde{u} = A(B(A^{-1}(\underbrace{A\tilde{u}}))) $$
                                 </li> <br>
-                                <li>First, we apply the first transformation \(A\), obtaining the point \(\tilde{u}' = A\tilde{u}\)</li>
+                                <li>First, we apply the first transformation \(A\), obtaining the point \(\tilde{u}' =
+                                    A\tilde{u}\)</li>
                             </ul>
                         </div>
 
@@ -1268,10 +1247,10 @@
                                 <li> Suppose \(A\) comes first and then \(B\). Note that \(AB = ABA^{-1}A\). So:
                                     $$\tilde{u}'' = AB\tilde{u} = A(B(\underbrace{A^{-1}\tilde{u}'})) $$
                                 </li> <br>
-                                <li>Second, we note that if \(A\) is the transformation between the original frame 
-                                    \(\mathcal{F}_0\) and a frame \(\mathcal{F}_A\) the value 
-                                    \(\tilde{u}'_A = A^{-1}\tilde{u}'\)  can be seen as the point 
-                                    obtained in the first step, but written in \(\mathcal{F}_A\) instead of 
+                                <li>Second, we note that if \(A\) is the transformation between the original frame
+                                    \(\mathcal{F}_0\) and a frame \(\mathcal{F}_A\) the value
+                                    \(\tilde{u}'_A = A^{-1}\tilde{u}'\) can be seen as the point
+                                    obtained in the first step, but written in \(\mathcal{F}_A\) instead of
                                     the original frame \(\mathcal{F}_0\);</li>
                             </ul>
 
@@ -1286,10 +1265,10 @@
                                     $$\tilde{u}'' = AB\tilde{u} = A(\underbrace{B\tilde{u}'_A}) $$
                                 </li> <br>
                                 <li>Third, we apply the transformation in B. But now,
-                                    <b
-                                    class="itext">since the point is written in A and not in the original frame, 
-                                the transformation is instead interpreted in A!</b> We obtain the transformed
-                                point \(\tilde{u}''_A\), written in \(A\) ;</li>
+                                    <b class="itext">since the point is written in A and not in the original frame,
+                                        the transformation is instead interpreted in A!</b> We obtain the transformed
+                                    point \(\tilde{u}''_A\), written in \(A\) ;
+                                </li>
                             </ul>
 
                         </div>
@@ -1302,7 +1281,7 @@
                                 <li> Suppose \(A\) comes first and then \(B\). Note that \(AB = ABA^{-1}A\). So:
                                     $$\tilde{u}'' = AB\tilde{u} = \underbrace{A\tilde{u}''_A} $$
                                 </li> <br>
-                                <li>The last transformation simply makes a coordinate change from the point 
+                                <li>The last transformation simply makes a coordinate change from the point
                                     written in \(\mathcal{F}_A\) back to the original frame \(\mathcal{F}_0\) ;</li>
                             </ul>
 
@@ -1312,8 +1291,8 @@
                         <div style="position:absolute; width: 50%;" class="vim_indicator current-visible fragment"
                             data-fragment-index="5">
                             <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
-                                <li>Thus, \(AB\) represents the transformation of applying \(A\), then 
-                                    applying \(B\) but interpreted in the current frame \(\mathcal{F}_A\) 
+                                <li>Thus, \(AB\) represents the transformation of applying \(A\), then
+                                    applying \(B\) but interpreted in the current frame \(\mathcal{F}_A\)
                                     represented by \(A\);
                                 </li>
                             </ul>
@@ -1329,7 +1308,7 @@
                         <div style="width: 100%;">
 
                             <img src="presentation/images/part1/main.svg"
-                            style="max-width: 80%; height: auto; max-height: 60vh;">
+                                style="max-width: 80%; height: auto; max-height: 60vh;">
 
 
 
@@ -1342,7 +1321,279 @@
                 </div>
             </section>
 
-  
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    BASIC CONCEPTS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">RIGID BODY</b>
+                </h3>
+
+
+
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; padding-top: 20px; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li> A <b class="itext">rigid body</b> is an object that cannot be stretched, or deformed;
+                            </li><br>
+                            <li> Mathematically, this means that for any given two particles \(U\) and \(V\) on the
+                                object,
+                                no matter what happens the distance between these two particles stay constant;
+                            </li><br>
+                            <li> This means that a rigid object can only <b class="itext">translate and rotate</b>!
+                            </li>
+
+
+
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <div style="width: 100%;">
+                                <img src="presentation/images/part1/image4.svg"
+                                    style="max-width: 80%; height: auto; max-height: 60vh;">
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    BASIC CONCEPTS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">CONFIGURATION AND FORWARD KINEMATIC</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; padding-top: 20px; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li> <b class="itext">Configuration</b> is a manner to represent the situation of a
+                                mechanical system
+                                at any given time with respect to a given frame.
+                            </li><br>
+                            <li> By ``situation'' we mean representing the position of each particle (or at least each
+                                particle that matters)
+                                at any given time with respect to this frame;
+                            </li><br>
+
+
+
+
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <div style="width: 100%;">
+                                <img src="presentation/images/part1/main.svg"
+                                    style="max-width: 80%; height: auto; max-height: 60vh;">
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    BASIC CONCEPTS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">CONFIGURATION AND FORWARD KINEMATIC</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; padding-top: 20px; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li> The configuration at a given time is usually represented by \(q\), and can be a vector,
+                                a matrix or any mathematical object.
+                                The set of all configurations, \(q\), is called <b class="itext">configuration space</b>
+                                and is denoted by \(\mathcal{Q}\);
+                            </li><br>
+                            <li> Thus, if \(q(t)\) is the configuration of the system at time \(t\), for any particle
+                                \(U\) in the system we want to track, ther exists
+                                a function \(F_U: \mathcal{Q} \mapsto \mathbb{R}^3\) such that the position \(u(t)\) of
+                                \(U\) at time \(t\) written with respect to
+                                \(\mathcal{F}_0\) is given by \(u(t) = F_U(q(t)\));
+                            </li><br>
+                            <li>The function \(F_U\) is called <b class="itext">forward kinematic</b> for the point
+                                \(U\) with respect to the
+                                frame \(\mathcal{F}_0\);</li><br>
+                            <li>
+                                This may seem a trivial concept, but is <b class="itext">very deep</b> and has very
+                                important implications in
+                                physics, engineering and robotics;
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <div style="width: 100%;">
+                                <img src="presentation/images/part1/main.svg"
+                                    style="max-width: 80%; height: auto; max-height: 60vh;">
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    BASIC CONCEPTS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">CONFIGURATION OF A RIGID BODY</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; padding-top: 20px; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li> For general systems (like a flexible beach ball) it is difficult to define the
+                                configuration because there is a huge variety on
+                                how the particles of the system can behave;
+                            </li><br>
+                            <li> For rigid objects, however, the system is much better behaved because it is much more
+                                constrained;
+                            </li><br>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <div style="width: 100%;">
+                                <img src="presentation/images/part1/image5_1.svg"
+                                    style="max-width: 80%; height: auto; max-height: 60vh;">
+                            </div>
+                            <br><br><br>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    BASIC CONCEPTS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">CONFIGURATION OF A RIGID BODY</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; padding-top: 20px; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>One way to proceed is as follows: <b class="itext">attach a frame into the rigid
+                                    object</b>, so when the object moves (rotates and translates),
+                                so does the frame, accordingly. Lets call this moving frame \(\mathcal{F}_{obj}\). We
+                                can use as configuration \(q\)
+                                the HTM that transforms \(\mathcal{F}_0\) into \(\mathcal{F}_{obj}\);
+                            </li><br>
+                            <li>
+                                Now, for any particle \(U\) that you want to track, note that its coordinate in the
+                                frame \(\mathcal{F}_{obj}\)
+                                <b class="itext">is constant</b>. Lets call it \(u_{obj}\). So, if \(q\) is HTM with
+                                rotation matrix \(Q\) and
+                                translation \(p\), we can compute the position of \(u\) with respect to
+                                \(\mathcal{F}_0\) as:
+                                $$u = Qu_{obj}+p$$
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <div style="width: 100%;">
+                                <img src="presentation/images/part1/image5_2.svg"
+                                    style="max-width: 80%; height: auto; max-height: 60vh;">
+                            </div>
+                            <br><br><br>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    BASIC CONCEPTS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">CONFIGURATION OF A RIGID BODY</b>
+                </h3>
+            
+                <div style="display: flex; flex-direction: column; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: flex-start; padding-top: 20px; height: 100%;">
+                        <div style="width: 100%">
+                            We can identify how the rigid object is given the HTM configuration \(q\) by drawing the frame \(\mathcal{F}_{obj}\) (as in interpretation (1))
+                            and then seeing how the object should be based on how \(\mathcal{F}_{obj}\) is attached to the object. So suppose that the configuration 
+                            of an object at a given time is the matrix \(q\) below. How is the object at this given moment?
+                        </div>
+                    </div>
+                    
+                    <div style="flex: 3; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: center; justify-content: center; margin-top: -20px; height: 100%;">
+                        <div style="position:absolute; width: 70%;" class="vim_indicator current-visible fragment" data-fragment-index="0">
+                            <img src="presentation/images/part1/image6_Slide_1.svg" style="max-width: 80%; height: auto; max-height: 60vh;">
+                        </div>
+                        <div style="position:absolute; width: 70%;" class="vim_indicator current-visible fragment" data-fragment-index="1">
+                            <img src="presentation/images/part1/image6_Slide_2.svg" style="max-width: 80%; height: auto; max-height: 60vh;">
+                        </div>
+                        <div style="position:absolute; width: 70%;" class="vim_indicator current-visible fragment" data-fragment-index="2">
+                            <img src="presentation/images/part1/image6_Slide_3.svg" style="max-width: 80%; height: auto; max-height: 60vh;">
+                        </div>
+                        <div style="position:absolute; width: 70%;" class="vim_indicator current-visible fragment" data-fragment-index="3">
+                            <img src="presentation/images/part1/image6_Slide_4.svg" style="max-width: 80%; height: auto; max-height: 60vh;">
+                        </div>
+                        <div style="position:absolute; width: 70%;" class="vim_indicator current-visible fragment" data-fragment-index="4">
+                            <img src="presentation/images/part1/image6_Slide_5.svg" style="max-width: 80%; height: auto; max-height: 60vh;">
+                        </div>
+                        <div style="position:absolute; width: 70%;" class="vim_indicator current-visible fragment" data-fragment-index="5">
+                            <img src="presentation/images/part1/image6_Slide_6.svg" style="max-width: 80%; height: auto; max-height: 60vh;">
+                        </div>
+                        <div style="position:absolute; width: 70%;" class="vim_indicator current-visible fragment" data-fragment-index="6">
+                            <img src="presentation/images/part1/image6_Slide_7.svg" style="max-width: 80%; height: auto; max-height: 60vh;">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
 
         </div>
     </div>
