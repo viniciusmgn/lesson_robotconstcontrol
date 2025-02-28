@@ -19,10 +19,10 @@ texture_box = Texture(
 material_box = MeshMaterial(texture_map=texture_box, roughness=1, metalness=1, opacity=0.8)
 box = Box(htm = np.identity(4), width=0.1, depth=0.2, height=0.3, mesh_material=material_box)
 
-light1 = PointLight(name="light1", color="white", intensity=4, htm=Utils.trn([-1, -1, 1.5]))
-light2 = PointLight(name="light2", color="white", intensity=4, htm=Utils.trn([-1, 1, 1.5]))
-light3 = PointLight(name="light3", color="white", intensity=4, htm=Utils.trn([1, -1, 1.5]))
-light4 = PointLight(name="light4", color="white", intensity=4, htm=Utils.trn([1, 1, 1.5]))
+light1 = PointLight(name="light1", color="white", intensity=8, htm=Utils.trn([-1, -1, 1.5]))
+light2 = PointLight(name="light2", color="white", intensity=8, htm=Utils.trn([-1, 1, 1.5]))
+light3 = PointLight(name="light3", color="white", intensity=8, htm=Utils.trn([1, -1, 1.5]))
+light4 = PointLight(name="light4", color="white", intensity=8, htm=Utils.trn([1, 1, 1.5]))
 
 frame = Frame(htm = np.identity(4))
 style = "top:" + str(0.8 * sim.height) + "px;right:" + str(0) + "px;width:" + str(
@@ -39,7 +39,7 @@ for i in range(3000):
     box.add_ani_frame(i*dt,htm=htm)
     frame.add_ani_frame(i*dt,htm=htm)
     H = box.htm
-    table = "<div style=\'item-align:center;text-align:center;width:500px\'><div style=\'width:20%;display: inline-block;float:left;vertical-align: middle\'>H(" + str(
+    table = "<div style=\'item-align:center;text-align:center;width:500px\'><div style=\'width:20%;display: inline-block;float:left;vertical-align: middle\'>q(" + str(
         round(
             100 * i * dt) / 100) + "s) = </div><div style=\'width:80%;display: inline-block;float:right;\'><table style=\'color:white;text-align:right\'><tr><td width=\'60px\'>" + str(
         round(100 * H[0, 0]) / 100) + "</td><td width=\'60px\'>" + str(
@@ -54,9 +54,11 @@ for i in range(3000):
         round(100 * H[2, 1]) / 100) + "</td><td width=\'60px\'>" + str(
         round(100 * H[2, 2]) / 100) + "</td><td width=\'60px\'>" + str(
         round(100 * H[
-            2, 3]) / 100) + "</td></tr><tr><td width=\'60px\'>   0</td><td width=\'60px\'>   0</td><td width=\'60px\'>   0</td><td width=\'60px\'>   1</td></tr></table></div></div>"
+            2, 3]) / 100) + "</td></tr><tr><td width=\'60px\'>   0</td><td width=\'60px\'>   0</td><td width=\'60px\'>   0</td><td width=\'60px\'>   1</td></tr></table> </div></div>"
+    
+
     explanation.add_ani_frame(i*dt, html_text=table)
 
 
 sim.set_parameters(load_screen_color="#191919", width=500, height=500)
-sim.save("/home/vinicius/Desktop/Aulas/Robot Constrained Control/presentation/images/part1/","part_1_4")
+sim.save("/home/vinicius/Desktop/Aulas/Robot Constrained Control/presentation/images/part1/","part_1_3")

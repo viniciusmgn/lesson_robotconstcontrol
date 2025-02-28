@@ -17,7 +17,7 @@
         }
     </script>
 
-    <title>Aula 2 - Manipuladores Robóticos</title>
+    <title>Part 1 - Review</title>
 
     <link rel="stylesheet" href="presentation/dist/reset.css">
     <link rel="stylesheet" href="presentation/dist/reveal.css">
@@ -1049,7 +1049,7 @@
                             <div style="width: 100%;">
                                 <iframe src="presentation/images/part1/part_1_1.html" width="550" height="580"
                                     style="border: none;"></iframe>
-                            </div>>
+                            </div>
                         </div>
 
 
@@ -1093,7 +1093,7 @@
                             <div style="width: 100%;">
                                 <iframe src="presentation/images/part1/part_1_2.html" width="550" height="580"
                                     style="border: none;"></iframe>
-                            </div>>
+                            </div>
                         </div>
 
 
@@ -1385,7 +1385,7 @@
                                 mechanical system
                                 at any given time with respect to a given frame.
                             </li><br>
-                            <li> By ``situation'' we mean representing the position of each particle (or at least each
+                            <li> By "situation'' we mean representing the position of each particle (or at least each
                                 particle that matters)
                                 at any given time with respect to this frame;
                             </li><br>
@@ -1431,7 +1431,7 @@
                                 and is denoted by \(\mathcal{Q}\);
                             </li><br>
                             <li> Thus, if \(q(t)\) is the configuration of the system at time \(t\), for any particle
-                                \(U\) in the system we want to track, ther exists
+                                \(U\) in the system we want to track, there exists
                                 a function \(F_U: \mathcal{Q} \mapsto \mathbb{R}^3\) such that the position \(u(t)\) of
                                 \(U\) at time \(t\) written with respect to
                                 \(\mathcal{F}_0\) is given by \(u(t) = F_U(q(t)\));
@@ -1557,43 +1557,146 @@
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     <b class="ttext">CONFIGURATION OF A RIGID BODY</b>
                 </h3>
-            
-                <div style="display: flex; flex-direction: column; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
-                    <div style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: flex-start; padding-top: 20px; height: 100%;">
+
+                <div
+                    style="display: flex; flex-direction: column; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: flex-start; padding-top: 20px; height: 100%;">
                         <div style="width: 100%">
-                            We can identify how the rigid object is given the HTM configuration \(q\) by drawing the frame \(\mathcal{F}_{obj}\) (as in interpretation (1))
-                            and then seeing how the object should be based on how \(\mathcal{F}_{obj}\) is attached to the object. So suppose that the configuration 
-                            of an object at a given time is the matrix \(q\) below. How is the object at this given moment?
+                            We can identify how the rigid object is given the HTM configuration \(q\) by drawing the
+                            frame \(\mathcal{F}_{obj}\) (as in interpretation (1))
+                            and then seeing how the object should be based on how \(\mathcal{F}_{obj}\) is attached to
+                            the object. So suppose that the configuration
+                            of an object at a given time is the matrix \(q\) below. How is the object at this given
+                            moment?
                         </div>
                     </div>
-                    
-                    <div style="flex: 3; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: center; justify-content: center; margin-top: -20px; height: 100%;">
-                        <div style="position:absolute; width: 70%;" class="vim_indicator current-visible fragment" data-fragment-index="0">
-                            <img src="presentation/images/part1/image6_Slide_1.svg" style="max-width: 80%; height: auto; max-height: 60vh;">
+
+                    <div
+                        style="flex: 3; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: center; justify-content: center; margin-top: -20px; height: 100%;">
+                        <div style="position:absolute; width: 70%;" class="vim_indicator current-visible fragment"
+                            data-fragment-index="0">
+                            <img src="presentation/images/part1/image6_Slide_1.svg"
+                                style="max-width: 80%; height: auto; max-height: 60vh;">
                         </div>
-                        <div style="position:absolute; width: 70%;" class="vim_indicator current-visible fragment" data-fragment-index="1">
-                            <img src="presentation/images/part1/image6_Slide_2.svg" style="max-width: 80%; height: auto; max-height: 60vh;">
+                        <div style="position:absolute; width: 70%;" class="vim_indicator current-visible fragment"
+                            data-fragment-index="1">
+                            <img src="presentation/images/part1/image6_Slide_2.svg"
+                                style="max-width: 80%; height: auto; max-height: 60vh;">
                         </div>
-                        <div style="position:absolute; width: 70%;" class="vim_indicator current-visible fragment" data-fragment-index="2">
-                            <img src="presentation/images/part1/image6_Slide_3.svg" style="max-width: 80%; height: auto; max-height: 60vh;">
+                        <div style="position:absolute; width: 70%;" class="vim_indicator current-visible fragment"
+                            data-fragment-index="2">
+                            <img src="presentation/images/part1/image6_Slide_3.svg"
+                                style="max-width: 80%; height: auto; max-height: 60vh;">
                         </div>
-                        <div style="position:absolute; width: 70%;" class="vim_indicator current-visible fragment" data-fragment-index="3">
-                            <img src="presentation/images/part1/image6_Slide_4.svg" style="max-width: 80%; height: auto; max-height: 60vh;">
+                        <div style="position:absolute; width: 70%;" class="vim_indicator current-visible fragment"
+                            data-fragment-index="3">
+                            <img src="presentation/images/part1/image6_Slide_4.svg"
+                                style="max-width: 80%; height: auto; max-height: 60vh;">
                         </div>
-                        <div style="position:absolute; width: 70%;" class="vim_indicator current-visible fragment" data-fragment-index="4">
-                            <img src="presentation/images/part1/image6_Slide_5.svg" style="max-width: 80%; height: auto; max-height: 60vh;">
+                        <div style="position:absolute; width: 70%;" class="vim_indicator current-visible fragment"
+                            data-fragment-index="4">
+                            <img src="presentation/images/part1/image6_Slide_5.svg"
+                                style="max-width: 80%; height: auto; max-height: 60vh;">
                         </div>
-                        <div style="position:absolute; width: 70%;" class="vim_indicator current-visible fragment" data-fragment-index="5">
-                            <img src="presentation/images/part1/image6_Slide_6.svg" style="max-width: 80%; height: auto; max-height: 60vh;">
+                        <div style="position:absolute; width: 70%;" class="vim_indicator current-visible fragment"
+                            data-fragment-index="5">
+                            <img src="presentation/images/part1/image6_Slide_6.svg"
+                                style="max-width: 80%; height: auto; max-height: 60vh;">
                         </div>
-                        <div style="position:absolute; width: 70%;" class="vim_indicator current-visible fragment" data-fragment-index="6">
-                            <img src="presentation/images/part1/image6_Slide_7.svg" style="max-width: 80%; height: auto; max-height: 60vh;">
+                        <div style="position:absolute; width: 70%;" class="vim_indicator current-visible fragment"
+                            data-fragment-index="6">
+                            <img src="presentation/images/part1/image6_Slide_7.svg"
+                                style="max-width: 80%; height: auto; max-height: 60vh;">
                         </div>
                     </div>
                 </div>
             </section>
 
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    BASIC CONCEPTS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">CONFIGURATION OF A RIGID BODY</b>
+                </h3>
 
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; padding-top: 20px; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>We can describe the <b class="itext">trajectory</b> of a rigid body by providing the 
+                                matrix \(q(t)\) at each instant of time;
+                            </li><br>
+                            <li>This will describe the position and orientation of the object at any given time, which is all 
+                                that is necessary for a rigid object;
+                            </li><br>
+                            <li>The position and orientation of an object is also called <b class="itext">pose</b>;
+                            </li><br>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <br><br><br>
+                            <div style="width: 100%;">
+                                <iframe src="presentation/images/part1/part_1_3.html" width="550" height="580"
+                                style="border: none;"></iframe>
+                            </div>
+                            
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    BASIC CONCEPTS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">CONFIGURATION OF A MANIPULATOR</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; padding-top: 20px; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>What about the configuration of a system composed by a single manipulator 
+                                that is formed by links that are rigid bodies?
+                            </li><br>
+                            <li>We could describe each rigid link as a rigid body separately, but these rigid bodies 
+                                <b class="itext">are not free</b>, since they are linked together using <b class="itext">joints</b>;
+                            </li><br>
+                            <li>Thus, we could use the  <b class="itext">configuration of each joint</b>  (either revolute or rotative) 
+                            as the configuration of this system. The configuration of each joint can be described by a real number in \(\mathbb{R}^n\);</b>
+                            </li><br>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <br><br><br>
+                            <div style="width: 100%;">
+                                <iframe src="presentation/images/part1/part_1_4.html" width="550" height="580"
+                                style="border: none;"></iframe>
+                            </div>
+                            
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </section>
 
         </div>
     </div>
