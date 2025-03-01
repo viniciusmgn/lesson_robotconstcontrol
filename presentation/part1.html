@@ -37,9 +37,62 @@
     <div class="reveal">
         <div class="slides">
 
+
             <section
                 style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
-                <h3 style="font-size: 3.5vw; margin-bottom: 0.5rem;">BASIC CONCEPTS</h3>
+                <h3 style="font-size: 3.5vw; margin-bottom: 0.5rem;">Constrained Robotic Control</h3>
+                <h3 style="font-size: 2.5vw; margin-bottom: 1rem;">Part 1: Review</h3>
+
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                    <img src="presentation/images/part1/main.svg" style="max-width: 40%; height: auto;">
+                    <small style="font-size: 1.5vw; margin-top: 0.5rem;">Vinicius Mariano Gonçalves</small>
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    REVIEW
+                </h3>
+
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <br>
+                            <li> We are going to have a crash course about some basic concepts for this class;
+                            </li>
+                            <br>
+                            <li> Spong's book has almost everything we need here covered:
+                                <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                                    <li>Spatial Representation (Spong's Chapter 2);</li>
+                                    <li>Forward and Inverse Kinematics (Spong's Chapter 3);</li>
+                                    <li>Differential Kinematics (Spong's Chapter 4);</li>
+                                    <li>Kinematic Control in Task Space (not exactly in Spong...);</li>
+                                    <li>UAIBot basics;</li>
+                                </ul>
+                            </li>
+                            <br>
+                            <li> You can also see my <a href="https://viniciusmgn.github.io/aulas_manipuladores"><b
+                                        class="hlink">Robotic Manipulator Course</b></a> (in portuguese);
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part1/book_spong.jpg"
+                                style="max-width: 80%; height: auto; max-height: 60vh;">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section
+                style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+                <h3 style="font-size: 3.5vw; margin-bottom: 0.5rem;">SPATIAL REPRESENTATION</h3>
 
                 <div style="display: flex; flex-direction: column; align-items: center;">
                     <img src="presentation/images/part1/main.svg" style="max-width: 40%; height: auto;">
@@ -48,7 +101,7 @@
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    BASIC CONCEPTS
+                    SPATIAL REPRESENTATION
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     <b class="ttext">RIGID TRANSFORMATIONS</b>
@@ -74,9 +127,9 @@
                             <br>
 
                             <li>Given a <b class="itext">rotation matrix</b> \(Q\), where \(QQ^\top = Q^\top Q = I_{3
-                                \times 3}\) and \(\det(Q) = +1\), a vector \(p \in \mathbb{R}^3\), and a diagonal matrix
+                                \times 3}\) and \(\det(Q) = +1\), a vector \(s \in \mathbb{R}^3\), and a diagonal matrix
                                 \(D\) with diagonal entries either +1 or -1, the transformation is given by:</li>
-                            $$T(u) = D(Qu+p);$$
+                            $$T(u) = D(Qu+s);$$
                         </ul>
                     </div>
 
@@ -93,7 +146,7 @@
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    BASIC CONCEPTS
+                    SPATIAL REPRESENTATION
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     <b class="ttext">RIGID TRANSFORMATIONS</b>
@@ -128,7 +181,7 @@
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    BASIC CONCEPTS
+                    SPATIAL REPRESENTATION
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     <b class="ttext">HOMOGENEOUS TRANSFORMATION MATRICES</b>
@@ -146,13 +199,13 @@
                             <br>
                             <li> A <b class="itext">Homogeneous Transformation Matrix (HTM)</b> is a \(4 \times 4\)
                                 matrix defined as follows:</li>
-                            $$T = \left(\begin{array}{cc} Q & p \\ 0_{1 \times 3} & 1 \end{array}\right)$$
-                            where \(Q \in \mathbb{R}^{3 \times 3}\) is a rotation matrix, and \(p \in \mathbb{R}^3\) is
+                            $$T = \left(\begin{array}{cc} Q & s \\ 0_{1 \times 3} & 1 \end{array}\right)$$
+                            where \(Q \in \mathbb{R}^{3 \times 3}\) is a rotation matrix, and \(s \in \mathbb{R}^3\) is
                             a column vector.
                             <br><br>
                             <li>It represents a rigid transformation through matrix multiplication. Let \( \tilde{u}\)
                                 be a 4D vector obtained from the 3D vector \(u\) by appending 1 at the end. Applying the
-                                rigid transformation \((Q, p)\) to \(u\) is equivalent to computing \(\tilde{u}\) and
+                                rigid transformation \((Q, s)\) to \(u\) is equivalent to computing \(\tilde{u}\) and
                                 removing the last entry.</li>
                         </ul>
                     </div>
@@ -172,7 +225,7 @@
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    BASIC CONCEPTS
+                    SPATIAL REPRESENTATION
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     <b class="ttext">HOMOGENEOUS TRANSFORMATION MATRICES</b>
@@ -225,7 +278,7 @@
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    BASIC CONCEPTS
+                    SPATIAL REPRESENTATION
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     <b class="ttext">HOMOGENEOUS TRANSFORMATION MATRICES: INTERPRETATION 1</b>
@@ -277,7 +330,7 @@
                                 </li>
                                 </br></br>
                                 <li>
-                                    Lets draw this point. It its the <b class="itext">center</b> of our new
+                                    Lets draw this point. It its the <b class="itext">center</b> \(s\) of our new
                                     frame \(\mathcal{F}_0\)
 
                                 </li>
@@ -430,7 +483,7 @@
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    BASIC CONCEPTS
+                    SPATIAL REPRESENTATION
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     <b class="ttext">HOMOGENEOUS TRANSFORMATION MATRICES: INTERPRETATION 2</b>
@@ -594,7 +647,7 @@
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    BASIC CONCEPTS
+                    SPATIAL REPRESENTATION
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     <b class="ttext">HOMOGENEOUS TRANSFORMATION MATRICES: BASIC TRANSFORMATIONS</b>
@@ -659,7 +712,7 @@
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    BASIC CONCEPTS
+                    SPATIAL REPRESENTATION
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     <b class="ttext">HOMOGENEOUS TRANSFORMATION MATRICES: BASIC PROPERTIES</b>
@@ -672,16 +725,16 @@
                     style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
 
                     <div
-                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; padding-top: 20px; height: 100%;">
+                        style="flex: 1; min-width: 300px; font-size: 1.4vw; text-align: left; display: flex; align-items: start; padding-top: 20px; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
 
                             <li> Other important properties:</li><br>
                             <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                                 <li> The product of HTMs is another HTM;</li><br>
-                                <li> The inverse of a HTM is another HTM. In fact, every HTM is invertible, and:
+                                <li> Every HTM is invertible, and its inverse is also a HTM. Furthemore:
                                     $$
-                                    \left(\begin{array}{cc} Q & p \\ 0_{1 \times 3} & 1\ \end{array}\right)^{-1} =
-                                    \left(\begin{array}{cc} Q^\top & -Q^{\top} p \\ 0_{1 \times 3} & 1\
+                                    \left(\begin{array}{cc} Q & s \\ 0_{1 \times 3} & 1\ \end{array}\right)^{-1} =
+                                    \left(\begin{array}{cc} Q^\top & -Q^{\top} s \\ 0_{1 \times 3} & 1\
                                     \end{array}\right)
                                     $$
                                     which can be easily checked by inspection;
@@ -691,7 +744,8 @@
                                         group</b> ). This
                                     fact has profound implications in physics, engineering and robotics, but will not be
                                     discussed
-                                    (at least explicitly) here;</li>
+                                    (at least explicitly) here;</li><br>
+                                <li>The set of all HTMs will be denoted by <b class="itext">\(SE(3)\)</b>;</li>
                             </ul>
                             </br></br>
 
@@ -713,7 +767,7 @@
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    BASIC CONCEPTS
+                    SPATIAL REPRESENTATION
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     <b class="ttext">HOMOGENEOUS TRANSFORMATION MATRICES: COORDINATE CHANGE</b>
@@ -773,7 +827,7 @@
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    BASIC CONCEPTS
+                    SPATIAL REPRESENTATION
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     <b class="ttext">HOMOGENEOUS TRANSFORMATION MATRICES: COMPOSITION OF TRANSFORMATIONS</b>
@@ -825,7 +879,7 @@
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    BASIC CONCEPTS
+                    SPATIAL REPRESENTATION
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     <b class="ttext">HOMOGENEOUS TRANSFORMATION MATRICES: COMPOSITION OF TRANSFORMATIONS</b>
@@ -871,7 +925,7 @@
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    BASIC CONCEPTS
+                    SPATIAL REPRESENTATION
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     <b class="ttext">HOMOGENEOUS TRANSFORMATION MATRICES: COMPOSITION OF TRANSFORMATIONS</b>
@@ -915,7 +969,7 @@
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    BASIC CONCEPTS
+                    SPATIAL REPRESENTATION
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     <b class="ttext">HOMOGENEOUS TRANSFORMATION MATRICES: COMPOSITION OF TRANSFORMATIONS</b>
@@ -971,7 +1025,7 @@
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    BASIC CONCEPTS
+                    SPATIAL REPRESENTATION
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     <b class="ttext">HOMOGENEOUS TRANSFORMATION MATRICES: COMPOSITION OF TRANSFORMATIONS</b>
@@ -1016,7 +1070,7 @@
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    BASIC CONCEPTS
+                    SPATIAL REPRESENTATION
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     <b class="ttext">HOMOGENEOUS TRANSFORMATION MATRICES: COMPOSITION OF TRANSFORMATIONS</b>
@@ -1060,7 +1114,7 @@
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    BASIC CONCEPTS
+                    SPATIAL REPRESENTATION
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     <b class="ttext">HOMOGENEOUS TRANSFORMATION MATRICES: COMPOSITION OF TRANSFORMATIONS</b>
@@ -1104,7 +1158,7 @@
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    BASIC CONCEPTS
+                    SPATIAL REPRESENTATION
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     <b class="ttext">HOMOGENEOUS TRANSFORMATION MATRICES: COMPOSITION OF TRANSFORMATIONS</b>
@@ -1155,7 +1209,7 @@
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    BASIC CONCEPTS
+                    SPATIAL REPRESENTATION
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     <b class="ttext">HOMOGENEOUS TRANSFORMATION MATRICES: COMPOSITION OF TRANSFORMATIONS</b>
@@ -1201,7 +1255,7 @@
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    BASIC CONCEPTS
+                    SPATIAL REPRESENTATION
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     <b class="ttext">HOMOGENEOUS TRANSFORMATION MATRICES: COMPOSITION OF TRANSFORMATIONS</b>
@@ -1323,7 +1377,7 @@
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    BASIC CONCEPTS
+                    SPATIAL REPRESENTATION
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     <b class="ttext">RIGID BODY</b>
@@ -1369,7 +1423,7 @@
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    BASIC CONCEPTS
+                    SPATIAL REPRESENTATION
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     <b class="ttext">CONFIGURATION AND FORWARD KINEMATIC</b>
@@ -1413,7 +1467,7 @@
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    BASIC CONCEPTS
+                    SPATIAL REPRESENTATION
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     <b class="ttext">CONFIGURATION AND FORWARD KINEMATIC</b>
@@ -1464,7 +1518,7 @@
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    BASIC CONCEPTS
+                    SPATIAL REPRESENTATION
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     <b class="ttext">CONFIGURATION OF A RIGID BODY</b>
@@ -1504,7 +1558,7 @@
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    BASIC CONCEPTS
+                    SPATIAL REPRESENTATION
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     <b class="ttext">CONFIGURATION OF A RIGID BODY</b>
@@ -1552,7 +1606,7 @@
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    BASIC CONCEPTS
+                    SPATIAL REPRESENTATION
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     <b class="ttext">CONFIGURATION OF A RIGID BODY</b>
@@ -1615,7 +1669,7 @@
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    BASIC CONCEPTS
+                    SPATIAL REPRESENTATION
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     <b class="ttext">CONFIGURATION OF A RIGID BODY</b>
@@ -1627,10 +1681,11 @@
                     <div
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; padding-top: 20px; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
-                            <li>We can describe the <b class="itext">trajectory</b> of a rigid body by providing the 
+                            <li>We can describe the <b class="itext">trajectory</b> of a rigid body by providing the
                                 matrix \(q(t)\) at each instant of time;
                             </li><br>
-                            <li>This will describe the position and orientation of the object at any given time, which is all 
+                            <li>This will describe the position and orientation of the object at any given time, which
+                                is all
                                 that is necessary for a rigid object;
                             </li><br>
                             <li>The position and orientation of an object is also called <b class="itext">pose</b>;
@@ -1644,9 +1699,9 @@
                             <br><br><br>
                             <div style="width: 100%;">
                                 <iframe src="presentation/images/part1/part_1_3.html" width="550" height="580"
-                                style="border: none;"></iframe>
+                                    style="border: none;"></iframe>
                             </div>
-                            
+
                         </div>
 
 
@@ -1655,9 +1710,18 @@
                 </div>
             </section>
 
+            <section
+                style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+                <h3 style="font-size: 3.5vw; margin-bottom: 0.5rem;">FORWARD AND INVERSE KINEMATICS</h3>
+
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                    <img src="presentation/images/part1/main.svg" style="max-width: 40%; height: auto;">
+                </div>
+            </section>
+
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    BASIC CONCEPTS
+                    FORWARD AND INVERSE KINEMATICS
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     <b class="ttext">CONFIGURATION OF A MANIPULATOR</b>
@@ -1669,15 +1733,20 @@
                     <div
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; padding-top: 20px; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
-                            <li>What about the configuration of a system composed by a single manipulator 
+                            <li>What about the configuration of a system composed by a single manipulator
                                 that is formed by links that are rigid bodies?
                             </li><br>
-                            <li>We could describe each rigid link as a rigid body separately, but these rigid bodies 
-                                <b class="itext">are not free</b>, since they are linked together using <b class="itext">joints</b>;
+                            <li>We could describe each rigid link as a rigid body separately, but these rigid bodies
+                                <b class="itext">are not free</b>, since they are linked together using <b
+                                    class="itext">joints</b>;
                             </li><br>
-                            <li>Thus, we could use the  <b class="itext">configuration of each joint</b>  (either revolute or rotative) 
-                            as the configuration of this system. The configuration of each joint can be described by a real number in \(\mathbb{R}^n\);</b>
+                            <li>Thus, we could use the <b class="itext">configuration of each joint</b> (either revolute
+                                or revolute )
+                                as the configuration of this system. The configuration of each joint can be described by
+                                a real number in \(\mathbb{R}^n\);</b>
                             </li><br>
+                            <li>Henceforth, in this class, we will consider only manipulators composed by rigid links;
+                            </li>
                         </ul>
                     </div>
 
@@ -1687,9 +1756,9 @@
                             <br><br><br>
                             <div style="width: 100%;">
                                 <iframe src="presentation/images/part1/part_1_4.html" width="550" height="580"
-                                style="border: none;"></iframe>
+                                    style="border: none;"></iframe>
                             </div>
-                            
+
                         </div>
 
 
@@ -1698,88 +1767,992 @@
                 </div>
             </section>
 
-        </div>
-    </div>
-    <style>
-        .reveal .progress {
-            color: #34eb5e;
-        }
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    FORWARD AND INVERSE KINEMATICS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">FORWARD KINEMATICS: DENAVIT-HARTENBERG CONVENTION</b>
+                </h3>
 
-        .reveal .controls {
-            color: #34eb5e;
-        }
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
 
-        body {
-            background-image: url(presentation/images/aula1/logo_ufmg.svg) !important;
-            background-color: black;
-            background-size: 8% !important;
-            background-repeat: no-repeat !important;
-            background-position: 96% 3% !important;
-        }
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; padding-top: 20px; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>We often want to track the pose of parts of the robot, in special (but not limited to),
+                                the
+                                end-effector;
+                            </li><br>
+                            <li>We will attach a frame to each link \(i\) (which is a rigid object), and then we will
+                                devise <b class="itext">forward kinematic maps</b> \(T_{DH0}^{DHi}: \mathcal{Q} \mapsto
+                                SE(3)\)
+                                that maps the configuration into the
+                                pose of the \(i^{th}\) link with respect to a fixed frame \(\mathcal{F}_0\);
+                            </li><br>
+                            <li>But how to attach this frame? Is there a preferred way?;</b>
+                            </li><br>
+                        </ul>
+                    </div>
 
-        .itext {
-            color: #8af2a2;
-        }
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <div style="width: 100%;">
+                                <img src="presentation/images/part1/main.svg"
+                                    style="max-width: 80%; height: auto; max-height: 60vh;">
+                            </div>
 
-        .ttext {
-            color: #34eb5e;
-        }
-
-        /* width */
-        ::-webkit-scrollbar {
-            width: 20px;
-        }
-
-        /* Track */
-        ::-webkit-scrollbar-track {
-            box-shadow: inset 0 0 5px grey;
-            border-radius: 10px;
-        }
-
-        /* Handle */
-        ::-webkit-scrollbar-thumb {
-            background: #34eb5e;
-            border-radius: 10px;
-        }
-
-        /* Handle on hover */
-        ::-webkit-scrollbar-thumb:hover {
-            background: #01b82b;
-        }
-
-        ::-webkit-scrollbar-corner {
-            background: rgba(0, 0, 0, 0);
-        }
-    </style>
-
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
-    <script src="presentation/dist/reveal.js"></script>
-    <script src="presentation/plugin/notes/notes.js"></script>
-    <script src="presentation/plugin/markdown/markdown.js"></script>
-    <script src="presentation/plugin/highlight/highlight.js"></script>
-    <script src="presentation/plugin/menu/menu.js"></script>
-    <script>
-        // More info about initialization & config:
-        // - https://revealjs.com/initialization/
-        // - https://revealjs.com/config/
-        Reveal.initialize({
-            hash: true,
-            width: 1200,
-            height: 800,
-            margin: 0,
-            minScale: 0.2,
-            maxScale: 2.0,
-            plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealMenu]
-        });
-        var frames = document.getElementsByTagName("iframe");
+                        </div>
 
 
-        Reveal.on('slidechanged', event => {
-            for (let i = 0; i < frames.length; ++i) {
-                frames[i].contentWindow.location.reload(true);
-            }
-        });
-    </script>
+                    </div>
+
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    FORWARD AND INVERSE KINEMATICS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">FORWARD KINEMATICS: DENAVIT-HARTENBERG CONVENTION</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; padding-top: 20px; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>Yes! We will use the famous <b class="itext">Denavit-Hartenberg convention</b>, which
+                                tells us how to place
+                                the frame in each link conveniently, and then, based on this placement, how to compute
+                                the forward kinematic for each one
+                                of them!
+                            </li><br>
+                            <li>I must warn that there are other ways to do so, and that (unfortunately) there are more
+                                than one
+                                "Denavit-Hartenberg convention". The one that will be presented here is the most common,
+                                however;
+                            </li><br>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <div style="width: 100%;">
+                                <img src="presentation/images/part1/main.svg"
+                                    style="max-width: 80%; height: auto; max-height: 60vh;">
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    FORWARD AND INVERSE KINEMATICS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">FORWARD KINEMATICS: DENAVIT-HARTENBERG CONVENTION</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; padding-top: 20px; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>The rules are as follows, create the frames \(\mathcal{F}_{DHi}\) for \(i=0,1,...,n\),
+                                in which \(n\) is the number of joints:
+                            </li><br>
+                            <div>
+                                <ul>
+                                    <li>Identify the <b class="itext">line<sub>i</sub></b>, which is the line aligned to
+                                        <b class="itext">joint<sub>i</sub></b>;
+                                    </li>
+                                    <li>Identify the <b class="itext">line<sub>i+1</sub></b>, which is the line aligned
+                                        to
+                                        <b class="itext">joint<sub>i+1</sub></b>;
+                                    </li>
+                                    <li>Identify the <b class="itext">point<sub>i,i+1</sub></b>, which is the point in
+                                        <b class="itext">line<sub>i</sub></b> which is the closest to <b
+                                            class="itext">line<sub>i+1</sub></b>;
+                                    </li>
+                                    <li>Identify the <b class="itext">point<sub>i+1,i</sub></b>, which is the point in
+                                        <b class="itext">line<sub>i+1</sub></b> which is the closest to <b
+                                            class="itext">line<sub>i</sub></b>;
+                                    </li>
+                                    <li>The <b class="itext">center</b> of \(\mathcal{F}_{DHi}\) is the <b
+                                            class="itext">point<sub>i+1,i</sub></b>;
+                                    </li>
+                                    <li>The axis <b class="itext">\(z_{DHi}\)</b> is chosen as being one of the two
+                                        possible directions in
+                                        <b class="itext">line<sub>i+1</sub></b>;
+                                    </li>
+                                    <li>The axis <b class="itext">\(x_{DHi}\)</b> is chosen as being the vector that
+                                        goes from <b class="itext">point<sub>i,i+1</sub></b> to <b
+                                            class="itext">point<sub>i+1,i</sub></b>, after normalizing;
+                                    </li>
+                                    <li>Complete the frame \(\mathcal{F}_{DHi}\) with the axis <b
+                                            class="itext">\(y_{DHi}\)</b>
+                                        from the right-hand rule.
+                                    </li>
+                                </ul><br>
+                        </ul>
+                    </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    FORWARD AND INVERSE KINEMATICS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">FORWARD KINEMATICS: DENAVIT-HARTENBERG CONVENTION</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; padding-top: 20px; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>In some situations this "algorithm" is ill-defined:
+                            </li><br>
+                            <div>
+                                <ul style="text-align:justify; text-justify: inter-word">
+                                    <li>For \(i=0\), there is no <b class="itext">joint<sub>0</sub></b>. So, for
+                                        \(i=0\),
+                                        we simply choose
+                                        the center arbitrarily along <b class="itext">line<sub>1</sub></b>, and the axis
+                                        <b class="itext">\(x_{DH0}\)</b>
+                                        arbitrarily, as long as, of course, it is orthogonal to <b
+                                            class="itext">\(z_{DH0}\)</b>;
+                                    </li>
+                                    <li>If the lines <b class="itext">line<sub>i</sub></b> and <b
+                                            class="itext">line<sub>i+1</sub></b>
+                                        are parallel, there are
+                                        infinitely many choices for the points <b
+                                            class="itext">point<sub>i,i+1</sub></b>
+                                        and <b class="itext">point<sub>i+1,i</sub></b>. Choose one of them arbitrarily;
+                                    </li>
+                                    <li>If <b class="itext">point<sub>i,i+1</sub></b> =<b
+                                            class="itext">point<sub>i+1,i</sub></b>, the rule of choice for
+                                        <b class="itext">\(x_{DHi}\)</b> is ill-defined. In that case, choose between
+                                        any of the two vectors that are
+                                        simulatenously orthogonal to the lines
+                                        <b class="itext">line<sub>i</sub></b> and <b
+                                            class="itext">line<sub>i+1</sub></b>;
+                                    </li>
+                                    <li>Finally, if \(i=n\), there is no <b class="itext">joint<sub>n+1</sub></b>. In
+                                        this case, we choose the
+                                        line
+                                        <b class="itext">line<sub>n+1</sub></b> arbitrarily. Usually, we take the
+                                        previous line,
+                                        <b class="itext">line<sub>n</sub></b>.
+                                    </li>
+                                </ul>
+                        </ul>
+                    </div>
+
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    FORWARD AND INVERSE KINEMATICS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">FORWARD KINEMATICS: DENAVIT-HARTENBERG CONVENTION</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+
+                    <div
+                        style="flex: 3; min-width: 300px; font-size: 1.4vw; text-align: left; display: flex; align-items: start; padding-top: 20px; height: 100%;">
+                        <ul>
+                            <li>For i = 0,1,...,n:</li>
+                            <li>Identify the <b class="itext">line<sub>i</sub></b>, which is the line aligned to
+                                <b class="itext">joint<sub>i</sub></b>;
+                            </li>
+                            <li>Identify the <b class="itext">line<sub>i+1</sub></b>, which is the line aligned
+                                to
+                                <b class="itext">joint<sub>i+1</sub></b>;
+                            </li>
+                            <li>Identify the <b class="itext">point<sub>i,i+1</sub></b>, which is the point in
+                                <b class="itext">line<sub>i</sub></b> which is the closest to <b
+                                    class="itext">line<sub>i+1</sub></b>;
+                            </li>
+                            <li>Identify the <b class="itext">point<sub>i+1,i</sub></b>, which is the point in
+                                <b class="itext">line<sub>i+1</sub></b> which is the closest to <b
+                                    class="itext">line<sub>i</sub></b>;
+                            </li>
+                            <li>The <b class="itext">center</b> of \(\mathcal{F}_{DHi}\) is the <b
+                                    class="itext">point<sub>i+1,i</sub></b>;
+                            </li>
+                            <li>The axis <b class="itext">\(z_{DHi}\)</b> is chosen as being one of the two
+                                possible directions in
+                                <b class="itext">line<sub>i+1</sub></b>;
+                            </li>
+                            <li>The axis <b class="itext">\(x_{DHi}\)</b> is chosen as being the vector that
+                                goes from <b class="itext">point<sub>i,i+1</sub></b> to <b
+                                    class="itext">point<sub>i+1,i</sub></b>, after normalizing;
+                            </li>
+                            <li>Complete the frame \(\mathcal{F}_{DHi}\) with the axis <b class="itext">\(y_{DHi}\)</b>
+                                from the right-hand rule.
+                            </li>
+                            <!-- <li>Identify the <b class="itext" style="color:#FFA500">line<sub>i</sub></b>, which is the
+                                line aligned to
+                                <b class="itext">joint<sub>i</sub></b>;
+                            </li>
+                            <li>Identify the <b class="itext" style="color:#FF7AFF">line<sub>i+1</sub></b>, which is the
+                                line aligned to
+                                <b class="itext">joint<sub>i+1</sub></b>;
+                            </li>
+                            <li>Identify the <b class="itext" style="color:cyan">point<sub>i,i+1</sub></b>, which is the
+                                point in <b class="itext" style="color:#FFA500">line<sub>i</sub></b> which is the
+                                closest to <b class="itext" style="color:#FF7AFF">line<sub>i+1</sub></b>;
+                            </li>
+                            <li>Identify the <b class="itext" style="color:#7bb572">point<sub>i+1,i</sub></b>, which is
+                                the point in <b class="itext" style="color:#FF7AFF">line<sub>i+1</sub></b> which is the
+                                closest to <b class="itext" style="color:#FFA500">line<sub>i</sub></b>;
+                            </li>
+                            <li>The <b class="itext" style="color:#7bb572">center</b> of \(\mathcal{F}_{DHi}\) is the <b
+                                    class="itext" style="color:#7bb572">point<sub>i+1,i</sub></b>;
+                            </li>
+                            <li>The axis <b class="itext" style="color:blue">\(z_{DHi}\)</b> is chosen as being one of
+                                the two possible directions in
+                                <b class="itext" style="color:#FF7AFF">line<sub>i+1</sub></b>;
+                            </li>
+                            <li>The axis <b class="itext" style="color:red">\(x_{DHi}\)</b> is chosen as being the
+                                vector that goes from <b class="itext" style="color:cyan">point<sub>i,i+1</sub></b> to
+                                <b class="itext" style="color:#7bb572">point<sub>i+1,i</sub></b>, after normalizing;
+                            </li>
+                            <li>Complete the frame \(\mathcal{F}_{DHi}\) with the axis <b class="itext"
+                                    style="color:limegreen">\(y_{DHi}\)</b>
+                                from the right-hand rule.
+                            </li> -->
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 4; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <br><br><br>
+                            <div style="width: 100%;">
+                                <iframe src="presentation/images/part1/part_1_5.html" width="580" height="580"
+                                    style="border: none;"></iframe>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    FORWARD AND INVERSE KINEMATICS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">FORWARD KINEMATICS: DENAVIT-HARTENBERG CONVENTION</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; padding-top: 20px; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>Once the frames are attached, to compute the forward kinematics for each frame (and thus
+                                for the corresponfing links),
+                                we need to identify the <b class="itext">Denavit-Hartenberg parameters</sub>;</b>
+                            </li><br>
+                            <li>Four numbers for each joint. Of these four, three are fixed (depends on how the robot
+                                was built) and one is variable
+                                depending on how the joint i (revolute or prismatic) is currently;
+                            </li><br>
+                            <li>Thus, if the robot has \(n\) joints, we have \(4n\) parameters, in which \(n\) of them
+                                are variables;</li>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <div style="width: 100%;">
+                                <img src="presentation/images/part1/main.svg"
+                                    style="max-width: 80%; height: auto; max-height: 60vh;">
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    FORWARD AND INVERSE KINEMATICS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">FORWARD KINEMATICS: DENAVIT-HARTENBERG CONVENTION</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.4vw; text-align: left; display: flex; align-items: start; padding-top: 20px; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>The parameters are:
+
+                                <div>
+                                    <ul style="text-align:justify; text-justify: inter-word">
+                                        <li><b class="ttext">\(\theta_i\)</b> : the rotation that needs to be performed
+                                            in the <b class="itext">current
+                                                \(z\) axis</b> to align
+                                            the current \(x\) axis with the next \(x\) one. <b class="itext">If the
+                                                \(i^{th}\) joint is revolute , this
+                                                is variable;</b>
+                                        </li>
+                                        <li><b class="ttext">\(d_i\)</b> : the translation that needs to be performed,
+                                            <b class="itext">current
+                                                \(z\) axis, obtained after the previous transformations</b> so the
+                                            center of the frame goes to <b class="itext">point<sub>i,i+1</sub></b>.
+                                            <b class="itext">If the \(i^{th}\) joint is prismatic, this
+                                                is variable;</b>
+                                        </li>
+                                        <li><b class="ttext">\(\alpha_i\)</b> : the rotation that needs to be performed
+                                            in the <b class="itext">current
+                                                \(x\) axis, obtained after the previous transformations</b> to align the
+                                            current \(z\) with the next \(z\);
+                                        </li>
+                                        <li><b class="ttext">\(a_i\)</b> : the translation that needs to be performed in
+                                            <b class="itext">current
+                                                \(x\) axis, obtained after the previous transformations</b> so the two
+                                            frames finally coincide;
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <br><br>
+                        <div style="width: 100%">
+                            <div style="width: 100%;">
+                                <br><br>
+                                <iframe src="presentation/images/part1/part_1_6.html" width="580" height="580"
+                                    style="border: none;"></iframe>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </section>
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    FORWARD AND INVERSE KINEMATICS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">FORWARD KINEMATICS: DENAVIT-HARTENBERG CONVENTION</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; padding-top: 20px; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>Though not exactly the DH parameters, you will find the necessary information to compute
+                                these in
+                                the robot's manual;
+                            </li><br>
+
+                            <li>Nevertheless, once we have these parameters, it is very easy to compute the
+                                transformation between DH frame i-1 and the next one,
+                                for \(i=1,...,n\)
+                                $$T_{DH,i-1}^{DH,i}(q_i) = R_z(\theta_i)D_z(d_i)R_x(\alpha_i)D_x(a_i);$$
+                            </li><br>
+                            <li>Note that this transformation is <b class="itext">from the right</b> (see the definition
+                                of the parameters, they are defined using the current frame);
+                            </li><br>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <div style="width: 100%;">
+                                <img src="presentation/images/part1/main.svg"
+                                    style="max-width: 80%; height: auto; max-height: 60vh;">
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    FORWARD AND INVERSE KINEMATICS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">FORWARD KINEMATICS: DENAVIT-HARTENBERG CONVENTION</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; padding-top: 20px; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+
+                            <li>Furthermore, note that this transformation depends only on the \(i^{th}\) joint, either
+                                on \(\theta_i\) if the joint is revolute,
+                                or in \(d_i\) if the joint is prismatic;</li><br>
+                            <li>The relationship between \(q_i\) (or \(d_i\)) and \(q_i\) is very often linear:
+                                \(\theta_i = A_iq_i+B_i\) for two constants
+                                \(A_i,B_i\). It depends on what it is defined to be the "zero" of the joint and if
+                                increasing the \(q_i\) makes the joint rotate\translate
+                                according to the z axis of the DH convention;
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <div style="width: 100%;">
+                                <img src="presentation/images/part1/main.svg"
+                                    style="max-width: 80%; height: auto; max-height: 60vh;">
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    FORWARD AND INVERSE KINEMATICS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">FORWARD KINEMATICS: DENAVIT-HARTENBERG CONVENTION</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; padding-top: 20px; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+
+                            <li>So, the transformation between the frame 0 (which is fixed) and frame \(i\) depends on
+                                \(q_1,q_2,...,q_i\)
+                                and is given by
+                                $$T_{DH0}^{DHi}(q_1,...,q_i) =
+                                T_{DH0}^{DH1}(q_1)T_{DH1}^{DH2}(q_2)...T_{DH,i-1}^{DHi}(q_i);$$
+                            </li><br>
+                            <li>In special this allows us to construct the transformation from the first to the last
+                                frame, \(T_{DH0}^{DHn}(q)\);
+                            </li><br>
+                            <li>Sometimes, neither the initial fixed frame \(F_{DH0}\) nor the final one \(F_{DHn}\) are
+                                exactly where you want to
+                                be. So, you need <b class="itext">extra transformations</b> that are <b
+                                    class="itext">constant</b> (or at least, it does not
+                                depends on the joints, but on something else):
+                                $$T_{0}^{e}(q) = T_{0}^{DH0} T_{DH0}^{DHn}(q) T_{DHn}^{e};$$
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <div style="width: 100%;">
+                                <img src="presentation/images/part1/main.svg"
+                                    style="max-width: 80%; height: auto; max-height: 60vh;">
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    FORWARD AND INVERSE KINEMATICS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">FORWARD KINEMATICS: INVERSE KINEMATIC</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; padding-top: 20px; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+
+                            <li>The <b class="itext">inverse kinematic problem</b> is the following: given a target pose
+                                for a frame (say, for the end effector),
+                                what is the configuration \(q\) (if any) that achieves it:
+                                $$T_0^e(q) = T_{0,des}^e;$$
+                            </li><br>
+                            <li>Non linear system of equations. In general, very hard to solve, but there are specific
+                                algorithms for some robots;
+                            </li><br>
+                            <li>We will handle this problem soon by adapting this problem into a <b
+                                    class="itext">control problem</b>;
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <div style="width: 100%;">
+                                <img src="presentation/images/part1/main.svg"
+                                    style="max-width: 80%; height: auto; max-height: 60vh;">
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </section>
+
+            <section
+                style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+                <h3 style="font-size: 3.5vw; margin-bottom: 0.5rem;">DIFFERENTIAL KINEMATICS</h3>
+
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                    <img src="presentation/images/part1/main.svg" style="max-width: 40%; height: auto;">
+                </div>
+            </section>
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    DIFFERENTIAL KINEMATICS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">INTRODUCTION</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; padding-top: 20px; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+
+                            <li>Forward kinematics deals with the problem of computing the <b class="itext">pose</b> 
+                                of rigid objects given the configuration. <b class="itext">Differential kinematics</b> 
+                                deal with computing <b class="itext">velocities</b>; 
+                            </li><br>
+                            <li>But first we need to know how to represent velocities of rigid bodies;
+                            </li><br>
+                            <li>This is done by defining the <b class="itext">linear velocity and angular velocity vectors</b>;
+                            </li><br>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <div style="width: 100%;">
+                                <img src="presentation/images/part1/main.svg"
+                                    style="max-width: 80%; height: auto; max-height: 60vh;">
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </section>
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    DIFFERENTIAL KINEMATICS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">LINEAR VELOCITY VECTOR</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; padding-top: 20px; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+
+                            <li>Suppose the pose of a rigid object is given by the following time-parametrized HTM, the transformation between the fixed frame 
+                                \(\mathcal{F}_0\) and the object frame \(\mathcal{F}_{obj}\):
+                                $$T_0^{obj}(t) = \left(\begin{array}{cc} Q(t) & s(t)\\ 0_{1 \times 3} & 1  \end{array}\right);$$ 
+                            </li><br>
+                            <li>The <b class="itext">linear velocity vector</b> (written in \(\mathcal{F}_0\)) is simply the velocity of the point at the center:
+                                $$v(t) = \frac{d}{dt} s(t); $$
+                            </li><br>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <div style="width: 100%;">
+                                <img src="presentation/images/part1/main.svg"
+                                    style="max-width: 80%; height: auto; max-height: 60vh;">
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    DIFFERENTIAL KINEMATICS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">ANGULAR VELOCITY VECTOR</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; padding-top: 20px; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+
+                            <li>For the <b class="itext">angular velocity vector</b> we need to define some things first;
+                            </li><br>
+                            <li>The <b class="itext">S operator</b> is the following map between a 3D vector and a 3 x 3 antisymmetric matrix. 
+                                Let \(a = (a_x \ a_y \ a_z)^\top\), then:
+                                $$S(a) = \Large{\Bigg(}\normalsize{}\begin{array}{ccc} 0 & -a_z & a_y \\ a_z & 0 & -a_x \\
+                            -a_y & a_x & 0 \end{array}\Large{\Bigg)}\normalsize{}; $$
+                            </li><br>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <div style="width: 100%;">
+                                <img src="presentation/images/part1/main.svg"
+                                    style="max-width: 80%; height: auto; max-height: 60vh;">
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    DIFFERENTIAL KINEMATICS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">S OPERATOR: PROPERTIES</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; padding-top: 20px; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+
+                            <li>Some (very useful) properties:</li><br>
+                            <li>The \(S\) operator is related to the 3D <b class="itext">cross product</b>: 
+                                if \(a,b\) are two 3D vectors, then \(S(a)b = a \times b\), in which \(\times\) is the cross product;</li><br>
+
+                            <li>Let \(a,b\) be two 3D vectors. Since \(a \times b = -(b \times a)\) then \(S(a)b = -S(b)a\);</li><br>
+                            <li>Let \(a,b\) be two 3D vectors and \(R\) a rotation matrix. Since \(R(a \times b) = (Ra) \times (Rb)\), 
+                                 then \(RS(a)R^\top = S(Ra)\);</li>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <div style="width: 100%;">
+                                <img src="presentation/images/part1/main.svg"
+                                    style="max-width: 80%; height: auto; max-height: 60vh;">
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    DIFFERENTIAL KINEMATICS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">ANGULAR VELOCITY VECTOR</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; padding-top: 20px; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+
+                            <li>The \(S\) operator is related to rotation matrices as follows:
+
+                                <div style="background-color: #282828">
+                                   <b class="ttext">Theorem:</b> Let \(Q(t)\) be a time-varying differentiable rotation matrix. 
+                                        Then, there exists a time-varying 3D vector \(\omega(t) = (\omega_x(t) \ \omega_y(t) \ \omega_z(t))^\top\) such that:
+                                        $$\frac{d}{dt} Q(t) = S(\omega(t))Q(t).$$
+                                </div>
+
+                            </li><br>
+                            <li>As you have already guessed, of \(Q(t)\) is the rotation part of the HTM between \(\mathcal{F}_0\) and \(\mathcal{F}_{obj}\)
+                                \(\omega(t)\) is the <b class="itext">angular velocity vector</b>
+                                (written in \(\mathcal{F}_0\));</li>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <div style="width: 100%;">
+                                <img src="presentation/images/part1/main.svg"
+                                    style="max-width: 80%; height: auto; max-height: 60vh;">
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    DIFFERENTIAL KINEMATICS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">ANGULAR VELOCITY VECTOR AND S OPERATOR: PROPERTIES</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; padding-top: 20px; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+
+                            <li>Suppose \(Q(t)\) has <b class="itext">rows</b> vectors \(x(t)^\top,y(t)^\top,z(t)^\top\), then, explicitly: 
+                                $$\omega(t) = \left(\begin{array}{c} \dot{z}(t)^\top y(t) \\ \dot{x}(t)^\top z(t) \\ \dot{y}(t)^\top x(t) \end{array}\right);$$
+                            </li><br>
+                            <li>Just like the intutition of linear velocity is as an <b class="itext">infinitesimal translation along the velocity vector</b>, 
+                                the intuition of the angular velocity is as <b class="itext">infinitesimal rotation</b>: if \(\omega(t)\) is the 
+                                angular velocity of the rigid object at time \(t\), then from \(t\) to \(t+\Delta t\), for \(\Delta t\) small, the object is undergoing a rotation 
+                                in the axis given by the normalized vector \(\omega(t)/\|\omega(t)\|\), rotating by an angle  \(\|\omega(t)\| \Delta t\);
+                            </li><br>
+
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <div style="width: 100%;">
+                                <iframe src="presentation/images/part1/part_1_7.html" width="550" height="580"
+                                style="border: none;"></iframe>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    DIFFERENTIAL KINEMATICS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">VELOCITY OF A PARTICLE</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; padding-top: 20px; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+
+                            <li>Consider that a particle \(U\) of a rigid body has position \(u(t)\) at a given time \(t\) written in 
+                                the fixed frame \(\mathcal{F}_0\). Suppose the rigid object has linear velocity \(v(t)\) and 
+                                angular velocity \(\omega(t)\) and that:
+                                $$T_0^{obj}(t) = \left(\begin{array}{cc} Q(t) & p(t)\\ 0_{1 \times 3} & 1  \end{array}\right);$$
+                            </li><br>
+                            <li>Then, the velocity \(v_U\) of this particle (written in \(\mathcal{F}_0\)) is: 
+                                $$v_U = v + \omega \times (u - p);$$
+                            </li>
+
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <div style="width: 100%;">
+                                <iframe src="presentation/images/part1/part_1_8.html" width="550" height="580"
+                                style="border: none;"></iframe>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </section>
+
+
+
+            <style>
+                .reveal .progress {
+                    color: #34eb5e;
+                }
+
+                .reveal .controls {
+                    color: #34eb5e;
+                }
+
+                body {
+                    background-image: url(presentation/images/aula1/logo_ufmg.svg) !important;
+                    background-color: black;
+                    background-size: 8% !important;
+                    background-repeat: no-repeat !important;
+                    background-position: 96% 3% !important;
+                }
+
+                .itext {
+                    color: #8af2a2;
+                }
+
+                .ttext {
+                    color: #34eb5e;
+                }
+
+                /* width */
+                ::-webkit-scrollbar {
+                    width: 20px;
+                }
+
+                /* Track */
+                ::-webkit-scrollbar-track {
+                    box-shadow: inset 0 0 5px grey;
+                    border-radius: 10px;
+                }
+
+                /* Handle */
+                ::-webkit-scrollbar-thumb {
+                    background: #34eb5e;
+                    border-radius: 10px;
+                }
+
+                /* Handle on hover */
+                ::-webkit-scrollbar-thumb:hover {
+                    background: #01b82b;
+                }
+
+                ::-webkit-scrollbar-corner {
+                    background: rgba(0, 0, 0, 0);
+                }
+
+                .hlink {
+                    color: #f5bf42;
+                }
+
+                .hlink:hover {
+                    text-decoration: underline;
+                }
+            </style>
+
+            <script id="MathJax-script" async
+                src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+            <script src="presentation/dist/reveal.js"></script>
+            <script src="presentation/plugin/notes/notes.js"></script>
+            <script src="presentation/plugin/markdown/markdown.js"></script>
+            <script src="presentation/plugin/highlight/highlight.js"></script>
+            <script src="presentation/plugin/menu/menu.js"></script>
+            <script>
+                // More info about initialization & config:
+                // - https://revealjs.com/initialization/
+                // - https://revealjs.com/config/
+                Reveal.initialize({
+                    hash: true,
+                    width: 1200,
+                    height: 800,
+                    margin: 0,
+                    minScale: 0.2,
+                    maxScale: 2.0,
+                    plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealMenu]
+                });
+                var frames = document.getElementsByTagName("iframe");
+
+
+                Reveal.on('slidechanged', event => {
+                    for (let i = 0; i < frames.length; ++i) {
+                        frames[i].contentWindow.location.reload(true);
+                    }
+                });
+            </script>
 </body>
 
 </html>
