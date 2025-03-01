@@ -35,7 +35,7 @@ dt=0.01
 htm = box.htm
 
 for i in range(3000):
-    htm =  Utils.trn([0.9*cos(i*dt),0.9*sin(i*dt), 0.5+0.15*sin(0.3*i*dt)]) @ Utils.rotx(1*i*dt) @ Utils.roty(0.5*i*dt)
+    htm =  Utils.trn([0.9*cos(i*dt),0.9*sin(i*dt), 0.5+0.15*sin(0.3*i*dt)]) * Utils.rotx(1*i*dt) * Utils.roty(0.5*i*dt)
     box.add_ani_frame(i*dt,htm=htm)
     frame.add_ani_frame(i*dt,htm=htm)
     H = box.htm

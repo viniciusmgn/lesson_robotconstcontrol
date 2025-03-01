@@ -46,7 +46,7 @@ k=0
 
 explanation.add_ani_frame(k*dt, html_text= "<b style=\'color:#34eb5e\'>R<sub>x</sub>(&#960/4)</b>D<sub>y</sub>(-0.25)R<sub>z</sub>(&#960/2)D<sub>x</sub>(1)")
 for i in range(400):
-    htm = frame.htm  @ Utils.rotx((3.14/4)*(dt/4))
+    htm = frame.htm  * Utils.rotx((3.14/4)*(dt/4))
     frame.add_ani_frame(k*dt, htm = htm)
     k+=1
 
@@ -54,7 +54,7 @@ k+=400
 
 explanation.add_ani_frame(k*dt, html_text= "<b style=\'color:#34eb5e\'>R<sub>x</sub>(&#960/4)D<sub>y</sub>(-0.25)</b>R<sub>z</sub>(&#960/2)D<sub>x</sub>(1)")
 for i in range(400):
-    htm = frame.htm @ Utils.trn([0,-0.25 * dt/4,0])
+    htm = frame.htm * Utils.trn([0,-0.25 * dt/4,0])
     frame.add_ani_frame(k*dt, htm = htm)
     k+=1
 
@@ -62,14 +62,14 @@ k+=400
 
 explanation.add_ani_frame(k*dt, html_text= "<b style=\'color:#34eb5e\'>R<sub>x</sub>(&#960/4)D<sub>y</sub>(-0.25)R<sub>z</sub>(&#960/2)</b>D<sub>x</sub>(1)")
 for i in range(400):
-    htm = frame.htm @ Utils.rotz((3.14 / 2) * (dt / 4))
+    htm = frame.htm * Utils.rotz((3.14 / 2) * (dt / 4))
     frame.add_ani_frame(k*dt, htm = htm)
     k+=1
 
 k+=400
 explanation.add_ani_frame(k*dt, html_text= "<b style=\'color:#34eb5e\'>R<sub>x</sub>(&#960/4)D<sub>y</sub>(-0.25)R<sub>z</sub>(&#960/2)D<sub>x</sub>(1)</b>")
 for i in range(400):
-    htm = frame.htm @ Utils.trn([dt/4,0,0])
+    htm = frame.htm * Utils.trn([dt/4,0,0])
     frame.add_ani_frame(k*dt, htm = htm)
     k+=1
     

@@ -58,7 +58,7 @@ end_lines = []
 dist_between_points = 0.01
 
 for i in range(len(robot.links)):
-    p_A = (htm[i] @ Utils.trn([0, 0, robot.links[i].d]))[0:3, 3]
+    p_A = (htm[i] * Utils.trn([0, 0, robot.links[i].d]))[0:3, 3]
     p_B = htm[i + 1][0:3, 3]
 
     n_points = floor(np.linalg.norm(p_A - p_B) / dist_between_points)
@@ -177,13 +177,13 @@ for i in range(len(robot.links) + 1):
         text += "Lets draw " + txt_pointA(i) + ". This in the point in " + txt_line_orange(
             i) + " which is the closest to " + txt_line_purple(i + 1) + ".<br>"
 
-        points_A.add_ani_frame(k * dt, htm=htm[i - 1] @ Utils.trn([0, 0, robot.links[i - 1].d]))
+        points_A.add_ani_frame(k * dt, htm=htm[i - 1] * Utils.trn([0, 0, robot.links[i - 1].d]))
 
         text += "Lets draw  " + txt_pointB(i + 1) + ".  This in the point in  " + txt_line_purple(
             i + 1) + " which is the closest   " \
                      "to " + txt_line_orange(i) + ".<br>"
 
-        if i < len(robot.links) and abs(1 - abs(htm[i - 1][0:3, 2].transpose() @ htm[i][0:3, 2])) < 0.001:
+        if i < len(robot.links) and abs(1 - abs(htm[i - 1][0:3, 2].transpose() * htm[i][0:3, 2])) < 0.001:
             text += "Since the lines " + txt_line_orange(
                 i) + " and " + txt_line_purple(i + 1) + " are parallel, there isnt infinite pairs of " + txt_pointA(
                 i) + " and " + txt_pointB(i + 1) + " to choose. Lets choose it arbitrarily.<br>"
@@ -208,7 +208,7 @@ for i in range(len(robot.links) + 1):
         text += "For the last axis, we can keep the same z as before."
 
     explanation.add_ani_frame(k * dt, html_text=text)
-    z_axis[i].add_ani_frame(k * dt, htm=htm[i] @ Utils.trn([0, 0, vector_length / 2]))
+    z_axis[i].add_ani_frame(k * dt, htm=htm[i] * Utils.trn([0, 0, vector_length / 2]))
 
     # Create the vector x_i
     k += 3 * deltak
@@ -234,7 +234,7 @@ for i in range(len(robot.links) + 1):
                                            "axis " + txt_axis_z(0) + " .")
 
     k += deltak
-    x_axis[i].add_ani_frame(k * dt, htm=htm[i] @ Utils.roty(3.14 / 2) @ Utils.trn([0, 0, vector_length / 2]))
+    x_axis[i].add_ani_frame(k * dt, htm=htm[i] * Utils.roty(3.14 / 2) * Utils.trn([0, 0, vector_length / 2]))
     line_between_points_pc.add_ani_frame(k * dt, 0, 0)
 
     # Create the vector y_i
@@ -242,7 +242,7 @@ for i in range(len(robot.links) + 1):
     explanation.add_ani_frame(k * dt,
                               html_text="The axis " + txt_axis_y(i) + " is uniquely determined by axis " + txt_axis_x(
                                   i) + " and " + txt_axis_z(i) + " from the righthand rule.")
-    y_axis[i].add_ani_frame(k * dt, htm=htm[i] @ Utils.rotx(-3.14 / 2) @ Utils.trn([0, 0, vector_length / 2]))
+    y_axis[i].add_ani_frame(k * dt, htm=htm[i] * Utils.rotx(-3.14 / 2) * Utils.trn([0, 0, vector_length / 2]))
 
     # Erase the lines and points
     k += 3 * deltak
@@ -279,30 +279,30 @@ for i in range(len(robot.links) + 1):
             q[j - 1] += (robot.joint_limit[j - 1,0] - robot.q0[j-1])/ (floor(0.5 * deltak) - 1)
             htm_i = robot.fkm(axis="dh", q=q)[i - 1]
             robot.add_ani_frame(k * dt, q=q)
-            x_axis[i].add_ani_frame(k * dt, htm=htm_i @ Utils.roty(3.14 / 2) @ Utils.trn([0, 0, vector_length / 2]))
+            x_axis[i].add_ani_frame(k * dt, htm=htm_i * Utils.roty(3.14 / 2) * Utils.trn([0, 0, vector_length / 2]))
             y_axis[i].add_ani_frame(k * dt,
-                                    htm=htm_i @ Utils.rotx(-3.14 / 2) @ Utils.trn([0, 0, vector_length / 2]))
-            z_axis[i].add_ani_frame(k * dt, htm=htm_i @ Utils.trn([0, 0, vector_length / 2]))
+                                    htm=htm_i * Utils.rotx(-3.14 / 2) * Utils.trn([0, 0, vector_length / 2]))
+            z_axis[i].add_ani_frame(k * dt, htm=htm_i * Utils.trn([0, 0, vector_length / 2]))
             k += 1
 
         for l in range(deltak):
             q[j - 1] += (robot.joint_limit[j - 1,1] - robot.joint_limit[j - 1,0]) / (deltak - 1)
             robot.add_ani_frame(k * dt, q=q)
             htm_i = robot.fkm(axis="dh", q=q)[i - 1]
-            x_axis[i].add_ani_frame(k * dt, htm=htm_i @ Utils.roty(3.14 / 2) @ Utils.trn([0, 0, vector_length / 2]))
+            x_axis[i].add_ani_frame(k * dt, htm=htm_i * Utils.roty(3.14 / 2) * Utils.trn([0, 0, vector_length / 2]))
             y_axis[i].add_ani_frame(k * dt,
-                                    htm=htm_i @ Utils.rotx(-3.14 / 2) @ Utils.trn([0, 0, vector_length / 2]))
-            z_axis[i].add_ani_frame(k * dt, htm=htm_i @ Utils.trn([0, 0, vector_length / 2]))
+                                    htm=htm_i * Utils.rotx(-3.14 / 2) * Utils.trn([0, 0, vector_length / 2]))
+            z_axis[i].add_ani_frame(k * dt, htm=htm_i * Utils.trn([0, 0, vector_length / 2]))
             k += 1
 
         for l in range(floor(0.5 * deltak)):
             q[j - 1] += -(robot.joint_limit[j - 1,1]- robot.q0[j-1]) / (floor(0.5 * deltak) - 1)
             robot.add_ani_frame(k * dt, q=q)
             htm_i = robot.fkm(axis="dh", q=q)[i - 1]
-            x_axis[i].add_ani_frame(k * dt, htm=htm_i @ Utils.roty(3.14 / 2) @ Utils.trn([0, 0, vector_length / 2]))
+            x_axis[i].add_ani_frame(k * dt, htm=htm_i * Utils.roty(3.14 / 2) * Utils.trn([0, 0, vector_length / 2]))
             y_axis[i].add_ani_frame(k * dt,
-                                    htm=htm_i @ Utils.rotx(-3.14 / 2) @ Utils.trn([0, 0, vector_length / 2]))
-            z_axis[i].add_ani_frame(k * dt, htm=htm_i @ Utils.trn([0, 0, vector_length / 2]))
+                                    htm=htm_i * Utils.rotx(-3.14 / 2) * Utils.trn([0, 0, vector_length / 2]))
+            z_axis[i].add_ani_frame(k * dt, htm=htm_i * Utils.trn([0, 0, vector_length / 2]))
             k += 1
 
         k += deltak
@@ -354,9 +354,9 @@ for i in range(len(robot.links) + 1):
 # Show all DH frames for a while
 k += deltak
 for i in range(len(robot.links) + 1):
-    x_axis[i].add_ani_frame(k * dt, htm=htm[i] @ Utils.roty(3.14 / 2) @ Utils.trn([0, 0, vector_length / 2]))
-    y_axis[i].add_ani_frame(k * dt, htm=htm[i] @ Utils.rotx(-3.14 / 2) @ Utils.trn([0, 0, vector_length / 2]))
-    z_axis[i].add_ani_frame(k * dt, htm=htm[i] @ Utils.trn([0, 0, vector_length / 2]))
+    x_axis[i].add_ani_frame(k * dt, htm=htm[i] * Utils.roty(3.14 / 2) * Utils.trn([0, 0, vector_length / 2]))
+    y_axis[i].add_ani_frame(k * dt, htm=htm[i] * Utils.rotx(-3.14 / 2) * Utils.trn([0, 0, vector_length / 2]))
+    z_axis[i].add_ani_frame(k * dt, htm=htm[i] * Utils.trn([0, 0, vector_length / 2]))
 
 explanation.add_ani_frame(k * dt, "Its over!")
 

@@ -21,7 +21,7 @@ joint_1 = Box(htm = robot.fkm(axis='dh')[0], color="blue", width=0.04, depth=0.0
 joint_cylinder_1 = Cylinder(htm = robot.fkm(axis='dh')[0], color="magenta", radius=0.04, height=fact*0.4, opacity=1)
 
 joint_2 = Box(htm = robot.fkm(axis='dh')[2], color="blue", width=0.04, depth=0.05, height=0.3, opacity=1)
-joint_cylinder_2 = Cylinder(htm = robot.fkm(axis='dh')[2]@ Utils.trn([0,0,-0.1]), color="magenta", radius=0.04, height=0.3*fact, opacity=1)
+joint_cylinder_2 = Cylinder(htm = robot.fkm(axis='dh')[2]* Utils.trn([0,0,-0.1]), color="magenta", radius=0.04, height=0.3*fact, opacity=1)
 
 
 light1 = PointLight(name="light1", color="white", intensity=8, htm=Utils.trn([-1, -1, 1.5]))

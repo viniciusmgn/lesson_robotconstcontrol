@@ -118,7 +118,7 @@
                     style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
 
                     <div
-                        style="flex: 1; min-width: 300px; font-size: 2.0vw; text-align: left; display: flex; align-items: center; height: 100%;">
+                        style="flex: 1; min-width: 300px; font-size: 1.6vw; text-align: left; display: flex; align-items: center; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em;text-align: justify;">
                             </br>
                             <li><b class="itext">Communication:</b> (Room 2120 DEE), mail: <b
@@ -548,15 +548,15 @@
                     <div style="flex: 2; min-width: 300px; font-size: 1.4vw; text-align: justify; display: flex; align-items: center; height: 100%;">
             
                         <div style="position:relative;">
-
-                            <p>There are many ways to use/install  UAIBot;<br></p>
-                            <p>It is first advisable to create a new Python environment. Then, (supposing you have .pip installed) type in the terminal:<br></p>
-                            <p>
+                            <ul>
+                            <li>There are many ways to use/install  UAIBot;<br></li>
+                            <li>It is first advisable to create a new Python environment. Then, (supposing you have .pip installed) type in the terminal:<br></li>
+                            
                             <pre><code class="language-console" style="text-align:left">
 >>pip install uaibot
                             </code></pre>
-                            </p>
-                            <p>After the installation, try running a simulation that is already implemented. For this, try the following code:<br></p>
+                            </li>
+                            <li>After the installation, try running a simulation that is already implemented. For this, try the following code:<br></li>
                             <pre><code class="language-python" style="text-align:left">
 import uaibot as ub
     
@@ -565,7 +565,8 @@ my_path = '/home/vinicius/Desktop/my_uaibot_simulation'
 #Change the path in 'my_path' accordingly
 sim.save(my_path,'constrained_control_demo_1')
                             </code></pre>
-                            Go to the folder (/home/vinicius/Desktop/my_uaibot_simulation in this case) and open the HTML file to see the simulation.
+                            and then go to the folder (/home/vinicius/Desktop/my_uaibot_simulation in this case) and open the HTML file to see the simulation.
+                        </ul>
                         </div>
             
                     </div>
@@ -594,17 +595,17 @@ sim.save(my_path,'constrained_control_demo_1')
                     <div style="flex: 2; min-width: 300px; font-size: 1.6vw; text-align: justify; display: flex; align-items: center; height: 100%;">
             
                         <div style="position:relative;">
-
-                            <p>Or you can use everything online at <a href="https://colab.research.google.com/"><b
-                                class="hlink">Google Colab</b></a>.<br></p>
-                            <p>In this case, it is just as simple to install. Run<br></p>
-                            <p>
+                            <ul>
+                            <li>Or you can use everything online at <a href="https://colab.research.google.com/"><b
+                                class="hlink">Google Colab</b></a>.<br></li>
+                            <li>In this case, it is just as simple to install. Run<br>
+                            
                             <pre><code class="language-console" style="text-align:left">
 !pip install uaibot
                             </code></pre>
-                            </p>
-                            <p>After the installation, to see the animation is slightly different. You will use <b class="itext">sim.run()</b> 
-                                instead of <b class="itext">sim.save</b>, and it will display the animation in the same notebook. <br></p>
+                        </li>
+                            <li>After the installation, to see the animation is slightly different. You will use <b class="itext">sim.run()</b> 
+                                instead of <b class="itext">sim.save</b>, and it will display the animation in the same notebook. <br></li>
                             <pre><code class="language-python" style="text-align:left">
 import uaibot as ub
     
@@ -612,6 +613,7 @@ sim = ub.Demo.constrained_control_demo_1()
 #This will show the animation (and the plots) in the notebook
 sim.run()
                             </code></pre>
+                        </ul>
                             
                         </div>
             

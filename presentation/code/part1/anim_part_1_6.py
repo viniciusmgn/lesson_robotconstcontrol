@@ -14,7 +14,7 @@ light4 = PointLight(name="light4", color="white", intensity=40, htm=Utils.trn([ 
 
 #robot.add_ani_frame(0,q=[np.pi/4,-np.pi/4,np.pi/9,-np.pi/9,0,np.pi/2])
 
-sim = Simulation([robot, light0, light1, light2, light3, light4], load_screen_color="#191919", background_color="#222224", camera_type="orthographic",
+sim = Simulation([robot, light0, light1, light2, light3, light4], load_screen_color="#191919", background_color="#191919", camera_type="orthographic",
                  show_world_frame=False, width=width, height=height)
 
 # Create all objects that will be used during the simulation
@@ -59,7 +59,7 @@ end_lines = []
 dist_between_points = 0.01
 
 for i in range(len(robot.links)):
-    p_A = (htm[i] @ Utils.trn([0, 0, robot.links[i].d]))[0:3, 3]
+    p_A = (htm[i] * Utils.trn([0, 0, robot.links[i].d]))[0:3, 3]
     p_B = htm[i + 1][0:3, 3]
 
     n_points = floor(np.linalg.norm(p_A - p_B) / dist_between_points)
@@ -95,7 +95,7 @@ style = "top:" + str(0.8 * height) + "px;right:" + str(0) + "px;width:" + str(
 
 explanation = HTMLDiv(name="expl", html_text="", style=style)
 
-style = "top:" + str(0.05 * height) + "px;right:20px;width:300px;position:absolute;text-align:center;color:white;background-color:#222224;font-smooth:always;font-family:arial"
+style = "top:" + str(0.05 * height) + "px;right:10px;width:200px;position:absolute;text-align:center;color:white;background-color:#222224;font-smooth:always;font-family:arial;"
 
 table_html = HTMLDiv(name="table", html_text="", style=style)
 
@@ -154,7 +154,7 @@ def txt_a(i):
     return "a<sub>" + str(i) + "</sub>"
 
 def create_table(table, i_max, j_max):
-    strtable = "<table style=\'color:white; width:300px; text-align:right; border: 1px solid white\'>"
+    strtable = "<table style=\'color:white; width:200px; text-align:right; border: 1px solid white; font-size:12px\'>"
     strtable += "<tr> <th>i</th> <th>&#952<sub>i</sub></th> <th>d<sub>i</dub></th> <th>&#945<sub>i</sub></th> <th>a<sub>i</dub></th> </tr>"
     for i in range(len(table)):
         strtable += "<tr>"
@@ -198,16 +198,16 @@ deltak = 200
 explanation.add_ani_frame(k * dt, "Consider all the DH axis of the robot. We will make the transformation between them.")
 
 for i in range(len(robot.links) + 1):
-    x_axis[i].add_ani_frame(k * dt, htm=htm[i] @ Utils.roty(3.14 / 2) @ Utils.trn([0, 0, vector_length / 2]))
-    y_axis[i].add_ani_frame(k * dt, htm=htm[i] @ Utils.rotx(-3.14 / 2) @ Utils.trn([0, 0, vector_length / 2]))
-    z_axis[i].add_ani_frame(k * dt, htm=htm[i] @ Utils.trn([0, 0, vector_length / 2]))
+    x_axis[i].add_ani_frame(k * dt, htm=htm[i] * Utils.roty(3.14 / 2) * Utils.trn([0, 0, vector_length / 2]))
+    y_axis[i].add_ani_frame(k * dt, htm=htm[i] * Utils.rotx(-3.14 / 2) * Utils.trn([0, 0, vector_length / 2]))
+    z_axis[i].add_ani_frame(k * dt, htm=htm[i] * Utils.trn([0, 0, vector_length / 2]))
 
 k+= 2*deltak
 
 for i in range(len(robot.links) + 1):
-    x_axis[i].add_ani_frame(k * dt, htm=far @ Utils.roty(3.14 / 2) @ Utils.trn([0, 0, vector_length / 2]))
-    y_axis[i].add_ani_frame(k * dt, htm=far @ Utils.rotx(-3.14 / 2) @ Utils.trn([0, 0, vector_length / 2]))
-    z_axis[i].add_ani_frame(k * dt, htm=far @ Utils.trn([0, 0, vector_length / 2]))
+    x_axis[i].add_ani_frame(k * dt, htm=far * Utils.roty(3.14 / 2) * Utils.trn([0, 0, vector_length / 2]))
+    y_axis[i].add_ani_frame(k * dt, htm=far * Utils.rotx(-3.14 / 2) * Utils.trn([0, 0, vector_length / 2]))
+    z_axis[i].add_ani_frame(k * dt, htm=far * Utils.trn([0, 0, vector_length / 2]))
 
 for i in range(len(robot.links)):
 
@@ -215,13 +215,13 @@ for i in range(len(robot.links)):
     explanation.add_ani_frame(k * dt,
                               "We will create the transformation from frame " + txt_frame(i) + " to " + txt_frame(i+1)+".")
 
-    x_axis[i].add_ani_frame(k * dt, htm=htm[i] @ Utils.roty(3.14 / 2) @ Utils.trn([0, 0, vector_length / 2]))
-    y_axis[i].add_ani_frame(k * dt, htm=htm[i] @ Utils.rotx(-3.14 / 2) @ Utils.trn([0, 0, vector_length / 2]))
-    z_axis[i].add_ani_frame(k * dt, htm=htm[i] @ Utils.trn([0, 0, vector_length / 2]))
+    x_axis[i].add_ani_frame(k * dt, htm=htm[i] * Utils.roty(3.14 / 2) * Utils.trn([0, 0, vector_length / 2]))
+    y_axis[i].add_ani_frame(k * dt, htm=htm[i] * Utils.rotx(-3.14 / 2) * Utils.trn([0, 0, vector_length / 2]))
+    z_axis[i].add_ani_frame(k * dt, htm=htm[i] * Utils.trn([0, 0, vector_length / 2]))
 
-    x_axis[i+1].add_ani_frame(k * dt, htm=htm[i+1] @ Utils.roty(3.14 / 2) @ Utils.trn([0, 0, vector_length / 2]))
-    y_axis[i+1].add_ani_frame(k * dt, htm=htm[i+1] @ Utils.rotx(-3.14 / 2) @ Utils.trn([0, 0, vector_length / 2]))
-    z_axis[i+1].add_ani_frame(k * dt, htm=htm[i+1] @ Utils.trn([0, 0, vector_length / 2]))
+    x_axis[i+1].add_ani_frame(k * dt, htm=htm[i+1] * Utils.roty(3.14 / 2) * Utils.trn([0, 0, vector_length / 2]))
+    y_axis[i+1].add_ani_frame(k * dt, htm=htm[i+1] * Utils.rotx(-3.14 / 2) * Utils.trn([0, 0, vector_length / 2]))
+    z_axis[i+1].add_ani_frame(k * dt, htm=htm[i+1] * Utils.trn([0, 0, vector_length / 2]))
 
     k += 2 * deltak
 
@@ -244,11 +244,11 @@ for i in range(len(robot.links)):
 
     table_html.add_ani_frame(k * dt, create_table(table_info, i, 1))
     for j in range(3 * deltak):
-        htm[i] = htm[i] @ Utils.rotz((np.pi/180) * q_c/(3 * deltak-1))
+        htm[i] = htm[i] * Utils.rotz((np.pi/180) * q_c/(3 * deltak-1))
         k+= 1
-        x_axis[i].add_ani_frame(k * dt, htm=htm[i] @ Utils.roty(3.14 / 2) @ Utils.trn([0, 0, vector_length / 2]))
-        y_axis[i].add_ani_frame(k * dt, htm=htm[i] @ Utils.rotx(-3.14 / 2) @ Utils.trn([0, 0, vector_length / 2]))
-        z_axis[i].add_ani_frame(k * dt, htm=htm[i] @ Utils.trn([0, 0, vector_length / 2]))
+        x_axis[i].add_ani_frame(k * dt, htm=htm[i] * Utils.roty(3.14 / 2) * Utils.trn([0, 0, vector_length / 2]))
+        y_axis[i].add_ani_frame(k * dt, htm=htm[i] * Utils.rotx(-3.14 / 2) * Utils.trn([0, 0, vector_length / 2]))
+        z_axis[i].add_ani_frame(k * dt, htm=htm[i] * Utils.trn([0, 0, vector_length / 2]))
 
 
     explanation.add_ani_frame(k * dt,"Note now that the two x axis are aligned.")
@@ -261,9 +261,9 @@ for i in range(len(robot.links)):
                                   i+1) + " m.  The objective is to make the center of the frame to coincide with "+txt_pointA(i+1)+".")
 
     if robot.links[i].joint_type == 0:
-        points_A.add_ani_frame(k * dt, htm=htm[i] @ Utils.trn([0, 0, robot.links[i].d]))
+        points_A.add_ani_frame(k * dt, htm=htm[i] * Utils.trn([0, 0, robot.links[i].d]))
     else:
-        points_A.add_ani_frame(k * dt, htm=htm[i] @ Utils.trn([0, 0, robot.q[i,0]]))
+        points_A.add_ani_frame(k * dt, htm=htm[i] * Utils.trn([0, 0, robot.q[i,0]]))
 
     k += 2 * deltak
 
@@ -280,11 +280,11 @@ for i in range(len(robot.links)):
 
     table_html.add_ani_frame(k * dt, create_table(table_info, i, 2))
     for j in range(3 * deltak):
-        htm[i] = htm[i] @ Utils.trn([0,0, q_c/(3 * deltak-1)])
+        htm[i] = htm[i] * Utils.trn([0,0, q_c/(3 * deltak-1)])
         k+= 1
-        x_axis[i].add_ani_frame(k * dt, htm=htm[i] @ Utils.roty(3.14 / 2) @ Utils.trn([0, 0, vector_length / 2]))
-        y_axis[i].add_ani_frame(k * dt, htm=htm[i] @ Utils.rotx(-3.14 / 2) @ Utils.trn([0, 0, vector_length / 2]))
-        z_axis[i].add_ani_frame(k * dt, htm=htm[i] @ Utils.trn([0, 0, vector_length / 2]))
+        x_axis[i].add_ani_frame(k * dt, htm=htm[i] * Utils.roty(3.14 / 2) * Utils.trn([0, 0, vector_length / 2]))
+        y_axis[i].add_ani_frame(k * dt, htm=htm[i] * Utils.rotx(-3.14 / 2) * Utils.trn([0, 0, vector_length / 2]))
+        z_axis[i].add_ani_frame(k * dt, htm=htm[i] * Utils.trn([0, 0, vector_length / 2]))
 
     explanation.add_ani_frame(k * dt,"Note that the center of the referential matches "+txt_pointA(i+1)+".")
 
@@ -303,11 +303,11 @@ for i in range(len(robot.links)):
     table_html.add_ani_frame(k * dt, create_table(table_info, i, 3))
 
     for j in range(3 * deltak):
-        htm[i] = htm[i] @ Utils.rotx((np.pi/180) * q_c/(3 * deltak-1))
+        htm[i] = htm[i] * Utils.rotx((np.pi/180) * q_c/(3 * deltak-1))
         k+= 1
-        x_axis[i].add_ani_frame(k * dt, htm=htm[i] @ Utils.roty(3.14 / 2) @ Utils.trn([0, 0, vector_length / 2]))
-        y_axis[i].add_ani_frame(k * dt, htm=htm[i] @ Utils.rotx(-3.14 / 2) @ Utils.trn([0, 0, vector_length / 2]))
-        z_axis[i].add_ani_frame(k * dt, htm=htm[i] @ Utils.trn([0, 0, vector_length / 2]))
+        x_axis[i].add_ani_frame(k * dt, htm=htm[i] * Utils.roty(3.14 / 2) * Utils.trn([0, 0, vector_length / 2]))
+        y_axis[i].add_ani_frame(k * dt, htm=htm[i] * Utils.rotx(-3.14 / 2) * Utils.trn([0, 0, vector_length / 2]))
+        z_axis[i].add_ani_frame(k * dt, htm=htm[i] * Utils.trn([0, 0, vector_length / 2]))
 
     explanation.add_ani_frame(k * dt,"Note that the axis are rotationally aligned now.")
 
@@ -326,20 +326,20 @@ for i in range(len(robot.links)):
     table_html.add_ani_frame(k * dt, create_table(table_info, i, 4))
 
     for j in range(3 * deltak):
-        htm[i] = htm[i] @ Utils.trn([q_c/(3 * deltak-1),0,0])
+        htm[i] = htm[i] * Utils.trn([q_c/(3 * deltak-1),0,0])
         k+= 1
-        x_axis[i].add_ani_frame(k * dt, htm=htm[i] @ Utils.roty(3.14 / 2) @ Utils.trn([0, 0, vector_length / 2]))
-        y_axis[i].add_ani_frame(k * dt, htm=htm[i] @ Utils.rotx(-3.14 / 2) @ Utils.trn([0, 0, vector_length / 2]))
-        z_axis[i].add_ani_frame(k * dt, htm=htm[i] @ Utils.trn([0, 0, vector_length / 2]))
+        x_axis[i].add_ani_frame(k * dt, htm=htm[i] * Utils.roty(3.14 / 2) * Utils.trn([0, 0, vector_length / 2]))
+        y_axis[i].add_ani_frame(k * dt, htm=htm[i] * Utils.rotx(-3.14 / 2) * Utils.trn([0, 0, vector_length / 2]))
+        z_axis[i].add_ani_frame(k * dt, htm=htm[i] * Utils.trn([0, 0, vector_length / 2]))
 
     explanation.add_ani_frame(k * dt,"Now the two referentials are exactly the same!")
 
     k += 2 * deltak
 
     for j in range(len(robot.links) + 1):
-        x_axis[j].add_ani_frame(k * dt, htm=far @ Utils.roty(3.14 / 2) @ Utils.trn([0, 0, vector_length / 2]))
-        y_axis[j].add_ani_frame(k * dt, htm=far @ Utils.rotx(-3.14 / 2) @ Utils.trn([0, 0, vector_length / 2]))
-        z_axis[j].add_ani_frame(k * dt, htm=far @ Utils.trn([0, 0, vector_length / 2]))
+        x_axis[j].add_ani_frame(k * dt, htm=far * Utils.roty(3.14 / 2) * Utils.trn([0, 0, vector_length / 2]))
+        y_axis[j].add_ani_frame(k * dt, htm=far * Utils.rotx(-3.14 / 2) * Utils.trn([0, 0, vector_length / 2]))
+        z_axis[j].add_ani_frame(k * dt, htm=far * Utils.trn([0, 0, vector_length / 2]))
 
 
 sim.save("/home/vinicius/Desktop/Aulas/Robot Constrained Control/presentation/images/part1/","part_1_6")
