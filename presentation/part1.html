@@ -1618,9 +1618,13 @@
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: flex-start; padding-top: 20px; height: 100%;">
                         <br>
                         <div style="width: 100%">
-                            We can determine the configuration of a rigid object given the HTM \(q\) by drawing the frame \(\mathcal{F}_{obj}\) (as in interpretation (1)) and observing how the object is positioned based on its attachment to \(\mathcal{F}_{obj}\). Suppose the configuration of the object at a given moment is represented by the matrix \(q\) below. What is the object's state at this instant?
+                            We can determine the configuration of a rigid object given the HTM \(q\) by drawing the
+                            frame \(\mathcal{F}_{obj}\) (as in interpretation (1)) and observing how the object is
+                            positioned based on its attachment to \(\mathcal{F}_{obj}\). Suppose the configuration of
+                            the object at a given moment is represented by the matrix \(q\) below. What is the object's
+                            state at this instant?
                         </div>
-                        
+
                     </div>
 
                     <div
@@ -1678,11 +1682,14 @@
                     <div
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; padding-top: 20px; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
-                            <li>We can describe the <b class="itext">trajectory</b> of a rigid body by specifying the matrix \(q(t)\) at each moment in time.</li><br>
-                            <li>This representation defines the position and orientation of the object at any given time, which is all that is needed for a rigid object.</li><br>
-                            <li>The position and orientation of an object are collectively referred to as its <b class="itext">pose</b>.</li><br>
+                            <li>We can describe the <b class="itext">trajectory</b> of a rigid body by specifying the
+                                matrix \(q(t)\) at each moment in time.</li><br>
+                            <li>This representation defines the position and orientation of the object at any given
+                                time, which is all that is needed for a rigid object.</li><br>
+                            <li>The position and orientation of an object are collectively referred to as its <b
+                                    class="itext">pose</b>.</li><br>
                         </ul>
-                        
+
                     </div>
 
                     <div
@@ -1725,12 +1732,18 @@
                     <div
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; padding-top: 20px; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
-                            <li>What about the configuration of a system consisting of a single manipulator made up of rigid links?</li><br>
-                            <li>We could describe each rigid link as a separate rigid body, but these bodies <b class="itext">are not free</b> since they are connected by <b class="itext">joints</b>.</li><br>
-                            <li>Therefore, we can use the <b class="itext">configuration of each joint</b> (either revolute or prismatic) to define the system's configuration. Each joint's configuration can be represented by a real number in \(\mathbb{R}^n\).</li><br>
-                            <li>From now on in this class, we will consider only manipulators composed of rigid links.</li>
+                            <li>What about the configuration of a system consisting of a single manipulator made up of
+                                rigid links?</li><br>
+                            <li>We could describe each rigid link as a separate rigid body, but these bodies <b
+                                    class="itext">are not free</b> since they are connected by <b
+                                    class="itext">joints</b>.</li><br>
+                            <li>Therefore, we can use the <b class="itext">configuration of each joint</b> (either
+                                revolute or prismatic) to define the system's configuration. Each joint's configuration
+                                can be represented by a real number in \(\mathbb{R}^n\).</li><br>
+                            <li>From now on in this class, we will consider only manipulators composed of rigid links.
+                            </li>
                         </ul>
-                        
+
                     </div>
 
                     <div
@@ -1764,11 +1777,15 @@
                     <div
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; padding-top: 20px; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
-                            <li>We often need to track the pose of different parts of the robot, especially (but not limited to) the end-effector.</li><br>
-                            <li>To achieve this, we attach a reference frame to each link \(i\) (which is a rigid object) and define <b class="itext">forward kinematic maps</b> \(T_{DH0}^{DHi}: \mathcal{Q} \mapsto SE(3)\), which map the system's configuration to the pose of the \(i^{th}\) link relative to a fixed frame \(\mathcal{F}_0\).</li><br>
+                            <li>We often need to track the pose of different parts of the robot, especially (but not
+                                limited to) the end-effector.</li><br>
+                            <li>To achieve this, we attach a reference frame to each link \(i\) (which is a rigid
+                                object) and define <b class="itext">forward kinematic maps</b> \(T_{DH0}^{DHi}:
+                                \mathcal{Q} \mapsto SE(3)\), which map the system's configuration to the pose of the
+                                \(i^{th}\) link relative to a fixed frame \(\mathcal{F}_0\).</li><br>
                             <li>But how should we attach this frame? Is there a preferred method?</li><br>
                         </ul>
-                        
+
                     </div>
 
                     <div
@@ -1801,10 +1818,14 @@
                     <div
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; padding-top: 20px; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
-                            <li>Yes! We will use the well-known <b class="itext">Denavit-Hartenberg convention</b>, which provides a systematic way to place reference frames on each link and, based on this placement, compute the forward kinematics for each one.</li><br>
-                            <li>However, be aware that other methods exist, and (unfortunately) there is more than one version of the "Denavit-Hartenberg convention." The version presented here is the most commonly used.</li><br>
+                            <li>Yes! We will use the well-known <b class="itext">Denavit-Hartenberg convention</b>,
+                                which provides a systematic way to place reference frames on each link and, based on
+                                this placement, compute the forward kinematics for each one.</li><br>
+                            <li>However, be aware that other methods exist, and (unfortunately) there is more than one
+                                version of the "Denavit-Hartenberg convention." The version presented here is the most
+                                commonly used.</li><br>
                         </ul>
-                        
+
                     </div>
 
                     <div
@@ -2040,11 +2061,16 @@
                     <div
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; padding-top: 20px; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
-                            <li>Once the frames are attached, computing the forward kinematics for each frame (and thus for the corresponding links) requires identifying the <b class="itext">Denavit-Hartenberg parameters</b>.</li><br>
-                            <li>Each joint is associated with four parameters. Among these, three are fixed (determined by the robot's design), while one varies depending on the current state of joint \(i\) (whether it is revolute or prismatic).</li><br>
-                            <li>Therefore, for a robot with \(n\) joints, there are \(4n\) parameters, of which \(n\) are variable.</li>
+                            <li>Once the frames are attached, computing the forward kinematics for each frame (and thus
+                                for the corresponding links) requires identifying the <b
+                                    class="itext">Denavit-Hartenberg parameters</b>.</li><br>
+                            <li>Each joint is associated with four parameters. Among these, three are fixed (determined
+                                by the robot's design), while one varies depending on the current state of joint \(i\)
+                                (whether it is revolute or prismatic).</li><br>
+                            <li>Therefore, for a robot with \(n\) joints, there are \(4n\) parameters, of which \(n\)
+                                are variable.</li>
                         </ul>
-                        
+
                     </div>
 
                     <div
@@ -2145,13 +2171,16 @@
                     <div
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; padding-top: 20px; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
-                            <li>Although the DH parameters may not be listed explicitly, you can find the necessary information to compute them in the robot's manual.</li><br>
-                            <li>Once we have these parameters, computing the transformation between DH frame \(i-1\) and the next one for \(i = 1, \dots, n\) becomes straightforward:
+                            <li>Although the DH parameters may not be listed explicitly, you can find the necessary
+                                information to compute them in the robot's manual.</li><br>
+                            <li>Once we have these parameters, computing the transformation between DH frame \(i-1\) and
+                                the next one for \(i = 1, \dots, n\) becomes straightforward:
                                 $$T_{DH,i-1}^{DH,i}(q_i) = R_z(\theta_i)D_z(d_i)R_x(\alpha_i)D_x(a_i).$$
                             </li><br>
-                            <li>Note that this transformation is applied <b class="itext">from the right</b> (refer to the parameter definitions, as they are based on the current frame).</li>
+                            <li>Note that this transformation is applied <b class="itext">from the right</b> (refer to
+                                the parameter definitions, as they are based on the current frame).</li>
                         </ul>
-                        
+
                     </div>
 
                     <div
@@ -2185,13 +2214,18 @@
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; padding-top: 20px; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
 
-                            <li>Furthermore, note that this transformation depends only on the \(i^{th}\) joint—on \(\theta_i\) if the joint is revolute, or on \(d_i\) if the joint is prismatic.</li><br>
-                        
-                            <li>The relationship between \(q_i\) and the joint variable (\(\theta_i\) or \(d_i\)) is often linear: 
-                                \(\theta_i = A_i q_i + B_i\), where \(A_i\) and \(B_i\) are constants. This relationship depends on the chosen reference "zero" position of the joint and whether increasing \(q_i\) causes the joint to rotate or translate along the z-axis according to the DH convention.</li>
-                        
+                            <li>Furthermore, note that this transformation depends only on the \(i^{th}\) joint—on
+                                \(\theta_i\) if the joint is revolute, or on \(d_i\) if the joint is prismatic.</li><br>
+
+                            <li>The relationship between \(q_i\) and the joint variable (\(\theta_i\) or \(d_i\)) is
+                                often linear:
+                                \(\theta_i = A_i q_i + B_i\), where \(A_i\) and \(B_i\) are constants. This relationship
+                                depends on the chosen reference "zero" position of the joint and whether increasing
+                                \(q_i\) causes the joint to rotate or translate along the z-axis according to the DH
+                                convention.</li>
+
                         </ul>
-                        
+
                     </div>
 
                     <div
@@ -2225,18 +2259,24 @@
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; padding-top: 20px; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
 
-                            <li>Thus, the transformation between frame 0 (which is fixed) and frame \(i\) depends on \(q_1, q_2, \dots, q_i\) and is given by:
-                                $$T_{DH0}^{DHi}(q_1, \dots, q_i) = T_{DH0}^{DH1}(q_1) T_{DH1}^{DH2}(q_2) \dots T_{DH,i-1}^{DHi}(q_i).$$
+                            <li>Thus, the transformation between frame 0 (which is fixed) and frame \(i\) depends on
+                                \(q_1, q_2, \dots, q_i\) and is given by:
+                                $$T_{DH0}^{DHi}(q_1, \dots, q_i) = T_{DH0}^{DH1}(q_1) T_{DH1}^{DH2}(q_2) \dots
+                                T_{DH,i-1}^{DHi}(q_i).$$
                             </li><br>
-                        
-                            <li>In particular, this allows us to construct the transformation from the first frame to the last one, \(T_{DH0}^{DHn}(q)\).</li><br>
-                        
-                            <li>Sometimes, neither the initial fixed frame \(F_{DH0}\) nor the final frame \(F_{DHn}\) are exactly where you need them to be. In such cases, you may require <b class="itext">extra transformations</b> that are <b class="itext">constant</b> (or at least independent of the joint variables, depending instead on other factors):
+
+                            <li>In particular, this allows us to construct the transformation from the first frame to
+                                the last one, \(T_{DH0}^{DHn}(q)\).</li><br>
+
+                            <li>Sometimes, neither the initial fixed frame \(F_{DH0}\) nor the final frame \(F_{DHn}\)
+                                are exactly where you need them to be. In such cases, you may require <b
+                                    class="itext">extra transformations</b> that are <b class="itext">constant</b> (or
+                                at least independent of the joint variables, depending instead on other factors):
                                 $$T_{0}^{e}(q) = T_{0}^{DH0} T_{DH0}^{DHn}(q) T_{DHn}^{e}.$$
                             </li>
-                        
+
                         </ul>
-                        
+
                     </div>
 
                     <div
@@ -2270,16 +2310,20 @@
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; padding-top: 20px; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
 
-                            <li>The <b class="itext">inverse kinematics problem</b> is defined as follows: given a target pose for a frame (e.g., the end effector), find the configuration \(q\) (if any) that achieves it:
+                            <li>The <b class="itext">inverse kinematics problem</b> is defined as follows: given a
+                                target pose for a frame (e.g., the end effector), find the configuration \(q\) (if any)
+                                that achieves it:
                                 $$T_0^e(q) = T_{0,d}^e.$$
                             </li><br>
-                        
-                            <li>This results in a nonlinear system of equations, which is generally difficult to solve. However, specific algorithms exist for certain types of robots.</li><br>
-                        
-                            <li>We will soon approach this problem by reformulating it as a <b class="itext">control problem</b>.</li>
-                        
+
+                            <li>This results in a nonlinear system of equations, which is generally difficult to solve.
+                                However, specific algorithms exist for certain types of robots.</li><br>
+
+                            <li>We will soon approach this problem by reformulating it as a <b class="itext">control
+                                    problem</b>.</li>
+
                         </ul>
-                        
+
                     </div>
 
                     <div
@@ -2323,14 +2367,18 @@
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; padding-top: 20px; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
 
-                            <li>Forward kinematics addresses the problem of computing the <b class="itext">pose</b> of rigid objects given their configuration, while <b class="itext">differential kinematics</b> focuses on computing <b class="itext">velocities</b>.</li><br>
-                        
-                            <li>Before proceeding, we first need to understand how to represent the velocities of rigid bodies.</li><br>
-                        
-                            <li>This is achieved by defining the <b class="itext">linear velocity</b> and <b class="itext">angular velocity vectors</b>.</li>
-                        
+                            <li>Forward kinematics addresses the problem of computing the <b class="itext">pose</b> of
+                                rigid objects given their configuration, while <b class="itext">differential
+                                    kinematics</b> focuses on computing <b class="itext">velocities</b>.</li><br>
+
+                            <li>Before proceeding, we first need to understand how to represent the velocities of rigid
+                                bodies.</li><br>
+
+                            <li>This is achieved by defining the <b class="itext">linear velocity</b> and <b
+                                    class="itext">angular velocity vectors</b>.</li>
+
                         </ul>
-                        
+
                     </div>
 
                     <div
@@ -2409,14 +2457,17 @@
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; padding-top: 20px; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
 
-                            <li>Before defining the <b class="itext">angular velocity vector</b>, we first need to introduce some key concepts.</li><br>
-                        
-                            <li>The <b class="itext">S operator</b> is a mapping between a 3D vector and a \(3 \times 3\) antisymmetric matrix. Given \(a = (a_x, a_y, a_z)^\top\), it is defined as:
-                                $$S(a) = \Large{\Bigg(}\normalsize{}\begin{array}{ccc} 0 & -a_z & a_y \\ a_z & 0 & -a_x \\ -a_y & a_x & 0 \end{array}\Large{\Bigg)}\normalsize{}.$$
+                            <li>Before defining the <b class="itext">angular velocity vector</b>, we first need to
+                                introduce some key concepts.</li><br>
+
+                            <li>The <b class="itext">S operator</b> is a mapping between a 3D vector and a \(3 \times
+                                3\) antisymmetric matrix. Given \(a = (a_x, a_y, a_z)^\top\), it is defined as:
+                                $$S(a) = \Large{\Bigg(}\normalsize{}\begin{array}{ccc} 0 & -a_z & a_y \\ a_z & 0 & -a_x
+                                \\ -a_y & a_x & 0 \end{array}\Large{\Bigg)}\normalsize{}.$$
                             </li><br>
-                        
+
                         </ul>
-                        
+
                     </div>
 
                     <div
@@ -2505,7 +2556,8 @@
                                 </div>
 
                             </li><br>
-                            <li>As you (most likely) have already guessed, of \(Q(t)\) is the rotation part of the HTM between
+                            <li>As you (most likely) have already guessed, of \(Q(t)\) is the rotation part of the HTM
+                                between
                                 \(\mathcal{F}_0\) and \(\mathcal{F}_{obj}\)
                                 \(\omega(t)\) is the <b class="itext">angular velocity vector</b>
                                 (written in \(\mathcal{F}_0\));</li>
@@ -2543,14 +2595,22 @@
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; padding-top: 20px; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
 
-                            <li>Suppose \(Q(t)\) has <b class="itext">row</b> vectors \(x(t)^\top, y(t)^\top, z(t)^\top\). Then, explicitly:
-                                $$\omega(t) = \left(\begin{array}{c} \dot{z}(t)^\top y(t) \\ \dot{x}(t)^\top z(t) \\ \dot{y}(t)^\top x(t) \end{array}\right).$$
+                            <li>Suppose \(Q(t)\) has <b class="itext">row</b> vectors \(x(t)^\top, y(t)^\top,
+                                z(t)^\top\). Then, explicitly:
+                                $$\omega(t) = \left(\begin{array}{c} \dot{z}(t)^\top y(t) \\ \dot{x}(t)^\top z(t) \\
+                                \dot{y}(t)^\top x(t) \end{array}\right).$$
                             </li><br>
-                        
-                            <li>Just as the intuition behind linear velocity is an <b class="itext">infinitesimal translation along the velocity vector</b>, the intuition behind angular velocity is an <b class="itext">infinitesimal rotation</b>. If \(\omega(t)\) is the angular velocity of the rigid body at time \(t\), then from \(t\) to \(t + \Delta t\), for small \(\Delta t\), the object undergoes a rotation about the axis given by the normalized vector \(\frac{\omega(t)}{\|\omega(t)\|}\), rotating by an angle \(\|\omega(t)\| \Delta t\).</li><br>
-                        
+
+                            <li>Just as the intuition behind linear velocity is an <b class="itext">infinitesimal
+                                    translation along the velocity vector</b>, the intuition behind angular velocity is
+                                an <b class="itext">infinitesimal rotation</b>. If \(\omega(t)\) is the angular velocity
+                                of the rigid body at time \(t\), then from \(t\) to \(t + \Delta t\), for small \(\Delta
+                                t\), the object undergoes a rotation about the axis given by the normalized vector
+                                \(\frac{\omega(t)}{\|\omega(t)\|}\), rotating by an angle \(\|\omega(t)\| \Delta t\).
+                            </li><br>
+
                         </ul>
-                        
+
                     </div>
 
                     <div
@@ -2584,16 +2644,21 @@
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; padding-top: 20px; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
 
-                            <li>Consider a particle \(U\) of a rigid body with position \(u(t)\) at a given time \(t\), expressed in the fixed frame \(\mathcal{F}_0\). Suppose the rigid body has a linear velocity \(v(t)\) and an angular velocity \(\omega(t)\), and that its transformation matrix is given by:
-                                $$T_0^{obj}(t) = \left(\begin{array}{cc} Q(t) & p(t)\\ 0_{1 \times 3} & 1 \end{array}\right).$$
+                            <li>Consider a particle \(U\) of a rigid body with position \(u(t)\) at a given time \(t\),
+                                expressed in the fixed frame \(\mathcal{F}_0\). Suppose the rigid body has a linear
+                                velocity \(v(t)\) and an angular velocity \(\omega(t)\), and that its transformation
+                                matrix is given by:
+                                $$T_0^{obj}(t) = \left(\begin{array}{cc} Q(t) & p(t)\\ 0_{1 \times 3} & 1
+                                \end{array}\right).$$
                             </li><br>
-                        
-                            <li>Then, the velocity \(v_U\) of this particle (expressed in \(\mathcal{F}_0\)) is given by:
+
+                            <li>Then, the velocity \(v_U\) of this particle (expressed in \(\mathcal{F}_0\)) is given
+                                by:
                                 $$v_U = v + \omega \times (u - p).$$
                             </li>
-                        
+
                         </ul>
-                        
+
                     </div>
 
                     <div
@@ -2627,18 +2692,27 @@
                         style="flex: 1; min-width: 300px; font-size: 1.4vw; text-align: left; display: flex; align-items: start; padding-top: 20px; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
 
-                            <li>Since each link that makes up the robot is a rigid body, we should be able to compute its linear and angular velocities, \(v_i\) and \(\omega_i\), with respect to the fixed frame \(\mathcal{F}_0\).</li><br>
-                        
-                            <li>In fact, it can be shown that for each frame, there exist functions \(J_v^i, J_{\omega}^i: \mathcal{Q} \mapsto \mathbb{R}^{3 \times n}\), where \(n\) is the number of joints, such that:
+                            <li>Since each link that makes up the robot is a rigid body, we should be able to compute
+                                its linear and angular velocities, \(v_i\) and \(\omega_i\), with respect to the fixed
+                                frame \(\mathcal{F}_0\).</li><br>
+
+                            <li>In fact, it can be shown that for each frame, there exist functions \(J_v^i,
+                                J_{\omega}^i: \mathcal{Q} \mapsto \mathbb{R}^{3 \times n}\), where \(n\) is the number
+                                of joints, such that:
                                 <b class="itext">$$v_i = J_v^i(q)\dot{q}, \quad \omega_i = J_{\omega}^i(q)\dot{q}.$$</b>
                             </li><br>
-                        
-                            <li>Thus, the current velocities are determined by the current configuration \(q\) and the current configuration velocity \(\dot{q}\) through this relationship.</li><br>
-                        
-                            <li>The matrices \(J_v^i\) and \(J_{\omega}^i\) are called the <b class="itext">linear velocity Jacobian</b> and the <b class="itext">angular velocity Jacobian</b> (for frame \(i\)), respectively. The \(6 \times n\) matrix obtained by stacking them together is known as the <b class="itext">geometric Jacobian</b> (for frame \(i\)), denoted as \(J_{geo}^i\).</li>
-                        
+
+                            <li>Thus, the current velocities are determined by the current configuration \(q\) and the
+                                current configuration velocity \(\dot{q}\) through this relationship.</li><br>
+
+                            <li>The matrices \(J_v^i\) and \(J_{\omega}^i\) are called the <b class="itext">linear
+                                    velocity Jacobian</b> and the <b class="itext">angular velocity Jacobian</b> (for
+                                frame \(i\)), respectively. The \(6 \times n\) matrix obtained by stacking them together
+                                is known as the <b class="itext">geometric Jacobian</b> (for frame \(i\)), denoted as
+                                \(J_{geo}^i\).</li>
+
                         </ul>
-                        
+
                     </div>
 
                     <div
@@ -2673,24 +2747,31 @@
                         style="flex: 1; min-width: 300px; font-size: 1.3vw; text-align: left; display: flex; align-items: start; padding-top: 20px; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
 
-                            <li>Fortunately, constructing the Geometric Jacobian is straightforward using the forward kinematics derived from the DH convention. Suppose we want to compute \(J_{geo}^i(q)\) for \(i = 1,2, \dots, n\):</li><br>
-                        
+                            <li>Fortunately, constructing the Geometric Jacobian is straightforward using the forward
+                                kinematics derived from the DH convention. Suppose we want to compute \(J_{geo}^i(q)\)
+                                for \(i = 1,2, \dots, n\):</li><br>
+
                             <div style="font-size: 1.3vw; text-align:justify; text-justify: inter-word">
-                                <p>Let <b class="itext">\(s_{DHj}(q)\)</b> and <b class="itext">\(z_{DHj}(q)\)</b> represent the position of the origin and the \(z\)-axis of the homogeneous transformation matrix (HTM) <b class="itext">\(T_0^{DHj}(q)\)</b>, respectively. These correspond to the last and second-to-last columns of the HTM matrix (excluding the last row).</p>
-                                
+                                <p>Let <b class="itext">\(s_{DHj}(q)\)</b> and <b class="itext">\(z_{DHj}(q)\)</b>
+                                    represent the position of the origin and the \(z\)-axis of the homogeneous
+                                    transformation matrix (HTM) <b class="itext">\(T_0^{DHj}(q)\)</b>, respectively.
+                                    These correspond to the last and second-to-last columns of the HTM matrix (excluding
+                                    the last row).</p>
+
                                 <p>We construct \(J_{geo}^i(q)\) column by column. For \(j = 1,2, \dots, i\):</p>
-                                
+
                                 <div>
                                     <ul>
                                         <li>The \(j\)-th column of \(J_v^i(q)\) is given by:
                                             $$J_v^i(q)_j = \left\{
                                             \begin{array}{ll}
-                                            z_{DH(j-1)}(q) \times (s_i(q)-s_{DH(j-1)}(q)) & \text{if the \(j\)-th joint is revolute,} \\
+                                            z_{DH(j-1)}(q) \times (s_i(q)-s_{DH(j-1)}(q)) & \text{if the \(j\)-th joint
+                                            is revolute,} \\
                                             z_{DH(j-1)}(q) & \text{if the \(j\)-th joint is prismatic.}
                                             \end{array}
                                             \right.$$
                                         </li><br>
-                                        
+
                                         <li>The \(j\)-th column of \(J_\omega^i(q)\) is given by:
                                             $$J_\omega^i(q)_j = \left\{
                                             \begin{array}{ll}
@@ -2701,13 +2782,14 @@
                                         </li>
                                     </ul>
                                 </div>
-                        
-                                <p>All columns for \(j = i+1, \dots, n\) are zero, as these joints do not affect the motion of the \(i\)-th link.</p>
-                        
+
+                                <p>All columns for \(j = i+1, \dots, n\) are zero, as these joints do not affect the
+                                    motion of the \(i\)-th link.</p>
+
                             </div>
-                        
+
                         </ul>
-                        
+
                     </div>
 
 
@@ -2731,16 +2813,19 @@
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; padding-top: 20px; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
 
-                            <li>Suppose we have a target velocity \(\xi = (v^\top \ , \ \omega^\top)^\top \in \mathbb{R}^6\) for a given frame at a particular configuration \(q\). Our goal is to determine the joint velocity \(\dot{q}\) required to achieve this motion.</li><br>
-                        
+                            <li>Suppose we have a target velocity \(\xi = (v^\top \ , \ \omega^\top)^\top \in
+                                \mathbb{R}^6\) for a given frame at a particular configuration \(q\). Our goal is to
+                                determine the joint velocity \(\dot{q}\) required to achieve this motion.</li><br>
+
                             <li>Thus, we need to find \(\dot{q}\) that satisfies the following equation:
                                 $$J_{geo}(q)\dot{q} = \xi.$$
                             </li><br>
-                        
-                            <li>This is known as the <b class="itext">inverse differential kinematics</b> problem.</li><br>
-                        
+
+                            <li>This is known as the <b class="itext">inverse differential kinematics</b> problem.</li>
+                            <br>
+
                         </ul>
-                        
+
                     </div>
 
                     <div
@@ -2774,22 +2859,28 @@
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; padding-top: 20px; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
 
-                            <li>Let \(A = J_{geo}(q) \in \mathbb{R}^{6 \times n}\), \(b = \xi \in \mathbb{R}^6\), and \(u = \dot{q} \in \mathbb{R}^n\). Ultimately, the equation can be rewritten as a <b class="itext">system of linear equations</b>:  
+                            <li>Let \(A = J_{geo}(q) \in \mathbb{R}^{6 \times n}\), \(b = \xi \in \mathbb{R}^6\), and
+                                \(u = \dot{q} \in \mathbb{R}^n\). Ultimately, the equation can be rewritten as a <b
+                                    class="itext">system of linear equations</b>:
                                 $$Au = b.$$
                             </li><br>
-                        
+
                             <li>There are three possible cases:
                                 <ul>
-                                    <li><b class="itext">Infinitely many</b> solutions exist. In this case, we aim to find a "good" solution among them. A common approach is to minimize \(\|u\|^2\).</li>
-                                    <li><b class="itext">A unique</b> solution exists. In this case, we simply need to find it.</li>
-                                    <li><b class="itext">No</b> exact solution exists. In this case, we seek the best possible approximation by minimizing \(\|Au - b\|^2\).</li>
+                                    <li><b class="itext">Infinitely many</b> solutions exist. In this case, we aim to
+                                        find a "good" solution among them. A common approach is to minimize \(\|u\|^2\).
+                                    </li>
+                                    <li><b class="itext">A unique</b> solution exists. In this case, we simply need to
+                                        find it.</li>
+                                    <li><b class="itext">No</b> exact solution exists. In this case, we seek the best
+                                        possible approximation by minimizing \(\|Au - b\|^2\).</li>
                                 </ul>
                             </li><br>
-                        
+
                             <li>Is there a compact way to implement these conditions?</li><br>
-                        
+
                         </ul>
-                        
+
                     </div>
 
                     <div
@@ -2936,19 +3027,25 @@
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
 
                             <li>
-                                <b class="itext">Kinematic control</b> refers to the control of a manipulator without considering inertial parameters such as mass and inertia, or external forces. It assumes that we can compute the control input independently of these factors, send it to the robot, and rely on lower-level controllers to handle execution.
+                                <b class="itext">Kinematic control</b> refers to the control of a manipulator without
+                                considering inertial parameters such as mass and inertia, or external forces. It assumes
+                                that we can compute the control input independently of these factors, send it to the
+                                robot, and rely on lower-level controllers to handle execution.
                             </li><br>
-                        
-                            <li> <b class="itext">First-order kinematic control</b> uses the configuration velocity \(u\) as the control input and assumes that the robot follows it perfectly. In other words, it is based on the model:  
+
+                            <li> <b class="itext">First-order kinematic control</b> uses the configuration velocity
+                                \(u\) as the control input and assumes that the robot follows it perfectly. In other
+                                words, it is based on the model:
                                 <b class="itext">$$\dot{q} = u.$$</b>
                             </li><br>
-                        
-                            <li>The closed-loop controller relies on the current configuration \(q\) and time \(t\) as inputs, meaning the control law is given by:  
+
+                            <li>The closed-loop controller relies on the current configuration \(q\) and time \(t\) as
+                                inputs, meaning the control law is given by:
                                 $$u = h(q, t).$$
                             </li><br>
-                        
+
                         </ul>
-                        
+
                     </div>
 
                     <div
@@ -2983,21 +3080,26 @@
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
 
                             <li>
-                                A <b class="itext">task</b> is any objective we want the robot to accomplish (e.g., making the end-effector reach a specific pose).
+                                A <b class="itext">task</b> is any objective we want the robot to accomplish (e.g.,
+                                making the end-effector reach a specific pose).
                             </li><br>
-                        
-                            <li>A task can be either time-invariant (e.g., achieving a fixed pose \(T_{d}\)) or time-variant (e.g., following a moving pose \(T_{d}(t)\)).
+
+                            <li>A task can be either time-invariant (e.g., achieving a fixed pose \(T_{d}\)) or
+                                time-variant (e.g., following a moving pose \(T_{d}(t)\)).
                             </li><br>
-                        
-                            <li>A <b class="itext">task function</b> for a given task is a differentiable function \(r: \mathcal{Q} \times \mathbb{R} \mapsto \mathbb{R}^m\) such that:
-                                $$r(q,t) = 0$$ 
-                                <b class="itext">if and only if</b> the configuration \(q\) satisfies the (possibly time-dependent) task at time \(t\).
+
+                            <li>A <b class="itext">task function</b> for a given task is a differentiable function \(r:
+                                \mathcal{Q} \times \mathbb{R} \mapsto \mathbb{R}^m\) such that:
+                                $$r(q,t) = 0$$
+                                <b class="itext">if and only if</b> the configuration \(q\) satisfies the (possibly
+                                time-dependent) task at time \(t\).
                             </li><br>
-                        
-                            <li>This reformulates the task-solving problem into the problem of driving the configuration \(q\) such that the function \(r\) reaches zero.</li>
-                        
+
+                            <li>This reformulates the task-solving problem into the problem of driving the configuration
+                                \(q\) such that the function \(r\) reaches zero.</li>
+
                         </ul>
-                        
+
                     </div>
 
                     <div
@@ -3031,17 +3133,24 @@
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; padding-top: 20px; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
 
-                            <li>Geometrically, we can interpret the task as a set \(\mathcal{T}(t) \subseteq \mathcal{Q}\) within the configuration space. This set contains all configurations \(q\) such that, if the system is in any of these configurations at time \(t\), the task is considered successfully completed at that time.</li><br>
-                        
-                            <li>The <b class="itext">if and only if</b> condition implies that the set \(\mathcal{R}(t) = \{q \in \mathcal{Q} \ | \ r(q,t) = 0 \}\) is <b class="itext">exactly</b> equal to \(\mathcal{T}(t)\). This means:
+                            <li>Geometrically, we can interpret the task as a set \(\mathcal{T}(t) \subseteq
+                                \mathcal{Q}\) within the configuration space. This set contains all configurations \(q\)
+                                such that, if the system is in any of these configurations at time \(t\), the task is
+                                considered successfully completed at that time.</li><br>
+
+                            <li>The <b class="itext">if and only if</b> condition implies that the set \(\mathcal{R}(t)
+                                = \{q \in \mathcal{Q} \ | \ r(q,t) = 0 \}\) is <b class="itext">exactly</b> equal to
+                                \(\mathcal{T}(t)\). This means:
                                 <ul>
-                                    <li>\(\mathcal{R}(t)\) should not include any points outside of \(\mathcal{T}(t)\) (otherwise, the <b class="itext">only if</b> condition would fail).</li>
-                                    <li>\(\mathcal{R}(t)\) should include all points within \(\mathcal{T}(t)\) (otherwise, the <b class="itext">if</b> condition would fail).</li>
+                                    <li>\(\mathcal{R}(t)\) should not include any points outside of \(\mathcal{T}(t)\)
+                                        (otherwise, the <b class="itext">only if</b> condition would fail).</li>
+                                    <li>\(\mathcal{R}(t)\) should include all points within \(\mathcal{T}(t)\)
+                                        (otherwise, the <b class="itext">if</b> condition would fail).</li>
                                 </ul>
                             </li><br>
-                        
+
                         </ul>
-                        
+
                     </div>
 
                     <div
@@ -3075,18 +3184,30 @@
                         style="flex: 1; min-width: 300px; font-size: 1.3vw; text-align: left; display: flex; align-items: start; padding-top: 20px; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
 
-                            <li>A simple example: Suppose the task is to make the end-effector position \(s_e(q)\) reach a fixed target position \(s_{e,d}\), without considering orientation. In this case, we can define \(r\) independently of \(t\), so that \(r(q,t) = r(q)\):</li><br>
-                            
+                            <li>A simple example: Suppose the task is to make the end-effector position \(s_e(q)\) reach
+                                a fixed target position \(s_{e,d}\), without considering orientation. In this case, we
+                                can define \(r\) independently of \(t\), so that \(r(q,t) = r(q)\):</li><br>
+
                             <ul>
-                                <li>The function \(r(q) = \|s_e(q) - s_{e,d}\|^2\), with \(m=1\) in this case, is a valid task function because it is differentiable and satisfies \(r(q) = 0\) <b class="itext">if and only if</b> \(s_e(q) = s_{e,d}\).</li>
-                                
-                                <li>The function \(r(q) = s_{e,d} \times s_e(q)\), with \(m=3\) in this case, is <b>not</b> a valid task function because it is zero <b class="itext">if</b> \(s_e(q) = s_{e,d}\), but not <b class="itext">only if</b> (e.g., if \(s_e(q) = -s_{e,d}\), the function also evaluates to zero).</li>
-                                
-                                <li>Let \(q_{d,1}\) and \(q_{d,2}\) be two different configurations that result in the same end-effector position \(s_{e,d}\) (which is possible if the robot has more than three joints). The function \(r(q) = q - q_{d,1}\), with \(m=n\) in this case, is not a valid task function because it is zero <b class="itext">only if</b> \(s_e(q) = s_{e,d}\), but not <b class="itext">if</b> (e.g., if \(q = q_{d,2}\), the function does not capture all valid configurations).</li>
+                                <li>The function \(r(q) = \|s_e(q) - s_{e,d}\|^2\), with \(m=1\) in this case, is a
+                                    valid task function because it is differentiable and satisfies \(r(q) = 0\) <b
+                                        class="itext">if and only if</b> \(s_e(q) = s_{e,d}\).</li>
+
+                                <li>The function \(r(q) = s_{e,d} \times s_e(q)\), with \(m=3\) in this case, is
+                                    <b>not</b> a valid task function because it is zero <b class="itext">if</b> \(s_e(q)
+                                    = s_{e,d}\), but not <b class="itext">only if</b> (e.g., if \(s_e(q) = -s_{e,d}\),
+                                    the function also evaluates to zero).</li>
+
+                                <li>Let \(q_{d,1}\) and \(q_{d,2}\) be two different configurations that result in the
+                                    same end-effector position \(s_{e,d}\) (which is possible if the robot has more than
+                                    three joints). The function \(r(q) = q - q_{d,1}\), with \(m=n\) in this case, is
+                                    not a valid task function because it is zero <b class="itext">only if</b> \(s_e(q) =
+                                    s_{e,d}\), but not <b class="itext">if</b> (e.g., if \(q = q_{d,2}\), the function
+                                    does not capture all valid configurations).</li>
                             </ul>
-                        
+
                         </ul>
-                        
+
                     </div>
 
                     <div
@@ -3121,21 +3242,25 @@
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
 
                             <li>
-                                The most common kind of task is to achieve a target pose \(T_{d}(t)\) for a frame (often end-effector).
+                                The most common kind of task is to achieve a target pose \(T_{d}(t)\) for a frame (often
+                                end-effector).
                             </li><br>
                             <li>
-                                Let \(T(q)\) be the HTM for the frame. Split it into the (vector) collumns of it rotation matrices, 
+                                Let \(T(q)\) be the HTM for the frame. Split it into the (vector) collumns of it
+                                rotation matrices,
                                 \(x(q),y(q),z(q)\) and the center, \(s(q)\). All are 3D column vectors;
                             </li><br>
                             <li>
                                 Do the same for \(T_{d}(t)\), obtaining \(x_d(t), y_d(t), z_d(t)\) and \(s_d(t)\);
-                            </li><br>                          
+                            </li><br>
                             <li>
-                                Then a task function \(r: \mathcal{Q} \mapsto \mathbb{R}^6\) to achieve the pose is as follows:
-                                <b class="itext">$$r(q,t) = \left(\begin{array}{c} s(q)-s_d(t) \\ 1-x_d(t)^\top x(q) \\ 1-y_d(t)^\top y(q) \\ 1-z_d(t)^\top z(q)   \end{array}\right);$$</b>
+                                Then a task function \(r: \mathcal{Q} \mapsto \mathbb{R}^6\) to achieve the pose is as
+                                follows:
+                                <b class="itext">$$r(q,t) = \left(\begin{array}{c} s(q)-s_d(t) \\ 1-x_d(t)^\top x(q) \\
+                                    1-y_d(t)^\top y(q) \\ 1-z_d(t)^\top z(q) \end{array}\right);$$</b>
                             </li>
-                                
-                            
+
+
                         </ul>
                     </div>
 
@@ -3171,22 +3296,28 @@
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
 
                             <li>
-                                To conclude that it is indeed a task function, note that if \(u\) and \(v\) are normalized vectors 
+                                To conclude that it is indeed a task function, note that if \(u\) and \(v\) are
+                                normalized vectors
                                 (as the \(x,y,z,x_d,y_d,z_d\) vectors are), \(0.5\|u-v\|^2 = 1-u^\top v\);
                             </li><br>
                             <li>
-                                We will also need to compute the <b class="itext">task Jacobian</b> and <b class="itext">task feedforward</b>;
+                                We will also need to compute the <b class="itext">task Jacobian</b> and <b
+                                    class="itext">task feedforward</b>;
                             </li><br>
                             <li>
-                                The <b class="itext">task Jacobian</b> for a function \(r: \mathcal{Q} \times \mathbb{R} \mapsto \mathbb{R}^m\) is the \(mxn\) matrix \(\frac{\partial r}{\partial q}(q,t)\) such that the entry in the 
-                                \(i^{th}\) row and \(j^{th}\) column is given by \(\frac{\partial r_i}{\partial q_j}(q,t)\). We will also use the 
+                                The <b class="itext">task Jacobian</b> for a function \(r: \mathcal{Q} \times \mathbb{R}
+                                \mapsto \mathbb{R}^m\) is the \(mxn\) matrix \(\frac{\partial r}{\partial q}(q,t)\) such
+                                that the entry in the
+                                \(i^{th}\) row and \(j^{th}\) column is given by \(\frac{\partial r_i}{\partial
+                                q_j}(q,t)\). We will also use the
                                 symbol \(J_r(q,t)\) for it;
-                            </li><br>                            
+                            </li><br>
                             <li>
-                                Then the <b class="itext">task feedforward</b> is the \(m \times 1\) column vector \(\frac{\partial r}{\partial t}(q,t)\);
+                                Then the <b class="itext">task feedforward</b> is the \(m \times 1\) column vector
+                                \(\frac{\partial r}{\partial t}(q,t)\);
                             </li>
-                                
-                            
+
+
                         </ul>
                     </div>
 
@@ -3222,15 +3353,20 @@
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
 
                             <li>
-                                Let \(J_v(q),J_{\omega}(q)\) the linear and angular velocities Jacobians for the frame. Then, it can be shown that:
-                               $$J_r(q,t) = \left(\begin{array}{c} J_v(q) \\ (x_d(t) \times x(q))^\top J_{\omega}(q) \\ (y_d(t) \times y(q))^\top J_{\omega}(q) \\ (z_d(t) \times z(q))^\top J_{\omega}(q)\end{array}\right);$$
+                                Let \(J_v(q),J_{\omega}(q)\) the linear and angular velocities Jacobians for the frame.
+                                Then, it can be shown that:
+                                $$J_r(q,t) = \left(\begin{array}{c} J_v(q) \\ (x_d(t) \times x(q))^\top J_{\omega}(q) \\
+                                (y_d(t) \times y(q))^\top J_{\omega}(q) \\ (z_d(t) \times z(q))^\top
+                                J_{\omega}(q)\end{array}\right);$$
                             </li><br>
                             <li>
                                 The task feedforward can be obtained by:
-                               $$\frac{\partial r}{\partial t}(q,t) = \left(\begin{array}{c} -\dot{s}_d(t) \\ -\dot{x}_d(t)^\top x(q) \\ -\dot{y}_d(t)^\top y(q) \\ -\dot{z}_d(t)^\top z(q) \end{array}\right);$$
-                            </li><br>                           
-                                
-                            
+                                $$\frac{\partial r}{\partial t}(q,t) = \left(\begin{array}{c} -\dot{s}_d(t) \\
+                                -\dot{x}_d(t)^\top x(q) \\ -\dot{y}_d(t)^\top y(q) \\ -\dot{z}_d(t)^\top z(q)
+                                \end{array}\right);$$
+                            </li><br>
+
+
                         </ul>
                     </div>
 
@@ -3266,21 +3402,23 @@
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
 
                             <li>
-                                Let \(K\) be a positive scalar and \(r(q,t)\) a task function for the task. Suppose that, somehow, the control input \(\dot{q}=u\) is chosen so 
+                                Let \(K\) be a positive scalar and \(r(q,t)\) a task function for the task. Suppose
+                                that, somehow, the control input \(\dot{q}=u\) is chosen so
                                 \(\frac{d}{dt} r(q(t),t) = -Kr(q(t),t)\);
 
                             </li><br>
                             <li>
-                                This implies that \(r(q,t) = e^{-Kt}r(q(0),0)\), that is, 
-                                <b class="itext">when \(t \rightarrow \infty\)</b>, \(r(q,t) \rightarrow 0\); 
+                                This implies that \(r(q,t) = e^{-Kt}r(q(0),0)\), that is,
+                                <b class="itext">when \(t \rightarrow \infty\)</b>, \(r(q,t) \rightarrow 0\);
                             </li><br>
                             <li>
-                                Due to the properties of \(r\), <b class="itext">this implies that the task be solved (asymptotically)!</b>; 
+                                Due to the properties of \(r\), <b class="itext">this implies that the task be solved
+                                    (asymptotically)!</b>;
                             </li><br>
                             <li>
-                                All that remains is to see how to compute the control input to achieve the specification 
-                                \(\dot{r} = -Kr\); 
-                            </li>                          
+                                All that remains is to see how to compute the control input to achieve the specification
+                                \(\dot{r} = -Kr\);
+                            </li>
                         </ul>
 
                     </div>
@@ -3319,19 +3457,22 @@
 
                             <li>
                                 By the <b class="itext">chain rule</b>:
-                                $$\frac{d}{dt}r(q,t) = \frac{\partial r}{\partial q}(q,t)\dot{q}+\frac{\partial r}{\partial t}(q,t);$$
+                                $$\frac{d}{dt}r(q,t) = \frac{\partial r}{\partial q}(q,t)\dot{q}+\frac{\partial
+                                r}{\partial t}(q,t);$$
                             </li><br>
                             <li>
-                                Thus, \(\dot{r} = -Kr\) becomes the following  <b class="itext">linear system for \(\dot{q}=u\)</b>:
+                                Thus, \(\dot{r} = -Kr\) becomes the following <b class="itext">linear system for
+                                    \(\dot{q}=u\)</b>:
                                 $$J_r(q)u = -Kr - \frac{\partial r}{\partial t};$$
                             </li>
                             <li>
-                                This is a linear system, thus we can use the <b class="itext">damped pseudoinverse</b> 
+                                This is a linear system, thus we can use the <b class="itext">damped pseudoinverse</b>
                                 to "solve" for \(\dot{q}\):
-                                <b class="itext">$$u = J_r(q,t)^{\dagger(\varepsilon)}\Big(-Kr(q,t)-\frac{\partial r}{\partial t}(q,t)\Big);$$</b>
+                                <b class="itext">$$u = J_r(q,t)^{\dagger(\varepsilon)}\Big(-Kr(q,t)-\frac{\partial
+                                    r}{\partial t}(q,t)\Big);$$</b>
                             </li>
-                            <li>This is called in the literature  <b class="itext">resolved rate controller</b>;</li>
-                     
+                            <li>This is called in the literature <b class="itext">resolved rate controller</b>;</li>
+
                         </ul>
 
                     </div>
@@ -3348,6 +3489,246 @@
 
 
                     </div>
+
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    KINEMATIC CONTROL IN TASK SPACE
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; padding-top: 20px; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>An example:
+
+
+                               
+                                <div style="display: flex; flex: 1; gap: 10px; height: 100%;">
+                                    <div
+                                        style="flex: 1;   display: flex; justify-content: center; align-items: center;">
+                                        
+
+                                        <iframe src="presentation/images/part1/part_1_9.html" width="550" height="580"
+                                        style="border: none;"></iframe>
+
+                                    </div>
+                                    <div
+                                        style="flex: 1;  display: flex; justify-content: center; align-items: center;">
+                                        <img src="presentation/images/part1/image8.svg"
+                                            style="max-width: 100%; height: auto; max-height: 60vh;">
+                                    </div>
+                                </div>
+                            </li>
+
+
+                        </ul>
+                    </div>
+
+
+
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    KINEMATIC CONTROL IN TASK SPACE
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">LIMITATIONS</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; padding-top: 20px; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+
+                            <li>
+                                Since the equation \(\dot{r} = -Kr\) is not guaranteed to hold (due to the use of the pseudoinverse to solve the linear equation), the controller can <b class="itext">fail</b>. 
+                                Specifically, it may get stuck in a configuration that does not achieve the task, a phenomenon known as the <b class="itext">spurious equilibrium point problem</b>.
+                            </li><br>
+                        
+                            <li>
+                                In practice, this is usually not a major issue.
+                            </li><br>
+                        
+                            <li>
+                                <b class="itext">However, it disregards critical constraints such as joint limits and obstacle avoidance.</b> Addressing these limitations is precisely the focus of this class.
+                            </li><br>
+                        
+                            <li>
+                                Nevertheless, it serves as a good foundation for more advanced controllers, as we will see.
+                            </li>
+                        
+                        </ul>
+                        
+
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <div style="width: 100%;">
+                                <img src="presentation/images/part1/main.svg"
+                                    style="max-width: 80%; height: auto; max-height: 60vh;">
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </section>
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    KINEMATIC CONTROL IN TASK SPACE
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">LIMITATIONS</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; padding-top: 20px; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+
+                            <li>
+                                Note that <b class="itext">the convergence in the previous example was somewhat poor</b> because the system slowed down significantly as it approached the task completion.
+                            </li><br>
+                        
+                            <li>
+                                A gain of \(K = 0.5 \, s^{-1}\) was used. One might consider simply increasing \(K\), but the problem is that while this would speed up convergence near the goal, 
+                                <b class="itext">it would also increase speed when far from the target</b>. This could make the motion too fast for the robot to handle.
+                            </li><br>
+                        
+                            <li>
+                                The solution is to use a <b class="itext">dynamic</b> \(K\), which increases as \(r\) gets closer to \(0\) and decreases when further away. More generally, this means selecting a target function for \(\dot{r}\) that is not simply \(-Kr\).
+                            </li>
+                        
+                        </ul>
+                        
+
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <div style="width: 100%;">
+                                <iframe src="presentation/images/part1/part_1_9.html" width="550" height="580"
+                                        style="border: none;"></iframe>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    KINEMATIC CONTROL IN TASK SPACE
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">MORE GENERAL TARGET</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; padding-top: 20px; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+
+                            <li>
+                                We can attempt to impose \(\dot{r} = G(r)\) for a more general function \(\Phi: \mathbb{R}^m \mapsto \mathbb{R}^m\). 
+                                This will be effective as long as \(\Phi\) is the negative gradient of a <b class="itext">differentiable, positive definite function \(V(r)\)</b>, 
+                                meaning that \(G(r) = -\nabla V(r)\). This follows naturally from Lyapunov analysis.
+                            </li><br>
+                        
+                            <li>
+                                If \(G(r)\) is decoupled (which, theoretically, there is no reason for it not to be), we can define the \(i^{th}\) entry of 
+                                \(G(r)\) as a function \(g: \mathbb{R} \mapsto \mathbb{R}\) that satisfies the following conditions:  
+                                (i) it is continuous,  
+                                (ii) \(g(0) = 0\),  
+                                (iii) it is positive for negative inputs and negative for positive inputs.
+                            </li><br>
+                        
+                            <li>A good example is: \(g(s) = -K\frac{s}{|s|^{0.5}}\), where \(K > 0\).</li>
+                        
+                        </ul>
+                        
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <div style="width: 100%;">
+                                <img src="presentation/images/part1/img10.svg"
+                                style="max-width: 100%; height: auto; max-height: 60vh;">
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    KINEMATIC CONTROL IN TASK SPACE
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">COMPARISON</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; padding-top: 20px; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>Comparison using \(G(r)=-Kr\) and \(G(r)\) as proposed in the previous slide (with the same \(K\)):
+
+
+                               
+                                <div style="display: flex; flex: 1; gap: 10px; height: 100%;">
+                                    <div
+                                        style="flex: 1;   display: flex; justify-content: center; align-items: center;">
+                                        
+
+                                        <iframe src="presentation/images/part1/part_1_9.html" width="550" height="580"
+                                        style="border: none;"></iframe>
+
+                                    </div>
+                                    <div
+                                        style="flex: 1;  display: flex; justify-content: center; align-items: center;">
+                                        <iframe src="presentation/images/part1/part_1_10.html" width="550" height="580"
+                                        style="border: none;"></iframe>
+                                    </div>
+                                </div>
+                            </li>
+
+
+                        </ul>
+                    </div>
+
+
 
                 </div>
             </section>
