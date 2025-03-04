@@ -70,7 +70,7 @@
                                     <li>Forward and Inverse Kinematics (Spong's Chapter 3);</li>
                                     <li>Differential Kinematics (Spong's Chapter 4);</li>
                                     <li>Kinematic Control in Task Space (not exactly in Spong...);</li>
-                                    <li>UAIBot basics;</li>
+                                    <!-- <li>UAIBot basics;</li> -->
                                 </ul>
                             </li>
                             <br>
@@ -2763,17 +2763,16 @@
                                 <div>
                                     <ul>
                                         <li>The \(j\)-th column of \(J_v^i(q)\) is given by:
-                                            $$J_v^i(q)_j = \left\{
+                                            $$ \left\{
                                             \begin{array}{ll}
-                                            z_{DH(j-1)}(q) \times (s_i(q)-s_{DH(j-1)}(q)) & \text{if the \(j\)-th joint
-                                            is revolute,} \\
+                                            z_{DH(j-1)}(q) \times (s_i(q)-s_{DH(j-1)}(q)) & \text{if the \(j\)-th joint is revolute,} \\
                                             z_{DH(j-1)}(q) & \text{if the \(j\)-th joint is prismatic.}
                                             \end{array}
                                             \right.$$
                                         </li><br>
 
                                         <li>The \(j\)-th column of \(J_\omega^i(q)\) is given by:
-                                            $$J_\omega^i(q)_j = \left\{
+                                            $$\left\{
                                             \begin{array}{ll}
                                             z_{DH(j-1)}(q) & \text{if the \(j\)-th joint is revolute,} \\
                                             0_{3 \times 1} & \text{if the \(j\)-th joint is prismatic.}
@@ -3306,7 +3305,7 @@
                             </li><br>
                             <li>
                                 The <b class="itext">task Jacobian</b> for a function \(r: \mathcal{Q} \times \mathbb{R}
-                                \mapsto \mathbb{R}^m\) is the \(mxn\) matrix \(\frac{\partial r}{\partial q}(q,t)\) such
+                                \mapsto \mathbb{R}^m\) is the \(m \times n\) matrix \(\frac{\partial r}{\partial q}(q,t)\) such
                                 that the entry in the
                                 \(i^{th}\) row and \(j^{th}\) column is given by \(\frac{\partial r_i}{\partial
                                 q_j}(q,t)\). We will also use the
@@ -3732,6 +3731,16 @@
 
                 </div>
             </section>
+
+            <!-- <section
+                style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+                <h3 style="font-size: 3.5vw; margin-bottom: 0.5rem;">UAIBOT</h3>
+
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                    <img src="presentation/images/part1/main.svg" style="max-width: 40%; height: auto;">
+                </div>
+            </section> -->
+
 
             <style>
                 .reveal .progress {
