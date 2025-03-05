@@ -22,13 +22,25 @@ def plot_contour():
     
     levels = [ (0.2*i)**2 for i in range(10) ]
     
+    lvl_min = levels[0]
+    lvl_max = levels[-1]
+    
     # Plot contour lines
-    contour = ax.contour(X, Y, Z, levels=levels, colors=['cyan', 'magenta', 'yellow', 'lime', 'red', 'blue'])
+    color_level=[]
+    for lvl in levels:
+        x = (lvl-lvl_min)/(lvl_max-lvl_min)
+        x=1-x
+        value_red = int(155*x)
+        value_green = int(100+155*x)
+        value_blue = int(155*x)
+        color_level.append( f"#{value_red:02X}{value_green:02X}{value_blue:02X}" )
+    
+    contour = ax.contour(X, Y, Z, levels=levels, colors=color_level)
     ax.clabel(contour, inline=True, fontsize=8, colors='white')
     
     # Customize axis
-    ax.set_xlabel('x', color='white')
-    ax.set_ylabel('y', color='white')
+    ax.set_xlabel('$x_1$', color='white', fontsize=16)
+    ax.set_ylabel('$x_2$', color='white', fontsize=16)
     ax.tick_params(colors='white')
     
     plt.show()

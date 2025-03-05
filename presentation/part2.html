@@ -653,9 +653,12 @@ for link in robot.links:
                             </li><br>
                             <li> <b class="ttext">Prop 3:</b> the Minkowsky sum and subtraction of convex sets is convex;<br>
                             </li><br>
-                            <li> <b class="ttext">Prop 4 (Separating hyperplane theorem):</b> if two sets are convex, either they have an intersection, or 
-                                there is a separating hyperplane that separates them;<br>
+                            <li> <b class="ttext">Prop 4:</b> for any point \(u\) in the boundary of the set, consider the tangent hyperplane to the set at this point. 
+                                The set is contained entirely in one of the sides of the hyperplane;<br>    
                             </li><br>
+                            <li> <b class="ttext">Prop 5 (Separating hyperplane theorem):</b> if two sets are convex, either they have an intersection, or 
+                                there is a separating hyperplane that separates them;<br>
+ 
                         </ul>
                     </div>
 
@@ -684,15 +687,21 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.45vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li> A very useful way to handle convexity using Analytic Geometry is through <b class="itext">convex functions</b>;<br>
+                            <li> A very useful way to handle convexity using analytic geometry is through <b class="itext">convex functions</b>;<br>
                             </li><br>
                             <li> A function \(f: \mathbb{R}^n \mapsto \mathbb{R}\) is said to be a <b class="itext">convex function</b> if 
                                 <b class="itext">\(\forall u, v \in \mathbb{R}^n \ , \alpha \in [0,1]\)</b>:<br>
-                                <b class="itext"> $$ f(\alpha u+(1-\alpha) v) \leq \alpha f(u) + (1-\alpha) f(v)$$</b>
+                                <b class="itext"> $$ f(\alpha u+(1-\alpha) v) \leq \alpha f(u) + (1-\alpha) f(v);$$</b>
                             </li><br>
-                            <li> Geometrically, this means that the <b class="itext">epigraph</b>, i.e., the \(n+1\) dimensional 
-                                set \( \mathcal{Y} = \{x \in \mathbb{R}^n , y \in \mathbb{R} \ , \ y \geq f(x)\} \),
-                                is convex; <br>
+                            <li> Geometrically, this means two things:
+                                <ul>
+                                    <li>That for any two points \((u,f(u))\) and \((v,f(v))\) in the graph, the plot of the graph is 
+                                        either touching or below the straight line that connects them;</li>
+                                    <li>That the <b class="itext">epigraph</b>, i.e., the \(n+1\) dimensional 
+                                        set \( \mathcal{Y} = \{x \in \mathbb{R}^n , y \in \mathbb{R} \ , \ y \geq f(x)\} \),
+                                        is convex;</li>
+                                </ul>
+                                 <br>
                             </li><br>
                             <li>Example: \(f(x)=x^2\);</li>
 
@@ -730,7 +739,8 @@ for link in robot.links:
                             </li><br>
                             <li>Note the difference from before: \(\alpha\) should lie in the open interval \((0,1)\) and 
                                 it should be \(<\) other than \(\leq\);</li><br>
-                            <li> As you probably expected, the epigraph is now strictly convex; <br>
+                            <li> As you probably expected, the epigraph is now strictly convex, and the plot of the graph should 
+                                be strictly below the straight line, except for the starting and end points; <br>
                             </li><br>
                             <li>Example: the function \(f(x)=x^2\) is strictly convex, but \(f(x)=|x|\) is only convex;</li>
 
@@ -802,8 +812,17 @@ for link in robot.links:
                             <br>
  
                             <li> <b class="ttext">Prop 5:</b> <b class="itext"> if (but not only if)</b> the function \(f(x)\) is convex, the 
-                                <b class="itext">sublevel sets</b> \(\mathcal{L}(c) = \{x \ | \ f(x) \leq c\}\) for a constant \(c\) are convex. Furthermore, if \(f(x)\) is strictly convex, 
-                            the sets are strictly convex. The function \(f(x) = \sqrt{|x|}\) is an example to the "only if" claim;</li><br>                                
+                                <b class="itext">sublevel sets</b> \(\mathcal{L}(c) = \{x \in \mathbb{R}^n \ | \ f(x) \leq c\}\) for a constant \(c\) are convex. Furthermore, if \(f(x)\) is strictly convex, 
+                            the sets are strictly convex. The function \(f(x) = \sqrt{|x|}\) is an example to the "only if" claim;</li><br> 
+                            
+                            <li>
+                                Thus, we can represent a convex sets as \(f(x) \leq 0\) for a convex function \(f\). 
+                                Since the intersection of convex sets is also convex (see <b class="ttext">Prop 1 of convex sets</b>), a convex set can be also characterized as 
+                                $$\mathcal{X} = \{x \in \mathbb{R}^n \ | \ f_i(x) \leq 0 \ i = 1,...,n\};$$</li><br> 
+                            <li>    
+                                This is specially useful for <b class="itext">polyhedras</b> 
+                                (i.e., convex shapes with flat faces), which  can be described like this when \(f_i(x) = a_i^\top x-b_i\) are affine functions. 
+                            </li>
                         </ul>
                     </div>
 
@@ -897,6 +916,440 @@ for link in robot.links:
                 </div>
             </section>
 
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CONVEX ANALYSIS BASICS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">CONVEX OPTIMIZATION PROBLEM</b>
+                </h3>
+
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.4vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <br>
+                            <li> We saw the definition of <b class="itext">convex sets and convex functions</b>. We now define 
+                               a <b class="ttext">convex optimization problem:</b>
+                            $$ \min_{x \in \mathcal{X}} f(x)$$
+                            in which \(f: \mathbb{R}^n \mapsto \mathbb{R}\) is a convex function, and \(\mathcal{X}\subseteq \mathbb{R}^n\) 
+                            is a convex set;
+                            </li><br>
+                            <li> Overall, it is the easiest class of optimization problems. Generally, can be solved 
+                                very efficiently;
+                            </li><br>
+                            <li> But why?
+                            </li><br>                             
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/image12.svg"
+                                style="max-width: 80%; height: auto; max-height: 60vh;">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CONVEX ANALYSIS BASICS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">CONVEX OPTIMIZATION PROBLEM</b>
+                </h3>
+
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.4vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <br>
+                            <li> For the sake of simplicity, lets assume that \(f\) is two times differentiable, and that \(\mathcal{X}=\mathbb{R}^n\) 
+                                (i.e., no constraints);
+                            </li><br>
+                            <li> One of the most powerful ideas on optimization (and in applied mathematics) is <b class="itext">gradient descent</b>: 
+                                if you want to minimize \(f(x)\), just take steps in the opposite of the gradient \(\nabla f(x)\) starting from a point \(x[0]\):
+                                $$x[k+1] = x[k] - \eta[k] \nabla f(x[k]);$$
+                                For a \(\eta[k]>0\) (possibly varying with \(k\)). </li><br>  
+                            <li> If the step size is chosen appropriately, the function \(f(x)\) will decrease as long as you can move, that is, \(\nabla f(x) \not= 0\);
+                            </li><br>                         
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/image13.gif"
+                                style="max-width: 80%; height: auto; max-height: 60vh;">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CONVEX ANALYSIS BASICS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">CONVEX OPTIMIZATION PROBLEM</b>
+                </h3>
+
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.4vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <br>
+                            <li> There is a major issue with this approach, which is the bane of (continuous) optimization: <b class="itext">local minima</b>. In these points \(x\), \(\nabla f(x) = 0\) 
+                                but the true minimum of \(f(x)\) are not achieved. Gradient descent can be trapped into one of these instead of the true 
+                                <b class="itext">global minima</b>;
+                            </li><br>    
+                            <li>This is not a problem with convex functions because, as mentioned in <b class="ttext"> Prop 7</b> before, 
+                                <b class="itext">convex functions only have global minima</b>. So, if \(\nabla f(x[k])=0\), we can 
+                                be sure we have a global minimum;
+                            </li>                         
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/image13.gif"
+                                style="max-width: 80%; height: auto; max-height: 60vh;">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CONVEX ANALYSIS BASICS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">CONVEX OPTIMIZATION PROBLEM</b>
+                </h3>
+
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.4vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <br>
+                            <li> What if we have constraints, i.e., \(\mathcal{X}\not= \mathbb{R}^n\);
+                            </li><br>    
+                            <li>Just follow the opposite of the gradient, as before.</li> <br>
+                            <li> If you converge to a point inside, you reached a global minimum 
+                                that is the same as the one of the unconstrained problem.</li> <br>
+                                <li> If you reach the boundary of the set, project the opposite 
+                                of the gradient into the boundary. Keep following it. If the projection is zero (i.e., the opposite of the gradient is parallel  
+                                to the normal to the boundary that points outwards), you can be sure you have a point that is a global minimum;
+                            </li> <br>
+                            <li>But why can you be sure?</li>                       
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/image14.gif"
+                                style="max-width: 80%; height: auto; max-height: 60vh;">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CONVEX ANALYSIS BASICS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">CONVEX OPTIMIZATION PROBLEM</b>
+                </h3>
+
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.2vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <br>
+                            <li>The intuitive argument (not a formal proof) follows by contradiction.</li> <br>
+                            <li> Let \(x_A\) be the point in which we converged, at the boundary. The convergence criteria means that \(-\nabla f(x_A)\) 
+                                is trying to "go outside" of the set to minimize even more (if we did not have constraints);
+                            </li><br>
+                            <li> Now, suppose that there is another point \(x_B\) in \(\mathcal{X}\) that has a smaller value: 
+                                \(f(x_B) < f(x_A)\).
+                            </li> <br>
+                            <li>The argument is that in this case, <b class="itext">for a convex function, \(\nabla f(x_A)\) should "more or less" point in the direction from \(x_A\) to \(x_B\)</b>, which 
+                                <b class="itext">can be followed since \(\mathcal{X}\) is convex</b>  (the line that connects the points is inside the set);
+                                 
+                            </li><br>
+                            <li>This contradicts with the claim that \(-\nabla f(x_A)\) is pointing to go outside and we cannot do anything to 
+                                decrease \(f(x)\);
+                            </li><br>
+                            <li>The formal proof requires to show that  \(\nabla f(x_A)\) should "more or less" point in the claimed direction when 
+                                \(f(x)\) is convex.  This is obviously the case when \(f(x)=0.5\|x-x_B\|^2\), for example;
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/image12.svg"
+                                style="max-width: 80%; height: auto; max-height: 60vh;">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CONVEX ANALYSIS BASICS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">STRICTLY CONVEX OPTIMIZATION PROBLEM</b>
+                </h3>
+
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.4vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <br>
+                            <li> A convex optimization problem is said to be <b class="ttext">strictly convex</b> if \(f(x)\) is not only 
+                                convex, but strictly convex (the set \(\mathcal{X}\) need not to be strictly convex\);
+                            </li><br>    
+                            <li>The main interest of strictly convex optimization problem is as follows:<br><br>
+                                    <div style="background-color: #282828">
+                                        <b class="ttext">Theorem:</b> if the set \(\mathcal{X}\) is compact, a strictly convex optimization problem 
+                                            has a <b class="itext">single optimal point</b>.
+                                    </div>
+                            </li> <br>
+                            <li>Compactness is there only to ensure that a finite optima exist (e.g., take \(\mathcal{X} = \mathbb{R}\) and consider \(\min_{x \in \mathcal{X} } e^{-x}\) )</li><br>
+                            <li> This is not true for general convex problems (e.g., take \(\min_{x} \ (x_1-x_2)^2\));</li>
+                            
+                             
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/image14.gif"
+                                style="max-width: 80%; height: auto; max-height: 60vh;">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CONVEX ANALYSIS BASICS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">PARAMETRIZED OPTIMIZATION PROBLEMS AND THE ENVELOPE THEOREM</b>
+                </h3>
+
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.4vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <br>
+                            <li> Let \(f: \mathbb{R}^n \times \mathbb{R}^m \mapsto \mathbb{R}\) be a function \(f(x,\theta)\) that is 
+                                differentiable in both arguments and \(\mathcal{X} \subseteq \mathbb{R}^n\) be a set. Define the function:
+                                $$ F^*(\theta) = \min_{x \in \mathcal{X}} \ f(x,\theta); $$
+                            </li>
+                            <li>This is a <b class="itext">parametrized optimization problem</b>, since \(\theta\) is a parameter to the optimization problem. 
+                                Note that \(F^* : \mathbb{R}^m \mapsto \mathbb{R}\). We would like to compute the gradient of \(F^*\) on \(\theta\). For this:<br><br>
+                                    <div style="background-color: #282828">
+                                        <b class="ttext">Theorem (Envelope Theorem):</b> the gradient \(\nabla F^*(\theta)\) exists for any \(\theta\) such that the minimizer 
+                                        of the optimization problem, \(x^*(\theta)\), is unique. Furthermore:
+                                        $$\nabla F^*(\theta) = \frac{\partial F^*}{\partial \theta}(x^*(\theta),\theta).$$
+                                    </div>
+                            </li> <br>                             
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/image14.gif"
+                                style="max-width: 80%; height: auto; max-height: 60vh;">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CONVEX ANALYSIS BASICS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">PARAMETRIZED OPTIMIZATION PROBLEMS AND THE ENVELOPE THEOREM</b>
+                </h3>
+
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.3vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <br>
+                            <li> <b class="itext">Example:</b> consider the optimization problem:
+                                $$ \min_{x \in \mathcal{X}} f(x,\theta)$$
+                                in which \(f(x,\theta) = \theta_1 x_1 + \theta_2x_2\) and \(\mathcal{X}\) is the circle \(x_1^2+x_2^2 \leq 1\);
+                            </li>
+                            <li>The optimal solution is unique: \(x_1^*(\theta) = -\theta_1/\sqrt{\theta_1^2+\theta_2^2}\), 
+                                \(x_2^*(\theta) = -\theta_2/\sqrt{\theta_1^2+\theta_2^2}\), unless \(\theta_1=\theta_2=0\), in which case,
+                                any \(x_1,x_2\) is optimal;
+                            </li> <br>                     
+                            <li>Making the substitution, \(F^*(\theta) = -\sqrt{\theta_1^2+\theta_2^2}\). Envelope theorem 
+                                says that:
+                                $$\nabla F^*(\theta) = \frac{\partial F^*}{\partial \theta}(x^*(\theta),\theta) = \left(\begin{array}{c} x_1^*(\theta) \\ x_2^*(\theta)
+                                \end{array}\right) = \frac{-1}{\sqrt{\theta_1^2+\theta_2^2}}\left(\begin{array}{c} \theta_1 \\ \theta_2
+                                \end{array}\right)$$
+                                which can be checked by inspection. Note that the derivative does not exist when \(\theta_1=\theta_2=0\);
+                            </li>        
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/image14.gif"
+                                style="max-width: 80%; height: auto; max-height: 60vh;">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CONVEX ANALYSIS BASICS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">PARAMETRIZED OPTIMIZATION PROBLEMS AND THE ENVELOPE THEOREM</b>
+                </h3>
+
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <br>
+                            <li>The utility of the theorem lies on the fact that often we cannot compute \(F^*(\theta)\) analytically 
+                                (as we did in the previous example). We can, however, compute \(\frac{\partial f}{\partial \theta}\) analytically 
+                                and \(x^*(\theta)\) numerically, which allows us to compute the gradient;
+                            </li><br>
+                            <li> If \(f(x,\theta)\) is stricly convex on \(x\) for any fixed \(\theta\) and the set \(\mathcal{X}\) 
+                                is convex and compact, \(F^*(\theta) = \min_{x \in \mathcal{X}} f(x,\theta)\) is differentiable for 
+                                all \(\theta\), since the minimizer is unique;
+                            </li><br>
+                            <li>The particular use of this theorem in robotics will become clear soon;</li>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/image14.gif"
+                                style="max-width: 80%; height: auto; max-height: 60vh;">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CONVEX ANALYSIS BASICS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">HALF SQUARED DISTANCE AND PROJECTION</b>
+                </h3>
+
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <br>
+                            <li>Given a closed set \(\mathcal{X}\), the <b class="ttext">half-squared distance (HSD) \(E_{\mathcal{X}}(p)\)</b> between a point \(p\) and \(\mathcal{X}\) 
+                            is the half-squared Euclidean distance between \(p\) and its closed point in the set \(\mathcal{X}\); </li> <br>
+                            <li> This can be formulated as the optimization problem:
+                                $$E_{\mathcal{X}}(p) = \min_{x \in \mathcal{X}} 0.5 \|x-p\|^2;$$
+                            </li><br>
+                            <li>Working with the HSD is more convenient than working with the Euclidean distance;</li><br>  
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/image12.svg"
+                                style="max-width: 80%; height: auto; max-height: 60vh;">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CONVEX ANALYSIS BASICS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">HALF SQUARED DISTANCE AND PROJECTION</b>
+                </h3>
+
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <br>
+                            <li> This problem is <b class="itext">convex</b> if \(\mathcal{X}\) is convex. Furthermore, since the function 
+                                \(f(x,p) = \|x-p\|^2\) is strictly convex in \(x\) for any fixed \(p\), the solution will be unique. In that case, 
+                                we define the <b class="ttext">projection operator \(\Pi_{\mathcal{X}}(p)\) </b>  as this unique minimizer;
+                            </li> <br>
+                            <li>If \(\mathcal{X}\) is a convex set, \(E_{\mathcal{X}}(p)\) is a convex function. If 
+                                \(\mathcal{X}\) is a strictly convex set, \(E_{\mathcal{X}}(p)\) is a strictly convex function;
+                            </li><br>
+                            <li>The following result is a straightforward use of the Envelope theorem:<br><br>
+                                    <div style="background-color: #282828">
+                                        <b class="ttext">Theorem:</b> \(\ \  \nabla E_{\mathcal{X}}(p) = p - \Pi_{\mathcal{X}}(p)\)
+                                    </div>
+                            </li>  
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/image12.svg"
+                                style="max-width: 80%; height: auto; max-height: 60vh;">
+                        </div>
+                    </div>
+                </div>
+            </section>
             <style>
                 .reveal .progress {
                     color: #34eb5e;
