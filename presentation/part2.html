@@ -54,6 +54,49 @@
                     GEOMETRY IN ROBOTICS
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">INTRODUCTION</b>
+                </h3>
+
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <br>
+                            <li> In this part, we will learn how to represent the environment and the robot geometrically, as well as how 
+                                to compute distances (and associated quantities);
+                            </li><br>
+                            <li>This is useful to model and implement many control constraints, as obstacle avoidance between the robot and 
+                                the environment;
+                            <br>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/main.png"
+                                style="max-width: 80%; height: auto; max-height: 60vh;">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section
+                style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+                <h3 style="font-size: 3.5vw; margin-bottom: 0.5rem;">REPRESENTING THE ROBOT AND THE ENVIRONMENT</h3>
+
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                    <img src="presentation/images/part2/main.png" style="max-width: 40%; height: auto;">
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    REPRESENTING THE ROBOT AND THE ENVIRONMENT
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     <b class="ttext">WAYS TO MODEL GEOMETRY</b>
                 </h3>
 
@@ -71,7 +114,7 @@
                                 <ul>
                                     <li><b class="itext">Convex shapes;</b></li><br>
                                     <li><b class="itext">Point clouds;</b></li><br>
-                                    <li><b class="itext">Meshses;</b></li><br>
+                                    <li><b class="itext">Meshes;</b></li><br>
                                 </ul>
                             <br>
                         </ul>
@@ -89,7 +132,7 @@
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    GEOMETRY IN ROBOTICS
+                    REPRESENTING THE ROBOT AND THE ENVIRONMENT
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     <b class="ttext">CONVEX SHAPES</b>
@@ -125,7 +168,7 @@
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    GEOMETRY IN ROBOTICS
+                    REPRESENTING THE ROBOT AND THE ENVIRONMENT
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     <b class="ttext">CONVEX SHAPES</b>
@@ -161,7 +204,7 @@
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    GEOMETRY IN ROBOTICS
+                    REPRESENTING THE ROBOT AND THE ENVIRONMENT
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     <b class="ttext">POINT CLOUD</b>
@@ -174,9 +217,7 @@
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li> <b class="itext">Point clouds</b> represent the object by a finite and discrete set of points \(p_i\);
-                            </li><br>
-                            <li> More complex shapes (like non-convex ones) can be broken into simple complex shapes;
+                            <li> <b class="itext">Point clouds</b> represent the object by a finite set of points \(p_i\);
                             </li><br>
                             <li><b class="itext">Pros: </b> Very flexible. Data can be obtained (almost) straight out of 
                                 sensors;</li><br>
@@ -193,10 +234,10 @@
                                 style="border: none;"></iframe>
                             </div>
                             <div style="width: 100%">
-                                <div style="font-size: 1.0vw; text-align: center; flex-shrink: 0; margin-bottom: 0rem;">
+                                <div style="font-size: 1.2vw; text-align: center; flex-shrink: 0; margin-bottom: 0rem;">
                                     Taken from:
                                 </div>
-                                <div style="font-size: 1.0vw; text-align: center; flex-shrink: 0; margin-bottom: 0rem;">
+                                <div style="font-size: 1.2vw; text-align: center; flex-shrink: 0; margin-bottom: 0rem;">
                                     <a href="https://free3d.com/3d-model/cat-v1--522281.html" target="_blank"
                                         style="font-size: 1.2vw;">
                                         <b class="hlink">https://free3d.com/3d-model/cat-v1--522281.html</b>
@@ -210,7 +251,7 @@
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    GEOMETRY IN ROBOTICS
+                    REPRESENTING THE ROBOT AND THE ENVIRONMENT
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     <b class="ttext">POINT CLOUD</b>
@@ -250,7 +291,7 @@
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    GEOMETRY IN ROBOTICS
+                    REPRESENTING THE ROBOT AND THE ENVIRONMENT
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     <b class="ttext">MESHES</b>
@@ -263,7 +304,7 @@
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li> <b class="itext">Meshes</b> represent the object by an union of small shapes (like triangles);
+                            <li> <b class="itext">Meshes</b> represent the object by an union of small simple shapes (usually triangles);
                             </li><br>
                             <li> It is an in-between solution between convex shapes and point clouds;
                             </li><br>
@@ -282,7 +323,7 @@
                             style="border: none;"></iframe>
                         </div>
                         <div style="width: 100%">
-                            <div style="font-size: 1.0vw; text-align: center; flex-shrink: 0; margin-bottom: 0rem;">
+                            <div style="font-size: 1.2vw; text-align: center; flex-shrink: 0; margin-bottom: 0rem;">
                                 The famous Stanford Bunny.
                             </div>
                         </div>
@@ -291,15 +332,570 @@
             </section>
 
 
-            <!-- <section
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    REPRESENTING THE ROBOT AND THE ENVIRONMENT
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">MODELING THE ROBOT</b>
+                </h3>
+
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <br>
+                            <li> As it was said, modeling the robot with convex shapes is pretty reasonable;
+                            </li><br>
+                            <li> It works as follows: for each link \(i\) of the robot, we will select the shapes we 
+                                want to use to cover this object. 
+                                We will decompose the \(i^{th}\) link into 
+                                \(k(i)\) convex objects. 
+                            </li><br>
+                            <li> Each one of these objects has its own frame, \(\mathcal{F}_{obj,k,i}\). On the other hand, the 
+                                \(i^{th}\) link also has a frame attached to it. For example, we can use the 
+                                \(i^{th}\) DH frame \(\mathcal{F}_{DHi}\).</li><br>
+                                <li>    To complete the model, we just need to specify the 
+                                <b class="itext">constant</b> transformations between \(\mathcal{F}_{DHi}\) and
+                                \(\mathcal{F}_{obj,k,i}\). Lets call it \(T_{Obj,k,i}^{DHi}\).
+                            </li><br>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/image2.svg"
+                                style="max-width: 80%; height: auto; max-height: 60vh;">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    REPRESENTING THE ROBOT AND THE ENVIRONMENT
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">MODELING THE ROBOT</b>
+                </h3>
+
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <br>
+                            <li> Then, later, we will need the updated HTM of the objects \(T_0^{obj,k,i}(q)\), with relation to a fixed frame 
+                                \(\mathcal{F}_0\), that composes the robot given the 
+                                configuration \(q\) of the manipulator;
+                            </li><br>
+                            <li> From forward kinematics, we have the transformation \(T_{0}^{DHi}(q)\). Thus, simply:
+                                $$ T_0^{obj,k,i}(q) =  T_{0}^{DHi}(q)T_{DHi}^{obj,k,i}$$
+                            </li><br>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/image2.svg"
+                                style="max-width: 80%; height: auto; max-height: 60vh;">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    REPRESENTING THE ROBOT AND THE ENVIRONMENT
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">MODELING THE ROBOT</b>
+                </h3>
+
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <br>
+                            <li> In UAIBot, you can fetch this modeling information from a robot as follows:
+                                <br><br>
+        <pre><code class="language-python" style="text-align:left">
+import uaibot as ub
+
+#Create the robot
+robot = ub.Robot.create_kuka_kr5()
+
+#If you change the configuration of the Robot
+# (add a new animation frame), you need to manually update
+#  the htm of the collision objects:
+robot.add_ani_frame(t=0,q=[0.0,1.0,2.0,3.0,4.0,5.0,6.0])
+robot.update_col_object(t=0)
+
+#Loop the link for data
+for link in robot.links:
+    #Loop the data for collision objects
+    for col_obj_data in link.col_objects:
+        #The actual UAIBot object (ub.Box, ub.Cylinder, etc...)    
+        obj = col_obj_data[0]
+        #The **constant** transformation from the i-th DH frame 
+        #to the object frame.
+        htm_dh_obj = col_obj_data[1]
+        #If you use obj.htm , you are going to get the current 
+        #HTM  of the object with respect to the world frame, 
+        #which  changes with the configuration 
+        htm_0_obj = obj.htm                               
+        
+        
+
+        </code></pre>
+
+                            </li><br>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <iframe src="presentation/images/part2/part_2_2.html" width="550" height="580"
+                            style="border: none;"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    REPRESENTING THE ROBOT AND THE ENVIRONMENT
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">MODELING THE ROBOT</b>
+                </h3>
+
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <br>
+                            <li> A common approach is to only use spheres to model the robot;</li><br>
+                            <li> The tradeoff being that, although the number of total convex objects to cover the robot 
+                                will increase, computing distances and other things with spheres is much simpler than using general convex shapes;</li><br>
+                            <li>Is it worth it? It seems so. State-of-the-art motion planners as 
+                                <a href="https://curobo.org/" target="_blank">
+                                    <b class="hlink">cuRobo</b>
+                                </a> and <a href="https://github.com/KavrakiLab/vamp" target="_blank">
+                                <b class="hlink">VAMP</b></a> use sphere modeling;
+                            </li><br>
+                            <li>The jury is still out, though. I think sphere modeling can be beaten.  </li>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <iframe src="presentation/images/part2/part_2_5.html" width="550" height="580"
+                            style="border: none;"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section
                 style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
-                <h3 style="font-size: 3.5vw; margin-bottom: 0.5rem;">UAIBOT</h3>
+                <h3 style="font-size: 3.5vw; margin-bottom: 0.5rem;">CONVEX ANALYSIS BASICS</h3>
 
                 <div style="display: flex; flex-direction: column; align-items: center;">
-                    <img src="presentation/images/part1/main.svg" style="max-width: 40%; height: auto;">
+                    <img src="presentation/images/part2/main.png" style="max-width: 40%; height: auto;">
                 </div>
-            </section> -->
+            </section>
 
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CONVEX ANALYSIS BASICS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">DEFINITION OF CONVEXITY</b>
+                </h3>
+
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <br>
+                            <li> A set \(\mathcal{S} \subseteq \mathbb{R}^n\) is <b class="itext">convex</b> if for any two points in the set, 
+                                the line that connects them is also in the set. Formally:
+                                $$\{ u, v \in \mathcal{S} \ \rightarrow \ \forall \alpha \in [0,1], \alpha u + (1-\alpha) v \in \mathcal{S}\};$$
+                            </li><br>
+                            <li>For sure one of the most important concepts in geometry;</li>
+
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/image3.svg"
+                                style="max-width: 80%; height: auto; max-height: 60vh;">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CONVEX ANALYSIS BASICS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">COMPACT SETS AND STRICT CONVEXITY</b>
+                </h3>
+
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.45vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <br>
+                            <li> A set \(\mathcal{S}\) is said to be  <b class="itext">closed</b> if, "essentially" (the formal definition is trickier),
+                                 it contains its boundary, called \(\partial \mathcal{S}\).
+                            </li><br>
+                            <li> A set is said to be  <b class="itext">bounded</b> if there exists a ball of finite radius that covers it.
+                           </li><br>
+                           <li> A set is said to be  <b class="itext">compact</b> if it is closed and bounded.
+                           </li><br>
+                            <li>A closed convex set is said to be <b class="itext">strictly convex</b> if the line that connects the points is contained 
+                                entirely inside the set (not in the border), with the possible exception of the initial and final points. 
+                                Intuitively, this means that the object's boundary has no "flat" sides. Formally:
+                                $$\{ u, v \in \mathcal{S} \ \rightarrow \ \forall \alpha \in (0,1), \alpha u + (1-\alpha) v \in \mathcal{S}-\partial \mathcal{S}\};$$
+                            <br>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/image4.svg"
+                                style="max-width: 80%; height: auto; max-height: 60vh;">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CONVEX ANALYSIS BASICS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">MINKOWSKY SUM AND SUBTRACTIONS</b>
+                </h3>
+
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.45vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <br>
+                            <li> An important operation between sets is the  <b class="itext">Minkowsky sum and subtraction:</b><br>
+                                <b class="itext">$$\mathcal{A} \oplus \mathcal{B} = \{ a + b  ,  a \in \mathcal{A}  , b \in \mathcal{B}\}$$</b>
+                                <b class="itext">$$\mathcal{A} \ominus \mathcal{B} = \{ a - b  ,  a \in \mathcal{A}  , b \in \mathcal{B}\}$$</b>
+                            </li><br>
+                            <li> The Minkowsky sum is the set of all possible pairwise sums of points in the two sets. It can also be thought 
+                                as "sweeping" one set over the boundary of the other;
+                           </li><br>
+                           <li> Minkowsky subtraction is simply the Minkowsky sum between \(\mathcal{A}\) and the set of opposites of \(\mathcal{B}\), 
+                            called \(-\mathcal{B}\). Thus, \(\mathcal{A} \ominus \mathcal{B} = \mathcal{A} \oplus (-\mathcal{B})\);
+                           </li><br>
+                           <li> Defined for abritrary sets, but specially important in convex sets;
+                           </li><br>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/image5.svg"
+                                style="max-width: 80%; height: auto; max-height: 60vh;">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CONVEX ANALYSIS BASICS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">PROPERTIES OF CONVEX SETS</b>
+                </h3>
+
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.45vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <br>
+                            <li> <b class="ttext">Prop 1:</b> the intersection of convex sets \(\mathcal{A} \cap \mathcal{B}\) is convex. 
+                                This is not true for the union, though;<br>
+                            </li><br>
+                            <li> <b class="ttext">Prop 2:</b> the cartesian product \(\mathcal{A} \times \mathcal{B}\) of convex sets is convex;<br>
+                            </li><br>
+                            <li> <b class="ttext">Prop 3:</b> the Minkowsky sum and subtraction of convex sets is convex;<br>
+                            </li><br>
+                            <li> <b class="ttext">Prop 4 (Separating hyperplane theorem):</b> if two sets are convex, either they have an intersection, or 
+                                there is a separating hyperplane that separates them;<br>
+                            </li><br>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/image6.svg"
+                                style="max-width: 80%; height: auto; max-height: 60vh;">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CONVEX ANALYSIS BASICS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">CONVEX FUNCTIONS</b>
+                </h3>
+
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.45vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <br>
+                            <li> A very useful way to handle convexity using Analytic Geometry is through <b class="itext">convex functions</b>;<br>
+                            </li><br>
+                            <li> A function \(f: \mathbb{R}^n \mapsto \mathbb{R}\) is said to be a <b class="itext">convex function</b> if 
+                                <b class="itext">\(\forall u, v \in \mathbb{R}^n \ , \alpha \in [0,1]\)</b>:<br>
+                                <b class="itext"> $$ f(\alpha u+(1-\alpha) v) \leq \alpha f(u) + (1-\alpha) f(v)$$</b>
+                            </li><br>
+                            <li> Geometrically, this means that the <b class="itext">epigraph</b>, i.e., the \(n+1\) dimensional 
+                                set \( \mathcal{Y} = \{x \in \mathbb{R}^n , y \in \mathbb{R} \ , \ y \geq f(x)\} \),
+                                is convex; <br>
+                            </li><br>
+                            <li>Example: \(f(x)=x^2\);</li>
+
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/image7.svg"
+                                style="max-width: 80%; height: auto; max-height: 60vh;">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CONVEX ANALYSIS BASICS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">STRICTLY CONVEX FUNCTIONS</b>
+                </h3>
+
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.45vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <br>
+                            <li> A function \(f: \mathbb{R}^n \mapsto \mathbb{R}\) is said to be a <b class="itext">strictly convex function</b> if 
+                                <b class="itext">\(\forall u, v \in \mathbb{R}^n \ , \alpha \in (0,1)\)</b>:<br>
+                                <b class="itext">$$ f(\alpha u+(1-\alpha) v) < \alpha f(u) + (1-\alpha) f(v);$$</b>
+                            </li><br>
+                            <li>Note the difference from before: \(\alpha\) should lie in the open interval \((0,1)\) and 
+                                it should be \(<\) other than \(\leq\);</li><br>
+                            <li> As you probably expected, the epigraph is now strictly convex; <br>
+                            </li><br>
+                            <li>Example: the function \(f(x)=x^2\) is strictly convex, but \(f(x)=|x|\) is only convex;</li>
+
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/image8.svg"
+                                style="max-width: 80%; height: auto; max-height: 60vh;">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CONVEX ANALYSIS BASICS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">PROPERTIES OF CONVEX FUNCTIONS</b>
+                </h3>
+
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.45vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <br>
+                            <li> <b class="ttext">Prop 1:</b> if \(f,g: \mathbb{R}^n \mapsto \mathbb{R}\) is convex and \(A,B \geq 0\), 
+                                the function \(h(x) = Af(x)+Bg(x)\) is also convex;</li><br>
+                            <li> <b class="ttext">Prop 2:</b> if \(f,g: \mathbb{R}^n \mapsto \mathbb{R}\) is convex, then 
+                                \(h(x) = \max(f(x),g(x))\) is convex;</li><br> 
+                            <li> <b class="ttext">Prop 3:</b> all convex functions are continuous. Furthermore, if it is differentiable, 
+                                the derivative is bounded;</li><br>
+                            <li> <b class="ttext">Prop 4:</b>  if \(f: \mathbb{R}^n \mapsto \mathbb{R}\) is convex and \(g: \mathbb{R}^m \mapsto \mathbb{R}^n\) 
+                                is an <b class="itext"> affine function \(g(y)=Ay+b\)</b>, then \(h(x)=f(g(x))\) is convex. Furthermore, if 
+                                \(n=m\) and \(g\) is bijective, if \(f\) is strictly convex, so is \(h\);</li><br>            
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/image7.svg"
+                                style="max-width: 80%; height: auto; max-height: 60vh;">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CONVEX ANALYSIS BASICS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">PROPERTIES OF CONVEX FUNCTIONS</b>
+                </h3>
+
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.4vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <br>
+ 
+                            <li> <b class="ttext">Prop 5:</b> <b class="itext"> if (but not only if)</b> the function \(f(x)\) is convex, the 
+                                <b class="itext">sublevel sets</b> \(\mathcal{L}(c) = \{x \ | \ f(x) \leq c\}\) for a constant \(c\) are convex. Furthermore, if \(f(x)\) is strictly convex, 
+                            the sets are strictly convex. The function \(f(x) = \sqrt{|x|}\) is an example to the "only if" claim;</li><br>                                
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/image9.svg"
+                                style="max-width: 80%; height: auto; max-height: 60vh;">
+                        </div>
+                        <div style="width: 100%">
+                            <div style="font-size: 1.2vw; text-align: center; flex-shrink: 0; margin-bottom: 0rem;">
+                                Level sets of \(f(x,y) = x^2+y^4\).
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CONVEX ANALYSIS BASICS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">PROPERTIES OF CONVEX FUNCTIONS</b>
+                </h3>
+
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.4vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <br>
+                            <li> <b class="ttext">Prop 6:</b> convex functions have  <b class="itext"> no local maxima</b> 
+                                (i.e., points \(x_{max}\) in which around every point has a smaller value );</li><br>
+                            <li> <b class="ttext">Prop 7:</b>  For convex functions, all  
+                                <b class="itext"> local minima</b> (i.e., points \(x_{min}\) in which around every point has a larger value), if they exist, 
+                                are <b class="itext">global</b>, that is, they achieve the smallest possible value for \(f(x)\). Furthermore, 
+                                the set of local (global) minima is convex;</li><br>    
+                            <li> <b class="ttext">Prop 8:</b> if \(f(x)\) is strictly convex, the set of global minima is either empty 
+                                or a single point;</li><br>                                
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/image10.svg"
+                                style="max-width: 80%; height: auto; max-height: 60vh;">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CONVEX ANALYSIS BASICS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">PROPERTIES OF CONVEX FUNCTIONS</b>
+                </h3>
+
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.4vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <br>
+                            <li> <b class="ttext">Prop 8:</b> if the convex function \(f\) is differentiable, then, for any points \(u,v\):
+                            $$ \nabla f(u)^\top (u-v) \geq f(u)-f(v);$$
+                            In one dimension, this can be rewritten as \(f(x) \geq f'(x_0)(x-x_0)+f(x_0)\), which means that the graph of 
+                            \(y=f(x)\) is always above the tangent line at any point \(x_0\);
+                            </li><br>
+                            <li> <b class="ttext">Prop 9:</b> if \(f(x)\) is two times differentiable, it is convex <b class="itext">if and only if</b> the 
+                                <b class="itext">Hessian matrix</b> \(\frac{\partial^2 f}{\partial x^2}(x)\) is a positive semidefinite 
+                                matrix for all \(x\);</li><br>      
+                            <li> <b class="ttext">Prop 10:</b> if \(f(x)\) is two times differentiable, it is strictly convex <b class="itext"> if (but not only if)</b> the 
+                                <b class="itext">Hessian matrix</b> \(\frac{\partial^2 f}{\partial x^2}(x)\) is a positive definite 
+                                matrix for all \(x\). The function \(f(x)=x^4\) is a counterexample to the "only if" claim;</li><br>                            
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/image11.svg"
+                                style="max-width: 80%; height: auto; max-height: 60vh;">
+                        </div>
+                    </div>
+                </div>
+            </section>
 
             <style>
                 .reveal .progress {
