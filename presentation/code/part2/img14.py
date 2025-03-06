@@ -123,56 +123,66 @@ def update(i):
         return  # Skip first frame
 
     x = hist_x[-1]
-    grad = gradient(x)
-    if i==2:
-        grad = 0.37*grad    
-    
-    
-    dx = -grad[0, 0] / 10
-    dy = -grad[1, 0] / 10
-    
+    grad = -0.08*gradient(x)
 
-    
-    null_A=True
-    A_n = np.matrix(np.zeros((0,2)))
-    b_n = np.matrix(np.zeros((0,1)))
-    for j in range(np.shape(A)[0]):
 
-        error = A[j,:]*x-b[j,0]
-        if error > -0.02:
-            A_n = np.vstack((A_n,A[j,:]))
-            b_n = np.vstack((b_n,b[j,:]))
-            null_A = False
+    x_start = x+grad
+    bound = False
+    if A[1,:]*x_start-b[1,0] > 0:
+        x_start = np.matrix(x)
+        cont = True
+        while cont:
+            x_start+=0.01*grad
+            error = A[1,:]*x_start-b[1,0]
+            if error > 0:
+                cont = False
+
+        
+        grad = grad*(np.linalg.norm(x_start-x)/np.linalg.norm(grad))
             
+    dx = grad[0, 0]
+    dy = grad[1, 0]
+    
     grad_c = np.matrix(grad)
-    if not null_A:
-        lambda_v = np.linalg.inv(A_n*A_n.transpose())*A_n*grad
-        grad_c = grad - A_n.transpose()*lambda_v
-        grad_c = 3*grad_c
-
+    bound = False
+    if i>=4:
+        lambda_v = np.linalg.inv(A[1,:]*A[1,:].transpose())*A[1,:]*grad
+        grad_c = grad - A[1,:].transpose()*lambda_v
+        grad_c = 60*grad_c  
+        bound = True
+    
     
     nrm = np.sqrt(dx**2+dy**2)
     
-    fat = max([0,1.0-0.1/nrm])
+
 
     # Plot arrow
-    if i < 6:
-        arrow = ax.arrow(x[0, 0], x[1, 0], dx*fat, dy*fat, head_width=0.1, head_length=0.15, fc='magenta', ec='magenta', zorder=100)
-    if not null_A and i<5:
-        dx = -grad_c[0, 0] / 10
-        dy = -grad_c[1, 0] / 10
-        arrow = ax.arrow(x[0, 0], x[1, 0], dx*fat, dy*fat, head_width=0.1, head_length=0.15, fc='orange', ec='orange', zorder=100)
+    fat = max([0,1.0-0.15/nrm])
+    if bound:
+        arrow = ax.arrow(x[0, 0], x[1, 0], 40*dx, 40*dy, head_width=0.1, head_length=0.15, fc='magenta', ec='magenta', zorder=100)
+        dx = grad_c[0, 0]
+        dy = grad_c[1, 0]
+        if i<5:
+            arrow = ax.arrow(x[0, 0], x[1, 0], 0.8*dx, 0.8*dy, head_width=0.1, head_length=0.15, fc='orange', ec='orange', zorder=100)
+            
+        grad_c=1.4*grad_c
+    else:
+        arrow = ax.arrow(x[0, 0], x[1, 0], fat*dx, fat*dy, head_width=0.1, head_length=0.15, fc='magenta', ec='magenta', zorder=100)
         
     point = ax.scatter(x[0, 0], x[1, 0], color='cyan', s=100, zorder=100)
-
+    ax.set_xlabel('$x$', color='white', fontsize=16)
+    ax.set_ylabel('$y$', color='white', fontsize=16)
     # Update position
-    hist_x.append(x - 0.1 * grad_c)
+    hist_x.append(x + grad_c)
+    x = hist_x[-1]
+    if i<6:
+        point = ax.scatter(x[0, 0], x[1, 0], color='cyan', s=100, zorder=100)
 
 # Create animation
 ani = animation.FuncAnimation(fig, update, frames=6, interval=500, repeat=False)
 
 x = hist_x[-1]
-point = ax.scatter(x[0, 0], x[1, 0], color='cyan', s=100, zorder=100)
+
 
 # Save GIF
 ani.save("/home/vinicius/Desktop/Aulas/Robot Constrained Control/presentation/images/part2/image14.gif", writer="pillow", fps=2)

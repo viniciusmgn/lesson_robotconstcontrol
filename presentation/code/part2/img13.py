@@ -106,7 +106,8 @@ for i in range(6):
 
 
 fig, ax = plot_contour()
-
+ax.set_xlabel('$x$', color='white', fontsize=16)
+ax.set_ylabel('$y$', color='white', fontsize=16)
 
 def gradient(x):
     return np.array([[2 * (x[0, 0] - 1)], [4 * (x[1, 0] - 1)]])
@@ -139,6 +140,8 @@ def update(i):
 
     # Plot point
     point = ax.scatter(x[0, 0], x[1, 0], color='cyan', s=100, zorder=100)
+    ax.set_xlabel('$x$', color='white', fontsize=16)
+    ax.set_ylabel('$y$', color='white', fontsize=16)
 
     # Update position
     hist_x.append(x - 0.1 * grad)
