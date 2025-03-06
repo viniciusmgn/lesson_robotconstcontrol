@@ -37,6 +37,7 @@
     <div class="reveal">
         <div class="slides">
 
+            <img src="presentation/images/intro/logo_ufmg.svg" class="logo">
 
             <section
                 style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
@@ -81,8 +82,8 @@
                     </div>
 
                     <div
-                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
-                        <div style="width: 100%">
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items:center; height: 100%;">
+                        <div style="width: 80%">
                             <img src="presentation/images/part1/book_spong.jpg"
                                 style="max-width: 80%; height: auto; max-height: 60vh;">
                         </div>
@@ -1542,8 +1543,8 @@
 
                     <div
                         style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
-                        <div style="width: 100%">
-                            <div style="width: 100%;">
+                        <div style="width: 95%">
+                            <div style="width: 95%;">
                                 <img src="presentation/images/part1/image5_1.svg"
                                     style="max-width: 80%; height: auto; max-height: 60vh;">
                             </div>
@@ -1590,8 +1591,8 @@
 
                     <div
                         style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
-                        <div style="width: 100%">
-                            <div style="width: 100%;">
+                        <div style="width: 95%">
+                            <div style="width: 95%;">
                                 <img src="presentation/images/part1/image5_2.svg"
                                     style="max-width: 80%; height: auto; max-height: 60vh;">
                             </div>
@@ -2765,7 +2766,8 @@
                                         <li>The \(j\)-th column of \(J_v^i(q)\) is given by:
                                             $$ \left\{
                                             \begin{array}{ll}
-                                            z_{DH(j-1)}(q) \times (s_i(q)-s_{DH(j-1)}(q)) & \text{if the \(j\)-th joint is revolute,} \\
+                                            z_{DH(j-1)}(q) \times (s_i(q)-s_{DH(j-1)}(q)) & \text{if the \(j\)-th joint
+                                            is revolute,} \\
                                             z_{DH(j-1)}(q) & \text{if the \(j\)-th joint is prismatic.}
                                             \end{array}
                                             \right.$$
@@ -3195,7 +3197,8 @@
                                 <li>The function \(r(q) = s_{e,d} \times s_e(q)\), with \(m=3\) in this case, is
                                     <b>not</b> a valid task function because it is zero <b class="itext">if</b> \(s_e(q)
                                     = s_{e,d}\), but not <b class="itext">only if</b> (e.g., if \(s_e(q) = -s_{e,d}\),
-                                    the function also evaluates to zero).</li>
+                                    the function also evaluates to zero).
+                                </li>
 
                                 <li>Let \(q_{d,1}\) and \(q_{d,2}\) be two different configurations that result in the
                                     same end-effector position \(s_{e,d}\) (which is possible if the robot has more than
@@ -3305,7 +3308,8 @@
                             </li><br>
                             <li>
                                 The <b class="itext">task Jacobian</b> for a function \(r: \mathcal{Q} \times \mathbb{R}
-                                \mapsto \mathbb{R}^m\) is the \(m \times n\) matrix \(\frac{\partial r}{\partial q}(q,t)\) such
+                                \mapsto \mathbb{R}^m\) is the \(m \times n\) matrix \(\frac{\partial r}{\partial
+                                q}(q,t)\) such
                                 that the entry in the
                                 \(i^{th}\) row and \(j^{th}\) column is given by \(\frac{\partial r_i}{\partial
                                 q_j}(q,t)\). We will also use the
@@ -3508,18 +3512,17 @@
                             <li>An example:
 
 
-                               
+
                                 <div style="display: flex; flex: 1; gap: 10px; height: 100%;">
                                     <div
                                         style="flex: 1;   display: flex; justify-content: center; align-items: center;">
-                                        
+
 
                                         <iframe src="presentation/images/part1/part_1_9.html" width="550" height="580"
-                                        style="border: none;"></iframe>
+                                            style="border: none;"></iframe>
 
                                     </div>
-                                    <div
-                                        style="flex: 1;  display: flex; justify-content: center; align-items: center;">
+                                    <div style="flex: 1;  display: flex; justify-content: center; align-items: center;">
                                         <img src="presentation/images/part1/image8.svg"
                                             style="max-width: 100%; height: auto; max-height: 60vh;">
                                     </div>
@@ -3551,24 +3554,30 @@
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
 
                             <li>
-                                Since the equation \(\dot{r} = -Kr\) is not guaranteed to hold (due to the use of the pseudoinverse to solve the linear equation), the controller can <b class="itext">fail</b>. 
-                                Specifically, it may get stuck in a configuration that does not achieve the task, a phenomenon known as the <b class="itext">spurious equilibrium point problem</b>.
+                                Since the equation \(\dot{r} = -Kr\) is not guaranteed to hold (due to the use of the
+                                pseudoinverse to solve the linear equation), the controller can <b
+                                    class="itext">fail</b>.
+                                Specifically, it may get stuck in a configuration that does not achieve the task, a
+                                phenomenon known as the <b class="itext">spurious equilibrium point problem</b>.
                             </li><br>
-                        
+
                             <li>
                                 In practice, this is usually not a major issue.
                             </li><br>
-                        
+
                             <li>
-                                <b class="itext">However, it disregards critical constraints such as joint limits and obstacle avoidance.</b> Addressing these limitations is precisely the focus of this class.
+                                <b class="itext">However, it disregards critical constraints such as joint limits and
+                                    obstacle avoidance.</b> Addressing these limitations is precisely the focus of this
+                                class.
                             </li><br>
-                        
+
                             <li>
-                                Nevertheless, it serves as a good foundation for more advanced controllers, as we will see.
+                                Nevertheless, it serves as a good foundation for more advanced controllers, as we will
+                                see.
                             </li>
-                        
+
                         </ul>
-                        
+
 
                     </div>
 
@@ -3605,20 +3614,25 @@
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
 
                             <li>
-                                Note that <b class="itext">the convergence in the previous example was somewhat poor</b> because the system slowed down significantly as it approached the task completion.
+                                Note that <b class="itext">the convergence in the previous example was somewhat poor</b>
+                                because the system slowed down significantly as it approached the task completion.
                             </li><br>
-                        
+
                             <li>
-                                A gain of \(K = 0.5 \, s^{-1}\) was used. One might consider simply increasing \(K\), but the problem is that while this would speed up convergence near the goal, 
-                                <b class="itext">it would also increase speed when far from the target</b>. This could make the motion too fast for the robot to handle.
+                                A gain of \(K = 0.5 \, s^{-1}\) was used. One might consider simply increasing \(K\),
+                                but the problem is that while this would speed up convergence near the goal,
+                                <b class="itext">it would also increase speed when far from the target</b>. This could
+                                make the motion too fast for the robot to handle.
                             </li><br>
-                        
+
                             <li>
-                                The solution is to use a <b class="itext">dynamic</b> \(K\), which increases as \(r\) gets closer to \(0\) and decreases when further away. More generally, this means selecting a target function for \(\dot{r}\) that is not simply \(-Kr\).
+                                The solution is to use a <b class="itext">dynamic</b> \(K\), which increases as \(r\)
+                                gets closer to \(0\) and decreases when further away. More generally, this means
+                                selecting a target function for \(\dot{r}\) that is not simply \(-Kr\).
                             </li>
-                        
+
                         </ul>
-                        
+
 
                     </div>
 
@@ -3627,7 +3641,7 @@
                         <div style="width: 100%">
                             <div style="width: 100%;">
                                 <iframe src="presentation/images/part1/part_1_9.html" width="550" height="580"
-                                        style="border: none;"></iframe>
+                                    style="border: none;"></iframe>
                             </div>
 
                         </div>
@@ -3654,23 +3668,27 @@
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
 
                             <li>
-                                We can attempt to impose \(\dot{r} = G(r)\) for a more general function \(\Phi: \mathbb{R}^m \mapsto \mathbb{R}^m\). 
-                                This will be effective as long as \(\Phi\) is the negative gradient of a <b class="itext">differentiable, positive definite function \(V(r)\)</b>, 
+                                We can attempt to impose \(\dot{r} = G(r)\) for a more general function \(\Phi:
+                                \mathbb{R}^m \mapsto \mathbb{R}^m\).
+                                This will be effective as long as \(\Phi\) is the negative gradient of a <b
+                                    class="itext">differentiable, positive definite function \(V(r)\)</b>,
                                 meaning that \(G(r) = -\nabla V(r)\). This follows naturally from Lyapunov analysis.
                             </li><br>
-                        
+
                             <li>
-                                If \(G(r)\) is decoupled (which, theoretically, there is no reason for it not to be), we can define the \(i^{th}\) entry of 
-                                \(G(r)\) as a function \(g: \mathbb{R} \mapsto \mathbb{R}\) that satisfies the following conditions:  
-                                (i) it is continuous,  
-                                (ii) \(g(0) = 0\),  
+                                If \(G(r)\) is decoupled (which, theoretically, there is no reason for it not to be), we
+                                can define the \(i^{th}\) entry of
+                                \(G(r)\) as a function \(g: \mathbb{R} \mapsto \mathbb{R}\) that satisfies the following
+                                conditions:
+                                (i) it is continuous,
+                                (ii) \(g(0) = 0\),
                                 (iii) it is positive for negative inputs and negative for positive inputs.
                             </li><br>
-                        
+
                             <li>A good example is: \(g(s) = -K\frac{s}{|s|^{0.5}}\), where \(K > 0\).</li>
-                        
+
                         </ul>
-                        
+
                     </div>
 
                     <div
@@ -3678,7 +3696,7 @@
                         <div style="width: 100%">
                             <div style="width: 100%;">
                                 <img src="presentation/images/part1/img10.svg"
-                                style="max-width: 100%; height: auto; max-height: 60vh;">
+                                    style="max-width: 100%; height: auto; max-height: 60vh;">
                             </div>
 
                         </div>
@@ -3702,23 +3720,23 @@
                     <div
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; padding-top: 20px; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
-                            <li>Comparison using \(G(r)=-Kr\) and \(G(r)\) as proposed in the previous slide (with the same \(K\)):
+                            <li>Comparison using \(G(r)=-Kr\) and \(G(r)\) as proposed in the previous slide (with the
+                                same \(K\)):
 
 
-                               
+
                                 <div style="display: flex; flex: 1; gap: 10px; height: 100%;">
                                     <div
                                         style="flex: 1;   display: flex; justify-content: center; align-items: center;">
-                                        
+
 
                                         <iframe src="presentation/images/part1/part_1_9.html" width="550" height="580"
-                                        style="border: none;"></iframe>
+                                            style="border: none;"></iframe>
 
                                     </div>
-                                    <div
-                                        style="flex: 1;  display: flex; justify-content: center; align-items: center;">
+                                    <div style="flex: 1;  display: flex; justify-content: center; align-items: center;">
                                         <iframe src="presentation/images/part1/part_1_10.html" width="550" height="580"
-                                        style="border: none;"></iframe>
+                                            style="border: none;"></iframe>
                                     </div>
                                 </div>
                             </li>
@@ -3800,6 +3818,17 @@
                 .hlink:hover {
                     text-decoration: underline;
                 }
+
+                .logo {
+                    position: absolute;
+                    top: 1%;
+                    right: 1%;
+                    width: 6%;
+                    /* Adjust size as needed */
+                    z-index: 10;
+                    /* Ensures it appears above the video and overlay */
+                }
+
             </style>
 
             <script id="MathJax-script" async

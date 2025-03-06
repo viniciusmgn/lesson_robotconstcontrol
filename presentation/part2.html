@@ -37,6 +37,8 @@
     <div class="reveal">
         <div class="slides">
 
+            <img src="presentation/images/intro/logo_ufmg.svg" class="logo">
+
 
             <section
                 style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
@@ -65,11 +67,12 @@
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
                             <li> In this part, we will learn how to represent the environment and the robot geometrically, as well as how 
-                                to compute distances (and associated quantities);
+                                to compute distances and related quantities.
                             </li><br>
-                            <li>This is useful to model and implement many control constraints, as obstacle avoidance between the robot and 
-                                the environment;
+                            <li>This is useful for modeling and implementing many control constraints, such as obstacle avoidance between the robot and 
+                                the environment.
                             <br>
+                            
                         </ul>
                     </div>
 
@@ -85,7 +88,7 @@
 
             <section
                 style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
-                <h3 style="font-size: 3.5vw; margin-bottom: 0.5rem;">REPRESENTING THE ROBOT AND THE ENVIRONMENT</h3>
+                <h3 style="font-size: 3.5vw; margin-bottom: 0.5rem;">GEOMETRIC REPRESENTATION</h3>
 
                 <div style="display: flex; flex-direction: column; align-items: center;">
                     <img src="presentation/images/part2/main.png" style="max-width: 40%; height: auto;">
@@ -94,7 +97,7 @@
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    REPRESENTING THE ROBOT AND THE ENVIRONMENT
+                    GEOMETRIC REPRESENTATION
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     <b class="ttext">WAYS TO MODEL GEOMETRY</b>
@@ -108,15 +111,16 @@
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
                             <li> In robotics, we need to represent the geometry of the <b class="itext">robot and environment</b> 
-                                that is convenient to do calculations (like computing distance);
+                                in a way that is convenient for calculations (such as computing distances).
                             </li><br>
-                            <li>Three main ways:  <br><br>
+                            <li>Three main methods:  <br><br>
                                 <ul>
                                     <li><b class="itext">Convex shapes;</b></li><br>
                                     <li><b class="itext">Point clouds;</b></li><br>
                                     <li><b class="itext">Meshes;</b></li><br>
                                 </ul>
                             <br>
+                            
                         </ul>
                     </div>
 
@@ -132,7 +136,7 @@
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    REPRESENTING THE ROBOT AND THE ENVIRONMENT
+                    GEOMETRIC REPRESENTATION
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     <b class="ttext">CONVEX SHAPES</b>
@@ -145,15 +149,16 @@
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li> <b class="itext">Convex shapes</b> (i.e., if two points are in the shape, so is the line between them)
-                                is the simplest way to represent geometry;
+                            <li> <b class="itext">Convex shapes</b> (i.e., if two points are inside the shape, the line segment between them is also inside) 
+                                are the simplest way to represent geometry.
                             </li><br>
-                            <li> More complex shapes (like non-convex ones) can be broken into simple convex shapes;
+                            <li> More complex shapes (such as non-convex ones) can be decomposed into simpler convex shapes.
                             </li><br>
-                            <li><b class="itext">Pros: </b> Simple and fast to do calculations;</li><br>
-                            <li><b class="itext">Cons: </b> It may be time-consuming to break a complex shape into simple convex shapes. 
-                            Specially if this needs to be done in real time;</li><br>
+                            <li><b class="itext">Pros: </b> Simple and fast for calculations.</li><br>
+                            <li><b class="itext">Cons: </b> Decomposing a complex shape into simple convex shapes can be time-consuming, 
+                                especially if it needs to be done in real time.</li><br>
                         </ul>
+                        
                     </div>
 
                     <div
@@ -168,7 +173,7 @@
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    REPRESENTING THE ROBOT AND THE ENVIRONMENT
+                    GEOMETRIC REPRESENTATION
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     <b class="ttext">CONVEX SHAPES</b>
@@ -181,15 +186,16 @@
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li> Usually this used when you <b class="itext">know the geometry a priori</b>;
+                            <li> This is usually used when you <b class="itext">know the geometry a priori</b>.
                             </li><br>
-                            <li> For example, it is very reasonable to model the manipulator as convex geometries 
-                                since you know its geometry beforehand;
+                            <li> For example, it is very reasonable to model a manipulator using convex geometries 
+                                since its geometry is known beforehand.
                             </li><br>
-                            <li>For the environment, this is the case, for example, of a warehouse in which the robots work. 
-                                You know the geometry of the warehouse perfectly. You have the time to do all the pre-processing to 
-                                decompose the parts into convex shapes;</li><br>
+                            <li>For the environment, this applies, for example, to a warehouse where robots operate. 
+                                The geometry of the warehouse is perfectly known, allowing sufficient time for 
+                                pre-processing and decomposing parts into convex shapes.</li><br>
                         </ul>
+                        
                     </div>
 
                     <div
@@ -204,7 +210,7 @@
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    REPRESENTING THE ROBOT AND THE ENVIRONMENT
+                    GEOMETRIC REPRESENTATION
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     <b class="ttext">POINT CLOUD</b>
@@ -217,13 +223,13 @@
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li> <b class="itext">Point clouds</b> represent the object by a finite set of points \(p_i\);
+                            <li> <b class="itext">Point clouds</b> represent an object using a finite set of points \(p_i\).
                             </li><br>
-                            <li><b class="itext">Pros: </b> Very flexible. Data can be obtained (almost) straight out of 
-                                sensors;</li><br>
-                            <li><b class="itext">Cons: </b> It may be time-consuming to make operations with them. 
-                                Could be dozens of millions of points!</li><br>
+                            <li><b class="itext">Pros: </b> Highly flexible. Data can be obtained almost directly from sensors.</li><br>
+                            <li><b class="itext">Cons: </b> Operations on point clouds can be time-consuming, as they may contain 
+                                tens of millions of points.</li><br>
                         </ul>
+                        
                     </div>
 
                     <div
@@ -251,7 +257,7 @@
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    REPRESENTING THE ROBOT AND THE ENVIRONMENT
+                    GEOMETRIC REPRESENTATION
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     <b class="ttext">POINT CLOUD</b>
@@ -264,14 +270,16 @@
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li> Laser-based sensors like RGBD (RGB+Depth) cameras or LiDAR (Light Detection and Ranging) can obtain these data;
+                            <li> Laser-based sensors such as RGB-D (RGB + Depth) cameras or LiDAR (Light Detection and Ranging) can capture this data.
                             </li><br>
-                            <li> LiDAR are better for long range sensing, whereas RGBD for short range. LiDARs are more expensive;
+                            <li> LiDAR is better for long-range sensing, whereas RGB-D is more suitable for short-range applications. 
+                                LiDAR sensors are also more expensive.
                             </li><br>
-                            <li> They need to be pre-processed too: sampling, noise reduction, etc... 
-                                Some pre-processing can be also necessary to efficiently compute distance, as we will see;
+                            <li> Pre-processing is required, including sampling, noise reduction, etc. 
+                                Some additional pre-processing may also be necessary for efficient distance computation, as we will see.
                             </li><br>
                         </ul>
+                        
                     </div>
 
                     <div
@@ -291,7 +299,7 @@
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    REPRESENTING THE ROBOT AND THE ENVIRONMENT
+                    GEOMETRIC REPRESENTATION
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     <b class="ttext">MESHES</b>
@@ -304,15 +312,14 @@
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li> <b class="itext">Meshes</b> represent the object by an union of small simple shapes (usually triangles);
-                            </li><br>
-                            <li> It is an in-between solution between convex shapes and point clouds;
-                            </li><br>
-                            <li><b class="itext">Pros: </b> Pretty generic, and can represent objects in a more compact way 
-                                than point cloud (think flat surfaces);</li><br>
-                            <li><b class="itext">Cons: </b> It can be complex and time consuming to decompose the environment 
-                            into meshes, specially if we want real time;</li><br>
-                            <li><b class="itext">Not discussed in this class, UAIBot has no support for it either!</b></li>
+                            <li> <b class="itext">Meshes</b> represent an object as a union of small simple shapes (usually triangles).</li><br>
+                            <li> This is an intermediate solution between convex shapes and point clouds.</li><br>
+                            <li><b class="itext">Pros: </b> Quite versatile and can represent objects more compactly than point clouds 
+                                (especially for flat surfaces).</li><br>
+                            <li><b class="itext">Cons: </b> Decomposing the environment into meshes can be complex and time-consuming, 
+                                especially for real-time applications.</li><br>
+                            <li><b class="itext">Not covered in this class; UAIBot does not support it either!</b></li>
+                            
                         </ul>
                     </div>
 
@@ -334,7 +341,7 @@
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    REPRESENTING THE ROBOT AND THE ENVIRONMENT
+                    GEOMETRIC REPRESENTATION
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     <b class="ttext">MODELING THE ROBOT</b>
@@ -376,7 +383,7 @@
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    REPRESENTING THE ROBOT AND THE ENVIRONMENT
+                    GEOMETRIC REPRESENTATION
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     <b class="ttext">MODELING THE ROBOT</b>
@@ -411,7 +418,7 @@
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    REPRESENTING THE ROBOT AND THE ENVIRONMENT
+                    GEOMETRIC REPRESENTATION
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     <b class="ttext">MODELING THE ROBOT</b>
@@ -472,7 +479,7 @@ for link in robot.links:
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    REPRESENTING THE ROBOT AND THE ENVIRONMENT
+                    GEOMETRIC REPRESENTATION
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     <b class="ttext">MODELING THE ROBOT</b>
@@ -485,16 +492,17 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li> A common approach is to only use spheres to model the robot;</li><br>
-                            <li> The tradeoff being that, although the number of total convex objects to cover the robot 
-                                will increase, computing distances and other things with spheres is much simpler than using general convex shapes;</li><br>
-                            <li>Is it worth it? It seems so. State-of-the-art motion planners as 
+                            <li> A common approach is to model the robot using only spheres.</li><br>
+                            <li> The tradeoff is that, although the total number of convex objects needed to cover the robot increases, 
+                                computing distances and other properties with spheres is much simpler than with general convex shapes.</li><br>
+                            <li>Is it worth it? It seems so. State-of-the-art motion planners such as 
                                 <a href="https://curobo.org/" target="_blank">
                                     <b class="hlink">cuRobo</b>
                                 </a> and <a href="https://github.com/KavrakiLab/vamp" target="_blank">
-                                <b class="hlink">VAMP</b></a> use sphere modeling;
+                                <b class="hlink">VAMP</b></a> use sphere modeling.
                             </li><br>
-                            <li>The jury is still out, though. I think sphere modeling can be beaten.  </li>
+                            <li>The jury is still out, though. I believe sphere modeling can be beaten.</li>
+                            
                         </ul>
                     </div>
 
@@ -532,9 +540,9 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li> A set \(\mathcal{S} \subseteq \mathbb{R}^n\) is <b class="itext">convex</b> if for any two points in the set, 
+                            <li> A set \(\mathcal{S} \subseteq \mathbb{R}^n\) is <b class="ttext">convex</b> if for any two points in the set, 
                                 the line that connects them is also in the set. Formally:
-                                $$\{ u, v \in \mathcal{S} \ \rightarrow \ \forall \alpha \in [0,1], \alpha u + (1-\alpha) v \in \mathcal{S}\};$$
+                                $$\{ u_1, u_2 \in \mathcal{S} \ \rightarrow \ \forall \alpha \in [0,1], \alpha u_1 + (1-\alpha) u_2 \in \mathcal{S}\};$$
                             </li><br>
                             <li>For sure one of the most important concepts in geometry;</li>
 
@@ -563,27 +571,27 @@ for link in robot.links:
                 <div
                     style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
                     <div
-                        style="flex: 1; min-width: 300px; font-size: 1.45vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        style="flex: 1; min-width: 300px; font-size: 1.3vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li> A set \(\mathcal{S}\) is said to be  <b class="itext">closed</b> if, "essentially" (the formal definition is trickier),
+                            <li> A set \(\mathcal{S}\) is said to be  <b class="ttext">closed</b> if, "essentially" (the formal definition is trickier),
                                  it contains its boundary, called \(\partial \mathcal{S}\).
                             </li><br>
-                            <li> A set is said to be  <b class="itext">bounded</b> if there exists a ball of finite radius that covers it.
+                            <li> A set is said to be  <b class="ttext">bounded</b> if there exists a ball of finite radius that covers it.
                            </li><br>
-                           <li> A set is said to be  <b class="itext">compact</b> if it is closed and bounded.
+                           <li> A set is said to be  <b class="ttext">compact</b> if it is closed and bounded.
                            </li><br>
-                            <li>A closed convex set is said to be <b class="itext">strictly convex</b> if the line that connects the points is contained 
+                            <li>A closed convex set is said to be <b class="ttext">strictly convex</b> if the line that connects the points is contained 
                                 entirely inside the set (not in the border), with the possible exception of the initial and final points. 
                                 Intuitively, this means that the object's boundary has no "flat" sides. Formally:
-                                $$\{ u, v \in \mathcal{S} \ \rightarrow \ \forall \alpha \in (0,1), \alpha u + (1-\alpha) v \in \mathcal{S}-\partial \mathcal{S}\};$$
+                                $$\{ u_1, u_2 \in \mathcal{S} \ \rightarrow \ \forall \alpha \in (0,1), \alpha u_1 + (1-\alpha) u_2 \in \mathcal{S}-\partial \mathcal{S}\};$$
                             <br>
                         </ul>
                     </div>
 
                     <div
-                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
-                        <div style="width: 100%">
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: righ;; height: 100%;">
+                        <div style="width: 90%">
                             <img src="presentation/images/part2/image4.svg"
                                 style="max-width: 80%; height: auto; max-height: 60vh;">
                         </div>
@@ -606,18 +614,19 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.45vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li> An important operation between sets is the  <b class="itext">Minkowsky sum and subtraction:</b><br>
+                            <li> An important operation between sets is the <b class="ttext">Minkowski sum and subtraction:</b><br>
                                 <b class="itext">$$\mathcal{A} \oplus \mathcal{B} = \{ a + b  ,  a \in \mathcal{A}  , b \in \mathcal{B}\}$$</b>
                                 <b class="itext">$$\mathcal{A} \ominus \mathcal{B} = \{ a - b  ,  a \in \mathcal{A}  , b \in \mathcal{B}\}$$</b>
                             </li><br>
-                            <li> The Minkowsky sum is the set of all possible pairwise sums of points in the two sets. It can also be thought 
-                                as "sweeping" one set over the boundary of the other;
-                           </li><br>
-                           <li> Minkowsky subtraction is simply the Minkowsky sum between \(\mathcal{A}\) and the set of opposites of \(\mathcal{B}\), 
-                            called \(-\mathcal{B}\). Thus, \(\mathcal{A} \ominus \mathcal{B} = \mathcal{A} \oplus (-\mathcal{B})\);
-                           </li><br>
-                           <li> Defined for abritrary sets, but specially important in convex sets;
-                           </li><br>
+                            <li> The Minkowski sum is the set of all possible pairwise sums of points in the two sets. It can also be thought of 
+                                as "sweeping" one set over the boundary of the other.
+                            </li><br>
+                            <li> Minkowski subtraction is simply the Minkowski sum between \(\mathcal{A}\) and the set of opposites of \(\mathcal{B}\), 
+                                called \(-\mathcal{B}\). Thus, \(\mathcal{A} \ominus \mathcal{B} = \mathcal{A} \oplus (-\mathcal{B})\).
+                            </li><br>
+                            <li> Defined for arbitrary sets but especially important for convex sets.
+                            </li><br>
+                            
                         </ul>
                     </div>
 
@@ -656,8 +665,13 @@ for link in robot.links:
                             <li> <b class="ttext">Prop 4:</b> for any point \(u\) in the boundary of the set, consider the tangent hyperplane to the set at this point. 
                                 The set is contained entirely in one of the sides of the hyperplane;<br>    
                             </li><br>
-                            <li> <b class="ttext">Prop 5 (Separating hyperplane theorem):</b> if two sets are convex, either they have an intersection, or 
-                                there is a separating hyperplane that separates them;<br>
+                            <li>
+                                <div style="background-color: #282828">
+                                    <b class="ttext">Prop 5 (Separating hyperplane theorem):</b> if two sets are convex, either they have an intersection, or 
+                                    there is a separating hyperplane that separates them;
+                                </div>
+                                <br>
+                                </li>
  
                         </ul>
                     </div>
@@ -687,23 +701,24 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.45vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li> A very useful way to handle convexity using analytic geometry is through <b class="itext">convex functions</b>;<br>
+                            <li> A very useful way to handle convexity using analytic geometry is through <b class="itext">convex functions</b>.<br>
                             </li><br>
-                            <li> A function \(f: \mathbb{R}^n \mapsto \mathbb{R}\) is said to be a <b class="itext">convex function</b> if 
-                                <b class="itext">\(\forall u, v \in \mathbb{R}^n \ , \alpha \in [0,1]\)</b>:<br>
-                                <b class="itext"> $$ f(\alpha u+(1-\alpha) v) \leq \alpha f(u) + (1-\alpha) f(v);$$</b>
+                            <li> A function \(f: \mathbb{R}^n \mapsto \mathbb{R}\) is said to be a <b class="ttext">convex function</b> if 
+                                <b class="itext">\(\forall u_1, u_2 \in \mathbb{R}^n \ , \alpha \in [0,1]\)</b>:<br>
+                                <b class="itext"> $$ f(\alpha u_1+(1-\alpha) u_2) \leq \alpha f(u_1) + (1-\alpha) f(u_2);$$</b>
                             </li><br>
                             <li> Geometrically, this means two things:
                                 <ul>
-                                    <li>That for any two points \((u,f(u))\) and \((v,f(v))\) in the graph, the plot of the graph is 
-                                        either touching or below the straight line that connects them;</li>
-                                    <li>That the <b class="itext">epigraph</b>, i.e., the \(n+1\) dimensional 
-                                        set \( \mathcal{Y} = \{x \in \mathbb{R}^n , y \in \mathbb{R} \ , \ y \geq f(x)\} \),
-                                        is convex;</li>
+                                    <li>That for any two points \((u_1,f(u_1))\) and \((u_2,f(u_2))\) on the graph, 
+                                        the function's plot is either touching or below the straight line connecting them.</li>
+                                    <li>That the <b class="itext">epigraph</b>, i.e., the \(n+1\)-dimensional 
+                                        set \( \mathcal{V} = \{u \in \mathbb{R}^n , v \in \mathbb{R} \ , \ v \geq f(u)\} \),
+                                        is convex.</li>
                                 </ul>
-                                 <br>
+                                <br>
                             </li><br>
-                            <li>Example: \(f(x)=x^2\);</li>
+                            <li>Example: \(f(u)=u^2\).</li>
+                            
 
                         </ul>
                     </div>
@@ -733,16 +748,16 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.45vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li> A function \(f: \mathbb{R}^n \mapsto \mathbb{R}\) is said to be a <b class="itext">strictly convex function</b> if 
-                                <b class="itext">\(\forall u, v \in \mathbb{R}^n \ , \alpha \in (0,1)\)</b>:<br>
-                                <b class="itext">$$ f(\alpha u+(1-\alpha) v) < \alpha f(u) + (1-\alpha) f(v);$$</b>
+                            <li> A function \(f: \mathbb{R}^n \mapsto \mathbb{R}\) is said to be a <b class="ttext">strictly convex function</b> if 
+                                <b class="itext">\(\forall u_1, u_2 \in \mathbb{R}^n \ , \alpha \in (0,1)\)</b>:<br>
+                                <b class="itext">$$ f(\alpha u_1+(1-\alpha) u_2) < \alpha f(u_1) + (1-\alpha) f(u_2);$$</b>
                             </li><br>
                             <li>Note the difference from before: \(\alpha\) should lie in the open interval \((0,1)\) and 
                                 it should be \(<\) other than \(\leq\);</li><br>
                             <li> As you probably expected, the epigraph is now strictly convex, and the plot of the graph should 
                                 be strictly below the straight line, except for the starting and end points; <br>
                             </li><br>
-                            <li>Example: the function \(f(x)=x^2\) is strictly convex, but \(f(x)=|x|\) is only convex;</li>
+                            <li>Example: the function \(f(u)=u^2\) is strictly convex, but \(f(u)=|u|\) is only convex;</li>
 
                         </ul>
                     </div>
@@ -773,13 +788,13 @@ for link in robot.links:
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
                             <li> <b class="ttext">Prop 1:</b> if \(f,g: \mathbb{R}^n \mapsto \mathbb{R}\) is convex and \(A,B \geq 0\), 
-                                the function \(h(x) = Af(x)+Bg(x)\) is also convex;</li><br>
+                                the function \(h(u) = Af(u)+Bg(u)\) is also convex;</li><br>
                             <li> <b class="ttext">Prop 2:</b> if \(f,g: \mathbb{R}^n \mapsto \mathbb{R}\) is convex, then 
-                                \(h(x) = \max(f(x),g(x))\) is convex;</li><br> 
+                                \(h(u) = \max(f(u),g(u))\) is convex;</li><br> 
                             <li> <b class="ttext">Prop 3:</b> all convex functions are continuous. Furthermore, if it is differentiable, 
                                 the derivative is bounded;</li><br>
                             <li> <b class="ttext">Prop 4:</b>  if \(f: \mathbb{R}^n \mapsto \mathbb{R}\) is convex and \(g: \mathbb{R}^m \mapsto \mathbb{R}^n\) 
-                                is an <b class="itext"> affine function \(g(y)=Ay+b\)</b>, then \(h(x)=f(g(x))\) is convex. Furthermore, if 
+                                is an <b class="itext"> affine function \(g(u)=Au+b\)</b>, then \(h(u)=f(g(u))\) is convex. Furthermore, if 
                                 \(n=m\) and \(g\) is bijective, if \(f\) is strictly convex, so is \(h\);</li><br>            
                         </ul>
                     </div>
@@ -811,17 +826,17 @@ for link in robot.links:
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
  
-                            <li> <b class="ttext">Prop 5:</b> <b class="itext"> if (but not only if)</b> the function \(f(x)\) is convex, the 
-                                <b class="itext">sublevel sets</b> \(\mathcal{L}(c) = \{x \in \mathbb{R}^n \ | \ f(x) \leq c\}\) for a constant \(c\) are convex. Furthermore, if \(f(x)\) is strictly convex, 
-                            the sets are strictly convex. The function \(f(x) = \sqrt{|x|}\) is an example to the "only if" claim;</li><br> 
+                            <li> <b class="ttext">Prop 5:</b> <b class="itext"> if (but not only if)</b> the function \(f(u)\) is convex, the 
+                                <b class="itext">sublevel sets</b> \(\mathcal{L}(c) = \{u \in \mathbb{R}^n \ | \ f(u) \leq c\}\) for a constant \(c\) are convex. Furthermore, if \(f(u)\) is strictly convex, 
+                            the sets are strictly convex. The function \(f(u) = \sqrt{|u|}\) is an example to the "only if" claim;</li><br> 
                             
                             <li>
-                                Thus, we can represent a convex sets as \(f(x) \leq 0\) for a convex function \(f\). 
+                                Thus, we can represent a convex sets as \(f(u) \leq 0\) for a convex function \(f\). 
                                 Since the intersection of convex sets is also convex (see <b class="ttext">Prop 1 of convex sets</b>), a convex set can be also characterized as 
-                                $$\mathcal{X} = \{x \in \mathbb{R}^n \ | \ f_i(x) \leq 0 \ i = 1,...,n\};$$</li><br> 
+                                $$\mathcal{S} = \{u \in \mathbb{R}^n \ | \ f_i(u) \leq 0 \ i = 1,...,n\};$$</li><br> 
                             <li>    
                                 This is specially useful for <b class="itext">polyhedras</b> 
-                                (i.e., convex shapes with flat faces), which  can be described like this when \(f_i(x) = a_i^\top x-b_i\) are affine functions. 
+                                (i.e., convex shapes with flat faces), which  can be described like this when \(f_i(u) = a_i^\top u-b_i\) are affine functions. 
                             </li>
                         </ul>
                     </div>
@@ -857,12 +872,12 @@ for link in robot.links:
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
                             <li> <b class="ttext">Prop 6:</b> convex functions have  <b class="itext"> no local maxima</b> 
-                                (i.e., points \(x_{max}\) in which around every point has a smaller value );</li><br>
+                                (i.e., points \(u_{max}\) in which around every point has a smaller value );</li><br>
                             <li> <b class="ttext">Prop 7:</b>  For convex functions, all  
-                                <b class="itext"> local minima</b> (i.e., points \(x_{min}\) in which around every point has a larger value), if they exist, 
-                                are <b class="itext">global</b>, that is, they achieve the smallest possible value for \(f(x)\). Furthermore, 
+                                <b class="itext"> local minima</b> (i.e., points \(u_{min}\) in which around every point has a larger value), if they exist, 
+                                are <b class="itext">global</b>, that is, they achieve the smallest possible value for \(f(u)\). Furthermore, 
                                 the set of local (global) minima is convex;</li><br>    
-                            <li> <b class="ttext">Prop 8:</b> if \(f(x)\) is strictly convex, the set of global minima is either empty 
+                            <li> <b class="ttext">Prop 8:</b> if \(f(u)\) is strictly convex, the set of global minima is either empty 
                                 or a single point;</li><br>                                
                         </ul>
                     </div>
@@ -892,17 +907,17 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.4vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li> <b class="ttext">Prop 8:</b> if the convex function \(f\) is differentiable, then, for any points \(u,v\):
-                            $$ \nabla f(u)^\top (u-v) \geq f(u)-f(v);$$
-                            In one dimension, this can be rewritten as \(f(x) \geq f'(x_0)(x-x_0)+f(x_0)\), which means that the graph of 
-                            \(y=f(x)\) is always above the tangent line at any point \(x_0\);
+                            <li> <b class="ttext">Prop 8:</b> if the convex function \(f\) is differentiable, then, for any points \(u_1,u_2\):
+                            $$ \nabla f(u_1)^\top (u_1-u_2) \geq f(u_1)-f(u_2);$$
+                            In one dimension, this can be rewritten as \(f(u) \geq f'(u_0)(x-u_0)+f(u_0)\), which means that the graph of 
+                            \(v=f(u)\) is always above the tangent line at any point \(u_0\);
                             </li><br>
-                            <li> <b class="ttext">Prop 9:</b> if \(f(x)\) is two times differentiable, it is convex <b class="itext">if and only if</b> the 
-                                <b class="itext">Hessian matrix</b> \(\frac{\partial^2 f}{\partial x^2}(x)\) is a positive semidefinite 
-                                matrix for all \(x\);</li><br>      
-                            <li> <b class="ttext">Prop 10:</b> if \(f(x)\) is two times differentiable, it is strictly convex <b class="itext"> if (but not only if)</b> the 
-                                <b class="itext">Hessian matrix</b> \(\frac{\partial^2 f}{\partial x^2}(x)\) is a positive definite 
-                                matrix for all \(x\). The function \(f(x)=x^4\) is a counterexample to the "only if" claim;</li><br>                            
+                            <li> <b class="ttext">Prop 9:</b> if \(f(u)\) is two times differentiable, it is convex <b class="itext">if and only if</b> the 
+                                <b class="itext">Hessian matrix</b> \(\frac{\partial^2 f}{\partial u^2}(u)\) is a positive semidefinite 
+                                matrix for all \(u\);</li><br>      
+                            <li> <b class="ttext">Prop 10:</b> if \(f(u)\) is two times differentiable, it is strictly convex <b class="itext"> if (but not only if)</b> the 
+                                <b class="itext">Hessian matrix</b> \(\frac{\partial^2 f}{\partial u^2}(u)\) is a positive definite 
+                                matrix for all \(u\). The function \(f(u)=x^4\) is a counterexample to the "only if" claim;</li><br>                            
                         </ul>
                     </div>
 
@@ -934,11 +949,11 @@ for link in robot.links:
                             <br>
                             <li> We saw the definition of <b class="itext">convex sets and convex functions</b>. We now define 
                                a <b class="ttext">convex optimization problem:</b>
-                            $$ \min_{x \in \mathcal{X}} f(x)$$
-                            in which \(f: \mathbb{R}^n \mapsto \mathbb{R}\) is a convex function, and \(\mathcal{X}\subseteq \mathbb{R}^n\) 
+                            $$ \min_{u \in \mathcal{U}} f(u)$$
+                            in which \(f: \mathbb{R}^n \mapsto \mathbb{R}\) is a convex function, and \(\mathcal{U}\subseteq \mathbb{R}^n\) 
                             is a convex set;
                             </li><br>
-                            <li> Overall, it is the easiest class of optimization problems. Generally, can be solved 
+                            <li> Overall, it is the easiest class of optimization problems. Generally, it can be solved 
                                 very efficiently;
                             </li><br>
                             <li> But why?
@@ -972,15 +987,18 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.4vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li> For the sake of simplicity, lets assume that \(f\) is two times differentiable, and that \(\mathcal{X}=\mathbb{R}^n\) 
-                                (i.e., no constraints);
+                            <li> For the sake of simplicity, let's assume that \(f\) is differentiable and that \(\mathcal{U}=\mathbb{R}^n\) 
+                                (i.e., no constraints).
                             </li><br>
-                            <li> One of the most powerful ideas on optimization (and in applied mathematics) is <b class="itext">gradient descent</b>: 
-                                if you want to minimize \(f(x)\), just take steps in the opposite of the gradient \(\nabla f(x)\) starting from a point \(x[0]\):
-                                $$x[k+1] = x[k] - \eta[k] \nabla f(x[k]);$$
-                                For a \(\eta[k]>0\) (possibly varying with \(k\)). </li><br>  
-                            <li> If the step size is chosen appropriately, the function \(f(x)\) will decrease as long as you can move, that is, \(\nabla f(x) \not= 0\);
-                            </li><br>                         
+                            <li> One of the most powerful ideas in optimization (and applied mathematics) is <b class="itext">gradient descent</b>: 
+                                if you want to minimize \(f(u)\), take steps in the direction opposite to the gradient \(\nabla f(u)\), starting from an initial point \(u[0]\):
+                                $$u[k+1] = u[k] - \eta[k] \nabla f(u[k]);$$
+                                for some \(\eta[k] > 0\) (which may vary with \(k\)).
+                            </li><br>  
+                            <li> If the step size is chosen appropriately, the function \(f(u)\) will decrease as long as movement is possible, 
+                                that is, as long as \(\nabla f(u) \not= 0\).
+                            </li><br>    
+                                                  
                         </ul>
                     </div>
 
@@ -1009,14 +1027,15 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.4vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li> There is a major issue with this approach, which is the bane of (continuous) optimization: <b class="itext">local minima</b>. In these points \(x\), \(\nabla f(x) = 0\) 
-                                but the true minimum of \(f(x)\) are not achieved. Gradient descent can be trapped into one of these instead of the true 
-                                <b class="itext">global minima</b>;
+                            <li> A major issue with this approach, which is the bane of (continuous) optimization, is <b class="itext">local minima</b>. 
+                                At these points \(u\), \(\nabla f(u) = 0\), but the true minimum of \(f(u)\) is not achieved. 
+                                Gradient descent can become trapped in a local minimum instead of reaching the true <b class="itext">global minimum</b>.
                             </li><br>    
-                            <li>This is not a problem with convex functions because, as mentioned in <b class="ttext"> Prop 7</b> before, 
-                                <b class="itext">convex functions only have global minima</b>. So, if \(\nabla f(x[k])=0\), we can 
-                                be sure we have a global minimum;
-                            </li>                         
+                            <li> This is not a problem for convex functions because, as mentioned in <b class="ttext">Prop 7</b> earlier, 
+                                <b class="itext">convex functions only have global minima</b>. Therefore, if \(\nabla f(u[k])=0\), we can 
+                                be certain that we have reached a global minimum.
+                            </li>
+                                                   
                         </ul>
                     </div>
 
@@ -1045,17 +1064,18 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.4vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li> What if we have constraints, i.e., \(\mathcal{X}\not= \mathbb{R}^n\);
-                            </li><br>    
-                            <li>Just follow the opposite of the gradient, as before.</li> <br>
-                            <li> If you converge to a point inside, you reached a global minimum 
-                                that is the same as the one of the unconstrained problem.</li> <br>
+                            <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                                <li> What if we have constraints, i.e., \(\mathcal{U} \neq \mathbb{R}^n\)?</li><br>    
+                                <li> Just follow the opposite of the gradient, as before.</li> <br>
+                                <li> If you converge to a point inside the set, you have reached a global minimum, 
+                                    which is the same as in the unconstrained problem.</li> <br>
                                 <li> If you reach the boundary of the set, project the opposite 
-                                of the gradient into the boundary. Keep following it. If the projection is zero (i.e., the opposite of the gradient is parallel  
-                                to the normal to the boundary that points outwards), you can be sure you have a point that is a global minimum;
-                            </li> <br>
-                            <li>But why can you be sure?</li>                       
-                        </ul>
+                                    of the gradient onto the boundary and keep following it. If the projection is zero 
+                                    (i.e., the opposite of the gradient is parallel to the outward-pointing normal of the boundary), 
+                                    you can be sure you have found a global minimum.</li> <br>
+                                <li>But why can you be sure?</li>                       
+                            </ul>
+                            
                     </div>
 
                     <div
@@ -1086,23 +1106,18 @@ for link in robot.links:
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
                             <li>The intuitive argument (not a formal proof) follows by contradiction.</li> <br>
-                            <li> Let \(x_A\) be the point in which we converged, at the boundary. The convergence criteria means that \(-\nabla f(x_A)\) 
-                                is trying to "go outside" of the set to minimize even more (if we did not have constraints);
-                            </li><br>
-                            <li> Now, suppose that there is another point \(x_B\) in \(\mathcal{X}\) that has a smaller value: 
-                                \(f(x_B) < f(x_A)\).
-                            </li> <br>
-                            <li>The argument is that in this case, <b class="itext">for a convex function, \(\nabla f(x_A)\) should "more or less" point in the direction from \(x_A\) to \(x_B\)</b>, which 
-                                <b class="itext">can be followed since \(\mathcal{X}\) is convex</b>  (the line that connects the points is inside the set);
-                                 
-                            </li><br>
-                            <li>This contradicts with the claim that \(-\nabla f(x_A)\) is pointing to go outside and we cannot do anything to 
-                                decrease \(f(x)\);
-                            </li><br>
-                            <li>The formal proof requires to show that  \(\nabla f(x_A)\) should "more or less" point in the claimed direction when 
-                                \(f(x)\) is convex.  This is obviously the case when \(f(x)=0.5\|x-x_B\|^2\), for example;
-                            </li>
+                            <li> Let \(u_A\) be the point where we converged at the boundary. The convergence criterion implies that \(-\nabla f(u_A)\) 
+                                is trying to "move outside" the set to further minimize \(f(u)\) (if there were no constraints).</li><br>
+                            <li> Now, suppose there is another point \(u_B\) in \(\mathcal{U}\) with a smaller function value: 
+                                \(f(u_B) < f(u_A)\).</li> <br>
+                            <li>The argument is that, in this case, <b class="itext">for a convex function, \(-\nabla f(u_A)\) should "more or less" point in the direction from \(u_A\) to \(u_B\)</b>, 
+                                which <b class="itext">can be followed since \(\mathcal{U}\) is convex</b> (i.e., the line connecting \(u_A\) and \(u_B\) remains inside the set).</li><br>
+                            <li>This contradicts the assumption that \(-\nabla f(u_A)\) is pointing outward and that no further steps can be taken to 
+                                decrease \(f(u)\).</li><br>
+                            <li>The formal proof requires demonstrating that \(-\nabla f(u_A)\) should "more or less" point in the claimed direction when 
+                                \(f(u)\) is convex. This is clearly the case, for example, when \(f(u) = 0.5\|u - u_B\|^2\).</li>
                         </ul>
+                        
                     </div>
 
                     <div
@@ -1131,17 +1146,17 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.4vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li> A convex optimization problem is said to be <b class="ttext">strictly convex</b> if \(f(x)\) is not only 
-                                convex, but strictly convex (the set \(\mathcal{X}\) need not to be strictly convex\);
+                            <li> A convex optimization problem is said to be <b class="ttext">strictly convex</b> if \(f(u)\) is not only 
+                                convex, but strictly convex (the set \(\mathcal{U}\) need not to be strictly convex);
                             </li><br>    
                             <li>The main interest of strictly convex optimization problem is as follows:<br><br>
                                     <div style="background-color: #282828">
-                                        <b class="ttext">Theorem:</b> if the set \(\mathcal{X}\) is compact, a strictly convex optimization problem 
+                                        <b class="ttext">Theorem:</b> if the set \(\mathcal{U}\) is compact, a strictly convex optimization problem 
                                             has a <b class="itext">single optimal point</b>.
                                     </div>
                             </li> <br>
-                            <li>Compactness is there only to ensure that a finite optima exist (e.g., take \(\mathcal{X} = \mathbb{R}\) and consider \(\min_{x \in \mathcal{X} } e^{-x}\) )</li><br>
-                            <li> This is not true for general convex problems (e.g., take \(\min_{x} \ (x_1-x_2)^2\));</li>
+                            <li>Compactness is there only to ensure that a finite optima exist (e.g., take \(\mathcal{U} = \mathbb{R}\) and consider \(\min_{u \in \mathcal{U} } e^{-u}\) )</li><br>
+                            <li> This is not true for general convex problems (e.g., take \(\min_{u} \ (u_1-u_2)^2\));</li>
                             
                              
                         </ul>
@@ -1172,16 +1187,16 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.4vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li> Let \(f: \mathbb{R}^n \times \mathbb{R}^m \mapsto \mathbb{R}\) be a function \(f(x,\theta)\) that is 
-                                differentiable in both arguments and \(\mathcal{X} \subseteq \mathbb{R}^n\) be a set. Define the function:
-                                $$ F^*(\theta) = \min_{x \in \mathcal{X}} \ f(x,\theta); $$
+                            <li> Let \(f: \mathbb{R}^n \times \mathbb{R}^m \mapsto \mathbb{R}\) be a function \(f(u,\theta)\) that is 
+                                differentiable in both arguments and \(\mathcal{U} \subseteq \mathbb{R}^n\) be a set. Define the function:
+                                $$ F^*(\theta) = \min_{u \in \mathcal{U}} \ f(u,\theta); $$
                             </li>
                             <li>This is a <b class="itext">parametrized optimization problem</b>, since \(\theta\) is a parameter to the optimization problem. 
                                 Note that \(F^* : \mathbb{R}^m \mapsto \mathbb{R}\). We would like to compute the gradient of \(F^*\) on \(\theta\). For this:<br><br>
                                     <div style="background-color: #282828">
                                         <b class="ttext">Theorem (Envelope Theorem):</b> the gradient \(\nabla F^*(\theta)\) exists for any \(\theta\) such that the minimizer 
-                                        of the optimization problem, \(x^*(\theta)\), is unique. Furthermore:
-                                        $$\nabla F^*(\theta) = \frac{\partial F^*}{\partial \theta}(x^*(\theta),\theta).$$
+                                        of the optimization problem, \(u^*(\theta)\), is unique. Furthermore:
+                                        $$\nabla F^*(\theta) = \frac{\partial F^*}{\partial \theta}(u^*(\theta),\theta).$$
                                     </div>
                             </li> <br>                             
                         </ul>
@@ -1213,16 +1228,16 @@ for link in robot.links:
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
                             <li> <b class="itext">Example:</b> consider the optimization problem:
-                                $$ \min_{x \in \mathcal{X}} f(x,\theta)$$
-                                in which \(f(x,\theta) = \theta_1 x_1 + \theta_2x_2\) and \(\mathcal{X}\) is the circle \(x_1^2+x_2^2 \leq 1\);
+                                $$ \min_{u \in \mathcal{U}} f(u,\theta)$$
+                                in which \(f(u,\theta) = \theta_1 u_1 + \theta_2u_2\) and \(\mathcal{U}\) is the circle \(u_1^2+u_2^2 \leq 1\);
                             </li>
-                            <li>The optimal solution is unique: \(x_1^*(\theta) = -\theta_1/\sqrt{\theta_1^2+\theta_2^2}\), 
-                                \(x_2^*(\theta) = -\theta_2/\sqrt{\theta_1^2+\theta_2^2}\), unless \(\theta_1=\theta_2=0\), in which case,
-                                any \(x_1,x_2\) is optimal;
+                            <li>The optimal solution is unique: \(u_1^*(\theta) = -\theta_1/\sqrt{\theta_1^2+\theta_2^2}\), 
+                                \(u_2^*(\theta) = -\theta_2/\sqrt{\theta_1^2+\theta_2^2}\), unless \(\theta_1=\theta_2=0\), in which case,
+                                any \(u_1,u_2\) is optimal;
                             </li> <br>                     
                             <li>Making the substitution, \(F^*(\theta) = -\sqrt{\theta_1^2+\theta_2^2}\). Envelope theorem 
                                 says that:
-                                $$\nabla F^*(\theta) = \frac{\partial F^*}{\partial \theta}(x^*(\theta),\theta) = \left(\begin{array}{c} x_1^*(\theta) \\ x_2^*(\theta)
+                                $$\nabla F^*(\theta) = \frac{\partial F^*}{\partial \theta}(u^*(\theta),\theta) = \left(\begin{array}{c} u_1^*(\theta) \\ u_2^*(\theta)
                                 \end{array}\right) = \frac{-1}{\sqrt{\theta_1^2+\theta_2^2}}\left(\begin{array}{c} \theta_1 \\ \theta_2
                                 \end{array}\right)$$
                                 which can be checked by inspection. Note that the derivative does not exist when \(\theta_1=\theta_2=0\);
@@ -1255,15 +1270,14 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li>The utility of the theorem lies on the fact that often we cannot compute \(F^*(\theta)\) analytically 
-                                (as we did in the previous example). We can, however, compute \(\frac{\partial f}{\partial \theta}\) analytically 
-                                and \(x^*(\theta)\) numerically, which allows us to compute the gradient;
-                            </li><br>
-                            <li> If \(f(x,\theta)\) is stricly convex on \(x\) for any fixed \(\theta\) and the set \(\mathcal{X}\) 
-                                is convex and compact, \(F^*(\theta) = \min_{x \in \mathcal{X}} f(x,\theta)\) is differentiable for 
-                                all \(\theta\), since the minimizer is unique;
-                            </li><br>
-                            <li>The particular use of this theorem in robotics will become clear soon;</li>
+                            <li>The utility of the theorem lies in the fact that we often cannot compute \(F^*(\theta)\) analytically 
+                                (as we did in the previous example). However, we can compute \(\frac{\partial f}{\partial \theta}\) analytically 
+                                and determine \(u^*(\theta)\) numerically, which allows us to compute the gradient.</li><br>
+                            <li> If \(f(u,\theta)\) is strictly convex in \(u\) for any fixed \(\theta\), and the set \(\mathcal{U}\) 
+                                is convex and compact, then \(F^*(\theta) = \min_{u \in \mathcal{U}} f(u,\theta)\) is differentiable for 
+                                all \(\theta\), since the minimizer is unique.</li><br>
+                            <li>The specific application of this theorem in robotics will become clear soon.</li>
+                            
                         </ul>
                     </div>
 
@@ -1292,10 +1306,10 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li>Given a closed set \(\mathcal{X}\), the <b class="ttext">half-squared distance (HSD) \(E_{\mathcal{X}}(p)\)</b> between a point \(p\) and \(\mathcal{X}\) 
-                            is the half-squared Euclidean distance between \(p\) and its closed point in the set \(\mathcal{X}\); </li> <br>
+                            <li>Given a closed set \(\mathcal{U}\), the <b class="ttext">half-squared distance (HSD) \(E_{\mathcal{U}}(p)\)</b> between a point \(p\) and \(\mathcal{U}\) 
+                            is the half-squared Euclidean distance between \(p\) and its closed point in the set \(\mathcal{U}\); </li> <br>
                             <li> This can be formulated as the optimization problem:
-                                $$E_{\mathcal{X}}(p) = \min_{x \in \mathcal{X}} 0.5 \|x-p\|^2;$$
+                                $$E_{\mathcal{U}}(p) = \min_{u \in \mathcal{U}} 0.5 \|x-p\|^2;$$
                             </li><br>
                             <li>Working with the HSD is more convenient than working with the Euclidean distance;</li><br>  
                         </ul>
@@ -1326,16 +1340,19 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li> This problem is <b class="itext">convex</b> if \(\mathcal{X}\) is convex. Furthermore, since the function 
-                                \(f(x,p) = \|x-p\|^2\) is strictly convex in \(x\) for any fixed \(p\), the solution will be unique. In that case, 
-                                we define the <b class="ttext">projection operator \(\Pi_{\mathcal{X}}(p)\) </b>  as this unique minimizer;
+                            <li> This problem is <b class="itext">convex</b> if \(\mathcal{U}\) is convex. Furthermore, since the function 
+                                \(f(u,p) = 0.5\|u-p\|^2\) is strictly convex in \(u\) for any fixed \(p\), the solution will be unique. In that case, 
+                                we define the <b class="ttext">projection operator \(\Pi_{\mathcal{U}}(p)\) </b>  as this unique minimizer;
                             </li> <br>
-                            <li>If \(\mathcal{X}\) is a convex set, \(E_{\mathcal{X}}(p)\) is a convex function. If 
-                                \(\mathcal{X}\) is a strictly convex set, \(E_{\mathcal{X}}(p)\) is a strictly convex function;
+                            <li>Obviously, both HSD and projection are coordinate-dependent: the point \(p\) should be described in a 
+                                frame \(\mathcal{F}_0\);
+                            </li>
+                            <li>If \(\mathcal{U}\) is a convex set, \(E_{\mathcal{U}}(p)\) is a convex function. If 
+                                \(\mathcal{U}\) is a strictly convex set, \(E_{\mathcal{U}}(p)\) is a strictly convex function;
                             </li><br>
                             <li>The following result is a straightforward use of the Envelope theorem:<br><br>
                                     <div style="background-color: #282828">
-                                        <b class="ttext">Theorem:</b> \(\ \  \nabla E_{\mathcal{X}}(p) = p - \Pi_{\mathcal{X}}(p)\)
+                                        <b class="ttext">Theorem:</b> \(\ \  \nabla E_{\mathcal{U}}(p) = p - \Pi_{\mathcal{U}}(p)\)
                                     </div>
                             </li>  
                         </ul>
@@ -1350,6 +1367,48 @@ for link in robot.links:
                     </div>
                 </div>
             </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CONVEX ANALYSIS BASICS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">PARTICULAR CASE OF A BOX</b>
+                </h3>
+
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <br>
+                            <li> Lets compute the HSD and projection for a <b class="itext">3D box in the canonical pose</b>, that is, 
+                                a box with center \((0 \ 0 \ 0)\) and with sides that are aligned with the axis of \(\mathcal{F}_0\). 
+                                We assume that it has lengths \(\ell_x, \ell_y, \ell_z\) in the \(x,y,z\) axis, respectively;
+                            </li> <br>
+                            <li>Let \(p = ( (p_x \ p_y \ p_z)^\top) \). The optimization problem is then:
+                                $$\min_{x,y,z} \ (x-p_x)^2 + (y-p_y)^2 + (z-p_z)^2 \ \mbox{such that} $$
+                                $$ -\frac{\ell_x}{2} \leq x \leq \frac{\ell_x}{2} \ , \ -\frac{\ell_y}{2} \leq y \leq \frac{\ell_y}{2} \ , \ -\frac{\ell_z}{2} \leq z \leq \frac{\ell_z}{2}$$
+                            </li><br>
+                            <li>The following result is a straightforward use of the Envelope theorem:<br><br>
+                                    <div style="background-color: #282828">
+                                        <b class="ttext">Theorem:</b> \(\ \  \nabla E_{\mathcal{U}}(p) = p - \Pi_{\mathcal{U}}(p)\)
+                                    </div>
+                            </li>  
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/image12.svg"
+                                style="max-width: 80%; height: auto; max-height: 60vh;">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <style>
                 .reveal .progress {
                     color: #34eb5e;
@@ -1407,6 +1466,16 @@ for link in robot.links:
 
                 .hlink:hover {
                     text-decoration: underline;
+                }
+
+                .logo {
+                    position: absolute;
+                    top: 1%;
+                    right: 1%;
+                    width: 6%;
+                    /* Adjust size as needed */
+                    z-index: 10;
+                    /* Ensures it appears above the video and overlay */
                 }
             </style>
 

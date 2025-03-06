@@ -39,8 +39,8 @@ def plot_contour():
     ax.clabel(contour, inline=True, fontsize=8, colors='white')
     
     # Customize axis
-    ax.set_xlabel('$x_1$', color='white', fontsize=16)
-    ax.set_ylabel('$x_2$', color='white', fontsize=16)
+    ax.set_xlabel('$x$', color='white', fontsize=16)
+    ax.set_ylabel('$y$', color='white', fontsize=16)
     ax.tick_params(colors='white')
     
     plt.show()
