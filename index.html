@@ -1,5 +1,6 @@
 <!doctype html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -29,42 +30,47 @@
 </head>
 
 <body>
-<div class="reveal">
-    <div class="slides">
+    <div class="reveal">
+        <div class="slides">
 
-        <video autoplay muted loop playsinline class="background-video">
-            <source src="presentation/images/video_main.mp4" type="video/mp4">
-            <!-- Add more source tags if you have multiple video formats -->
-            Your browser does not support the video tag.
-        </video>
+            <video autoplay muted loop playsinline class="background-video">
+                <source src="presentation/images/video_main.mp4" type="video/mp4">
+                <!-- Add more source tags if you have multiple video formats -->
+                Your browser does not support the video tag.
+            </video>
 
-        <img src="presentation/images/intro/logo_ufmg.svg" class="logo">
+            <img src="presentation/images/intro/logo_ufmg.svg" class="logo">
 
-        <section>
-            <h3>Robot Constrained Control</h3>
-            <h3 style="font-size: 20pt">Vinicius Mariano Gonçalves</h3>
-            <ul>
-                <li><a href="presentation/intro.html"><b class="hlink">Introduction</b></a>
-                    <br></li>
-                <li><a href="presentation/part1.html"><b class="hlink">Part 1: Review</b></a>
-                    <br></li>
-            </ul>
+            <section>
+                <h3>Robot Constrained Control</h3>
+                <h3 style="font-size: 20pt">Vinicius Mariano Gonçalves</h3>
+                <ul>
+                    <li><a href="presentation/intro.html"><b class="hlink">Introduction</b></a>
+                        <br>
+                    </li>
+                    <li><a href="presentation/part1.html"><b class="hlink">Part 1: Review</b></a>
+                        <br>
+                    </li>
+                    <li><a href="presentation/part2.html"><b class="hlink">Part 2: Geometry in Robotics</b></a>
+                        <br>
+                    </li>
+                </ul>
 
 
-        </section>
+            </section>
 
+        </div>
     </div>
-</div>
-<style>
-    .reveal .progress {
-        color: #34eb5e;
-    }
+    <style>
+        .reveal .progress {
+            color: #34eb5e;
+        }
 
-    .reveal .controls {
-        color: #34eb5e;
-    }
+        .reveal .controls {
+            color: #34eb5e;
+        }
 
-    /* body {
+        /* body {
         background-image: url(presentation/images/aula1/logo_ufmg.svg) !important;
         background-color: black;
         background-size: 8% !important;
@@ -72,90 +78,96 @@
         background-position: 96% 3% !important;
     } */
 
-    .itext {
-        color: #34eb5e;
-    }
-    .hlink{
-        color: #f5bf42;
-    }
-    .hlink:hover {
-        text-decoration: underline;
-    }
-
-    .reveal {
-    position: relative;
-    width: 100%;
-    height: 100vh; /* Full viewport height */
-    overflow: hidden;
-    }
-
-    .slides {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-        z-index: -1;
-    }
-
-    .logo {
-    position: absolute;
-    top: 3%;
-    right: 4%;
-    width: 8%; /* Adjust size as needed */
-    z-index: 10; /* Ensures it appears above the video and overlay */
-}
-
-    .background-video {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    z-index: -1; /* Keeps the video behind the content */
-    filter: brightness(50%) blur(2px); /* Adjust as needed */
-}
-
-    section {
-        position: relative;
-        z-index: 1; /* Ensures text stays above the video */
-        color: white; /* Adjust text color for readability */
-        padding: 20px;
-    }
-
-
-</style>
-<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-<script id="MathJax-script" async
-        src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
-<script src="presentation/dist/reveal.js"></script>
-<script src="presentation/plugin/notes/notes.js"></script>
-<script src="presentation/plugin/markdown/markdown.js"></script>
-<script src="presentation/plugin/highlight/highlight.js"></script>
-<script>
-    // More info about initialization & config:
-    // - https://revealjs.com/initialization/
-    // - https://revealjs.com/config/
-    Reveal.initialize({
-        hash: true,
-        width: 1200,
-        height: 700,
-        margin: 0,
-        minScale: 0.2,
-        maxScale: 2.0,
-        plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
-    });
-    var frames = document.getElementsByTagName("iframe");
-
-
-    Reveal.on('slidechanged', event => {
-        for (let i = 0; i < frames.length; ++i) {
-            frames[i].contentWindow.location.reload(true);
+        .itext {
+            color: #34eb5e;
         }
-    });
-</script>
-</body>
-</html>
 
+        .hlink {
+            color: #f5bf42;
+        }
+
+        .hlink:hover {
+            text-decoration: underline;
+        }
+
+        .reveal {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            /* Full viewport height */
+            overflow: hidden;
+        }
+
+        .slides {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .logo {
+            position: absolute;
+            top: 3%;
+            right: 4%;
+            width: 8%;
+            /* Adjust size as needed */
+            z-index: 10;
+            /* Ensures it appears above the video and overlay */
+        }
+
+        .background-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1;
+            /* Keeps the video behind the content */
+            filter: brightness(50%) blur(2px);
+            /* Adjust as needed */
+        }
+
+        section {
+            position: relative;
+            z-index: 1;
+            /* Ensures text stays above the video */
+            color: white;
+            /* Adjust text color for readability */
+            padding: 20px;
+        }
+    </style>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+    <script src="presentation/dist/reveal.js"></script>
+    <script src="presentation/plugin/notes/notes.js"></script>
+    <script src="presentation/plugin/markdown/markdown.js"></script>
+    <script src="presentation/plugin/highlight/highlight.js"></script>
+    <script>
+        // More info about initialization & config:
+        // - https://revealjs.com/initialization/
+        // - https://revealjs.com/config/
+        Reveal.initialize({
+            hash: true,
+            width: 1200,
+            height: 700,
+            margin: 0,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+        });
+        var frames = document.getElementsByTagName("iframe");
+
+
+        Reveal.on('slidechanged', event => {
+            for (let i = 0; i < frames.length; ++i) {
+                frames[i].contentWindow.location.reload(true);
+            }
+        });
+    </script>
+</body>
+
+</html>
