@@ -1307,11 +1307,12 @@ for link in robot.links:
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
                             <li>Given a closed set \(\mathcal{U}\), the <b class="ttext">half-squared distance (HSD) \(E_{\mathcal{U}}(p)\)</b> between a point \(p\) and \(\mathcal{U}\) 
-                            is the half-squared Euclidean distance between \(p\) and its closed point in the set \(\mathcal{U}\); </li> <br>
+                                is the half-squared Euclidean distance between \(p\) and its closest point in the set \(\mathcal{U}\).</li> <br>
                             <li> This can be formulated as the optimization problem:
                                 $$E_{\mathcal{U}}(p) = \min_{u \in \mathcal{U}} 0.5 \|u-p\|^2;$$
                             </li><br>
-                            <li>Working with the HSD is often more convenient than working with the Euclidean distance;</li><br>  
+                            <li>Working with the HSD is often more convenient than working directly with the Euclidean distance.</li><br>
+                             
                         </ul>
                     </div>
 
@@ -1341,20 +1342,21 @@ for link in robot.links:
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
                             <li> This problem is <b class="itext">convex</b> if \(\mathcal{U}\) is convex. Furthermore, since the function 
-                                \(f(u,p) = 0.5\|u-p\|^2\) is strictly convex in \(u\) for any fixed \(p\), the solution will be unique. In that case, 
-                                we define the <b class="ttext">projection operator \(\Pi_{\mathcal{U}}(p)\) </b>  as this unique minimizer;
+                                \(f(u,p) = 0.5\|u-p\|^2\) is strictly convex in \(u\) for any fixed \(p\), the solution is unique. In this case, 
+                                we define the <b class="ttext">projection operator \(\Pi_{\mathcal{U}}(p)\)</b> as this unique minimizer.
                             </li> <br>
-                            <li>Obviously, both HSD and projection are coordinate-dependent: the point \(p\) should be described in a 
-                                frame \(\mathcal{F}_0\);
+                            <li>Obviously, both the HSD and the projection are coordinate-dependent: the point \(p\) must be described in a 
+                                reference frame \(\mathcal{F}_0\).
                             </li><br>
                             <li>If \(\mathcal{U}\) is a convex set, \(E_{\mathcal{U}}(p)\) is a convex function. If 
-                                \(\mathcal{U}\) is a strictly convex set, \(E_{\mathcal{U}}(p)\) is a strictly convex function;
+                                \(\mathcal{U}\) is a strictly convex set, \(E_{\mathcal{U}}(p)\) is a strictly convex function.
                             </li><br>
-                            <li>The following result is a straightforward use of the Envelope theorem:<br><br>
-                                    <div style="background-color: #282828">
-                                        <b class="ttext">Theorem:</b> \(\ \  \nabla E_{\mathcal{U}}(p) = p - \Pi_{\mathcal{U}}(p)\)
-                                    </div>
-                            </li>  
+                            <li>The following result is a direct application of the Envelope Theorem:<br><br>
+                                <div style="background-color: #282828">
+                                    <b class="ttext">Theorem:</b> \(\ \  \nabla E_{\mathcal{U}}(p) = p - \Pi_{\mathcal{U}}(p)\)
+                                </div>
+                            </li>
+                            
                         </ul>
                     </div>
 
@@ -1383,14 +1385,15 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.4vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li> Lets compute the HSD and projection for a <b class="itext">3D box in the canonical pose</b>, that is, 
-                                a box with center \((0 \ 0 \ 0)\) and with sides that are aligned with the axis of \(\mathcal{F}_0\). 
-                                We assume that it has lengths \(\ell_x, \ell_y, \ell_z\) in the \(x,y,z\) axis, respectively;
+                            <li> Let's compute the HSD and projection for a <b class="itext">3D box in the canonical pose</b>, that is, 
+                                a box centered at \((0, 0, 0)\) with sides aligned with the axes of \(\mathcal{F}_0\). 
+                                We assume it has lengths \(\ell_x, \ell_y, \ell_z\) along the \(x\), \(y\), and \(z\) axes, respectively.
                             </li> <br>
                             <li>Let \(p =  (p_x \ p_y \ p_z)^\top \). The optimization problem is then:
-                                $$\min_{x,y,z} \ \frac{(x-p_x)^2}{2} + \frac{(y-p_y)^2}{2} + \frac{(z-p_z)^2}{2} \ \mbox{such that} $$
-                                $$ -\frac{\ell_x}{2} \leq x \leq \frac{\ell_x}{2} \ , \ -\frac{\ell_y}{2} \leq y \leq \frac{\ell_y}{2} \ , \ -\frac{\ell_z}{2} \leq z \leq \frac{\ell_z}{2}$$
+                                $$\min_{x,y,z} \ \frac{(x-p_x)^2}{2} + \frac{(y-p_y)^2}{2} + \frac{(z-p_z)^2}{2} \quad \text{subject to} $$
+                                $$ -\frac{\ell_x}{2} \leq x \leq \frac{\ell_x}{2}, \quad -\frac{\ell_y}{2} \leq y \leq \frac{\ell_y}{2}, \quad -\frac{\ell_z}{2} \leq z \leq \frac{\ell_z}{2}$$
                             </li><br>
+                            
                         </ul>
                     </div>
 
@@ -1421,9 +1424,9 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.4vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li> Note that the problem is <b class="itext">separable</b>: the constraints and the objective function are 
-                                independent for each variable. Then, we can solve for each one of them separately. Generically, we need to solve
-                                the one-dimensional problem:
+                            <li> Note that the problem is <b class="itext">separable</b>: the constraints and the objective function 
+                                are independent for each variable. Therefore, we can solve for each variable separately. 
+                                In general, we need to solve the following one-dimensional problem:
                                 $$\min_u \ \frac{(u-p)^2}{2} \ \mbox{such that} \ -\frac{\ell}{2} \leq u \leq \frac{\ell}{2};$$
                             </li> <br>
                             <li>This is an easy problem. The solution \(u^*\) is given by the function:
@@ -1542,15 +1545,16 @@ for link in robot.links:
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
                             <li> The <b class="ttext">support function</b> of a set \(\mathcal{U} \subseteq \mathbb{R}^n\) is the function 
-                                \(s_{\mathcal{U}} : \mathbb{R}^n \mapsto \mathbb{R}\) defined as:
+                                \(s_{\mathcal{U}} : \mathbb{R}^n \to \mathbb{R}\) defined as:
                                 <b class="itext">$$s_{\mathcal{U}}(d) = \max_{u \in \mathcal{U}} d^\top u;$$</b>
                             </li>
-                            <li>The set of maximizers (it is not necessarily unique) of this optimization problem for a given \(d\) is 
-                                called <b class="ttext">support set, </b> \(\mathcal{S}_{\mathcal{U}}(d)\);
+                            <li>The set of maximizers (not necessarily unique) of this optimization problem for a given \(d\) is 
+                                called the <b class="ttext">support set</b>, denoted as \(\mathcal{S}_{\mathcal{U}}(d)\).
                             </li><br>
-                            <li>If \(\mathcal{U}\) is convex, this is a convex optimization problem (think about why... despite being a maximization problem), and the function \(s_{\mathcal{U}}\) 
-                                is convex. The set \(\mathcal{S}_{\mathcal{U}}(d)\) is also convex;
+                            <li>If \(\mathcal{U}\) is convex, this is a convex optimization problem (think about why... despite being a maximization problem), 
+                                and the function \(s_{\mathcal{U}}\) is convex. The set \(\mathcal{S}_{\mathcal{U}}(d)\) is also convex.
                             </li><br>
+                            
 
                         </ul>
                     </div>
@@ -1585,19 +1589,19 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li>If \(\mathcal{U}\) is a convex polyhedra, the optimization is a <b class="ttext">linear program</b>, 
-                                which is precisely defined as maximizing (or minimizing) a linear function over a convex polyhedra. 
-                                In that case: <br><br>
+                            <li>If \(\mathcal{U}\) is a convex polyhedron, the optimization problem is a <b class="ttext">linear program</b>, 
+                                which is defined as maximizing (or minimizing) a linear function over a convex polyhedron. 
+                                In this case: <br><br>
                                 <div style="background-color: #282828">
-                                    <b class="ttext">Theorem (Fundamental theorem of Linear Programming):</b> a solution of a linear program always lies on the vertexes of 
-                                    the polyhedra.
+                                    <b class="ttext">Theorem (Fundamental Theorem of Linear Programming):</b> A solution of a linear program always lies at a vertex of 
+                                    the polyhedron.
                                 </div>
                             </li> <br>
-                            <li>Thus, we can simply test the vertexes of the polygon to compute the support function and (part of) the support set when 
-                                \(\mathcal{U}\) is a convex polyhedra;
+                            <li>Thus, to compute the support function and (part of) the support set when 
+                                \(\mathcal{U}\) is a convex polyhedron, we can simply evaluate the function at its vertices.
                             </li><br>
-                            <li>This is unfeasible for high dimensions 
-                                (since the number of vertexes can be enormous), but is generally ok for 3D;</li>
+                            <li>This approach becomes impractical in high-dimensional spaces 
+                                (since the number of vertices can be enormous), but it is generally feasible in 3D.</li>                            
                         </ul>
                     </div>
 
@@ -1721,17 +1725,15 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li> Some applications in robotics do not require knowing exactly the distance. Only if the objects overlap or not;
+                            <li> Some applications in robotics do not require knowing the exact distance—only whether objects overlap or not.
                             </li><br>
-                            <li>For example, the classic <b class="itext">RRT (Rapid Random Trees)</b> algorithm for motion planning of robots 
-                                plan a non-colliding path by sampling points in the configuration space and connecting them. This can be done 
-                                using only a collision oracle \(c(q)\) that says if the robot in a given configuration \(q\) is overlaping 
-                                with the obstacles (or itself) in the configuration \(q\);
+                            <li>For example, the classic <b class="itext">RRT (Rapidly-exploring Random Trees)</b> algorithm for motion planning 
+                                generates a collision-free path by sampling points in the configuration space and connecting them. This can be achieved 
+                                using only a collision oracle \(c(q)\), which determines whether the robot, in a given configuration \(q\), overlaps 
+                                with obstacles (or itself).
                             </li><br>
-                            <li>
-                                Different degrees of safety can be implemented by <b class="itext">enlarging the obstacles</b> by a factor 
-                                \(\epsilon\);
-                            </li>
+                            <li>Different levels of safety can be implemented by <b class="itext">enlarging the obstacles</b> by a factor \(\epsilon\).</li>
+                            
                             
                         </ul>
                     </div>
@@ -1761,15 +1763,12 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li> Can be significantly more efficient than distance computation;
-                            </li><br>
-                            <li>For example, suppose we wrap the two very complex (maybe not even convex) objects into  <b class="itext">bounding spheres</b>. Checking if 
-                                the two spheres overlap is extremely fast. If they do not, we can claim that the two original objects do not overlap. If we wanted 
-                                the Euclidean distance in that case, it could be much more time consuming;
-                            </li><br>
-                            <li>
-                                In control, however, we often need more than this information. We need some fine-grained "degree of closeness" (for example, the Euclidean distance);
-                            </li>
+                            <li> This approach can be significantly more efficient than computing exact distances.</li><br>
+                            <li>For example, suppose we enclose two very complex (possibly non-convex) objects within <b class="itext">bounding spheres</b>. 
+                                Checking whether the two spheres overlap is extremely fast. If they do not, we can confidently conclude that the original objects do not overlap. 
+                                However, computing the exact Euclidean distance in such cases could be much more time-consuming.</li><br>
+                            <li> In control applications, however, we often need more than just this binary information. 
+                                A finer-grained measure of "closeness" (such as the Euclidean distance) is often required.</li>
                             
                         </ul>
                     </div>
@@ -1799,17 +1798,13 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li> The <b class="ttext">half squared distance between two sets</b> \(\mathcal{A}\) and \(\mathcal{B}\) is defined as:
+                            <li> The <b class="ttext">half-squared distance between two sets</b> \(\mathcal{A}\) and \(\mathcal{B}\) is defined as:
                                 $$\Lambda_{\mathcal{A},\mathcal{B}} = \min_{a \in \mathcal{A}, b \in \mathcal{B}} \frac{\|a-b\|^2}{2};$$
                             </li><br>
-                            <li>It is a convex optimization problem if both \(\mathcal{A}\) and \(\mathcal{B}\) are convex sets;
-                            </li><br>
-                            <li>A pair of closest points (\(a^*,b^*)\) (not necessarily unique) is called <b class="itext">witness points</b> ;
-                            </li><br>
-                            <li>
-                                In control, however, we often need more than this information. We need some information on how to <b class="itext">change</b> 
-                                this distance;
-                            </li>
+                            <li>This is a convex optimization problem if both \(\mathcal{A}\) and \(\mathcal{B}\) are convex sets.</li><br>
+                            <li>A pair of closest points \((a^*,b^*)\) (not necessarily unique) is called <b class="itext">witness points</b>.</li><br>
+                            <li>In control applications, however, we often need more than just the distance itself—we need information on how to <b class="itext">change</b> this distance.</li>
+                            
                             
                         </ul>
                     </div>
@@ -1840,16 +1835,13 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li> Suppose one of the sets (for example) is changing (for example, by a rigid transformation) with a parameter \(\tau \in \mathbb{R}^m\), 
-                                \(\mathcal{A}(\tau)\). Then we can consider the function \(F: \mathbb{R}^m \mapsto \mathbb{R}\) defined by \(F(\tau) = \Lambda_{\mathcal{A}(\tau),\mathcal{B}}\)
+                            <li> Suppose one of the sets, say \(\mathcal{A}\), is changing (for example, due to a rigid transformation) 
+                                with a parameter \(\tau \in \mathbb{R}^m\), resulting in \(\mathcal{A}(\tau)\). 
+                                Then, we can define the function \(F: \mathbb{R}^m \to \mathbb{R}\) as \(F(\tau) = \Lambda_{\mathcal{A}(\tau),\mathcal{B}}\).
                             </li><br>
-                            <li>Often we want to compute \(\frac{\partial F}{\partial \tau}(\tau)\);
-                            </li><br>
-                            <li>For that, we need that the distance \(\Lambda\) is <b class="itext">differentiable</b>;
-                            </li><br>
-                            <li>
-                                In control, this derivative is useful to compute controllers that consider obstacle avoidance;
-                            </li>
+                            <li>Often, we want to compute \(\frac{\partial F}{\partial \tau}(\tau)\).</li><br>
+                            <li>For this, we need the distance \(\Lambda\) to be <b class="itext">differentiable</b>.</li><br>
+                            <li>In control applications, this derivative is useful for designing controllers that account for obstacle avoidance.</li>
                             
                         </ul>
                     </div>
@@ -1879,14 +1871,14 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li> We will focus now on distance calculation. Later we will discuss distance gradients;
-                            </li><br>
-                            <li> In this class we only consider objects that are either convex sets (CVX) or point clouds (PC). Then, considering two 
-                                set \(\mathcal{A}\) and \(\mathcal{B}\), we have three 
-                                different combination of distance computation problems: both are CVX, 
-                                one of them is CVX and the other is a PC, and both are PC;
+                            <li> We will now focus on distance calculation. Later, we will discuss distance gradients.</li><br>
+                            <li> In this class, we consider objects that are either convex sets (CVX) or point clouds (PC). 
+                                Given two sets \(\mathcal{A}\) and \(\mathcal{B}\), there are three possible types of distance computation problems:
+                                - Both sets are CVX.
+                                - One set is CVX, and the other is a PC.
+                                - Both sets are PC.
                             </li><br>                            
-                            <li>We will not consider the last case (both are PC) in this class, because it is not of very high interest in robotics;</li>
+                            <li>We will not consider the last case (both sets being PC) in this class, as it is not of high relevance in robotics.</li>
                             
                         </ul>
                     </div>
@@ -1946,17 +1938,15 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li>The 
-                                <b class="ttext">GJK Algorithm</b> (named based on its authors, Gilbert, Johnson and Keerthi) is a classic 
-                                and very efficient algorithm for computing the distance between two sets;
+                            <li>The <b class="ttext">GJK Algorithm</b> (named after its authors, Gilbert, Johnson, and Keerthi) is a 
+                                classic and highly efficient algorithm for computing the distance between two sets.</li><br>
+                            <li> Consider two convex sets \(\mathcal{A}\) and \(\mathcal{B}\). The key insight of the algorithm is the following: 
+                                <b class="itext">the distance between \(\mathcal{A}\) and \(\mathcal{B}\) is the same as the distance between  
+                                    \(\mathcal{C} = \mathcal{A} \ominus \mathcal{B}\) and the origin</b>. This holds because:
+                                $$\min_{a \in \mathcal{A}, b \in \mathcal{B}} \|a-b\|^2 = \min_{c \in \mathcal{C}} \|c\|^2$$
+                                since any element of \(\mathcal{C}\) can be written as \(c = a-b\) for some \(a \in \mathcal{A}\) and \(b \in \mathcal{B}\).
                             </li><br>
-                            <li> Consider two convex sets \(\mathcal{A}\) and \(\mathcal{B}\). The first insight of the algorithm is the following: 
-                                <b class="itext">the distance between \(\mathcal{A}\) and \(\mathcal{B}\) is the same distance between  
-                                    \(\mathcal{C} = \mathcal{A}\ominus \mathcal{B}\) and the origin </b>. This is because:
-                                    $$\min_{a \in \mathcal{A}, b \in \mathcal{B}} \|a-b\|^2 = \min_{c \in \mathcal{C}} \|c\|^2$$
-                                    since any element of \(\mathcal{C}\) can be written as \(a-b\) for \(a\in\mathcal{A}\) and \(b \in \mathcal{B}\);
-                            </li><br>                       
-                        </ul>
+                            
                     </div>
 
                     <div
