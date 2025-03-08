@@ -1309,7 +1309,7 @@ for link in robot.links:
                             <li>Given a closed set \(\mathcal{U}\), the <b class="ttext">half-squared distance (HSD) \(E_{\mathcal{U}}(p)\)</b> between a point \(p\) and \(\mathcal{U}\) 
                             is the half-squared Euclidean distance between \(p\) and its closed point in the set \(\mathcal{U}\); </li> <br>
                             <li> This can be formulated as the optimization problem:
-                                $$E_{\mathcal{U}}(p) = \min_{u \in \mathcal{U}} 0.5 \|x-p\|^2;$$
+                                $$E_{\mathcal{U}}(p) = \min_{u \in \mathcal{U}} 0.5 \|u-p\|^2;$$
                             </li><br>
                             <li>Working with the HSD is often more convenient than working with the Euclidean distance;</li><br>  
                         </ul>
@@ -1633,13 +1633,14 @@ for link in robot.links:
                             <br>
                             <li> <b class="ttext">Prop 1:</b> \(s_{-\mathcal{U}}(d) = s_{\mathcal{U}}(-d)\) and also \(\mathcal{S}_{\mathcal{-U}}(d) = -\mathcal{S}_{\mathcal{U}}(-d)\);<br>
                             </li><br>
-                            <li> <b class="ttext">Prop 2:</b> \(s_{\mathcal{U \oplus \mathcal{V}}}(d) = s_{\mathcal{U}}(d) + s_{\mathcal{V}}(d)\);<br>
+                            <li> <b class="ttext">Prop 2:</b> \(s_{\mathcal{U \oplus \mathcal{V}}}(d) = s_{\mathcal{U}}(d) + s_{\mathcal{V}}(d)\) 
+                                and \(\mathcal{S}_{\mathcal{U \oplus \mathcal{V}}}(d) = \mathcal{S}_{\mathcal{U}}(d) \oplus \mathcal{S}_{\mathcal{V}}(d)\);<br>
                             </li><br>
-                            <li> <b class="ttext">Prop 3:</b> if \(\mathcal{U}\) is convex:
-                                $$\sqrt{2E_{\mathcal{U}}(p)} = \max_{\|d\|\leq 1} \big(d^\top p - s_{\mathcal{U}}(d)\big)$$
-                                on the other hand, for \(\|d\| \leq 1\):
-                                $$s_{\mathcal{U}}(d) = \max_{p} \big(d^\top p - \sqrt{2E_{\mathcal{U}}(p)}\big);$$
+                            <li> <b class="ttext">Prop 3:</b> if \(u^* \in \mathcal{S}_{\mathcal{U}}(d)\), for any \(u \in \mathcal{U}\), 
+                                \(d^\top(u-u^*) \leq 0\), that is, the set \(u \in \mathcal{U}\) is entirely contained in the 
+                                half hyperspace \(d^\top(u-u^*) \leq 0\);
                             </li><br>
+
                     </div>
 
                     <div
@@ -1839,16 +1840,15 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li> The <b class="ttext">half squared distance between two sets</b> \(\mathcal{A}\) and \(\mathcal{B}\) is defined as:
-                                $$\Lambda_{\mathcal{A},\mathcal{B}} = \min_{a \in \mathcal{A}, b \in \mathcal{B}} \frac{\|a-b\|^2}{2};$$
+                            <li> Suppose one of the sets (for example) is changing (for example, by a rigid transformation) with a parameter \(\tau \in \mathbb{R}^m\), 
+                                \(\mathcal{A}(\tau)\). Then we can consider the function \(F: \mathbb{R}^m \mapsto \mathbb{R}\) defined by \(F(\tau) = \Lambda_{\mathcal{A}(\tau),\mathcal{B}}\)
                             </li><br>
-                            <li>It is a convex optimization problem if both \(\mathcal{A}\) and \(\mathcal{B}\) are convex sets;
+                            <li>Often we want to compute \(\frac{\partial F}{\partial \tau}(\tau)\);
                             </li><br>
-                            <li>A pair of closest points (\(a^*,b^*)\) (not necessarily unique) is called <b class="itext">witness points</b> ;
+                            <li>For that, we need that the distance \(\Lambda\) is <b class="itext">differentiable</b>;
                             </li><br>
                             <li>
-                                In control, however, we often need more than this information. We need some information on how to <b class="itext">change</b> 
-                                this distance;
+                                In control, this derivative is useful to compute controllers that consider obstacle avoidance;
                             </li>
                             
                         </ul>
@@ -1864,6 +1864,413 @@ for link in robot.links:
                 </div>
             </section>
 
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    COMPUTING DISTANCES AND OTHER QUANTITIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">DISTANCE CALCULATION</b>
+                </h3>
+
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <br>
+                            <li> We will focus now on distance calculation. Later we will discuss distance gradients;
+                            </li><br>
+                            <li> In this class we only consider objects that are either convex sets (CVX) or point clouds (PC). Then, considering two 
+                                set \(\mathcal{A}\) and \(\mathcal{B}\), we have three 
+                                different combination of distance computation problems: both are CVX, 
+                                one of them is CVX and the other is a PC, and both are PC;
+                            </li><br>                            
+                            <li>We will not consider the last case (both are PC) in this class, because it is not of very high interest in robotics;</li>
+                            
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/image22.svg"
+                                style="max-width: 80%; height: auto; max-height: 60vh;">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    COMPUTING DISTANCES AND OTHER QUANTITIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">DISTANCE CALCULATION</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-direction: column; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: flex-start; padding-top: 20px; height: 100%;">
+                        <br>
+                        <div style="width: 100%">
+                            We will study three algorithms:
+                        </div>
+
+                    </div>
+
+                    <div
+                        style="flex: 3; min-width: 300px; font-size: 1.5vw; text-align: center; display: flex; align-items: center; justify-content: center; margin-top: -20px; height: 100%;">
+                        <div style="position:absolute; width: 100%; align-items: center;">
+                            <img src="presentation/images/part2/image23.svg"
+                                style="max-width: 80%; height: auto; max-height: 60vh;">
+                        </div>
+                        
+                    </div>
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    COMPUTING DISTANCES AND OTHER QUANTITIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">GJK ALGORITHM</b>
+                </h3>
+
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <br>
+                            <li>The 
+                                <b class="ttext">GJK Algorithm</b> (named based on its authors, Gilbert, Johnson and Keerthi) is a classic 
+                                and very efficient algorithm for computing the distance between two sets;
+                            </li><br>
+                            <li> Consider two convex sets \(\mathcal{A}\) and \(\mathcal{B}\). The first insight of the algorithm is the following: 
+                                <b class="itext">the distance between \(\mathcal{A}\) and \(\mathcal{B}\) is the same distance between  
+                                    \(\mathcal{C} = \mathcal{A}\ominus \mathcal{B}\) and the origin </b>. This is because:
+                                    $$\min_{a \in \mathcal{A}, b \in \mathcal{B}} \|a-b\|^2 = \min_{c \in \mathcal{C}} \|c\|^2$$
+                                    since any element of \(\mathcal{C}\) can be written as \(a-b\) for \(a\in\mathcal{A}\) and \(b \in \mathcal{B}\);
+                            </li><br>                       
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/image24.svg"
+                                style="max-width: 80%; height: auto; max-height: 60vh;">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    COMPUTING DISTANCES AND OTHER QUANTITIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">GJK ALGORITHM</b>
+                </h3>
+
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <br>
+                            <li>GJK algorithm uses the <b class="itext">support set </b> \(\mathcal{S}_{\mathcal{C}}(d)\). There is no need to compute the whole 
+                                set, just a single point inside it;
+
+                            </li><br>
+                            <li> The support set for  sets \(\mathcal{A}\) and \(\mathcal{B}\) can be computed very efficiently (e.g., by checking the vertexes of polygons).
+                            </li><br>                       
+                            <li>
+                                We then use  <b class="ttext">Prop 2</b> to compute a point in \(\mathcal{S}_{\mathcal{C}}(d)\). For that, we pick 
+                                \(a \in \mathcal{S}_{\mathcal{A}}(d)\), \(b \in \mathcal{S}_{\mathcal{B}}(-d)\) and then compute \(c=a-b\);
+                            </li><br>
+                            <li>Thus, for now, we will forget that there exists two sets \(\mathcal{A}\) and \(\mathcal{B}\) and focus only on computing the distance between  
+                                \(\mathcal{C}\) and the origin;
+                            </li>
+
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/image24.svg"
+                                style="max-width: 80%; height: auto; max-height: 60vh;">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    COMPUTING DISTANCES AND OTHER QUANTITIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">GJK ALGORITHM</b>
+                </h3>
+
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <br>
+                            <li>One last concept before we start is of  <b class="itext">simplex</b>. A \(n\) dimensional simplex \(\mathcal{P}\) is the convex set formed by 
+                                \(n+1\) points in \(\mathbb{R}^n\). For example, a \(1\) dimensional simplex is an interval, \(2\)-dimensional simplex is a triangle,
+                                 a \(3\) dimensional simplex is a  tetrahedron, etc...
+                            </li><br>
+                            <li> We can think on the degenerate \(n\) dimensional simplexes that lie in a dimension less than \(n\). Thus, in 3D, other than the tetrahedron, 
+                                we can think on a triangle lie on the space (when the four points lie in the same plane), a line segment (when the four points lie in the same line), 
+                                or a point (when the four points are equal);
+                            </li><br>     
+                            <li>The faces, edges and vertexes of a 3-simplex are 2, 1 and 0-dimensional simplexes, respectively;</li>                  
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/image25.svg"
+                                style="max-width: 80%; height: auto; max-height: 60vh;">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    COMPUTING DISTANCES AND OTHER QUANTITIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">GJK ALGORITHM</b>
+                </h3>
+
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <br>
+                            <li>A sub-algorithm is 
+                                <b class="itext">$$c^*, \mathcal{P}' := \texttt{nearest_simplex}(\mathcal{P});$$ </b>
+                                It computes the closest point \(c^*\) from 
+                                the simplex \(\mathcal{P}\) to the origin, and a new simplex \(\mathcal{P}'\) formed by the smallest sub-simplex of \(\mathcal{P}\)
+                                (edges, faces or vertexes) that contains \(c^*\);
+                            </li><br> 
+                            <li>This is a convex optimization problem that can be solved efficiently.</li>                    
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/image26.svg"
+                                style="max-width: 80%; height: auto; max-height: 60vh;">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    COMPUTING DISTANCES AND OTHER QUANTITIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">GJK ALGORITHM</b>
+                </h3>
+
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <br>
+                            <li>The algorithm starts with a vertex \(c_{dir} \in \mathcal{C}\). Then, we start \(\mathcal{P}=\{c_{dir}\}\) and loop:<br><br>
+                                <ul>
+                                    <li> <b class="itext"> Get \(c_{new} \in \mathcal{S}_{\mathcal{C}}(-c_{dir})\); </b> </li><br>
+                                    <li> <b class="itext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b></li><br>
+                                    <li> <b class="itext"> \(c_{dir} , \mathcal{P}  := \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
+                                    <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If the simplex \(\mathcal{P}\) 
+                                        did not change, return the distance as \(\|c_{dir}\|\); </b></li><br>
+                                </ul>
+                            </li><br>                     
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/image22.svg"
+                                style="max-width: 80%; height: auto; max-height: 60vh;">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    COMPUTING DISTANCES AND OTHER QUANTITIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">GJK ALGORITHM</b>
+                </h3>
+
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <br>
+                            <li>If you want just to check if it overlaps or not, if \(c_{dir}^\top c_{new} > 0\) you can halt 
+                                concluding that they do not overlap;
+                            </li><br>
+                            <li>Why? Because in that case the hyperplane \(\sigma(c) = -c_{dir}^\top(u-c_{new}) = 0\) will separate 
+                                the convex set \(\mathcal{C}\) and the origin (see <b class="ttext">Prop 5</b> of convex sets). </li><br>
+                                
+                                <li>    Indeed, from
+                                <b class="ttext">Prop 4</b> of the support function, \(\sigma(c) = -c_{dir}^\top(c-c_{new}) \leq 0\) 
+                                for any \(c \in \mathcal{C}\). On the other hand, if \(c_{dir}^\top c_{new} > 0\), 
+                                \(\sigma(0) = c_{dir}^\top c_{new} > 0\);
+                            </li>                  
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/image22.svg"
+                                style="max-width: 80%; height: auto; max-height: 60vh;">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    COMPUTING DISTANCES AND OTHER QUANTITIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">CHECKING IF A POINT IS INSIDE A SIMPLEX</b>
+                </h3>
+
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <br>
+                            <li>An important algorithm is the following: given \(m \leq n+1\) points \(a_i \in \mathbb{R}^n\) forming a 
+                                <b class="itext">m dimensional simplex living in \(\mathbb{R}^n\)</b>, that is, the set formed by all 
+                                <b class="itext">convex combinations</b> of the \(a_i\): \(\sum_{i=1}^n \beta_i a_i\) in which
+                                 \(\sum_{i=1}^n \beta_i=1\), \(\beta_i \geq 0\);
+                            </li><br>
+                            <li> We will assume that the simplex is <b class="itext">non-degenerate</b> that is, if it has \(m\) points, there is no 
+                                hyperplane of dimension less than \(m\) that contains it (think about a "triangle" formed by 3 points that 
+                                is actually a line). This implies that the matrix:
+                                $$M = \left(\begin{array}{cccc} a_1 & a_2 & ... & a_m \\ 1 & 1 & ... & 1\end{array}\right)$$
+                                is full column rank.
+                            </li><br>                       
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/image22.svg"
+                                style="max-width: 80%; height: auto; max-height: 60vh;">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    COMPUTING DISTANCES AND OTHER QUANTITIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">CHECKING IF A POINT IS INSIDE A SIMPLEX</b>
+                </h3>
+
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <br>
+                            <li>Using the matrix \(M\) defined in the previous slide, the point \(p\) lies on the simplex if and only if 
+                                there exists a vector \(\beta \in \mathbb{R}^m\) with nonnegative entries such that:
+                                $$M\beta = \left(\begin{array}{c} p \\ 1 \end{array}\right) = \tilde{p};$$
+                            </li>
+                            <li>Disregarding the nonnegativity constraints, this equation always has a solution if the simplex is non-denegerated. It can be 
+                                found by
+                                $$\beta_c = (M^\top M)^{-1}M^\top \tilde{p}$$
+                                and (\beta\) is known as <b class="itext">barycentric coordinates of the point \(p\) in the simplex</b>. We just need 
+                                to check if all of them are nonnegative;
+                            </li><br>                       
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/image22.svg"
+                                style="max-width: 80%; height: auto; max-height: 60vh;">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    COMPUTING DISTANCES AND OTHER QUANTITIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">DISTANCE OF THE SIMPLEX TO THE ORIGIN</b>
+                </h3>
+
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <br>
+                            <li>Now we want to compute the distance between a simplex and a point \(p\). That is, we want to find \(\gamma \in \mathbb{R}^m\)
+                                that solves the following convex optimization problem: 
+                                $$\min_{\gamma} \|\sum_{i=1}^m a_i\gamma_i\|^2 \ \mbox{such that} \ \sum_{i=1}^m \gamma_i = 1 \ , \gamma_i \geq 0;
+                            </li>
+                            <li>We can do it recursively using the previous algorithm: first, check if the origin is inside the symplex, in which 
+                                case the distance is 0. If not, test all the lesser dimensional ;
+                            </li><br>                       
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/image22.svg"
+                                style="max-width: 80%; height: auto; max-height: 60vh;">
+                        </div>
+                    </div>
+                </div>
+            </section>
 
             <style>
                 .reveal .progress {
