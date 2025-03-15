@@ -2313,14 +2313,15 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li>A sub-algorithm is
+                            <li>An importa sub-algorithm for GJK is
                                 <b class="itext">$$c^*, \mathcal{P}' := \texttt{nearest_simplex}(\mathcal{P});$$ </b>
                                 It computes the closest point \(c^*\) from
                                 the simplex \(\mathcal{P}\) to the origin, and a new simplex \(\mathcal{P}'\) formed by
                                 the smallest sub-simplex of \(\mathcal{P}\)
                                 (edges, faces or vertexes) that contains \(c^*\);
                             </li><br>
-                            <li>This is a convex optimization problem that can be solved efficiently.</li>
+                            <li>This is a convex optimization problem that can be solved efficiently without the need 
+                                of specialized solvers.</li>
                         </ul>
                     </div>
 
@@ -2334,6 +2335,43 @@ for link in robot.links:
                 </div>
             </section>
 
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    COMPUTING DISTANCES AND OTHER QUANTITIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">GJK ALGORITHM</b>
+                </h3>
+
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <br>
+                            <li>The intuition behind the algorithm is to iteratively construct simplexes (e.g., triangles) 
+                                formed by vertexes of the polygon \(\mathcal{C}\) that are closer and closer to the origin;
+                            </li><br>
+                            <li>It searches for new vertexes of the polygon by searching for extreme points of the 
+                                polygon in a direction "torwards" the origin. Support functions comes into play here 
+                                because they do precisely that: a point in \(\mathcal{S}_{C}(d)\) is an extreme point 
+                                in the direction \(d\).
+                            </li><br>
+                            <li>Note that if \(c \in \mathcal{C}\), if \(-c\) is a vector that starts from \(c\), it points 
+                                towards the origin. So, it can be used as a search direction.</li>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/image26.svg"
+                                style="max-width: 80%; height: auto; max-height: 60vh;">
+                        </div>
+                    </div>
+                </div>
+            </section>
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
@@ -3025,10 +3063,112 @@ for link in robot.links:
 
                     <div
                         style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
-                        <div style="width: 100%">
-                            <img src="presentation/images/part2/image28.svg"
-                                style="max-width: 80%; height: auto; max-height: 60vh;">
+
+
+                        <div style="flex: 4; flex-direction: column">
+                            <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                                data-fragment-index="0">
+                                <div style="width: 90%">
+                                    <img src="presentation/images/part2/image28_0.svg"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                            </div>
+    
+                            <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                                data-fragment-index="1">
+                                <div style="width: 90%">
+                                    <img src="presentation/images/part2/image28_1.svg"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                            </div>
+    
+                            <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                                data-fragment-index="2">
+                                <div style="width: 90%">
+                                    <img src="presentation/images/part2/image28_2.svg"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                            </div>
+    
+    
+                            <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                                data-fragment-index="3">
+                                <div style="width: 90%">
+                                    <img src="presentation/images/part2/image28_3.svg"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                            </div>
+    
+                            <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                                data-fragment-index="4">
+                                <div style="width: 90%">
+                                    <img src="presentation/images/part2/image28_4.svg"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                            </div>
+    
+                            <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                                data-fragment-index="5">
+                                <div style="width: 90%">
+                                    <img src="presentation/images/part2/image28_5.svg"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                            </div>
+    
+                            <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                                data-fragment-index="6">
+                                <div style="width: 90%">
+                                    <img src="presentation/images/part2/image28_6.svg"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                            </div>
+    
+                            <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                                data-fragment-index="7">
+                                <div style="width: 90%">
+                                    <img src="presentation/images/part2/image28_7.svg"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                            </div>
+    
+                            <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                                data-fragment-index="8">
+                                <div style="width: 90%">
+                                    <img src="presentation/images/part2/image28_8.svg"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                            </div>
+    
+    
+                            <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                                data-fragment-index="9">
+                                <div style="width: 90%">
+                                    <img src="presentation/images/part2/image28_9.svg"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                            </div>
+    
+    
+                            <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                                data-fragment-index="10">
+                                <div style="width: 90%">
+                                    <img src="presentation/images/part2/image28_9.svg"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                            </div>
+    
+           
+    
+    
                         </div>
+                        <div style="font-size: 1.5vw; width: 100%; text-align: center; margin-top: 0rem;">
+                            <br><br><br><br><br><br>
+                                        Legend: <span style="color: #ffb66c;">\(c_{dir}\)</span> , <span style="color: red;">\(c_{new}\)</span>, 
+                           <span style="color: #ec2ed7;">\(\mathcal{P}\)</span> , <span style="color: #5983b0;">\(\mathcal{P}'\)</span>, <br>
+                           <span style="color: yellow;">\(-c_{dir}^\top(u-c_{new})=0\)</span>
+                        </div>
+
+
                     </div>
                 </div>
             </section>

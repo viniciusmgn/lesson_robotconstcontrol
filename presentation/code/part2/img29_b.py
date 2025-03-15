@@ -45,28 +45,11 @@ def closest_point_on_simplex(simplex):
             else:
                 return p3,s3
         
-
-
-def plot_line(a, p0, axis, xlim=(-10, 10)):
-    ax, ay = a
-    x0, y0 = p0
-
-    if ay == 0:  # Horizontal line case
-        x_vals = np.linspace(xlim[0], xlim[1], 100)
-        y_vals = np.full_like(x_vals, y0)
-    elif ax == 0:  # Vertical line case
-        x_vals = np.full(100, x0)
-        y_vals = np.linspace(-10, 10, 100)
-    else:
-        # Parametric equation: p = p0 + t * a
-        x_vals = np.linspace(xlim[0], xlim[1], 100)
-        y_vals = y0 - (ay / ax) * (x_vals - x0)
-
-    axis.plot(x_vals, y_vals, color='yellow', linewidth=2)
+ 
 
 
 
-def draw_step_gjk(polygon, simplex, subsimplex, closest_point, origin, vector, draw_contour,k,type,line=[]):
+def draw_pol_points(polygon, all_c):
 
     fig, ax = plt.subplots(figsize=(6, 6))
     ax.set_facecolor("#191919")  # Dark background
@@ -84,48 +67,19 @@ def draw_step_gjk(polygon, simplex, subsimplex, closest_point, origin, vector, d
     polygon = np.vstack((polygon,polygon[0,:]))
     ax.plot(*polygon.T, color='#81d41a', linewidth=2, linestyle='-', label="Polygon")
 
-    # Draw the simplex
-    if len(simplex)>0:
-        simplex = np.array(simplex)
-        simplex = np.vstack((simplex,simplex[0,:]))
-        if len(simplex) > 1:
-            ax.plot(*simplex.T, color='#ec2ed7', linewidth=2, linestyle='--', label="Simplex")
-        ax.scatter(*simplex.T, color='#ec2ed7', s=50, label="Simplex Vertices")
-
-    # Draw the subsimplex (1 or 2 points)
-    if len(subsimplex)>0:
-        subsimplex = np.array(subsimplex)
-        subsimplex = np.vstack((subsimplex,subsimplex[0,:]))
-        if len(subsimplex) > 1:
-            ax.plot(*subsimplex.T, color='#5983b0', linewidth=2, linestyle='-', label="Subsimplex")
-            
-
-        ax.scatter(*subsimplex.T, color='#5983b0', s=80, edgecolors='#5983b0', label="Subsimplex Vertices", zorder=3)
 
 
     # Draw the closest point to the origin
-    if len(closest_point)>0:
-        if type:
-            ax.scatter(*closest_point, color='#ffb66c', s=100, marker='o', edgecolors='#ffb66c', label="Closest Point", zorder=4)
-        else:
-            ax.scatter(*closest_point, color='#ff0000', s=100, marker='o', edgecolors='#ff0000', label="Closest Point", zorder=4)
+    for c in all_c:
+        ax.scatter(*c, color='#ffb66c', s=100, marker='o', edgecolors='#ffb66c', label="Closest Point", zorder=4)
+
         
-    #Draw the direction
-    if len(origin)>0:
-        ax.quiver(*np.array(origin), *np.array(vector), angles='xy', scale_units='xy', scale=1, color='#ff0000', linewidth=2, zorder=8)
-
-
-    ax.scatter(x=0,y=0, color='white', s=100, marker='o', edgecolors='white', label="Closest Point", zorder=4)
-    
-    if len(line)>0:
-        plot_line(line[0], line[1], ax, xlim=(-10, 10))
-    
     # Compute automatic axis limits
     all_points = np.vstack([polygon, [0, 0]])  # Include origin
     min_x_t, min_y_t = all_points.min(axis=0)
     max_x_t, max_y_t = all_points.max(axis=0)
     
-    delta = 0.25+max(max_x_t-min_x_t,max_y_t-min_y_t)
+    delta = 0*0.25+max(max_x_t-min_x_t,max_y_t-min_y_t)
     
     max_x = (max_x_t+min_x_t)/2 + delta/2
     min_x = (max_x_t+min_x_t)/2 - delta/2
@@ -139,32 +93,9 @@ def draw_step_gjk(polygon, simplex, subsimplex, closest_point, origin, vector, d
     ax.set_xlim(min_x - margin_x, max_x + margin_x)
     ax.set_ylim(min_y - margin_y, max_y + margin_y)
     
+    ax.scatter(x=0,y=0, color='white', s=100, marker='o', edgecolors='white', label="Closest Point", zorder=4)
     
-    if draw_contour:
-        # Create grid
-        x = np.linspace(min_x - margin_x, max_x + margin_x, 400)
-        y = np.linspace(min_y - margin_y, max_y + margin_y)
-        X, Y = np.meshgrid(x, y)
-        Z = vector[0]*X+vector[1]*Y
-        
-        
-        nrm = np.sqrt(vector[0]**2+vector[1]**2)
-        levels = [ nrm*0.1*(i-25) for i in range(40) ]
-        
-        lvl_min = levels[0]
-        lvl_max = levels[-1]
-        
-        # Plot contour lines
-        color_level=[]
-        for lvl in levels:
-            x = (lvl-lvl_min)/(lvl_max-lvl_min)
-            x=(1-x)**2
-            value_red = int(190*x)
-            value_green = int(50+205*x)
-            value_blue = int(190*x)
-            color_level.append( f"#{value_red:02X}{value_green:02X}{value_blue:02X}" )
-        
-        contour = ax.contour(X, Y, Z, levels=levels, colors=color_level,zorder=1)
+    
 
     # Axis lines
     # ax.axhline(0, color='white', linewidth=1)
@@ -185,17 +116,17 @@ def draw_step_gjk(polygon, simplex, subsimplex, closest_point, origin, vector, d
     ax.set_xlabel("")
     ax.set_ylabel("")
 
-    plt.savefig("/home/vinicius/Desktop/Aulas/Robot Constrained Control/presentation/images/part2/image28_"+str(k)+".svg")
+    plt.savefig("/home/vinicius/Desktop/Aulas/Robot Constrained Control/presentation/images/part2/image28.svg")
     plt.show()
     
 
 
 def support(polygon, direction):
-    direction_new = -np.array(direction)  # Convert direction to a NumPy array
+    direction = -np.array(direction)  # Convert direction to a NumPy array
     polygon = np.array(polygon)  # Convert polygon to a NumPy array
 
     # Compute dot products of all points with the direction vector
-    projections = np.dot(polygon, direction_new)
+    projections = np.dot(polygon, direction)
 
     # Find the index of the maximum projection
     max_index = np.argmax(projections)
@@ -247,23 +178,6 @@ b = np.matrix(np.zeros((0,1)))
 
 
   
-
-
-polygon= []
-
-f = np.sqrt(2)/2
-Q = np.matrix([[f,-f],[f,f]])
-H = Q.transpose()*np.matrix([[0.3,0],[0,1]])*Q
-for i in range(N):
-    t = 2*np.pi*(N-i)/N
-    r = 0.5+0.0*np.sin(1.8*t)
-    
-    x = H[0,0]*np.cos(t)+H[0,1]*np.sin(t)
-    y = H[1,0]*np.cos(t)+H[1,1]*np.sin(t)
-    
-    polygon.append([x-0.5,y+0.25])
-  
-##
 hh=-0.8
 xc = -1.2-1.27*hh
 yc = 1.2+0.568*hh
@@ -282,8 +196,7 @@ for i in range(N):
     
 polygon = compute_polygon_from_halfspaces(A,b)
 
-polygon[3][0]+=0.15  
-    
+polygon[3][0]+=0.15
 #polygon.append(polygon[0])
 
 # polygon.append(polygon[0])    
@@ -294,49 +207,16 @@ c_dir = polygon[-2]
 P = [c_dir]
     
 k = 0
+
+all_c=[c_dir]
 for i in range(4):
 
     c_new = support(polygon, c_dir)
-    
-    draw_step_gjk(polygon, P, [], c_dir, (0,0), c_dir, False,k,True)
-    
-    sep = c_dir[0]*c_new[0]+c_dir[1]*c_new[1]
-    
-    print(sep)
-    
-    k+=1
-    
-    
-    
-    draw_step_gjk(polygon, P, [], [], c_dir, (-c_dir[0],-c_dir[1]) , False,k,True)
-    
-    k+=1
-    
-    draw_step_gjk(polygon, P, [], [], c_dir, (-c_dir[0],-c_dir[1]) , True,k,True)
-    
-    k+=1
-    
-    draw_step_gjk(polygon, P, [], c_new, [], [] , False,k,False,[c_dir,c_new])
-    
-    k+=1
-
     P = P+[c_new]
-    
-    draw_step_gjk(polygon, P, [], [],[],[], False,k,True)
-    
-    k+=1
-    
-
-
-
     c_dir, P_sub = closest_point_on_simplex(P)
-
-
-    draw_step_gjk(polygon, P, P_sub, c_dir,[],[], False,k,True)
-    
-    k+=1
-
     P = P_sub
+    all_c.append(c_dir)
+
     
-    
+draw_pol_points(polygon, all_c)
 
