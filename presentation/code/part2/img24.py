@@ -43,9 +43,9 @@ fig, axs = plt.subplots(2, 1, figsize=(6, 12))
 fig.patch.set_facecolor("#191919")  # Set background color for the entire figure
 
 # Plot original polygons on the top subplot
-plot_polygons(axs[0], [pol_A + [pol_A[0]], pol_B + [pol_B[0]]], ['cyan', 'magenta'], "Original Polygons")
+plot_polygons(axs[0], [pol_A + [pol_A[0]], pol_B + [pol_B[0]]], ['#5983b0', '#ec2ed7'], "Original Polygons")
 
 # Plot Minkowski difference on the bottom subplot
-plot_polygons(axs[1], [minkowski_diff], ['lime'], "Minkowski Difference")
+plot_polygons(axs[1], [minkowski_diff], ['#81d41a'], "Minkowski Difference")
 
 plt.show()

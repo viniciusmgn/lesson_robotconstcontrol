@@ -66,13 +66,15 @@
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li> In this part, we will learn how to represent the environment and the robot geometrically, as well as how 
+                            <li> In this part, we will learn how to represent the environment and the robot
+                                geometrically, as well as how
                                 to compute distances and related quantities.
                             </li><br>
-                            <li>This is useful for modeling and implementing many control constraints, such as obstacle avoidance between the robot and 
+                            <li>This is useful for modeling and implementing many control constraints, such as obstacle
+                                avoidance between the robot and
                                 the environment.
-                            <br>
-                            
+                                <br>
+
                         </ul>
                     </div>
 
@@ -110,17 +112,18 @@
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li> In robotics, we need to represent the geometry of the <b class="itext">robot and environment</b> 
+                            <li> In robotics, we need to represent the geometry of the <b class="itext">robot and
+                                    environment</b>
                                 in a way that is convenient for calculations (such as computing distances).
                             </li><br>
-                            <li>Three main methods:  <br><br>
+                            <li>Three main methods: <br><br>
                                 <ul>
                                     <li><b class="itext">Convex shapes;</b></li><br>
                                     <li><b class="itext">Point clouds;</b></li><br>
                                     <li><b class="itext">Meshes;</b></li><br>
                                 </ul>
-                            <br>
-                            
+                                <br>
+
                         </ul>
                     </div>
 
@@ -149,23 +152,26 @@
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li> <b class="itext">Convex shapes</b> (i.e., if two points are inside the shape, the line segment between them is also inside) 
+                            <li> <b class="itext">Convex shapes</b> (i.e., if two points are inside the shape, the line
+                                segment between them is also inside)
                                 are the simplest way to represent geometry.
                             </li><br>
-                            <li> More complex shapes (such as non-convex ones) can be decomposed into simpler convex shapes.
+                            <li> More complex shapes (such as non-convex ones) can be decomposed into simpler convex
+                                shapes.
                             </li><br>
                             <li><b class="itext">Pros: </b> Simple and fast for calculations.</li><br>
-                            <li><b class="itext">Cons: </b> Decomposing a complex shape into simple convex shapes can be time-consuming, 
+                            <li><b class="itext">Cons: </b> Decomposing a complex shape into simple convex shapes can be
+                                time-consuming,
                                 especially if it needs to be done in real time.</li><br>
                         </ul>
-                        
+
                     </div>
 
                     <div
                         style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
                         <div style="width: 100%">
                             <iframe src="presentation/images/part2/part_2_1.html" width="550" height="580"
-                            style="border: none;"></iframe>
+                                style="border: none;"></iframe>
                         </div>
                     </div>
                 </div>
@@ -188,21 +194,21 @@
                             <br>
                             <li> This is usually used when you <b class="itext">know the geometry a priori</b>.
                             </li><br>
-                            <li> For example, it is very reasonable to model a manipulator using convex geometries 
+                            <li> For example, it is very reasonable to model a manipulator using convex geometries
                                 since its geometry is known beforehand.
                             </li><br>
-                            <li>For the environment, this applies, for example, to a warehouse where robots operate. 
-                                The geometry of the warehouse is perfectly known, allowing sufficient time for 
+                            <li>For the environment, this applies, for example, to a warehouse where robots operate.
+                                The geometry of the warehouse is perfectly known, allowing sufficient time for
                                 pre-processing and decomposing parts into convex shapes.</li><br>
                         </ul>
-                        
+
                     </div>
 
                     <div
                         style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
                         <div style="width: 100%">
                             <iframe src="presentation/images/part2/part_2_2.html" width="550" height="580"
-                            style="border: none;"></iframe>
+                                style="border: none;"></iframe>
                         </div>
                     </div>
                 </div>
@@ -223,13 +229,16 @@
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li> <b class="itext">Point clouds</b> represent an object using a finite set of points \(p_i\).
+                            <li> <b class="itext">Point clouds</b> represent an object using a finite set of points
+                                \(p_i\).
                             </li><br>
-                            <li><b class="itext">Pros: </b> Highly flexible. Data can be obtained almost directly from sensors.</li><br>
-                            <li><b class="itext">Cons: </b> Operations on point clouds can be time-consuming, as they may contain 
+                            <li><b class="itext">Pros: </b> Highly flexible. Data can be obtained almost directly from
+                                sensors.</li><br>
+                            <li><b class="itext">Cons: </b> Operations on point clouds can be time-consuming, as they
+                                may contain
                                 tens of millions of points.</li><br>
                         </ul>
-                        
+
                     </div>
 
                     <div
@@ -237,7 +246,7 @@
                         <div style="width: 100%">
                             <div style="width: 100%">
                                 <iframe src="presentation/images/part2/part_2_3.html" width="550" height="580"
-                                style="border: none;"></iframe>
+                                    style="border: none;"></iframe>
                             </div>
                             <div style="width: 100%">
                                 <div style="font-size: 1.2vw; text-align: center; flex-shrink: 0; margin-bottom: 0rem;">
@@ -270,16 +279,19 @@
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li> Laser-based sensors such as RGB-D (RGB + Depth) cameras or LiDAR (Light Detection and Ranging) can capture this data.
+                            <li> Laser-based sensors such as RGB-D (RGB + Depth) cameras or LiDAR (Light Detection and
+                                Ranging) can capture this data.
                             </li><br>
-                            <li> LiDAR is better for long-range sensing, whereas RGB-D is more suitable for short-range applications. 
+                            <li> LiDAR is better for long-range sensing, whereas RGB-D is more suitable for short-range
+                                applications.
                                 LiDAR sensors are also more expensive.
                             </li><br>
-                            <li> Pre-processing is required, including sampling, noise reduction, etc. 
-                                Some additional pre-processing may also be necessary for efficient distance computation, as we will see.
+                            <li> Pre-processing is required, including sampling, noise reduction, etc.
+                                Some additional pre-processing may also be necessary for efficient distance computation,
+                                as we will see.
                             </li><br>
                         </ul>
-                        
+
                     </div>
 
                     <div
@@ -289,7 +301,7 @@
                                 <img src="presentation/images/part2/image1.svg"
                                     style="max-width: 80%; height: auto; max-height: 60vh;">
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -312,14 +324,17 @@
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li> <b class="itext">Meshes</b> represent an object as a union of small simple shapes (usually triangles).</li><br>
+                            <li> <b class="itext">Meshes</b> represent an object as a union of small simple shapes
+                                (usually triangles).</li><br>
                             <li> This is an intermediate solution between convex shapes and point clouds.</li><br>
-                            <li><b class="itext">Pros: </b> Quite versatile and can represent objects more compactly than point clouds 
+                            <li><b class="itext">Pros: </b> Quite versatile and can represent objects more compactly
+                                than point clouds
                                 (especially for flat surfaces).</li><br>
-                            <li><b class="itext">Cons: </b> Decomposing the environment into meshes can be complex and time-consuming, 
+                            <li><b class="itext">Cons: </b> Decomposing the environment into meshes can be complex and
+                                time-consuming,
                                 especially for real-time applications.</li><br>
                             <li><b class="itext">Not covered in this class; UAIBot does not support it either!</b></li>
-                            
+
                         </ul>
                     </div>
 
@@ -327,7 +342,7 @@
                         style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
                         <div style="width: 100%">
                             <iframe src="presentation/images/part2/part_2_4.html" width="580" height="580"
-                            style="border: none;"></iframe>
+                                style="border: none;"></iframe>
                         </div>
                         <div style="width: 100%">
                             <div style="font-size: 1.2vw; text-align: center; flex-shrink: 0; margin-bottom: 0rem;">
@@ -356,15 +371,16 @@
                             <br>
                             <li> As it was said, modeling the robot with convex shapes is pretty reasonable;
                             </li><br>
-                            <li> It works as follows: for each link \(i\) of the robot, we will select the shapes we 
-                                want to use to cover this object. 
-                                We will decompose the \(i^{th}\) link into 
-                                \(k(i)\) convex objects. 
+                            <li> It works as follows: for each link \(i\) of the robot, we will select the shapes we
+                                want to use to cover this object.
+                                We will decompose the \(i^{th}\) link into
+                                \(k(i)\) convex objects.
                             </li><br>
-                            <li> Each one of these objects has its own frame, \(\mathcal{F}_{obj,k,i}\). On the other hand, the 
-                                \(i^{th}\) link also has a frame attached to it. For example, we can use the 
+                            <li> Each one of these objects has its own frame, \(\mathcal{F}_{obj,k,i}\). On the other
+                                hand, the
+                                \(i^{th}\) link also has a frame attached to it. For example, we can use the
                                 \(i^{th}\) DH frame \(\mathcal{F}_{DHi}\).</li><br>
-                                <li>    To complete the model, we just need to specify the 
+                            <li> To complete the model, we just need to specify the
                                 <b class="itext">constant</b> transformations between \(\mathcal{F}_{DHi}\) and
                                 \(\mathcal{F}_{obj,k,i}\). Lets call it \(T_{Obj,k,i}^{DHi}\).
                             </li><br>
@@ -396,12 +412,13 @@
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li> Then, later, we will need the updated HTM of the objects \(T_0^{obj,k,i}(q)\), with relation to a fixed frame 
-                                \(\mathcal{F}_0\), that composes the robot given the 
+                            <li> Then, later, we will need the updated HTM of the objects \(T_0^{obj,k,i}(q)\), with
+                                relation to a fixed frame
+                                \(\mathcal{F}_0\), that composes the robot given the
                                 configuration \(q\) of the manipulator;
                             </li><br>
                             <li> From forward kinematics, we have the transformation \(T_{0}^{DHi}(q)\). Thus, simply:
-                                $$ T_0^{obj,k,i}(q) =  T_{0}^{DHi}(q)T_{DHi}^{obj,k,i}$$
+                                $$ T_0^{obj,k,i}(q) = T_{0}^{DHi}(q)T_{DHi}^{obj,k,i}$$
                             </li><br>
                         </ul>
                     </div>
@@ -433,7 +450,7 @@
                             <br>
                             <li> In UAIBot, you can fetch this modeling information from a robot as follows:
                                 <br><br>
-        <pre><code class="language-python" style="text-align:left">
+                                <pre><code class="language-python" style="text-align:left">
 import uaibot as ub
 
 #Create the robot
@@ -471,7 +488,7 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
                         <div style="width: 100%">
                             <iframe src="presentation/images/part2/part_2_2.html" width="550" height="580"
-                            style="border: none;"></iframe>
+                                style="border: none;"></iframe>
                         </div>
                     </div>
                 </div>
@@ -493,16 +510,18 @@ for link in robot.links:
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
                             <li> A common approach is to model the robot using only spheres.</li><br>
-                            <li> The tradeoff is that, although the total number of convex objects needed to cover the robot increases, 
-                                computing distances and other properties with spheres is much simpler than with general convex shapes.</li><br>
-                            <li>Is it worth it? It seems so. State-of-the-art motion planners such as 
+                            <li> The tradeoff is that, although the total number of convex objects needed to cover the
+                                robot increases,
+                                computing distances and other properties with spheres is much simpler than with general
+                                convex shapes.</li><br>
+                            <li>Is it worth it? It seems so. State-of-the-art motion planners such as
                                 <a href="https://curobo.org/" target="_blank">
                                     <b class="hlink">cuRobo</b>
                                 </a> and <a href="https://github.com/KavrakiLab/vamp" target="_blank">
-                                <b class="hlink">VAMP</b></a> use sphere modeling.
+                                    <b class="hlink">VAMP</b></a> use sphere modeling.
                             </li><br>
                             <li>The jury is still out, though. I believe sphere modeling can be beaten.</li>
-                            
+
                         </ul>
                     </div>
 
@@ -510,7 +529,7 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
                         <div style="width: 100%">
                             <iframe src="presentation/images/part2/part_2_5.html" width="550" height="580"
-                            style="border: none;"></iframe>
+                                style="border: none;"></iframe>
                         </div>
                     </div>
                 </div>
@@ -540,11 +559,53 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li> A set \(\mathcal{S} \subseteq \mathbb{R}^n\) is <b class="ttext">convex</b> if for any two points in the set, 
-                                the line that connects them is also in the set. Formally:
-                                $$\{ u_1, u_2 \in \mathcal{S} \ \rightarrow \ \forall \alpha \in [0,1], \alpha u_1 + (1-\alpha) u_2 \in \mathcal{S}\};$$
+                            <li>  <b class="ttext">Convexity</b> is a key property in geometry that will be necessary to our studies;
                             </li><br>
-                            <li>For sure one of the most important concepts in geometry;</li>
+                            <li>In some sense, it is the "linear algebra" of geometry: just like non-linearities can be studied by tools of linear algebra, 
+                                non-convexity can be studded using tools from convexity theorem;</li><br>
+                            <li>I will present (and discuss) some basic results here. If you want to know more, I recommend Chapter 3 of
+                                <a href="https://web.stanford.edu/~boyd/cvxbook/bv_cvxbook.pdf" target="_blank"
+                                        style="font-size: 1.5vw;">
+                                        <b class="hlink">Boyd's classical book</b>
+                                    </a>;
+                            </li>
+
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/image3.svg"
+                                style="max-width: 80%; height: auto; max-height: 60vh;">
+                        </div>
+                    </div>
+                </div>
+            </section>            
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CONVEX ANALYSIS BASICS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">DEFINITION OF CONVEXITY</b>
+                </h3>
+
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <br>
+                            <li> A set \(\mathcal{S} \subseteq \mathbb{R}^n\) is <b class="ttext">convex</b> if for any
+                                two points in the set,
+                                the line that connects them is also in the set. Formally:
+                                $$\{ u_1, u_2 \in \mathcal{S} \ \rightarrow \ \forall \alpha \in [0,1], \alpha u_1 +
+                                (1-\alpha) u_2 \in \mathcal{S}\};$$
+                            </li><br>
+
 
                         </ul>
                     </div>
@@ -574,23 +635,28 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.3vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li> A set \(\mathcal{S}\) is said to be  <b class="ttext">closed</b> if, "essentially" (the formal definition is trickier),
-                                 it contains its boundary, called \(\partial \mathcal{S}\).
+                            <li> A set \(\mathcal{S}\) is said to be <b class="ttext">closed</b> if, "essentially" (the
+                                formal definition is trickier),
+                                it contains its boundary, called \(\partial \mathcal{S}\).
                             </li><br>
-                            <li> A set is said to be  <b class="ttext">bounded</b> if there exists a ball of finite radius that covers it.
-                           </li><br>
-                           <li> A set is said to be  <b class="ttext">compact</b> if it is closed and bounded.
-                           </li><br>
-                            <li>A closed convex set is said to be <b class="ttext">strictly convex</b> if the line that connects the points is contained 
-                                entirely inside the set (not in the border), with the possible exception of the initial and final points. 
+                            <li> A set is said to be <b class="ttext">bounded</b> if there exists a ball of finite
+                                radius that covers it.
+                            </li><br>
+                            <li> A set is said to be <b class="ttext">compact</b> if it is closed and bounded.
+                            </li><br>
+                            <li>A closed convex set is said to be <b class="ttext">strictly convex</b> if the line that
+                                connects the points is contained
+                                entirely inside the set (not in the border), with the possible exception of the initial
+                                and final points.
                                 Intuitively, this means that the object's boundary has no "flat" sides. Formally:
-                                $$\{ u_1, u_2 \in \mathcal{S} \ \rightarrow \ \forall \alpha \in (0,1), \alpha u_1 + (1-\alpha) u_2 \in \mathcal{S}-\partial \mathcal{S}\};$$
-                            <br>
+                                $$\{ u_1, u_2 \in \mathcal{S} \ \rightarrow \ \forall \alpha \in (0,1), \alpha u_1 +
+                                (1-\alpha) u_2 \in \mathcal{S}-\partial \mathcal{S}\};$$
+                                <br>
                         </ul>
                     </div>
 
                     <div
-                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: righ;; height: 100%;">
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: righ; height: 100%;">
                         <div style="width: 90%">
                             <img src="presentation/images/part2/image4.svg"
                                 style="max-width: 80%; height: auto; max-height: 60vh;">
@@ -614,19 +680,25 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.45vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li> An important operation between sets is the <b class="ttext">Minkowski sum and subtraction</b>:<br>
-                                <b class="itext">$$\mathcal{A} \oplus \mathcal{B} = \{ a + b  ,  a \in \mathcal{A}  , b \in \mathcal{B}\};$$</b>
-                                <b class="itext">$$\mathcal{A} \ominus \mathcal{B} = \{ a - b  ,  a \in \mathcal{A}  , b \in \mathcal{B}\};$$</b>
+                            <li> An important operation between sets is the <b class="ttext">Minkowski sum and
+                                    subtraction</b>:<br>
+                                <b class="itext">$$\mathcal{A} \oplus \mathcal{B} = \{ a + b , a \in \mathcal{A} , b \in
+                                    \mathcal{B}\};$$</b>
+                                <b class="itext">$$\mathcal{A} \ominus \mathcal{B} = \{ a - b , a \in \mathcal{A} , b
+                                    \in \mathcal{B}\};$$</b>
                             </li><br>
-                            <li> The Minkowski sum is the set of all possible pairwise sums of points in the two sets. It can also be thought of 
-                                as "sweeping" one set over the boundary of the other.
+                            <li> The Minkowski sum is the set of all possible pairwise sums of points in the two sets.
+                                If one set, say \(\mathcal{A}\), has its origin at the center, it can also be thought of
+                                as "sweeping" \(\mathcal{A}\) over the boundary of \(\mathcal{B}\).
                             </li><br>
-                            <li> Minkowski subtraction is simply the Minkowski sum between \(\mathcal{A}\) and the set of opposites of \(\mathcal{B}\), 
-                                called \(-\mathcal{B}\). Thus, \(\mathcal{A} \ominus \mathcal{B} = \mathcal{A} \oplus (-\mathcal{B})\).
+                            <li> Minkowski subtraction is simply the Minkowski sum between \(\mathcal{A}\) and the set
+                                of opposites of \(\mathcal{B}\),
+                                called \(-\mathcal{B}\). Thus, \(\mathcal{A} \ominus \mathcal{B} = \mathcal{A} \oplus
+                                (-\mathcal{B})\).
                             </li><br>
                             <li> Defined for arbitrary sets but especially important for convex sets.
                             </li><br>
-                            
+
                         </ul>
                     </div>
 
@@ -655,24 +727,29 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.45vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li> <b class="ttext">Prop 1:</b> the intersection of convex sets \(\mathcal{A} \cap \mathcal{B}\) is convex. 
+                            <li> <b class="ttext">Prop 1:</b> the intersection of convex sets \(\mathcal{A} \cap
+                                \mathcal{B}\) is convex.
                                 This is not true for the union, though;<br>
                             </li><br>
-                            <li> <b class="ttext">Prop 2:</b> the cartesian product \(\mathcal{A} \times \mathcal{B}\) of convex sets is convex;<br>
+                            <li> <b class="ttext">Prop 2:</b> the cartesian product \(\mathcal{A} \times \mathcal{B}\)
+                                of convex sets is convex;<br>
                             </li><br>
-                            <li> <b class="ttext">Prop 3:</b> the Minkowsky sum and subtraction of convex sets is convex;<br>
+                            <li> <b class="ttext">Prop 3:</b> the Minkowsky sum and subtraction of convex sets is
+                                convex;<br>
                             </li><br>
-                            <li> <b class="ttext">Prop 4:</b> for any point \(u\) in the boundary of the set, consider the tangent hyperplane to the set at this point. 
-                                The set is contained entirely in one of the sides of the hyperplane;<br>    
+                            <li> <b class="ttext">Prop 4:</b> for any point \(u\) in the boundary of the set, consider
+                                the tangent hyperplane to the set at this point.
+                                The set is contained entirely in one of the sides of the hyperplane;<br>
                             </li><br>
                             <li>
                                 <div style="background-color: #282828">
-                                    <b class="ttext">Prop 5 (Separating hyperplane theorem):</b> if two sets are convex, either they have an intersection, or 
+                                    <b class="ttext">Prop 5 (Separating hyperplane theorem):</b> if two sets are convex,
+                                    either they have an intersection, or
                                     there is a separating hyperplane that separates them;
                                 </div>
                                 <br>
-                                </li>
- 
+                            </li>
+
                         </ul>
                     </div>
 
@@ -701,24 +778,29 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.45vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li> A very useful way to handle convexity using analytic geometry is through <b class="itext">convex functions</b>.<br>
+                            <li> A very useful way to handle convexity using analytic geometry is through <b
+                                    class="itext">convex functions</b>.<br>
                             </li><br>
-                            <li> A function \(f: \mathbb{R}^n \mapsto \mathbb{R}\) is said to be a <b class="ttext">convex function</b> if 
+                            <li> A function \(f: \mathbb{R}^n \mapsto \mathbb{R}\) is said to be a <b
+                                    class="ttext">convex function</b> if
                                 <b class="itext">\(\forall u_1, u_2 \in \mathbb{R}^n \ , \alpha \in [0,1]\)</b>:<br>
-                                <b class="itext"> $$ f(\alpha u_1+(1-\alpha) u_2) \leq \alpha f(u_1) + (1-\alpha) f(u_2);$$</b>
+                                <b class="itext"> $$ f(\alpha u_1+(1-\alpha) u_2) \leq \alpha f(u_1) + (1-\alpha)
+                                    f(u_2);$$</b>
                             </li><br>
                             <li> Geometrically, this means two things:
                                 <ul>
-                                    <li>That for any two points \((u_1,f(u_1))\) and \((u_2,f(u_2))\) on the graph, 
-                                        the function's plot is either touching or below the straight line connecting them.</li>
-                                    <li>That the <b class="itext">epigraph</b>, i.e., the \(n+1\)-dimensional 
-                                        set \( \mathcal{V} = \{u \in \mathbb{R}^n , v \in \mathbb{R} \ , \ v \geq f(u)\} \),
+                                    <li>That for any two points \((u_1,f(u_1))\) and \((u_2,f(u_2))\) on the graph,
+                                        the function's plot is either touching or below the straight line connecting
+                                        them.</li>
+                                    <li>That the <b class="itext">epigraph</b>, i.e., the \(n+1\)-dimensional
+                                        set \( \mathcal{V} = \{u \in \mathbb{R}^n , v \in \mathbb{R} \ , \ v \geq f(u)\}
+                                        \),
                                         is convex.</li>
                                 </ul>
                                 <br>
                             </li><br>
                             <li>Example: \(f(u)=u^2\).</li>
-                            
+
 
                         </ul>
                     </div>
@@ -748,16 +830,21 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.45vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li> A function \(f: \mathbb{R}^n \mapsto \mathbb{R}\) is said to be a <b class="ttext">strictly convex function</b> if 
+                            <li> A function \(f: \mathbb{R}^n \mapsto \mathbb{R}\) is said to be a <b
+                                    class="ttext">strictly convex function</b> if
                                 <b class="itext">\(\forall u_1, u_2 \in \mathbb{R}^n \ , \alpha \in (0,1)\)</b>:<br>
-                                <b class="itext">$$ f(\alpha u_1+(1-\alpha) u_2) < \alpha f(u_1) + (1-\alpha) f(u_2);$$</b>
+                                <b class="itext">$$ f(\alpha u_1+(1-\alpha) u_2) < \alpha f(u_1) + (1-\alpha)
+                                        f(u_2);$$</b>
                             </li><br>
-                            <li>Note the difference from before: \(\alpha\) should lie in the open interval \((0,1)\) and 
+                            <li>Note the difference from before: \(\alpha\) should lie in the open interval \((0,1)\)
+                                and
                                 it should be \(<\) other than \(\leq\);</li><br>
-                            <li> As you probably expected, the epigraph is now strictly convex, and the plot of the graph should 
+                            <li> As you probably expected, the epigraph is now strictly convex, and the plot of the
+                                graph should
                                 be strictly below the straight line, except for the starting and end points; <br>
                             </li><br>
-                            <li>Example: the function \(f(u)=u^2\) is strictly convex, but \(f(u)=|u|\) is only convex;</li>
+                            <li>Example: the function \(f(u)=u^2\) is strictly convex, but \(f(u)=|u|\) is only convex;
+                            </li>
 
                         </ul>
                     </div>
@@ -787,15 +874,20 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.45vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li> <b class="ttext">Prop 1:</b> if \(f,g: \mathbb{R}^n \mapsto \mathbb{R}\) is convex and \(A,B \geq 0\), 
+                            <li> <b class="ttext">Prop 1:</b> if \(f,g: \mathbb{R}^n \mapsto \mathbb{R}\) is convex and
+                                \(A,B \geq 0\),
                                 the function \(h(u) = Af(u)+Bg(u)\) is also convex;</li><br>
-                            <li> <b class="ttext">Prop 2:</b> if \(f,g: \mathbb{R}^n \mapsto \mathbb{R}\) is convex, then 
-                                \(h(u) = \max(f(u),g(u))\) is convex;</li><br> 
-                            <li> <b class="ttext">Prop 3:</b> all convex functions are continuous. Furthermore, if it is differentiable, 
+                            <li> <b class="ttext">Prop 2:</b> if \(f,g: \mathbb{R}^n \mapsto \mathbb{R}\) is convex,
+                                then
+                                \(h(u) = \max(f(u),g(u))\) is convex;</li><br>
+                            <li> <b class="ttext">Prop 3:</b> all convex functions are continuous. Furthermore, if it is
+                                differentiable,
                                 the derivative is bounded;</li><br>
-                            <li> <b class="ttext">Prop 4:</b>  if \(f: \mathbb{R}^n \mapsto \mathbb{R}\) is convex and \(g: \mathbb{R}^m \mapsto \mathbb{R}^n\) 
-                                is an <b class="itext"> affine function \(g(u)=Au+b\)</b>, then \(h(u)=f(g(u))\) is convex. Furthermore, if 
-                                \(n=m\) and \(g\) is bijective, if \(f\) is strictly convex, so is \(h\);</li><br>            
+                            <li> <b class="ttext">Prop 4:</b> if \(f: \mathbb{R}^n \mapsto \mathbb{R}\) is convex and
+                                \(g: \mathbb{R}^m \mapsto \mathbb{R}^n\)
+                                is an <b class="itext"> affine function \(g(u)=Au+b\)</b>, then \(h(u)=f(g(u))\) is
+                                convex. Furthermore, if
+                                \(n=m\) and \(g\) is bijective, if \(f\) is strictly convex, so is \(h\);</li><br>
                         </ul>
                     </div>
 
@@ -825,18 +917,24 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.4vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
- 
-                            <li> <b class="ttext">Prop 5:</b> <b class="itext"> if (but not only if)</b> the function \(f(u)\) is convex, the 
-                                <b class="itext">sublevel sets</b> \(\mathcal{L}(c) = \{u \in \mathbb{R}^n \ | \ f(u) \leq c\}\) for a constant \(c\) are convex. Furthermore, if \(f(u)\) is strictly convex, 
-                            the sets are strictly convex. The function \(f(u) = \sqrt{|u|}\) is an example to the "only if" claim;</li><br> 
-                            
+
+                            <li> <b class="ttext">Prop 5:</b> <b class="itext"> if (but not only if)</b> the function
+                                \(f(u)\) is convex, the
+                                <b class="itext">sublevel sets</b> \(\mathcal{L}(c) = \{u \in \mathbb{R}^n \ | \ f(u)
+                                \leq c\}\) for a constant \(c\) are convex. Furthermore, if \(f(u)\) is strictly convex,
+                                the sets are strictly convex. The function \(f(u) = \sqrt{|u|}\) is an example to the
+                                "only if" claim;
+                            </li><br>
+
                             <li>
-                                Thus, we can represent a convex sets as \(f(u) \leq 0\) for a convex function \(f\). 
-                                Since the intersection of convex sets is also convex (see <b class="ttext">Prop 1 of convex sets</b>), a convex set can be also characterized as 
-                                $$\mathcal{S} = \{u \in \mathbb{R}^n \ | \ f_i(u) \leq 0 \ i = 1,...,n\};$$</li><br> 
-                            <li>    
-                                This is specially useful for <b class="itext">polyhedras</b> 
-                                (i.e., convex shapes with flat faces), which  can be described like this when \(f_i(u) = a_i^\top u-b_i\) are affine functions. 
+                                Thus, we can represent a convex sets as \(f(u) \leq 0\) for a convex function \(f\).
+                                Since the intersection of convex sets is also convex (see <b class="ttext">Prop 1 of
+                                    convex sets</b>), a convex set can be also characterized as
+                                $$\mathcal{S} = \{u \in \mathbb{R}^n \ | \ f_i(u) \leq 0 \ i = 1,...,n\};$$</li><br>
+                            <li>
+                                This is specially useful for <b class="itext">polyhedras</b>
+                                (i.e., convex shapes with flat faces), which can be described like this when \(f_i(u) =
+                                a_i^\top u-b_i\) are affine functions.
                             </li>
                         </ul>
                     </div>
@@ -871,14 +969,19 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.4vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li> <b class="ttext">Prop 6:</b> convex functions have  <b class="itext"> no local maxima</b> 
+                            <li> <b class="ttext">Prop 6:</b> convex functions have <b class="itext"> no local
+                                    maxima</b>
                                 (i.e., points \(u_{max}\) in which around every point has a smaller value );</li><br>
-                            <li> <b class="ttext">Prop 7:</b>  For convex functions, all  
-                                <b class="itext"> local minima</b> (i.e., points \(u_{min}\) in which around every point has a larger value), if they exist, 
-                                are <b class="itext">global</b>, that is, they achieve the smallest possible value for \(f(u)\). Furthermore, 
-                                the set of local (global) minima is convex;</li><br>    
-                            <li> <b class="ttext">Prop 8:</b> if \(f(u)\) is strictly convex, the set of global minima is either empty 
-                                or a single point;</li><br>                                
+                            <li> <b class="ttext">Prop 7:</b> For convex functions, all
+                                <b class="itext"> local minima</b> (i.e., points \(u_{min}\) in which around every point
+                                has a larger value), if they exist,
+                                are <b class="itext">global</b>, that is, they achieve the smallest possible value for
+                                \(f(u)\). Furthermore,
+                                the set of local (global) minima is convex;
+                            </li><br>
+                            <li> <b class="ttext">Prop 8:</b> if \(f(u)\) is strictly convex, the set of global minima
+                                is either empty
+                                or a single point;</li><br>
                         </ul>
                     </div>
 
@@ -907,17 +1010,26 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.4vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li> <b class="ttext">Prop 8:</b> if the convex function \(f\) is differentiable, then, for any points \(u_1,u_2\):
-                            $$ \nabla f(u_1)^\top (u_1-u_2) \geq f(u_1)-f(u_2);$$
-                            In one dimension, this can be rewritten as \(f(u) \geq f'(u_0)(x-u_0)+f(u_0)\), which means that the graph of 
-                            \(v=f(u)\) is always above the tangent line at any point \(u_0\);
+                            <li> <b class="ttext">Prop 8:</b> if the convex function \(f\) is differentiable, then, for
+                                any points \(u_1,u_2\):
+                                $$ \nabla f(u_1)^\top (u_1-u_2) \geq f(u_1)-f(u_2);$$
+                                In one dimension, this can be rewritten as \(f(u) \geq f'(u_0)(x-u_0)+f(u_0)\), which
+                                means that the graph of
+                                \(v=f(u)\) is always above the tangent line at any point \(u_0\);
                             </li><br>
-                            <li> <b class="ttext">Prop 9:</b> if \(f(u)\) is two times differentiable, it is convex <b class="itext">if and only if</b> the 
-                                <b class="itext">Hessian matrix</b> \(\frac{\partial^2 f}{\partial u^2}(u)\) is a positive semidefinite 
-                                matrix for all \(u\);</li><br>      
-                            <li> <b class="ttext">Prop 10:</b> if \(f(u)\) is two times differentiable, it is strictly convex <b class="itext"> if (but not only if)</b> the 
-                                <b class="itext">Hessian matrix</b> \(\frac{\partial^2 f}{\partial u^2}(u)\) is a positive definite 
-                                matrix for all \(u\). The function \(f(u)=x^4\) is a counterexample to the "only if" claim;</li><br>                            
+                            <li> <b class="ttext">Prop 9:</b> if \(f(u)\) is two times differentiable, it is convex <b
+                                    class="itext">if and only if</b> the
+                                <b class="itext">Hessian matrix</b> \(\frac{\partial^2 f}{\partial u^2}(u)\) is a
+                                positive semidefinite
+                                matrix for all \(u\);
+                            </li><br>
+                            <li> <b class="ttext">Prop 10:</b> if \(f(u)\) is two times differentiable, it is strictly
+                                convex <b class="itext"> if (but not only if)</b> the
+                                <b class="itext">Hessian matrix</b> \(\frac{\partial^2 f}{\partial u^2}(u)\) is a
+                                positive definite
+                                matrix for all \(u\). The function \(f(u)=x^4\) is a counterexample to the "only if"
+                                claim;
+                            </li><br>
                         </ul>
                     </div>
 
@@ -947,17 +1059,19 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.4vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li> We saw the definition of <b class="itext">convex sets and convex functions</b>. We now define 
-                               a <b class="ttext">convex optimization problem</b>:
-                            $$ \min_{u \in \mathcal{U}} f(u)$$
-                            in which \(f: \mathbb{R}^n \mapsto \mathbb{R}\) is a convex function, and \(\mathcal{U}\subseteq \mathbb{R}^n\) 
-                            is a convex set;
+                            <li> We saw the definition of <b class="itext">convex sets and convex functions</b>. We now
+                                define
+                                a <b class="ttext">convex optimization problem</b>:
+                                $$ \min_{u \in \mathcal{U}} f(u)$$
+                                in which \(f: \mathbb{R}^n \mapsto \mathbb{R}\) is a convex function, and
+                                \(\mathcal{U}\subseteq \mathbb{R}^n\)
+                                is a convex set;
                             </li><br>
-                            <li> Overall, it is the easiest class of optimization problems. Generally, it can be solved 
+                            <li> Overall, it is the easiest class of optimization problems. Generally, it can be solved
                                 very efficiently;
                             </li><br>
                             <li> But why?
-                            </li><br>                             
+                            </li><br>
                         </ul>
                     </div>
 
@@ -987,18 +1101,22 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.4vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li> For the sake of simplicity, let's assume that \(f\) is differentiable and that \(\mathcal{U}=\mathbb{R}^n\) 
+                            <li> For the sake of simplicity, let's assume that \(f\) is differentiable and that
+                                \(\mathcal{U}=\mathbb{R}^n\)
                                 (i.e., no constraints).
                             </li><br>
-                            <li> One of the most powerful ideas in optimization (and applied mathematics) is <b class="itext">gradient descent</b>: 
-                                if you want to minimize \(f(u)\), take steps in the direction opposite to the gradient \(\nabla f(u)\), starting from an initial point \(u[0]\):
+                            <li> One of the most powerful ideas in optimization (and applied mathematics) is <b
+                                    class="itext">gradient descent</b>:
+                                if you want to minimize \(f(u)\), take steps in the direction opposite to the gradient
+                                \(\nabla f(u)\), starting from an initial point \(u[0]\):
                                 $$u[k+1] = u[k] - \eta[k] \nabla f(u[k]);$$
                                 for some \(\eta[k] > 0\) (which may vary with \(k\)).
-                            </li><br>  
-                            <li> If the step size is chosen appropriately, the function \(f(u)\) will decrease as long as movement is possible, 
+                            </li><br>
+                            <li> If the step size is chosen appropriately, the function \(f(u)\) will decrease as long
+                                as movement is possible,
                                 that is, as long as \(\nabla f(u) \not= 0\).
-                            </li><br>    
-                                                  
+                            </li><br>
+
                         </ul>
                     </div>
 
@@ -1027,15 +1145,20 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.4vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li> A major issue with this approach, which is the bane of (continuous) optimization, is <b class="itext">local minima</b>. 
-                                At these points \(u\), \(\nabla f(u) = 0\), but the true minimum of \(f(u)\) is not achieved. 
-                                Gradient descent can become trapped in a local minimum instead of reaching the true <b class="itext">global minimum</b>.
-                            </li><br>    
-                            <li> This is not a problem for convex functions because, as mentioned in <b class="ttext">Prop 7</b> earlier, 
-                                <b class="itext">convex functions only have global minima</b>. Therefore, if \(\nabla f(u[k])=0\), we can 
+                            <li> A major issue with this approach, which is the bane of (continuous) optimization, is <b
+                                    class="itext">local minima</b>.
+                                At these points \(u\), \(\nabla f(u) = 0\), but the true minimum of \(f(u)\) is not
+                                achieved.
+                                Gradient descent can become trapped in a local minimum instead of reaching the true <b
+                                    class="itext">global minimum</b>.
+                            </li><br>
+                            <li> This is not a problem for convex functions because, as mentioned in <b
+                                    class="ttext">Prop 7</b> earlier,
+                                <b class="itext">convex functions only have global minima</b>. Therefore, if \(\nabla
+                                f(u[k])=0\), we can
                                 be certain that we have reached a global minimum.
                             </li>
-                                                   
+
                         </ul>
                     </div>
 
@@ -1065,17 +1188,18 @@ for link in robot.links:
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
                             <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
-                                <li> What if we have constraints, i.e., \(\mathcal{U} \neq \mathbb{R}^n\)?</li><br>    
+                                <li> What if we have constraints, i.e., \(\mathcal{U} \neq \mathbb{R}^n\)?</li><br>
                                 <li> Just follow the opposite of the gradient, as before.</li> <br>
-                                <li> If you converge to a point inside the set, you have reached a global minimum, 
+                                <li> If you converge to a point inside the set, you have reached a global minimum,
                                     which is the same as in the unconstrained problem.</li> <br>
-                                <li> If you reach the boundary of the set, project the opposite 
-                                    of the gradient onto the boundary and keep following it. If the projection is zero 
-                                    (i.e., the opposite of the gradient is parallel to the outward-pointing normal of the boundary), 
+                                <li> If you reach the boundary of the set, project the opposite
+                                    of the gradient onto the boundary and keep following it. If the projection is zero
+                                    (i.e., the opposite of the gradient is parallel to the outward-pointing normal of
+                                    the boundary),
                                     you can be sure you have found a global minimum.</li> <br>
-                                <li>But why can you be sure?</li>                       
+                                <li>But why can you be sure?</li>
                             </ul>
-                            
+
                     </div>
 
                     <div
@@ -1106,18 +1230,26 @@ for link in robot.links:
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
                             <li>The intuitive argument (not a formal proof) follows by contradiction.</li> <br>
-                            <li> Let \(u_A\) be the point where we converged at the boundary. The convergence criterion implies that \(-\nabla f(u_A)\) 
-                                is trying to "move outside" the set to further minimize \(f(u)\) (if there were no constraints).</li><br>
-                            <li> Now, suppose there is another point \(u_B\) in \(\mathcal{U}\) with a smaller function value: 
+                            <li> Let \(u_A\) be the point where we converged at the boundary. The convergence criterion
+                                implies that \(-\nabla f(u_A)\)
+                                is trying to "move outside" the set to further minimize \(f(u)\) (if there were no
+                                constraints).</li><br>
+                            <li> Now, suppose there is another point \(u_B\) in \(\mathcal{U}\) with a smaller function
+                                value:
                                 \(f(u_B) < f(u_A)\).</li> <br>
-                            <li>The argument is that, in this case, <b class="itext">for a convex function, \(-\nabla f(u_A)\) should "more or less" point in the direction from \(u_A\) to \(u_B\)</b>, 
-                                which <b class="itext">can be followed since \(\mathcal{U}\) is convex</b> (i.e., the line connecting \(u_A\) and \(u_B\) remains inside the set).</li><br>
-                            <li>This contradicts the assumption that \(-\nabla f(u_A)\) is pointing outward and that no further steps can be taken to 
+                            <li>The argument is that, in this case, <b class="itext">for a convex function, \(-\nabla
+                                    f(u_A)\) should "more or less" point in the direction from \(u_A\) to \(u_B\)</b>,
+                                which <b class="itext">can be followed since \(\mathcal{U}\) is convex</b> (i.e., the
+                                line connecting \(u_A\) and \(u_B\) remains inside the set).</li><br>
+                            <li>This contradicts the assumption that \(-\nabla f(u_A)\) is pointing outward and that no
+                                further steps can be taken to
                                 decrease \(f(u)\).</li><br>
-                            <li>The formal proof requires demonstrating that \(-\nabla f(u_A)\) should "more or less" point in the claimed direction when 
-                                \(f(u)\) is convex. This is clearly the case, for example, when \(f(u) = 0.5\|u - u_B\|^2\).</li>
+                            <li>The formal proof requires demonstrating that \(-\nabla f(u_A)\) should "more or less"
+                                point in the claimed direction when
+                                \(f(u)\) is convex. This is clearly the case, for example, when \(f(u) = 0.5\|u -
+                                u_B\|^2\).</li>
                         </ul>
-                        
+
                     </div>
 
                     <div
@@ -1146,19 +1278,23 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.4vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li> A convex optimization problem is said to be <b class="ttext">strictly convex</b> if \(f(u)\) is not only 
+                            <li> A convex optimization problem is said to be <b class="ttext">strictly convex</b> if
+                                \(f(u)\) is not only
                                 convex, but strictly convex (the set \(\mathcal{U}\) need not to be strictly convex);
-                            </li><br>    
+                            </li><br>
                             <li>The main interest of strictly convex optimization problem is as follows:<br><br>
-                                    <div style="background-color: #282828">
-                                        <b class="ttext">Theorem:</b> if the set \(\mathcal{U}\) is compact, a strictly convex optimization problem 
-                                            has a <b class="itext">single optimal point</b>.
-                                    </div>
+                                <div style="background-color: #282828">
+                                    <b class="ttext">Theorem:</b> if the set \(\mathcal{U}\) is compact, a strictly
+                                    convex optimization problem
+                                    has a <b class="itext">single optimal point</b>.
+                                </div>
                             </li> <br>
-                            <li>Compactness is there only to ensure that a finite optima exist (e.g., take \(\mathcal{U} = \mathbb{R}\) and consider \(\min_{u \in \mathcal{U} } e^{-u}\) )</li><br>
-                            <li> This is not true for general convex problems (e.g., take \(\min_{u} \ (u_1-u_2)^2\));</li>
-                            
-                             
+                            <li>Compactness is there only to ensure that a finite optima exist (e.g., take \(\mathcal{U}
+                                = \mathbb{R}\) and consider \(\min_{u \in \mathcal{U} } e^{-u}\) )</li><br>
+                            <li> This is not true for general convex problems (e.g., take \(\min_{u} \ (u_1-u_2)^2\));
+                            </li>
+
+
                         </ul>
                     </div>
 
@@ -1187,18 +1323,24 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.4vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li> Let \(f: \mathbb{R}^n \times \mathbb{R}^m \mapsto \mathbb{R}\) be a function \(f(u,\theta)\) that is 
-                                differentiable in both arguments and \(\mathcal{U} \subseteq \mathbb{R}^n\) be a set. Define the function:
+                            <li> Let \(f: \mathbb{R}^n \times \mathbb{R}^m \mapsto \mathbb{R}\) be a function
+                                \(f(u,\theta)\) that is
+                                differentiable in both arguments and \(\mathcal{U} \subseteq \mathbb{R}^n\) be a set.
+                                Define the function:
                                 $$ F^*(\theta) = \min_{u \in \mathcal{U}} \ f(u,\theta); $$
                             </li>
-                            <li>This is a <b class="itext">parametrized optimization problem</b>, since \(\theta\) is a parameter to the optimization problem. 
-                                Note that \(F^* : \mathbb{R}^m \mapsto \mathbb{R}\). We would like to compute the derivative of \(F^*\) on \(\theta\). For this:<br><br>
-                                    <div style="background-color: #282828">
-                                        <b class="ttext">Theorem (Envelope Theorem):</b> the derivative of \(F^*(\theta)\) exists for any \(\theta\) such that the minimizer 
-                                        of the optimization problem, \(u^*(\theta)\), is unique. Furthermore:
-                                        $$\frac{\partial F^*}{\partial \theta} (\theta) = \frac{\partial f}{\partial \theta}(u^*(\theta),\theta).$$
-                                    </div>
-                            </li> <br>                             
+                            <li>This is a <b class="itext">parametrized optimization problem</b>, since \(\theta\) is a
+                                parameter to the optimization problem.
+                                Note that \(F^* : \mathbb{R}^m \mapsto \mathbb{R}\). We would like to compute the
+                                derivative of \(F^*\) on \(\theta\). For this:<br><br>
+                                <div style="background-color: #282828">
+                                    <b class="ttext">Theorem (Envelope Theorem):</b> the derivative of \(F^*(\theta)\)
+                                    exists for any \(\theta\) such that the minimizer
+                                    of the optimization problem, \(u^*(\theta)\), is unique. Furthermore:
+                                    $$\frac{\partial F^*}{\partial \theta} (\theta) = \frac{\partial f}{\partial
+                                    \theta}(u^*(\theta),\theta).$$
+                                </div>
+                            </li> <br>
                         </ul>
                     </div>
 
@@ -1229,19 +1371,26 @@ for link in robot.links:
                             <br>
                             <li> <b class="itext">Example:</b> consider the optimization problem:
                                 $$ \min_{u \in \mathcal{U}} f(u,\theta)$$
-                                in which \(f(u,\theta) = \theta_1 u_1 + \theta_2u_2\) and \(\mathcal{U}\) is the circle \(u_1^2+u_2^2 \leq 1\);
+                                in which \(f(u,\theta) = \theta_1 u_1 + \theta_2u_2\) and \(\mathcal{U}\) is the circle
+                                \(u_1^2+u_2^2 \leq 1\);
                             </li>
-                            <li>The optimal solution is unique: \(u_1^*(\theta) = -\theta_1/\sqrt{\theta_1^2+\theta_2^2}\), 
-                                \(u_2^*(\theta) = -\theta_2/\sqrt{\theta_1^2+\theta_2^2}\), unless \(\theta_1=\theta_2=0\), in which case,
+                            <li>The optimal solution is unique: \(u_1^*(\theta) =
+                                -\theta_1/\sqrt{\theta_1^2+\theta_2^2}\),
+                                \(u_2^*(\theta) = -\theta_2/\sqrt{\theta_1^2+\theta_2^2}\), unless
+                                \(\theta_1=\theta_2=0\), in which case,
                                 any \(u_1,u_2\) is optimal;
-                            </li> <br>                     
-                            <li>Making the substitution, \(F^*(\theta) = -\sqrt{\theta_1^2+\theta_2^2}\). Envelope theorem 
+                            </li> <br>
+                            <li>Making the substitution, \(F^*(\theta) = -\sqrt{\theta_1^2+\theta_2^2}\). Envelope
+                                theorem
                                 says that:
-                                $$\frac{\partial F^*}{\partial \theta} (\theta) = \frac{\partial f}{\partial \theta}(u^*(\theta),\theta) = \left(\begin{array}{c} u_1^*(\theta) \\ u_2^*(\theta)
-                                \end{array}\right) = \frac{-1}{\sqrt{\theta_1^2+\theta_2^2}}\left(\begin{array}{c} \theta_1 \\ \theta_2
+                                $$\frac{\partial F^*}{\partial \theta} (\theta) = \frac{\partial f}{\partial
+                                \theta}(u^*(\theta),\theta) = \left(\begin{array}{c} u_1^*(\theta) \\ u_2^*(\theta)
+                                \end{array}\right) = \frac{-1}{\sqrt{\theta_1^2+\theta_2^2}}\left(\begin{array}{c}
+                                \theta_1 \\ \theta_2
                                 \end{array}\right)$$
-                                which can be checked by inspection. Note that the derivative does not exist when \(\theta_1=\theta_2=0\);
-                            </li>        
+                                which can be checked by inspection. Note that the derivative does not exist when
+                                \(\theta_1=\theta_2=0\);
+                            </li>
                         </ul>
                     </div>
 
@@ -1270,14 +1419,19 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li>The utility of the theorem lies in the fact that we often cannot compute \(F^*(\theta)\) analytically 
-                                (as we did in the previous example). However, we can compute \(\frac{\partial f}{\partial \theta}\) analytically 
-                                and determine \(u^*(\theta)\) numerically, which allows us to compute the gradient.</li><br>
-                            <li> If \(f(u,\theta)\) is strictly convex in \(u\) for any fixed \(\theta\), and the set \(\mathcal{U}\) 
-                                is convex and compact, then \(F^*(\theta) = \min_{u \in \mathcal{U}} f(u,\theta)\) is differentiable for 
+                            <li>The utility of the theorem lies in the fact that we often cannot compute \(F^*(\theta)\)
+                                analytically
+                                (as we did in the previous example). However, we can compute \(\frac{\partial
+                                f}{\partial \theta}\) analytically
+                                and determine \(u^*(\theta)\) numerically, which allows us to compute the gradient.</li>
+                            <br>
+                            <li> If \(f(u,\theta)\) is strictly convex in \(u\) for any fixed \(\theta\), and the set
+                                \(\mathcal{U}\)
+                                is convex and compact, then \(F^*(\theta) = \min_{u \in \mathcal{U}} f(u,\theta)\) is
+                                differentiable for
                                 all \(\theta\), since the minimizer is unique.</li><br>
                             <li>The specific application of this theorem in robotics will become clear soon.</li>
-                            
+
                         </ul>
                     </div>
 
@@ -1306,13 +1460,16 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li>Given a closed set \(\mathcal{U}\), the <b class="ttext">half-squared distance (HSD) \(E_{\mathcal{U}}(p)\)</b> between a point \(p\) and \(\mathcal{U}\) 
-                                is the half-squared Euclidean distance between \(p\) and its closest point in the set \(\mathcal{U}\).</li> <br>
+                            <li>Given a closed set \(\mathcal{U}\), the <b class="ttext">point-to-set half-squared distance (P2S-HSD)
+                                    \(E_{\mathcal{U}}(p)\)</b> between a point \(p\) and \(\mathcal{U}\)
+                                is the half-squared Euclidean distance between \(p\) and its closest point in the set
+                                \(\mathcal{U}\).</li> <br>
                             <li> This can be formulated as the optimization problem:
                                 $$E_{\mathcal{U}}(p) = \min_{u \in \mathcal{U}} 0.5 \|u-p\|^2;$$
                             </li><br>
-                            <li>Working with the HSD is often more convenient than working directly with the Euclidean distance.</li><br>
-                             
+                            <li>Working with the P2S-HSD is often more convenient than working directly with the Euclidean
+                                distance.</li><br>
+
                         </ul>
                     </div>
 
@@ -1341,22 +1498,28 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li> This problem is <b class="itext">convex</b> if \(\mathcal{U}\) is convex. Furthermore, since the function 
-                                \(f(u,p) = 0.5\|u-p\|^2\) is strictly convex in \(u\) for any fixed \(p\), the solution is unique. In this case, 
-                                we define the <b class="ttext">projection operator \(\Pi_{\mathcal{U}}(p)\)</b> as this unique minimizer.
+                            <li> This problem is <b class="itext">convex</b> if \(\mathcal{U}\) is convex. Furthermore,
+                                since the function
+                                \(f(u,p) = 0.5\|u-p\|^2\) is strictly convex in \(u\) for any fixed \(p\), the solution
+                                is unique. In this case,
+                                we define the <b class="ttext">projection operator \(\Pi_{\mathcal{U}}(p)\)</b> as this
+                                unique minimizer.
                             </li> <br>
-                            <li>Obviously, both the HSD and the projection are coordinate-dependent: the point \(p\) must be described in a 
+                            <li>Obviously, both the P2S-HSD and the projection are coordinate-dependent: the point \(p\)
+                                must be described in a
                                 reference frame \(\mathcal{F}_0\).
                             </li><br>
-                            <li>If \(\mathcal{U}\) is a convex set, \(E_{\mathcal{U}}(p)\) is a convex function. If 
-                                \(\mathcal{U}\) is a strictly convex set, \(E_{\mathcal{U}}(p)\) is a strictly convex function.
+                            <li>If \(\mathcal{U}\) is a convex set, \(E_{\mathcal{U}}(p)\) is a convex function. If
+                                \(\mathcal{U}\) is a strictly convex set, \(E_{\mathcal{U}}(p)\) is a strictly convex
+                                function.
                             </li><br>
                             <li>The following result is a direct application of the Envelope Theorem:<br><br>
                                 <div style="background-color: #282828">
-                                    <b class="ttext">Theorem:</b> \(\ \  \nabla E_{\mathcal{U}}(p) = p - \Pi_{\mathcal{U}}(p)\)
+                                    <b class="ttext">Theorem:</b> \(\ \ \nabla E_{\mathcal{U}}(p) = p -
+                                    \Pi_{\mathcal{U}}(p)\)
                                 </div>
                             </li>
-                            
+
                         </ul>
                     </div>
 
@@ -1385,15 +1548,19 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.4vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li> Let's compute the HSD and projection for a <b class="itext">3D box in the canonical pose</b>, that is, 
-                                a box centered at \((0, 0, 0)\) with sides aligned with the axes of \(\mathcal{F}_0\). 
-                                We assume it has lengths \(\ell_x, \ell_y, \ell_z\) along the \(x\), \(y\), and \(z\) axes, respectively.
+                            <li> Let's compute the P2S-HSD and projection for a <b class="itext">3D box in the canonical
+                                    pose</b>, that is,
+                                a box centered at \((0, 0, 0)\) with sides aligned with the axes of \(\mathcal{F}_0\).
+                                We assume it has lengths \(\ell_x, \ell_y, \ell_z\) along the \(x\), \(y\), and \(z\)
+                                axes, respectively.
                             </li> <br>
-                            <li>Let \(p =  (p_x \ p_y \ p_z)^\top \). The optimization problem is then:
-                                $$\min_{x,y,z} \ \frac{(x-p_x)^2}{2} + \frac{(y-p_y)^2}{2} + \frac{(z-p_z)^2}{2} \quad \text{subject to} $$
-                                $$ -\frac{\ell_x}{2} \leq x \leq \frac{\ell_x}{2}, \quad -\frac{\ell_y}{2} \leq y \leq \frac{\ell_y}{2}, \quad -\frac{\ell_z}{2} \leq z \leq \frac{\ell_z}{2}$$
+                            <li>Let \(p = (p_x \ p_y \ p_z)^\top \). The optimization problem is then:
+                                $$\min_{x,y,z} \ \frac{(x-p_x)^2}{2} + \frac{(y-p_y)^2}{2} + \frac{(z-p_z)^2}{2} \quad
+                                \text{subject to} $$
+                                $$ -\frac{\ell_x}{2} \leq x \leq \frac{\ell_x}{2}, \quad -\frac{\ell_y}{2} \leq y \leq
+                                \frac{\ell_y}{2}, \quad -\frac{\ell_z}{2} \leq z \leq \frac{\ell_z}{2}$$
                             </li><br>
-                            
+
                         </ul>
                     </div>
 
@@ -1424,22 +1591,21 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.4vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li> Note that the problem is <b class="itext">separable</b>: the constraints and the objective function 
-                                are independent for each variable. Therefore, we can solve for each variable separately. 
+                            <li> Note that the problem is <b class="itext">separable</b>: the constraints and the
+                                objective function
+                                are independent for each variable. Therefore, we can solve for each variable separately.
                                 In general, we need to solve the following one-dimensional problem:
-                                $$\min_u \ \frac{(u-p)^2}{2} \ \mbox{such that} \ -\frac{\ell}{2} \leq u \leq \frac{\ell}{2};$$
+                                $$\min_u \ \frac{(u-p)^2}{2} \ \mbox{such that} \ -\frac{\ell}{2} \leq u \leq
+                                \frac{\ell}{2};$$
                             </li> <br>
                             <li>This is an easy problem. The solution \(u^*\) is given by the function:
-                                $$\pi(p,\ell) = 
+                                $$\pi(p,\ell) =
                                 \left\{
-                                    \begin{array}{ll}
-                                        \frac{\ell}{2} & \mbox{if } p > \frac{\ell}{2} \\
-                                        p  & \mbox{if } -\frac{\ell}{2} \leq p \leq \frac{\ell}{2} \\
-                                        -\frac{\ell}{2} & \mbox{if } p < -\frac{\ell}{2}
-                                    \end{array}
-                                \right.  ;$$
-                            </li><br>
-                            
+                                \begin{array}{ll}
+                                \frac{\ell}{2} & \mbox{if } p > \frac{\ell}{2} \\
+                                p & \mbox{if } -\frac{\ell}{2} \leq p \leq \frac{\ell}{2} \\
+                                -\frac{\ell}{2} & \mbox{if } p < -\frac{\ell}{2} \end{array} \right. ;$$ </li><br>
+
                         </ul>
                     </div>
 
@@ -1469,7 +1635,8 @@ for link in robot.links:
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
                             <li> Then, the solution is:
-                                $$\Pi_{\mathcal{U}}(p) = \left(\begin{array}{c} \pi(p_x,\ell_x) \\ \pi(p_y,\ell_y) \\ \pi(p_z,\ell_z) \end{array}\right);$$
+                                $$\Pi_{\mathcal{U}}(p) = \left(\begin{array}{c} \pi(p_x,\ell_x) \\ \pi(p_y,\ell_y) \\
+                                \pi(p_z,\ell_z) \end{array}\right);$$
                             </li> <br>
                             <li>But what if the box is not in the canonical pose?</li>
                         </ul>
@@ -1501,19 +1668,25 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.4vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li> Let \(T: \mathbb{R}^3 \mapsto \mathbb{R}^3\) be a rigid transformation \((Q,s)\). Consider \(T(\mathcal{U})\), that 
+                            <li> Let \(T: \mathbb{R}^3 \mapsto \mathbb{R}^3\) be a rigid transformation \((Q,s)\).
+                                Consider \(T(\mathcal{U})\), that
                                 is, \(\mathcal{U}\) after being rotated and translated;
                             </li> <br>
                             <li>Note that:
-                                <b class="itext">$$E_{T(\mathcal{U})}\big(p\big) = E_{\mathcal{U}}\big(Q^\top(p-s)\big);$$</b>
+                                <b class="itext">$$E_{T(\mathcal{U})}\big(p\big) =
+                                    E_{\mathcal{U}}\big(Q^\top(p-s)\big);$$</b>
                             </li>
                             <li>Differentiating and using the chain rule:
-                                $$\nabla E_{T(\mathcal{U})}\big(p\big) = Q (\nabla E_{\mathcal{U}})\big(Q^\top(p-s)\big);$$
+                                $$\nabla E_{T(\mathcal{U})}\big(p\big) = Q (\nabla
+                                E_{\mathcal{U}})\big(Q^\top(p-s)\big);$$
                             </li>
                             <li>Using the theorem:
-                                $$(\nabla E_{\mathcal{U}})\big(Q^\top(p-s)\big) = Q^\top(p-s) - \Pi_{\mathcal{U}}\big(Q^\top(p-s)\big);$$
-                            </li><li>And then:
-                                <b class="itext">$$\Pi_{T(\mathcal{U})}\big(p\big) = Q\Pi_{\mathcal{U}}\big(Q^\top(p-s)\big)+s;$$</b>
+                                $$(\nabla E_{\mathcal{U}})\big(Q^\top(p-s)\big) = Q^\top(p-s) -
+                                \Pi_{\mathcal{U}}\big(Q^\top(p-s)\big);$$
+                            </li>
+                            <li>And then:
+                                <b class="itext">$$\Pi_{T(\mathcal{U})}\big(p\big) =
+                                    Q\Pi_{\mathcal{U}}\big(Q^\top(p-s)\big)+s;$$</b>
                             </li>
 
                         </ul>
@@ -1528,7 +1701,7 @@ for link in robot.links:
                     </div>
                 </div>
             </section>
-           
+
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     CONVEX ANALYSIS BASICS
@@ -1544,17 +1717,22 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li> The <b class="ttext">support function</b> of a set \(\mathcal{U} \subseteq \mathbb{R}^n\) is the function 
+                            <li> The <b class="ttext">support function</b> of a set \(\mathcal{U} \subseteq
+                                \mathbb{R}^n\) is the function
                                 \(s_{\mathcal{U}} : \mathbb{R}^n \to \mathbb{R}\) defined as:
                                 <b class="itext">$$s_{\mathcal{U}}(d) = \max_{u \in \mathcal{U}} d^\top u;$$</b>
                             </li>
-                            <li>The set of maximizers (not necessarily unique) of this optimization problem for a given \(d\) is 
-                                called the <b class="ttext">support set</b>, denoted as \(\mathcal{S}_{\mathcal{U}}(d)\).
+                            <li>The set of maximizers (not necessarily unique) of this optimization problem for a given
+                                \(d\) is
+                                called the <b class="ttext">support set</b>, denoted as
+                                \(\mathcal{S}_{\mathcal{U}}(d)\).
                             </li><br>
-                            <li>If \(\mathcal{U}\) is convex, this is a convex optimization problem (think about why... despite being a maximization problem), 
-                                and the function \(s_{\mathcal{U}}\) is convex. The set \(\mathcal{S}_{\mathcal{U}}(d)\) is also convex.
+                            <li>If \(\mathcal{U}\) is convex, this is a convex optimization problem (think about why...
+                                despite being a maximization problem),
+                                and the function \(s_{\mathcal{U}}\) is convex. The set \(\mathcal{S}_{\mathcal{U}}(d)\)
+                                is also convex.
                             </li><br>
-                            
+
 
                         </ul>
                     </div>
@@ -1589,19 +1767,23 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li>If \(\mathcal{U}\) is a convex polyhedron, the optimization problem is a <b class="ttext">linear program</b>, 
-                                which is defined as maximizing (or minimizing) a linear function over a convex polyhedron. 
+                            <li>If \(\mathcal{U}\) is a convex polyhedron, the optimization problem is a <b
+                                    class="ttext">linear program</b>,
+                                which is defined as maximizing (or minimizing) a linear function over a convex
+                                polyhedron.
                                 In this case: <br><br>
                                 <div style="background-color: #282828">
-                                    <b class="ttext">Theorem (Fundamental Theorem of Linear Programming):</b> A solution of a linear program always lies at a vertex of 
+                                    <b class="ttext">Theorem (Fundamental Theorem of Linear Programming):</b> A solution
+                                    of a linear program always lies at a vertex of
                                     the polyhedron.
                                 </div>
                             </li> <br>
-                            <li>Thus, to compute the support function and (part of) the support set when 
-                                \(\mathcal{U}\) is a convex polyhedron, we can simply evaluate the function at its vertices.
+                            <li>Thus, to compute the support function and (part of) the support set when
+                                \(\mathcal{U}\) is a convex polyhedron, we can simply evaluate the function at its
+                                vertices.
                             </li><br>
-                            <li>This approach becomes impractical in high-dimensional spaces 
-                                (since the number of vertices can be enormous), but it is generally feasible in 3D.</li>                            
+                            <li>This approach becomes impractical in high-dimensional spaces
+                                (since the number of vertices can be enormous), but it is generally feasible in 3D.</li>
                         </ul>
                     </div>
 
@@ -1635,13 +1817,18 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li> <b class="ttext">Prop 1:</b> \(s_{-\mathcal{U}}(d) = s_{\mathcal{U}}(-d)\) and also \(\mathcal{S}_{\mathcal{-U}}(d) = -\mathcal{S}_{\mathcal{U}}(-d)\);<br>
+                            <li> <b class="ttext">Prop 1:</b> \(s_{-\mathcal{U}}(d) = s_{\mathcal{U}}(-d)\) and also
+                                \(\mathcal{S}_{\mathcal{-U}}(d) = -\mathcal{S}_{\mathcal{U}}(-d)\);<br>
                             </li><br>
-                            <li> <b class="ttext">Prop 2:</b> \(s_{\mathcal{U \oplus \mathcal{V}}}(d) = s_{\mathcal{U}}(d) + s_{\mathcal{V}}(d)\) 
-                                and \(\mathcal{S}_{\mathcal{U \oplus \mathcal{V}}}(d) = \mathcal{S}_{\mathcal{U}}(d) \oplus \mathcal{S}_{\mathcal{V}}(d)\);<br>
+                            <li> <b class="ttext">Prop 2:</b> \(s_{\mathcal{U \oplus \mathcal{V}}}(d) =
+                                s_{\mathcal{U}}(d) + s_{\mathcal{V}}(d)\)
+                                and \(\mathcal{S}_{\mathcal{U \oplus \mathcal{V}}}(d) = \mathcal{S}_{\mathcal{U}}(d)
+                                \oplus \mathcal{S}_{\mathcal{V}}(d)\);<br>
                             </li><br>
-                            <li> <b class="ttext">Prop 3:</b> if \(u^* \in \mathcal{S}_{\mathcal{U}}(d)\), for any \(u \in \mathcal{U}\), 
-                                \(d^\top(u-u^*) \leq 0\), that is, the set \(u \in \mathcal{U}\) is entirely contained in the 
+                            <li> <b class="ttext">Prop 3:</b> if \(u^* \in \mathcal{S}_{\mathcal{U}}(d)\), for any \(u
+                                \in \mathcal{U}\),
+                                \(d^\top(u-u^*) \leq 0\), that is, the set \(u \in \mathcal{U}\) is entirely contained
+                                in the
                                 half hyperspace \(d^\top(u-u^*) \leq 0\);
                             </li><br>
 
@@ -1691,12 +1878,15 @@ for link in robot.links:
                             </li><br>
                             <li>There are three "degrees" of distances we may care about:<br>
                                 <ul>
-                                    <li> <b class="itext">Overlap oracles:</b> given two objects, it just say if they overlap or not;</li><br>
-                                    <li> <b class="itext">Distance:</b> given two objects, it gives their Euclidean distance;</li><br>
-                                    <li> <b class="itext">Distance gradient:</b> given two objects, it also should give some derivative information about the distance;</li><br>
+                                    <li> <b class="itext">Overlap oracles:</b> given two objects, it just say if they
+                                        overlap or not;</li><br>
+                                    <li> <b class="itext">Distance:</b> given two objects, it gives their Euclidean
+                                        distance;</li><br>
+                                    <li> <b class="itext">Distance gradient:</b> given two objects, it also should give
+                                        some derivative information about the distance;</li><br>
                                 </ul>
-                            <br>
-                            
+                                <br>
+
                         </ul>
                     </div>
 
@@ -1725,16 +1915,21 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li> Some applications in robotics do not require knowing the exact distance—only whether objects overlap or not.
+                            <li> Some applications in robotics do not require knowing the exact distance—only whether
+                                objects overlap or not.
                             </li><br>
-                            <li>For example, the classic <b class="itext">RRT (Rapidly-exploring Random Trees)</b> algorithm for motion planning 
-                                generates a collision-free path by sampling points in the configuration space and connecting them. This can be achieved 
-                                using only a collision oracle \(c(q)\), which determines whether the robot, in a given configuration \(q\), overlaps 
+                            <li>For example, the classic <b class="itext">RRT (Rapidly-exploring Random Trees)</b>
+                                algorithm for motion planning
+                                generates a collision-free path by sampling points in the configuration space and
+                                connecting them. This can be achieved
+                                using only a collision oracle \(c(q)\), which determines whether the robot, in a given
+                                configuration \(q\), overlaps
                                 with obstacles (or itself).
                             </li><br>
-                            <li>Different levels of safety can be implemented by <b class="itext">enlarging the obstacles</b> by a factor \(\epsilon\).</li>
-                            
-                            
+                            <li>Different levels of safety can be implemented by <b class="itext">enlarging the
+                                    obstacles</b> by a factor \(\epsilon\).</li>
+
+
                         </ul>
                     </div>
 
@@ -1763,13 +1958,18 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li> This approach can be significantly more efficient than computing exact distances.</li><br>
-                            <li>For example, suppose we enclose two very complex (possibly non-convex) objects within <b class="itext">bounding spheres</b>. 
-                                Checking whether the two spheres overlap is extremely fast. If they do not, we can confidently conclude that the original objects do not overlap. 
-                                However, computing the exact Euclidean distance in such cases could be much more time-consuming.</li><br>
-                            <li> In control applications, however, we often need more than just this binary information. 
-                                A finer-grained measure of "closeness" (such as the Euclidean distance) is often required.</li>
-                            
+                            <li> This approach can be significantly more efficient than computing exact distances.</li>
+                            <br>
+                            <li>For example, suppose we enclose two very complex (possibly non-convex) objects within <b
+                                    class="itext">bounding spheres</b>.
+                                Checking whether the two spheres overlap is extremely fast. If they do not, we can
+                                confidently conclude that the original objects do not overlap.
+                                However, computing the exact Euclidean distance in such cases could be much more
+                                time-consuming.</li><br>
+                            <li> In control applications, however, we often need more than just this binary information.
+                                A finer-grained measure of "closeness" (such as the Euclidean distance) is often
+                                required.</li>
+
                         </ul>
                     </div>
 
@@ -1798,14 +1998,14 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li> The <b class="ttext">half-squared distance between two sets</b> \(\mathcal{A}\) and \(\mathcal{B}\) is defined as:
-                                $$\Lambda_{\mathcal{A},\mathcal{B}} = \min_{a \in \mathcal{A}, b \in \mathcal{B}} \frac{\|a-b\|^2}{2};$$
+                            <li> The <b class="ttext">set-to-set half-squared distance (S2S-HSD), \(\Lambda_{\mathcal{A},\mathcal{B}}\),</b> between sets \(\mathcal{A}\) and
+                                \(\mathcal{B}\) is defined as:
+                                $$\Lambda_{\mathcal{A},\mathcal{B}} = \min_{a \in \mathcal{A}, b \in \mathcal{B}}
+                                \frac{\|a-b\|^2}{2};$$
                             </li><br>
-                            <li>This is a convex optimization problem if both \(\mathcal{A}\) and \(\mathcal{B}\) are convex sets.</li><br>
-                            <li>A pair of closest points \((a^*,b^*)\) (not necessarily unique) is called <b class="itext">witness points</b>.</li><br>
-                            <li>In control applications, however, we often need more than just the distance itself—we need information on how to <b class="itext">change</b> this distance.</li>
-                            
-                            
+                            <li>This is a convex optimization problem if both \(\mathcal{A}\) and \(\mathcal{B}\) are
+                                convex sets.</li><br>
+
                         </ul>
                     </div>
 
@@ -1819,6 +2019,40 @@ for link in robot.links:
                 </div>
             </section>
 
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    COMPUTING DISTANCES AND OTHER QUANTITIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">DISTANCE</b>
+                </h3>
+
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <br>
+                            <li>A pair of closest points \((a^*,b^*)\) (not necessarily unique) is called <b
+                                    class="itext">witness points</b>.</li><br>
+                            <li>Non-uniqueness of the witness points cause differentiability problems, as we will see soon;</li><br>
+                            <li>In control applications, however, we often need more than just the distance itself—we
+                                need information on how to <b class="itext">change</b> this distance.</li>
+
+
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/image21_b.svg"
+                                style="max-width: 80%; height: auto; max-height: 60vh;">
+                        </div>
+                    </div>
+                </div>
+            </section>
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
@@ -1835,14 +2069,18 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li> Suppose one of the sets, say \(\mathcal{A}\), is changing (for example, due to a rigid transformation) 
-                                with a parameter \(\tau \in \mathbb{R}^m\), resulting in \(\mathcal{A}(\tau)\). 
-                                Then, we can define the function \(F: \mathbb{R}^m \to \mathbb{R}\) as \(F(\tau) = \Lambda_{\mathcal{A}(\tau),\mathcal{B}}\).
+                            <li> Suppose one of the sets, say \(\mathcal{A}\), is changing (for example, due to a rigid
+                                transformation)
+                                with a parameter \(\tau \in \mathbb{R}^m\), resulting in \(\mathcal{A}(\tau)\).
+                                Then, we can define the function \(F: \mathbb{R}^m \to \mathbb{R}\) as \(F(\tau) =
+                                \Lambda_{\mathcal{A}(\tau),\mathcal{B}}\).
                             </li><br>
                             <li>Often, we want to compute \(\frac{\partial F}{\partial \tau}(\tau)\).</li><br>
-                            <li>For this, we need the distance \(\Lambda\) to be <b class="itext">differentiable</b>.</li><br>
-                            <li>In control applications, this derivative is useful for designing controllers that account for obstacle avoidance.</li>
-                            
+                            <li>For this, we need the distance \(\Lambda\) to be <b class="itext">differentiable</b>.
+                            </li><br>
+                            <li>In control applications, this derivative is useful for designing controllers that
+                                account for obstacle avoidance.</li>
+
                         </ul>
                     </div>
 
@@ -1871,15 +2109,19 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li> We will now focus on distance calculation. Later, we will discuss distance gradients.</li><br>
-                            <li> In this class, we consider objects that are either convex sets (CVX) or point clouds (PC). 
-                                Given two sets \(\mathcal{A}\) and \(\mathcal{B}\), there are three possible types of distance computation problems:
+                            <li> We will now focus on distance calculation. Later, we will discuss distance gradients.
+                            </li><br>
+                            <li> In this class, we consider objects that are either convex sets (CVX) or point clouds
+                                (PC).
+                                Given two sets \(\mathcal{A}\) and \(\mathcal{B}\), there are three possible types of
+                                distance computation problems:
                                 - Both sets are CVX.
                                 - One set is CVX, and the other is a PC.
                                 - Both sets are PC.
-                            </li><br>                            
-                            <li>We will not consider the last case (both sets being PC) in this class, as it is not of high relevance in robotics.</li>
-                            
+                            </li><br>
+                            <li>We will not consider the last case (both sets being PC) in this class, as it is not of
+                                high relevance in robotics.</li>
+
                         </ul>
                     </div>
 
@@ -1918,7 +2160,7 @@ for link in robot.links:
                             <img src="presentation/images/part2/image23.svg"
                                 style="max-width: 80%; height: auto; max-height: 60vh;">
                         </div>
-                        
+
                     </div>
                 </div>
             </section>
@@ -1938,15 +2180,22 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li>The <b class="ttext">GJK Algorithm</b> (named after its authors, Gilbert, Johnson, and Keerthi) is a 
-                                classic and highly efficient algorithm for computing the distance between two sets.</li><br>
-                            <li> Consider two convex sets \(\mathcal{A}\) and \(\mathcal{B}\). The key insight of the algorithm is the following: 
-                                <b class="itext">the distance between \(\mathcal{A}\) and \(\mathcal{B}\) is the same as the distance between  
-                                    \(\mathcal{C} = \mathcal{A} \ominus \mathcal{B}\) and the origin</b>. This holds because:
-                                $$\min_{a \in \mathcal{A}, b \in \mathcal{B}} \|a-b\|^2 = \min_{c \in \mathcal{C}} \|c\|^2$$
-                                since any element of \(\mathcal{C}\) can be written as \(c = a-b\) for some \(a \in \mathcal{A}\) and \(b \in \mathcal{B}\).
+                            <li>The <b class="ttext">GJK Algorithm</b> (named after its authors, Gilbert, Johnson, and
+                                Keerthi) is a
+                                classic and highly efficient algorithm for computing the distance between two sets.</li>
+                            <br>
+                            <li> Consider two convex sets \(\mathcal{A}\) and \(\mathcal{B}\). The key insight of the
+                                algorithm is the following:
+                                <b class="itext">the distance between \(\mathcal{A}\) and \(\mathcal{B}\) is the same as
+                                    the distance between
+                                    \(\mathcal{C} = \mathcal{A} \ominus \mathcal{B}\) and the origin</b>. This holds
+                                because:
+                                $$\min_{a \in \mathcal{A}, b \in \mathcal{B}} \|a-b\| = \min_{c \in \mathcal{C}}
+                                \|c\|$$
+                                since any element of \(\mathcal{C}\) can be written as \(c = a-b\) for some \(a \in
+                                \mathcal{A}\) and \(b \in \mathcal{B}\).
                             </li><br>
-                            
+
                     </div>
 
                     <div
@@ -1974,19 +2223,24 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li>GJK algorithm uses the <b class="itext">support set </b> \(\mathcal{S}_{\mathcal{C}}(d)\). There is no need to compute the whole 
-                                set, just a single point inside it;
-
+                            <li>The GJK algorithm uses the <b class="itext">support set</b> 
+                                \(\mathcal{S}_{\mathcal{C}}(d)\). There is no need to compute the entire
+                                set, just a single point within it.
                             </li><br>
-                            <li> The support set for  sets \(\mathcal{A}\) and \(\mathcal{B}\) can be computed very efficiently (e.g., by checking the vertexes of polygons).
-                            </li><br>                       
+                            <li> The support set for sets \(\mathcal{A}\) and \(\mathcal{B}\) can be computed very
+                                efficiently (e.g., by checking the vertices of polygons).
+                            </li><br>
                             <li>
-                                We then use  <b class="ttext">Prop 2</b> to compute a point in \(\mathcal{S}_{\mathcal{C}}(d)\). For that, we pick 
-                                \(a \in \mathcal{S}_{\mathcal{A}}(d)\), \(b \in \mathcal{S}_{\mathcal{B}}(-d)\) and then compute \(c=a-b\);
+                                We then use <b class="ttext">Prop 2</b> to compute a point in
+                                \(\mathcal{S}_{\mathcal{C}}(d)\). To do this, we select
+                                \(a \in \mathcal{S}_{\mathcal{A}}(d)\) and \(b \in \mathcal{S}_{\mathcal{B}}(-d)\), then
+                                compute \(c = a - b\).
                             </li><br>
-                            <li>Thus, for now, we will forget that there exists two sets \(\mathcal{A}\) and \(\mathcal{B}\) and focus only on computing the distance between  
-                                \(\mathcal{C}\) and the origin;
+                            <li>Thus, for now, we will disregard the fact that there are two sets, \(\mathcal{A}\) and
+                                \(\mathcal{B}\), and focus only on computing the distance between
+                                \(\mathcal{C}\) and the origin.
                             </li>
+                            
 
                         </ul>
                     </div>
@@ -2016,15 +2270,21 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li>One last concept before we start is of  <b class="itext">simplex</b>. A \(n\) dimensional simplex \(\mathcal{P}\) is the convex set formed by 
-                                \(n+1\) points in \(\mathbb{R}^n\). For example, a \(1\) dimensional simplex is an interval, \(2\)-dimensional simplex is a triangle,
-                                 a \(3\) dimensional simplex is a  tetrahedron, etc...
+                            <li>One last concept before we begin is the notion of a <b class="itext">simplex</b>. An \(n\)-dimensional
+                                simplex \(\mathcal{P}\) is the convex set formed by
+                                \(n+1\) points in \(\mathbb{R}^n\). For example, a \(1\)-dimensional simplex is an
+                                interval, a \(2\)-dimensional simplex is a triangle,
+                                a \(3\)-dimensional simplex is a tetrahedron, and so on.
                             </li><br>
-                            <li> We can think on the degenerate \(n\) dimensional simplexes that lie in a dimension less than \(n\). Thus, in 3D, other than the tetrahedron, 
-                                we can think on a triangle lie on the space (when the four points lie in the same plane), a line segment (when the four points lie in the same line), 
-                                or a point (when the four points are equal);
-                            </li><br>     
-                            <li>The faces, edges and vertexes of a 3-simplex are 2, 1 and 0-dimensional simplexes, respectively;</li>                  
+                            <li> We can consider degenerate \(n\)-dimensional simplexes that exist in a dimension lower
+                                than \(n\). Thus, in 3D, in addition to the tetrahedron,
+                                we can consider a triangle lying in space (when the four points lie on the same
+                                plane), a line segment (when the four points lie on the same line),
+                                or a point (when all four points coincide).
+                            </li><br>
+                            <li>The faces, edges, and vertices of a 3-simplex are 2-, 1-, and 0-dimensional simplexes,
+                                respectively.</li>
+                            
                         </ul>
                     </div>
 
@@ -2053,13 +2313,14 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li>A sub-algorithm is 
+                            <li>A sub-algorithm is
                                 <b class="itext">$$c^*, \mathcal{P}' := \texttt{nearest_simplex}(\mathcal{P});$$ </b>
-                                It computes the closest point \(c^*\) from 
-                                the simplex \(\mathcal{P}\) to the origin, and a new simplex \(\mathcal{P}'\) formed by the smallest sub-simplex of \(\mathcal{P}\)
+                                It computes the closest point \(c^*\) from
+                                the simplex \(\mathcal{P}\) to the origin, and a new simplex \(\mathcal{P}'\) formed by
+                                the smallest sub-simplex of \(\mathcal{P}\)
                                 (edges, faces or vertexes) that contains \(c^*\);
-                            </li><br> 
-                            <li>This is a convex optimization problem that can be solved efficiently.</li>                    
+                            </li><br>
+                            <li>This is a convex optimization problem that can be solved efficiently.</li>
                         </ul>
                     </div>
 
@@ -2087,26 +2348,644 @@ for link in robot.links:
                     style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
                     <div
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
-                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
-                            <br>
-                            <li>The algorithm starts with a vertex \(c_{dir} \in \mathcal{C}\). Then, we start \(\mathcal{P}=\{c_{dir}\}\) and loop:<br><br>
-                                <ul>
-                                    <li> <b class="itext"> Get \(c_{new} \in \mathcal{S}_{\mathcal{C}}(-c_{dir})\); </b> </li><br>
-                                    <li> <b class="itext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b></li><br>
-                                    <li> <b class="itext"> \(c_{dir} , \mathcal{P}  := \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
-                                    <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If the simplex \(\mathcal{P}\) 
-                                        did not change, return the distance as \(\|c_{dir}\|\); </b></li><br>
-                                </ul>
-                            </li><br>                     
-                        </ul>
+
+
+                        <div style="position:absolute; width: 50%; ">
+                            <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                                <br>
+                                <li>The algorithm starts with a vertex \(c_{dir} \in \mathcal{C}\). Then, we start
+                                    \(\mathcal{P}=\{c_{dir}\}\) and loop:<br><br>
+
+                                    <div style="position:absolute; width: 80%; " class="vim_indicator current-visible fragment"
+                                    data-fragment-index="0">
+                                    <ul>
+                                        <li> <b class="ttext"> Get \(c_{new} \in \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
+                                            </b> </li><br>
+                                        <li> <b class="itext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
+                                        </li><br>
+                                        <li> <b class="itext"> \(c_{dir} , \mathcal{P}' :=
+                                                \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
+                                                <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
+                                        <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If the  point \(c_{dir}\)
+ did not change, return the distance as \(\|c_{dir}\|\); </b></li><br>
+                                        
+                                    </ul>
+                                    </div>
+
+                                    <div style="position:absolute; width: 80%; " class="vim_indicator current-visible fragment"
+                                    data-fragment-index="1">
+                                    <ul>
+                                        <li> <b class="ttext"> Get \(c_{new} \in \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
+                                            </b> </li><br>
+                                        <li> <b class="itext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
+                                        </li><br>
+                                        <li> <b class="itext"> \(c_{dir} , \mathcal{P}' :=
+                                                \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
+                                        <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
+                                        <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If the  point \(c_{dir}\)
+ did not change, return the distance as \(\|c_{dir}\|\); </b></li><br>
+                                    </ul>
+                                    </div>
+
+
+                                    <div style="position:absolute; width: 80%; " class="vim_indicator current-visible fragment"
+                                    data-fragment-index="2">
+                                    <ul>
+                                        <li> <b class="ttext"> Get \(c_{new} \in \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
+                                            </b> </li><br>
+                                        <li> <b class="itext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
+                                        </li><br>
+                                        <li> <b class="itext"> \(c_{dir} , \mathcal{P}' :=
+                                                \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
+                                        <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>        
+                                        <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If the  point \(c_{dir}\)
+ did not change, return the distance as \(\|c_{dir}\|\); </b></li><br>
+
+                                    </ul>
+                                    </div>
+
+                                    <div style="position:absolute; width: 80%; " class="vim_indicator current-visible fragment"
+                                    data-fragment-index="3">
+                                    <ul>
+                                        <li> <b class="ttext"> Get \(c_{new} \in \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
+                                            </b> </li><br>
+                                        <li> <b class="itext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
+                                        </li><br>
+                                        <li> <b class="itext"> \(c_{dir} , \mathcal{P}' :=
+                                                \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
+                                        <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
+                                        <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If the  point \(c_{dir}\)
+ did not change, return the distance as \(\|c_{dir}\|\); </b></li><br>
+                                        
+                                    </ul>
+                                    </div>
+
+                                    <div style="position:absolute; width: 80%; " class="vim_indicator current-visible fragment"
+                                    data-fragment-index="4">
+                                    <ul>
+                                        <li> <b class="itext"> Get \(c_{new} \in \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
+                                            </b> </li><br>
+                                        <li> <b class="ttext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
+                                        </li><br>
+                                        <li> <b class="itext"> \(c_{dir} , \mathcal{P}' :=
+                                                \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
+                                        <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
+                                        <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If the  point \(c_{dir}\)
+ did not change, return the distance as \(\|c_{dir}\|\); </b></li><br>
+                                        
+                                    </ul>
+                                    </div>
+
+
+                                    <div style="position:absolute; width: 80%; " class="vim_indicator current-visible fragment"
+                                    data-fragment-index="5">
+                                    <ul>
+                                        <li> <b class="itext"> Get \(c_{new} \in \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
+                                            </b> </li><br>
+                                        <li> <b class="itext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
+                                        </li><br>
+                                        <li> <b class="ttext"> \(c_{dir} , \mathcal{P}' :=
+                                                \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
+                                        <li><b class="ttext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
+                                        <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If the  point \(c_{dir}\)
+ did not change, return the distance as \(\|c_{dir}\|\); </b></li><br>
+                                        
+                                    </ul>
+                                    </div>      
+                                    
+                                    
+                                    <div style="position:absolute; width: 80%; " class="vim_indicator current-visible fragment"
+                                    data-fragment-index="6">
+                                    <ul>
+                                        <li> <b class="ttext"> Get \(c_{new} \in \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
+                                            </b> </li><br>
+                                        <li> <b class="itext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
+                                        </li><br>
+                                        <li> <b class="itext"> \(c_{dir} , \mathcal{P}' :=
+                                                \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
+                                                <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
+                                        <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If the  point \(c_{dir}\)
+ did not change, return the distance as \(\|c_{dir}\|\); </b></li><br>
+                                        
+                                    </ul>
+                                    </div>
+
+                                    <div style="position:absolute; width: 80%; " class="vim_indicator current-visible fragment"
+                                    data-fragment-index="7">
+                                    <ul>
+                                        <li> <b class="ttext"> Get \(c_{new} \in \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
+                                            </b> </li><br>
+                                        <li> <b class="itext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
+                                        </li><br>
+                                        <li> <b class="itext"> \(c_{dir} , \mathcal{P}' :=
+                                                \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
+                                        <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
+                                        <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If the  point \(c_{dir}\)
+ did not change, return the distance as \(\|c_{dir}\|\); </b></li><br>
+                                    </ul>
+                                    </div>
+
+
+                                    <div style="position:absolute; width: 80%; " class="vim_indicator current-visible fragment"
+                                    data-fragment-index="8">
+                                    <ul>
+                                        <li> <b class="ttext"> Get \(c_{new} \in \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
+                                            </b> </li><br>
+                                        <li> <b class="itext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
+                                        </li><br>
+                                        <li> <b class="itext"> \(c_{dir} , \mathcal{P}' :=
+                                                \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
+                                        <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li> <br>       
+                                        <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If the  point \(c_{dir}\)
+ did not change, return the distance as \(\|c_{dir}\|\); </b></li><br>
+
+                                    </ul>
+                                    </div>
+
+                                    <div style="position:absolute; width: 80%; " class="vim_indicator current-visible fragment"
+                                    data-fragment-index="9">
+                                    <ul>
+                                        <li> <b class="ttext"> Get \(c_{new} \in \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
+                                            </b> </li><br>
+                                        <li> <b class="itext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
+                                        </li><br>
+                                        <li> <b class="itext"> \(c_{dir} , \mathcal{P}' :=
+                                                \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
+                                        <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
+                                        <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If the  point \(c_{dir}\)
+ did not change, return the distance as \(\|c_{dir}\|\); </b></li><br>
+                                        
+                                    </ul>
+                                    </div>
+
+                                    <div style="position:absolute; width: 80%; " class="vim_indicator current-visible fragment"
+                                    data-fragment-index="10">
+                                    <ul>
+                                        <li> <b class="itext"> Get \(c_{new} \in \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
+                                            </b> </li><br>
+                                        <li> <b class="ttext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
+                                        </li><br>
+                                        <li> <b class="itext"> \(c_{dir} , \mathcal{P}' :=
+                                                \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
+                                        <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
+                                        <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If the  point \(c_{dir}\)
+ did not change, return the distance as \(\|c_{dir}\|\); </b></li><br>
+                                        
+                                    </ul>
+                                    </div>
+
+
+                                    <div style="position:absolute; width: 80%; " class="vim_indicator current-visible fragment"
+                                    data-fragment-index="11">
+                                    <ul>
+                                        <li> <b class="itext"> Get \(c_{new} \in \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
+                                            </b> </li><br>
+                                        <li> <b class="itext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
+                                        </li><br>
+                                        <li> <b class="ttext"> \(c_{dir} , \mathcal{P}' :=
+                                                \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
+                                        <li><b class="ttext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
+                                        <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If the  point \(c_{dir}\)
+ did not change, return the distance as \(\|c_{dir}\|\); </b></li><br>
+                                        
+                                    </ul>
+                                    </div>
+                                    
+                                    <div style="position:absolute; width: 80%; " class="vim_indicator current-visible fragment"
+                                    data-fragment-index="12">
+                                    <ul>
+                                        <li> <b class="ttext"> Get \(c_{new} \in \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
+                                            </b> </li><br>
+                                        <li> <b class="itext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
+                                        </li><br>
+                                        <li> <b class="itext"> \(c_{dir} , \mathcal{P}' :=
+                                                \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
+                                                <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
+                                        <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If the  point \(c_{dir}\)
+ did not change, return the distance as \(\|c_{dir}\|\); </b></li><br>
+                                        
+                                    </ul>
+                                    </div>
+
+                                    <div style="position:absolute; width: 80%; " class="vim_indicator current-visible fragment"
+                                    data-fragment-index="13">
+                                    <ul>
+                                        <li> <b class="ttext"> Get \(c_{new} \in \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
+                                            </b> </li><br>
+                                        <li> <b class="itext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
+                                        </li><br>
+                                        <li> <b class="itext"> \(c_{dir} , \mathcal{P}' :=
+                                                \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
+                                        <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
+                                        <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If the  point \(c_{dir}\)
+ did not change, return the distance as \(\|c_{dir}\|\); </b></li><br>
+                                    </ul>
+                                    </div>
+
+
+                                    <div style="position:absolute; width: 80%; " class="vim_indicator current-visible fragment"
+                                    data-fragment-index="14">
+                                    <ul>
+                                        <li> <b class="ttext"> Get \(c_{new} \in \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
+                                            </b> </li><br>
+                                        <li> <b class="itext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
+                                        </li><br>
+                                        <li> <b class="itext"> \(c_{dir} , \mathcal{P}' :=
+                                                \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
+                                        <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>        
+                                        <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If the  point \(c_{dir}\)
+ did not change, return the distance as \(\|c_{dir}\|\); </b></li><br>
+
+                                    </ul>
+                                    </div>
+
+                                    <div style="position:absolute; width: 80%; " class="vim_indicator current-visible fragment"
+                                    data-fragment-index="15">
+                                    <ul>
+                                        <li> <b class="ttext"> Get \(c_{new} \in \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
+                                            </b> </li><br>
+                                        <li> <b class="itext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
+                                        </li><br>
+                                        <li> <b class="itext"> \(c_{dir} , \mathcal{P}' :=
+                                                \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
+                                        <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
+                                        <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If the  point \(c_{dir}\)
+ did not change, return the distance as \(\|c_{dir}\|\); </b></li><br>
+                                        
+                                    </ul>
+                                    </div>
+
+                                    <div style="position:absolute; width: 80%; " class="vim_indicator current-visible fragment"
+                                    data-fragment-index="16">
+                                    <ul>
+                                        <li> <b class="itext"> Get \(c_{new} \in \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
+                                            </b> </li><br>
+                                        <li> <b class="ttext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
+                                        </li><br>
+                                        <li> <b class="itext"> \(c_{dir} , \mathcal{P}' :=
+                                                \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
+                                        <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
+                                        <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If the  point \(c_{dir}\)
+ did not change, return the distance as \(\|c_{dir}\|\); </b></li><br>
+                                        
+                                    </ul>
+                                    </div>
+
+
+                                    <div style="position:absolute; width: 80%; " class="vim_indicator current-visible fragment"
+                                    data-fragment-index="17">
+                                    <ul>
+                                        <li> <b class="itext"> Get \(c_{new} \in \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
+                                            </b> </li><br>
+                                        <li> <b class="itext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
+                                        </li><br>
+                                        <li> <b class="ttext"> \(c_{dir} , \mathcal{P}' :=
+                                                \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
+                                        <li><b class="ttext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
+                                        <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If the  point \(c_{dir}\)
+ did not change, return the distance as \(\|c_{dir}\|\); </b></li><br>
+                                        
+                                    </ul>
+                                    </div>      
+                                    
+                                    
+                                    <div style="position:absolute; width: 80%; " class="vim_indicator current-visible fragment"
+                                    data-fragment-index="18">
+                                    <ul>
+                                        <li> <b class="ttext"> Get \(c_{new} \in \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
+                                            </b> </li><br>
+                                        <li> <b class="itext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
+                                        </li><br>
+                                        <li> <b class="itext"> \(c_{dir} , \mathcal{P}' :=
+                                                \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
+                                                <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
+                                        <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If the  point \(c_{dir}\)
+ did not change, return the distance as \(\|c_{dir}\|\); </b></li><br>
+                                        
+                                    </ul>
+                                    </div>
+
+                                    <div style="position:absolute; width: 80%; " class="vim_indicator current-visible fragment"
+                                    data-fragment-index="19">
+                                    <ul>
+                                        <li> <b class="ttext"> Get \(c_{new} \in \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
+                                            </b> </li><br>
+                                        <li> <b class="itext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
+                                        </li><br>
+                                        <li> <b class="itext"> \(c_{dir} , \mathcal{P}' :=
+                                                \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
+                                        <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
+                                        <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If the  point \(c_{dir}\)
+ did not change, return the distance as \(\|c_{dir}\|\); </b></li><br>
+                                    </ul>
+                                    </div>
+
+
+                                    <div style="position:absolute; width: 80%; " class="vim_indicator current-visible fragment"
+                                    data-fragment-index="20">
+                                    <ul>
+                                        <li> <b class="ttext"> Get \(c_{new} \in \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
+                                            </b> </li><br>
+                                        <li> <b class="itext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
+                                        </li><br>
+                                        <li> <b class="itext"> \(c_{dir} , \mathcal{P}' :=
+                                                \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
+                                        <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li> <br>       
+                                        <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If the  point \(c_{dir}\)
+ did not change, return the distance as \(\|c_{dir}\|\); </b></li><br>
+
+                                    </ul>
+                                    </div>
+
+                                    <div style="position:absolute; width: 80%; " class="vim_indicator current-visible fragment"
+                                    data-fragment-index="21">
+                                    <ul>
+                                        <li> <b class="ttext"> Get \(c_{new} \in \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
+                                            </b> </li><br>
+                                        <li> <b class="itext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
+                                        </li><br>
+                                        <li> <b class="itext"> \(c_{dir} , \mathcal{P}' :=
+                                                \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
+                                        <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
+                                        <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If the  point \(c_{dir}\)
+ did not change, return the distance as \(\|c_{dir}\|\); </b></li><br>
+                                        
+                                    </ul>
+                                    </div>
+
+                                    <div style="position:absolute; width: 80%; " class="vim_indicator current-visible fragment"
+                                    data-fragment-index="22">
+                                    <ul>
+                                        <li> <b class="itext"> Get \(c_{new} \in \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
+                                            </b> </li><br>
+                                        <li> <b class="ttext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
+                                        </li><br>
+                                        <li> <b class="itext"> \(c_{dir} , \mathcal{P}' :=
+                                                \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
+                                        <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
+                                        <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If the  point \(c_{dir}\)
+ did not change, return the distance as \(\|c_{dir}\|\); </b></li><br>
+                                        
+                                    </ul>
+                                    </div>
+
+
+                                    <div style="position:absolute; width: 80%; " class="vim_indicator current-visible fragment"
+                                    data-fragment-index="23">
+                                    <ul>
+                                        <li> <b class="itext"> Get \(c_{new} \in \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
+                                            </b> </li><br>
+                                        <li> <b class="itext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
+                                        </li><br>
+                                        <li> <b class="ttext"> \(c_{dir} , \mathcal{P}' :=
+                                                \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
+                                        <li><b class="ttext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
+                                        <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If the  point \(c_{dir}\)
+ did not change, return the distance as \(\|c_{dir}\|\); </b></li><br>
+                                        
+                                    </ul>
+                                    </div>   
+
+                                    <div style="position:absolute; width: 80%; " class="vim_indicator current-visible fragment"
+                                    data-fragment-index="24">
+                                    <ul>
+                                        <li> <b class="itext"> Get \(c_{new} \in \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
+                                            </b> </li><br>
+                                        <li> <b class="itext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
+                                        </li><br>
+                                        <li> <b class="itext"> \(c_{dir} , \mathcal{P}' :=
+                                                \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
+                                        <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
+                                        <li> <b class="ttext"> If \(c_{dir} = 0\), return the distance as \(0\). If the  point \(c_{dir}\)
+ did not change, return the distance as \(\|c_{dir}\|\); </b></li><br>
+                                        
+                                    </ul>
+                                    </div>   
+
+
+                                </li><br>
+                            </ul>
+                        </div>
+
+
+
                     </div>
 
                     <div
                         style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
-                        <div style="width: 100%">
-                            <img src="presentation/images/part2/image22.svg"
-                                style="max-width: 80%; height: auto; max-height: 60vh;">
+
+                        <div style="flex: 4; flex-direction: column">
+                        <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                            data-fragment-index="0">
+                            <div style="width: 100%">
+                                <img src="presentation/images/part2/image27_0.svg"
+                                    style="max-width: 80%; height: auto; max-height: 60vh;">
+                            </div>
                         </div>
+
+                        <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                            data-fragment-index="1">
+                            <div style="width: 100%">
+                                <img src="presentation/images/part2/image27_1.svg"
+                                    style="max-width: 80%; height: auto; max-height: 60vh;">
+                            </div>
+                        </div>
+
+                        <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                            data-fragment-index="2">
+                            <div style="width: 100%">
+                                <img src="presentation/images/part2/image27_2.svg"
+                                    style="max-width: 80%; height: auto; max-height: 60vh;">
+                            </div>
+                        </div>
+
+
+                        <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                            data-fragment-index="3">
+                            <div style="width: 100%">
+                                <img src="presentation/images/part2/image27_3.svg"
+                                    style="max-width: 80%; height: auto; max-height: 60vh;">
+                            </div>
+                        </div>
+
+                        <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                            data-fragment-index="4">
+                            <div style="width: 100%">
+                                <img src="presentation/images/part2/image27_4.svg"
+                                    style="max-width: 80%; height: auto; max-height: 60vh;">
+                            </div>
+                        </div>
+
+                        <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                            data-fragment-index="5">
+                            <div style="width: 100%">
+                                <img src="presentation/images/part2/image27_5.svg"
+                                    style="max-width: 80%; height: auto; max-height: 60vh;">
+                            </div>
+                        </div>
+
+                        <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                            data-fragment-index="6">
+                            <div style="width: 100%">
+                                <img src="presentation/images/part2/image27_6.svg"
+                                    style="max-width: 80%; height: auto; max-height: 60vh;">
+                            </div>
+                        </div>
+
+                        <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                            data-fragment-index="7">
+                            <div style="width: 100%">
+                                <img src="presentation/images/part2/image27_7.svg"
+                                    style="max-width: 80%; height: auto; max-height: 60vh;">
+                            </div>
+                        </div>
+
+                        <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                            data-fragment-index="8">
+                            <div style="width: 100%">
+                                <img src="presentation/images/part2/image27_8.svg"
+                                    style="max-width: 80%; height: auto; max-height: 60vh;">
+                            </div>
+                        </div>
+
+
+                        <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                            data-fragment-index="9">
+                            <div style="width: 100%">
+                                <img src="presentation/images/part2/image27_9.svg"
+                                    style="max-width: 80%; height: auto; max-height: 60vh;">
+                            </div>
+                        </div>
+
+
+                        <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                            data-fragment-index="10">
+                            <div style="width: 100%">
+                                <img src="presentation/images/part2/image27_10.svg"
+                                    style="max-width: 80%; height: auto; max-height: 60vh;">
+                            </div>
+                        </div>
+
+                        <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                            data-fragment-index="11">
+                            <div style="width: 100%">
+                                <img src="presentation/images/part2/image27_11.svg"
+                                    style="max-width: 80%; height: auto; max-height: 60vh;">
+                            </div>
+                        </div>
+
+                        <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                            data-fragment-index="12">
+                            <div style="width: 100%">
+                                <img src="presentation/images/part2/image27_12.svg"
+                                    style="max-width: 80%; height: auto; max-height: 60vh;">
+                            </div>
+                        </div>  
+                        
+                        <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                            data-fragment-index="13">
+                            <div style="width: 100%">
+                                <img src="presentation/images/part2/image27_13.svg"
+                                    style="max-width: 80%; height: auto; max-height: 60vh;">
+                            </div>
+                        </div>  
+                        
+                        <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                            data-fragment-index="14">
+                            <div style="width: 100%">
+                                <img src="presentation/images/part2/image27_14.svg"
+                                    style="max-width: 80%; height: auto; max-height: 60vh;">
+                            </div>
+                        </div>  
+
+                        <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                            data-fragment-index="15">
+                            <div style="width: 100%">
+                                <img src="presentation/images/part2/image27_15.svg"
+                                    style="max-width: 80%; height: auto; max-height: 60vh;">
+                            </div>
+                        </div>  
+
+
+                        <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                            data-fragment-index="16">
+                            <div style="width: 100%">
+                                <img src="presentation/images/part2/image27_16.svg"
+                                    style="max-width: 80%; height: auto; max-height: 60vh;">
+                            </div>
+                        </div>  
+
+                        <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                            data-fragment-index="17">
+                            <div style="width: 100%">
+                                <img src="presentation/images/part2/image27_17.svg"
+                                    style="max-width: 80%; height: auto; max-height: 60vh;">
+                            </div>
+                        </div> 
+
+                        <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                            data-fragment-index="18">
+                            <div style="width: 100%">
+                                <img src="presentation/images/part2/image27_18.svg"
+                                    style="max-width: 80%; height: auto; max-height: 60vh;">
+                            </div>
+                        </div>
+
+                        <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                            data-fragment-index="19">
+                            <div style="width: 100%">
+                                <img src="presentation/images/part2/image27_19.svg"
+                                    style="max-width: 80%; height: auto; max-height: 60vh;">
+                            </div>
+                        </div>
+
+                        <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                            data-fragment-index="20">
+                            <div style="width: 100%">
+                                <img src="presentation/images/part2/image27_20.svg"
+                                    style="max-width: 80%; height: auto; max-height: 60vh;">
+                            </div>
+                        </div>
+
+                        <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                            data-fragment-index="21">
+                            <div style="width: 100%">
+                                <img src="presentation/images/part2/image27_21.svg"
+                                    style="max-width: 80%; height: auto; max-height: 60vh;">
+                            </div>
+                        </div>
+
+                        <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                            data-fragment-index="22">
+                            <div style="width: 100%">
+                                <img src="presentation/images/part2/image27_22.svg"
+                                    style="max-width: 80%; height: auto; max-height: 60vh;">
+                            </div>
+                        </div>
+
+                        <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                            data-fragment-index="23">
+                            <div style="width: 100%">
+                                <img src="presentation/images/part2/image27_23.svg"
+                                    style="max-width: 80%; height: auto; max-height: 60vh;">
+                            </div>
+                        </div>
+
+                        <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                            data-fragment-index="24">
+                            <div style="width: 100%">
+                                <img src="presentation/images/part2/image27_23.svg"
+                                    style="max-width: 80%; height: auto; max-height: 60vh;">
+                            </div>
+                        </div>
+
+                    </div>
+                    <div style="font-size: 1.5vw; width: 100%; text-align: center; margin-top: 2rem;">
+                        <br><br><br>
+                                    Legend: <span style="color: #ffb66c;">\(c_{dir}\)</span> , <span style="color: red;">\(c_{new}\)</span>, 
+                       <span style="color: #ec2ed7;">\(\mathcal{P}\)</span> , <span style="color: #5983b0;">\(\mathcal{P}'\)</span>
+                    </div>
+
                     </div>
                 </div>
             </section>
@@ -2126,63 +3005,65 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li>If you want just to check if it overlaps or not, if \(c_{dir}^\top c_{new} > 0\) you can halt 
+                            <li>If you want just to check if it overlaps or not, if \(c_{dir}^\top c_{new} > 0\) you can
+                                halt
                                 concluding that they do not overlap;
                             </li><br>
-                            <li>Why? Because in that case the hyperplane \(\sigma(c) = -c_{dir}^\top(u-c_{new}) = 0\) will separate 
-                                the convex set \(\mathcal{C}\) and the origin (see <b class="ttext">Prop 5</b> of convex sets). </li><br>
-                                
-                                <li>    Indeed, from
-                                <b class="ttext">Prop 4</b> of the support function, \(\sigma(c) = -c_{dir}^\top(c-c_{new}) \leq 0\) 
-                                for any \(c \in \mathcal{C}\). On the other hand, if \(c_{dir}^\top c_{new} > 0\), 
+                            <li>Why? Because in that case the hyperplane \(\sigma(c) = -c_{dir}^\top(u-c_{new}) = 0\)
+                                will separate
+                                the convex set \(\mathcal{C}\) and the origin (see <b class="ttext">Prop 5</b> of convex
+                                sets). </li><br>
+
+                            <li> Indeed, from
+                                <b class="ttext">Prop 4</b> of the support function, \(\sigma(c) =
+                                -c_{dir}^\top(c-c_{new}) \leq 0\)
+                                for any \(c \in \mathcal{C}\). On the other hand, if \(c_{dir}^\top c_{new} > 0\),
                                 \(\sigma(0) = c_{dir}^\top c_{new} > 0\);
-                            </li>                  
+                            </li>
                         </ul>
                     </div>
 
                     <div
                         style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
                         <div style="width: 100%">
-                            <img src="presentation/images/part2/image22.svg"
+                            <img src="presentation/images/part2/image28.svg"
                                 style="max-width: 80%; height: auto; max-height: 60vh;">
                         </div>
                     </div>
                 </div>
             </section>
 
+
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     COMPUTING DISTANCES AND OTHER QUANTITIES
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    <b class="ttext">CHECKING IF A POINT IS INSIDE A SIMPLEX</b>
+                    <b class="ttext">GJK ALGORITHM</b>
                 </h3>
 
-
-                <div
-                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
-                    <div
-                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+            <div
+            style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+            <div
+                style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li>An important algorithm is the following: given \(m \leq n+1\) points \(a_i \in \mathbb{R}^n\) forming a 
-                                <b class="itext">m dimensional simplex living in \(\mathbb{R}^n\)</b>, that is, the set formed by all 
-                                <b class="itext">convex combinations</b> of the \(a_i\): \(\sum_{i=1}^n \beta_i a_i\) in which
-                                 \(\sum_{i=1}^n \beta_i=1\), \(\beta_i \geq 0\);
+                            <li>If the number of vertices of \(\mathcal{C}\) is finite, the algorithm converges in a finite number of steps.
                             </li><br>
-                            <li> We will assume that the simplex is <b class="itext">non-degenerate</b> that is, if it has \(m\) points, there is no 
-                                hyperplane of dimension less than \(m\) that contains it (think about a "triangle" formed by 3 points that 
-                                is actually a line). This implies that the matrix:
-                                $$M = \left(\begin{array}{cccc} a_1 & a_2 & ... & a_m \\ 1 & 1 & ... & 1\end{array}\right)$$
-                                is full column rank.
-                            </li><br>                       
+                            <li>Otherwise, the algorithm may take an infinite number of steps. In that case, you should stop once 
+                                the point \(c_{dir}\) starts changing only slightly.
+                            </li><br>
+                            <li>The algorithm does not work for non-convex sets because the simplex \(\mathcal{P}\) formed by 
+                                the points is not guaranteed to lie entirely within the polygon.
+                            </li><br>
+                            
                         </ul>
                     </div>
 
                     <div
                         style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
                         <div style="width: 100%">
-                            <img src="presentation/images/part2/image22.svg"
+                            <img src="presentation/images/part2/image28.svg"
                                 style="max-width: 80%; height: auto; max-height: 60vh;">
                         </div>
                     </div>
@@ -2194,73 +3075,44 @@ for link in robot.links:
                     COMPUTING DISTANCES AND OTHER QUANTITIES
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    <b class="ttext">CHECKING IF A POINT IS INSIDE A SIMPLEX</b>
+                    <b class="ttext">GJK ALGORITHM</b>
                 </h3>
 
-
-                <div
-                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
-                    <div
-                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+            <div
+            style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+            <div
+                style="flex: 1; min-width: 300px; font-size: 1.2vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li>Using the matrix \(M\) defined in the previous slide, the point \(p\) lies on the simplex if and only if 
-                                there exists a vector \(\beta \in \mathbb{R}^m\) with nonnegative entries such that:
-                                $$M\beta = \left(\begin{array}{c} p \\ 1 \end{array}\right) = \tilde{p};$$
-                            </li>
-                            <li>Disregarding the nonnegativity constraints, this equation always has a solution if the simplex is non-denegerated. It can be 
-                                found by
-                                $$\beta_c = (M^\top M)^{-1}M^\top \tilde{p}$$
-                                and (\beta\) is known as <b class="itext">barycentric coordinates of the point \(p\) in the simplex</b>. We just need 
-                                to check if all of them are nonnegative;
-                            </li><br>                       
+                            <li>So, what if we want the <b class="itext">original witness points</b> \(a^* \in \mathcal{A}\) and \(b^* \in \mathcal{B}\)?
+                            </li><br>
+                            <li>Every time a support point \(c_{new} \in \mathcal{S}_{\mathcal{C}}(-c_{dir})\) is obtained by computing 
+                                \(a_{new} \in \mathcal{S}_{\mathcal{A}}(-c_{dir})\) and \(b_{new} \in \mathcal{S}_{\mathcal{B}}(c_{dir})\), 
+                                these two points (not just \(c_{new}=a_{new}-b_{new}\)) should also be stored. Thus, each point \(c_{dir}\) is associated with the respective points 
+                                \(a_{dir}\) and \(b_{dir}\).
+                            </li><br>
+                            <li>The optimal point \(c^* = c_{dir}\) is a convex combination of some points \(c_{new,j}\) in the simplex 
+                                \(\mathcal{P}'\) that contains it. That is, there exist nonnegative scalars \(\lambda_j\) that sum to \(1\), such that:
+                                $$c^* = \sum_{j=1}^m \lambda_j c_{new,j};$$
+                                where \(j\) can be \(3\), \(2\), or \(1\). This can be obtained by solving a linear system. With these \(\lambda_j\), 
+                                we collect the \(a_{new,j},b_{new,j}\) associated with \(c_{new,j}\) and compute:
+                                $$a^* = \sum_{j=1}^m \lambda_j a_{new,j} \ , \ b^* = \sum_{j=1}^m \lambda_j b_{new,j};$$
+                            </li><br>
+                            
                         </ul>
                     </div>
 
                     <div
                         style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
                         <div style="width: 100%">
-                            <img src="presentation/images/part2/image22.svg"
+                            <img src="presentation/images/part2/image28.svg"
                                 style="max-width: 80%; height: auto; max-height: 60vh;">
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section style="display: flex; flex-direction: column; height: 100vh;">
-                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    COMPUTING DISTANCES AND OTHER QUANTITIES
-                </h3>
-                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    <b class="ttext">DISTANCE OF THE SIMPLEX TO THE ORIGIN</b>
-                </h3>
 
-
-                <div
-                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
-                    <div
-                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
-                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
-                            <br>
-                            <li>Now we want to compute the distance between a simplex and a point \(p\). That is, we want to find \(\gamma \in \mathbb{R}^m\)
-                                that solves the following convex optimization problem: 
-                                $$\min_{\gamma} \|\sum_{i=1}^m a_i\gamma_i\|^2 \ \mbox{such that} \ \sum_{i=1}^m \gamma_i = 1 \ , \gamma_i \geq 0;
-                            </li>
-                            <li>We can do it recursively using the previous algorithm: first, check if the origin is inside the symplex, in which 
-                                case the distance is 0. If not, test all the lesser dimensional ;
-                            </li><br>                       
-                        </ul>
-                    </div>
-
-                    <div
-                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
-                        <div style="width: 100%">
-                            <img src="presentation/images/part2/image22.svg"
-                                style="max-width: 80%; height: auto; max-height: 60vh;">
-                        </div>
-                    </div>
-                </div>
-            </section>
 
             <style>
                 .reveal .progress {

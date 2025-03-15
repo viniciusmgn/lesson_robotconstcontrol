@@ -45,27 +45,11 @@ def closest_point_on_simplex(simplex):
             else:
                 return p3,s3
         
-        
-
-        AO = -A
-        AB = B - A
-        AC = C - A
-
-        normal = np.cross(AB, AC)
-
-        AB_perp = np.array([-AB[1], AB[0]])  
-        AC_perp = np.array([-AC[1], AC[0]])  
-
-        if np.dot(AB_perp, AO) > 0:  
-            return closest_point_on_simplex([A, B])  
-        elif np.dot(AC_perp, AO) > 0:  
-            return closest_point_on_simplex([A, C])  
-        else:
-            return A, [A]  
 
 
 
-def draw_step_gjk(polygon, simplex, subsimplex, closest_point, origin, vector, draw_contour,k):
+
+def draw_step_gjk(polygon, simplex, subsimplex, closest_point, origin, vector, draw_contour,k,type):
 
     fig, ax = plt.subplots(figsize=(6, 6))
     ax.set_facecolor("#191919")  # Dark background
@@ -81,34 +65,40 @@ def draw_step_gjk(polygon, simplex, subsimplex, closest_point, origin, vector, d
     # Draw the polygon (closed loop)
     polygon = np.array(polygon)
     polygon = np.vstack((polygon,polygon[0,:]))
-    ax.plot(*polygon.T, color='cyan', linewidth=2, linestyle='-', label="Polygon")
+    ax.plot(*polygon.T, color='#81d41a', linewidth=2, linestyle='-', label="Polygon")
 
     # Draw the simplex
     if len(simplex)>0:
         simplex = np.array(simplex)
         simplex = np.vstack((simplex,simplex[0,:]))
         if len(simplex) > 1:
-            ax.plot(*simplex.T, color='magenta', linewidth=2, linestyle='--', label="Simplex")
-        ax.scatter(*simplex.T, color='magenta', s=50, label="Simplex Vertices")
+            ax.plot(*simplex.T, color='#ec2ed7', linewidth=2, linestyle='--', label="Simplex")
+        ax.scatter(*simplex.T, color='#ec2ed7', s=50, label="Simplex Vertices")
 
     # Draw the subsimplex (1 or 2 points)
     if len(subsimplex)>0:
         subsimplex = np.array(subsimplex)
         subsimplex = np.vstack((subsimplex,subsimplex[0,:]))
         if len(subsimplex) > 1:
-            ax.plot(*subsimplex.T, color='yellow', linewidth=2, linestyle='-', label="Subsimplex")
-        ax.scatter(*subsimplex.T, color='yellow', s=80, edgecolors='black', label="Subsimplex Vertices", zorder=3)
+            ax.plot(*subsimplex.T, color='#5983b0', linewidth=2, linestyle='-', label="Subsimplex")
+            
+
+        ax.scatter(*subsimplex.T, color='#5983b0', s=80, edgecolors='#5983b0', label="Subsimplex Vertices", zorder=3)
+
 
     # Draw the closest point to the origin
     if len(closest_point)>0:
-        ax.scatter(*closest_point, color='lime', s=100, marker='o', edgecolors='black', label="Closest Point", zorder=4)
+        if type:
+            ax.scatter(*closest_point, color='#ffb66c', s=100, marker='o', edgecolors='#ffb66c', label="Closest Point", zorder=4)
+        else:
+            ax.scatter(*closest_point, color='#ff0000', s=100, marker='o', edgecolors='#ff0000', label="Closest Point", zorder=4)
         
     #Draw the direction
     if len(origin)>0:
-        ax.quiver(*np.array(origin), *np.array(vector), angles='xy', scale_units='xy', scale=1, color='lime', linewidth=2, zorder=8)
+        ax.quiver(*np.array(origin), *np.array(vector), angles='xy', scale_units='xy', scale=1, color='#ff0000', linewidth=2, zorder=8)
 
 
-    ax.scatter(x=0,y=0, color='white', s=100, marker='o', edgecolors='black', label="Closest Point", zorder=4)
+    ax.scatter(x=0,y=0, color='white', s=100, marker='o', edgecolors='white', label="Closest Point", zorder=4)
     
     # Compute automatic axis limits
     all_points = np.vstack([polygon, [0, 0]])  # Include origin
@@ -224,7 +214,7 @@ def compute_polygon_from_halfspaces(A, b):
     centroid = np.mean(vertices, axis=0)
     vertices.sort(key=lambda p: np.arctan2(p[1] - centroid[1], p[0] - centroid[0]))
 
-    return vertices
+    return [list(v) for v in vertices]
 
 
 x0=2
@@ -254,6 +244,8 @@ for i in range(N):
     b = np.vstack((b,r+a[0,0]*xc+a[0,1]*yc))
     
 polygon = compute_polygon_from_halfspaces(A,b)
+
+polygon[3][0]+=0.15
 #polygon.append(polygon[0])
 
 # polygon.append(polygon[0])    
@@ -268,34 +260,34 @@ for i in range(4):
 
     c_new = support(polygon, c_dir)
     
-    draw_step_gjk(polygon, P, [], c_dir, (0,0), c_dir, False,k)
+    draw_step_gjk(polygon, P, [], c_dir, (0,0), c_dir, False,k,True)
     
     k+=1
     
     
     
-    draw_step_gjk(polygon, P, [], [], c_dir, (-c_dir[0],-c_dir[1]) , False,k)
+    draw_step_gjk(polygon, P, [], [], c_dir, (-c_dir[0],-c_dir[1]) , False,k,True)
     
     k+=1
     
-    draw_step_gjk(polygon, P, [], [], c_dir, (-c_dir[0],-c_dir[1]) , True,k)
+    draw_step_gjk(polygon, P, [], [], c_dir, (-c_dir[0],-c_dir[1]) , True,k,True)
     
     k+=1
     
-    draw_step_gjk(polygon, P, [], c_new, [], [] , False,k)
+    draw_step_gjk(polygon, P, [], c_new, [], [] , False,k,False)
     
     k+=1
 
     P = P+[c_new]
     
-    draw_step_gjk(polygon, P, [], [],[],[], False,k)
+    draw_step_gjk(polygon, P, [], [],[],[], False,k,True)
     
     k+=1
 
     c_dir, P_sub = closest_point_on_simplex(P)
 
 
-    draw_step_gjk(polygon, P, P_sub, c_dir,[],[], False,k)
+    draw_step_gjk(polygon, P, P_sub, c_dir,[],[], False,k,True)
     
     k+=1
 
