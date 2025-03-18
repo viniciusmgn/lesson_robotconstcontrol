@@ -505,10 +505,10 @@
                                 </li>
                                 </br></br>
                                 <li>
-                                    We need to determine the <b class="itext">rigid transformation (i.e., rotation and
+                                    We need to read from the matrix the <b class="itext">rigid transformation (i.e., rotation and
                                         translation)</b>
-                                    (both expressed in \(\mathcal{F}_0\)) that must be applied to \(\mathcal{F}_0\) to
-                                    obtain \(\mathcal{F}_1\).
+                                    (expressed in \(\mathcal{F}_0\)) that must be applied to \(\mathcal{F}_0\) to
+                                    obtain the new frame \(\mathcal{F}_1\).
                                 </li>
                             </ul>
 
@@ -518,19 +518,15 @@
                             data-fragment-index="1">
                             <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                                 <li>
-                                    We begin with the <b class="itext">rotation</b>. Our goal is to align the two sets
-                                    of axes while temporarily
-                                    ignoring the displacement of the center. Note that a rotation of \(-90^\circ\) about
-                                    \(z_0\)
-                                    (\(90^\circ\) clockwise) achieves this.
+                                    We begin with the <b class="itext">rotation</b>. The \(3 \times 3\) block \(Q\), highlighted in green, represents this
+                                    transformation.
                                 </li>
                                 </br></br>
                                 <li>
-                                    The \(3 \times 3\) block \(Q\), highlighted in green, represents this
-                                    transformation. When applied to a
+                                    One can see that, when applied to a
                                     point \(p\) as \(p' = Qp\), the resulting point \(p'\) is simply \(p\) rotated by
                                     \(-90^\circ\)
-                                    about the \(z\)-axis.
+                                    about the \(z\)-axis. Thus, this matrix represent this rotation. Lets apply it.
                                 </li>
                             </ul>
 
@@ -540,7 +536,7 @@
                             data-fragment-index="2">
                             <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                                 <li>
-                                    Now the two axis are aligned rotationally!
+                                   Done!
 
                                 </li>
                                 </br></br>
@@ -553,16 +549,13 @@
                             data-fragment-index="3">
                             <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                                 <li>
-                                    For the <b class="itext">position</b>, we need to determine the translation required
-                                    to align the entire
-                                    frame with \(\mathcal{F}_1\). This translation should also be expressed in
-                                    \(\mathcal{F}_0\).
+                                    For the <b class="itext">position</b>, we need to read the first three entries of the last 
+                                    column, the vector \(s\).
                                 </li>
                                 </br></br>
                                 <li>
-                                    Note that a translation of \(2\) along \(x_0\), \(3\) along \(y_0\), and \(0\) along
-                                    \(z_0\) achieves this.
-                                    This corresponds precisely to the vector highlighted in green on the right.
+                                    Note that this is a translation of \(2\) along \(x_0\), \(3\) along \(y_0\), and \(0\) along
+                                    \(z_0\).
                                 </li>
                             </ul>
 
@@ -572,7 +565,7 @@
                             data-fragment-index="4">
                             <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                                 <li>
-                                    They are again aligned!
+                                    Done! We <b class="itext">obtained the same frame as before</b>, just with a different interpretation!
 
                                 </li>
 
@@ -584,9 +577,9 @@
                                 </br></br>
                                 <li>
                                     A transformation between frames \(\mathcal{F}_A\) and \(\mathcal{F}_B\)
-                                    will be written in this class as <b class="itext"> \(T_A^B\)</b>. Be careful,
-                                    though!
-                                    <b class="itext"> In some books the opposite notation \(T_B^A\) is used!</b>
+                                    will be written in this class as <b class="itext"> \(T_A^B\)</b> (starting frame subscript, end frame superscript). Be careful,
+                                    though,
+                                    <b class="itext"> in some books (like Spong's) the opposite notation \(T_B^A\) is used!</b>
 
 
                                 </li>
@@ -692,6 +685,9 @@
                             }
                             $$
                             </br>
+                            <li>We will also use the notations \(D_x(d_x),D_y(d_y)\) and \(D_z(d_z)\), \(d_x,d_y,d_z \in \mathbb{R}\) for translations in 
+                                a single axis.
+                            </li>
 
 
 
@@ -2649,13 +2645,13 @@
                                 expressed in the fixed frame \(\mathcal{F}_0\). Suppose the rigid body has a linear
                                 velocity \(v(t)\) and an angular velocity \(\omega(t)\), and that its transformation
                                 matrix is given by:
-                                $$T_0^{obj}(t) = \left(\begin{array}{cc} Q(t) & p(t)\\ 0_{1 \times 3} & 1
+                                $$T_0^{obj}(t) = \left(\begin{array}{cc} Q(t) & s(t)\\ 0_{1 \times 3} & 1
                                 \end{array}\right).$$
                             </li><br>
 
                             <li>Then, the velocity \(v_U\) of this particle (expressed in \(\mathcal{F}_0\)) is given
                                 by:
-                                $$v_U = v + \omega \times (u - p).$$
+                                $$v_U(t) = v(t) + \omega(t) \times (u(t) - s(t)).$$
                             </li>
 
                         </ul>
@@ -2927,7 +2923,7 @@
                             </li><br>
                             <li>The matrix \(A^{\dagger} = \lim_{\varepsilon \rightarrow +0} (A^\top A + \varepsilon
                                 I_{n \times n})^{-1} A^\top\)
-                                is called <b class="itext">pseudoinverse</b> of the matrix \(A\);
+                                is called <b class="ttext">pseudoinverse</b> of the matrix \(A\);
                             </li><br>
                             <li>In that case, \(u\) can be written as \(u = A^{\dagger}b\);
                             </li><br>
@@ -3297,7 +3293,7 @@
                             <li>
                                 To conclude that it is indeed a task function, note that if \(u\) and \(v\) are
                                 normalized vectors
-                                (as the \(x,y,z,x_d,y_d,z_d\) vectors are), \(0.5\|u-v\|^2 = 1-u^\top v\);
+                                (as the \(x\),\(y\),\(z\),\(x_d\),\(y_d\),\(z_d\) vectors are), \(0.5\|u-v\|^2 = 1-u^\top v\);
                             </li><br>
                             <li>
                                 We will also need to compute the <b class="itext">task Jacobian</b> and <b
@@ -3404,8 +3400,7 @@
                             <li>
                                 Let \(K\) be a positive scalar and \(r(q,t)\) a task function for the task. Suppose
                                 that, somehow, the control input \(\dot{q}=u\) is chosen so
-                                \(\frac{d}{dt} r(q(t),t) = -Kr(q(t),t)\);
-
+                                $$\frac{d}{dt} r(q(t),t) = -Kr(q(t),t).$$
                             </li><br>
                             <li>
                                 This implies that \(r(q,t) = e^{-Kt}r(q(0),0)\), that is,
@@ -3552,7 +3547,7 @@
 
                             <li>
                                 Since the equation \(\dot{r} = -Kr\) is not guaranteed to hold (due to the use of the
-                                pseudoinverse to solve the linear equation), the controller can <b
+                                pseudoinverse to "solve" the linear equation), the controller can <b
                                     class="itext">fail</b>.
                                 Specifically, it may get stuck in a configuration that does not achieve the task, a
                                 phenomenon known as the <b class="itext">spurious equilibrium point problem</b>.
@@ -3565,7 +3560,7 @@
                             <li>
                                 <b class="itext">However, it disregards critical constraints such as joint limits and
                                     obstacle avoidance.</b> Addressing these limitations is precisely the focus of this
-                                class.
+                                course.
                             </li><br>
 
                             <li>
