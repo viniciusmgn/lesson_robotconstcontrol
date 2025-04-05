@@ -812,7 +812,25 @@ sim.run()
                     z-index: 10;
                     /* Ensures it appears above the video and overlay */
                 }
-
+                .reveal .slide-number {
+                    font-size: 30px;
+                    position: absolute;
+                    bottom: 30px;
+                    left: 50px;
+                    background: none !important;
+                    /* remove any background */
+                    box-shadow: none !important;
+                    /* remove shadows */
+                    padding: 0 !important;
+                    margin: 0 !important;
+                    border: none !important;
+                    color: white;
+                    /* or whatever color you want */
+                    opacity: 1.0;
+                    width: auto !important;
+                    height: auto !important;
+                    z-index: -1;
+                }
     </style>
 
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
@@ -832,7 +850,8 @@ sim.run()
             margin: 0.02,
             minScale: 0.2,
             maxScale: 2.0,
-            plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealMenu]
+            plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealMenu],
+            slideNumber: true
         });
         var frames = document.getElementsByTagName("iframe");
 

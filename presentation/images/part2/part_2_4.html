@@ -3,12 +3,12 @@
 .controller:hover{opacity:1 !important;}
 </style>
 <body>
-<div id='canvas_container_17410597487559278' style='width:500px;height:500px;position:relative'>
-<div id='loading_screen_17410597487559278' style='width:500px;height:500px;position:relative; background-color: #191919;text-align:center;align-items:center;display:flex;justify-content:center'> 
+<div id='canvas_container_17438632717738402' style='width:500px;height:400px;position:relative'>
+<div id='loading_screen_17438632717738402' style='width:500px;height:400px;position:relative; background-color: #191919;text-align:center;align-items:center;display:flex;justify-content:center'> 
  <img src='https://cdn.jsdelivr.net/gh/viniciusmgn/uaibot_content@master/contents/SVG/logo_uai_bot.svg' style='width:200px;height:114px'/>
  </div>
 <script id='MathJax-script' async src='https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js'></script>
-<canvas id='scene_17410597487559278' width='500px' height='500px'></canvas>
+<canvas id='scene_17438632717738402' width='500px' height='400px'></canvas>
 <!-- USER DIVS GO HERE --><div class = 'controller' style='width:500px;height:30px;'></div>
 </div>
 
@@ -36,7 +36,7 @@ import { ParametricGeometry } from 'https://cdn.skypack.dev/three@0.135.0/exampl
 const delay = 500; 
  const maxTime = 0; 
  const cameraType= 'perspective'; 
- const sceneID= '17410597487559278'; 
+ const sceneID= '17438632717738402'; 
  const showWorldFrame=false; 
  const showGrid=false; 
  const backgroundColor='#191919'; 
@@ -688,10 +688,10 @@ sceneElements.push(var_light3);
 const var_light4 = new PointLightSim([[0, 'white', 8, 0, [[1.0], [1.0], [1.5]]]]);
 sceneElements.push(var_light4);
 
-//BEGIN DECLARATION OF THE RIGID OBJECT 'var_rigidobject_id_139880250769168'
+//BEGIN DECLARATION OF THE RIGID OBJECT 'var_rigidobject_id_140093689546576'
 
-var list_object3d_var_rigidobject_id_139880250769168 = [];
-const material_var_rigidobject_id_139880250769168_0 = new MeshPhysicalMaterial({
+var list_object3d_var_rigidobject_id_140093689546576 = [];
+const material_var_rigidobject_id_140093689546576_0 = new MeshPhysicalMaterial({
 opacity: 1,
 transparent: false,
 aoMapIntensity: 1,
@@ -719,19 +719,19 @@ specularColor: "white",
 transmission: 0,
 });
 
-const htm_var_rigidobject_id_139880250769168_0 = new Matrix4(); 
-htm_var_rigidobject_id_139880250769168_0.set(1.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,1.0);
-const object3d_var_rigidobject_id_139880250769168_0={
+const htm_var_rigidobject_id_140093689546576_0 = new Matrix4(); 
+htm_var_rigidobject_id_140093689546576_0.set(1.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,1.0);
+const object3d_var_rigidobject_id_140093689546576_0={
 url: 'https://cdn.jsdelivr.net/gh/viniciusmgn/uaibot_content@master/contents/Other/bunny.obj',
 scale: 1,
-matrix: htm_var_rigidobject_id_139880250769168_0,
+matrix: htm_var_rigidobject_id_140093689546576_0,
 type: 'obj',
-mesh_material: material_var_rigidobject_id_139880250769168_0};
+mesh_material: material_var_rigidobject_id_140093689546576_0};
 
 ;
-list_object3d_var_rigidobject_id_139880250769168.push(object3d_var_rigidobject_id_139880250769168_0);
-const var_var_rigidobject_id_139880250769168 = new RigidObject([[0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0, 0, 0, 1]], list_object3d_var_rigidobject_id_139880250769168);
-sceneElements.push(var_var_rigidobject_id_139880250769168);
+list_object3d_var_rigidobject_id_140093689546576.push(object3d_var_rigidobject_id_140093689546576_0);
+const var_var_rigidobject_id_140093689546576 = new RigidObject([[0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0, 0, 0, 1]], list_object3d_var_rigidobject_id_140093689546576);
+sceneElements.push(var_var_rigidobject_id_140093689546576);
 //USER INPUT GOES HERE
 
 

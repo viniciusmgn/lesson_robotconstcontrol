@@ -245,7 +245,7 @@
                         style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
                         <div style="width: 100%">
                             <div style="width: 100%">
-                                <iframe src="presentation/images/part2/part_2_3.html" width="550" height="580"
+                                <iframe src="presentation/images/part2/part_2_3.html" width="550" height="450"
                                     style="border: none;"></iframe>
                             </div>
                             <div style="width: 100%">
@@ -341,7 +341,7 @@
                     <div
                         style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
                         <div style="width: 100%">
-                            <iframe src="presentation/images/part2/part_2_4.html" width="580" height="580"
+                            <iframe src="presentation/images/part2/part_2_4.html" width="580" height="450"
                                 style="border: none;"></iframe>
                         </div>
                         <div style="width: 100%">
@@ -382,7 +382,7 @@
                                 \(i^{th}\) DH frame \(\mathcal{F}_{DHi}\).</li><br>
                             <li> To complete the model, we just need to specify the
                                 <b class="itext">constant</b> transformations between \(\mathcal{F}_{DHi}\) and
-                                \(\mathcal{F}_{obj,k,i}\). Lets call it \(T_{Obj,k,i}^{DHi}\).
+                                \(\mathcal{F}_{obj,k,i}\). Lets call it \(T^{Obj,k,i}_{DHi}\).
                             </li><br>
                         </ul>
                     </div>
@@ -559,15 +559,18 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li>  <b class="ttext">Convexity</b> is a key property in geometry that will be necessary to our studies;
+                            <li> <b class="ttext">Convexity</b> is a key property in geometry that will be necessary to
+                                our studies;
                             </li><br>
-                            <li>In some sense, it is the "linear algebra" of geometry: just like non-linearities can be studied by tools of linear algebra, 
+                            <li>In some sense, it is the "linear algebra" of geometry: just like non-linearities can be
+                                studied by tools of linear algebra,
                                 non-convexity can be studded using tools from convexity theorem;</li><br>
-                            <li>I will present (and discuss) some basic results here. If you want to know more, I recommend Chapter 3 of
+                            <li>I will present (and discuss) some basic results here. If you want to know more, I
+                                recommend Chapter 3 of
                                 <a href="https://web.stanford.edu/~boyd/cvxbook/bv_cvxbook.pdf" target="_blank"
-                                        style="font-size: 1.5vw;">
-                                        <b class="hlink">Boyd's classical book</b>
-                                    </a>;
+                                    style="font-size: 1.5vw;">
+                                    <b class="hlink">Boyd's classical book</b>
+                                </a>;
                             </li>
 
                         </ul>
@@ -581,7 +584,7 @@ for link in robot.links:
                         </div>
                     </div>
                 </div>
-            </section>            
+            </section>
 
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
@@ -686,7 +689,7 @@ for link in robot.links:
                                     \mathcal{B}\};$$</b>
                                 <b class="itext">$$\mathcal{A} \ominus \mathcal{B} = \{ a - b , a \in \mathcal{A} , b
                                     \in \mathcal{B}\};$$</b>
-                            </li><br>
+                            </li>
                             <li> The Minkowski sum is the set of all possible pairwise sums of points in the two sets.
                                 If one set, say \(\mathcal{A}\), has its origin at the center, it can also be thought of
                                 as "sweeping" \(\mathcal{A}\) over the boundary of \(\mathcal{B}\).
@@ -724,7 +727,7 @@ for link in robot.links:
                 <div
                     style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
                     <div
-                        style="flex: 1; min-width: 300px; font-size: 1.45vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        style="flex: 1; min-width: 300px; font-size: 1.4vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
                             <li> <b class="ttext">Prop 1:</b> the intersection of convex sets \(\mathcal{A} \cap
@@ -780,13 +783,13 @@ for link in robot.links:
                             <br>
                             <li> A very useful way to handle convexity using analytic geometry is through <b
                                     class="itext">convex functions</b>.<br>
-                            </li><br>
+                            </li>
                             <li> A function \(f: \mathbb{R}^n \mapsto \mathbb{R}\) is said to be a <b
                                     class="ttext">convex function</b> if
                                 <b class="itext">\(\forall u_1, u_2 \in \mathbb{R}^n \ , \alpha \in [0,1]\)</b>:<br>
                                 <b class="itext"> $$ f(\alpha u_1+(1-\alpha) u_2) \leq \alpha f(u_1) + (1-\alpha)
                                     f(u_2);$$</b>
-                            </li><br>
+                            </li>
                             <li> Geometrically, this means two things:
                                 <ul>
                                     <li>That for any two points \((u_1,f(u_1))\) and \((u_2,f(u_2))\) on the graph,
@@ -798,7 +801,7 @@ for link in robot.links:
                                         is convex.</li>
                                 </ul>
                                 <br>
-                            </li><br>
+                            </li>
                             <li>Example: \(f(u)=u^2\).</li>
 
 
@@ -1007,7 +1010,7 @@ for link in robot.links:
                 <div
                     style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
                     <div
-                        style="flex: 1; min-width: 300px; font-size: 1.4vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        style="flex: 1; min-width: 300px; font-size: 1.3vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
                             <li> <b class="ttext">Prop 8:</b> if the convex function \(f\) is differentiable, then, for
@@ -1226,7 +1229,7 @@ for link in robot.links:
                 <div
                     style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
                     <div
-                        style="flex: 1; min-width: 300px; font-size: 1.2vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        style="flex: 1; min-width: 300px; font-size: 1.15vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
                             <li>The intuitive argument (not a formal proof) follows by contradiction.</li> <br>
@@ -1366,7 +1369,7 @@ for link in robot.links:
                 <div
                     style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
                     <div
-                        style="flex: 1; min-width: 300px; font-size: 1.3vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        style="flex: 1; min-width: 300px; font-size: 1.25vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
                             <li> <b class="itext">Example:</b> consider the optimization problem:
@@ -1460,14 +1463,16 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li>Given a closed set \(\mathcal{U}\), the <b class="ttext">point-to-set half-squared distance (P2S-HSD)
+                            <li>Given a closed set \(\mathcal{U}\), the <b class="ttext">point-to-set half-squared
+                                    distance (P2S-HSD)
                                     \(E_{\mathcal{U}}(p)\)</b> between a point \(p\) and \(\mathcal{U}\)
                                 is the half-squared Euclidean distance between \(p\) and its closest point in the set
                                 \(\mathcal{U}\).</li> <br>
                             <li> This can be formulated as the optimization problem:
                                 $$E_{\mathcal{U}}(p) = \min_{u \in \mathcal{U}} 0.5 \|u-p\|^2;$$
                             </li><br>
-                            <li>Working with the P2S-HSD is often more convenient than working directly with the Euclidean
+                            <li>Working with the P2S-HSD is often more convenient than working directly with the
+                                Euclidean
                                 distance.</li><br>
 
                         </ul>
@@ -1495,7 +1500,7 @@ for link in robot.links:
                 <div
                     style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
                     <div
-                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        style="flex: 1; min-width: 300px; font-size: 1.4vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
                             <li> This problem is <b class="itext">convex</b> if \(\mathcal{U}\) is convex. Furthermore,
@@ -1665,7 +1670,7 @@ for link in robot.links:
                 <div
                     style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
                     <div
-                        style="flex: 1; min-width: 300px; font-size: 1.4vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        style="flex: 1; min-width: 300px; font-size: 1.3vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
                             <li> Let \(T: \mathbb{R}^3 \mapsto \mathbb{R}^3\) be a rigid transformation \((Q,s)\).
@@ -1745,7 +1750,7 @@ for link in robot.links:
                         </div>
                         <div style="width: 100%">
                             <div style="font-size: 1.2vw; text-align: center; flex-shrink: 0; margin-bottom: 0rem;">
-                                Support set when \(d=(2.0 \ \ 8.0)^\top\).
+                                Support set when \(d=(2.0 \ \ 8.0)^\top\)
                             </div>
                         </div>
                     </div>
@@ -1764,7 +1769,7 @@ for link in robot.links:
                 <div
                     style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
                     <div
-                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        style="flex: 1; min-width: 300px; font-size: 1.4vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
                             <li>If \(\mathcal{U}\) is a convex polyhedron, the optimization problem is a <b
@@ -1795,7 +1800,7 @@ for link in robot.links:
                         </div>
                         <div style="width: 100%">
                             <div style="font-size: 1.2vw; text-align: center; flex-shrink: 0; margin-bottom: 0rem;">
-                                Support set when \(d=(2.0 \ \ 8.0)^\top\).
+                                Support set when \(d=(2.0 \ \ 8.0)^\top\)
                             </div>
                         </div>
                     </div>
@@ -1842,7 +1847,7 @@ for link in robot.links:
                         </div>
                         <div style="width: 100%">
                             <div style="font-size: 1.2vw; text-align: center; flex-shrink: 0; margin-bottom: 0rem;">
-                                Support set when \(d=(2.0 \ \ 8.0)^\top\).
+                                Support set when \(d=(2.0 \ \ 8.0)^\top\)
                             </div>
                         </div>
                     </div>
@@ -1852,7 +1857,7 @@ for link in robot.links:
 
             <section
                 style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
-                <h3 style="font-size: 3.5vw; margin-bottom: 0.5rem;">COMPUTING DISTANCES AND <br> OTHER QUANTITIES</h3>
+                <h3 style="font-size: 3.5vw; margin-bottom: 0.5rem;">DISTANCES AND <br> OTHER QUANTITIES</h3>
 
                 <div style="display: flex; flex-direction: column; align-items: center;">
                     <img src="presentation/images/part2/main.png" style="max-width: 40%; height: auto;">
@@ -1861,7 +1866,7 @@ for link in robot.links:
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    COMPUTING DISTANCES AND OTHER QUANTITIES
+                    DISTANCES AND OTHER QUANTITIES
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     <b class="ttext">TYPES OF DISTANCES</b>
@@ -1902,7 +1907,7 @@ for link in robot.links:
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    COMPUTING DISTANCES AND OTHER QUANTITIES
+                    DISTANCES AND OTHER QUANTITIES
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     <b class="ttext">OVERLAP ORACLES</b>
@@ -1945,7 +1950,7 @@ for link in robot.links:
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    COMPUTING DISTANCES AND OTHER QUANTITIES
+                    DISTANCES AND OTHER QUANTITIES
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     <b class="ttext">OVERLAP ORACLES</b>
@@ -1985,7 +1990,7 @@ for link in robot.links:
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    COMPUTING DISTANCES AND OTHER QUANTITIES
+                    DISTANCES AND OTHER QUANTITIES
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     <b class="ttext">DISTANCE</b>
@@ -1998,7 +2003,8 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li> The <b class="ttext">set-to-set half-squared distance (S2S-HSD), \(\Lambda_{\mathcal{A},\mathcal{B}}\),</b> between sets \(\mathcal{A}\) and
+                            <li> The <b class="ttext">set-to-set half-squared distance (S2S-HSD),
+                                    \(\Lambda_{\mathcal{A},\mathcal{B}}\),</b> between sets \(\mathcal{A}\) and
                                 \(\mathcal{B}\) is defined as:
                                 $$\Lambda_{\mathcal{A},\mathcal{B}} = \min_{a \in \mathcal{A}, b \in \mathcal{B}}
                                 \frac{\|a-b\|^2}{2};$$
@@ -2021,7 +2027,7 @@ for link in robot.links:
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    COMPUTING DISTANCES AND OTHER QUANTITIES
+                    DISTANCES AND OTHER QUANTITIES
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     <b class="ttext">DISTANCE</b>
@@ -2036,7 +2042,8 @@ for link in robot.links:
                             <br>
                             <li>A pair of closest points \((a^*,b^*)\) (not necessarily unique) is called <b
                                     class="itext">witness points</b>.</li><br>
-                            <li>Non-uniqueness of the witness points cause differentiability problems, as we will see soon;</li><br>
+                            <li>Non-uniqueness of the witness points cause differentiability problems, as we will see
+                                soon;</li><br>
                             <li>In control applications, however, we often need more than just the distance itself—we
                                 need information on how to <b class="itext">change</b> this distance.</li>
 
@@ -2056,7 +2063,7 @@ for link in robot.links:
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    COMPUTING DISTANCES AND OTHER QUANTITIES
+                    DISTANCES AND OTHER QUANTITIES
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     <b class="ttext">DISTANCE GRADIENT</b>
@@ -2096,7 +2103,7 @@ for link in robot.links:
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    COMPUTING DISTANCES AND OTHER QUANTITIES
+                    DISTANCES AND OTHER QUANTITIES
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     <b class="ttext">DISTANCE CALCULATION</b>
@@ -2137,7 +2144,7 @@ for link in robot.links:
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    COMPUTING DISTANCES AND OTHER QUANTITIES
+                    DISTANCES AND OTHER QUANTITIES
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     <b class="ttext">DISTANCE CALCULATION</b>
@@ -2147,7 +2154,7 @@ for link in robot.links:
                     style="display: flex; flex-direction: column; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
                     <div
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: flex-start; padding-top: 20px; height: 100%;">
-                        <br>
+                        
                         <div style="width: 100%">
                             We will study three algorithms:
                         </div>
@@ -2155,11 +2162,12 @@ for link in robot.links:
                     </div>
 
                     <div
-                        style="flex: 3; min-width: 300px; font-size: 1.5vw; text-align: center; display: flex; align-items: center; justify-content: center; margin-top: -20px; height: 100%;">
+                        style="flex: 5; min-width: 300px; font-size: 1.5vw; text-align: center; display: flex; align-items: center; justify-content: center; margin-top: -20px; height: 100%;">
                         <div style="position:absolute; width: 100%; align-items: center;">
                             <img src="presentation/images/part2/image23.svg"
-                                style="max-width: 80%; height: auto; max-height: 60vh;">
+                                style="max-width: 50%; height: auto; max-height: 60vh;">
                         </div>
+                        <br>
 
                     </div>
                 </div>
@@ -2167,7 +2175,7 @@ for link in robot.links:
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    COMPUTING DISTANCES AND OTHER QUANTITIES
+                    DISTANCES AND OTHER QUANTITIES
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     <b class="ttext">GJK ALGORITHM</b>
@@ -2210,7 +2218,7 @@ for link in robot.links:
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    COMPUTING DISTANCES AND OTHER QUANTITIES
+                    DISTANCES AND OTHER QUANTITIES
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     <b class="ttext">GJK ALGORITHM</b>
@@ -2223,7 +2231,7 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li>The GJK algorithm uses the <b class="itext">support set</b> 
+                            <li>The GJK algorithm uses the <b class="itext">support set</b>
                                 \(\mathcal{S}_{\mathcal{C}}(d)\). There is no need to compute the entire
                                 set, just a single point within it.
                             </li><br>
@@ -2240,7 +2248,7 @@ for link in robot.links:
                                 \(\mathcal{B}\), and focus only on computing the distance between
                                 \(\mathcal{C}\) and the origin.
                             </li>
-                            
+
 
                         </ul>
                     </div>
@@ -2257,7 +2265,7 @@ for link in robot.links:
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    COMPUTING DISTANCES AND OTHER QUANTITIES
+                    DISTANCES AND OTHER QUANTITIES
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     <b class="ttext">GJK ALGORITHM</b>
@@ -2267,10 +2275,11 @@ for link in robot.links:
                 <div
                     style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
                     <div
-                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        style="flex: 1; min-width: 300px; font-size: 1.4vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li>One last concept before we begin is the notion of a <b class="itext">simplex</b>. An \(n\)-dimensional
+                            <li>One last concept before we begin is the notion of a <b class="itext">simplex</b>. An
+                                \(n\)-dimensional
                                 simplex \(\mathcal{P}\) is the convex set formed by
                                 \(n+1\) points in \(\mathbb{R}^n\). For example, a \(1\)-dimensional simplex is an
                                 interval, a \(2\)-dimensional simplex is a triangle,
@@ -2284,7 +2293,7 @@ for link in robot.links:
                             </li><br>
                             <li>The faces, edges, and vertices of a 3-simplex are 2-, 1-, and 0-dimensional simplexes,
                                 respectively.</li>
-                            
+
                         </ul>
                     </div>
 
@@ -2292,7 +2301,7 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
                         <div style="width: 100%">
                             <img src="presentation/images/part2/image25.svg"
-                                style="max-width: 80%; height: auto; max-height: 60vh;">
+                                style="max-width: 70%; height: auto; max-height: 60vh;">
                         </div>
                     </div>
                 </div>
@@ -2300,7 +2309,7 @@ for link in robot.links:
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    COMPUTING DISTANCES AND OTHER QUANTITIES
+                    DISTANCES AND OTHER QUANTITIES
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     <b class="ttext">GJK ALGORITHM</b>
@@ -2320,7 +2329,7 @@ for link in robot.links:
                                 the smallest sub-simplex of \(\mathcal{P}\)
                                 (edges, faces or vertexes) that contains \(c^*\);
                             </li><br>
-                            <li>This is a convex optimization problem that can be solved efficiently without the need 
+                            <li>This is a convex optimization problem that can be solved efficiently without the need
                                 of specialized solvers.</li>
                         </ul>
                     </div>
@@ -2329,7 +2338,7 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
                         <div style="width: 100%">
                             <img src="presentation/images/part2/image26.svg"
-                                style="max-width: 80%; height: auto; max-height: 60vh;">
+                                style="max-width: 70%; height: auto; max-height: 60vh;">
                         </div>
                     </div>
                 </div>
@@ -2337,7 +2346,7 @@ for link in robot.links:
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    COMPUTING DISTANCES AND OTHER QUANTITIES
+                    DISTANCES AND OTHER QUANTITIES
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     <b class="ttext">GJK ALGORITHM</b>
@@ -2350,15 +2359,18 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li>The intuition behind the algorithm is to iteratively construct simplexes (e.g., triangles) 
-                                formed by vertexes of the polygon \(\mathcal{C}\) that are closer and closer to the origin;
+                            <li>The intuition behind the algorithm is to iteratively construct simplexes (e.g.,
+                                triangles)
+                                formed by vertexes of the polygon \(\mathcal{C}\) that are closer and closer to the
+                                origin;
                             </li><br>
-                            <li>It searches for new vertexes of the polygon by searching for extreme points of the 
-                                polygon in a direction "torwards" the origin. Support functions comes into play here 
-                                because they do precisely that: a point in \(\mathcal{S}_{C}(d)\) is an extreme point 
+                            <li>It searches for new vertexes of the polygon by searching for extreme points of the
+                                polygon in a direction "torwards" the origin. Support functions comes into play here
+                                because they do precisely that: a point in \(\mathcal{S}_{C}(d)\) is an extreme point
                                 in the direction \(d\).
                             </li><br>
-                            <li>Note that if \(c \in \mathcal{C}\), if \(-c\) is a vector that starts from \(c\), it points 
+                            <li>Note that if \(c \in \mathcal{C}\), if \(-c\) is a vector that starts from \(c\), it
+                                points
                                 towards the origin. So, it can be used as a search direction.</li>
                         </ul>
                     </div>
@@ -2367,7 +2379,7 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
                         <div style="width: 100%">
                             <img src="presentation/images/part2/image26.svg"
-                                style="max-width: 80%; height: auto; max-height: 60vh;">
+                                style="max-width: 70%; height: auto; max-height: 60vh;">
                         </div>
                     </div>
                 </div>
@@ -2375,7 +2387,7 @@ for link in robot.links:
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    COMPUTING DISTANCES AND OTHER QUANTITIES
+                    DISTANCES AND OTHER QUANTITIES
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     <b class="ttext">GJK ALGORITHM</b>
@@ -2394,411 +2406,488 @@ for link in robot.links:
                                 <li>The algorithm starts with a vertex \(c_{dir} \in \mathcal{C}\). Then, we start
                                     \(\mathcal{P}=\{c_{dir}\}\) and loop:<br><br>
 
-                                    <div style="position:absolute; width: 80%; " class="vim_indicator current-visible fragment"
-                                    data-fragment-index="0">
-                                    <ul>
-                                        <li> <b class="ttext"> Get \(c_{new} \in \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
-                                            </b> </li><br>
-                                        <li> <b class="itext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
-                                        </li><br>
-                                        <li> <b class="itext"> \(c_{dir} , \mathcal{P}' :=
-                                                \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
-                                                <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
-                                        <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If the  point \(c_{dir}\)
- did not change, return the distance as \(\|c_{dir}\|\); </b></li><br>
-                                        
-                                    </ul>
+                                    <div style="position:absolute; width: 80%; "
+                                        class="vim_indicator current-visible fragment" data-fragment-index="0">
+                                        <ul>
+                                            <li> <b class="ttext"> Get \(c_{new} \in
+                                                    \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
+                                                </b> </li><br>
+                                            <li> <b class="itext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
+                                            </li><br>
+                                            <li> <b class="itext"> \(c_{dir} , \mathcal{P}' :=
+                                                    \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
+                                            <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
+                                            <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If
+                                                    the point \(c_{dir}\)
+                                                    did not change, return the distance as \(\|c_{dir}\|\); </b></li>
+                                            <br>
+
+                                        </ul>
                                     </div>
 
-                                    <div style="position:absolute; width: 80%; " class="vim_indicator current-visible fragment"
-                                    data-fragment-index="1">
-                                    <ul>
-                                        <li> <b class="ttext"> Get \(c_{new} \in \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
-                                            </b> </li><br>
-                                        <li> <b class="itext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
-                                        </li><br>
-                                        <li> <b class="itext"> \(c_{dir} , \mathcal{P}' :=
-                                                \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
-                                        <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
-                                        <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If the  point \(c_{dir}\)
- did not change, return the distance as \(\|c_{dir}\|\); </b></li><br>
-                                    </ul>
-                                    </div>
-
-
-                                    <div style="position:absolute; width: 80%; " class="vim_indicator current-visible fragment"
-                                    data-fragment-index="2">
-                                    <ul>
-                                        <li> <b class="ttext"> Get \(c_{new} \in \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
-                                            </b> </li><br>
-                                        <li> <b class="itext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
-                                        </li><br>
-                                        <li> <b class="itext"> \(c_{dir} , \mathcal{P}' :=
-                                                \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
-                                        <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>        
-                                        <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If the  point \(c_{dir}\)
- did not change, return the distance as \(\|c_{dir}\|\); </b></li><br>
-
-                                    </ul>
-                                    </div>
-
-                                    <div style="position:absolute; width: 80%; " class="vim_indicator current-visible fragment"
-                                    data-fragment-index="3">
-                                    <ul>
-                                        <li> <b class="ttext"> Get \(c_{new} \in \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
-                                            </b> </li><br>
-                                        <li> <b class="itext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
-                                        </li><br>
-                                        <li> <b class="itext"> \(c_{dir} , \mathcal{P}' :=
-                                                \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
-                                        <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
-                                        <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If the  point \(c_{dir}\)
- did not change, return the distance as \(\|c_{dir}\|\); </b></li><br>
-                                        
-                                    </ul>
-                                    </div>
-
-                                    <div style="position:absolute; width: 80%; " class="vim_indicator current-visible fragment"
-                                    data-fragment-index="4">
-                                    <ul>
-                                        <li> <b class="itext"> Get \(c_{new} \in \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
-                                            </b> </li><br>
-                                        <li> <b class="ttext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
-                                        </li><br>
-                                        <li> <b class="itext"> \(c_{dir} , \mathcal{P}' :=
-                                                \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
-                                        <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
-                                        <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If the  point \(c_{dir}\)
- did not change, return the distance as \(\|c_{dir}\|\); </b></li><br>
-                                        
-                                    </ul>
+                                    <div style="position:absolute; width: 80%; "
+                                        class="vim_indicator current-visible fragment" data-fragment-index="1">
+                                        <ul>
+                                            <li> <b class="ttext"> Get \(c_{new} \in
+                                                    \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
+                                                </b> </li><br>
+                                            <li> <b class="itext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
+                                            </li><br>
+                                            <li> <b class="itext"> \(c_{dir} , \mathcal{P}' :=
+                                                    \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
+                                            <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
+                                            <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If
+                                                    the point \(c_{dir}\)
+                                                    did not change, return the distance as \(\|c_{dir}\|\); </b></li>
+                                            <br>
+                                        </ul>
                                     </div>
 
 
-                                    <div style="position:absolute; width: 80%; " class="vim_indicator current-visible fragment"
-                                    data-fragment-index="5">
-                                    <ul>
-                                        <li> <b class="itext"> Get \(c_{new} \in \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
-                                            </b> </li><br>
-                                        <li> <b class="itext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
-                                        </li><br>
-                                        <li> <b class="ttext"> \(c_{dir} , \mathcal{P}' :=
-                                                \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
-                                        <li><b class="ttext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
-                                        <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If the  point \(c_{dir}\)
- did not change, return the distance as \(\|c_{dir}\|\); </b></li><br>
-                                        
-                                    </ul>
-                                    </div>      
-                                    
-                                    
-                                    <div style="position:absolute; width: 80%; " class="vim_indicator current-visible fragment"
-                                    data-fragment-index="6">
-                                    <ul>
-                                        <li> <b class="ttext"> Get \(c_{new} \in \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
-                                            </b> </li><br>
-                                        <li> <b class="itext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
-                                        </li><br>
-                                        <li> <b class="itext"> \(c_{dir} , \mathcal{P}' :=
-                                                \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
-                                                <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
-                                        <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If the  point \(c_{dir}\)
- did not change, return the distance as \(\|c_{dir}\|\); </b></li><br>
-                                        
-                                    </ul>
+                                    <div style="position:absolute; width: 80%; "
+                                        class="vim_indicator current-visible fragment" data-fragment-index="2">
+                                        <ul>
+                                            <li> <b class="ttext"> Get \(c_{new} \in
+                                                    \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
+                                                </b> </li><br>
+                                            <li> <b class="itext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
+                                            </li><br>
+                                            <li> <b class="itext"> \(c_{dir} , \mathcal{P}' :=
+                                                    \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
+                                            <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
+                                            <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If
+                                                    the point \(c_{dir}\)
+                                                    did not change, return the distance as \(\|c_{dir}\|\); </b></li>
+                                            <br>
+
+                                        </ul>
                                     </div>
 
-                                    <div style="position:absolute; width: 80%; " class="vim_indicator current-visible fragment"
-                                    data-fragment-index="7">
-                                    <ul>
-                                        <li> <b class="ttext"> Get \(c_{new} \in \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
-                                            </b> </li><br>
-                                        <li> <b class="itext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
-                                        </li><br>
-                                        <li> <b class="itext"> \(c_{dir} , \mathcal{P}' :=
-                                                \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
-                                        <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
-                                        <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If the  point \(c_{dir}\)
- did not change, return the distance as \(\|c_{dir}\|\); </b></li><br>
-                                    </ul>
+                                    <div style="position:absolute; width: 80%; "
+                                        class="vim_indicator current-visible fragment" data-fragment-index="3">
+                                        <ul>
+                                            <li> <b class="ttext"> Get \(c_{new} \in
+                                                    \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
+                                                </b> </li><br>
+                                            <li> <b class="itext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
+                                            </li><br>
+                                            <li> <b class="itext"> \(c_{dir} , \mathcal{P}' :=
+                                                    \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
+                                            <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
+                                            <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If
+                                                    the point \(c_{dir}\)
+                                                    did not change, return the distance as \(\|c_{dir}\|\); </b></li>
+                                            <br>
+
+                                        </ul>
                                     </div>
 
+                                    <div style="position:absolute; width: 80%; "
+                                        class="vim_indicator current-visible fragment" data-fragment-index="4">
+                                        <ul>
+                                            <li> <b class="itext"> Get \(c_{new} \in
+                                                    \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
+                                                </b> </li><br>
+                                            <li> <b class="ttext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
+                                            </li><br>
+                                            <li> <b class="itext"> \(c_{dir} , \mathcal{P}' :=
+                                                    \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
+                                            <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
+                                            <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If
+                                                    the point \(c_{dir}\)
+                                                    did not change, return the distance as \(\|c_{dir}\|\); </b></li>
+                                            <br>
 
-                                    <div style="position:absolute; width: 80%; " class="vim_indicator current-visible fragment"
-                                    data-fragment-index="8">
-                                    <ul>
-                                        <li> <b class="ttext"> Get \(c_{new} \in \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
-                                            </b> </li><br>
-                                        <li> <b class="itext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
-                                        </li><br>
-                                        <li> <b class="itext"> \(c_{dir} , \mathcal{P}' :=
-                                                \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
-                                        <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li> <br>       
-                                        <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If the  point \(c_{dir}\)
- did not change, return the distance as \(\|c_{dir}\|\); </b></li><br>
-
-                                    </ul>
-                                    </div>
-
-                                    <div style="position:absolute; width: 80%; " class="vim_indicator current-visible fragment"
-                                    data-fragment-index="9">
-                                    <ul>
-                                        <li> <b class="ttext"> Get \(c_{new} \in \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
-                                            </b> </li><br>
-                                        <li> <b class="itext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
-                                        </li><br>
-                                        <li> <b class="itext"> \(c_{dir} , \mathcal{P}' :=
-                                                \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
-                                        <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
-                                        <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If the  point \(c_{dir}\)
- did not change, return the distance as \(\|c_{dir}\|\); </b></li><br>
-                                        
-                                    </ul>
-                                    </div>
-
-                                    <div style="position:absolute; width: 80%; " class="vim_indicator current-visible fragment"
-                                    data-fragment-index="10">
-                                    <ul>
-                                        <li> <b class="itext"> Get \(c_{new} \in \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
-                                            </b> </li><br>
-                                        <li> <b class="ttext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
-                                        </li><br>
-                                        <li> <b class="itext"> \(c_{dir} , \mathcal{P}' :=
-                                                \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
-                                        <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
-                                        <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If the  point \(c_{dir}\)
- did not change, return the distance as \(\|c_{dir}\|\); </b></li><br>
-                                        
-                                    </ul>
+                                        </ul>
                                     </div>
 
 
-                                    <div style="position:absolute; width: 80%; " class="vim_indicator current-visible fragment"
-                                    data-fragment-index="11">
-                                    <ul>
-                                        <li> <b class="itext"> Get \(c_{new} \in \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
-                                            </b> </li><br>
-                                        <li> <b class="itext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
-                                        </li><br>
-                                        <li> <b class="ttext"> \(c_{dir} , \mathcal{P}' :=
-                                                \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
-                                        <li><b class="ttext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
-                                        <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If the  point \(c_{dir}\)
- did not change, return the distance as \(\|c_{dir}\|\); </b></li><br>
-                                        
-                                    </ul>
-                                    </div>
-                                    
-                                    <div style="position:absolute; width: 80%; " class="vim_indicator current-visible fragment"
-                                    data-fragment-index="12">
-                                    <ul>
-                                        <li> <b class="ttext"> Get \(c_{new} \in \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
-                                            </b> </li><br>
-                                        <li> <b class="itext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
-                                        </li><br>
-                                        <li> <b class="itext"> \(c_{dir} , \mathcal{P}' :=
-                                                \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
-                                                <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
-                                        <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If the  point \(c_{dir}\)
- did not change, return the distance as \(\|c_{dir}\|\); </b></li><br>
-                                        
-                                    </ul>
-                                    </div>
+                                    <div style="position:absolute; width: 80%; "
+                                        class="vim_indicator current-visible fragment" data-fragment-index="5">
+                                        <ul>
+                                            <li> <b class="itext"> Get \(c_{new} \in
+                                                    \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
+                                                </b> </li><br>
+                                            <li> <b class="itext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
+                                            </li><br>
+                                            <li> <b class="ttext"> \(c_{dir} , \mathcal{P}' :=
+                                                    \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
+                                            <li><b class="ttext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
+                                            <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If
+                                                    the point \(c_{dir}\)
+                                                    did not change, return the distance as \(\|c_{dir}\|\); </b></li>
+                                            <br>
 
-                                    <div style="position:absolute; width: 80%; " class="vim_indicator current-visible fragment"
-                                    data-fragment-index="13">
-                                    <ul>
-                                        <li> <b class="ttext"> Get \(c_{new} \in \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
-                                            </b> </li><br>
-                                        <li> <b class="itext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
-                                        </li><br>
-                                        <li> <b class="itext"> \(c_{dir} , \mathcal{P}' :=
-                                                \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
-                                        <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
-                                        <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If the  point \(c_{dir}\)
- did not change, return the distance as \(\|c_{dir}\|\); </b></li><br>
-                                    </ul>
+                                        </ul>
                                     </div>
 
 
-                                    <div style="position:absolute; width: 80%; " class="vim_indicator current-visible fragment"
-                                    data-fragment-index="14">
-                                    <ul>
-                                        <li> <b class="ttext"> Get \(c_{new} \in \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
-                                            </b> </li><br>
-                                        <li> <b class="itext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
-                                        </li><br>
-                                        <li> <b class="itext"> \(c_{dir} , \mathcal{P}' :=
-                                                \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
-                                        <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>        
-                                        <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If the  point \(c_{dir}\)
- did not change, return the distance as \(\|c_{dir}\|\); </b></li><br>
+                                    <div style="position:absolute; width: 80%; "
+                                        class="vim_indicator current-visible fragment" data-fragment-index="6">
+                                        <ul>
+                                            <li> <b class="ttext"> Get \(c_{new} \in
+                                                    \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
+                                                </b> </li><br>
+                                            <li> <b class="itext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
+                                            </li><br>
+                                            <li> <b class="itext"> \(c_{dir} , \mathcal{P}' :=
+                                                    \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
+                                            <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
+                                            <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If
+                                                    the point \(c_{dir}\)
+                                                    did not change, return the distance as \(\|c_{dir}\|\); </b></li>
+                                            <br>
 
-                                    </ul>
+                                        </ul>
                                     </div>
 
-                                    <div style="position:absolute; width: 80%; " class="vim_indicator current-visible fragment"
-                                    data-fragment-index="15">
-                                    <ul>
-                                        <li> <b class="ttext"> Get \(c_{new} \in \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
-                                            </b> </li><br>
-                                        <li> <b class="itext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
-                                        </li><br>
-                                        <li> <b class="itext"> \(c_{dir} , \mathcal{P}' :=
-                                                \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
-                                        <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
-                                        <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If the  point \(c_{dir}\)
- did not change, return the distance as \(\|c_{dir}\|\); </b></li><br>
-                                        
-                                    </ul>
-                                    </div>
-
-                                    <div style="position:absolute; width: 80%; " class="vim_indicator current-visible fragment"
-                                    data-fragment-index="16">
-                                    <ul>
-                                        <li> <b class="itext"> Get \(c_{new} \in \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
-                                            </b> </li><br>
-                                        <li> <b class="ttext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
-                                        </li><br>
-                                        <li> <b class="itext"> \(c_{dir} , \mathcal{P}' :=
-                                                \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
-                                        <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
-                                        <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If the  point \(c_{dir}\)
- did not change, return the distance as \(\|c_{dir}\|\); </b></li><br>
-                                        
-                                    </ul>
+                                    <div style="position:absolute; width: 80%; "
+                                        class="vim_indicator current-visible fragment" data-fragment-index="7">
+                                        <ul>
+                                            <li> <b class="ttext"> Get \(c_{new} \in
+                                                    \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
+                                                </b> </li><br>
+                                            <li> <b class="itext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
+                                            </li><br>
+                                            <li> <b class="itext"> \(c_{dir} , \mathcal{P}' :=
+                                                    \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
+                                            <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
+                                            <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If
+                                                    the point \(c_{dir}\)
+                                                    did not change, return the distance as \(\|c_{dir}\|\); </b></li>
+                                            <br>
+                                        </ul>
                                     </div>
 
 
-                                    <div style="position:absolute; width: 80%; " class="vim_indicator current-visible fragment"
-                                    data-fragment-index="17">
-                                    <ul>
-                                        <li> <b class="itext"> Get \(c_{new} \in \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
-                                            </b> </li><br>
-                                        <li> <b class="itext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
-                                        </li><br>
-                                        <li> <b class="ttext"> \(c_{dir} , \mathcal{P}' :=
-                                                \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
-                                        <li><b class="ttext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
-                                        <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If the  point \(c_{dir}\)
- did not change, return the distance as \(\|c_{dir}\|\); </b></li><br>
-                                        
-                                    </ul>
-                                    </div>      
-                                    
-                                    
-                                    <div style="position:absolute; width: 80%; " class="vim_indicator current-visible fragment"
-                                    data-fragment-index="18">
-                                    <ul>
-                                        <li> <b class="ttext"> Get \(c_{new} \in \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
-                                            </b> </li><br>
-                                        <li> <b class="itext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
-                                        </li><br>
-                                        <li> <b class="itext"> \(c_{dir} , \mathcal{P}' :=
-                                                \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
-                                                <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
-                                        <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If the  point \(c_{dir}\)
- did not change, return the distance as \(\|c_{dir}\|\); </b></li><br>
-                                        
-                                    </ul>
+                                    <div style="position:absolute; width: 80%; "
+                                        class="vim_indicator current-visible fragment" data-fragment-index="8">
+                                        <ul>
+                                            <li> <b class="ttext"> Get \(c_{new} \in
+                                                    \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
+                                                </b> </li><br>
+                                            <li> <b class="itext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
+                                            </li><br>
+                                            <li> <b class="itext"> \(c_{dir} , \mathcal{P}' :=
+                                                    \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
+                                            <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li>
+                                            <br>
+                                            <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If
+                                                    the point \(c_{dir}\)
+                                                    did not change, return the distance as \(\|c_{dir}\|\); </b></li>
+                                            <br>
+
+                                        </ul>
                                     </div>
 
-                                    <div style="position:absolute; width: 80%; " class="vim_indicator current-visible fragment"
-                                    data-fragment-index="19">
-                                    <ul>
-                                        <li> <b class="ttext"> Get \(c_{new} \in \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
-                                            </b> </li><br>
-                                        <li> <b class="itext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
-                                        </li><br>
-                                        <li> <b class="itext"> \(c_{dir} , \mathcal{P}' :=
-                                                \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
-                                        <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
-                                        <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If the  point \(c_{dir}\)
- did not change, return the distance as \(\|c_{dir}\|\); </b></li><br>
-                                    </ul>
+                                    <div style="position:absolute; width: 80%; "
+                                        class="vim_indicator current-visible fragment" data-fragment-index="9">
+                                        <ul>
+                                            <li> <b class="ttext"> Get \(c_{new} \in
+                                                    \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
+                                                </b> </li><br>
+                                            <li> <b class="itext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
+                                            </li><br>
+                                            <li> <b class="itext"> \(c_{dir} , \mathcal{P}' :=
+                                                    \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
+                                            <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
+                                            <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If
+                                                    the point \(c_{dir}\)
+                                                    did not change, return the distance as \(\|c_{dir}\|\); </b></li>
+                                            <br>
+
+                                        </ul>
                                     </div>
 
+                                    <div style="position:absolute; width: 80%; "
+                                        class="vim_indicator current-visible fragment" data-fragment-index="10">
+                                        <ul>
+                                            <li> <b class="itext"> Get \(c_{new} \in
+                                                    \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
+                                                </b> </li><br>
+                                            <li> <b class="ttext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
+                                            </li><br>
+                                            <li> <b class="itext"> \(c_{dir} , \mathcal{P}' :=
+                                                    \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
+                                            <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
+                                            <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If
+                                                    the point \(c_{dir}\)
+                                                    did not change, return the distance as \(\|c_{dir}\|\); </b></li>
+                                            <br>
 
-                                    <div style="position:absolute; width: 80%; " class="vim_indicator current-visible fragment"
-                                    data-fragment-index="20">
-                                    <ul>
-                                        <li> <b class="ttext"> Get \(c_{new} \in \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
-                                            </b> </li><br>
-                                        <li> <b class="itext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
-                                        </li><br>
-                                        <li> <b class="itext"> \(c_{dir} , \mathcal{P}' :=
-                                                \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
-                                        <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li> <br>       
-                                        <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If the  point \(c_{dir}\)
- did not change, return the distance as \(\|c_{dir}\|\); </b></li><br>
-
-                                    </ul>
-                                    </div>
-
-                                    <div style="position:absolute; width: 80%; " class="vim_indicator current-visible fragment"
-                                    data-fragment-index="21">
-                                    <ul>
-                                        <li> <b class="ttext"> Get \(c_{new} \in \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
-                                            </b> </li><br>
-                                        <li> <b class="itext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
-                                        </li><br>
-                                        <li> <b class="itext"> \(c_{dir} , \mathcal{P}' :=
-                                                \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
-                                        <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
-                                        <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If the  point \(c_{dir}\)
- did not change, return the distance as \(\|c_{dir}\|\); </b></li><br>
-                                        
-                                    </ul>
-                                    </div>
-
-                                    <div style="position:absolute; width: 80%; " class="vim_indicator current-visible fragment"
-                                    data-fragment-index="22">
-                                    <ul>
-                                        <li> <b class="itext"> Get \(c_{new} \in \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
-                                            </b> </li><br>
-                                        <li> <b class="ttext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
-                                        </li><br>
-                                        <li> <b class="itext"> \(c_{dir} , \mathcal{P}' :=
-                                                \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
-                                        <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
-                                        <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If the  point \(c_{dir}\)
- did not change, return the distance as \(\|c_{dir}\|\); </b></li><br>
-                                        
-                                    </ul>
+                                        </ul>
                                     </div>
 
 
-                                    <div style="position:absolute; width: 80%; " class="vim_indicator current-visible fragment"
-                                    data-fragment-index="23">
-                                    <ul>
-                                        <li> <b class="itext"> Get \(c_{new} \in \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
-                                            </b> </li><br>
-                                        <li> <b class="itext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
-                                        </li><br>
-                                        <li> <b class="ttext"> \(c_{dir} , \mathcal{P}' :=
-                                                \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
-                                        <li><b class="ttext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
-                                        <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If the  point \(c_{dir}\)
- did not change, return the distance as \(\|c_{dir}\|\); </b></li><br>
-                                        
-                                    </ul>
-                                    </div>   
+                                    <div style="position:absolute; width: 80%; "
+                                        class="vim_indicator current-visible fragment" data-fragment-index="11">
+                                        <ul>
+                                            <li> <b class="itext"> Get \(c_{new} \in
+                                                    \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
+                                                </b> </li><br>
+                                            <li> <b class="itext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
+                                            </li><br>
+                                            <li> <b class="ttext"> \(c_{dir} , \mathcal{P}' :=
+                                                    \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
+                                            <li><b class="ttext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
+                                            <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If
+                                                    the point \(c_{dir}\)
+                                                    did not change, return the distance as \(\|c_{dir}\|\); </b></li>
+                                            <br>
 
-                                    <div style="position:absolute; width: 80%; " class="vim_indicator current-visible fragment"
-                                    data-fragment-index="24">
-                                    <ul>
-                                        <li> <b class="itext"> Get \(c_{new} \in \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
-                                            </b> </li><br>
-                                        <li> <b class="itext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
-                                        </li><br>
-                                        <li> <b class="itext"> \(c_{dir} , \mathcal{P}' :=
-                                                \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
-                                        <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
-                                        <li> <b class="ttext"> If \(c_{dir} = 0\), return the distance as \(0\). If the  point \(c_{dir}\)
- did not change, return the distance as \(\|c_{dir}\|\); </b></li><br>
-                                        
-                                    </ul>
-                                    </div>   
+                                        </ul>
+                                    </div>
+
+                                    <div style="position:absolute; width: 80%; "
+                                        class="vim_indicator current-visible fragment" data-fragment-index="12">
+                                        <ul>
+                                            <li> <b class="ttext"> Get \(c_{new} \in
+                                                    \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
+                                                </b> </li><br>
+                                            <li> <b class="itext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
+                                            </li><br>
+                                            <li> <b class="itext"> \(c_{dir} , \mathcal{P}' :=
+                                                    \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
+                                            <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
+                                            <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If
+                                                    the point \(c_{dir}\)
+                                                    did not change, return the distance as \(\|c_{dir}\|\); </b></li>
+                                            <br>
+
+                                        </ul>
+                                    </div>
+
+                                    <div style="position:absolute; width: 80%; "
+                                        class="vim_indicator current-visible fragment" data-fragment-index="13">
+                                        <ul>
+                                            <li> <b class="ttext"> Get \(c_{new} \in
+                                                    \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
+                                                </b> </li><br>
+                                            <li> <b class="itext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
+                                            </li><br>
+                                            <li> <b class="itext"> \(c_{dir} , \mathcal{P}' :=
+                                                    \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
+                                            <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
+                                            <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If
+                                                    the point \(c_{dir}\)
+                                                    did not change, return the distance as \(\|c_{dir}\|\); </b></li>
+                                            <br>
+                                        </ul>
+                                    </div>
+
+
+                                    <div style="position:absolute; width: 80%; "
+                                        class="vim_indicator current-visible fragment" data-fragment-index="14">
+                                        <ul>
+                                            <li> <b class="ttext"> Get \(c_{new} \in
+                                                    \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
+                                                </b> </li><br>
+                                            <li> <b class="itext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
+                                            </li><br>
+                                            <li> <b class="itext"> \(c_{dir} , \mathcal{P}' :=
+                                                    \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
+                                            <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
+                                            <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If
+                                                    the point \(c_{dir}\)
+                                                    did not change, return the distance as \(\|c_{dir}\|\); </b></li>
+                                            <br>
+
+                                        </ul>
+                                    </div>
+
+                                    <div style="position:absolute; width: 80%; "
+                                        class="vim_indicator current-visible fragment" data-fragment-index="15">
+                                        <ul>
+                                            <li> <b class="ttext"> Get \(c_{new} \in
+                                                    \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
+                                                </b> </li><br>
+                                            <li> <b class="itext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
+                                            </li><br>
+                                            <li> <b class="itext"> \(c_{dir} , \mathcal{P}' :=
+                                                    \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
+                                            <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
+                                            <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If
+                                                    the point \(c_{dir}\)
+                                                    did not change, return the distance as \(\|c_{dir}\|\); </b></li>
+                                            <br>
+
+                                        </ul>
+                                    </div>
+
+                                    <div style="position:absolute; width: 80%; "
+                                        class="vim_indicator current-visible fragment" data-fragment-index="16">
+                                        <ul>
+                                            <li> <b class="itext"> Get \(c_{new} \in
+                                                    \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
+                                                </b> </li><br>
+                                            <li> <b class="ttext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
+                                            </li><br>
+                                            <li> <b class="itext"> \(c_{dir} , \mathcal{P}' :=
+                                                    \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
+                                            <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
+                                            <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If
+                                                    the point \(c_{dir}\)
+                                                    did not change, return the distance as \(\|c_{dir}\|\); </b></li>
+                                            <br>
+
+                                        </ul>
+                                    </div>
+
+
+                                    <div style="position:absolute; width: 80%; "
+                                        class="vim_indicator current-visible fragment" data-fragment-index="17">
+                                        <ul>
+                                            <li> <b class="itext"> Get \(c_{new} \in
+                                                    \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
+                                                </b> </li><br>
+                                            <li> <b class="itext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
+                                            </li><br>
+                                            <li> <b class="ttext"> \(c_{dir} , \mathcal{P}' :=
+                                                    \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
+                                            <li><b class="ttext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
+                                            <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If
+                                                    the point \(c_{dir}\)
+                                                    did not change, return the distance as \(\|c_{dir}\|\); </b></li>
+                                            <br>
+
+                                        </ul>
+                                    </div>
+
+
+                                    <div style="position:absolute; width: 80%; "
+                                        class="vim_indicator current-visible fragment" data-fragment-index="18">
+                                        <ul>
+                                            <li> <b class="ttext"> Get \(c_{new} \in
+                                                    \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
+                                                </b> </li><br>
+                                            <li> <b class="itext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
+                                            </li><br>
+                                            <li> <b class="itext"> \(c_{dir} , \mathcal{P}' :=
+                                                    \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
+                                            <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
+                                            <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If
+                                                    the point \(c_{dir}\)
+                                                    did not change, return the distance as \(\|c_{dir}\|\); </b></li>
+                                            <br>
+
+                                        </ul>
+                                    </div>
+
+                                    <div style="position:absolute; width: 80%; "
+                                        class="vim_indicator current-visible fragment" data-fragment-index="19">
+                                        <ul>
+                                            <li> <b class="ttext"> Get \(c_{new} \in
+                                                    \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
+                                                </b> </li><br>
+                                            <li> <b class="itext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
+                                            </li><br>
+                                            <li> <b class="itext"> \(c_{dir} , \mathcal{P}' :=
+                                                    \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
+                                            <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
+                                            <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If
+                                                    the point \(c_{dir}\)
+                                                    did not change, return the distance as \(\|c_{dir}\|\); </b></li>
+                                            <br>
+                                        </ul>
+                                    </div>
+
+
+                                    <div style="position:absolute; width: 80%; "
+                                        class="vim_indicator current-visible fragment" data-fragment-index="20">
+                                        <ul>
+                                            <li> <b class="ttext"> Get \(c_{new} \in
+                                                    \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
+                                                </b> </li><br>
+                                            <li> <b class="itext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
+                                            </li><br>
+                                            <li> <b class="itext"> \(c_{dir} , \mathcal{P}' :=
+                                                    \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
+                                            <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li>
+                                            <br>
+                                            <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If
+                                                    the point \(c_{dir}\)
+                                                    did not change, return the distance as \(\|c_{dir}\|\); </b></li>
+                                            <br>
+
+                                        </ul>
+                                    </div>
+
+                                    <div style="position:absolute; width: 80%; "
+                                        class="vim_indicator current-visible fragment" data-fragment-index="21">
+                                        <ul>
+                                            <li> <b class="ttext"> Get \(c_{new} \in
+                                                    \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
+                                                </b> </li><br>
+                                            <li> <b class="itext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
+                                            </li><br>
+                                            <li> <b class="itext"> \(c_{dir} , \mathcal{P}' :=
+                                                    \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
+                                            <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
+                                            <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If
+                                                    the point \(c_{dir}\)
+                                                    did not change, return the distance as \(\|c_{dir}\|\); </b></li>
+                                            <br>
+
+                                        </ul>
+                                    </div>
+
+                                    <div style="position:absolute; width: 80%; "
+                                        class="vim_indicator current-visible fragment" data-fragment-index="22">
+                                        <ul>
+                                            <li> <b class="itext"> Get \(c_{new} \in
+                                                    \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
+                                                </b> </li><br>
+                                            <li> <b class="ttext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
+                                            </li><br>
+                                            <li> <b class="itext"> \(c_{dir} , \mathcal{P}' :=
+                                                    \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
+                                            <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
+                                            <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If
+                                                    the point \(c_{dir}\)
+                                                    did not change, return the distance as \(\|c_{dir}\|\); </b></li>
+                                            <br>
+
+                                        </ul>
+                                    </div>
+
+
+                                    <div style="position:absolute; width: 80%; "
+                                        class="vim_indicator current-visible fragment" data-fragment-index="23">
+                                        <ul>
+                                            <li> <b class="itext"> Get \(c_{new} \in
+                                                    \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
+                                                </b> </li><br>
+                                            <li> <b class="itext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
+                                            </li><br>
+                                            <li> <b class="ttext"> \(c_{dir} , \mathcal{P}' :=
+                                                    \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
+                                            <li><b class="ttext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
+                                            <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If
+                                                    the point \(c_{dir}\)
+                                                    did not change, return the distance as \(\|c_{dir}\|\); </b></li>
+                                            <br>
+
+                                        </ul>
+                                    </div>
+
+                                    <div style="position:absolute; width: 80%; "
+                                        class="vim_indicator current-visible fragment" data-fragment-index="24">
+                                        <ul>
+                                            <li> <b class="itext"> Get \(c_{new} \in
+                                                    \mathcal{S}_{\mathcal{C}}(-c_{dir})\);
+                                                </b> </li><br>
+                                            <li> <b class="itext"> \(\mathcal{P} := \mathcal{P} \cup \{c_{new}\}\); </b>
+                                            </li><br>
+                                            <li> <b class="itext"> \(c_{dir} , \mathcal{P}' :=
+                                                    \texttt{nearest_simplex}(\mathcal{P})\); </b></li><br>
+                                            <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
+                                            <li> <b class="ttext"> If \(c_{dir} = 0\), return the distance as \(0\). If
+                                                    the point \(c_{dir}\)
+                                                    did not change, return the distance as \(\|c_{dir}\|\); </b></li>
+                                            <br>
+
+                                        </ul>
+                                    </div>
 
 
                                 </li><br>
@@ -2813,216 +2902,217 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
 
                         <div style="flex: 4; flex-direction: column">
-                        <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
-                            data-fragment-index="0">
-                            <div style="width: 100%">
-                                <img src="presentation/images/part2/image27_0.svg"
-                                    style="max-width: 80%; height: auto; max-height: 60vh;">
+                            <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                                data-fragment-index="0">
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part2/image27_0.svg"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
                             </div>
+
+                            <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                                data-fragment-index="1">
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part2/image27_1.svg"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                            </div>
+
+                            <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                                data-fragment-index="2">
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part2/image27_2.svg"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                            </div>
+
+
+                            <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                                data-fragment-index="3">
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part2/image27_3.svg"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                            </div>
+
+                            <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                                data-fragment-index="4">
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part2/image27_4.svg"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                            </div>
+
+                            <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                                data-fragment-index="5">
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part2/image27_5.svg"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                            </div>
+
+                            <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                                data-fragment-index="6">
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part2/image27_6.svg"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                            </div>
+
+                            <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                                data-fragment-index="7">
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part2/image27_7.svg"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                            </div>
+
+                            <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                                data-fragment-index="8">
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part2/image27_8.svg"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                            </div>
+
+
+                            <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                                data-fragment-index="9">
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part2/image27_9.svg"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                            </div>
+
+
+                            <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                                data-fragment-index="10">
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part2/image27_10.svg"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                            </div>
+
+                            <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                                data-fragment-index="11">
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part2/image27_11.svg"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                            </div>
+
+                            <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                                data-fragment-index="12">
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part2/image27_12.svg"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                            </div>
+
+                            <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                                data-fragment-index="13">
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part2/image27_13.svg"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                            </div>
+
+                            <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                                data-fragment-index="14">
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part2/image27_14.svg"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                            </div>
+
+                            <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                                data-fragment-index="15">
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part2/image27_15.svg"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                            </div>
+
+
+                            <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                                data-fragment-index="16">
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part2/image27_16.svg"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                            </div>
+
+                            <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                                data-fragment-index="17">
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part2/image27_17.svg"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                            </div>
+
+                            <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                                data-fragment-index="18">
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part2/image27_18.svg"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                            </div>
+
+                            <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                                data-fragment-index="19">
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part2/image27_19.svg"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                            </div>
+
+                            <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                                data-fragment-index="20">
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part2/image27_20.svg"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                            </div>
+
+                            <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                                data-fragment-index="21">
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part2/image27_21.svg"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                            </div>
+
+                            <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                                data-fragment-index="22">
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part2/image27_22.svg"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                            </div>
+
+                            <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                                data-fragment-index="23">
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part2/image27_23.svg"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                            </div>
+
+                            <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                                data-fragment-index="24">
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part2/image27_23.svg"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                            </div>
+
                         </div>
-
-                        <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
-                            data-fragment-index="1">
-                            <div style="width: 100%">
-                                <img src="presentation/images/part2/image27_1.svg"
-                                    style="max-width: 80%; height: auto; max-height: 60vh;">
-                            </div>
+                        <div style="flex: 1; font-size: 1.5vw; width: 100%; text-align: center; margin-top: 0rem;">
+                            Legend: <span style="color: #ffb66c;">\(c_{dir}\)</span> , <span
+                                style="color: red;">\(c_{new}\)</span>,
+                            <span style="color: #ec2ed7;">\(\mathcal{P}\)</span> , <span
+                                style="color: #5983b0;">\(\mathcal{P}'\)</span>
                         </div>
-
-                        <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
-                            data-fragment-index="2">
-                            <div style="width: 100%">
-                                <img src="presentation/images/part2/image27_2.svg"
-                                    style="max-width: 80%; height: auto; max-height: 60vh;">
-                            </div>
-                        </div>
-
-
-                        <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
-                            data-fragment-index="3">
-                            <div style="width: 100%">
-                                <img src="presentation/images/part2/image27_3.svg"
-                                    style="max-width: 80%; height: auto; max-height: 60vh;">
-                            </div>
-                        </div>
-
-                        <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
-                            data-fragment-index="4">
-                            <div style="width: 100%">
-                                <img src="presentation/images/part2/image27_4.svg"
-                                    style="max-width: 80%; height: auto; max-height: 60vh;">
-                            </div>
-                        </div>
-
-                        <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
-                            data-fragment-index="5">
-                            <div style="width: 100%">
-                                <img src="presentation/images/part2/image27_5.svg"
-                                    style="max-width: 80%; height: auto; max-height: 60vh;">
-                            </div>
-                        </div>
-
-                        <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
-                            data-fragment-index="6">
-                            <div style="width: 100%">
-                                <img src="presentation/images/part2/image27_6.svg"
-                                    style="max-width: 80%; height: auto; max-height: 60vh;">
-                            </div>
-                        </div>
-
-                        <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
-                            data-fragment-index="7">
-                            <div style="width: 100%">
-                                <img src="presentation/images/part2/image27_7.svg"
-                                    style="max-width: 80%; height: auto; max-height: 60vh;">
-                            </div>
-                        </div>
-
-                        <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
-                            data-fragment-index="8">
-                            <div style="width: 100%">
-                                <img src="presentation/images/part2/image27_8.svg"
-                                    style="max-width: 80%; height: auto; max-height: 60vh;">
-                            </div>
-                        </div>
-
-
-                        <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
-                            data-fragment-index="9">
-                            <div style="width: 100%">
-                                <img src="presentation/images/part2/image27_9.svg"
-                                    style="max-width: 80%; height: auto; max-height: 60vh;">
-                            </div>
-                        </div>
-
-
-                        <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
-                            data-fragment-index="10">
-                            <div style="width: 100%">
-                                <img src="presentation/images/part2/image27_10.svg"
-                                    style="max-width: 80%; height: auto; max-height: 60vh;">
-                            </div>
-                        </div>
-
-                        <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
-                            data-fragment-index="11">
-                            <div style="width: 100%">
-                                <img src="presentation/images/part2/image27_11.svg"
-                                    style="max-width: 80%; height: auto; max-height: 60vh;">
-                            </div>
-                        </div>
-
-                        <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
-                            data-fragment-index="12">
-                            <div style="width: 100%">
-                                <img src="presentation/images/part2/image27_12.svg"
-                                    style="max-width: 80%; height: auto; max-height: 60vh;">
-                            </div>
-                        </div>  
-                        
-                        <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
-                            data-fragment-index="13">
-                            <div style="width: 100%">
-                                <img src="presentation/images/part2/image27_13.svg"
-                                    style="max-width: 80%; height: auto; max-height: 60vh;">
-                            </div>
-                        </div>  
-                        
-                        <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
-                            data-fragment-index="14">
-                            <div style="width: 100%">
-                                <img src="presentation/images/part2/image27_14.svg"
-                                    style="max-width: 80%; height: auto; max-height: 60vh;">
-                            </div>
-                        </div>  
-
-                        <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
-                            data-fragment-index="15">
-                            <div style="width: 100%">
-                                <img src="presentation/images/part2/image27_15.svg"
-                                    style="max-width: 80%; height: auto; max-height: 60vh;">
-                            </div>
-                        </div>  
-
-
-                        <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
-                            data-fragment-index="16">
-                            <div style="width: 100%">
-                                <img src="presentation/images/part2/image27_16.svg"
-                                    style="max-width: 80%; height: auto; max-height: 60vh;">
-                            </div>
-                        </div>  
-
-                        <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
-                            data-fragment-index="17">
-                            <div style="width: 100%">
-                                <img src="presentation/images/part2/image27_17.svg"
-                                    style="max-width: 80%; height: auto; max-height: 60vh;">
-                            </div>
-                        </div> 
-
-                        <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
-                            data-fragment-index="18">
-                            <div style="width: 100%">
-                                <img src="presentation/images/part2/image27_18.svg"
-                                    style="max-width: 80%; height: auto; max-height: 60vh;">
-                            </div>
-                        </div>
-
-                        <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
-                            data-fragment-index="19">
-                            <div style="width: 100%">
-                                <img src="presentation/images/part2/image27_19.svg"
-                                    style="max-width: 80%; height: auto; max-height: 60vh;">
-                            </div>
-                        </div>
-
-                        <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
-                            data-fragment-index="20">
-                            <div style="width: 100%">
-                                <img src="presentation/images/part2/image27_20.svg"
-                                    style="max-width: 80%; height: auto; max-height: 60vh;">
-                            </div>
-                        </div>
-
-                        <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
-                            data-fragment-index="21">
-                            <div style="width: 100%">
-                                <img src="presentation/images/part2/image27_21.svg"
-                                    style="max-width: 80%; height: auto; max-height: 60vh;">
-                            </div>
-                        </div>
-
-                        <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
-                            data-fragment-index="22">
-                            <div style="width: 100%">
-                                <img src="presentation/images/part2/image27_22.svg"
-                                    style="max-width: 80%; height: auto; max-height: 60vh;">
-                            </div>
-                        </div>
-
-                        <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
-                            data-fragment-index="23">
-                            <div style="width: 100%">
-                                <img src="presentation/images/part2/image27_23.svg"
-                                    style="max-width: 80%; height: auto; max-height: 60vh;">
-                            </div>
-                        </div>
-
-                        <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
-                            data-fragment-index="24">
-                            <div style="width: 100%">
-                                <img src="presentation/images/part2/image27_23.svg"
-                                    style="max-width: 80%; height: auto; max-height: 60vh;">
-                            </div>
-                        </div>
-
-                    </div>
-                    <div style="font-size: 1.5vw; width: 100%; text-align: center; margin-top: 2rem;">
-                        <br><br><br>
-                                    Legend: <span style="color: #ffb66c;">\(c_{dir}\)</span> , <span style="color: red;">\(c_{new}\)</span>, 
-                       <span style="color: #ec2ed7;">\(\mathcal{P}\)</span> , <span style="color: #5983b0;">\(\mathcal{P}'\)</span>
-                    </div>
 
                     </div>
                 </div>
@@ -3030,7 +3120,7 @@ for link in robot.links:
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    COMPUTING DISTANCES AND OTHER QUANTITIES
+                    DISTANCES AND OTHER QUANTITIES
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     <b class="ttext">GJK ALGORITHM</b>
@@ -3065,7 +3155,7 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
 
 
-                        <div style="flex: 4; flex-direction: column">
+                        <div style="flex: 3; flex-direction: column">
                             <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
                                 data-fragment-index="0">
                                 <div style="width: 90%">
@@ -3073,7 +3163,7 @@ for link in robot.links:
                                         style="max-width: 80%; height: auto; max-height: 60vh;">
                                 </div>
                             </div>
-    
+
                             <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
                                 data-fragment-index="1">
                                 <div style="width: 90%">
@@ -3081,7 +3171,7 @@ for link in robot.links:
                                         style="max-width: 80%; height: auto; max-height: 60vh;">
                                 </div>
                             </div>
-    
+
                             <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
                                 data-fragment-index="2">
                                 <div style="width: 90%">
@@ -3089,8 +3179,8 @@ for link in robot.links:
                                         style="max-width: 80%; height: auto; max-height: 60vh;">
                                 </div>
                             </div>
-    
-    
+
+
                             <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
                                 data-fragment-index="3">
                                 <div style="width: 90%">
@@ -3098,7 +3188,7 @@ for link in robot.links:
                                         style="max-width: 80%; height: auto; max-height: 60vh;">
                                 </div>
                             </div>
-    
+
                             <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
                                 data-fragment-index="4">
                                 <div style="width: 90%">
@@ -3106,7 +3196,7 @@ for link in robot.links:
                                         style="max-width: 80%; height: auto; max-height: 60vh;">
                                 </div>
                             </div>
-    
+
                             <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
                                 data-fragment-index="5">
                                 <div style="width: 90%">
@@ -3114,7 +3204,7 @@ for link in robot.links:
                                         style="max-width: 80%; height: auto; max-height: 60vh;">
                                 </div>
                             </div>
-    
+
                             <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
                                 data-fragment-index="6">
                                 <div style="width: 90%">
@@ -3122,7 +3212,7 @@ for link in robot.links:
                                         style="max-width: 80%; height: auto; max-height: 60vh;">
                                 </div>
                             </div>
-    
+
                             <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
                                 data-fragment-index="7">
                                 <div style="width: 90%">
@@ -3130,7 +3220,7 @@ for link in robot.links:
                                         style="max-width: 80%; height: auto; max-height: 60vh;">
                                 </div>
                             </div>
-    
+
                             <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
                                 data-fragment-index="8">
                                 <div style="width: 90%">
@@ -3138,8 +3228,8 @@ for link in robot.links:
                                         style="max-width: 80%; height: auto; max-height: 60vh;">
                                 </div>
                             </div>
-    
-    
+
+
                             <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
                                 data-fragment-index="9">
                                 <div style="width: 90%">
@@ -3147,8 +3237,8 @@ for link in robot.links:
                                         style="max-width: 80%; height: auto; max-height: 60vh;">
                                 </div>
                             </div>
-    
-    
+
+
                             <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
                                 data-fragment-index="10">
                                 <div style="width: 90%">
@@ -3156,16 +3246,17 @@ for link in robot.links:
                                         style="max-width: 80%; height: auto; max-height: 60vh;">
                                 </div>
                             </div>
-    
-           
-    
-    
+
+
+
+
                         </div>
-                        <div style="font-size: 1.5vw; width: 100%; text-align: center; margin-top: 0rem;">
-                            <br><br><br><br><br><br>
-                                        Legend: <span style="color: #ffb66c;">\(c_{dir}\)</span> , <span style="color: red;">\(c_{new}\)</span>, 
-                           <span style="color: #ec2ed7;">\(\mathcal{P}\)</span> , <span style="color: #5983b0;">\(\mathcal{P}'\)</span>, <br>
-                           <span style="color: yellow;">\(-c_{dir}^\top(u-c_{new})=0\)</span>
+                        <div style="flex:1; font-size: 1.5vw; width: 100%; text-align: center; margin-top: 0rem;">
+                            Legend: <span style="color: #ffb66c;">\(c_{dir}\)</span> , <span
+                                style="color: red;">\(c_{new}\)</span>,
+                            <span style="color: #ec2ed7;">\(\mathcal{P}\)</span> , <span
+                                style="color: #5983b0;">\(\mathcal{P}'\)</span>, <br>
+                            <span style="color: yellow;">\(-c_{dir}^\top(u-c_{new})=0\)</span>
                         </div>
 
 
@@ -3176,35 +3267,37 @@ for link in robot.links:
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    COMPUTING DISTANCES AND OTHER QUANTITIES
+                    DISTANCES AND OTHER QUANTITIES
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     <b class="ttext">GJK ALGORITHM</b>
                 </h3>
 
-            <div
-            style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
-            <div
-                style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li>If the number of vertices of \(\mathcal{C}\) is finite, the algorithm converges in a finite number of steps.
+                            <li>If the number of vertices of \(\mathcal{C}\) is finite, the algorithm converges in a
+                                finite number of steps.
                             </li><br>
-                            <li>Otherwise, the algorithm may take an infinite number of steps. In that case, you should stop once 
+                            <li>Otherwise, the algorithm may take an infinite number of steps. In that case, you should
+                                stop once
                                 the point \(c_{dir}\) starts changing only slightly.
                             </li><br>
-                            <li>The algorithm does not work for non-convex sets because the simplex \(\mathcal{P}\) formed by 
+                            <li>The algorithm does not work for non-convex sets because the simplex \(\mathcal{P}\)
+                                formed by
                                 the points is not guaranteed to lie entirely within the polygon.
                             </li><br>
-                            
+
                         </ul>
                     </div>
 
                     <div
                         style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
                         <div style="width: 100%">
-                            <img src="presentation/images/part2/image28.svg"
-                                style="max-width: 80%; height: auto; max-height: 60vh;">
+                            <img src="presentation/images/part2/main.png" style="max-width: 80%; height: auto;">
                         </div>
                     </div>
                 </div>
@@ -3212,47 +3305,231 @@ for link in robot.links:
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    COMPUTING DISTANCES AND OTHER QUANTITIES
+                    DISTANCES AND OTHER QUANTITIES
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     <b class="ttext">GJK ALGORITHM</b>
                 </h3>
 
-            <div
-            style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
-            <div
-                style="flex: 1; min-width: 300px; font-size: 1.2vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.1vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li>So, what if we want the <b class="itext">original witness points</b> \(a^* \in \mathcal{A}\) and \(b^* \in \mathcal{B}\)?
+                            <li>So, what if we want the <b class="itext">original witness points</b> \(a^* \in
+                                \mathcal{A}\) and \(b^* \in \mathcal{B}\)?
                             </li><br>
-                            <li>Every time a support point \(c_{new} \in \mathcal{S}_{\mathcal{C}}(-c_{dir})\) is obtained by computing 
-                                \(a_{new} \in \mathcal{S}_{\mathcal{A}}(-c_{dir})\) and \(b_{new} \in \mathcal{S}_{\mathcal{B}}(c_{dir})\), 
-                                these two points (not just \(c_{new}=a_{new}-b_{new}\)) should also be stored. Thus, each point \(c_{dir}\) is associated with the respective points 
+                            <li>Every time a support point \(c_{new} \in \mathcal{S}_{\mathcal{C}}(-c_{dir})\) is
+                                obtained by computing
+                                \(a_{new} \in \mathcal{S}_{\mathcal{A}}(-c_{dir})\) and \(b_{new} \in
+                                \mathcal{S}_{\mathcal{B}}(c_{dir})\),
+                                these two points (not just \(c_{new}=a_{new}-b_{new}\)) should also be stored. Thus,
+                                each point \(c_{dir}\) is associated with the respective points
                                 \(a_{dir}\) and \(b_{dir}\).
                             </li><br>
-                            <li>The optimal point \(c^* = c_{dir}\) is a convex combination of some points \(c_{new,j}\) in the simplex 
-                                \(\mathcal{P}'\) that contains it. That is, there exist nonnegative scalars \(\lambda_j\) that sum to \(1\), such that:
+                            <li>The optimal point \(c^* = c_{dir}\) is a convex combination of some points \(c_{new,j}\)
+                                in the simplex
+                                \(\mathcal{P}'\) that contains it. That is, there exist nonnegative scalars
+                                \(\lambda_j\) that sum to \(1\), such that:
                                 $$c^* = \sum_{j=1}^m \lambda_j c_{new,j};$$
-                                where \(j\) can be \(3\), \(2\), or \(1\). This can be obtained by solving a linear system. With these \(\lambda_j\), 
+                                where \(j\) can be \(3\), \(2\), or \(1\). This can be obtained by solving a linear
+                                system. With these \(\lambda_j\),
                                 we collect the \(a_{new,j},b_{new,j}\) associated with \(c_{new,j}\) and compute:
                                 $$a^* = \sum_{j=1}^m \lambda_j a_{new,j} \ , \ b^* = \sum_{j=1}^m \lambda_j b_{new,j};$$
                             </li><br>
-                            
+
                         </ul>
                     </div>
 
                     <div
                         style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
                         <div style="width: 100%">
-                            <img src="presentation/images/part2/image28.svg"
-                                style="max-width: 80%; height: auto; max-height: 60vh;">
+                            <img src="presentation/images/part2/main.png" style="max-width: 80%; height: auto;">
                         </div>
                     </div>
                 </div>
             </section>
 
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    DISTANCES AND OTHER QUANTITIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">VON NEUMANN'S ALTERNATING PROJECTION ALGORITHM</b>
+                </h3>
 
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <br>
+                            <li>Simpler to implement, but less efficient;
+                            </li><br>
+                            <li>Idea is very simple: giving an alternating point \(a\), project it into \(\mathcal{B}\), then 
+                                project the result back to \(\mathcal{A}\). Keep doing this:
+                                <b class="itext">$$b[k+1] = \Pi^{\mathcal{A}}(a[k])$$</b>
+                                <b class="itext">$$a[k+1] = \Pi^{\mathcal{B}}(b[k+1])$$</b>
+                            </li><br>
+                            <li>If the two sets are convex, then \(a[k],b[k]\) converges to a pair of witness points. 
+                            </li><br>
+
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        
+     
+                                <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                                    data-fragment-index="0">
+                                    <div style="width: 100%">
+                                        <img src="presentation/images/part2/image30_0.svg"
+                                            style="width: 70%; height: auto; ">
+                                    </div>
+                                </div>
+    
+                                <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                                    data-fragment-index="1">
+                                    <div style="width: 100%">
+                                        <img src="presentation/images/part2/image30_1.svg"
+                                        style="width: 70%; height: auto; ">
+                                    </div>
+                                </div>
+    
+                                <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                                    data-fragment-index="2">
+                                    <div style="width: 100%">
+                                        <img src="presentation/images/part2/image30_2.svg"
+                                        style="width: 70%; height: auto; ">
+                                    </div>
+                                </div>
+    
+    
+                                <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                                    data-fragment-index="3">
+                                    <div style="width: 100%">
+                                        <img src="presentation/images/part2/image30_3.svg"
+                                        style="width: 70%; height: auto; ">
+                                    </div>
+                                </div>
+    
+                                <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                                    data-fragment-index="4">
+                                    <div style="width: 100%">
+                                        <img src="presentation/images/part2/image30_4.svg"
+                                        style="width: 70%; height: auto; ">
+                                    </div>
+                                </div>
+    
+                                <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                                    data-fragment-index="5">
+                                    <div style="width: 100%">
+                                        <img src="presentation/images/part2/image30_5.svg"
+                                        style="width: 70%; height: auto; ">
+                                    </div>
+                                </div>    
+    
+    
+                                <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                                    data-fragment-index="6">
+                                    <div style="width: 100%">
+                                        <img src="presentation/images/part2/image30_6.svg"
+                                        style="width: 70%; height: auto; ">
+                                    </div>
+                                </div>      
+    
+                        
+                    </div>
+                </div>
+            </section>
+
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    DISTANCES AND OTHER QUANTITIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">VON NEUMANN'S ALTERNATING PROJECTION ALGORITHM</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.4vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <br>
+                            <li>How fast it converges?
+                            </li><br>
+                            <li>First we need to know how to measure convergence. Lets focus on the convergence of the variable 
+                                \(b[k]\) to one its possible final values, \(b^*\).
+                            </li><br>
+                            <li>A sequence \(x[k]\) is said to <b class="ttext">converge linearly</b>
+                                    to a value \(x^*\) with rate \(0 < \beta < 1\) if:
+                                    $$\lim_{k \rightarrow \infty}  \|x[k]-x^*\|^{1/k}= \beta. $$
+                            </li> <br>
+                            <li> This means that, roughly, the error \(\|x[k]-x^*\|\) decays to zero like 
+                                \(\beta^k\). This  means that the number of digits of the error we set to \(0\) at step \(k\), 
+                                \(n[k] = -\log_{10}(\|x[k]-x^*\|) \), 
+                                increases (roughly) linearly with the number of steps, hence the name. 
+                             </li>
+
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/main.png" style="max-width: 80%; height: auto;">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    DISTANCES AND OTHER QUANTITIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">VON NEUMANN'S ALTERNATING PROJECTION ALGORITHM</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <br>
+                            <li>For example, the sequence \(x[k+1] = 0.5x[k]-1\) converges to \(x^*=2\) linearly with rate 
+                                \(\beta=0.5\), and the sequence \(x[k+1] = \cos(x[k])\) converges to \(x^*=0.7391\) with rate 
+                                \(\beta = 0.6736\)
+                            </li><br>
+                            <li>First we need to know how to measure convergence. Lets focus on the convergence of the variable 
+                                \(b[k]\) to one its possible final values, \(b^*\).
+                            </li><br>
+                            <li>A sequence \(b[k]\) is said to <b class="ttext">converge linearly</b>
+                                    to a value \(b^*\) with rate \(0 < \beta < 1\) if:
+                                    $$\lim_{k \rightarrow \infty}  \|b[k]-b^*\|^{1/k}= \beta. $$
+                            </li> <br>
+                            <li> This means that, roughly, the error \(\|b[k]-b^*\|\) decays to zero like 
+                                \(\beta^k\). This  means that the number of digits of the error we set to \(0\) at step \(k\), 
+                                \(n[k] = -\log_{10}(\|b[k]-b^*\|) \), 
+                                increases (roughly) linearly with the number of steps, hence the name. 
+                             </li>
+
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/main.png" style="max-width: 80%; height: auto;">
+                        </div>
+                    </div>
+                </div>
+            </section>
 
             <style>
                 .reveal .progress {
@@ -3322,6 +3599,27 @@ for link in robot.links:
                     z-index: 10;
                     /* Ensures it appears above the video and overlay */
                 }
+
+
+                .reveal .slide-number {
+                    font-size: 30px;
+                    position: absolute;
+                    bottom: 30px;
+                    left: 50px;
+                    background: none !important;
+                    /* remove any background */
+                    box-shadow: none !important;
+                    /* remove shadows */
+                    padding: 0 !important;
+                    margin: 0 !important;
+                    border: none !important;
+                    color: white;
+                    /* or whatever color you want */
+                    opacity: 1.0;
+                    width: auto !important;
+                    height: auto !important;
+                    z-index: -1;
+                }
             </style>
 
             <script id="MathJax-script" async
@@ -3342,8 +3640,10 @@ for link in robot.links:
                     margin: 0,
                     minScale: 0.2,
                     maxScale: 2.0,
-                    plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealMenu]
+                    plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealMenu],
+                    slideNumber: true
                 });
+
                 var frames = document.getElementsByTagName("iframe");
 
 

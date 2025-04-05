@@ -20,7 +20,7 @@ light4 =  ub.PointLight(name="light4", color="white", intensity=8, htm=ub.Utils.
 
 csp = [1.0,-1.0,1.0,-0.1,0.1,0.0,6.0]
 sim = ub.Simulation([light1,light2,light3,light4,bunny])
-sim.set_parameters(load_screen_color="#191919", background_color="#191919", width=500, height=500, show_world_frame=False, show_grid=False, camera_start_pose = csp)
+sim.set_parameters(load_screen_color="#191919", background_color="#191919", width=500, height=400, show_world_frame=False, show_grid=False, camera_start_pose = csp)
 
 
 
