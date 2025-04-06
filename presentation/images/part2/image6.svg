@@ -114,7 +114,7 @@
       <g class="com.sun.star.drawing.LineShape">
        <g id="id7">
         <rect class="BoundingBox" stroke="none" fill="none" x="582" y="1343" width="11791" height="7220"/>
-        <path fill="none" stroke="rgb(255,0,0)" stroke-width="106" stroke-linejoin="round" d="M 635,8509 L 12319,1397"/>
+        <path fill="none" stroke="rgb(255,211,67)" stroke-width="106" stroke-linejoin="round" d="M 635,8509 L 12319,1397"/>
        </g>
       </g>
       <g class="com.sun.star.drawing.CustomShape">

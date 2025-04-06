@@ -778,12 +778,12 @@ for link in robot.links:
                 <div
                     style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
                     <div
-                        style="flex: 1; min-width: 300px; font-size: 1.45vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        style="flex: 1; min-width: 300px; font-size: 1.4vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
                             <li> A very useful way to handle convexity using analytic geometry is through <b
                                     class="itext">convex functions</b>.<br>
-                            </li>
+                            </li><br>
                             <li> A function \(f: \mathbb{R}^n \mapsto \mathbb{R}\) is said to be a <b
                                     class="ttext">convex function</b> if
                                 <b class="itext">\(\forall u_1, u_2 \in \mathbb{R}^n \ , \alpha \in [0,1]\)</b>:<br>
@@ -1293,7 +1293,7 @@ for link in robot.links:
                                 </div>
                             </li> <br>
                             <li>Compactness is there only to ensure that a finite optima exist (e.g., take \(\mathcal{U}
-                                = \mathbb{R}\) and consider \(\min_{u \in \mathcal{U} } e^{-u}\) )</li><br>
+                                = \mathbb{R}\) and consider \(\min_{u \in \mathcal{U} } e^{-u}\) ).</li><br>
                             <li> This is not true for general convex problems (e.g., take \(\min_{u} \ (u_1-u_2)^2\));
                             </li>
 
@@ -1543,7 +1543,42 @@ for link in robot.links:
                     CONVEX ANALYSIS BASICS
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    <b class="ttext">PARTICULAR CASE OF A BOX</b>
+                    <b class="ttext">HALF SQUARED DISTANCE AND PROJECTION</b>
+                </h3>
+
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.4vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <br>
+                            <li> Another important property of the projection is that the line from a point \(p\) and 
+                                \(u = \Pi^{\mathcal{U}}(p)\) is <b class="itext">normal</b> to  \(\mathcal{U}\) 
+                                at point \(u \), if this normal is well defined (i.e., \(u\) does not belong to a corner);
+                            </li> <br>
+                            <li>Furthermore, the hyperplane that passes through the mid-point of this line and is orthogonal to 
+                                it is a <b class="itext">separating hyperplane</b> between \(\mathcal{U}\) and \(p\).
+                            </li><br>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/image15_b.svg"
+                                style="max-width: 80%; height: auto; max-height: 60vh;">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CONVEX ANALYSIS BASICS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">PROJECTION: PARTICULAR CASE OF A BOX</b>
                 </h3>
 
 
@@ -1573,7 +1608,7 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
                         <div style="width: 100%">
                             <img src="presentation/images/part2/image16.svg"
-                                style="max-width: 80%; height: auto; max-height: 60vh;">
+                                style="max-width: 70%; height: auto; max-height: 60vh;">
                         </div>
                     </div>
                 </div>
@@ -1586,7 +1621,7 @@ for link in robot.links:
                     CONVEX ANALYSIS BASICS
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    <b class="ttext">PARTICULAR CASE OF A BOX</b>
+                    <b class="ttext">PROJECTION: PARTICULAR CASE OF A BOX</b>
                 </h3>
 
 
@@ -1629,7 +1664,7 @@ for link in robot.links:
                     CONVEX ANALYSIS BASICS
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    <b class="ttext">PARTICULAR CASE OF A BOX</b>
+                    <b class="ttext">PROJECTION: PARTICULAR CASE OF A BOX</b>
                 </h3>
 
 
@@ -1854,6 +1889,49 @@ for link in robot.links:
                 </div>
             </section>
 
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CONVEX ANALYSIS BASICS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">SIMPLEX</b>
+                </h3>
+
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.4vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <br>
+                            <li>An
+                                \(n\)-dimensional
+                                <b class="ttext">simplex</b> \(\mathcal{P}\) is a convex set formed by
+                                \(n+1\) points in \(\mathbb{R}^n\). For example, a \(1\)-dimensional simplex is an
+                                interval, a \(2\)-dimensional simplex is a triangle,
+                                a \(3\)-dimensional simplex is a tetrahedron, and so on.
+                            </li><br>
+                            <li>We can consider degenerate \(n\)-dimensional simplexes that exist in dimensions lower
+                                than \(n\). Thus, in 3D, in addition to the tetrahedron,
+                                we can consider a triangle lying in space (when the four points lie in the same
+                                plane), a line segment (when the four points lie on the same line),
+                                or a point (when all four points coincide).
+                            </li><br>
+                            <li>The faces, edges, and vertices of a 3-simplex are 2-, 1-, and 0-dimensional simplexes,
+                                respectively.</li>                            
+
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/image25.svg"
+                                style="max-width: 70%; height: auto; max-height: 60vh;">
+                        </div>
+                    </div>
+                </div>
+            </section>
 
             <section
                 style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
@@ -2263,49 +2341,7 @@ for link in robot.links:
                 </div>
             </section>
 
-            <section style="display: flex; flex-direction: column; height: 100vh;">
-                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    DISTANCES AND OTHER QUANTITIES
-                </h3>
-                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    <b class="ttext">GJK ALGORITHM</b>
-                </h3>
 
-
-                <div
-                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
-                    <div
-                        style="flex: 1; min-width: 300px; font-size: 1.4vw; text-align: left; display: flex; align-items: start; height: 100%;">
-                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
-                            <br>
-                            <li>One last concept before we begin is the notion of a <b class="itext">simplex</b>. An
-                                \(n\)-dimensional
-                                simplex \(\mathcal{P}\) is the convex set formed by
-                                \(n+1\) points in \(\mathbb{R}^n\). For example, a \(1\)-dimensional simplex is an
-                                interval, a \(2\)-dimensional simplex is a triangle,
-                                a \(3\)-dimensional simplex is a tetrahedron, and so on.
-                            </li><br>
-                            <li> We can consider degenerate \(n\)-dimensional simplexes that exist in a dimension lower
-                                than \(n\). Thus, in 3D, in addition to the tetrahedron,
-                                we can consider a triangle lying in space (when the four points lie on the same
-                                plane), a line segment (when the four points lie on the same line),
-                                or a point (when all four points coincide).
-                            </li><br>
-                            <li>The faces, edges, and vertices of a 3-simplex are 2-, 1-, and 0-dimensional simplexes,
-                                respectively.</li>
-
-                        </ul>
-                    </div>
-
-                    <div
-                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
-                        <div style="width: 100%">
-                            <img src="presentation/images/part2/image25.svg"
-                                style="max-width: 70%; height: auto; max-height: 60vh;">
-                        </div>
-                    </div>
-                </div>
-            </section>
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
@@ -2901,12 +2937,12 @@ for link in robot.links:
                     <div
                         style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
 
-                        <div style="flex: 4; flex-direction: column">
+                        <div style="flex: 4; flex-direction: row">
                             <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
                                 data-fragment-index="0">
                                 <div style="width: 100%">
                                     <img src="presentation/images/part2/image27_0.svg"
-                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                        style="max-width: 80%; height: auto; max-height: 60vh;clip-path: inset(50px 30px 50px 30px);">
                                 </div>
                             </div>
 
@@ -2914,7 +2950,7 @@ for link in robot.links:
                                 data-fragment-index="1">
                                 <div style="width: 100%">
                                     <img src="presentation/images/part2/image27_1.svg"
-                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                        style="max-width: 80%; height: auto; max-height: 60vh;clip-path: inset(50px 30px 50px 30px);">
                                 </div>
                             </div>
 
@@ -2922,7 +2958,7 @@ for link in robot.links:
                                 data-fragment-index="2">
                                 <div style="width: 100%">
                                     <img src="presentation/images/part2/image27_2.svg"
-                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                        style="max-width: 80%; height: auto; max-height: 60vh;clip-path: inset(50px 30px 50px 30px);">
                                 </div>
                             </div>
 
@@ -2931,7 +2967,7 @@ for link in robot.links:
                                 data-fragment-index="3">
                                 <div style="width: 100%">
                                     <img src="presentation/images/part2/image27_3.svg"
-                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                        style="max-width: 80%; height: auto; max-height: 60vh;clip-path: inset(50px 30px 50px 30px);">
                                 </div>
                             </div>
 
@@ -2939,7 +2975,7 @@ for link in robot.links:
                                 data-fragment-index="4">
                                 <div style="width: 100%">
                                     <img src="presentation/images/part2/image27_4.svg"
-                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                        style="max-width: 80%; height: auto; max-height: 60vh;clip-path: inset(50px 30px 50px 30px);">
                                 </div>
                             </div>
 
@@ -2947,7 +2983,7 @@ for link in robot.links:
                                 data-fragment-index="5">
                                 <div style="width: 100%">
                                     <img src="presentation/images/part2/image27_5.svg"
-                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                        style="max-width: 80%; height: auto; max-height: 60vh;clip-path: inset(50px 30px 50px 30px);">
                                 </div>
                             </div>
 
@@ -2955,7 +2991,7 @@ for link in robot.links:
                                 data-fragment-index="6">
                                 <div style="width: 100%">
                                     <img src="presentation/images/part2/image27_6.svg"
-                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                        style="max-width: 80%; height: auto; max-height: 60vh;clip-path: inset(50px 30px 50px 30px);">
                                 </div>
                             </div>
 
@@ -2963,7 +2999,7 @@ for link in robot.links:
                                 data-fragment-index="7">
                                 <div style="width: 100%">
                                     <img src="presentation/images/part2/image27_7.svg"
-                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                        style="max-width: 80%; height: auto; max-height: 60vh;clip-path: inset(50px 30px 50px 30px);">
                                 </div>
                             </div>
 
@@ -2971,7 +3007,7 @@ for link in robot.links:
                                 data-fragment-index="8">
                                 <div style="width: 100%">
                                     <img src="presentation/images/part2/image27_8.svg"
-                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                        style="max-width: 80%; height: auto; max-height: 60vh;clip-path: inset(50px 30px 50px 30px);">
                                 </div>
                             </div>
 
@@ -2980,7 +3016,7 @@ for link in robot.links:
                                 data-fragment-index="9">
                                 <div style="width: 100%">
                                     <img src="presentation/images/part2/image27_9.svg"
-                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                        style="max-width: 80%; height: auto; max-height: 60vh;clip-path: inset(50px 30px 50px 30px);">
                                 </div>
                             </div>
 
@@ -2989,7 +3025,7 @@ for link in robot.links:
                                 data-fragment-index="10">
                                 <div style="width: 100%">
                                     <img src="presentation/images/part2/image27_10.svg"
-                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                        style="max-width: 80%; height: auto; max-height: 60vh;clip-path: inset(50px 30px 50px 30px);">
                                 </div>
                             </div>
 
@@ -2997,7 +3033,7 @@ for link in robot.links:
                                 data-fragment-index="11">
                                 <div style="width: 100%">
                                     <img src="presentation/images/part2/image27_11.svg"
-                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                        style="max-width: 80%; height: auto; max-height: 60vh;clip-path: inset(50px 30px 50px 30px);">
                                 </div>
                             </div>
 
@@ -3005,7 +3041,7 @@ for link in robot.links:
                                 data-fragment-index="12">
                                 <div style="width: 100%">
                                     <img src="presentation/images/part2/image27_12.svg"
-                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                        style="max-width: 80%; height: auto; max-height: 60vh;clip-path: inset(50px 30px 50px 30px);">
                                 </div>
                             </div>
 
@@ -3013,7 +3049,7 @@ for link in robot.links:
                                 data-fragment-index="13">
                                 <div style="width: 100%">
                                     <img src="presentation/images/part2/image27_13.svg"
-                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                        style="max-width: 80%; height: auto; max-height: 60vh;clip-path: inset(50px 30px 50px 30px);">
                                 </div>
                             </div>
 
@@ -3021,7 +3057,7 @@ for link in robot.links:
                                 data-fragment-index="14">
                                 <div style="width: 100%">
                                     <img src="presentation/images/part2/image27_14.svg"
-                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                        style="max-width: 80%; height: auto; max-height: 60vh;clip-path: inset(50px 30px 50px 30px);">
                                 </div>
                             </div>
 
@@ -3029,7 +3065,7 @@ for link in robot.links:
                                 data-fragment-index="15">
                                 <div style="width: 100%">
                                     <img src="presentation/images/part2/image27_15.svg"
-                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                        style="max-width: 80%; height: auto; max-height: 60vh;clip-path: inset(50px 30px 50px 30px);">
                                 </div>
                             </div>
 
@@ -3038,7 +3074,7 @@ for link in robot.links:
                                 data-fragment-index="16">
                                 <div style="width: 100%">
                                     <img src="presentation/images/part2/image27_16.svg"
-                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                        style="max-width: 80%; height: auto; max-height: 60vh;clip-path: inset(50px 30px 50px 30px);">
                                 </div>
                             </div>
 
@@ -3046,7 +3082,7 @@ for link in robot.links:
                                 data-fragment-index="17">
                                 <div style="width: 100%">
                                     <img src="presentation/images/part2/image27_17.svg"
-                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                        style="max-width: 80%; height: auto; max-height: 60vh;clip-path: inset(50px 30px 50px 30px);">
                                 </div>
                             </div>
 
@@ -3054,7 +3090,7 @@ for link in robot.links:
                                 data-fragment-index="18">
                                 <div style="width: 100%">
                                     <img src="presentation/images/part2/image27_18.svg"
-                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                        style="max-width: 80%; height: auto; max-height: 60vh;clip-path: inset(50px 30px 50px 30px);">
                                 </div>
                             </div>
 
@@ -3062,7 +3098,7 @@ for link in robot.links:
                                 data-fragment-index="19">
                                 <div style="width: 100%">
                                     <img src="presentation/images/part2/image27_19.svg"
-                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                        style="max-width: 80%; height: auto; max-height: 60vh;clip-path: inset(50px 30px 50px 30px);">
                                 </div>
                             </div>
 
@@ -3070,7 +3106,7 @@ for link in robot.links:
                                 data-fragment-index="20">
                                 <div style="width: 100%">
                                     <img src="presentation/images/part2/image27_20.svg"
-                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                        style="max-width: 80%; height: auto; max-height: 60vh;clip-path: inset(50px 30px 50px 30px);">
                                 </div>
                             </div>
 
@@ -3078,7 +3114,7 @@ for link in robot.links:
                                 data-fragment-index="21">
                                 <div style="width: 100%">
                                     <img src="presentation/images/part2/image27_21.svg"
-                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                        style="max-width: 80%; height: auto; max-height: 60vh;clip-path: inset(50px 30px 50px 30px);">
                                 </div>
                             </div>
 
@@ -3086,7 +3122,7 @@ for link in robot.links:
                                 data-fragment-index="22">
                                 <div style="width: 100%">
                                     <img src="presentation/images/part2/image27_22.svg"
-                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                        style="max-width: 80%; height: auto; max-height: 60vh;clip-path: inset(50px 30px 50px 30px);">
                                 </div>
                             </div>
 
@@ -3094,7 +3130,7 @@ for link in robot.links:
                                 data-fragment-index="23">
                                 <div style="width: 100%">
                                     <img src="presentation/images/part2/image27_23.svg"
-                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                        style="max-width: 80%; height: auto; max-height: 60vh;clip-path: inset(50px 30px 50px 30px);">
                                 </div>
                             </div>
 
@@ -3102,12 +3138,13 @@ for link in robot.links:
                                 data-fragment-index="24">
                                 <div style="width: 100%">
                                     <img src="presentation/images/part2/image27_23.svg"
-                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                        style="max-width: 80%; height: auto; max-height: 60vh;clip-path: inset(50px 30px 50px 30px);">
                                 </div>
                             </div>
 
                         </div>
-                        <div style="flex: 1; font-size: 1.5vw; width: 100%; text-align: center; margin-top: 0rem;">
+                        <div style="height: 10vh;"></div>
+                        <div style="flex: 1; flex-direction: row; font-size: 1.5vw; width: 100%; text-align: center; margin-top: 0rem;">
                             Legend: <span style="color: #ffb66c;">\(c_{dir}\)</span> , <span
                                 style="color: red;">\(c_{new}\)</span>,
                             <span style="color: #ec2ed7;">\(\mathcal{P}\)</span> , <span
@@ -3160,7 +3197,7 @@ for link in robot.links:
                                 data-fragment-index="0">
                                 <div style="width: 90%">
                                     <img src="presentation/images/part2/image28_0.svg"
-                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                        style="max-width: 80%; height: auto; max-height: 60vh; clip-path: inset(50px 30px 50px 30px);">
                                 </div>
                             </div>
 
@@ -3168,7 +3205,7 @@ for link in robot.links:
                                 data-fragment-index="1">
                                 <div style="width: 90%">
                                     <img src="presentation/images/part2/image28_1.svg"
-                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                        style="max-width: 80%; height: auto; max-height: 60vh;clip-path: inset(50px 30px 50px 30px);">
                                 </div>
                             </div>
 
@@ -3176,7 +3213,7 @@ for link in robot.links:
                                 data-fragment-index="2">
                                 <div style="width: 90%">
                                     <img src="presentation/images/part2/image28_2.svg"
-                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                        style="max-width: 80%; height: auto; max-height: 60vh;clip-path: inset(50px 30px 50px 30px);">
                                 </div>
                             </div>
 
@@ -3185,7 +3222,7 @@ for link in robot.links:
                                 data-fragment-index="3">
                                 <div style="width: 90%">
                                     <img src="presentation/images/part2/image28_3.svg"
-                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                        style="max-width: 80%; height: auto; max-height: 60vh;clip-path: inset(50px 30px 50px 30px);">
                                 </div>
                             </div>
 
@@ -3193,7 +3230,7 @@ for link in robot.links:
                                 data-fragment-index="4">
                                 <div style="width: 90%">
                                     <img src="presentation/images/part2/image28_4.svg"
-                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                        style="max-width: 80%; height: auto; max-height: 60vh;clip-path: inset(50px 30px 50px 30px);">
                                 </div>
                             </div>
 
@@ -3201,7 +3238,7 @@ for link in robot.links:
                                 data-fragment-index="5">
                                 <div style="width: 90%">
                                     <img src="presentation/images/part2/image28_5.svg"
-                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                        style="max-width: 80%; height: auto; max-height: 60vh;clip-path: inset(50px 30px 50px 30px);">
                                 </div>
                             </div>
 
@@ -3209,7 +3246,7 @@ for link in robot.links:
                                 data-fragment-index="6">
                                 <div style="width: 90%">
                                     <img src="presentation/images/part2/image28_6.svg"
-                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                        style="max-width: 80%; height: auto; max-height: 60vh;clip-path: inset(50px 30px 50px 30px);">
                                 </div>
                             </div>
 
@@ -3217,7 +3254,7 @@ for link in robot.links:
                                 data-fragment-index="7">
                                 <div style="width: 90%">
                                     <img src="presentation/images/part2/image28_7.svg"
-                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                        style="max-width: 80%; height: auto; max-height: 60vh;clip-path: inset(50px 30px 50px 30px);">
                                 </div>
                             </div>
 
@@ -3225,7 +3262,7 @@ for link in robot.links:
                                 data-fragment-index="8">
                                 <div style="width: 90%">
                                     <img src="presentation/images/part2/image28_8.svg"
-                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                        style="max-width: 80%; height: auto; max-height: 60vh;clip-path: inset(50px 30px 50px 30px);">
                                 </div>
                             </div>
 
@@ -3369,8 +3406,8 @@ for link in robot.links:
                             </li><br>
                             <li>Idea is very simple: giving an alternating point \(a\), project it into \(\mathcal{B}\), then 
                                 project the result back to \(\mathcal{A}\). Keep doing this:
-                                <b class="itext">$$b[k+1] = \Pi^{\mathcal{A}}(a[k])$$</b>
-                                <b class="itext">$$a[k+1] = \Pi^{\mathcal{B}}(b[k+1])$$</b>
+                                <b class="itext">$$b[k] = \Pi^{\mathcal{A}}(a[k])$$</b>
+                                <b class="itext">$$a[k+1] = \Pi^{\mathcal{B}}(b[k])$$</b>
                             </li><br>
                             <li>If the two sets are convex, then \(a[k],b[k]\) converges to a pair of witness points. 
                             </li><br>
@@ -3447,7 +3484,7 @@ for link in robot.links:
 
 
 
-            <section style="display: flex; flex-direction: column; height: 100vh;">
+            <!-- <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     DISTANCES AND OTHER QUANTITIES
                 </h3>
@@ -3463,8 +3500,7 @@ for link in robot.links:
                             <br>
                             <li>How fast it converges?
                             </li><br>
-                            <li>First we need to know how to measure convergence. Lets focus on the convergence of the variable 
-                                \(b[k]\) to one its possible final values, \(b^*\).
+                            <li>First, we need to define <b class="ttext">linear convergence</b>;
                             </li><br>
                             <li>A sequence \(x[k]\) is said to <b class="ttext">converge linearly</b>
                                     to a value \(x^*\) with rate \(0 < \beta < 1\) if:
@@ -3499,25 +3535,17 @@ for link in robot.links:
                 <div
                     style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
                     <div
-                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        style="flex: 1; min-width: 300px; font-size: 1.4vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
                             <li>For example, the sequence \(x[k+1] = 0.5x[k]-1\) converges to \(x^*=2\) linearly with rate 
                                 \(\beta=0.5\), and the sequence \(x[k+1] = \cos(x[k])\) converges to \(x^*=0.7391\) with rate 
-                                \(\beta = 0.6736\)
+                                \(\beta = 0.6736\);
                             </li><br>
-                            <li>First we need to know how to measure convergence. Lets focus on the convergence of the variable 
-                                \(b[k]\) to one its possible final values, \(b^*\).
+                            <li> Some sequences can converge faster. For example, \(x[k+1] = x[k]/2 + 1/x[k]\) converges to 
+                                \(x^*=\sqrt{2}\) <b class="itext">quadratically</b> (i.e., the number of digits of error we 
+                                set to zero increases quadratically with the number of steps);
                             </li><br>
-                            <li>A sequence \(b[k]\) is said to <b class="ttext">converge linearly</b>
-                                    to a value \(b^*\) with rate \(0 < \beta < 1\) if:
-                                    $$\lim_{k \rightarrow \infty}  \|b[k]-b^*\|^{1/k}= \beta. $$
-                            </li> <br>
-                            <li> This means that, roughly, the error \(\|b[k]-b^*\|\) decays to zero like 
-                                \(\beta^k\). This  means that the number of digits of the error we set to \(0\) at step \(k\), 
-                                \(n[k] = -\log_{10}(\|b[k]-b^*\|) \), 
-                                increases (roughly) linearly with the number of steps, hence the name. 
-                             </li>
 
                         </ul>
                     </div>
@@ -3525,11 +3553,46 @@ for link in robot.links:
                     <div
                         style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
                         <div style="width: 100%">
-                            <img src="presentation/images/part2/main.png" style="max-width: 80%; height: auto;">
+                            <img src="presentation/images/part2/img31.svg" style="max-width: 80%; height: auto;">
                         </div>
                     </div>
                 </div>
             </section>
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    DISTANCES AND OTHER QUANTITIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">VON NEUMANN'S ALTERNATING PROJECTION ALGORITHM</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.4vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <br>
+                            <li>If the two objects are convex, the alternating algorithm (either \(a[k]\) or \(b[k]\)) <b class="itext">converges linearly</b> with a rate \(\beta\) that depends 
+                                on the objects and how they are placed relatively to each other.
+                            </li><br>
+                            <li> The worst case scenario is when the objects overlap but are nearly parallel to each other. In the 
+                                case displayed to the right, it can be shown that \(\beta = \cos(\theta)^2\). When \(\theta\) is close to 
+                                \(0\), this is close to \(1\), and thus the convergence is slow.
+                            </li><br>
+
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/img31.svg" style="max-width: 80%; height: auto;">
+                        </div>
+                    </div>
+                </div>
+            </section> -->
 
             <style>
                 .reveal .progress {

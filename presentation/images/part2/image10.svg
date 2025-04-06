@@ -100,7 +100,7 @@
       <g class="com.sun.star.drawing.OpenBezierShape">
        <g id="id5">
         <rect class="BoundingBox" stroke="none" fill="none" x="2290" y="2897" width="5926" height="5800"/>
-        <path fill="none" stroke="rgb(8,69,148)" stroke-width="81" stroke-linejoin="round" d="M 2331,6877 C 2967,2559 2459,3067 3221,2940 3983,2813 3094,8021 4237,8020 5379,8020 4110,5099 5253,5100 6396,5099 5761,8656 6396,8655 7031,8655 7157,8020 7158,7639 7158,7258 8174,3576 8174,3576"/>
+        <path fill="none" stroke="rgb(89,131,176)" stroke-width="81" stroke-linejoin="round" d="M 2331,6877 C 2967,2559 2459,3067 3221,2940 3983,2813 3094,8021 4237,8020 5379,8020 4110,5099 5253,5100 6396,5099 5761,8656 6396,8655 7031,8655 7157,8020 7158,7639 7158,7258 8174,3576 8174,3576"/>
        </g>
       </g>
       <g class="com.sun.star.drawing.CustomShape">
@@ -218,7 +218,7 @@
       <g class="com.sun.star.drawing.PolyLineShape">
        <g id="id23">
         <rect class="BoundingBox" stroke="none" fill="none" x="16107" y="3843" width="5417" height="3512"/>
-        <path fill="none" stroke="rgb(8,69,148)" stroke-width="81" stroke-linejoin="round" d="M 16148,3884 L 17545,7313 19831,7313 21482,3884 21355,4012"/>
+        <path fill="none" stroke="rgb(89,131,176)" stroke-width="81" stroke-linejoin="round" d="M 16148,3884 L 17545,7313 19831,7313 21482,3884 21355,4012"/>
        </g>
       </g>
       <g class="com.sun.star.drawing.LineShape">
@@ -251,7 +251,7 @@
       <g class="com.sun.star.drawing.OpenBezierShape">
        <g id="id28">
         <rect class="BoundingBox" stroke="none" fill="none" x="9103" y="15807" width="6052" height="4912"/>
-        <path fill="none" stroke="rgb(8,69,148)" stroke-width="81" stroke-linejoin="round" d="M 9144,15848 C 10794,20039 11557,20547 12065,20674 12573,20801 15113,15848 15113,15848"/>
+        <path fill="none" stroke="rgb(89,131,176)" stroke-width="81" stroke-linejoin="round" d="M 9144,15848 C 10794,20039 11557,20547 12065,20674 12573,20801 15113,15848 15113,15848"/>
        </g>
       </g>
       <g class="com.sun.star.drawing.CustomShape">

@@ -1,0 +1,475 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv='cache-control' content='no-cache'>
+    <meta http-equiv='expires' content='0'>
+    <meta http-equiv='pragma' content='no-cache'>
+
+    <script>
+        // Check if the site is being served from GitHub Pages
+        if (window.location.hostname === "viniciusmgn.github.io") {
+            document.write('<base href="/lesson_robotconstcontrol/">');
+        } else {
+            document.write('<base href="/">');  // Local development base
+        }
+    </script>
+
+    <title>Assignment</title>
+
+    <link rel="stylesheet" href="presentation/dist/reset.css">
+    <link rel="stylesheet" href="presentation/dist/reveal.css">
+    <link rel="stylesheet" href="presentation/dist/theme/black.css">
+
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="presentation/plugin/highlight/monokai.css">
+    <style>
+        .reveal .slides section {
+            padding: 1.5rem;
+            /* Adjust the value as needed */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <img src="presentation/images/intro/logo_ufmg.svg" class="logo">
+
+            <section
+                style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+                <h3 style="font-size: 3.5vw; margin-bottom: 0.5rem;">Constrained Robotic Control</h3>
+                <h3 style="font-size: 2.5vw; margin-bottom: 1rem;">Assignment</h3>
+
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                    <img src="presentation/images/part2/main.png" style="max-width: 40%; height: auto;">
+                    <small style="font-size: 1.5vw; margin-top: 0.5rem;">Vinicius Mariano Gonçalves</small>
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    PROBLEM 1
+                </h3>
+
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 2; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <br>
+                            <li> The kinematic control technique to achieve a target pose can violate the robot's 
+                                <b class="itext">joint limits</b>, that can be obtained as follows:<br>
+                                <pre><code class="language-python" style="text-align:left">
+import uaibot as ub
+
+#Create the robot
+robot = ub.Robot.create_kuka_kr5()
+#Extract the limits as (n,1)-shaped numpy matrices:
+q_min = robot.joint_limit[:,0]
+q_max = robot.joint_limit[:,1]
+
+print("q_min = "+str(q_min.transpose()))
+print("q_max = "+str(q_max.transpose()))                                        </code></pre>                                
+                            </li><br>
+                            <li> Implement an UAIBot script to converge to a sequence of random poses. 
+                            To guarantee joint limits, set the joint velocity of the \(i^{th}\) joint to zero when it is close 
+                            to violate the  respective joint limit. Observe how often this strategy works. </li><br>
+                            <br>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items:center; height: 100%;">
+                        <div style="width: 80%">
+                            <img src="presentation/images/part2/main.png"
+                                style="max-width: 80%; height: auto; max-height: 60vh;">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    PROBLEM 2
+                </h3>
+
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <br>
+                            <li> <b class="itext">(a) :</b> Use UAIBot and kinematic control to make a manipulator track a circle drawn in the 
+                                surface of a sphere. The robot's end-effector should always be normal to the surface 
+                                of the sphere. You can select the robot, the shape and position of the sphere and the circle 
+                                inside it, how fast the circle should be tracked, the task function, etc....
+                            </li><br>
+                            <li> <b class="itext">(b) :</b> Plot the task error as a function of time. </li><br>
+                            <li> <b class="itext">(c) :</b>  Plot the graph of configuration for each joint, along with the joint limits. Verify if the joint limits are violated 
+                                (you dont have to do anything about it, just verify).
+                            </li>
+                            <br>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items:center; height: 100%;">
+                        <div style="width: 80%">
+                            <img src="presentation/images/part2/main.png"
+                                style="max-width: 80%; height: auto; max-height: 60vh;">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    PROBLEM 3 
+                </h3>
+
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.4vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <br>
+                            <li> You can create generic convex polygons in UAIBot by specifing the 
+                                inequality \(Ap \leq b\) that generates them and then calling the 
+                                <b class="ttext">ConvexPolytope</b> constructor.
+                            </li><br>
+                            <li>
+                                \(A\) should be a \(n \times 3\) np.matrix, whereas 
+                                \(b\) should be a \(n \times 1\) np.matrix. For example:
+                                <pre><code class="language-python" style="text-align:left">
+import uaibot as ub
+
+#Lets create a cube with sides 1 centered at (0,0,4)
+#It is generated by the inequalities
+#x <= 1, x>=-1, y<=1, y>=-1, z<=5, z>=3
+#Writing as a <= inequality:
+#x <= 1, -x<=1, y<=1, -y<=1, z<=5, -z<=-3
+A = np.matrix([[1,0,0],[-1,0,0],[0,1,0],[0,-1,0],[0,0,1],[0,0,-1]])
+b = np.matrix([[1],[1],[1],[1],[5],[-3]])
+
+#Create the object
+obj = ub.ConvexPolytope(A=A,b=b,color='red')
+
+#Show (assuming Google Colab)
+sim = ub.Simulation([obj])
+sim.run()
+                                            </code></pre>
+                            </li>
+                            <li>
+                                Create a script to draw in the screen (at the same time) all the other four <b class="itext">Platonic Solids</b>.
+                            </li>
+                            <br>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items:center; height: 100%;">
+                        <div style="width: 80%">
+                            <img src="presentation/images/part2/main.png"
+                                style="max-width: 80%; height: auto; max-height: 60vh;">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    PROBLEM 4 
+                </h3>
+
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.4vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <br>
+                            <li> We will (crudely) simulate how  a laser-emitting device (like LiDAR) detects points of an object.
+                            </li><br>
+                            <li> Create any convex object (e.g., a sphere) and transform the surface of this object into a 
+                                <b class="ttext">PointCloud</b> using the function <b class="ttext">to_point_cloud</b>:
+                                <pre><code class="language-python" style="text-align:left">
+import uaibot as ub
+
+#Create the object
+obj = ub.Ball(htm = ub.Utils.trn([0,0,2]), radius=0.5)
+#Sample using discretization disc=0.25
+obj_pc = obj.to_point_cloud(disc=0.025)
+#See the point cloud (assuming Google Colab)
+sim = ub.Simulation([obj_pc])
+sim.run()
+                                            </code></pre>
+ 
+                            <li>
+                                Now, draw a <b class="ttext">Box</b> object in any pose that you want  to represent visually the device. Draw also a frame object in this box, with the 
+                                \(z\) axis facing normal to the camera laser device. 
+                            </li>
+                            <br>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items:center; height: 100%;">
+                        <div style="width: 80%">
+                            <img src="presentation/images/part2/main.png"
+                                style="max-width: 80%; height: auto; max-height: 60vh;">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    PROBLEM 4 
+                </h3>
+
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <br>
+                            <li> Assumes the  <b class="itext">Field of View</b> of the device is represented by a cone of angle 
+                                \(\theta\) (that you can choose). Thus, a point \(p\) in the point cloud of the object is captured by the device with the following conditions:
+                                on the line from \(p_c\) (the point that emits the ray in the device) to \(p\):<br><br>
+                                <ul>
+                                    <li> The angle between the \(z\) axis of the device and this line should be less than or equal \(\theta\);</li><br>
+                                    <li> The line should not intercept the object in any other point \(p'\) in the object (i.e., the ray is blocked 
+                                        by other point);
+                                    </li>
+                                </ul>
+                            </li><br>
+                            <br>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items:center; height: 100%;">
+                        <div style="width: 80%">
+                            <img src="presentation/images/part2/main.png"
+                                style="max-width: 80%; height: auto; max-height: 60vh;">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    PROBLEM 4 
+                </h3>
+
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.3vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <br>
+                            <li>Create a script in UAIBot to detect which sampled points are detected by the device.   </li><br>
+                            <li>To check the second condition, you can do 
+                                as follows: create a very thin box UAIBot object from point \(p_c\) to \(\alpha p + (1-\alpha)p_c\), \(\alpha\) close to 1 (say, \(\alpha=0.95\)) and 
+                            check if this cylinder collides with the original object using the function <b class="ttext">compute_dist</b>:
+                            <pre><code class="language-python" style="text-align:left">
+import uaibot as ub
+
+#Create the object and cylinder
+#obj = ub.Box(...)
+#ray = ub.Cylinder(...)
+
+#Check if they intercept 
+#We only care about the distance (third entry)
+_, _, dist, _ = ray.compute_dist(obj)
+if dist>1e-5:
+    print("Ray blocked!")
+else:
+    print("Point detected!")
+                            </code></pre>                        
+                        </li>
+
+                            <li>The value \(\alpha\) should be less than \(1\) because otherwise it can accuse a collision between the cylinder and 
+                                the point \(p\) that you are testing the detection. You want to check collision with any point just before it.
+                            </li>
+                            <br>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items:center; height: 100%;">
+                        <div style="width: 80%">
+                            <img src="presentation/images/part2/main.png"
+                                style="max-width: 80%; height: auto; max-height: 60vh;">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    PROBLEM 5 
+                </h3>
+
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <br>
+                            <li>Create a script that generetes a random 2D positive definite matrix \(H\) and 2D vector \(f\). 
+                                Then, it should implement the simple 
+                                projected gradient algorithm to solve the convex 2D problem:
+                                $$\min_{u} \ 0.5 u^\top H u + f^\top u \ \mbox{such that} \ u \in \mathcal{U}$$
+                                in which \(\mathcal{U}\) is the unit square centered at the origin.
+                            </li><br>
+                            <li>Plot each step of the algorithm.
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items:center; height: 100%;">
+                        <div style="width: 80%">
+                            <img src="presentation/images/part2/main.png"
+                                style="max-width: 80%; height: auto; max-height: 60vh;">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <style>
+                .reveal .progress {
+                    color: #34eb5e;
+                }
+
+                .reveal .controls {
+                    color: #34eb5e;
+                }
+
+                body {
+                    background-image: url(presentation/images/aula1/logo_ufmg.svg) !important;
+                    background-color: black;
+                    background-size: 8% !important;
+                    background-repeat: no-repeat !important;
+                    background-position: 96% 3% !important;
+                }
+
+                .itext {
+                    color: #8af2a2;
+                }
+
+                .ttext {
+                    color: #34eb5e;
+                }
+
+                /* width */
+                ::-webkit-scrollbar {
+                    width: 20px;
+                }
+
+                /* Track */
+                ::-webkit-scrollbar-track {
+                    box-shadow: inset 0 0 5px grey;
+                    border-radius: 10px;
+                }
+
+                /* Handle */
+                ::-webkit-scrollbar-thumb {
+                    background: #34eb5e;
+                    border-radius: 10px;
+                }
+
+                /* Handle on hover */
+                ::-webkit-scrollbar-thumb:hover {
+                    background: #01b82b;
+                }
+
+                ::-webkit-scrollbar-corner {
+                    background: rgba(0, 0, 0, 0);
+                }
+
+                .hlink {
+                    color: #f5bf42;
+                }
+
+                .hlink:hover {
+                    text-decoration: underline;
+                }
+
+                .logo {
+                    position: absolute;
+                    top: 1%;
+                    right: 1%;
+                    width: 6%;
+                    /* Adjust size as needed */
+                    z-index: 10;
+                    /* Ensures it appears above the video and overlay */
+                }
+                .reveal .slide-number {
+                    font-size: 30px;
+                    position: absolute;
+                    bottom: 30px;
+                    left: 50px;
+                    background: none !important;
+                    /* remove any background */
+                    box-shadow: none !important;
+                    /* remove shadows */
+                    padding: 0 !important;
+                    margin: 0 !important;
+                    border: none !important;
+                    color: white;
+                    /* or whatever color you want */
+                    opacity: 1.0;
+                    width: auto !important;
+                    height: auto !important;
+                    z-index: -1;
+                }
+            </style>
+
+            <script id="MathJax-script" async
+                src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+            <script src="presentation/dist/reveal.js"></script>
+            <script src="presentation/plugin/notes/notes.js"></script>
+            <script src="presentation/plugin/markdown/markdown.js"></script>
+            <script src="presentation/plugin/highlight/highlight.js"></script>
+            <script src="presentation/plugin/menu/menu.js"></script>
+            <script>
+                // More info about initialization & config:
+                // - https://revealjs.com/initialization/
+                // - https://revealjs.com/config/
+                Reveal.initialize({
+                    hash: true,
+                    width: 1200,
+                    height: 800,
+                    margin: 0,
+                    minScale: 0.2,
+                    maxScale: 2.0,
+                    plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealMenu],
+                    slideNumber: true
+                });
+                var frames = document.getElementsByTagName("iframe");
+
+
+                Reveal.on('slidechanged', event => {
+                    for (let i = 0; i < frames.length; ++i) {
+                        frames[i].contentWindow.location.reload(true);
+                    }
+                });
+            </script>
+</body>
+
+</html>
