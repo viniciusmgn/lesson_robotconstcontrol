@@ -219,6 +219,74 @@
                     GEOMETRIC REPRESENTATION
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">CONVEX SHAPES</b>
+                </h3>
+
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 3; min-width: 300px; font-size: 1.3vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <br>
+                            <li> UAIBot supports natively four types of convex objects: <b class="itext">Balls, Boxes, Cylinders</b> and 
+                                <b class="itext">General Convex Polytopes</b>. The latter is specified by a linear inequality of the form 
+                                \(\mathcal{P} = \{p \in \mathbb{R}^3 \ | \ Ap \leq b\}\), in which \(A\) is a \(n \times 3\) matrix and 
+                                \(b\) is a \(n \times 1\) matrix:
+                                <pre><code class="language-python" style="text-align:left">
+import uaibot as ub
+
+#Create a ball
+ball = ub.Ball(htm = ub.Utils.trn([0,0,1]), radius=0.3, 
+color = 'red')
+#Create a box
+box = ub.Box(htm = ub.Utils.trn([-1,0,1]), width=0.1, 
+depth=0.2, height=0.3, color = 'green')
+#Create a cylinder
+cylinder = ub.Cylinder(htm = ub.Utils.trn([1,0,1]), radius=0.4,  
+height=0.3, color = 'blue')
+
+#Create the matrices A and b for a pyramid... 
+#just trust me!
+A=np.matrix([
+[ 0.000, -0.958, 0.287],
+[ 0.958, 0.000 , 0.287],
+[ 0.000, 0.958, 0.287],
+[-0.958, 0.000, 0.2873],
+[ 0.000, 0.000, -1.000]])
+b = np.matrix([
+[-0.527],
+[ 0.431],
+[ 1.389],
+[ 0.431],
+[-1.000]])
+pyramid = ub.ConvexPolytope(A=A, b= b,color='yellow')
+
+#Show (assuming Google Colab)
+sim = ub.Simulation([ball,box,cylinder,pyramid])
+sim.run()
+                                                            </code></pre>   
+                            </li>
+                        </ul>
+
+                    </div>
+
+                    <div
+                        style="flex: 3; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <iframe src="presentation/images/part2/part_2_1.html" width="550" height="580"
+                                style="border: none;"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    GEOMETRIC REPRESENTATION
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     <b class="ttext">POINT CLOUD</b>
                 </h3>
 
@@ -307,6 +375,65 @@
                 </div>
             </section>
 
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    GEOMETRIC REPRESENTATION
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">POINT CLOUD</b>
+                </h3>
+
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <br>
+                            <li> UAIBot can handle point clouds through the <b class="itext">PointCloud</b> object:
+                                <pre><code class="language-python" style="text-align:left">
+import uaibot as ub
+
+#Create a list of 3D points:
+#Alternatively, it can be a list of np.matrix elements or a 
+#(3,N)-shaped np.matrix in which each column is a point
+points=[[0.2,0,1],[-0.2,0,1],[0,-0.2,1],[0,0.2,1],[0,0,1.2]]
+
+
+#Create the point cloud:
+pc = ub.PointCloud(points= points, color='cyan', size=0.1)
+#Show (assuming Google Colab)
+sim = ub.Simulation([pc])
+sim.run()
+    </code></pre>       
+                            </li>
+                        </ul>
+
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <div style="width: 100%">
+                                <iframe src="presentation/images/part2/part_2_3.html" width="550" height="450"
+                                    style="border: none;"></iframe>
+                            </div>
+                            <div style="width: 100%">
+                                <div style="font-size: 1.2vw; text-align: center; flex-shrink: 0; margin-bottom: 0rem;">
+                                    Taken from:
+                                </div>
+                                <div style="font-size: 1.2vw; text-align: center; flex-shrink: 0; margin-bottom: 0rem;">
+                                    <a href="https://free3d.com/3d-model/cat-v1--522281.html" target="_blank"
+                                        style="font-size: 1.2vw;">
+                                        <b class="hlink">https://free3d.com/3d-model/cat-v1--522281.html</b>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
 
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
@@ -1514,16 +1641,7 @@ for link in robot.links:
                                 must be described in a
                                 reference frame \(\mathcal{F}_0\).
                             </li><br>
-                            <li>If \(\mathcal{U}\) is a convex set, \(E_{\mathcal{U}}(p)\) is a convex function. If
-                                \(\mathcal{U}\) is a strictly convex set, \(E_{\mathcal{U}}(p)\) is a strictly convex
-                                function.
-                            </li><br>
-                            <li>The following result is a direct application of the Envelope Theorem:<br><br>
-                                <div style="background-color: #282828">
-                                    <b class="ttext">Theorem:</b> \(\ \ \nabla E_{\mathcal{U}}(p) = p -
-                                    \Pi_{\mathcal{U}}(p)\)
-                                </div>
-                            </li>
+
 
                         </ul>
                     </div>
@@ -1543,7 +1661,7 @@ for link in robot.links:
                     CONVEX ANALYSIS BASICS
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    <b class="ttext">HALF SQUARED DISTANCE AND PROJECTION</b>
+                    <b class="ttext">PROPERTIES OF HALF SQUARED DISTANCE AND PROJECTION</b>
                 </h3>
 
 
@@ -1553,13 +1671,21 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.4vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li> Another important property of the projection is that the line from a point \(p\) and 
+                            <li><b class="ttext">Prop 1:</b> If \(\mathcal{U}\) is a convex set, \(E_{\mathcal{U}}(p)\) is a convex function. If
+                                \(\mathcal{U}\) is a strictly convex set, \(E_{\mathcal{U}}(p)\) is a strictly convex
+                                function.
+                            </li><br>
+                            <li> <b class="ttext">Prop 2:</b>  the line from a point \(p\) and 
                                 \(u = \Pi^{\mathcal{U}}(p)\) is <b class="itext">normal</b> to  \(\mathcal{U}\) 
                                 at point \(u \), if this normal is well defined (i.e., \(u\) does not belong to a corner);
                             </li> <br>
-                            <li>Furthermore, the hyperplane that passes through the mid-point of this line and is orthogonal to 
+                            <li><b class="ttext">Prop 3:</b> the hyperplane that passes through the mid-point of this line and is orthogonal to 
                                 it is a <b class="itext">separating hyperplane</b> between \(\mathcal{U}\) and \(p\).
                             </li><br>
+                            <li><b class="ttext">Prop 4:</b> as a direct application of the Envelope Theorem:
+                                $$\nabla E_{\mathcal{U}}(p) = p - \Pi_{\mathcal{U}}(p).$$
+                            </li>
+
                         </ul>
                     </div>
 
@@ -1698,7 +1824,7 @@ for link in robot.links:
                     CONVEX ANALYSIS BASICS
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    <b class="ttext">FROM THE CANONICAL TO A GENERAL POSE</b>
+                    <b class="ttext">PROJECTION: FROM THE CANONICAL TO A GENERAL POSE</b>
                 </h3>
 
 
@@ -3482,7 +3608,92 @@ for link in robot.links:
                 </div>
             </section>
 
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    DISTANCES AND OTHER QUANTITIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">VON NEUMANN'S ALTERNATING PROJECTION ALGORITHM</b>
+                </h3>
 
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <br>
+                            <li>The algorithm can be quite slow if the two objects are nearly parallel to each other.
+                            </li><br>
+                            <li>Consider the two boxes to the right, that intercept at a point and have an angle of \(\theta\) 
+                                between them. An analysis using triangle similarity show that the distance between 
+                                \(a[k]\) and the final point \(a^*\) decays to \(0\) with \( \cos(\theta)^{2k}\) at each step \(k\). Thus, if \(\theta \approx 0\), 
+                                this convergence can be very slow.
+                            </li><br>
+
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        
+     
+                                <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                                    data-fragment-index="0">
+                                    <div style="width: 100%">
+                                        <img src="presentation/images/part2/image31_Slide_1.svg"
+                                            style="width: 80%; height: auto; ">
+                                    </div>
+                                </div>
+    
+                                <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                                    data-fragment-index="1">
+                                    <div style="width: 100%">
+                                        <img src="presentation/images/part2/image31_Slide_2.svg"
+                                        style="width: 80%; height: auto; ">
+                                    </div>
+                                </div>
+    
+                                <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                                    data-fragment-index="2">
+                                    <div style="width: 100%">
+                                        <img src="presentation/images/part2/image31_Slide_3.svg"
+                                        style="width: 80%; height: auto; ">
+                                    </div>
+                                </div>
+    
+    
+                                <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                                    data-fragment-index="3">
+                                    <div style="width: 100%">
+                                        <img src="presentation/images/part2/image31_Slide_4.svg"
+                                        style="width: 80%; height: auto; ">
+                                    </div>
+                                </div>
+    
+                                <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                                    data-fragment-index="4">
+                                    <div style="width: 100%">
+                                        <img src="presentation/images/part2/image31_Slide_5.svg"
+                                        style="width: 80%; height: auto; ">
+                                    </div>
+                                </div>
+    
+                                <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                                    data-fragment-index="5">
+                                    <div style="width: 100%">
+                                        <img src="presentation/images/part2/image31_Slide_6.svg"
+                                        style="width: 80%; height: auto; ">
+                                    </div>
+                                </div>   
+                                
+                                <br><br><br><br><br><br><br><br><br><br><br><br>
+    
+    
+
+                        
+                    </div>
+                </div>
+            </section>
 
             <!-- <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">

@@ -105,13 +105,13 @@ print("q_max = "+str(q_max.transpose()))                                        
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li> <b class="itext">(a) :</b> Use UAIBot and kinematic control to make a manipulator track a circle drawn in the 
+                            <li> Use UAIBot and kinematic control to make a manipulator track a circle drawn in the 
                                 surface of a sphere. The robot's end-effector should always be normal to the surface 
                                 of the sphere. You can select the robot, the shape and position of the sphere and the circle 
                                 inside it, how fast the circle should be tracked, the task function, etc....
                             </li><br>
-                            <li> <b class="itext">(b) :</b> Plot the task error as a function of time. </li><br>
-                            <li> <b class="itext">(c) :</b>  Plot the graph of configuration for each joint, along with the joint limits. Verify if the joint limits are violated 
+                            <li> Plot the task error as a function of time. </li><br>
+                            <li> Plot the graph of configuration for each joint, along with the joint limits. Verify if the joint limits are violated 
                                 (you dont have to do anything about it, just verify).
                             </li>
                             <br>
@@ -315,13 +315,13 @@ sim.run()
                             <li>Create a script in UAIBot to detect which sampled points are detected by the device.   </li><br>
                             <li>To check the second condition, you can do 
                                 as follows: create a very thin box UAIBot object from point \(p_c\) to \(\alpha p + (1-\alpha)p_c\), \(\alpha\) close to 1 (say, \(\alpha=0.95\)) and 
-                            check if this cylinder collides with the original object using the function <b class="ttext">compute_dist</b>:
+                            check if this box collides with the original object using the function <b class="ttext">compute_dist</b>:
                             <pre><code class="language-python" style="text-align:left">
 import uaibot as ub
 
-#Create the object and cylinder
-#obj = ub.Box(...)
-#ray = ub.Cylinder(...)
+#Create the object and box representing the ray
+#obj = ub.Ball(...)
+#ray = ub.Box(...)
 
 #Check if they intercept 
 #We only care about the distance (third entry)
@@ -383,6 +383,49 @@ else:
                 </div>
             </section>
 
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    PROBLEM 7
+                </h3>
+
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.4vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <br>
+                            <li>Implement a script to test the convergence of Von Neumann's alternating algorithm. Projections 
+                                can be computed for the object using the <b class="ttext">projection</b> function:
+                                <pre><code class="language-python" style="text-align:left">
+import uaibot as ub
+
+#Create the object 
+obj = ub.Box(htm=ub.Utils.trn([1,1,1]),width=0.1,depth=0.2,height=0.3)
+
+#Compute the projection and the distance
+point = np.matrix([[1],[2],[3]])
+proj, dist = obj.projection(point)
+print("Projection = "+str(proj.transpose()))
+                                                                </code></pre>                                    
+                            </li><br>
+                            <li> Create a script that creates 10000 different pairs of convex objects  (boxes, cylinders and balls) with different sizes and poses. Then, for each pair, runs the algorithm 
+                                until it converges. Consider that convergence happened when \(\|a[k+1]-a[k]\| < 10^{-6}\). Create a histogram of the number of steps 
+                                it took to converge. Considering a limit of 4000 steps, indicate if there are cases in which the algorithm does not converge 
+                                under this limit.
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items:center; height: 100%;">
+                        <div style="width: 80%">
+                            <img src="presentation/images/part2/main.png"
+                                style="max-width: 80%; height: auto; max-height: 60vh;">
+                        </div>
+                    </div>
+                </div>
+            </section>
 
             <style>
                 .reveal .progress {
