@@ -732,8 +732,8 @@ for link in robot.links:
                             <li> A set \(\mathcal{S} \subseteq \mathbb{R}^n\) is <b class="ttext">convex</b> if for any
                                 two points in the set,
                                 the line that connects them is also in the set. Formally:
-                                $$\{ u_1, u_2 \in \mathcal{S} \ \rightarrow \ \forall \alpha \in [0,1], \alpha u_1 +
-                                (1-\alpha) u_2 \in \mathcal{S}\};$$
+                                $$\{ u_1, u_2 \in \mathcal{S}, \ u_1 \not= u_2 \  \rightarrow \ \forall \alpha \in [0,1]$$
+                                $$\alpha u_1 + (1-\alpha) u_2 \in \mathcal{S}\};$$
                             </li><br>
 
 
@@ -779,7 +779,8 @@ for link in robot.links:
                                 entirely inside the set (not in the border), with the possible exception of the initial
                                 and final points.
                                 Intuitively, this means that the object's boundary has no "flat" sides. Formally:
-                                $$\{ u_1, u_2 \in \mathcal{S} \ \rightarrow \ \forall \alpha \in (0,1), \alpha u_1 +
+                                $$\{ u_1, u_2 \in \mathcal{S} \ , u_1 \not=u_2 \   \ \rightarrow \ \forall \alpha \in (0,1)$$
+                                $$ \alpha u_1 +
                                 (1-\alpha) u_2 \in \mathcal{S}-\partial \mathcal{S}\};$$
                                 <br>
                         </ul>
@@ -913,7 +914,7 @@ for link in robot.links:
                             </li><br>
                             <li> A function \(f: \mathbb{R}^n \mapsto \mathbb{R}\) is said to be a <b
                                     class="ttext">convex function</b> if
-                                <b class="itext">\(\forall u_1, u_2 \in \mathbb{R}^n \ , \alpha \in [0,1]\)</b>:<br>
+                                <b class="itext">\(\forall u_1, u_2 \in \mathbb{R}^n \ , u_1 \not= u_2, \alpha \in [0,1]\)</b>:<br>
                                 <b class="itext"> $$ f(\alpha u_1+(1-\alpha) u_2) \leq \alpha f(u_1) + (1-\alpha)
                                     f(u_2);$$</b>
                             </li>
@@ -962,7 +963,7 @@ for link in robot.links:
                             <br>
                             <li> A function \(f: \mathbb{R}^n \mapsto \mathbb{R}\) is said to be a <b
                                     class="ttext">strictly convex function</b> if
-                                <b class="itext">\(\forall u_1, u_2 \in \mathbb{R}^n \ , \alpha \in (0,1)\)</b>:<br>
+                                <b class="itext">\(\forall u_1, u_2 \in \mathbb{R}^n \ , u_1 \not= u_2, \ \alpha \in (0,1)\)</b>:<br>
                                 <b class="itext">$$ f(\alpha u_1+(1-\alpha) u_2) < \alpha f(u_1) + (1-\alpha)
                                         f(u_2);$$</b>
                             </li><br>
@@ -1140,10 +1141,11 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.3vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li> <b class="ttext">Prop 8:</b> if the convex function \(f\) is differentiable, then, for
-                                any points \(u_1,u_2\):
-                                $$ \nabla f(u_1)^\top (u_1-u_2) \geq f(u_1)-f(u_2);$$
-                                In one dimension, this can be rewritten as \(f(u) \geq f'(u_0)(x-u_0)+f(u_0)\), which
+                            <li> <b class="ttext">Prop 8:</b> if the convex function \(f\) is differentiable, it is convex 
+                                <b class="itext">if and only if</b> for all
+                                 \(u_1,u_2\):
+                                $$ \nabla f(u_2)^\top (u_1-u_2) \leq f(u_1)-f(u_2);$$
+                                In one dimension, this can be rewritten as \(f(u) \geq f'(u_0)(u-u_0)+f(u_0)\), which
                                 means that the graph of
                                 \(v=f(u)\) is always above the tangent line at any point \(u_0\);
                             </li><br>
@@ -3528,7 +3530,7 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li>Simpler to implement, but less efficient;
+                            <li>Conceptually simpler and simpler to implement (if projections for the objects are easy to compute), but less efficient;
                             </li><br>
                             <li>Idea is very simple: giving an alternating point \(a\), project it into \(\mathcal{B}\), then 
                                 project the result back to \(\mathcal{A}\). Keep doing this:
