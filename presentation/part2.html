@@ -1017,8 +1017,7 @@ for link in robot.links:
                             <li> <b class="ttext">Prop 4:</b> if \(f: \mathbb{R}^n \mapsto \mathbb{R}\) is convex and
                                 \(g: \mathbb{R}^m \mapsto \mathbb{R}^n\)
                                 is an <b class="itext"> affine function \(g(u)=Au+b\)</b>, then \(h(u)=f(g(u))\) is
-                                convex. Furthermore, if
-                                \(n=m\) and \(g\) is bijective, if \(f\) is strictly convex, so is \(h\);</li><br>
+                                convex. Furthermore, if \(g\) is injective (i.e., \(g(u_1) = g(u_2) \rightarrow u_1 = u_2\) ) and \(f\) is strictly convex, so is \(h\);</li><br>
                         </ul>
                     </div>
 
@@ -1516,10 +1515,10 @@ for link in robot.links:
                                 theorem
                                 says that:
                                 $$\frac{\partial F^*}{\partial \theta} (\theta) = \frac{\partial f}{\partial
-                                \theta}(u^*(\theta),\theta) = \left(\begin{array}{c} u_1^*(\theta) \\ u_2^*(\theta)
-                                \end{array}\right) = \frac{-1}{\sqrt{\theta_1^2+\theta_2^2}}\left(\begin{array}{c}
-                                \theta_1 \\ \theta_2
-                                \end{array}\right)$$
+                                \theta}(u^*(\theta),\theta) = \big(\begin{array}{c} u_1^*(\theta) \  \  u_2^*(\theta)
+                                \end{array}\big) = \frac{-\big(\begin{array}{c}
+                                \theta_1 \ \  \theta_2
+                                \end{array}\big)}{\sqrt{\theta_1^2+\theta_2^2}}$$
                                 which can be checked by inspection. Note that the derivative does not exist when
                                 \(\theta_1=\theta_2=0\);
                             </li>
