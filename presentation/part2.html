@@ -3770,18 +3770,24 @@ for link in robot.links:
                     <div
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
-                            <li>We start by building a BVH. This works by dividing the points \(\{a_i\}\) into 
-                                two groups, then each one of two groups into another two groups (resulting four into total), 
-                                so on and so forth, until we reach into single points that we cannot use anymore. These 
-                                subdivisions are organized into a  <b class="itext">binary tree</b>.
+
+                            <li>We start by building a BVH. This is done by dividing the points \(\{a_i\}\) into 
+                                two groups, then dividing each of those groups into two more groups (resulting in four total), 
+                                and so on, until we reach individual points that cannot be split further.  
+                                These subdivisions are organized into a <b class="itext">binary tree</b>.
                             </li><br>
-                            <li>For each one of these groups, which is associated to a node, we compute a <b class="itext">Bounding Volume</b>, which is a 
-                                simple set that encapsulates all the points in the most tight way possible. A pretty popular approach is to use 
-                                <b class="itext">Axis Aligned Bounding Boxes (AABBs)</b>, which are boxes in which the axes are aligned with the axis of 
-                                the world frame. It is pretty easy to compute these AABBs!
+                        
+                            <li>For each of these groups, which corresponds to a node, we compute a <b class="itext">Bounding Volume</b>,  
+                                which is a simple set that tightly encapsulates all the points in the group.  
+                                A very popular choice is to use <b class="itext">Axis-Aligned Bounding Boxes (AABBs)</b>,  
+                                which are boxes aligned with the axes of the world frame.  
+                                These AABBs are very easy to compute!
                             </li><br>
-                            <li>After we finish building the BVH, we will see how to use it to compute distances.</li>
+                        
+                            <li>Once we finish building the BVH, we will see how to use it to compute distances.</li>
+                        
                         </ul>
+                        
                     </div>
 
                     <div
@@ -3807,18 +3813,22 @@ for link in robot.links:
                     <div
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
-                            <li>There are many strategies to make this division. A very popular one is:<br><br>
+
+                            <li>There are many strategies for performing this division. A very popular one is:<br><br>
                                 <ul>
-                                    <li> Divide first using the x coordinate, putting half of the points in each side;</li>
-                                    <li> Then divide using the y coordinates, the same way;</li>
-                                    <li> Then divide using the z coordinates, the same way;</li>
-                                    <li> Go back to splitting using x coordinates, and keep cycling...</li>
+                                    <li>First divide using the x-coordinate, placing half of the points on each side;</li>
+                                    <li>Then divide using the y-coordinate in the same way;</li>
+                                    <li>Then divide using the z-coordinate in the same way;</li>
+                                    <li>Return to dividing using the x-coordinate, and continue cycling...</li>
                                 </ul>
                             </li><br>
-                            <li>It is much easier to see what is going on with an 2D example. In this case, we will 
-                                cycle between splitting into x (left and right) and y (down and up).
+                        
+                            <li>It is much easier to understand what is happening with a 2D example.  
+                                In this case, we will cycle between splitting along the x-axis (left and right) and the y-axis (down and up).
                             </li><br>
+                        
                         </ul>
+                        
                     </div>
 
                     <div
@@ -3849,36 +3859,41 @@ for link in robot.links:
 
                     <div class="vim_indicator current-visible fragment" data-fragment-index="1"
                     style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: #191919;">
-                        We then split in the x direction, starting from the left, putting half of the points there and creating the AABB
+                    We then split in the x direction, starting from the left, assigning half of the points there and creating the corresponding AABB.
                     </div>
+                    
                     <div class="vim_indicator current-visible fragment" data-fragment-index="2"
                     style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: #191919">
-                    Continuing splitting this box, we now split in the y direction, half of the points down. Since this splitting only has 
-                    two elements, we already create the two final nodes of this splitting.
+                    Continuing the split of this box, we now divide it in the y direction, placing half of the points downward.  
+                    Since this split results in only two points, we immediately create the final leaf nodes for this region.
                     </div>
+                    
                     <div class="vim_indicator current-visible fragment" data-fragment-index="3"
                     style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: #191919">
-                    We now split the green box up, and create the final splitting since it has two nodes. There is nothing else 
-                    to split from the green box. We go back to the root node, the red box.
+                    We now split the upper part of the green box, and since it also contains only two points, we create its final leaf nodes.  
+                    There's nothing else to split from the green box, so we return to the root node—the red box.
                     </div>
+                    
                     <div class="vim_indicator current-visible fragment" data-fragment-index="4"
                     style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: #191919">
-                    We now split right, and create the AABB for the other half of the whole point cloud.
+                    Next, we split to the right and create the AABB for the other half of the entire point cloud.
                     </div>
+                    
                     <div class="vim_indicator current-visible fragment" data-fragment-index="5"
                     style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: #191919">
-                    We now split this orange box in the y direction, down. Since this splitting has two points, we already create
-                    the leaf nodes. 
+                    We split this orange box in the y direction, downward. Since the split results in two points, we immediately create the leaf nodes.
                     </div>
+                    
                     <div class="vim_indicator current-visible fragment" data-fragment-index="6"
                     style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: #191919">
-                   Finally, we go back to the orange box and split up. Since this splitting has only two nodes, we already create 
-                   the two final nodes.
+                    Finally, we return to the orange box and split the upper part. As this split also results in two points, we create the last two leaf nodes.
                     </div>
+                    
                     <div class="vim_indicator current-visible fragment" data-fragment-index="7"
                     style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: #191919">
-                   Done!
+                    Done!
                     </div>
+                    
                   </div>
               
                   <!-- Bottom 80% -->
@@ -3952,14 +3967,16 @@ for link in robot.links:
                     <div
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
-                            <li>At the end, we have a binary tree. When we compare the two nodes at the same height, they have roughly an equal 
-                                number of points (if the number of points that was divided is odd, one would have one more than the other).
+                            <li>At the end, we have a binary tree. When we compare two nodes at the same height, they contain roughly the same number of points  
+                                (if the number of points being divided is odd, one node will contain one more point than the other).
                             </li><br>
-                            <li>We have \(n\) leaf nodes at the end, one for each point.
-                            </li><br>
-                            <li>If we have a point cloud of \(n = 2^k\) points, we will have \(2n-1\) nodes (why?). If \(n\) is not a power of two, 
-                                it will have roughly \(2n-1\) nodes as well.
+                            
+                            <li>We have \(n\) leaf nodes at the end, one for each point.</li><br>
+                            
+                            <li>If the point cloud has \(n = 2^k\) points, the tree will have exactly \(2n - 1\) nodes (why?).  
+                                If \(n\) is not a power of two, the total number of nodes will still be approximately \(2n - 1\).
                             </li>
+                            
                         </ul>
                     </div>
 
@@ -4000,7 +4017,7 @@ for link in robot.links:
                     <div
                         style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
                         <div style="width: 100%">
-                            <img src="presentation/images/part2/image34.jpg" style="max-width: 70%; height: auto;">
+                            <img src="presentation/images/part2/image34.png" style="max-width: 70%; height: auto;">
                         </div>
                         <div style="width: 100%">
                             <div style="font-size: 1.2vw; text-align: center; flex-shrink: 0; margin-bottom: 0rem;">
@@ -4029,24 +4046,208 @@ for link in robot.links:
                 <div
                     style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
                     <div
+                        style="flex: 3; min-width: 300px; font-size: 1.2vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>Before the algorithm starts, we compute the AABB for the object \(\mathcal{B}\) (this is easy to do) and set \(\ell^* = \infty\).</li><br>
+                            
+                            <li>We start from the root node and compute the distance \(d\) between \(\mathcal{B}\)'s AABB and the AABB of the node  
+                                (this is trivial to compute).
+                            </li><br>
+                            
+                            <li>We keep expanding nodes into their two children, computing the \(d\) for each of them. 
+                                We decide the next node to expand based on the smallest value of \(d\) among unexpanded nodes. 
+                            </li><br>     
+                            <li> When we reach a leaf node, the situation is special.  In that case, we compute the distance between \(\mathcal{B}\) (not its AABB)  
+                                and the point in the leaf, calling it \(\ell\).  
+                                Every time we compute a new \(\ell\), we compare it with the current \(\ell^*\) and update \(\ell^*\) if the new value is smaller.
+                            </li><br>
+                            
+                            <li><b class="itext">We do not need to expand nodes for which \(d \geq \ell^*\)</b>. In fact, all the childrens 
+                            of a node are going to have values of \(d\) or \(\ell\) that are greater than or equal to their parent node. Thus, there 
+                        is no way we can obtain something smaller than \(\ell^*\) by looking into these nodes.</li><br>
+                            
+                            <li>The algorithm stops and returns the current value of \(\ell^*\) when there are no more nodes to explore.</li>
+                        </ul>
+                        
+                    </div>
+
+                    <div
+                        style="flex: 2; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/image32.svg" style="max-width: 80%; height: auto;">
+                        </div>
+                    </div>
+                </div>
+            </section> 
+
+            <section style="display: flex; flex-direction: column; height: 100vh; width: 100%;">
+
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    DISTANCES AND OTHER QUANTITIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">BOUNDING VOLUME HIERARCHY</b>
+                </h3>
+              
+                <!-- Container below headers -->
+                <div style="flex-grow: 1; display: flex; flex-direction: column; width: 100%;">
+              
+                  <!-- Top 20% -->
+                  <div style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%; position: relative; ">
+                    
+                    We have, in this example, the ellipsoid \(\ \mathcal{B}\)
+
+                    <div class="vim_indicator current-visible fragment" data-fragment-index="1"
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: #191919;">
+                    We start by creating the AABB for the ellipsoid \(\mathcal{B}\).
+                    </div>
+                    
+                    <div class="vim_indicator current-visible fragment" data-fragment-index="2"
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: #191919;">
+                    We then compute the distance from \(\mathcal{B}\)'s AABB to the root AABB (the red box). Since they overlap, we have \(d = 0\). We expand to the two child nodes.
+                    </div>
+                    
+                    <div class="vim_indicator current-visible fragment" data-fragment-index="3"
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: #191919">
+                    The first child node, corresponding to the green bounding box, also overlaps with \(\mathcal{B}\)'s AABB. So this \(d\) is also 0.
+                    </div>
+                    
+                    <div class="vim_indicator current-visible fragment" data-fragment-index="4"
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: #191919">
+                    For the other sibling node—the orange box—the distance between the AABBs is 0.4.  
+                    We have to choose which node to expand. We pick the one with the smallest \(d\), which is the green one.
+                    </div>
+                    
+                    <div class="vim_indicator current-visible fragment" data-fragment-index="5"
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: #191919">
+                    The distance between \(\mathcal{B}\)'s AABB and the yellow box is \(d = 0.1\).
+                    </div>
+                    
+                    <div class="vim_indicator current-visible fragment" data-fragment-index="6"
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: #191919">
+                    For its sibling node—the blue box—we have \(d = 0.6\). Again, we must decide which node to expand.  
+                    We pick the yellow one, since it has the smaller \(d\).
+                    </div>
+                    
+                    <div class="vim_indicator current-visible fragment" data-fragment-index="7"
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: #191919">
+                    We reach our first leaf node. In this case, we compute the true distance between \(\mathcal{B}\)  
+                    and the point (not its AABB). We obtain \(\ell = 1.3\). Since this is better than the current \(\ell^* = \infty\),  
+                    we replace it.
+                    </div>
+                    
+                    <div class="vim_indicator current-visible fragment" data-fragment-index="8"
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: #191919">
+                    Now we test the other leaf. We again compute the distance, obtaining \(\ell = 0.35\).  
+                    This is better than the current \(\ell^* = 1.3\), so we replace it.
+                    </div>
+                    
+                    <div class="vim_indicator current-visible fragment" data-fragment-index="9"
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: #191919">
+                    There is no need to explore any other node, because all remaining nodes have \(d\) values greater than  
+                    the current \(\ell^* = 0.35\). Thus, \(\ell^* = 0.35\) is the final distance.
+                    </div>
+                    
+
+                  </div>
+              
+                  <!-- Bottom 80% -->
+                  <div style="flex: 1; width: 100%; position: relative; ">
+                    
+                    <!-- Fragment 0 -->
+         
+                      <img src="presentation/images/part2/image35_Slide_1.svg"
+                           style="width: 100%; height: 100%;">
+                 
+              
+                    <!-- Fragment 1 -->
+                    <div class="vim_indicator current-visible fragment" data-fragment-index="1"
+                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                      <img src="presentation/images/part2/image35_Slide_2.svg"
+                           style="width: 100%; height: 100%; object-fit: contain;">
+                    </div>
+
+                    <div class="vim_indicator current-visible fragment" data-fragment-index="2"
+                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                      <img src="presentation/images/part2/image35_Slide_3.svg"
+                           style="width: 100%; height: 100%; object-fit: contain;">
+                    </div>
+
+                    <div class="vim_indicator current-visible fragment" data-fragment-index="3"
+                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                      <img src="presentation/images/part2/image35_Slide_4.svg"
+                           style="width: 100%; height: 100%; object-fit: contain;">
+                    </div>
+
+                    <div class="vim_indicator current-visible fragment" data-fragment-index="4"
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                 <img src="presentation/images/part2/image35_Slide_5.svg"
+                      style="width: 100%; height: 100%; object-fit: contain;">
+               </div>
+
+               <div class="vim_indicator current-visible fragment" data-fragment-index="5"
+               style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+            <img src="presentation/images/part2/image35_Slide_6.svg"
+                 style="width: 100%; height: 100%; object-fit: contain;">
+          </div>
+
+          <div class="vim_indicator current-visible fragment" data-fragment-index="6"
+          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+       <img src="presentation/images/part2/image35_Slide_7.svg"
+            style="width: 100%; height: 100%; object-fit: contain;">
+     </div>
+
+     <div class="vim_indicator current-visible fragment" data-fragment-index="7"
+     style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+  <img src="presentation/images/part2/image35_Slide_8.svg"
+       style="width: 100%; height: 100%; object-fit: contain;">
+</div>
+
+
+
+<div class="vim_indicator current-visible fragment" data-fragment-index="8"
+style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+<img src="presentation/images/part2/image35_Slide_9.svg"
+  style="width: 100%; height: 100%; object-fit: contain;">
+</div>
+
+<div class="vim_indicator current-visible fragment" data-fragment-index="9"
+style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+<img src="presentation/images/part2/image35_Slide_9.svg"
+  style="width: 100%; height: 100%; object-fit: contain;">
+</div>
+
+                  </div>
+                </div>
+              
+              </section>
+
+
+              <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    DISTANCES AND OTHER QUANTITIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">BOUNDING VOLUME HIERARCHY</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
                         style="flex: 1; min-width: 300px; font-size: 1.3vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
-                            <li>We start by computing an AABB for the object \(\mathcal{B}\) (this is easy to do) and setting \(\ell^*=\infty\).</li><br>
-                            <li>We start from the root node, and we compute the distance between \(\mathcal{B}\)'s AABB' and the AABB of the node 
-                                (this is trivial to do). The distance \(d_i\) we obtain is an  <b class="itext">lower bound to the true distance between 
-                                    \(\mathcal{A}\) and \(\mathcal{B}\)
-                                </b> 
-                                (why)?
-                            </b>
+                            <li>The presented example is very simple, with only \(n=8\) points, so it is difficult to appreciate how much computation we can save.</li><br>
+                            <li>In practice, for a large point cloud, this can often save enormous amount of computations of 
+                                point-to-set distances.
                             </li><br>
-                            <li>We keep expanding nodes into their two childs, giving priority to nodes with smaller distances \(d_i\). We do that 
-                                until we reach a leaf node. In this case, we compute the distance between \(\mathcal{B}\) (and not its AABB) and the point in the leaf, calling it 
-                                \(\ell_i\). Everytime we compute a new \(\ell_i\), we compare with the \(\ell^*\) that we already have and replace it 
-                                with the one we just computed if it is smaller. 
+                            <li>BVH and its variants are widely used in computer graphic simulation engines (like video game engines). 
                             </li><br>
-                            <li><b class="itext">We dont need to expand nodes in which \(d_i\) is greater than or equal than the current \(\ell^*\)</b> (why?);
+                            <li>Note that, if we only want to know if the objects overlap or not, we can conclude that they do not 
+                                as soon as all unexplored nodes have values of \(d\) greater than zero.
                             </li><br>
-                            <li>The algorithm stops returning the \(\ell^*\) found so far when there is nothing else to explore.</li>
+                            <li>Finally, note that this algorithm works even if \(\mathcal{B}\) is non-convex. It is just that it is 
+                                more difficult to compute the point-to-set distance \(E_{\mathcal{B}}(a_i)\).
+                            </li>
                         </ul>
                     </div>
 
@@ -4058,7 +4259,6 @@ for link in robot.links:
                     </div>
                 </div>
             </section> 
-
 
             <!-- <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
