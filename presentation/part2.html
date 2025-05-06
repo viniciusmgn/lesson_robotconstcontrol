@@ -1467,7 +1467,7 @@ for link in robot.links:
                                 <div style="background-color: #282828">
                                     <b class="ttext">Theorem (Envelope Theorem):</b> the derivative of \(F^*(\theta)\)
                                     exists for any \(\theta\) such that the minimizer
-                                    of the optimization problem, \(u^*(\theta)\), is unique. Furthermore:
+                                    of the optimization problem, \(u^*(\theta)\), is unique and finite. Furthermore:
                                     $$\frac{\partial F^*}{\partial \theta} (\theta) = \frac{\partial f}{\partial
                                     \theta}(u^*(\theta),\theta).$$
                                 </div>
@@ -2403,8 +2403,8 @@ for link in robot.links:
                                     the distance between
                                     \(\mathcal{C} = \mathcal{A} \ominus \mathcal{B}\) and the origin</b>. This holds
                                 because:
-                                $$\min_{a \in \mathcal{A}, b \in \mathcal{B}} \|a-b\| = \min_{c \in \mathcal{C}}
-                                \|c\|$$
+                                $$\min_{a \in \mathcal{A}, b \in \mathcal{B}} \frac{\|a-b\|^2}{2} = \min_{c \in \mathcal{C}}
+                                \frac{\|c\|^2}{2}$$
                                 since any element of \(\mathcal{C}\) can be written as \(c = a-b\) for some \(a \in
                                 \mathcal{A}\) and \(b \in \mathcal{B}\).
                             </li><br>
@@ -2582,7 +2582,7 @@ for link in robot.links:
                                             <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
                                             <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If
                                                     the point \(c_{dir}\)
-                                                    did not change, return the distance as \(\|c_{dir}\|\); </b></li>
+                                                    did not change, return the distance as \(0.5\|c_{dir}\|^2\); </b></li>
                                             <br>
 
                                         </ul>
@@ -2601,7 +2601,7 @@ for link in robot.links:
                                             <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
                                             <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If
                                                     the point \(c_{dir}\)
-                                                    did not change, return the distance as \(\|c_{dir}\|\); </b></li>
+                                                    did not change, return the distance as \(0.5\|c_{dir}\|^2\); </b></li>
                                             <br>
                                         </ul>
                                     </div>
@@ -2620,7 +2620,7 @@ for link in robot.links:
                                             <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
                                             <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If
                                                     the point \(c_{dir}\)
-                                                    did not change, return the distance as \(\|c_{dir}\|\); </b></li>
+                                                    did not change, return the distance as \(0.5\|c_{dir}\|^2\); </b></li>
                                             <br>
 
                                         </ul>
@@ -2639,7 +2639,7 @@ for link in robot.links:
                                             <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
                                             <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If
                                                     the point \(c_{dir}\)
-                                                    did not change, return the distance as \(\|c_{dir}\|\); </b></li>
+                                                    did not change, return the distance as \(0.5\|c_{dir}\|^2\); </b></li>
                                             <br>
 
                                         </ul>
@@ -2658,7 +2658,7 @@ for link in robot.links:
                                             <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
                                             <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If
                                                     the point \(c_{dir}\)
-                                                    did not change, return the distance as \(\|c_{dir}\|\); </b></li>
+                                                    did not change, return the distance as \(0.5\|c_{dir}\|^2\); </b></li>
                                             <br>
 
                                         </ul>
@@ -2678,7 +2678,7 @@ for link in robot.links:
                                             <li><b class="ttext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
                                             <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If
                                                     the point \(c_{dir}\)
-                                                    did not change, return the distance as \(\|c_{dir}\|\); </b></li>
+                                                    did not change, return the distance as \(0.5\|c_{dir}\|^2\); </b></li>
                                             <br>
 
                                         </ul>
@@ -2698,7 +2698,7 @@ for link in robot.links:
                                             <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
                                             <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If
                                                     the point \(c_{dir}\)
-                                                    did not change, return the distance as \(\|c_{dir}\|\); </b></li>
+                                                    did not change, return the distance as \(0.5\|c_{dir}\|^2\); </b></li>
                                             <br>
 
                                         </ul>
@@ -2717,7 +2717,7 @@ for link in robot.links:
                                             <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
                                             <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If
                                                     the point \(c_{dir}\)
-                                                    did not change, return the distance as \(\|c_{dir}\|\); </b></li>
+                                                    did not change, return the distance as \(0.5\|c_{dir}\|^2\); </b></li>
                                             <br>
                                         </ul>
                                     </div>
@@ -2737,7 +2737,7 @@ for link in robot.links:
                                             <br>
                                             <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If
                                                     the point \(c_{dir}\)
-                                                    did not change, return the distance as \(\|c_{dir}\|\); </b></li>
+                                                    did not change, return the distance as \(0.5\|c_{dir}\|^2\); </b></li>
                                             <br>
 
                                         </ul>
@@ -2756,7 +2756,7 @@ for link in robot.links:
                                             <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
                                             <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If
                                                     the point \(c_{dir}\)
-                                                    did not change, return the distance as \(\|c_{dir}\|\); </b></li>
+                                                    did not change, return the distance as \(0.5\|c_{dir}\|^2\); </b></li>
                                             <br>
 
                                         </ul>
@@ -2775,7 +2775,7 @@ for link in robot.links:
                                             <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
                                             <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If
                                                     the point \(c_{dir}\)
-                                                    did not change, return the distance as \(\|c_{dir}\|\); </b></li>
+                                                    did not change, return the distance as \(0.5\|c_{dir}\|^2\); </b></li>
                                             <br>
 
                                         </ul>
@@ -2795,7 +2795,7 @@ for link in robot.links:
                                             <li><b class="ttext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
                                             <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If
                                                     the point \(c_{dir}\)
-                                                    did not change, return the distance as \(\|c_{dir}\|\); </b></li>
+                                                    did not change, return the distance as \(0.5\|c_{dir}\|^2\); </b></li>
                                             <br>
 
                                         </ul>
@@ -2814,7 +2814,7 @@ for link in robot.links:
                                             <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
                                             <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If
                                                     the point \(c_{dir}\)
-                                                    did not change, return the distance as \(\|c_{dir}\|\); </b></li>
+                                                    did not change, return the distance as \(0.5\|c_{dir}\|^2\); </b></li>
                                             <br>
 
                                         </ul>
@@ -2833,7 +2833,7 @@ for link in robot.links:
                                             <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
                                             <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If
                                                     the point \(c_{dir}\)
-                                                    did not change, return the distance as \(\|c_{dir}\|\); </b></li>
+                                                    did not change, return the distance as \(0.5\|c_{dir}\|^2\); </b></li>
                                             <br>
                                         </ul>
                                     </div>
@@ -2852,7 +2852,7 @@ for link in robot.links:
                                             <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
                                             <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If
                                                     the point \(c_{dir}\)
-                                                    did not change, return the distance as \(\|c_{dir}\|\); </b></li>
+                                                    did not change, return the distance as \(0.5\|c_{dir}\|^2\); </b></li>
                                             <br>
 
                                         </ul>
@@ -2871,7 +2871,7 @@ for link in robot.links:
                                             <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
                                             <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If
                                                     the point \(c_{dir}\)
-                                                    did not change, return the distance as \(\|c_{dir}\|\); </b></li>
+                                                    did not change, return the distance as \(0.5\|c_{dir}\|^2\); </b></li>
                                             <br>
 
                                         </ul>
@@ -2890,7 +2890,7 @@ for link in robot.links:
                                             <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
                                             <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If
                                                     the point \(c_{dir}\)
-                                                    did not change, return the distance as \(\|c_{dir}\|\); </b></li>
+                                                    did not change, return the distance as \(0.5\|c_{dir}\|^2\); </b></li>
                                             <br>
 
                                         </ul>
@@ -2910,7 +2910,7 @@ for link in robot.links:
                                             <li><b class="ttext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
                                             <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If
                                                     the point \(c_{dir}\)
-                                                    did not change, return the distance as \(\|c_{dir}\|\); </b></li>
+                                                    did not change, return the distance as \(0.5\|c_{dir}\|^2\); </b></li>
                                             <br>
 
                                         </ul>
@@ -2930,7 +2930,7 @@ for link in robot.links:
                                             <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
                                             <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If
                                                     the point \(c_{dir}\)
-                                                    did not change, return the distance as \(\|c_{dir}\|\); </b></li>
+                                                    did not change, return the distance as \(0.5\|c_{dir}\|^2\); </b></li>
                                             <br>
 
                                         </ul>
@@ -2949,7 +2949,7 @@ for link in robot.links:
                                             <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
                                             <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If
                                                     the point \(c_{dir}\)
-                                                    did not change, return the distance as \(\|c_{dir}\|\); </b></li>
+                                                    did not change, return the distance as \(0.5\|c_{dir}\|^2\); </b></li>
                                             <br>
                                         </ul>
                                     </div>
@@ -2969,7 +2969,7 @@ for link in robot.links:
                                             <br>
                                             <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If
                                                     the point \(c_{dir}\)
-                                                    did not change, return the distance as \(\|c_{dir}\|\); </b></li>
+                                                    did not change, return the distance as \(0.5\|c_{dir}\|^2\); </b></li>
                                             <br>
 
                                         </ul>
@@ -2988,7 +2988,7 @@ for link in robot.links:
                                             <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
                                             <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If
                                                     the point \(c_{dir}\)
-                                                    did not change, return the distance as \(\|c_{dir}\|\); </b></li>
+                                                    did not change, return the distance as \(0.5\|c_{dir}\|^2\); </b></li>
                                             <br>
 
                                         </ul>
@@ -3007,7 +3007,7 @@ for link in robot.links:
                                             <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
                                             <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If
                                                     the point \(c_{dir}\)
-                                                    did not change, return the distance as \(\|c_{dir}\|\); </b></li>
+                                                    did not change, return the distance as \(0.5\|c_{dir}\|^2\); </b></li>
                                             <br>
 
                                         </ul>
@@ -3027,7 +3027,7 @@ for link in robot.links:
                                             <li><b class="ttext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
                                             <li> <b class="itext"> If \(c_{dir} = 0\), return the distance as \(0\). If
                                                     the point \(c_{dir}\)
-                                                    did not change, return the distance as \(\|c_{dir}\|\); </b></li>
+                                                    did not change, return the distance as \(0.5\|c_{dir}\|^2\); </b></li>
                                             <br>
 
                                         </ul>
@@ -3046,7 +3046,7 @@ for link in robot.links:
                                             <li><b class="itext"> \(\mathcal{P}' \leftarrow \mathcal{P}\); </b></li><br>
                                             <li> <b class="ttext"> If \(c_{dir} = 0\), return the distance as \(0\). If
                                                     the point \(c_{dir}\)
-                                                    did not change, return the distance as \(\|c_{dir}\|\); </b></li>
+                                                    did not change, return the distance as \(0.5\|c_{dir}\|^2\); </b></li>
                                             <br>
 
                                         </ul>
@@ -3497,7 +3497,7 @@ for link in robot.links:
                                 \(\mathcal{P}'\) that contains it. That is, there exist nonnegative scalars
                                 \(\lambda_j\) that sum to \(1\), such that:
                                 $$c^* = \sum_{j=1}^m \lambda_j c_{new,j};$$
-                                where \(j\) can be \(3\), \(2\), or \(1\). This can be obtained by solving a linear
+                                where \(m\) can be \(3\), \(2\), or \(1\). This can be obtained by solving a linear
                                 system. With these \(\lambda_j\),
                                 we collect the \(a_{new,j},b_{new,j}\) associated with \(c_{new,j}\) and compute:
                                 $$a^* = \sum_{j=1}^m \lambda_j a_{new,j} \ , \ b^* = \sum_{j=1}^m \lambda_j b_{new,j};$$
@@ -3533,8 +3533,8 @@ for link in robot.links:
                             </li><br>
                             <li>Idea is very simple: giving an alternating point \(a\), project it into \(\mathcal{B}\), then 
                                 project the result back to \(\mathcal{A}\). Keep doing this:
-                                <b class="itext">$$b[k] = \Pi^{\mathcal{A}}(a[k])$$</b>
-                                <b class="itext">$$a[k+1] = \Pi^{\mathcal{B}}(b[k])$$</b>
+                                <b class="itext">$$b[k] = \Pi_{\mathcal{A}}(a[k])$$</b>
+                                <b class="itext">$$a[k+1] = \Pi_{\mathcal{B}}(b[k])$$</b>
                             </li><br>
                             <li>If the two sets are convex, then \(a[k],b[k]\) converges to a pair of witness points. 
                             </li><br>
@@ -3695,6 +3695,370 @@ for link in robot.links:
                     </div>
                 </div>
             </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    DISTANCES AND OTHER QUANTITIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">VON NEUMANN'S ALTERNATING PROJECTION ALGORITHM</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>In some special situations, the algorithm can be even slower than that.</li><br>
+                            <li>Another issue with the algorithm is that computing projections can be quite complex for general polyhedra.</li><br>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/main.png" style="max-width: 80%; height: auto;">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    DISTANCES AND OTHER QUANTITIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">BOUNDING VOLUME HIERARCHY</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>Now, we want to compute the distance (or half squared distance) between a set \(\mathcal{A}\) which is a set of \(n\) discrete points 
+                                \({a_i}\) and a solid convex object \(\mathcal{B}\).
+                            </li><br>
+                            <li>One could simply implement:
+                                $$\Lambda_{\mathcal{A},\mathcal{B}} = \min_{i=1,...,n} E_{\mathcal{B}}(a_i)$$
+                                which would take the computation of \(n\) P2S-HSD.
+                            </li><br>
+                            <li>What if \(n\) is very large? Can we do better?</li><br>
+                            <li>Yes, we can, using a <b class="itext">Bounding Volume Hierarchy (BVH)</b>!</li>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/image32.svg" style="max-width: 80%; height: auto;">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    DISTANCES AND OTHER QUANTITIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">BOUNDING VOLUME HIERARCHY</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>We start by building a BVH. This works by dividing the points \(\{a_i\}\) into 
+                                two groups, then each one of two groups into another two groups (resulting four into total), 
+                                so on and so forth, until we reach into single points that we cannot use anymore. These 
+                                subdivisions are organized into a  <b class="itext">binary tree</b>.
+                            </li><br>
+                            <li>For each one of these groups, which is associated to a node, we compute a <b class="itext">Bounding Volume</b>, which is a 
+                                simple set that encapsulates all the points in the most tight way possible. A pretty popular approach is to use 
+                                <b class="itext">Axis Aligned Bounding Boxes (AABBs)</b>, which are boxes in which the axes are aligned with the axis of 
+                                the world frame. It is pretty easy to compute these AABBs!
+                            </li><br>
+                            <li>After we finish building the BVH, we will see how to use it to compute distances.</li>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/image32.svg" style="max-width: 80%; height: auto;">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    DISTANCES AND OTHER QUANTITIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">BOUNDING VOLUME HIERARCHY</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>There are many strategies to make this division. A very popular one is:<br><br>
+                                <ul>
+                                    <li> Divide first using the x coordinate, putting half of the points in each side;</li>
+                                    <li> Then divide using the y coordinates, the same way;</li>
+                                    <li> Then divide using the z coordinates, the same way;</li>
+                                    <li> Go back to splitting using x coordinates, and keep cycling...</li>
+                                </ul>
+                            </li><br>
+                            <li>It is much easier to see what is going on with an 2D example. In this case, we will 
+                                cycle between splitting into x (left and right) and y (down and up).
+                            </li><br>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/image32.svg" style="max-width: 80%; height: auto;">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh; width: 100%;">
+
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    DISTANCES AND OTHER QUANTITIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">BOUNDING VOLUME HIERARCHY</b>
+                </h3>
+              
+                <!-- Container below headers -->
+                <div style="flex-grow: 1; display: flex; flex-direction: column; width: 100%;">
+              
+                  <!-- Top 20% -->
+                  <div style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%; position: relative; ">
+                    
+                    We start by creating the AABB for the whole set.
+
+                    <div class="vim_indicator current-visible fragment" data-fragment-index="1"
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: #191919;">
+                        We then split in the x direction, starting from the left, putting half of the points there and creating the AABB
+                    </div>
+                    <div class="vim_indicator current-visible fragment" data-fragment-index="2"
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: #191919">
+                    Continuing splitting this box, we now split in the y direction, half of the points down. Since this splitting only has 
+                    two elements, we already create the two final nodes of this splitting.
+                    </div>
+                    <div class="vim_indicator current-visible fragment" data-fragment-index="3"
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: #191919">
+                    We now split the green box up, and create the final splitting since it has two nodes. There is nothing else 
+                    to split from the green box. We go back to the root node, the red box.
+                    </div>
+                    <div class="vim_indicator current-visible fragment" data-fragment-index="4"
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: #191919">
+                    We now split right, and create the AABB for the other half of the whole point cloud.
+                    </div>
+                    <div class="vim_indicator current-visible fragment" data-fragment-index="5"
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: #191919">
+                    We now split this orange box in the y direction, down. Since this splitting has two points, we already create
+                    the leaf nodes. 
+                    </div>
+                    <div class="vim_indicator current-visible fragment" data-fragment-index="6"
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: #191919">
+                   Finally, we go back to the orange box and split up. Since this splitting has only two nodes, we already create 
+                   the two final nodes.
+                    </div>
+                    <div class="vim_indicator current-visible fragment" data-fragment-index="7"
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: #191919">
+                   Done!
+                    </div>
+                  </div>
+              
+                  <!-- Bottom 80% -->
+                  <div style="flex: 1; width: 100%; position: relative; ">
+                    
+                    <!-- Fragment 0 -->
+         
+                      <img src="presentation/images/part2/image33_000.svg"
+                           style="width: 100%; height: 100%;">
+                 
+              
+                    <!-- Fragment 1 -->
+                    <div class="vim_indicator current-visible fragment" data-fragment-index="1"
+                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                      <img src="presentation/images/part2/image33_001.svg"
+                           style="width: 100%; height: 100%; object-fit: contain;">
+                    </div>
+
+                    <div class="vim_indicator current-visible fragment" data-fragment-index="2"
+                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                      <img src="presentation/images/part2/image33_002.svg"
+                           style="width: 100%; height: 100%; object-fit: contain;">
+                    </div>
+
+                    <div class="vim_indicator current-visible fragment" data-fragment-index="3"
+                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                      <img src="presentation/images/part2/image33_003.svg"
+                           style="width: 100%; height: 100%; object-fit: contain;">
+                    </div>
+
+                    <div class="vim_indicator current-visible fragment" data-fragment-index="4"
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                 <img src="presentation/images/part2/image33_004.svg"
+                      style="width: 100%; height: 100%; object-fit: contain;">
+               </div>
+
+               <div class="vim_indicator current-visible fragment" data-fragment-index="5"
+               style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+            <img src="presentation/images/part2/image33_005.svg"
+                 style="width: 100%; height: 100%; object-fit: contain;">
+          </div>
+
+          <div class="vim_indicator current-visible fragment" data-fragment-index="6"
+          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+       <img src="presentation/images/part2/image33_006.svg"
+            style="width: 100%; height: 100%; object-fit: contain;">
+     </div>
+
+     <div class="vim_indicator current-visible fragment" data-fragment-index="7"
+     style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+  <img src="presentation/images/part2/image33_006.svg"
+       style="width: 100%; height: 100%; object-fit: contain;">
+</div>
+
+                  </div>
+                </div>
+              
+              </section>
+
+
+              <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    DISTANCES AND OTHER QUANTITIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">BOUNDING VOLUME HIERARCHY</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>At the end, we have a binary tree. When we compare the two nodes at the same height, they have roughly an equal 
+                                number of points (if the number of points that was divided is odd, one would have one more than the other).
+                            </li><br>
+                            <li>We have \(n\) leaf nodes at the end, one for each point.
+                            </li><br>
+                            <li>If we have a point cloud of \(n = 2^k\) points, we will have \(2n-1\) nodes (why?). If \(n\) is not a power of two, 
+                                it will have roughly \(2n-1\) nodes as well.
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/image32.svg" style="max-width: 80%; height: auto;">
+                        </div>
+                    </div>
+                </div>
+            </section>              
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    DISTANCES AND OTHER QUANTITIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">BOUNDING VOLUME HIERARCHY</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>Building the BVH is a bit expensive for a large number of points, but it 
+                                <b class="itext">pays off in the long term if we want to make a large number of distance computations with different objects \(\mathcal{B}\)!</b>
+                            </li><br>
+                            <li>We can add new points dinamically without rebuilding the whole tree. But it gets more and more unbalanced 
+                                (nodes at the same height with different number of points), up until querying distances using BVHs is no longer much better than 
+                                testing all the points.
+                            </li><br>
+                            <li>Ok, but how do we use BVH to compute distances?
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/image34.jpg" style="max-width: 70%; height: auto;">
+                        </div>
+                        <div style="width: 100%">
+                            <div style="font-size: 1.2vw; text-align: center; flex-shrink: 0; margin-bottom: 0rem;">
+                                Taken from:
+                            </div>
+                            <div style="font-size: 1.2vw; text-align: center; flex-shrink: 0; margin-bottom: 0rem;">
+                                <a href="https://mshgrid.com/tag/bvh/" target="_blank"
+                                    style="font-size: 1.2vw;">
+                                    <b class="hlink">https://mshgrid.com/tag/bvh/</b>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>  
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    DISTANCES AND OTHER QUANTITIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">BOUNDING VOLUME HIERARCHY</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.3vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>We start by computing an AABB for the object \(\mathcal{B}\) (this is easy to do) and setting \(\ell^*=\infty\).</li><br>
+                            <li>We start from the root node, and we compute the distance between \(\mathcal{B}\)'s AABB' and the AABB of the node 
+                                (this is trivial to do). The distance \(d_i\) we obtain is an  <b class="itext">lower bound to the true distance between 
+                                    \(\mathcal{A}\) and \(\mathcal{B}\)
+                                </b> 
+                                (why)?
+                            </b>
+                            </li><br>
+                            <li>We keep expanding nodes into their two childs, giving priority to nodes with smaller distances \(d_i\). We do that 
+                                until we reach a leaf node. In this case, we compute the distance between \(\mathcal{B}\) (and not its AABB) and the point in the leaf, calling it 
+                                \(\ell_i\). Everytime we compute a new \(\ell_i\), we compare with the \(\ell^*\) that we already have and replace it 
+                                with the one we just computed if it is smaller. 
+                            </li><br>
+                            <li><b class="itext">We dont need to expand nodes in which \(d_i\) is greater than or equal than the current \(\ell^*\)</b> (why?);
+                            </li><br>
+                            <li>The algorithm stops returning the \(\ell^*\) found so far when there is nothing else to explore.</li>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/image32.svg" style="max-width: 80%; height: auto;">
+                        </div>
+                    </div>
+                </div>
+            </section> 
+
 
             <!-- <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
