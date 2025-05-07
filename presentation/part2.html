@@ -2215,7 +2215,8 @@ for link in robot.links:
                                 \frac{\|a-b\|^2}{2};$$
                             </li><br>
                             <li>This is a convex optimization problem if both \(\mathcal{A}\) and \(\mathcal{B}\) are
-                                convex sets.</li><br>
+                                convex sets. Thus, we could use general convex optimization techniques to solve it. However, 
+                            there are more efficient especialized algorithms.</li><br>
 
                         </ul>
                     </div>
@@ -3771,7 +3772,7 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
 
-                            <li>We start by building a BVH. This is done by dividing the points \(\{a_i\}\) into 
+                            <li>We start by building a BVH for the point cloud \(\mathcal{A}\). This is done by dividing the points \(\{a_i\}\) into 
                                 two groups, then dividing each of those groups into two more groups (resulting in four total), 
                                 and so on, until we reach individual points that cannot be split further.  
                                 These subdivisions are organized into a <b class="itext">binary tree</b>.
@@ -3784,7 +3785,9 @@ for link in robot.links:
                                 These AABBs are very easy to compute!
                             </li><br>
                         
-                            <li>Once we finish building the BVH, we will see how to use it to compute distances.</li>
+                            <li>Once we finish building the BVH, we will see how to use it to compute distances to a set 
+                                \(\mathcal{B}\)
+                            </li>
                         
                         </ul>
                         
@@ -4237,7 +4240,7 @@ style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                         style="flex: 1; min-width: 300px; font-size: 1.3vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>The presented example is very simple, with only \(n=8\) points, so it is difficult to appreciate how much computation we can save.</li><br>
-                            <li>In practice, for a large point cloud, this can often save enormous amount of computations of 
+                            <li>In practice, for a large point cloud, this can often save an enormous amount of computations of 
                                 point-to-set distances.
                             </li><br>
                             <li>BVH and its variants are widely used in computer graphic simulation engines (like video game engines). 
@@ -4246,7 +4249,7 @@ style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                                 as soon as all unexplored nodes have values of \(d\) greater than zero.
                             </li><br>
                             <li>Finally, note that this algorithm works even if \(\mathcal{B}\) is non-convex. It is just that it is 
-                                more difficult to compute the point-to-set distance \(E_{\mathcal{B}}(a_i)\).
+                                more difficult to compute the point-to-set distances \(E_{\mathcal{B}}(a_i)\).
                             </li>
                         </ul>
                     </div>
@@ -4257,6 +4260,245 @@ style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                             <img src="presentation/images/part2/image32.svg" style="max-width: 80%; height: auto;">
                         </div>
                     </div>
+                </div>
+            </section> 
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    DISTANCES AND OTHER QUANTITIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">COMPUTING DISTANCE DERIVATIVES</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>If  the objects \(\mathcal{A}\) and \(\mathcal{B}\) move, the S2S-HSD \(\Lambda_{\mathcal{A},\mathcal{B}}\) 
+                                changes. In this case, it may be useful to compute the derivative.
+                            </li><br>
+                            <li>In most of the applications in robotics, \(\mathcal{A}\) and \(\mathcal{B}\) move as rigid bodies. 
+                                Thus, lets start assuming that they move in time as follows: given fixed convex sets \(\mathcal{A}_0\) and 
+                                \(\mathcal{B}_0\), the sets \(\mathcal{A}(t)\) and \(\mathcal{B}(t)\) are the application of the rigid 
+                                transformations \((Q_{\mathcal{A}}(t),s_{\mathcal{A}}(t))\) and \((Q_{\mathcal{B}}(t),s_{\mathcal{B}}(t))\)
+                                to \(\mathcal{A}_0\) and 
+                                \(\mathcal{B}_0\), respectively, in which \(t\) is time.
+                            </li><br>
+                            <li>Thus, \(F: \mathbb{R} \mapsto \mathbb{R}\) defined as \(F(t) = \Lambda_{\mathcal{A}(t),\mathcal{B}(t)}\) can 
+                                be defined, and we want to compute \(\frac{d}{dt}F(t)\). 
+                            </li><br>
+                            <li>This derivative will serve as a basis to compute more complex derivatives/gradients with respect to 
+                                other variables.
+                            </li><br>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/image36.gif" style="max-width: 100%; height: auto;">
+                        </div>
+                    </div>
+                </div>
+            </section> 
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    DISTANCES AND OTHER QUANTITIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">COMPUTING DISTANCE DERIVATIVES</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>We start by noting that:
+                                $$F(t) = \Lambda_{\mathcal{A}(t),\mathcal{B}(t)} = \min_{a \in \mathcal{A}(t), b \in \mathcal{B}(t)} = \frac{\|a-b\|^2}{2} = \min_{a_0 \in \mathcal{A}_0, b_0 \in \mathcal{B}_0} \underbrace{\frac{\|\big(Q_{\mathcal{A}}(t)a_0 + s_{\mathcal{A}}(t)\big) - \big(Q_{\mathcal{B}}(t)b_0 + s_{\mathcal{B}}(t)\big)\|^2}{2}}_{f(a_0,b_0,t)}$$
+                            </li><br>
+                            <li>We are just writing the optimization problem using the local coordinates \(a_0\) and \(b_0\) (written in the  objects' respective's body frames) instead of 
+                                the original variables \(a,b\), that were written in the global (world)frame.<br>
+                            </li><br>
+                            <li>Now we can apply <b class="itext">The Envelope Theorem</b> since the constraints \(a_0 \in \mathcal{A}_0, b_0 \in \mathcal{B}_0\) 
+                                are independent of the parameter \(t\). In this case:
+                                $$\frac{d}{dt} F(t) = \frac{\partial f}{\partial t}(a_0^*, b_0^*, t)$$
+                                in which \(a_0^*(t),b_0^*(t)\) are the optimal \(a_0,b_0\) at a given \(t\).
+                            </li><br>
+                        </ul>
+                    </div>
+
+
+                </div>
+            </section> 
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    DISTANCES AND OTHER QUANTITIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">COMPUTING DISTANCE DERIVATIVES</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>Let \(v_{\mathcal{A}}(t), v_{\mathcal{B}}(t), \omega_{\mathcal{A}}(t), \omega_{\mathcal{B}}(t)\) represent the linear and angular 
+                                velocity 3D vectors of each object at time \(t\). Using the properties from differential kinematics, it can be shown that:
+                                $$\frac{\partial f}{\partial t}(a_0,b_0,t) = \Big((Q_{\mathcal{A}}a_0+s_{\mathcal{A}})-(Q_{\mathcal{B}}b_0+s_{\mathcal{B}})\Big)^\top\Big( \big(\omega_{\mathcal{A}} \times (Q_{\mathcal{A}}a_0)+v_{\mathcal{A}}\big) - \big(\omega_{\mathcal{B}} \times (Q_{\mathcal{B}}b_0)+v_{\mathcal{B}}\big)  \Big)
+                                $$
+                                in which the dependencies on \(t\) were omitted.
+                            </li><br>
+                            <li>Now, using the Envelope theorem, we need to substitute \(a_0 = a_0^*(t)\) and \(b_0 = b_0^*(t)\). But note that 
+                                \(Q_{\mathcal{A}}(t)a_0^*(t)+s_{\mathcal{A}}(t)\) is the <b class="itext">closest point in \(\mathcal{A}(t)\) to \(\mathcal{B}(t)\)</b>, called 
+                                \(a^*(t)\), and similarly, \(Q_{\mathcal{B}}(t)b_0^*(t)+s_{\mathcal{B}}(t)\) is the <b class="itext">closest point in \(\mathcal{B}(t)\) to \(\mathcal{A}(t)\)</b>, that is, 
+                                \(b^*(t)\)!
+                            </li><br>
+                            <li>\(a_0^*(t)\) and \(b_0^*(t)\) were just the coordinates of \(a^*(t)\) and \(b^*(t)\), respectively, written in the respective body frame local 
+                                coordinates instead of the global (world) coordinates, as \(a^*\) and \(b^*\) are.</li>
+                        </ul>
+                    </div>
+
+
+                </div>
+            </section> 
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    DISTANCES AND OTHER QUANTITIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">COMPUTING DISTANCE DERIVATIVES</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>Thus, we have the nice formula
+                                <b class="ttext">$$\frac{dF}{dt} = (a^*-b^*)^\top\Big( \big(\omega_{\mathcal{A}} \times (a^*-s_{\mathcal{A}})+v_{\mathcal{A}}\big) - \big(\omega_{\mathcal{B}} \times (b^*-s_{\mathcal{B}}) + v_{\mathcal{B}}\big)  \Big)
+                                $$</b>
+                                in which the dependencies on \(t\) were again omitted. The closest points \(a^*(t)\) and \(b^*(t)\) at a given time 
+                                \(t\) can be computed by running any of the distance computation algorithms for \(\mathcal{A}(t)\) and \(\mathcal{B}(t)\).
+                            </li><br>
+                            <li>Further, if you remember the formula to compute the velocity of a point that is at position \(c\) in a rigid body with linear velocity \(v\), angular velocity \(\omega\) and 
+                                central point of the attached frame \(s\):
+                                <b class="ttext">$$v_{c} = \omega \times (c-s)+v$$</b> 
+                                Then the formula becomes even simpler:
+                                <b class="ttext">$$\frac{dF}{dt} = (a^*-b^*)^\top( v_{a^*} - v_{b^*}).
+                                    $$</b>                                
+                            </li>
+                        </ul>
+                    </div>
+
+
+                </div>
+            </section>        
+            
+            
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    DISTANCES AND OTHER QUANTITIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">COMPUTING DISTANCE DERIVATIVES</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>This formula can be used to compute more complex gradients using the <b class="itext">chain rule trick</b>.
+                            </li><br>
+                            <li>For example, suppose \(\mathcal{A}\) is one of a manipulator's covering objects, that move (as a rigid body) as a function of the 
+                                configuration \(q\), and that \(\mathcal{B}\) is a fixed obstacle. In this case, \(\mathcal{A} = \mathcal{A}(q(t))\). 
+                                Compute \(\frac{\partial F}{\partial q} = \frac{\partial}{\partial q} \Lambda_{\mathcal{A}(q),\mathcal{B}}\).
+                            </b><br><br>
+                            </li>                                
+                            <li>Instead of computing \(\frac{\partial F}{\partial q}(q)\), lets compute \(\frac{d}{dt} F(q(t))\) first. 
+                                Using the previous result, we have that \(v_{\mathcal{A}},\omega_{\mathcal{A}}\) are the linear and angular velocity of 
+                                the rigid link in which \(\mathcal{A}\) is attached to. Furthermore, since \(\mathcal{B}\) is static, \(v_{\mathcal{B}},\omega_{\mathcal{B}}\) 
+                                are zero. Thus:
+                                $$\frac{d}{dt} F(q) = \big(a^*-b^*\big)^{\top}\Big( \omega_{\mathcal{A}} \times (a^*-s_{\mathcal{A}}) + v_{\mathcal{A}}\Big).$$
+                                In this case, the dependencies of \(a^*, b^*, s_{\mathcal{A}}\) on \(t\) were omitted. To be more precise, they are functions 
+                                of the configuration \(q\), which, in turn, is a function of time \(t\). As you already know from differential kinematics, 
+                                \(v_{\mathcal{A}}, \omega_{\mathcal{A}}\) are functions of \(q\) and \(\dot{q}\).
+                            </li>
+                        </ul>
+                    </div>
+
+
+                </div>
+            </section> 
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    DISTANCES AND OTHER QUANTITIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">COMPUTING DISTANCE DERIVATIVES</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>We now use the <b class="itext">mixed product formula</b> for vectors (that can be easily proved using the connection between 
+                                the cross product and the S operator, along with basic properties of matrices). It says that, for three 3D vectors \(u_1,u_2,u_2\):
+                                $$u_1^\top (u_2 \times u_3) = (u_3 \times u_1)^\top u_2.$$
+                            </li><br>
+                            <li>Thus:
+                                $$\frac{d}{dt} F(q) = \big(a^*-b^*\big)^\top v_{\mathcal{A}} + \Big(\big(a^*-s_{\mathcal{A}}\big) \times \big(a^*-b^*\big)\Big)^\top \omega_{\mathcal{A}}  .$$
+                            </li>
+                            <li>In which the dependencies on \(t\) were omitted. But, through differential kinematics, \(v_{\mathcal{A}} = J_v(q)\dot{q}\) and 
+                                \(\omega_{\mathcal{A}} = J_{\omega}(q)\dot{q}\) , in which \(J_v,J_{\omega}\) are the linear and angular velocity Jacobians associated to 
+                                thae link in which \(\mathcal{A}\) is attached. Thus, making the substitution:
+                                $$\frac{d}{dt} F(q) = \Big( \big(a^*-b^*\big)^\top J_v + \Big(\big(a^*-s_{\mathcal{A}}\big) \times \big(a^*-b^*\big)\Big)^\top J_{\omega}\Big)\dot{q}$$
+                            </li>
+                        </ul>
+                    </div>
+
+
+                </div>
+            </section> 
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    DISTANCES AND OTHER QUANTITIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">COMPUTING DISTANCE DERIVATIVES</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>Now it is time for the chain rule trick. On one hand, we deduced that:
+                                $$\frac{d}{dt} F(q) = \Big( \big(a^*-b^*\big)^\top J_v + \Big(\big(a^*-s_{\mathcal{A}}\big) \times \big(a^*-b^*\big)\Big)^\top J_{\omega}\Big)\dot{q}.$$
+                            </li><br>
+                            <li>On the other hand, we know from chain rule that:
+                                $$\frac{d}{dt} F(q) = \frac{\partial F}{\partial q}(q)\dot{q}.$$
+                            </li>
+                            <li>Comparing both, we get our answer:
+                                <b class="ttext">$$\frac{\partial F}{\partial q}(q) = \big(a^*(q)-b^*(q)\big)^\top J_v(q) + \Big(\big(a^*(q)-s_{\mathcal{A}}(q)\big) \times \big(a^*(q)-b^*(q)\big)\Big)^\top J_{\omega}(q).$$</b> 
+                                which is a \(1\times n\) matrix, in which \(n\) is the number of configurations of the manipulator.
+                            </li>
+                        </ul>
+                    </div>
+
+
                 </div>
             </section> 
 
