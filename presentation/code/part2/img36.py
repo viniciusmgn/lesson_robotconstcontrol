@@ -45,7 +45,9 @@ ax_dist = fig.add_subplot(gs[1])
 for ax in [ax_shapes, ax_dist]:
     ax.set_facecolor(bg_color)
     ax.tick_params(colors='white')
-    ax.spines[:].set_color('white')
+    ax.spines[:].set_color('#191919')
+
+ax_dist.spines[:].set_color('white')
 
 ax_shapes.set_xlim(-3, 3)
 ax_shapes.set_ylim(-2, 2)
@@ -84,4 +86,4 @@ ani = animation.FuncAnimation(
     fig, update, frames=n_frames, init_func=init, blit=True, repeat=False
 )
 
-ani.save("/home/vinicius/Desktop/Aulas/Robot Constrained Control/presentation/images/part2/img36.gif", writer='pillow', fps=20)
+ani.save("/home/vinicius/Desktop/Aulas/Robot Constrained Control/presentation/images/part2/image36.gif", writer='pillow', fps=20)

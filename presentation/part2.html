@@ -1556,7 +1556,7 @@ for link in robot.links:
                                 f}{\partial \theta}\) analytically
                                 and determine \(u^*(\theta)\) numerically, which allows us to compute the gradient.</li>
                             <br>
-                            <li> If \(f(u,\theta)\) is strictly convex in \(u\) for any fixed \(\theta\), and the set
+                            <li> If \(f(u,\theta)\) is (along with being differentiable in both variables)  strictly convex in \(u\) for any fixed \(\theta\), and the set
                                 \(\mathcal{U}\)
                                 is convex and compact, then \(F^*(\theta) = \min_{u \in \mathcal{U}} f(u,\theta)\) is
                                 differentiable for
@@ -2486,7 +2486,7 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li>An importa sub-algorithm for GJK is
+                            <li>An important sub-algorithm for GJK is
                                 <b class="itext">$$c^*, \mathcal{P}' := \texttt{nearest_simplex}(\mathcal{P});$$ </b>
                                 It computes the closest point \(c^*\) from
                                 the simplex \(\mathcal{P}\) to the origin, and a new simplex \(\mathcal{P}'\) formed by
@@ -4239,7 +4239,8 @@ style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                     <div
                         style="flex: 1; min-width: 300px; font-size: 1.3vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
-                            <li>The presented example is very simple, with only \(n=8\) points, so it is difficult to appreciate how much computation we can save.</li><br>
+                            <li>The presented example is very simple, with only \(n=8\) points, so it is difficult to appreciate how much computation we can save (in this case, we computed only 2 out of 8 distances from 
+                                \(\mathcal{B}\) to the points \(a_i\)).</li><br>
                             <li>In practice, for a large point cloud, this can often save an enormous amount of computations of 
                                 point-to-set distances.
                             </li><br>
@@ -4315,13 +4316,13 @@ style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                 <div
                     style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
                     <div
-                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        style="flex: 9; min-width: 300px; font-size: 1.2vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>We start by noting that:
                                 $$F(t) = \Lambda_{\mathcal{A}(t),\mathcal{B}(t)} = \min_{a \in \mathcal{A}(t), b \in \mathcal{B}(t)} = \frac{\|a-b\|^2}{2} = \min_{a_0 \in \mathcal{A}_0, b_0 \in \mathcal{B}_0} \underbrace{\frac{\|\big(Q_{\mathcal{A}}(t)a_0 + s_{\mathcal{A}}(t)\big) - \big(Q_{\mathcal{B}}(t)b_0 + s_{\mathcal{B}}(t)\big)\|^2}{2}}_{f(a_0,b_0,t)}$$
                             </li><br>
                             <li>We are just writing the optimization problem using the local coordinates \(a_0\) and \(b_0\) (written in the  objects' respective's body frames) instead of 
-                                the original variables \(a,b\), that were written in the global (world)frame.<br>
+                                the original variables \(a,b\), that were written in the global (world) frame.<br>
                             </li><br>
                             <li>Now we can apply <b class="itext">The Envelope Theorem</b> since the constraints \(a_0 \in \mathcal{A}_0, b_0 \in \mathcal{B}_0\) 
                                 are independent of the parameter \(t\). In this case:
@@ -4331,7 +4332,9 @@ style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                         </ul>
                     </div>
 
-
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                    </div>
                 </div>
             </section> 
 
@@ -4346,7 +4349,7 @@ style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                 <div
                     style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
                     <div
-                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        style="flex: 9; min-width: 300px; font-size: 1.2vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>Let \(v_{\mathcal{A}}(t), v_{\mathcal{B}}(t), \omega_{\mathcal{A}}(t), \omega_{\mathcal{B}}(t)\) represent the linear and angular 
                                 velocity 3D vectors of each object at time \(t\). Using the properties from differential kinematics, it can be shown that:
@@ -4363,7 +4366,9 @@ style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                                 coordinates instead of the global (world) coordinates, as \(a^*\) and \(b^*\) are.</li>
                         </ul>
                     </div>
-
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                    </div>
 
                 </div>
             </section> 
@@ -4380,7 +4385,7 @@ style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                 <div
                     style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
                     <div
-                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        style="flex: 9; min-width: 300px; font-size: 1.2vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>Thus, we have the nice formula
                                 <b class="ttext">$$\frac{dF}{dt} = (a^*-b^*)^\top\Big( \big(\omega_{\mathcal{A}} \times (a^*-s_{\mathcal{A}})+v_{\mathcal{A}}\big) - \big(\omega_{\mathcal{B}} \times (b^*-s_{\mathcal{B}}) + v_{\mathcal{B}}\big)  \Big)
@@ -4397,7 +4402,9 @@ style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                             </li>
                         </ul>
                     </div>
-
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                    </div>
 
                 </div>
             </section>        
@@ -4414,7 +4421,7 @@ style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                 <div
                     style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
                     <div
-                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        style="flex: 9; min-width: 300px; font-size: 1.2vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>This formula can be used to compute more complex gradients using the <b class="itext">chain rule trick</b>.
                             </li><br>
@@ -4434,7 +4441,9 @@ style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                             </li>
                         </ul>
                     </div>
-
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                    </div>
 
                 </div>
             </section> 
@@ -4450,7 +4459,7 @@ style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                 <div
                     style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
                     <div
-                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        style="flex: 9; min-width: 300px; font-size: 1.2vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>We now use the <b class="itext">mixed product formula</b> for vectors (that can be easily proved using the connection between 
                                 the cross product and the S operator, along with basic properties of matrices). It says that, for three 3D vectors \(u_1,u_2,u_2\):
@@ -4467,7 +4476,82 @@ style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                         </ul>
                     </div>
 
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                    </div>
+                </div>
+            </section> 
 
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    DISTANCES AND OTHER QUANTITIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">COMPUTING DISTANCE DERIVATIVES</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 9; min-width: 300px; font-size: 1.2vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>Now it is time for the chain rule trick. On one hand, we deduced that:
+                                $$\frac{d}{dt} F(q) = \Big( \big(a^*-b^*\big)^\top J_v + \Big(\big(a^*-s_{\mathcal{A}}\big) \times \big(a^*-b^*\big)\Big)^\top J_{\omega}\Big)\dot{q}.$$
+                            </li><br>
+                            <li>On the other hand, we know from chain rule that:
+                                $$\frac{d}{dt} F(q) = \frac{\partial F}{\partial q}(q)\dot{q}.$$
+                            </li>
+                            <li>Comparing both, we get our answer:
+                                <b class="ttext">$$\frac{\partial F}{\partial q}(q) = \big(a^*(q)-b^*(q)\big)^\top J_v(q) + \Big(\big(a^*(q)-s_{\mathcal{A}}(q)\big) \times \big(a^*(q)-b^*(q)\big)\Big)^\top J_{\omega}(q).$$</b> 
+                                which is a \(1\times n\) matrix, in which \(n\) is the number of configurations of the manipulator.
+                            </li>
+                        </ul>
+                    </div>
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                    </div>
+
+                </div>
+            </section> 
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    DISTANCES AND OTHER QUANTITIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">COMPUTING DISTANCE DERIVATIVES</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.3vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>But when this derivative is continuous (i.e., the derivative exists)?
+                            </li><br>
+                            <li>It is intuitive that both objects should have <b class="itext">differentiable shapes</b>, which means that 
+                                at every point the normal vector is well defined and changes continuously in the surface (so no corners).
+                            </li><br>
+                            <li>Furthermore, the movement ot the shape itself should be differentiable, which means that both linear and angular 
+                                velocity vectors of both shapes should change continuously with time.
+                            </li><br>
+                            <li>However, these condition are   <b class="itext">only necessary, not sufficient</b>. See the case of the rounded 
+                                squares at the right. There is a point of non-differentiability.
+                            </li><br>
+                            <li>This happens when the witness points "jump". This, in turn, happens when the two flat sides are parallel, that is, 
+                                <b class="itext">when the witness points are not unique!</b>
+                            </li><br>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; overflow: hidden; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/image37.gif" style="max-width: 70%; height: auto; top: -50px">
+                        </div>
+                    </div>
                 </div>
             </section> 
 
@@ -4485,20 +4569,22 @@ style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                     <div
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
-                            <li>Now it is time for the chain rule trick. On one hand, we deduced that:
-                                $$\frac{d}{dt} F(q) = \Big( \big(a^*-b^*\big)^\top J_v + \Big(\big(a^*-s_{\mathcal{A}}\big) \times \big(a^*-b^*\big)\Big)^\top J_{\omega}\Big)\dot{q}.$$
+                            <li>It can be shown that if both objects have differentiable shapes, have continuous 
+                                linear and angular velocities <b class="itext">and both are convex, with at least 
+                                    one of them being strictly convex</b>, then differentiability is ensured. 
                             </li><br>
-                            <li>On the other hand, we know from chain rule that:
-                                $$\frac{d}{dt} F(q) = \frac{\partial F}{\partial q}(q)\dot{q}.$$
-                            </li>
-                            <li>Comparing both, we get our answer:
-                                <b class="ttext">$$\frac{\partial F}{\partial q}(q) = \big(a^*(q)-b^*(q)\big)^\top J_v(q) + \Big(\big(a^*(q)-s_{\mathcal{A}}(q)\big) \times \big(a^*(q)-b^*(q)\big)\Big)^\top J_{\omega}(q).$$</b> 
-                                which is a \(1\times n\) matrix, in which \(n\) is the number of configurations of the manipulator.
-                            </li>
+                            <li>Pretty restrictive... except from the case of both spheres, it is usually a bit expensive to compute distances 
+                                for strictly convex shapes. Furthermore, the point cloud case is definitely out.
+                            </li><br>
                         </ul>
                     </div>
 
-
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; overflow: hidden; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/image38.gif" style="max-width: 70%; height: auto; top: -50px">
+                        </div>
+                    </div>
                 </div>
             </section> 
 
