@@ -409,7 +409,7 @@ proj, dist = obj.projection(point)
 print("Projection = "+str(proj.transpose()))
                                                                 </code></pre>                                    
                             </li><br>
-                            <li> Create a script that creates 10000 different pairs of convex objects  (boxes, cylinders and balls) with different sizes and poses. Then, for each pair, runs the algorithm 
+                            <li> Create a script that creates 10000 different pairs of convex objects  (boxes, cylinders and balls) with different sizes and poses. Then, for each pair, run the algorithm 
                                 until it converges. Consider that convergence happened when \(\|a[k+1]-a[k]\| < 10^{-6}\). Create a histogram of the number of steps 
                                 it took to converge. Considering a limit of 4000 steps, indicate if there are cases in which the algorithm does not converge 
                                 under this limit.
@@ -426,6 +426,101 @@ print("Projection = "+str(proj.transpose()))
                     </div>
                 </div>
             </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    PROBLEM 8
+                </h3>
+
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <br>
+                            <li>Create a Python script that generates a random point cloud in 2D and a random circle. Then, build the BVH (Bounding Volume Hierarchy) for the point cloud and 
+                                implement distance computation to the circle (you can use ChatGPT to help you). Keep track of how many times the distance between the 
+                                circle and a point in the point cloud was actually computed (i.e., how many leaves of the tree had 
+                                to be evaluated).</li><br>
+                            <li>Run this program multiple times to estimate the percentage of distance computations 
+                                performed compared to the brute-force approach.</li>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items:center; height: 100%;">
+                        <div style="width: 80%">
+                            <img src="presentation/images/part2/main.png"
+                                style="max-width: 80%; height: auto; max-height: 60vh;">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    PROBLEM 8
+                </h3>
+
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <br>
+                            <li>Create a Python script that generates a random point cloud in 2D and a random circle. Then, build the BVH (Bounding Volume Hierarchy) for the point cloud and 
+                                implement distance computation to the circle (you can use ChatGPT to help you). Keep track of how many times the distance between the 
+                                circle and a point in the point cloud was actually computed (i.e., how many leaves of the tree had 
+                                to be evaluated).</li><br>
+                            <li>Run this program multiple times to estimate the percentage of distance computations 
+                                performed compared to the brute-force approach.</li>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items:center; height: 100%;">
+                        <div style="width: 80%">
+                            <img src="presentation/images/part2/main.png"
+                                style="max-width: 80%; height: auto; max-height: 60vh;">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    PROBLEM 9
+                </h3>
+
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <br>
+                            <li>Using the sphere modelling created in <b class="ttext">Problem 3</b> and a single box object placed in the environment, 
+                            make the robot move its joint in a smooth manner such that the robot and the obstacle never collide.</li><br>
+                            <li>Compute the time-varying distance \(F(q(t))\) between the robot and the environment by taking the minimum among all spheres-to-box distances.</li><br>
+                            <li>Plot the distance function along with its time derivative \(\frac{d}{dt} F(q(t))\) computed using the chain rule 
+                                \(\frac{d}{dt}F(q(t)) = \frac{\partial F}{\partial q}(q(t))\dot{q}(t)\) and with \(\frac{\partial F}{\partial q}(q(t))\) 
+                                computed analytically.
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items:center; height: 100%;">
+                        <div style="width: 80%">
+                            <img src="presentation/images/part2/main.png"
+                                style="max-width: 80%; height: auto; max-height: 60vh;">
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
 
             <style>
                 .reveal .progress {

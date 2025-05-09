@@ -3786,7 +3786,7 @@ for link in robot.links:
                             </li><br>
                         
                             <li>Once we finish building the BVH, we will see how to use it to compute distances to a set 
-                                \(\mathcal{B}\)
+                                \(\mathcal{B}\).
                             </li>
                         
                         </ul>
@@ -4527,9 +4527,49 @@ style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                 <div
                     style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
                     <div
+                        style="flex: 5; min-width: 300px; font-size: 1.2vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>What if we have a complex robot modeled with many primitives (like a manipulator) and an environment composed of 
+                                many objects?
+                            </li><br>
+                            <li>Let \(i=1,...,N\) be the number of objects that compose the robot and \(j=1,...,M\) the environment. Then one first computes 
+                                all \(N \times M\) HSD \(F_{ij}(q) = \Lambda_{\mathcal{A}_i(q),\mathcal{B}_j}\). We have two options when using the distances. Either use 
+                                them separately, or aggregate then into a single one:
+                                $$F(q) = \min_{i=1,...,N} \min_{j=1,...,M} F_{ij}(q).$$
+                            </li><br>
+                            <li>In this case, to compute \(\frac{\partial F}{\partial q}\) at a point \(q\), we first compute which one of the \(F_{ij}(q)\) achieves the 
+                                minimum value in this \(q\). Suppose there is a single pair of indexes \(i=I(q),j=J(q)\) with this property. Then:
+                                $$\frac{\partial F}{\partial q}(q) = \frac{\partial F_{I(q),J(q)}}{\partial q}(q).$$
+                            </li><br>
+                            <li>If at a given \(q\) the minimum is achieved at more than one pair \(i,j\), then the derivative does not exist at this point \(q\).
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 4; min-width: 300px; display: flex; flex-direction: column; overflow: hidden; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/main.png" style="max-width: 70%; height: auto; top: -50px">
+                        </div>
+                    </div>
+                </div>
+            </section> 
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    DISTANCES AND OTHER QUANTITIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">COMPUTING DISTANCE DERIVATIVES</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
                         style="flex: 1; min-width: 300px; font-size: 1.3vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
-                            <li>But when this derivative is continuous (i.e., the derivative exists)?
+                            <li>But in the one object-to-one  object  case, when the derivative is continuous (i.e., the derivative exists)?
                             </li><br>
                             <li>It is intuitive that both objects should have <b class="itext">differentiable shapes</b>, which means that 
                                 at every point the normal vector is well defined and changes continuously in the surface (so no corners).
@@ -4576,6 +4616,7 @@ style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                             <li>Pretty restrictive... except from the case of both spheres, it is usually a bit expensive to compute distances 
                                 for strictly convex shapes. Furthermore, the point cloud case is definitely out.
                             </li><br>
+                            <li>So, what can we do?</li>
                         </ul>
                     </div>
 
@@ -4587,6 +4628,16 @@ style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                     </div>
                 </div>
             </section> 
+
+
+            <section
+                style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+                <h3 style="font-size: 3.5vw; margin-bottom: 0.5rem;">DIFFERENTIABLE DISTANCES</h3>
+
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                    <img src="presentation/images/part2/main.png" style="max-width: 40%; height: auto;">
+                </div>
+            </section>
 
             <!-- <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
