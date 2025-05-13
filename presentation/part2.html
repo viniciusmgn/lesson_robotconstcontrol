@@ -5192,12 +5192,18 @@ style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                     <div
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>The parameters \(h\) and \(\epsilon\) control the smoothness of the S2S-HSD. The larger they are, the smoother 
+                                is the distance, but the further away it is from the Euclidean distance.
+                            </li><br>
                             <li> The algorithm suffers from the slow performance of the original Von Neumman's method.
                             </li><br>
                             <li> But it is much simpler to implement for general polytopes and the distance is differentiable!
                             </li><br>
                             <li> Theoretically there are ways to <b class="itext">accelerate</b> the convergence (e.g., Anderson Acceleration), but 
                             I was not able to make it work...</li><br>
+                            <li>Finally, it can be shown that the functions \(\kappa_{inf}\) and \(\kappa_{sup}\) exist, but 
+                                it is not trivial to compute them.
+                            </li>
                         </ul>
                     </div>
 
@@ -5205,6 +5211,264 @@ style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                         style="flex: 1; min-width: 300px; display: flex; flex-direction: column; overflow: hidden; justify-content: center; align-items: start; height: 100%;">
                         <div style="width: 100%">
                             <img src="presentation/images/part2/image42.gif" style="max-width: 70%; height: auto; top: -50px">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    DIFFERENTIABLE DISTANCES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">SHORT-CIRCUIT ALGORITHM</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.3vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li> What if we want to compute the distance between a pointcloud \(\mathcal{A}\) and a convex set 
+                                \(\mathcal{B}\) that is differentiable?
+                            </li><br>
+                            <li> Remember that, for the true Euclidean S2S-HSD:
+                                $$\Lambda_{\mathcal{A},\mathcal{B}} = \min_{i=1,...,N} E_{\mathcal{B}}(a_i).$$
+                            </li><br>
+                            <li>This formula is not differentiable for two reasons. First, because \(E_{\mathcal{B}}(a_i)\) isnt. Second, because the minimum 
+                                is not differentiable when there are more than one index \(i\) that achieves the minimum. 
+                            </li><br>
+                            <li>The first source of non-differentiability can be solved by using Gonçalves's S2S-HSD \(\hat{E}_{\mathcal{B}}(a_i)\) instead 
+                                of \(E_{\mathcal{B}}(a_i)\). </li>
+                            
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; overflow: hidden; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/main.png" style="max-width: 70%; height: auto; top: -50px">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    DIFFERENTIABLE DISTANCES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">SHORT-CIRCUIT ALGORITHM</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.3vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li> For the second one, we use the <b class="ttext">Short-circuit algorithm</b> that approximates the minimum with a 
+                                differentiable expression.
+                            </li><br>
+                            <li>It goes as follows. Suppose we have nonnegative numbers \(D_i\). Simply choose a \(r>0\) and compute:
+                                <b class="ttext">$$\hat{D}_{r,min} = \left(\sum_{i=1}^N D_i^{-1/r} \right)^{-r}.$$</b>
+                            </li><br>
+                            <li> Note that if at least one of the \(D_i\) is zero, \(\hat{D}_{r,min} = 0\), and 
+                                it is otherwise positive.</li><br>
+                            <li> The name comes from the fact that the formula resembles the formula for parallel resistances in electrical circuits (choose \(r=1\) and 
+                                interpret \(D_i\) as resistances). The aforementioned behavior of zeroing the function then 
+                                resembles the behavior of short-circuit (when one of the resistances are zero).
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; overflow: hidden; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/main.png" style="max-width: 70%; height: auto; top: -50px">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    DIFFERENTIABLE DISTANCES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">SHORT-CIRCUIT ALGORITHM</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.3vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+
+                            <li>One word of caution, though. This formula, as presented, is <b class="itext"> numerically unstable</b>. It is unsuitable to be implemented 
+                            in a finite-precision machine (as any computer is). This can be easily solved by rewritting the short-circuit expression as follows. Let 
+                        \(D_{min}= \min_{i=1,...,N} D_i\) be the true minimum. The, it can be shown that:
+                        <b class="ttext">$$\hat{D}_{r,min} = D_{min} \left(\sum_{i=1}^N (D_i/D_{min})^{-1/r} \right)^{-r}$$</b>
+                        and this is much more stable numerically.
+                    </li><br>
+                    <li> Nevertheless, it can be shown that if \(r \rightarrow +0\), this approximation of the minimum recovers exactly the traditional minimum. 
+                        Furthermore, for any \(r>0\), this approximation is differentiable as long as the \(D_i\) are differentiable.
+                    </li><br>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; overflow: hidden; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/main.png" style="max-width: 70%; height: auto; top: -50px">
+                        </div>
+                    </div>
+                </div>
+            </section>    
+            
+            
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    DIFFERENTIABLE DISTANCES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">SHORT-CIRCUIT ALGORITHM</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.3vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li> Thus, we can simply choose a \(r>0\) and use:
+                                <b class="ttext">$$\hat{\Lambda}_{\mathcal{A},\mathcal{B}} = \left(\sum_{i=1}^N \hat{E}_{\mathcal{B}}(a_i)^{-1/r} \right)^{-r}$$</b>
+                            for any Gonçalves' S2S-HSD function \(\hat{E}_{\mathcal{B}}\) for the set \(\mathcal{B}\).
+                            </li><br>
+                            <li>This expression is differentiable, but we <b class="itext"> cannot use the formula from the previous slides </b>. It is not difficult to find 
+                            one for the derivative, though (it is a nice Calculus exercise).</li>
+                    </li>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; overflow: hidden; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/image43.gif" style="max-width: 70%; height: auto; top: -50px">
+                        </div>
+                    </div>
+                </div>
+            </section>  
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    DIFFERENTIABLE DISTANCES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">SHORT-CIRCUIT ALGORITHM</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.3vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>This can be much less efficient to compute than the Euclidean S2S-HSD \(\Lambda_{\mathcal{A},\mathcal{B}}\) with Bounding Volume Hierarchy, though,  
+                                <b class="itext">since you have to evaluate all the \(\hat{E}_{\mathcal{B}}\)</b>. 
+                            </li><br>
+                            <li>
+                                However, even then BVHs can help. Note that points \(a_i\) that have  
+                                $$\alpha_i = \hat{E}_{\mathcal{B}}(a_i)/\Lambda_{\mathcal{A},\mathcal{B}}$$ 
+                                (the ratio between the i-th Gonçalves S2S-HSD and the Euclidean S2S-HSD)
+                                much greater than one do not contribute much in the short-circuit operation. 
+                               
+                            </li><br>
+                            <li> Thus, if we approximate \(\hat{E}_{\mathcal{B}}(a_i) \approx E_{\mathcal{B}}(a_i)\), then \(\alpha_i \approx  E_{\mathcal{B}}(a_i)/\Lambda_{\mathcal{A},\mathcal{B}}\). 
+                                We can use BVH's to efficiently detect points with large values of \(\alpha_i\) and take them out of the computation. UAIBot implements this optimization heuristic.</li>
+                    </li>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; overflow: hidden; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/main.png" style="max-width: 70%; height: auto; top: -50px">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section
+                style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+                <h3 style="font-size: 3.5vw; margin-bottom: 0.5rem;">UAIBOT</h3>
+
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                    <img src="presentation/images/part2/main.png" style="max-width: 40%; height: auto;">
+                </div>
+            </section>
+   
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    UAIBOT
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">UAIBOT'S IMPLEMENTATION</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.3vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>UAIBot implements all these algorithms in the function <b class="itext">compute_dist</b>: 
+                                <pre><code class="language-python" style="text-align:left">
+import uaibot as ub
+
+# Create some objects
+
+cvx1 = ub.Box(htm=ub.Utils.trn([1, 0, 0]), width=0.1, depth=0.2, height=0.3)
+cvx2 = ub.Ball(htm=ub.Utils.trn([-1, 0, 0]), radius=0.1)
+pc1 = ub.PointCloud(points=[[-1, 0, 0.2], [-1, 0, -0.2], [-1, 0, 0]])
+pc2 = ub.PointCloud(points=[[1, 0, 0.2], [1, 0, -0.2], [1, 0, 0]])
+
+# When compute_dist is called between two solid objects, it uses GJK.
+# It returns the witness points (pointA, pointB), the distance
+# (not the squared distance!), and some debugging information as the last output.
+
+pointA, pointB, dist, _ = cvx1.compute_dist(cvx2)
+
+# When compute_dist is called between a solid object and a point cloud, it uses BVH.
+# It returns the witness points (pointA, pointB), the distance
+# (not the squared distance!), and some debugging information as the last output.
+
+pointA, pointB, dist, _ = pc1.compute_dist(cvx1)
+
+# When compute_dist is called between two solid objects with nonzero h and eps,
+# it uses Gonçalves' Alternating Projection method.
+# It returns the Gonçalves' witness points (pointA, pointB), the Gonçalves distance
+# (i.e., sqrt(2*Lambda)), and some debugging information.
+
+pointA, pointB, dist, _ = cvx1.compute_dist(cvx2, h=0.1, eps=0.05)
+
+# When compute_dist is called between a solid object and a point cloud with nonzero
+# h and eps, it uses the Short-Circuit algorithm.
+# It returns the Gonçalves' witness points (pointA, pointB), the distance
+# (i.e., sqrt(2*Lambda)), and some debugging information.
+
+pointA, pointB, dist, _ = pc1.compute_dist(cvx1, h=0.1, eps=0.05)
+
+# If compute_dist is called between two point clouds, it raises an error!
+
+pointA, pointB, dist, _ = pc1.compute_dist(pc2)
+pointA, pointB, dist, _ = pc1.compute_dist(pc2, h=0.1, eps=0.05)
+                                    
+                                    
+                                            </code></pre>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; overflow: hidden; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/main.png" style="max-width: 70%; height: auto; top: -50px">
                         </div>
                     </div>
                 </div>
