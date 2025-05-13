@@ -5410,7 +5410,7 @@ style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                     UAIBOT
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    <b class="ttext">UAIBOT'S IMPLEMENTATION</b>
+                    <b class="ttext">DISTANCE BETWEEN TWO OBJECTS</b>
                 </h3>
 
                 <div
@@ -5418,7 +5418,8 @@ style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                     <div
                         style="flex: 1; min-width: 300px; font-size: 1.3vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
-                            <li>UAIBot implements all these algorithms in the function <b class="itext">compute_dist</b>: 
+                            <li>UAIBot implements <b class="itext">GJK, BVH, Gonçalves' Alternating Method and Short-Circuit</b> inside  <b class="itext">compute_dist</b>, 
+                                depending on the parameters and context: 
                                 <pre><code class="language-python" style="text-align:left">
 import uaibot as ub
 
@@ -5452,6 +5453,7 @@ pointA, pointB, dist, _ = cvx1.compute_dist(cvx2, h=0.1, eps=0.05)
 # h and eps, it uses the Short-Circuit algorithm.
 # It returns the Gonçalves' witness points (pointA, pointB), the distance
 # (i.e., sqrt(2*Lambda)), and some debugging information.
+#It uses r=h.
 
 pointA, pointB, dist, _ = pc1.compute_dist(cvx1, h=0.1, eps=0.05)
 
@@ -5465,14 +5467,119 @@ pointA, pointB, dist, _ = pc1.compute_dist(pc2, h=0.1, eps=0.05)
                         </ul>
                     </div>
 
-                    <div
-                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; overflow: hidden; justify-content: center; align-items: start; height: 100%;">
-                        <div style="width: 100%">
-                            <img src="presentation/images/part2/main.png" style="max-width: 70%; height: auto; top: -50px">
-                        </div>
-                    </div>
+   
                 </div>
             </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    UAIBOT
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">DISTANCE BETWEEN A ROBOT AND A SINGLE OBJECT</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.3vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>UAIBot also computes distance information (distances, gradients) between a robot and a single object 
+                                (for multiple objects, you need to call this many times), through the <b class="itext">compute_dist</b> in a robot object. 
+<pre><code class="language-python" style="text-align:left">
+import uaibot as ub
+
+# Create a robot and an object
+
+
+robot = ub.Robot.create_franka_emika_3()
+cvx_obj = ub.Box(htm=ub.Utils.trn([1.5, 0, 0]), width=0.1, depth=0.2, height=0.3)
+
+
+#Compute a distance structure between them at configuration q=[0,0.1,0.2,0.3,0.4,0.5,0.6]
+#You can also specify smoothing parameters h and eps (default are h=eps=0, i.e., traditional Euclidean)
+
+ds = robot.compute_dist(obj = cvx_obj, q=[0,0.1,0.2,0.3,0.4,0.5,0.6], h=0.1, eps = 0.05)
+
+#ds is an object of the class 'DistStructRobotObj' with many interesting information.
+#The robot is modelled using collision objects. They are divided according to the index of the link, 
+#and the index of the object at that link. For example, the following would give the distance (either
+# Euclidean or Goncalves') between the first object  attached to the fourth link.
+
+dist = ds.get_item(link_number = 0, link_col_obj_number=3).distance
+
+#Lets also get the transposed gradient (Jacobian) of this distance in the configuration.
+#It is a 1xn np.matrix, in which n is the number of joints
+
+grad_dist = ds.get_item(link_number = 3, link_col_obj_number=0).jac_distance
+
+#Lets also get the witness points:
+
+point_link = ds.get_item(link_number = 3, link_col_obj_number=0).point_link
+point_object = ds.get_item(link_number = 3, link_col_obj_number=0).point_object
+                                    
+</code></pre>
+                        </ul>
+                    </div>
+
+
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    UAIBOT
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">AUTO DISTANCE</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.3vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>UAIBot also computes distance between each one of the links and itself, to deal with autocollision. 
+                                It only computes distance between a link and another link that is separated by more than one degree in the 
+                                kinematic chain (e.g., it disregards collisions between link 2 and 3). This is because this specific collision 
+                                can be dealt with joint limits. Regardless, this is done through <b class="itext">compute_dist_auto</b>. 
+<pre><code class="language-python" style="text-align:left">
+import uaibot as ub
+
+# Create a robot 
+
+robot = ub.Robot.create_franka_emika_3()
+
+#Compute a auto-distance at configuration q=[0,0.1,0.2,0.3,0.4,0.5,0.6]
+#You can also specify smoothing parameters h and eps (default are h=eps=0, i.e., traditional Euclidean)
+
+ds = robot.compute_dist_auto(q=[0,0.1,0.2,0.3,0.4,0.5,0.6], h=0.1, eps = 0.05)
+
+#ds is an object of the class 'DistStructRobotAuto' with many interesting information.
+#The robot is modelled using collision objects. They are divided according to the index of the link, 
+#and the index of the object at that link. For example, the following would give the distance (either
+# Euclidean or Goncalves') between the first object  attached to the fourth link.
+
+dist = ds.get_item(link_number = 0, link_col_obj_number=3).distance
+
+#Lets also get the transposed gradient (Jacobian) of this distance in the configuration.
+#It is a 1xn np.matrix, in which n is the number of joints
+
+grad_dist = ds.get_item(link_number = 3, link_col_obj_number=0).jac_distance
+
+#Lets also get the witness points:
+
+point_link = ds.get_item(link_number = 3, link_col_obj_number=0).point_link
+point_object = ds.get_item(link_number = 3, link_col_obj_number=0).point_object
+                                    
+</code></pre>
+                        </ul>
+                    </div>
+
+  
+                </div>
+            </section>
+
 
             <!-- <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">

@@ -165,3 +165,6 @@ ani = FuncAnimation(fig, update, frames=num_frames, blit=True)
 # Save as GIF
 output_path = "/home/vinicius/Desktop/Aulas/Robot Constrained Control/presentation/images/part2/image43.gif"
 ani.save(output_path, writer=PillowWriter(fps=20))
+
+
+ub.Robot.create_franka_emika_3
