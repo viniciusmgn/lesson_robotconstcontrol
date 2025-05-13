@@ -7,6 +7,7 @@
     <meta http-equiv='cache-control' content='no-cache'>
     <meta http-equiv='expires' content='0'>
     <meta http-equiv='pragma' content='no-cache'>
+    <meta name="robots" content="noindex, nofollow">
 
     <script>
         // Check if the site is being served from GitHub Pages
@@ -2086,7 +2087,7 @@ for link in robot.links:
                             <br>
                             <li> Knowing how close objects are is, of course, of paramount importance in robotics;
                             </li><br>
-                            <li>There are three "degrees" of distances we may care about:<br>
+                            <li>There are three "degrees" of distances we may care about:<br><br>
                                 <ul>
                                     <li> <b class="itext">Overlap oracles:</b> given two objects, it just say if they
                                         overlap or not;</li><br>
@@ -2523,9 +2524,9 @@ for link in robot.links:
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <br>
-                            <li>The intuition behind the algorithm is to iteratively construct simplexes (e.g.,
-                                triangles)
-                                formed by vertexes of the polygon \(\mathcal{C}\) that are closer and closer to the
+                            <li>The intuition behind the algorithm is to iteratively construct simplexes (i.e., triangles in 2D or 
+                                tetrahedrons in 3D)
+                                formed by vertexes of the polyhedra/polygon \(\mathcal{C}\) that are closer and closer to the
                                 origin;
                             </li><br>
                             <li>It searches for new vertexes of the polygon by searching for extreme points of the
@@ -4275,14 +4276,14 @@ style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                 <div
                     style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
                     <div
-                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        style="flex: 1; min-width: 300px; font-size: 1.4vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>If  the objects \(\mathcal{A}\) and \(\mathcal{B}\) move, the S2S-HSD \(\Lambda_{\mathcal{A},\mathcal{B}}\) 
                                 changes. In this case, it may be useful to compute the derivative.
                             </li><br>
                             <li>In most of the applications in robotics, \(\mathcal{A}\) and \(\mathcal{B}\) move as rigid bodies. 
                                 Thus, lets start assuming that they move in time as follows: given fixed convex sets \(\mathcal{A}_0\) and 
-                                \(\mathcal{B}_0\), the sets \(\mathcal{A}(t)\) and \(\mathcal{B}(t)\) are the application of the rigid 
+                                \(\mathcal{B}_0\) - which are the sets of points when \(\mathcal{A}\) and \(\mathcal{B}\) have their body frame aligned with world frame -  the sets \(\mathcal{A}(t)\) and \(\mathcal{B}(t)\) are the application of the rigid 
                                 transformations \((Q_{\mathcal{A}}(t),s_{\mathcal{A}}(t))\) and \((Q_{\mathcal{B}}(t),s_{\mathcal{B}}(t))\)
                                 to \(\mathcal{A}_0\) and 
                                 \(\mathcal{B}_0\), respectively, in which \(t\) is time.
@@ -4467,8 +4468,7 @@ style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                             </li><br>
                             <li>Thus:
                                 $$\frac{d}{dt} F(q) = \big(a^*-b^*\big)^\top v_{\mathcal{A}} + \Big(\big(a^*-s_{\mathcal{A}}\big) \times \big(a^*-b^*\big)\Big)^\top \omega_{\mathcal{A}}  .$$
-                            </li>
-                            <li>In which the dependencies on \(t\) were omitted. But, through differential kinematics, \(v_{\mathcal{A}} = J_v(q)\dot{q}\) and 
+                                in which the dependencies on \(t\) were omitted. But, through differential kinematics, \(v_{\mathcal{A}} = J_v(q)\dot{q}\) and 
                                 \(\omega_{\mathcal{A}} = J_{\omega}(q)\dot{q}\) , in which \(J_v,J_{\omega}\) are the linear and angular velocity Jacobians associated to 
                                 thae link in which \(\mathcal{A}\) is attached. Thus, making the substitution:
                                 $$\frac{d}{dt} F(q) = \Big( \big(a^*-b^*\big)^\top J_v + \Big(\big(a^*-s_{\mathcal{A}}\big) \times \big(a^*-b^*\big)\Big)^\top J_{\omega}\Big)\dot{q}$$
@@ -4636,6 +4636,577 @@ style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
 
                 <div style="display: flex; flex-direction: column; align-items: center;">
                     <img src="presentation/images/part2/main.png" style="max-width: 40%; height: auto;">
+                </div>
+            </section>
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    DIFFERENTIABLE DISTANCES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">BEYOND EUCLIDEAN DISTANCE</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li><b class="itext">Let go of the Euclidean Distance!</b>
+                            </li><br>
+                            <li>We don't necessarily need to use the Euclidean distance, just something that is 
+                                <b class="itext">similar to it</b>.
+                            </li><br>
+                            <li>In fact, we as humans perform obstacle avoidance without computing precise 
+                                Euclidean distances in our minds.
+                            </li>
+                        </ul>
+                        
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; overflow: hidden; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/main.png" style="max-width: 70%; height: auto; top: -50px">
+                        </div>
+                    </div>
+                </div>
+            </section> 
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    DIFFERENTIABLE DISTANCES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">BEYOND EUCLIDEAN DISTANCE</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>Let \(\hat{\Lambda}_{\mathcal{A},\mathcal{B}}\) be a "new" measure of "half-squared distance" (a new S2S-HSD) between two 
+                                objects \(\mathcal{A}\) and \(\mathcal{B}\). Which properties it should have?
+                            </b>
+                            </li><br>
+                            <li>To start with, those are reasonable intuitive properties:<br><br>
+                                <ul>
+                                    <li>
+                                        <b class="itext">(1) It should be non-negative, and be zero if and only if \(\mathcal{A}\) and \(\mathcal{B}\) overlap.</b>
+                                    </li><br>
+                                    <li>
+                                        <b class="itext">(2) It should increase as the objects move away from each other.
+                                        </b>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; overflow: hidden; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/main.png" style="max-width: 70%; height: auto; top: -50px">
+                        </div>
+                    </div>
+                </div>
+            </section> 
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    DIFFERENTIABLE DISTANCES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">BEYOND EUCLIDEAN DISTANCE</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>In control, a <b class="ttext">class \(\mathcal{K}\) function (class "Kappa")</b> is a function \(\kappa : \mathbb{R}^+ \mapsto \mathbb{R}^+\) 
+                                (from nonnegative reals to nonnegative reals) that is continuous and strictly increasing, such that \(\kappa(0)=0\).
+                            </b> 
+                            </li><br>
+                            <li>For example, \(\kappa(u) = 2u\), \(\kappa(u)=u^2\). Non-examples include \(\kappa(u) = \min(u,1)\) (it is increasing but not strictly increasing), 
+                                and \(\kappa(u)=u+1\) (it does not satisfy \(\kappa(0) = 0\)).
+                            </li><br>
+                            <li>Then, we can formally establish properties (1) and (2) by using the traditional S2S-HSD 
+                                \(\Lambda_{\mathcal{A},\mathcal{B}}\) and our new measure \(\hat{\Lambda}_{\mathcal{A},\mathcal{B}}\). There 
+                                should exist two class \(\mathcal{K}\) functions \(\kappa_{sup}\) and \(\kappa_{inf}\) such that:
+                                <b class="ttext">$$\kappa_{sup}(\Lambda_{\mathcal{A},\mathcal{B}}) \geq \hat{\Lambda}_{\mathcal{A},\mathcal{B}} \geq \kappa_{inf}(\Lambda_{\mathcal{A},\mathcal{B}}).$$</b>
+                            </li>
+                            
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; overflow: hidden; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/main.png" style="max-width: 70%; height: auto; top: -50px">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    DIFFERENTIABLE DISTANCES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">BEYOND EUCLIDEAN DISTANCE</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.35vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>Why?
+                            </li><br>
+                            <li>For property (1), note that since \(\Lambda_{\mathcal{A},\mathcal{B}}\geq 0\) and \(\kappa_{inf}\) is a class 
+                                \(\mathcal{K}\) function, then  \(\hat{\Lambda}_{\mathcal{A},\mathcal{B}} \geq \kappa_{inf}(\Lambda_{\mathcal{A},\mathcal{B}})\geq 0\). 
+                                Furthermore:<br><br>
+                                <ul>
+                                    <li><b class="itext"> \(\mathcal{A}\) and \(\mathcal{B}\) overlap \(\rightarrow\) \(\hat{\Lambda}_{\mathcal{A},\mathcal{B}} = 0\): </b>
+                                        If the objects overlap, \(\Lambda_{\mathcal{A},\mathcal{B}}=0\), and thus, since \(\kappa_{inf}(0)=\kappa_{sup}(0)=0\), 
+                                        we have \(\hat{\Lambda}_{\mathcal{A},\mathcal{B}} = 0\).
+                                    </li><br>
+                                    <li><b class="itext"> \(\hat{\Lambda}_{\mathcal{A},\mathcal{B}} = 0\)  \(\rightarrow\) \(\mathcal{A}\) and \(\mathcal{B}\) overlap:</b> 
+                                        If  \(\hat{\Lambda}_{\mathcal{A},\mathcal{B}} = 0\), then \(0 \geq \kappa_{inf}(\Lambda_{\mathcal{A},\mathcal{B}})\). Hence,  
+                                        due to the properties of class \(\mathcal{K}\) functions, we have \(\Lambda_{\mathcal{A},\mathcal{B}}=0\), which implies that the objects overlap.
+                                    </li>
+                                </ul>
+                            </li><br>
+                            <li> For property (2), we simply use \(\hat{\Lambda}_{\mathcal{A},\mathcal{B}} \geq \kappa_{inf}(\Lambda_{\mathcal{A},\mathcal{B}})\), and 
+                                recall that \(\kappa_{inf}\) is strictly increasing and that the Euclidean S2S-HSD \(\Lambda_{\mathcal{A},\mathcal{B}}\) has the property 
+                                of increasing as the objects move away from each other.
+                            </li>
+                            
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; overflow: hidden; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/main.png" style="max-width: 70%; height: auto; top: -50px">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    DIFFERENTIABLE DISTANCES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">BEYOND EUCLIDEAN DISTANCE</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>Ok, so we sought this new \(\hat{\Lambda}_{\mathcal{A},\mathcal{B}}\) that <b class="itext"> is differentiable</b>!
+                            </li><br>
+                            <li>Instead of going straight to this new S2S-HSD, we will start by defining <b class="ttext"> Gonçalves' P2S-HSD \(\hat{E}_{\mathcal{S}}(p)\)</b> and 
+                                <b class="ttext"> Gonçalves' projections \(\hat{\Pi}_{\mathcal{S}}(p)\) </b>.
+
+                            </li><br>
+                            <li>(I know the name is vain, there are reasons for that, it will be changed in the future).</li>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; overflow: hidden; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/main.png" style="max-width: 70%; height: auto; top: -50px">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    DIFFERENTIABLE DISTANCES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">GONÇALVES' P2S-HSD</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li> Consider a convex set \(\mathcal{S}\). Lets examine some properties of the <b class="itext"> Euclidean P2S-HSD</b>
+                                \(E_{\mathcal{S}}(p)\):<br><br>
+                                <ul>
+                                    <li>
+                                        (1) : \(E_{\mathcal{S}}(p) \geq 0\) and \(E_{\mathcal{S}}(p) = 0\) if and only if \(p\in\mathcal{S}\);
+                                    </li><br>
+                                    <li>
+                                        (2) : \(E_{\mathcal{S}}(p)\) is convex;
+                                    </li><br>
+                                    <li>
+                                        (3) : \(\frac{\|p\|^2}{2}-E_{\mathcal{S}}(p)\) is convex.
+                                    </li>
+                                </ul>
+                            </li><br>
+                            <li>The last property is not intuitive, but it limits the growth rate of P2S-HSD. It says, roughly, that half squared distances 
+                                should not grow faster than \(\frac{\|p\|^2}{2}\), which is, perhaps, more intuitive.
+                            </li><br>
+                            <li>Gonçalves' P2S-HSD slightly modifies this.</li>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; overflow: hidden; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/main.png" style="max-width: 70%; height: auto; top: -50px">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    DIFFERENTIABLE DISTANCES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">GONÇALVES' P2S-HSD</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.35vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li> Consider a convex set \(\mathcal{S}\). A <b class="ttext">Gonçalves P2S-HSD for this set \(\mathcal{S}\)</b> \(\hat{E}_{\mathcal{S}}(p)\) is <b class="itext">any (there are infinitely many choices!)</b> function \(\hat{E}_{\mathcal{S}} : \mathbb{R}^n \mapsto \mathbb{R}^+\) such that <br><br>
+                                <ul>
+                                    <li>
+                                        (0) : <b class="itext">\(\hat{E}_{\mathcal{S}}(p)\) is twice differentiable in \(p\);</b>
+                                    </li><br>
+                                    <li>
+                                        (1) : \(\hat{E}_{\mathcal{S}}(p) \geq 0\) and \(\hat{E}_{\mathcal{S}}(p) = 0\) if and only if \(p\in\mathcal{S}\);
+                                    </li><br>
+                                    <li>
+                                        (2) : <b class="itext"> \(\frac{\partial^2 E_{\mathcal{S}}}{\partial p^2}(p) > 0_{n \times n}\) for any \(p \not \in \mathcal{S}\);</b> 
+                                    </li><br>
+                                    <li>
+                                        (3) : <b class="itext"> \(I_{n \times n} > \frac{\partial^2 E_{\mathcal{S}}}{\partial p^2}(p)\).</b> 
+                                    </li>
+
+                                </ul>
+                            </li><br>
+                            <li>The new conditions (2) and (3) are stronger versions of the previous conditions for the Euclidean case. In fact, the previous conditions 
+                                can be written as \(\frac{\partial^2 E_{\mathcal{S}}}{\partial p^2}(p)\) <b class="itext"> \(\geq\) </b>  \(0_{n \times n}\) and 
+                                \(I_{n \times n}\) <b class="itext"> \(\geq\) </b>  \(\frac{\partial^2 E_{\mathcal{S}}}{\partial p^2}(p)\) (note the \(\geq\) instead of \(>\))  
+                                at the points \(p\) where the function is twice differentiable.
+                            </li>                            
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; overflow: hidden; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/main.png" style="max-width: 70%; height: auto; top: -50px">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    DIFFERENTIABLE DISTANCES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">COMPUTING GONÇALVES' P2S-HSD</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li> Gonçalves' P2S-HSD <b class="itext">does not necessarily come from an optimization problem</b> (as opposed to the 
+                                Euclidean P2S-HSD). In fact, unlike the Euclidean P2S-HSD, <b class="itext">it is relatively simple and 
+                                computationally efficient to compute Gonçalves' P2S-HSD even for a complex polytope!</b>
+                            </li>
+                            
+                                
+                            </li><br>
+                            <li> For this, we define a <b class="ttext"> basic Gonçalves' P2S-HSD</b> \(\Phi: \mathbb{R} \mapsto \mathbb{R}^+\) as any 
+                                Gonçalves' P2S-HSD for the 1-dimensional convex set \((-\infty,0]\) (i.e., the nonpositive reals).
+                            </li><br>
+                            <li> One simple example is as follows, for any positive scalar \(h\):
+                                $$
+                                \Phi(s) =
+                                \left\{
+                                    \begin{array}{ll}
+                                        \frac{s^3}{2(s+h)}  & \mbox{if } s \geq 0 \\
+                                        0 & \mbox{if } s < 0
+                                    \end{array}
+                                \right.
+                                $$
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; overflow: hidden; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/image39.svg" style="max-width: 90%; height: auto; top: -50px">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    DIFFERENTIABLE DISTANCES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">COMPUTING GONÇALVES' P2S-HSD</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li> Suppose \(\mathcal{S}\) is a polytope \(\{p \in \mathbb{R}^n \ | \ a_i^\top p \leq b_i\}\). Further, assume, 
+                                without loss of generality, that \(\|a_i\|=1\).
+                                
+                            </li><br>
+                            <li> We can define a <b class="ttext"> weak Gonçalves' P2S-HSD for the set \(\mathcal{S}\)</b> , 
+                                \(\hat{e}_{\mathcal{S}}(p)\) as follows:
+                                <b class="ttext">$$ \hat{e}_{\mathcal{S}}(p) = \frac{1}{N} \sum_{i=1}^N \Phi(a_i^\top p-b_i).$$  </b>
+                            </li><br>
+                            <li>This satisfies almost all properties of a <b class="itext"> Gonçalves' P2S-HSD</b> (hence the adjective <b class="itext">weak</b>), except that property (3) 
+                                holds true only with \(\geq\) instead of with \(>\). We solve this through a <b class="itext">bulging procedure</b>.</li>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; overflow: hidden; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/main.png" style="max-width: 70%; height: auto; top: -50px">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    DIFFERENTIABLE DISTANCES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">COMPUTING GONÇALVES' P2S-HSD</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li> Consider a ball centered at the point \(p_c\) with radius \(R\) that <b class="itext">strictly covers </b> 
+                                the set \(\mathcal{S}\) (i.e., any point of \(\mathcal{S}\) is contained inside the ball, but not in its borders).
+                            </li><br>
+                            <li> Let \(\rho(p) = 0.5(\|p-p_c\|^2-R^2) \). It can be shown that for a sufficiently small but positive \(\epsilon\):
+                                <b class="ttext">$$ \hat{E}_{\mathcal{S}}(p) = \epsilon \rho(p) +\sqrt{\epsilon^2 \rho(p)^2 + (1-2\epsilon)\hat{e}_{\mathcal{S}}(p)^2  }$$  </b>
+                                is a Gonçalves' P2S-HSD.
+                            </li><br>
+                            <li>This is called the <b class="itext">bulging procedure</b> because if one compares the non-zero level sets of \(\hat{e}_{\mathcal{S}}\) and 
+                                \(\hat{E}_{\mathcal{S}}\) for a convex set \(\mathcal{S}\) with flat sides (e.g., a square), the former's level sets have flat sides, whereas the 
+                                latter's bulge slightly, making them curved.
+                            </li>                            
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; overflow: hidden; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/image40.svg" style="max-width: 60%; height: auto; top: 0px">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    DIFFERENTIABLE DISTANCES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">GONÇALVES' PROJECTION</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li> Remember that there is a <b class="itext"> theorem </b> that relates the Euclidean P2S-HSD and the Euclidean projection:
+                                $$\Pi_{\mathcal{S}}(p) = p - \nabla E_{\mathcal{S}}(p).$$
+                            </li><br>
+                            <li> By analogy, we <b class="itext"> define </b> the <b class="ttext"> Gonçalves' projection for the set \(\mathcal{S}\) </b> as: </b>
+                                <b class="ttext"> $$\hat{\Pi}_{\mathcal{S}}(p) = p - \nabla \hat{E}_{\mathcal{S}}(p).$$ </b>
+                            </li><br>
+                            <li> Note that Gonçalves' projection does not come from an optimization problem, it simply comes from a mathematical definition. </li><br>
+                            <li>Gonçalves' P2S-HSD and projections will be useful for our two next algorithms.</li>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; overflow: hidden; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/main.png" style="max-width: 70%; height: auto; top: -50px">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    DIFFERENTIABLE DISTANCES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">TWO NEW ALGORITHMS</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-direction: column; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: flex-start; padding-top: 20px; height: 100%;">
+                        
+                        <div style="width: 100%">
+                            We will study two algorithms:
+                        </div>
+
+                    </div>
+
+                    <div
+                        style="flex: 5; min-width: 300px; font-size: 1.5vw; text-align: center; display: flex; align-items: center; justify-content: center; margin-top: -20px; height: 100%;">
+                        <div style="position:absolute; width: 100%; align-items: center;">
+                            <img src="presentation/images/part2/image41.svg"
+                                style="max-width: 50%; height: auto; max-height: 60vh;">
+                        </div>
+                        <br>
+
+                    </div>
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    DIFFERENTIABLE DISTANCES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">GONÇALVES' ALTERNATING PROJECTION</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li> We can use <b class="itext"> exactly the same algorithm as Von Neumann's alternating projection but 
+                                using Gonçalves's projections instead of Euclidean projections! </b>
+                                <b class="itext">$$b[k] = \hat{\Pi}_{\mathcal{A}}(a[k])$$</b>
+                                <b class="itext">$$a[k+1] = \hat{\Pi}_{\mathcal{B}}(b[k])$$</b>
+                            </li><br>
+                            <li> If both sets are convex, <b class="itext">this algorithm will converge to points </b> \(a^*,b^*\), called 
+                                <b class="itext">Gonçalves's witness points</b>. Furthermore, if the sets do not overlap, <b class="itext">this pair is unique </b>
+                                (regardless if the sets are strictly convex or not).
+                            </li><br>
+                            <li> How do we use these witness points to compute \(\hat{\Lambda}_{\mathcal{A},\mathcal{B}}\)?</li>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; overflow: hidden; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/main.png" style="max-width: 70%; height: auto; top: -50px">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    DIFFERENTIABLE DISTANCES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">GONÇALVES' ALTERNATING PROJECTION</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.35vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li> One could expect that we would simply use:
+                                $$ \hat{\Lambda}_{\mathcal{A},\mathcal{B}} = \frac{\|a^*-b^*\|^2}{2}.$$
+                            </li><br>
+                            <li> However, we could do better than this. It is better to use:
+                                <b class="ttext">$$ \hat{\Lambda}_{\mathcal{A},\mathcal{B}} = E_{\mathcal{A}}(b^*)+E_{\mathcal{B}}(a^*)-\frac{\|a^*-b^*\|^2}{2}.$$</b>
+                            </li><br>
+                            <li> Why this "bizarre" formula? It comes from <b class="itext">Game theory</b>!</li><br>
+                            <li>Among some of the benefits of this formula, the formula for derivative of the distance that we obtained some 
+                                slides ago <b class="itext">is still valid</b>, just by changing traditional witness points by Gonçalves' (this would not hold true if we used the simpler definition of \(\hat{\Lambda}_{\mathcal{A},\mathcal{B}}\)).
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; overflow: hidden; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/main.png" style="max-width: 70%; height: auto; top: -50px">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    DIFFERENTIABLE DISTANCES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">GONÇALVES' ALTERNATING PROJECTION</b>
+                </h3>
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li> The algorithm suffers from the slow performance of the original Von Neumman's method.
+                            </li><br>
+                            <li> But it is much simpler to implement for general polytopes and the distance is differentiable!
+                            </li><br>
+                            <li> Theoretically there are ways to <b class="itext">accelerate</b> the convergence (e.g., Anderson Acceleration), but 
+                            I was not able to make it work...</li><br>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; overflow: hidden; justify-content: center; align-items: start; height: 100%;">
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/image42.gif" style="max-width: 70%; height: auto; top: -50px">
+                        </div>
+                    </div>
                 </div>
             </section>
 
