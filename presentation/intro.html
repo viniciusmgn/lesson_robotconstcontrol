@@ -342,52 +342,80 @@
                 </div>
             </section>
 
+
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     Overview
                 </h3>
 
-
                 <div
                     style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
 
+                    <!-- Left Column: Content that Changes Step by Step -->
                     <div
-                        style="flex: 18; min-width: 300px; font-size: 1.5vw; text-align: justify; display: flex; align-items: center; height: 100%;">
-                        </br>
-                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
-                            <br>
-                            <li>This class is divided into three parts:</li>
-                            <br>
-                            <li><b class="itext">Part 1:</b> we review some important concepts in robotics, as the
-                                concept of homogeneous transformation matrices, configuration,
-                                forward / inverse / differential kinematics, Jacobians, task functions and kinematic
-                                control.
-                            </li>
-                            <br>
-                        </ul>
+                        style="flex: 2; min-width: 300px; font-size: 1.5vw; text-align: justify; display: flex; align-items: center; height: 100%;">
 
+                        <div style="width: 100%;">
+                            <ul class="fragment step-fade-in-then-out">
+                                <li><b class="itext">Part 1:</b> we review some important concepts in robotics, as the
+                                    concept of homogeneous transformation matrices, configuration,
+                                    forward / inverse / differential kinematics, Jacobians, task functions and kinematic
+                                    control.</li>
+                            </ul>
 
+                            <ul class="fragment step-fade-in-then-out" style="font-size: 1.3vw; text-align: justify;"">
+                                <br>
+                                <br>
+                                <li><b class="itext">Geometric Representation:</b><br>
+                                    <ul>
+                                        <li>Homogeneous transformation matrices; </li>
+                                        <li>Composition of transformations; </li>
+                                        <li>Configuration of a system;</li>
+                                    </ul>
+                                </li>
+                                <li><b class="itext">Forward kinematics:</b><br>
+                                    <ul>
+                                        <li>Configuration of a manipulator;</li>
+                                        <li>Denavit Hartenberg convention; </li>
+                                        <li>Inverse kinematics; </li>
+                                    </ul>
+                                </li>
+                                <li><b class="itext">Differential kinematics:</b><br>
+                                    <ul>
+                                        <li>Linear and angular velocities;</li>
+                                        <li>Geometric Jacobian; </li>
+                                        <li>Inverse differential kinematics, damped pseudoinverse;</li>
+                                    </ul>
+                                </li>
 
+                                <li><b class="itext">Kinematic control in task space:</b><br>
+                                    <ul>
+                                        <li>Task functions;</li>
+                                        <li>Kinematic control with pseudoinverse;</li>
+                                    </ul>
+                                </li>
+
+                                
+
+                                <br><br><br>
+                            </ul>
+            
+
+                        </div>
+            
                     </div>
-
-                    <div
-                        style="flex: 1; min-width: 20px; display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%;">
-                    </div>
-
-                    <div
-                        style="flex: 20; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%;">
-
-                        <div style="min-height: 10rem; flex-shrink: 0;"></div>
-
-                        <div style="width: 100%">
-                            <iframe src="presentation/images/intro/intro_1.html" width="650" height="580"
-                                style="border: none;"></iframe>
+            
+                    <!-- Right Column: Fixed iFrame -->
+                    <div style=" flex: 2; min-width: 300px; display: flex; flex-direction: column; justify-content:
+                                center; align-items: center; height: 100%;">
+                                <div style="min-height: 10rem; flex-shrink: 0;"></div>
+                                <div style="width: 100%;">
+                                    <iframe src="presentation/images/intro/intro_1.html" width="550" height="580"
+                                        style="border: none;"></iframe>
+                                </div>
                         </div>
 
-
                     </div>
-
-                </div>
             </section>
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
@@ -414,21 +442,42 @@
                                     Jacobians).</li>
                             </ul>
 
-                            <ul class="fragment step-fade-in-then-out" style="font-size: 1.3vw; text-align: justify;"">
+                            <ul class="fragment step-fade-in-then-out" style="font-size: 1.1vw; text-align: justify;"">
                                 <br>
                                 <br>
-                                <li>Ways to model geometry: convex shapes (CS), point clouds (PC), meshes; </li>
-                                <li>Modeling robots using CS; </li>
-                                <li>Review: convexity, point-to-object distance, projection, support function;</li>
-                                <li>Overlap oracles, metrics and metric gradient;</li>
-                                <li>CS-to-CS distance: GJK algorithm;</li>
-                                <li>CS-to-CS distance: Von Neumann's alternating projection;</li>
-                                <li>CS-to-PD distance: Bounding Volume Hierarchy (BVH);</li>
-                                <li>Gradient of the distance function;</li>
-                                <li>CS-to-CS smooth distance: modified Von Neumann's algorithm;</li>
-                                <li>CS-to-PS smooth distance: ISI algorithm;</li>
-                                <li>Signed distances;</li>
-                                <li>Metric through neural networks;</li>
+                                <li><b class="itext">Geometric Representation:</b><br>
+                                    <ul>
+                                        <li>Ways to model geometry: convex shapes (CS), point clouds (PC), meshes; </li>
+                                        <li>Modeling robots using CS; </li>
+                                    </ul>
+                                </li>
+                                <li><b class="itext">Convex Analysis Basics:</b><br>
+                                    <ul>
+                                        <li>Convexity, strict convexity, convex functions, convex optimization problem; </li>
+                                        <li>Envelope theorem; </li>
+                                        <li>Point-to-object distance, projection, support function;</li>
+                                    </ul>
+                                </li>
+                                <li><b class="itext">Distances and other quantities:</b><br>
+                                    <ul>
+                                        <li>Overlap oracles, distances and distances gradient;</li>
+                                        <li>CS-to-CS distance:  GJK algorithm; </li>
+                                        <li>CS-to-CS distance: Von Neumann's alternating projection;</li>
+                                        <li>CS-to-PC distance: Bounding Volume Hierarchy (BVH);</li>
+                                        <li>Derivative of the distance function;</li>
+                                    </ul>
+                                </li>
+
+                                <li><b class="itext">Differentiable distances:</b><br>
+                                    <ul>
+                                        <li>Gonçalves' half squared distance;</li>
+                                        <li>CS-to-CS smooth distance: Gonçalves' alternating Projection;</li>
+                                        <li>CS-to-PC smooth distance: Short-Circuit algorithm;</li>
+                                    </ul>
+                                </li>
+
+                                
+
                                 <br><br><br>
                             </ul>
             
@@ -851,7 +900,8 @@ sim.run()
             minScale: 0.2,
             maxScale: 2.0,
             plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealMenu],
-            slideNumber: true
+            slideNumber: true,
+            viewDistance: 1
         });
         var frames = document.getElementsByTagName("iframe");
 
