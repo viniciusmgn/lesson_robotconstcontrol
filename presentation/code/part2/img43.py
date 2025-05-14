@@ -65,7 +65,7 @@ def fun_dist_smooth(c, theta):
     
     _, _, d, _ = sq_obj.compute_dist(pc_obj, h=0.1, eps=0.05)
     
-    hist_dist_smooth.append(0.5*(d**2))
+    hist_dist_smooth.append(5*0.5*(d**2))
 
     return 5*0.5*(d**2)
 
