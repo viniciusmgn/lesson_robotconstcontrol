@@ -93,8 +93,8 @@ for ax in axes:
 ax0, ax1, ax2 = axes
 ax0.axis('off')
 ax0.axis('equal')
-ax0.set_xlim(-2.8, 2.8)
-ax0.set_ylim(-2.8, 2.8)
+ax0.set_xlim(-2.9, 2.9)
+ax0.set_ylim(-2.9, 2.9)
 
 scatter = ax0.scatter(point_cloud[:, 0], point_cloud[:, 1], color=color_points, s=10)
 square_patch = Polygon([[0, 0]], closed=True, color=color_A)
