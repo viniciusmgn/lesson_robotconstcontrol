@@ -546,7 +546,7 @@ sim.run()
                                 configuration \(q\) of the manipulator;
                             </li><br>
                             <li> From forward kinematics, we have the transformation \(T_{0}^{DHi}(q)\). Thus, simply:
-                                $$ T_0^{obj,k,i}(q) = T_{0}^{DHi}(q)T_{DHi}^{obj,k,i}$$
+                                $$ T_0^{obj,k,i}(q) = T_{0}^{DHi}(q)T_{DHi}^{obj,k,i}.$$
                             </li><br>
                         </ul>
                     </div>
@@ -5304,16 +5304,17 @@ style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                         style="flex: 1; min-width: 300px; font-size: 1.3vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
 
-                            <li>One word of caution, though. This formula, as presented, is <b class="itext"> numerically unstable</b>. It is unsuitable to be implemented 
-                            in a finite-precision machine (as any computer is). This can be easily solved by rewritting the short-circuit expression as follows. Let 
-                        \(D_{min}= \min_{i=1,...,N} D_i\) be the true minimum. The, it can be shown that:
-                        <b class="ttext">$$\hat{D}_{r,min} = D_{min} \left(\sum_{i=1}^N (D_i/D_{min})^{-1/r} \right)^{-r}$$</b>
-                        and this is much more stable numerically.
-                    </li><br>
-                    <li> Nevertheless, it can be shown that if \(r \rightarrow +0\), this approximation of the minimum recovers exactly the traditional minimum. 
-                        Furthermore, for any \(r>0\), this approximation is differentiable as long as the \(D_i\) are differentiable.
-                    </li><br>
+                            <li>One word of caution, though. This formula, as presented, is <b class="itext">numerically unstable</b>. It is unsuitable for implementation 
+                                on a finite-precision machine (as any computer is). This can be easily solved by rewriting the short-circuit expression as follows. Let 
+                                \(D_{min}= \min_{i=1,...,N} D_i\) be the true minimum. Then, it can be shown that:
+                                <b class="ttext">$$\hat{D}_{r,min} = D_{min} \left(\sum_{i=1}^N (D_i/D_{min})^{-1/r} \right)^{-r}$$</b>
+                                and this is much more numerically stable.
+                            </li><br>
+                            <li>Nevertheless, it can be shown that if \(r \rightarrow +0\), this approximation of the minimum recovers exactly the traditional minimum. 
+                                Furthermore, for any \(r>0\), this approximation is differentiable as long as the \(D_i\) are differentiable.
+                            </li><br>
                         </ul>
+                        
                     </div>
 
                     <div
@@ -5339,14 +5340,15 @@ style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                     <div
                         style="flex: 1; min-width: 300px; font-size: 1.3vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
-                            <li> Thus, we can simply choose a \(r>0\) and use:
+                            <li>Thus, we can simply choose a \(r>0\) and use:
                                 <b class="ttext">$$\hat{\Lambda}_{\mathcal{A},\mathcal{B}} = \left(\sum_{i=1}^N \hat{E}_{\mathcal{B}}(a_i)^{-1/r} \right)^{-r}$$</b>
-                            for any Gonçalves' S2S-HSD function \(\hat{E}_{\mathcal{B}}\) for the set \(\mathcal{B}\).
+                                for any Gonçalves' S2S-HSD function \(\hat{E}_{\mathcal{B}}\) for the set \(\mathcal{B}\).
                             </li><br>
-                            <li>This expression is differentiable, but we <b class="itext"> cannot use the formula from the previous slides </b>. It is not difficult to find 
-                            one for the derivative, though (it is a nice Calculus exercise).</li>
-                    </li>
+                            <li>This expression is differentiable, but we <b class="itext">cannot use the formula from the previous slides</b>. It is not difficult to find 
+                                one for the derivative, though (it is a nice Calculus exercise).
+                            </li>
                         </ul>
+                        
                     </div>
 
                     <div
@@ -5375,16 +5377,16 @@ style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                                 <b class="itext">since you have to evaluate all the \(\hat{E}_{\mathcal{B}}\)</b>. 
                             </li><br>
                             <li>
-                                However, even then BVHs can help. Note that points \(a_i\) that have  
+                                However, even then, BVHs can help. Note that points \(a_i\) that have  
                                 $$\alpha_i = \hat{E}_{\mathcal{B}}(a_i)/\Lambda_{\mathcal{A},\mathcal{B}}$$ 
                                 (the ratio between the i-th Gonçalves S2S-HSD and the Euclidean S2S-HSD)
                                 much greater than one do not contribute much in the short-circuit operation. 
-                               
                             </li><br>
-                            <li> Thus, if we approximate \(\hat{E}_{\mathcal{B}}(a_i) \approx E_{\mathcal{B}}(a_i)\), then \(\alpha_i \approx  E_{\mathcal{B}}(a_i)/\Lambda_{\mathcal{A},\mathcal{B}}\). 
-                                We can use BVH's to efficiently detect points with large values of \(\alpha_i\) and take them out of the computation. UAIBot implements this optimization heuristic.</li>
-                    </li>
+                            <li>Thus, if we approximate \(\hat{E}_{\mathcal{B}}(a_i) \approx E_{\mathcal{B}}(a_i)\), then \(\alpha_i \approx  E_{\mathcal{B}}(a_i)/\Lambda_{\mathcal{A},\mathcal{B}}\). 
+                                We can use BVHs to efficiently detect points with large values of \(\alpha_i\) and remove them from the computation. UAIBot implements this optimization heuristic.
+                            </li>
                         </ul>
+                        
                     </div>
 
                     <div
@@ -5539,10 +5541,11 @@ point_object = ds.get_item(link_number = 3, link_col_obj_number=0).point_object
                     <div
                         style="flex: 1; min-width: 300px; font-size: 1.3vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
-                            <li>UAIBot also computes distance between each one of the links and itself, to deal with autocollision. 
-                                It only computes distance between a link and another link that is separated by more than one degree in the 
-                                kinematic chain (e.g., it disregards collisions between link 2 and 3). This is because this specific collision 
-                                can be dealt with joint limits. Regardless, this is done through <b class="itext">compute_dist_auto</b>. 
+                            <li>UAIBot also computes the distance between each of the links and itself, to handle self-collisions. 
+                                It only computes the distance between a link and another link that is separated by more than one degree in the 
+                                kinematic chain (e.g., it disregards collisions between link 2 and link 3). This is because such specific collisions 
+                                can be handled using joint limits. This functionality is provided through <b class="itext">compute_dist_auto</b>.
+                                
 <pre><code class="language-python" style="text-align:left">
 import uaibot as ub
 
