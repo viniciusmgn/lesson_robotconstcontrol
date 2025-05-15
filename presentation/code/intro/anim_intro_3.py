@@ -43,7 +43,7 @@ K = 2.0
 q_min = robot.joint_limit[:,0]
 q_max = robot.joint_limit[:,1]
 
-for i in range(round(35/dt)):
+for i in range(round(20/dt)):
     
     qr = robot.q
     

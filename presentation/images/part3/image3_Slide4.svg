@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2025-05-15T11:39:34.729969</dc:date>
+    <dc:date>2025-05-15T18:35:29.587134</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -32,11 +32,11 @@ z
    <g id="line2d_1">
     <path d="M 413.989445 17.493365 
 L 292.619634 149.951898 
-" clip-path="url(#p828fe87f72)" style="fill: none; stroke-dasharray: 1.5,2.475; stroke-dashoffset: 0; stroke: #ffffff; stroke-width: 1.5"/>
+" clip-path="url(#pe41b648f42)" style="fill: none; stroke-dasharray: 1.5,2.475; stroke-dashoffset: 0; stroke: #ffffff; stroke-width: 1.5"/>
    </g>
    <g id="PathCollection_1">
     <defs>
-     <path id="mcd9e867adb" d="M 0 6.123724 
+     <path id="m0c8ca3fe82" d="M 0 6.123724 
 C 1.624031 6.123724 3.181764 5.47849 4.330127 4.330127 
 C 5.47849 3.181764 6.123724 1.624031 6.123724 0 
 C 6.123724 -1.624031 5.47849 -3.181764 4.330127 -4.330127 
@@ -48,8 +48,8 @@ C -3.181764 5.47849 -1.624031 6.123724 0 6.123724
 z
 " style="stroke: #81d41a"/>
     </defs>
-    <g clip-path="url(#p828fe87f72)">
-     <use xlink:href="#mcd9e867adb" x="413.989445" y="17.493365" style="fill: #81d41a; stroke: #81d41a"/>
+    <g clip-path="url(#pe41b648f42)">
+     <use xlink:href="#m0c8ca3fe82" x="413.989445" y="17.493365" style="fill: #81d41a; stroke: #81d41a"/>
     </g>
    </g>
    <g id="patch_2">
@@ -61,7 +61,18 @@ L 414.031811 17.532184
 L 363.566756 72.607883 
 L 367.760982 76.450991 
 z
-" clip-path="url(#p828fe87f72)" style="fill: #ffb66c; stroke: #ffb66c; stroke-linejoin: miter"/>
+" clip-path="url(#pe41b648f42)" style="fill: #ffb66c; stroke: #ffb66c; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 359.758734 212.760878 
+L 343.244591 205.180388 
+L 347.130897 201.026156 
+L 292.580378 149.99386 
+L 292.658889 149.909936 
+L 347.209408 200.942232 
+L 351.095714 196.788 
+z
+" clip-path="url(#pe41b648f42)" style="fill: #ec2ed7; stroke: #ec2ed7; stroke-linejoin: miter"/>
    </g>
    <g id="line2d_2">
     <path d="M 299.066735 258.831055 
@@ -334,83 +345,108 @@ L 294.506961 265.860594
 L 296.839508 262.398649 
 L 299.066735 258.831055 
 L 299.066735 258.831055 
-" clip-path="url(#p828fe87f72)" style="fill: none; stroke: #5983b0; stroke-width: 1.5; stroke-linecap: square"/>
+" clip-path="url(#pe41b648f42)" style="fill: none; stroke: #5983b0; stroke-width: 1.5; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_3">
+    <path d="M 292.619634 149.951898 
+L 309.404409 165.654143 
+L 324.932118 148.707774 
+L 308.147343 133.005529 
+L 292.619634 149.951898 
+" clip-path="url(#pe41b648f42)" style="fill: none; stroke: #ffffff; stroke-width: 1.5; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_4">
+    <defs>
+     <path id="m84b6fd95d8" d="M 0 3 
+C 0.795609 3 1.55874 2.683901 2.12132 2.12132 
+C 2.683901 1.55874 3 0.795609 3 0 
+C 3 -0.795609 2.683901 -1.55874 2.12132 -2.12132 
+C 1.55874 -2.683901 0.795609 -3 0 -3 
+C -0.795609 -3 -1.55874 -2.683901 -2.12132 -2.12132 
+C -2.683901 -1.55874 -3 -0.795609 -3 0 
+C -3 0.795609 -2.683901 1.55874 -2.12132 2.12132 
+C -1.55874 2.683901 -0.795609 3 0 3 
+z
+" style="stroke: #ffffff"/>
+    </defs>
+    <g clip-path="url(#pe41b648f42)">
+     <use xlink:href="#m84b6fd95d8" x="308.775876" y="149.329836" style="fill: #ffffff; stroke: #ffffff"/>
+    </g>
    </g>
    <g id="text_1">
-    <!-- $\mathcal{C}$ -->
+    <!-- $\mathcal{P}$ -->
     <g style="fill: #ffffff" transform="translate(333.543548 258.831055) scale(0.25 -0.25)">
      <defs>
-      <path id="CMSY10-43" d="M 3174 1032 
-C 3174 1070 3142 1077 3110 1077 
-C 3002 1077 2848 981 2842 981 
-C 2714 897 2688 853 2611 744 
-C 2413 442 2131 224 1715 224 
-C 1139 224 621 641 621 1602 
-C 621 2179 851 2942 1190 3449 
-C 1472 3858 1818 4192 2477 4192 
-C 2720 4192 2874 4102 2874 3865 
-C 2874 3641 2637 3185 2560 3057 
-C 2522 2987 2522 2974 2522 2961 
-C 2522 2916 2554 2916 2592 2916 
-C 2720 2916 2957 3057 3034 3160 
-C 3046 3185 3418 3813 3418 4141 
-C 3418 4493 3130 4544 2899 4544 
-C 1971 4544 1210 3935 915 3577 
-C 154 2654 77 1660 77 1327 
-C 77 392 550 -128 1293 -128 
-C 2323 -128 3174 872 3174 1032 
+      <path id="CMSY10-50" d="M 2227 4416 
+C 1325 4416 640 3979 378 3677 
+C 154 3420 134 3234 134 3221 
+C 134 3182 160 3170 198 3170 
+C 301 3170 448 3262 499 3294 
+C 634 3387 653 3426 691 3551 
+C 781 3815 960 4045 1766 4045 
+C 1651 2607 1267 1208 730 -128 
+C 691 -224 691 -237 691 -243 
+C 691 -262 710 -288 755 -288 
+C 858 -288 1165 -147 1235 20 
+C 1568 803 2093 2280 2285 4064 
+L 2618 4064 
+C 3398 4064 4147 3758 4147 3108 
+C 4147 2620 3686 1709 2445 1709 
+C 2310 1709 2240 1709 2061 1587 
+C 1946 1506 1894 1432 1894 1391 
+C 1894 1344 1933 1344 2016 1344 
+C 3181 1344 4691 2334 4691 3395 
+C 4691 4127 3827 4416 3085 4416 
+L 2227 4416 
 z
 " transform="scale(0.015625)"/>
      </defs>
-     <use xlink:href="#CMSY10-43" transform="scale(0.996264)"/>
+     <use xlink:href="#CMSY10-50" transform="scale(0.996264)"/>
     </g>
    </g>
    <g id="text_2">
-    <!-- $p$ -->
+    <!-- $q$ -->
     <g style="fill: #ffffff" transform="translate(425.481716 17.493365) scale(0.25 -0.25)">
      <defs>
-      <path id="CMMI12-70" d="M 275 -789 
-C 230 -980 205 -1031 -58 -1031 
-C -134 -1031 -198 -1031 -198 -1152 
-C -198 -1165 -192 -1216 -122 -1216 
-C -38 -1216 51 -1216 134 -1216 
-L 410 -1216 
-C 544 -1216 870 -1216 1005 -1216 
-C 1043 -1216 1120 -1216 1120 -1101 
-C 1120 -1031 1075 -1031 966 -1031 
-C 672 -1031 653 -987 653 -937 
-C 653 -861 941 219 979 364 
-C 1050 185 1222 -64 1555 -64 
-C 2278 -64 3059 875 3059 1814 
-C 3059 2401 2726 2816 2246 2816 
-C 1837 2816 1491 2420 1421 2331 
-C 1370 2650 1120 2816 864 2816 
-C 678 2816 531 2727 410 2484 
-C 294 2254 205 1865 205 1839 
-C 205 1814 230 1782 275 1782 
-C 326 1782 333 1788 371 1935 
-C 467 2312 589 2689 845 2689 
-C 992 2689 1043 2587 1043 2397 
-C 1043 2245 1024 2181 998 2067 
-L 275 -789 
+      <path id="CMMI12-71" d="M 2822 2759 
+C 2822 2790 2797 2816 2765 2816 
+C 2714 2816 2464 2585 2342 2362 
+C 2227 2646 2029 2816 1754 2816 
+C 1030 2816 250 1884 250 939 
+C 250 307 621 -64 1056 -64 
+C 1395 -64 1677 193 1811 339 
+L 1818 333 
+L 1574 -615 
+L 1517 -842 
+C 1459 -1031 1363 -1031 1062 -1031 
+C 992 -1031 928 -1031 928 -1152 
+C 928 -1197 966 -1216 1011 -1216 
+C 1101 -1216 1216 -1216 1306 -1216 
+L 1958 -1216 
+C 2054 -1216 2163 -1216 2259 -1216 
+C 2298 -1216 2374 -1216 2374 -1095 
+C 2374 -1031 2323 -1031 2227 -1031 
+C 1926 -1031 1907 -986 1907 -935 
+C 1907 -904 1914 -898 1933 -815 
+L 2822 2759 
 z
-M 1382 1993 
-C 1427 2171 1606 2357 1709 2446 
-C 1779 2510 1990 2689 2234 2689 
-C 2515 2689 2643 2408 2643 2076 
-C 2643 1769 2464 1047 2304 715 
-C 2144 370 1850 64 1555 64 
-C 1120 64 1050 613 1050 639 
-C 1050 658 1062 709 1069 741 
-L 1382 1993 
+M 1920 762 
+C 1888 652 1888 640 1798 518 
+C 1658 339 1376 64 1075 64 
+C 813 64 666 301 666 678 
+C 666 1030 864 1747 986 2016 
+C 1203 2464 1504 2695 1754 2695 
+C 2176 2695 2259 2170 2259 2119 
+C 2259 2113 2240 2028 2234 2016 
+L 1920 762 
 z
 " transform="scale(0.015625)"/>
      </defs>
-     <use xlink:href="#CMMI12-70" transform="scale(0.996264)"/>
+     <use xlink:href="#CMMI12-71" transform="scale(0.996264)"/>
     </g>
    </g>
    <g id="text_3">
-    <!-- $\Pi_{\mathcal{C}}(p)$ -->
+    <!-- $\Pi_{\mathcal{P}}(q)$ -->
     <g style="fill: #ffffff" transform="translate(212.173737 161.444169) scale(0.25 -0.25)">
      <defs>
       <path id="CMR17-5" d="M 3590 3898 
@@ -466,14 +502,14 @@ z
 " transform="scale(0.015625)"/>
      </defs>
      <use xlink:href="#CMR17-5" transform="scale(0.996264)"/>
-     <use xlink:href="#CMSY10-43" transform="translate(69.07243 -14.943915) scale(0.697382)"/>
-     <use xlink:href="#CMR17-28" transform="translate(110.358008 0) scale(0.996264)"/>
-     <use xlink:href="#CMMI12-70" transform="translate(145.638776 0) scale(0.996264)"/>
-     <use xlink:href="#CMR17-29" transform="translate(194.59829 0) scale(0.996264)"/>
+     <use xlink:href="#CMSY10-50" transform="translate(69.07243 -14.943915) scale(0.697382)"/>
+     <use xlink:href="#CMR17-28" transform="translate(123.811616 0) scale(0.996264)"/>
+     <use xlink:href="#CMMI12-71" transform="translate(159.092384 0) scale(0.996264)"/>
+     <use xlink:href="#CMR17-29" transform="translate(205.918708 0) scale(0.996264)"/>
     </g>
    </g>
    <g id="text_4">
-    <!-- $N_{\mathcal{C}}(p)$ -->
+    <!-- $N_{\mathcal{P}}(q)$ -->
     <g style="fill: #ffffff" transform="translate(363.370879 96.771111) scale(0.25 -0.25)">
      <defs>
       <path id="CMMI12-4e" d="M 4736 3698 
@@ -516,20 +552,67 @@ z
 " transform="scale(0.015625)"/>
      </defs>
      <use xlink:href="#CMMI12-4e" transform="scale(0.996264)"/>
-     <use xlink:href="#CMSY10-43" transform="translate(78.115119 -14.943915) scale(0.697382)"/>
-     <use xlink:href="#CMR17-28" transform="translate(119.400697 0) scale(0.996264)"/>
-     <use xlink:href="#CMMI12-70" transform="translate(154.681465 0) scale(0.996264)"/>
-     <use xlink:href="#CMR17-29" transform="translate(203.640979 0) scale(0.996264)"/>
+     <use xlink:href="#CMSY10-50" transform="translate(78.115119 -14.943915) scale(0.697382)"/>
+     <use xlink:href="#CMR17-28" transform="translate(132.854305 0) scale(0.996264)"/>
+     <use xlink:href="#CMMI12-71" transform="translate(168.135073 0) scale(0.996264)"/>
+     <use xlink:href="#CMR17-29" transform="translate(214.961397 0) scale(0.996264)"/>
+    </g>
+   </g>
+   <g id="text_5">
+    <!-- $T_{\mathcal{P}}(q)$ -->
+    <g style="fill: #ffffff" transform="translate(371.251005 224.253149) scale(0.25 -0.25)">
+     <defs>
+      <path id="CMMI12-54" d="M 2669 3910 
+C 2707 4064 2720 4121 2816 4147 
+C 2867 4160 3078 4160 3213 4160 
+C 3853 4160 4154 4134 4154 3634 
+C 4154 3537 4128 3295 4090 3057 
+L 4083 2980 
+C 4083 2954 4109 2916 4147 2916 
+C 4211 2916 4211 2948 4230 3050 
+L 4416 4184 
+C 4429 4243 4429 4256 4429 4275 
+C 4429 4345 4390 4345 4262 4345 
+L 762 4345 
+C 614 4345 608 4339 570 4224 
+L 179 3070 
+C 173 3056 154 2986 154 2980 
+C 154 2948 179 2916 218 2916 
+C 269 2916 282 2941 307 3024 
+C 576 3801 710 4160 1562 4160 
+L 1990 4160 
+C 2144 4160 2208 4160 2208 4089 
+C 2208 4069 2208 4057 2176 3941 
+L 1318 499 
+C 1254 249 1242 185 563 185 
+C 403 185 358 185 358 64 
+C 358 0 429 0 461 0 
+C 621 0 787 0 947 0 
+L 1946 0 
+C 2106 0 2278 0 2438 0 
+C 2509 0 2573 0 2573 121 
+C 2573 185 2528 185 2362 185 
+C 1786 185 1786 243 1786 339 
+C 1786 346 1786 391 1811 494 
+L 2669 3910 
+z
+" transform="scale(0.015625)"/>
+     </defs>
+     <use xlink:href="#CMMI12-54" transform="scale(0.996264)"/>
+     <use xlink:href="#CMSY10-50" transform="translate(57.175044 -14.943915) scale(0.697382)"/>
+     <use xlink:href="#CMR17-28" transform="translate(111.91423 0) scale(0.996264)"/>
+     <use xlink:href="#CMMI12-71" transform="translate(147.194998 0) scale(0.996264)"/>
+     <use xlink:href="#CMR17-29" transform="translate(194.021321 0) scale(0.996264)"/>
     </g>
    </g>
    <g id="PathCollection_2">
-    <g clip-path="url(#p828fe87f72)">
-     <use xlink:href="#mcd9e867adb" x="413.989445" y="17.493365" style="fill: #81d41a; stroke: #81d41a"/>
+    <g clip-path="url(#pe41b648f42)">
+     <use xlink:href="#m0c8ca3fe82" x="413.989445" y="17.493365" style="fill: #81d41a; stroke: #81d41a"/>
     </g>
    </g>
    <g id="PathCollection_3">
     <defs>
-     <path id="m1399fac93f" d="M 0 6.123724 
+     <path id="ma1ca0de78a" d="M 0 6.123724 
 C 1.624031 6.123724 3.181764 5.47849 4.330127 4.330127 
 C 5.47849 3.181764 6.123724 1.624031 6.123724 0 
 C 6.123724 -1.624031 5.47849 -3.181764 4.330127 -4.330127 
@@ -541,13 +624,13 @@ C -3.181764 5.47849 -1.624031 6.123724 0 6.123724
 z
 " style="stroke: #191919"/>
     </defs>
-    <g clip-path="url(#p828fe87f72)">
-     <use xlink:href="#m1399fac93f" x="522.465053" y="149.951898" style="fill: #191919; stroke: #191919"/>
+    <g clip-path="url(#pe41b648f42)">
+     <use xlink:href="#ma1ca0de78a" x="522.465053" y="149.951898" style="fill: #191919; stroke: #191919"/>
     </g>
    </g>
    <g id="PathCollection_4">
     <defs>
-     <path id="m740c8fd32b" d="M 0 6.123724 
+     <path id="m069c89d6ea" d="M 0 6.123724 
 C 1.624031 6.123724 3.181764 5.47849 4.330127 4.330127 
 C 5.47849 3.181764 6.123724 1.624031 6.123724 0 
 C 6.123724 -1.624031 5.47849 -3.181764 4.330127 -4.330127 
@@ -559,14 +642,14 @@ C -3.181764 5.47849 -1.624031 6.123724 0 6.123724
 z
 " style="stroke: #ec9ba4"/>
     </defs>
-    <g clip-path="url(#p828fe87f72)">
-     <use xlink:href="#m740c8fd32b" x="292.619634" y="149.951898" style="fill: #ec9ba4; stroke: #ec9ba4"/>
+    <g clip-path="url(#pe41b648f42)">
+     <use xlink:href="#m069c89d6ea" x="292.619634" y="149.951898" style="fill: #ec9ba4; stroke: #ec9ba4"/>
     </g>
    </g>
   </g>
  </g>
  <defs>
-  <clipPath id="p828fe87f72">
+  <clipPath id="pe41b648f42">
    <rect x="0" y="0" width="576" height="384"/>
   </clipPath>
  </defs>
