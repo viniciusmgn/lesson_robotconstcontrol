@@ -4729,11 +4729,11 @@ style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                     <div
                         style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
-                            <li>In control, a <b class="ttext">class \(\mathcal{K}\) function (class "Kappa")</b> is a function \(\kappa : \mathbb{R}^+ \mapsto \mathbb{R}^+\) 
-                                (from nonnegative reals to nonnegative reals) that is continuous and strictly increasing, such that \(\kappa(0)=0\).
+                            <li>In control, a <b class="ttext">class \(\mathcal{K}_{\infty}\) function (class "Kappa")</b> is a function \(\kappa : \mathbb{R}^+ \mapsto \mathbb{R}^+\) 
+                                (from nonnegative reals to nonnegative reals) that is continuous and strictly increasing, such that \(\kappa(0)=0\) and \(\kappa(\infty)=\infty\).
                             </b> 
                             </li><br>
-                            <li>For example, \(\kappa(u) = 2u\), \(\kappa(u)=u^2\). Non-examples include \(\kappa(u) = \min(u,1)\) (it is increasing but not strictly increasing), 
+                            <li>For example, \(\kappa(u) = 2u\), \(\kappa(u)=u^2\). Non-examples include \(\kappa(u) = 1-e^{-u}\) (it is increasing but not \(\kappa(\infty)=\infty)\), 
                                 and \(\kappa(u)=u+1\) (it does not satisfy \(\kappa(0) = 0\)).
                             </li><br>
                             <li>Then, we can formally establish properties (1) and (2) by using the traditional S2S-HSD 
@@ -5379,7 +5379,7 @@ style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                             <li>
                                 However, even then, BVHs can help. Note that points \(a_i\) that have  
                                 $$\alpha_i = \hat{E}_{\mathcal{B}}(a_i)/\Lambda_{\mathcal{A},\mathcal{B}}$$ 
-                                (the ratio between the i-th Gonçalves S2S-HSD and the Euclidean S2S-HSD)
+                                (the ratio between the i-th Gonçalves P2S-HSD and the Euclidean S2S-HSD)
                                 much greater than one do not contribute much in the short-circuit operation. 
                             </li><br>
                             <li>Thus, if we approximate \(\hat{E}_{\mathcal{B}}(a_i) \approx E_{\mathcal{B}}(a_i)\), then \(\alpha_i \approx  E_{\mathcal{B}}(a_i)/\Lambda_{\mathcal{A},\mathcal{B}}\). 
