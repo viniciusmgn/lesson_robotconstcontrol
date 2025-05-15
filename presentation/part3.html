@@ -53,6 +53,308 @@
 
 
 
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    PATH PLANNING VS MOTION CONTROL
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">GUIDANCE VECTOR FIELDS</b>
+                </h3>
+
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 3; min-width: 300px; font-size: 1.5vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+
+
+                        <div style="position:absolute; width: 70%; ">
+
+
+                                    <div style="position:absolute; width: 80%; text-align: justify;"
+                                        class="vim_indicator current-visible fragment" data-fragment-index="0">
+                                        <ul>
+                                            <li> A pretty common problem in robotics is as follows: we have a point \(p \in \mathbb{R}^n\) 
+                                    and an one-dimensional curve \(\mathcal{C} \subseteq \mathbb{R}^n\). We assume that we 
+                                    command the point's velocity \(\dot{p}=u\). Devise a controller to, from wherever you are, go to this curve and 
+                                    keep tracking it.
+                                            </li><br>
+                                            
+                                            <li> The most popular approach is to do <b class="itext">trajectory tracking</b>: parametrize this trajectory into 
+                                                a function \(p_d: \mathbb{R} \mapsto \mathbb{R}^n\) and use a proportional controller plus feedforward:
+                                                $$ u(t) = \dot{p}_d(t) + K_p(p_d(t)-p(t)).$$
+                                            </li><br>
+                                            <li>This is pretty easy to implement, but it <b class="itext">forces the point \(p\) to be at point 
+                                                \(p_d(t)\) at time \(t\)
+                                            </b>, which not necessarily is a requirement (except in very specific situations, like a drone pursuing an 
+                                        enemy drone).</li>
+
+                                        </ul>
+                                    </div>
+
+                                    <div style="position:absolute; width: 80%; text-align: justify;"
+                                        class="vim_indicator current-visible fragment" data-fragment-index="1">
+                                   <ul>
+                                            <li> Thus, often it is much better to do <b class="itext">path tracking</b> instead: we dont care too much that we 
+                                                have to be at a specific point at a specific time, as long as we stay in the curve following it. 
+                                            </li><br>
+                                            <li> In that case, a popular class of algorithms is <b class="itext">Guidance Vector Fields</b>, that 
+                                                establishes a velocity for each point in the space such that if the point follows this velocity, it 
+                                                tracks the curve. 
+                                            </li><br>
+                                            <li><b class="itext">UFMG has a good tradition of researching such vector fields.</b> It started with 
+                                                <a href="https://www.researchgate.net/profile/Luciano-Pimenta/publication/224153222_Vector_Fields_for_Robot_Navigation_Along_Time-Varying_Curves_in_-Dimensions/links/0c960521797822db64000000/Vector-Fields-for-Robot-Navigation-Along-Time-Varying-Curves-in-Dimensions.pdf" target="_blank">
+                                    <b class="hlink">Gonçalves et. al (2010)</b></a>, but the approach I will show here is the updated and improved version in 
+                                            proposed in <a href="https://ieeexplore.ieee.org/abstract/document/9490231/" target="_blank">
+                                    <b class="hlink">Adriano et. al (2019)</b>
+                                </a> (please cite these papers!).</li>
+
+                                        </ul>
+                                    </div>
+
+
+                        </div>
+
+
+
+                    </div>
+
+                    <div
+                        style="flex: 2; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+
+                        <div style="flex: 4; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image1.svg"
+                                        style="max-width: 100%; height: auto; max-height: 60vh;clip-path: inset(50px 30px 50px 30px);">
+                                </div>
+                            
+
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: justify;; flex-shrink: 0; margin-bottom: 1rem;">
+                    PATH PLANNING VS MOTION CONTROL
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: justify;; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">GUIDANCE VECTOR FIELDS</b>
+                </h3>
+
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%;">
+
+
+                        <div style="position:absolute; width: 50%; ">
+                           
+
+                                    <div style="position:absolute; width: 80%;  text-align: justify;"
+                                        class="vim_indicator current-visible fragment" data-fragment-index="0">
+                                        <ul>
+                                            <li>To use the algorithm the curve \(\mathcal{C}\) should be differentiable and without self-intersections.</li><br>
+                                            <li> Given a point \(p\) and a curve \(\mathcal{C}\), we can compute 
+                                                the vector field \(\Psi(q)\) as follows: </li>
+
+                                        </ul>
+                                    </div>
+
+                                    <div style="position:absolute; width: 80%;  text-align: justify;"
+                                        class="vim_indicator current-visible fragment" data-fragment-index="1">
+                                   <ul>
+                                            <li> First we compute the <b class="itext">projection</b> \(\Pi_{\mathcal{C}}(p)\) of the point \(p\) into \(\mathcal{C}\).</li><br>
+                                            <li>  We usually do this by discretizing the curve \(\mathcal{C}\) into points \(c[i]\) very close to each other, 
+                                                and testing each one for the minimum. We find one (because there can be more than one) minimum index \(i_{min}(p)\).
+                                                We then use 
+                                                $$\Pi_{\mathcal{C}}(p) = c[i_{min}(p)].$$
+                                            </li><br>
+                                            <li>    Usually we dont have much points (around 1000), so that is not that bad.</li><br>
+                    
+                                            <li>We also store the <b class="itext">P2S-HSD</b> \(E_{\mathcal{C}}(p)\).</li>
+
+
+                                        </ul>
+                                    </div>
+
+                                    <div style="position:absolute; width: 80%;  text-align: justify;"
+                                        class="vim_indicator current-visible fragment" data-fragment-index="2">
+                                   <ul>
+                                            <li> We then compute the  <b class="itext">normal vector</b> \(N_{\mathcal{C}}(p)\), which is the 
+                                                normalized vector from point \(p\) to the projection: 
+                                                $$N_{\mathcal{C}}(p) = \frac{p- \Pi_{\mathcal{C}}(p)}{\|p - \Pi_{\mathcal{C}}(p)\|}.$$
+                                            </li><br>
+                                            <li>This vector is undefined when \(p- \Pi_{\mathcal{C}}(p)=0\), i.e., when 
+                                                \(p \in \mathcal{C}\). But this is not a problem.
+                                            </li>
+    
+
+
+                                        </ul>
+                                    </div>
+
+                                    <div style="position:absolute; width: 80%;  text-align: justify;"
+                                        class="vim_indicator current-visible fragment" data-fragment-index="3">
+                                   <ul>
+                                            <li> We then compute the  <b class="itext">tangent vector</b> \(T_{\mathcal{C}}(p)\). 
+                                                This is the normalized vector tangent to the curve \(\mathcal{C}\) at the point 
+                                                \(\Pi_{\mathcal{C}}(p)\), and can be computed with the previous \(i_{min}(p)\):
+                                                $$T_{\mathcal{C}}(p) = \frac{ c[i_{min}(p)+1] - c[i_{min}(p)]}{\| c[i_{min}(p)+1] - c[i_{min}(p)] \|}.$$
+                                            </li><br>
+                                            <li>It can be shown (and this is very important for the algorithm) that 
+                                                \(N_{\mathcal{C}}(p)\) and \(T_{\mathcal{C}}(p)\) are orthogonal to each other.
+                                            </li><br>
+    
+
+
+                                        </ul>
+                                    </div>
+
+
+                                    <div style="position:absolute; width: 80%;  text-align: justify;"
+                                        class="vim_indicator current-visible fragment" data-fragment-index="4">
+                                   <ul>
+                                            <li>Note that the order in which the points \(c[i]\) are (clockwise or counterclocwise) determines 
+                                                the direction of path tracking we want.
+                                            </li><br>
+                                            <li>Two pretty common implementation errors is to have the points not very close enough, and, also, 
+                                                having repeated points. So, make them close enough and remove repeated (or extremely close) points.
+                                            </li>
+    
+
+
+                                        </ul>
+                                    </div>
+
+
+
+                                    <div style="position:absolute; width: 80%;  text-align: justify;"
+                                        class="vim_indicator current-visible fragment" data-fragment-index="5">
+                                   <ul>
+                                            <li> We have all that we need to compute \(\Psi(p)\). The idea is that the normal vector makes 
+                                                the point converge to (any point) in the curve, and the tangent vector makes the point \(p\) 
+                                                move along the curve.
+                                            </li><br>
+                                            <li>The resulting velocity vector is a <b class="itext">weighted sum</b> of the two vectors:
+                                                 <b class="ttext">$$\Psi(p) = G(p) N_{\mathcal{C}}(p) +  H(p) T_{\mathcal{C}}(p)$$</b>
+                                                 for two scalars \(G(p),H(p)\) so when we are far away to the curve, \(G\) should be large and \(H\) small, whereas when we are 
+                                                 close to the curve, the opposite happens. 
+                                            </li><br>
+                                            <li>
+                                                In special, when the distance to the curve is zero, \(G\) should be zero. Furthermore, \(H\) should never vanish when \(p \in \mathcal{C}\).
+                                            </li>
+    
+
+
+                                        </ul>
+                                    </div>
+
+
+                                    <div style="position:absolute; width: 80%;  text-align: justify; font-size: 1.3vw;"
+                                        class="vim_indicator current-visible fragment" data-fragment-index="6">
+                                   <ul>
+                                            <li>A popular approach is to choose:
+                                                $$G(p) = v_{c} \frac{2}{\pi} atan\big(\alpha E_{\mathcal{S}}(p)^{\beta}\big).$$
+                                                $$H(p) = \sqrt{v_c^2-H(p)^2}.$$
+                                                for positive parameters \(v_c,\alpha,\beta\) and "atan" being the arctangent function 
+                                                in radians.
+                                            </li><br>
+                                            <li>The benefit of this choice is that \(\|\Psi(p)\|\) is constant, with value  \(v_c\). 
+                                                The parameters \(\alpha\) and \(\beta\) controls how aggressive is the convergence. Usually we fix 
+                                                \(\beta=1/4\) and modify only \(\alpha\).
+                                            </li><br>
+                                            <li>The larger is \(\alpha\), the more aggressive is the controller with regards to 
+                                                convergence. It, however, can generates accelerations that the robot cant follow.
+                                            </li>
+
+    
+
+
+                                        </ul>
+                                    </div>
+                        </div>
+
+
+
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+
+                        <div style="flex: 4; flex-direction: row">
+                            <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                                data-fragment-index="0">
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image2_Slide1.svg"
+                                        style="max-width: 100%; height: auto; max-height: 60vh;">
+                                </div>
+                            </div>
+
+                            <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                                data-fragment-index="1">
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image2_Slide2.svg"
+                                        style="max-width: 100%; height: auto; max-height: 60vh;">
+                                </div>
+                            </div>
+
+                            <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                                data-fragment-index="2">
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image2_Slide3.svg"
+                                        style="max-width: 100%; height: auto; max-height: 60vh;">
+                                </div>
+                            </div>
+
+
+                            <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                                data-fragment-index="3">
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image2_Slide4.svg"
+                                        style="max-width: 100%; height: auto; max-height: 60vh;">
+                                </div>
+                            </div>
+
+                           <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                                data-fragment-index="4">
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image2_Slide4.svg"
+                                        style="max-width: 100%; height: auto; max-height: 60vh;">
+                                </div>
+                            </div>
+
+                            <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                                data-fragment-index="5">
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image2_Slide5.svg"
+                                        style="max-width: 100%; height: auto; max-height: 60vh;">
+                                </div>
+                            </div>
+
+
+                            <div style="position:absolute; width: 50%; " class="vim_indicator current-visible fragment"
+                                data-fragment-index="6">
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image2_Slide5.svg"
+                                        style="max-width: 100%; height: auto; max-height: 60vh;">
+                                </div>
+                            </div>
+
+                        </div>
+  
+
+                    </div>
+                </div>
+            </section>
+
+
             <style>
                 .reveal .progress {
                     color: #34eb5e;

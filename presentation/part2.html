@@ -692,7 +692,7 @@ for link in robot.links:
                             </li><br>
                             <li>In some sense, it is the "linear algebra" of geometry: just like non-linearities can be
                                 studied by tools of linear algebra,
-                                non-convexity can be studded using tools from convexity theorem;</li><br>
+                                non-convexity can be studded using tools from convexity theory;</li><br>
                             <li>I will present (and discuss) some basic results here. If you want to know more, I
                                 recommend Chapter 3 of
                                 <a href="https://web.stanford.edu/~boyd/cvxbook/bv_cvxbook.pdf" target="_blank"
@@ -4317,10 +4317,10 @@ style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                 <div
                     style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
                     <div
-                        style="flex: 9; min-width: 300px; font-size: 1.2vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        style="flex: 9; min-width: 300px; font-size: 1.3vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>We start by noting that:
-                                $$F(t) = \Lambda_{\mathcal{A}(t),\mathcal{B}(t)} = \min_{a \in \mathcal{A}(t), b \in \mathcal{B}(t)} = \frac{\|a-b\|^2}{2} = \min_{a_0 \in \mathcal{A}_0, b_0 \in \mathcal{B}_0} \underbrace{\frac{\|\big(Q_{\mathcal{A}}(t)a_0 + s_{\mathcal{A}}(t)\big) - \big(Q_{\mathcal{B}}(t)b_0 + s_{\mathcal{B}}(t)\big)\|^2}{2}}_{f(a_0,b_0,t)}$$
+                                $$F(t) = \Lambda_{\mathcal{A}(t),\mathcal{B}(t)} = \min_{a \in \mathcal{A}(t), b \in \mathcal{B}(t)} = \frac{\|a-b\|^2}{2} = \min_{a_0 \in \mathcal{A}_0, b_0 \in \mathcal{B}_0} \underbrace{\frac{\|\big(Q_{\mathcal{A}}(t)a_0 + s_{\mathcal{A}}(t)\big) - \big(Q_{\mathcal{B}}(t)b_0 + s_{\mathcal{B}}(t)\big)\|^2}{2}}_{f(a_0,b_0,t)}.$$
                             </li><br>
                             <li>We are just writing the optimization problem using the local coordinates \(a_0\) and \(b_0\) (written in the  objects' respective's body frames) instead of 
                                 the original variables \(a,b\), that were written in the global (world) frame.<br>
@@ -4350,7 +4350,7 @@ style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                 <div
                     style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
                     <div
-                        style="flex: 9; min-width: 300px; font-size: 1.2vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        style="flex: 9; min-width: 300px; font-size: 1.3vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>Let \(v_{\mathcal{A}}(t), v_{\mathcal{B}}(t), \omega_{\mathcal{A}}(t), \omega_{\mathcal{B}}(t)\) represent the linear and angular 
                                 velocity 3D vectors of each object at time \(t\). Using the properties from differential kinematics, it can be shown that:
@@ -4386,7 +4386,7 @@ style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                 <div
                     style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
                     <div
-                        style="flex: 9; min-width: 300px; font-size: 1.2vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        style="flex: 9; min-width: 300px; font-size: 1.3vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>Thus, we have the nice formula
                                 <b class="ttext">$$\frac{dF}{dt} = (a^*-b^*)^\top\Big( \big(\omega_{\mathcal{A}} \times (a^*-s_{\mathcal{A}})+v_{\mathcal{A}}\big) - \big(\omega_{\mathcal{B}} \times (b^*-s_{\mathcal{B}}) + v_{\mathcal{B}}\big)  \Big)
@@ -4422,7 +4422,7 @@ style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                 <div
                     style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
                     <div
-                        style="flex: 9; min-width: 300px; font-size: 1.2vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        style="flex: 9; min-width: 300px; font-size: 1.3vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>This formula can be used to compute more complex gradients using the <b class="itext">chain rule trick</b>.
                             </li><br>
@@ -4460,7 +4460,7 @@ style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                 <div
                     style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
                     <div
-                        style="flex: 9; min-width: 300px; font-size: 1.2vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        style="flex: 11; min-width: 300px; font-size: 1.3vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>We now use the <b class="itext">mixed product formula</b> for vectors (that can be easily proved using the connection between 
                                 the cross product and the S operator, along with basic properties of matrices). It says that, for three 3D vectors \(u_1,u_2,u_2\):
@@ -4471,7 +4471,7 @@ style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                                 in which the dependencies on \(t\) were omitted. But, through differential kinematics, \(v_{\mathcal{A}} = J_v(q)\dot{q}\) and 
                                 \(\omega_{\mathcal{A}} = J_{\omega}(q)\dot{q}\) , in which \(J_v,J_{\omega}\) are the linear and angular velocity Jacobians associated to 
                                 thae link in which \(\mathcal{A}\) is attached. Thus, making the substitution:
-                                $$\frac{d}{dt} F(q) = \Big( \big(a^*-b^*\big)^\top J_v + \Big(\big(a^*-s_{\mathcal{A}}\big) \times \big(a^*-b^*\big)\Big)^\top J_{\omega}\Big)\dot{q}$$
+                                $$\frac{d}{dt} F(q) = \Big( \big(a^*-b^*\big)^\top J_v + \Big(\big(a^*-s_{\mathcal{A}}\big) \times \big(a^*-b^*\big)\Big)^\top J_{\omega}\Big)\dot{q}.$$
                             </li>
                         </ul>
                     </div>
