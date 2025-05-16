@@ -18,7 +18,7 @@
         }
     </script>
 
-    <title>Part 1 - Review</title>
+    <title>Part 3 - Control</title>
 
     <link rel="stylesheet" href="presentation/dist/reset.css">
     <link rel="stylesheet" href="presentation/dist/reveal.css">
@@ -893,7 +893,812 @@ plt.show()
             </section>
 
 
+
+            <section
+                style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+                <h3 style="font-size: 3.5vw; margin-bottom: 0.5rem;">CONTROL BARRIER FUNCTIONS</h3>
+
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                    <img src="presentation/images/part3/main.png" style="max-width: 40%; height: auto;">
+                </div>
+            </section>
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CONTROL BARRIER FUNCTIONS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">INTRODUCTION</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 3; min-width: 300px; font-size: 1.5vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+                        <ul>
+                            <li>  
+                                <b class="itext">Control Barrier Functions (CBFs, for short)</b> refer both to a technique used to enforce 
+                                constraints within a control loop, and to the class of functions that play a central role in this technique. 
+                            </li><br>
+                            <li>
+                                The idea is very simple: given a constraint that depends only on the configuration \(q \in \mathbb{R}^n\), find a 
+                                differentiable function \(B: \mathbb{R}^n \mapsto \mathbb{R}\) such that the constraint can be expressed as:
+                                <b class="ttext">$$B(q) \geq 0.$$</b>
+                            </li><br>
+                            <li>
+                                This idea is very similar to the <b class="itext">task function approach</b>, which models the task as 
+                                \(r(q) = 0\). The way we enforce this constraint is also quite similar to how we ensure convergence 
+                                of the task function to \(0\).
+                            </li>
+                        </ul>
+
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 2; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 4; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/main.png"
+                                        style="max-width: 100%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CONTROL BARRIER FUNCTIONS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">INTRODUCTION</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 3; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul>
+                            <li>
+                                In the most basic version of the task function approach, \(r \rightarrow 0\) is achieved by specifying that the control input \(u\) 
+                                should satisfy \(\frac{d}{dt} r(q) = -Kr(q)\), for a positive scalar \(K\). Analogously, we enforce the constraint \(B(q) \geq 0\) by 
+                                choosing (somehow) the control input \(u\) such that:
+                                <b class="ttext">$$\frac{d}{dt}B(q) \geq -\eta B(q).$$</b>
+                                for a positive scalar constant \(\eta\).
+                            </li><br>
+                            <li>
+                                It can be shown that this ensures \(B(q(t)) \geq 0\) for all \(t \geq 0\), as long as \(B(q(0)) \geq 0\) (i.e., the constraint holds at time \(t = 0\)). 
+                                This can be proved by multiplying the inequality by the nonnegative term \(e^{\eta t}\). Then:
+                                $$ e^{\eta t}\frac{d}{dt}B(q(t)) \geq -e^{\eta t}\eta B(q(t)) \ \rightarrow \  $$
+                                $$ e^{\eta t}\frac{d}{dt}B(q(t)) + e^{\eta t}\eta B(q(t)) \geq 0 \ \rightarrow \ \underbrace{\frac{d}{dt}\Big(e^{\eta t} B(q(t))\Big)}_{ \mbox{product rule} } \geq 0.$$
+                            </li><br>
+                        </ul>
+
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 2; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 4; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/main.png"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CONTROL BARRIER FUNCTIONS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">INTRODUCTION</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 3; min-width: 300px; font-size: 1.4vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+                        <ul>
+                            <li>
+                                Note that we can preserve the inequality when multiplying by the integrating factor \(e^{\eta t}\), because it is always nonnegative.
+                            </li><br>
+                            <li>
+                                We then integrate both sides from \(0\) to \(t \geq 0\). Since the upper limit of the integral, \(t\), is greater than or equal to the lower limit, \(0\), the inequality is preserved. Thus:
+                                $$\int_0^t \frac{d}{d \tau}\Big(e^{\eta \tau} B(q(\tau))\Big)d\tau \geq 0 \rightarrow e^{\eta t} B(q(t)) - B(q(0)) \geq 0.$$
+                            </li><br>
+                            <li>
+                                By rearranging, we obtain:
+                                $$ B(q(t)) \geq e^{-\eta t}B(q(0)) $$
+                                which makes it clear that if \(B(q(0)) \geq 0\), then \(B(q(t)) \geq 0\) for all \(t \geq 0\). Furthermore, as \(t \rightarrow \infty\), 
+                                we recover the original constraint \(B(q(t)) \geq 0\).
+                            </li>
+                        </ul>
+
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 2; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 4; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/main.png"
+                                        style="max-width: 100%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CONTROL BARRIER FUNCTIONS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">INTRODUCTION</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 3; min-width: 300px; font-size: 1.4vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul>
+                            <li>
+                                Thus, we transformed the algebraic constraint \(B(q(t)) \geq 0\) into a <b class="itext">differential constraint</b>:
+                                \(\frac{d}{dt} B(q(t)) \geq -\eta B(q(t))\).
+                            </li><br>
+                            <li>
+                                But how do we choose the control input \(u\) to enforce this constraint?
+                            </li><br>
+                            <li>
+                                To answer this question, we need to understand how the configuration \(q\) and the control input \(u\) are related, and 
+                                also define our task (e.g., reaching a target pose for a manipulator). After all, \(B(q) \geq 0\) is not exactly our task, 
+                                but rather a constraint on the task (such as obstacle avoidance).
+                            </li>
+                        </ul>
+
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 2; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 4; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/main.png"
+                                        style="max-width: 100%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CONTROL BARRIER FUNCTIONS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">FIRST ORDER KINEMATIC CONTROL WITH CBFS</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 3; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul>
+                            <li>
+                                Let's start by assuming that  
+                                <b class="itext">$$\dot{q} = u$$</b> 
+                                (i.e., first-order kinematic control). For the task, let's ignore motion planning for now and assume that our task 
+                                is time-invariant. That is, we have a time-invariant task function \(r: \mathbb{R}^n \mapsto \mathbb{R}^m\) that models the task. 
+                                Furthermore, suppose we have more than one constraint \(B_i(q) \geq 0\); say, exactly \(s\) constraints.
+                            </li><br>
+                            <li>
+                                If we had no constraints, we would simply enforce \(\dot{r} = -Kr \rightarrow \frac{\partial r}{\partial q}(q)u = -Kr(q)\) 
+                                (in the most basic version of the task function approach). However, we also need to consider the constraints, which can be 
+                                enforced by \(\dot{B}_i \geq -\eta_i B_i\) for positive scalar constants \(\eta_i > 0\).
+                            </li><br>
+                            <li>
+                                By the <b class="itext">chain rule</b>, the CBF constraints can be written as:
+                                <b class="ttext">$$\frac{\partial B_i}{\partial q}(q)u \geq -\eta_i B_i(q).$$</b> 
+                            </li>
+                        </ul>
+
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 2; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 4; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/main.png"
+                                        style="max-width: 100%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CONTROL BARRIER FUNCTIONS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">FIRST ORDER KINEMATIC CONTROL WITH CBFS</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 3; min-width: 300px; font-size: 1.4vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+
+                        <ul>
+                            <li>
+                                One initial idea is as follows: at each time step, we measure the configuration \(q\), and set up a 
+                                <b class="itext">system of linear equations and inequalities for the variable \(u\)</b>:
+                                $$\frac{\partial r}{\partial q}(q)u = -Kr(q)$$ 
+                                $$\frac{\partial B_i}{\partial q}(q)u \geq -\eta_i B_i(q)$$
+                                for \(i = 1, \ldots, s\).
+                            </li><br>
+                            <li>
+                                There are efficient algorithms to compute such a \(u\), <b class="itext">if it exists</b>. The issue here is that, 
+                                unless the robot has many degrees of freedom, the equality \(\frac{\partial r}{\partial q}(q)u = -Kr(q)\) 
+                                already consumes almost all of them, and the remaining ones may not be sufficient to satisfy the CBF 
+                                constraints.
+                            </li><br>
+                        </ul>
+
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 2; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 4; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/main.png"
+                                        style="max-width: 100%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CONTROL BARRIER FUNCTIONS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">FIRST ORDER KINEMATIC CONTROL WITH CBFS</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 3; min-width: 300px; font-size: 1.4vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+
+                        <ul>
+                            <li>
+                                Let's change the formulation. The constraints \(B_i(q) \geq 0\) are usually 
+                                <b class="itext">hard constraints</b> (such as obstacle avoidance). The task, however, is typically something we 
+                                would like to accomplish, but failing to do so would not result in a critical failure.
+                            </li><br>
+                            <li>
+                                Thus, instead of enforcing \(\frac{\partial r}{\partial q}(q)u = -Kr(q)\) exactly, we could try to minimize 
+                                the error:
+                                $$  \min_{u} \left\| \frac{\partial r}{\partial q}(q)u + Kr(q) \right\|^2. $$
+                            </li><br>
+                            <li>
+                                We can then assemble an <b class="itext">optimization problem</b> to find the control input 
+                                (i.e., the configuration velocity) \(u\).
+                            </li>
+                        </ul>
+
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 2; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 4; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/main.png"
+                                        style="max-width: 100%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CONTROL BARRIER FUNCTIONS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">FIRST ORDER KINEMATIC CONTROL WITH CBFS</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 3; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+                        <ul>
+                            <li>Thus, we have the following formulation:
+                                
+                                <b class="ttext">$$\min_{u} \left\| \frac{\partial r}{\partial q}(q)u +Kr(q) \right\|^2$$</b>
+                                <b class="ttext">$$\mbox{such that}$$</b>
+                                <b class="ttext">$$\frac{\partial B_i}{\partial q}(q)u \geq -\eta_i B(q) \ , \ i=1,..,s$$</b>
+                            </li><br>
+                            <li>
+                                Hence, we could set up this optimization problem at each time step, solve for \(u = \dot{q}\), and 
+                                send it to the robot. Rinse and repeat in a closed loop until (hopefully) convergence.
+                            </li><br>
+                            <li>It can be shown that if \(q(0)\) starts without violating none of the constraints \(B_i(q) \geq 0\), that this 
+                                optimization problem is always <b class="itext">feasible</b>, furthermore, that the closed control loop  
+                                \(\dot{q} = u(q)\) is <b class="itext">Lyapunov stable</b> (not necessarily asymptotically Lyapunov stable, however).
+                            </li><br>
+                            <li>
+                                Ok. But how do we solve this optimization problem?
+                            </li>
+
+                            
+                        </ul>
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 2; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 4; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/main.png"
+                                        style="max-width: 100%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CONTROL BARRIER FUNCTIONS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">FIRST ORDER KINEMATIC CONTROL WITH CBFS</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 3; min-width: 300px; font-size: 1.4vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+                        <ul>
+                            <li>
+                                We can expand the squared norm to write the objective function as:
+                                $$ u^\top \frac{\partial r}{\partial q}(q)^{\top}\frac{\partial r}{\partial q}(q)u + 2Kr(q)^\top\frac{\partial r}{\partial q}(q)u + \|Kr(q)\|^2.$$
+                            </li>
+                            <li>
+                                Let 
+                                
+                                $$H = 2\frac{\partial r}{\partial q}(q)^{\top}\frac{\partial r}{\partial q}(q) \in \mathbb{R}^{n \times n}$$ 
+                                and 
+                                $$f = 2K\frac{\partial r}{\partial q}(q)^{\top}r(q) \in \mathbb{R}^n$$ 
+                                Furthermore, let 
+                                \(A \in \mathbb{R}^{s \times n}, b \in \mathbb{R}^s\) matrices in which the \(i^{th}\) row of  \(A\) 
+                                is \(\frac{\partial B_i}{\partial q}(q)\) and \(i^{th}\) entry of \(b\) the scalar \(-\eta_i B_i(q)\).
+                                Finally, let \(c = \|Kr(q)\|^2\).
+                            </li>
+                            
+                        </ul>
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 2; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 4; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/main.png"
+                                        style="max-width: 100%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CONTROL BARRIER FUNCTIONS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">CONVEX QUADRATIC PROGRAM</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 3; min-width: 300px; font-size: 1.4vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+                        <ul>
+                            <li>
+                                Under these definitions, we can rewrite our optimization problem as:
+                                <b class="ttext">$$\min_{u} \frac{u^\top H u}{2} + f^{\top} u + c $$</b>
+                                <b class="ttext">$$\text{such that} \ Au \geq b $$</b>
+                            </li><br>
+                            <li>
+                                This is called a <b class="ttext">quadratic program</b>. If \(H\) is a positive 
+                                definite matrix, it is a <b class="ttext">convex quadratic program</b>; and if \(H\) is 
+                                strictly positive definite, it is a <b class="ttext">strictly convex quadratic program</b>.
+                            </li><br>
+                            <li>
+                                Obviously, the second one is a convex optimization problem, and the last one is a 
+                                strictly convex optimization problem.
+                            </li><br>
+                            <li>
+                                The constant \(c\) is often disregarded, as it does not affect 
+                                the optimal solution \(u\).
+                            </li>
+                        </ul>
+
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 2; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 4; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/main.png"
+                                        style="max-width: 100%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CONTROL BARRIER FUNCTIONS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">CONVEX QUADRATIC PROGRAM</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 3; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul>
+                            <li>
+                                Convex or strictly convex quadratic programs can be solved <b class="itext">very efficiently</b>, 
+                                even for very large problems.
+                            </li><br>
+                            <li>
+                                Non-strictly convex problems, as we know, do not necessarily have a unique solution. This is problematic 
+                                in control, as it can cause the control input \(u(t)\) to become discontinuous — there may be a "jump" from 
+                                time \(t\) to time \(t + dt\).
+                            </li><br>
+                            <li>
+                                In our case, since \(H = \frac{\partial r}{\partial q}^\top \frac{\partial r}{\partial q}\), the matrix \(H\) is always positive 
+                                semidefinite by construction (any matrix of the form \(H = M^{\top}M\) is). However, it is not necessarily positive definite. 
+                            </li><br>
+                            <li>
+                                Thus, it is beneficial to add \(2 \epsilon I_{n \times n}\) to this matrix, for a small positive \(\epsilon\). This ensures that the 
+                                resulting \(H\) is positive definite.
+                            </li><br>
+                            <li>
+                                This is a <b class="itext">regularization technique</b>, and it is equivalent to adding \(\epsilon \|u\|^2\) to the objective function — 
+                                the same trick used in the damped pseudoinverse.
+                            </li>
+                        </ul>
+
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 2; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 4; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/main.png"
+                                        style="max-width: 100%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CONTROL BARRIER FUNCTIONS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">CONVEX QUADRATIC PROGRAMS IN UAIBOT</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 3; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul>
+                            <li>
+                                UAIBot can solve convex quadratic programs through the <b class="itext">solve_qp</b> function:
+                            
+                            
+        <pre><code class="language-python" style="text-align:left">
+import numpy as np
+import uaibot as ub
+
+#Define the following problem
+#min_u  u_1^2 + u_2^2 + 3u_3^2 + u_1*u_2 + 2u_1
+# subject to
+# 4u1+2u2+u3 >=1 
+# u2 <= 0.3  ---> -u2 >= -0.3
+#
+#To use "solve_qp", the problem should be written as
+# min_u 0.5*u^T*H*u + f^T*u
+# such that A*u >= b
+
+
+H = 2*np.matrix([[1.0,0.0,0.5],[0.5,1.0,0.0],[0.0,0.0,3.0]])
+f = np.matrix([2.0,0.0,0.0]).T
+A = np.matrix([[4.0,2.0,1.0],[0.0,-1.0,0.0]])
+b = np.matrix([1.0,-0.3]).T
+
+
+u = ub.Utils.solve_qp(H, f, A, b)
+
+print("u = "+str(u.T)+"^T")
+        </code></pre>
+
+                            </li>
+                            
+                        </ul>
+
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 2; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 4; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/main.png"
+                                        style="max-width: 100%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CONTROL BARRIER FUNCTIONS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">A FIRST EXAMPLE</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul>
+                            <li>
+                                Assume a 2D point with configuration \(q \in \mathbb{R}^2\). We want to converge to a point 
+                                \(q_F = (1.5 \ \  0)^\top \) and avoid a circle \( \|q\| \leq 1 \).
+                            </li><br>
+                            <li>
+                               We can use as a task function \(r(q) = q-q_F\) and as a CBF function 
+                               \( B(q) = \|q\| - (1 + \delta) \geq 0 \). The value \(\delta\) is a safety margin.
+                                
+                            </li><br>
+                            <li>In this case, \(\frac{\partial r(q)}{\partial q}  = I_{2 \times 2}\), 
+                                \(\frac{\partial B(q)}{\partial q}  = q^{\top}/\|q\|\).</li><br>
+                            <li>
+                                Thus, the optimization problem is:
+                                $$\min_{u} \|u+K(q-q_F)\|^2 + \epsilon \|u\|^2$$
+                                $$\mbox{subject to}$$
+                                $$\frac{q^{\top}}{\|q\|} u \geq -\eta \Big(\|q\|-1-\delta\Big).$$ 
+                            </li><br>
+
+                        </ul>
+
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 4; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image5.gif"
+                                        style="max-width: 100%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CONTROL BARRIER FUNCTIONS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">A FIRST EXAMPLE</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul>
+                            <li>
+                                Here is the UAIBot code:
+
+        <pre><code class="language-python" style="text-align:left">
+import numpy as np
+import matplotlib.pyplot as plt
+import uaibot as ub
+import matplotlib.patches as patches
+
+#Parameters
+kp = 0.5
+eta = 0.3
+dt = 0.01
+tmax = 15
+delta = 0.05
+eps = 0.01
+qF = np.matrix([1.5,0]).T
+q0 = np.matrix([-1.5,0.2]).T
+
+#Start simulation
+q = q0
+hist_q = []
+
+for i in range(round(tmax/dt)):
+
+
+    hist_q.append(np.matrix(q))
+    
+    #Assembly the CBF controller
+    H = 2*(1+eps)*np.matrix([[1.0,0.0],[0.0,1.0]])
+    f = 2*kp*(q-qF)
+
+    B_fun = np.linalg.norm(q)-1-delta
+    grad_B_fun = q.T/np.linalg.norm(q)
+
+    A = np.matrix(grad_B_fun)
+    b = np.matrix([-eta * B_fun])
+
+    #Compute the control input
+    u = ub.Utils.solve_qp(H,f,A,b)
+    
+    #Integrate the equation \dot{q} = u(q)
+    q+= u*dt
+ 
+#Plot image
+fig, ax = plt.subplots()
+ax.set_aspect('equal')
+ax.plot([q[0, 0] for q in hist_q], [q[1, 0] for q in hist_q], color='#81d41a')
+ax.scatter([qF[0,0]],[qF[1,0]], color='magenta',s=40)
+circle = patches.Circle((0.0, 0.0), radius=1.0, color='#5983b0')  # filled by default
+ax.add_patch(circle)
+ax.set_xlim(-1.8, 1.8)
+ax.set_ylim(-1.5, 1.5)
+
+plt.show()
+
+        </code></pre>
+
+                            </li><br>
+
+                        </ul>
+
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 4; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image5.gif"
+                                        style="max-width: 100%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CONTROL BARRIER FUNCTIONS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">A SECOND EXAMPLE</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul>
+                            <li>
+                                Lets now assume three circles, with centers \(c_i\) and radius \(R_i\). In this case, 
+                                we use three different CBFs \(B_i(q) = \|q-c_i\|-R_i\), with 
+                                \(\frac{\partial B_i}{\partial q}(q) = (q-c_i)^{\top}/\|q-c_i\| \).
+                            </li><br>
+                            <li>
+                               Thus, the optimization problem is:
+                                $$\min_{u} \|u+K(q-q_F)\|^2 + \epsilon \|u\|^2$$
+                                $$\mbox{subject to}$$
+                                $$\Big((q-c_1)^{\top}/\|q-c_1\|\Big) u \geq -\eta_1 \Big(\|q-c_1\|-R_1-\delta\Big)$$
+                                $$\Big((q-c_2)^{\top}/\|q-c_2\|\Big) u \geq -\eta_2 \Big(\|q-c_2\|-R_2-\delta\Big)$$ 
+                                $$\Big((q-c_3)^{\top}/\|q-c_3\|\Big) u \geq -\eta_3 \Big(\|q-c_3\|-R_3-\delta\Big).$$  
+                            </li><br>
+
+                        </ul>
+
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 4; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image6.gif"
+                                        style="max-width: 100%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
             <style>
+
+
+
                 .reveal .progress {
                     color: #34eb5e;
                 }
