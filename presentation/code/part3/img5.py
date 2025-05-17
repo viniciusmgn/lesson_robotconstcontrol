@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation, PillowWriter
 import uaibot as ub
 import matplotlib.patches as patches
+from PIL import Image
 
 qF = np.matrix([1.5,0]).T
 # === Curve and dynamics ===
@@ -81,3 +82,7 @@ ani = FuncAnimation(fig, update, frames=num_frames, init_func=init, blit=False)
 # Save the animation
 writer = PillowWriter(fps=20)
 ani.save("/home/vinicius/Desktop/Aulas/Robot Constrained Control/presentation/images/part3/image5.gif", writer=writer)
+
+with Image.open("/home/vinicius/Desktop/Aulas/Robot Constrained Control/presentation/images/part3/image5.gif") as im:
+    im.seek(0)  # Go to the first frame
+    im.save("/home/vinicius/Desktop/Aulas/Robot Constrained Control/presentation/images/part3/image5_static.png")
