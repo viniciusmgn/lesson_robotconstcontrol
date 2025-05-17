@@ -378,7 +378,7 @@
                                             <li> Thus, often it is much better to do <b class="itext">path tracking</b> instead: we dont care too much that we 
                                                 have to be at a specific point at a specific time, as long as we stay in the curve following it. 
                                             </li><br>
-                                            <li> In that case, a popular class of algorithms is <b class="itext">Guidance Vector Fields</b>, that 
+                                            <li> In that case, a popular class of algorithms is <b class="itext">Guidance Vector Fields (GVF)</b>, that 
                                                 establishes a velocity for each point in the space such that if the point follows this velocity, it 
                                                 tracks the curve. 
                                             </li><br>
@@ -818,7 +818,7 @@
                         <div style="position:absolute; width: 50%; ">
 
                         <ul>
-                            <li> The guidance vector field algorithm is implemented in UAIBot in the 
+                            <li> The GVF algorithm is implemented in UAIBot in the 
                                 function <b class="itext">vector_field</b>:
 
         <pre><code class="language-python" style="text-align:left">
@@ -1107,16 +1107,16 @@ plt.show()
                                 <b class="itext">$$\dot{q} = u$$</b> 
                                 (i.e., first-order kinematic control). For the task, let's ignore motion planning for now and assume that our task 
                                 is time-invariant. That is, we have a time-invariant task function \(r: \mathbb{R}^n \mapsto \mathbb{R}^m\) that models the task. 
-                                Furthermore, suppose we have more than one constraint \(B_i(q) \geq 0\); say, exactly \(s\) constraints.
+                                Furthermore, suppose we have more than one constraint \(B_k(q) \geq 0\); say, exactly \(s\) constraints.
                             </li><br>
                             <li>
                                 If we had no constraints, we would simply enforce \(\dot{r} = -Kr \rightarrow \frac{\partial r}{\partial q}(q)u = -Kr(q)\) 
                                 (in the most basic version of the task function approach). However, we also need to consider the constraints, which can be 
-                                enforced by \(\dot{B}_i \geq -\eta_i B_i\) for positive scalar constants \(\eta_i > 0\).
+                                enforced by \(\dot{B}_k \geq -\eta_k B_k\) for positive scalar constants \(\eta_k > 0\).
                             </li><br>
                             <li>
                                 By the <b class="itext">chain rule</b>, the CBF constraints can be written as:
-                                <b class="ttext">$$\frac{\partial B_i}{\partial q}(q)u \geq -\eta_i B_i(q).$$</b> 
+                                <b class="ttext">$$\frac{\partial B_k}{\partial q}(q)u \geq -\eta_k B_k(q).$$</b> 
                             </li>
                         </ul>
 
@@ -1156,8 +1156,8 @@ plt.show()
                                 One initial idea is as follows: at each time step, we measure the configuration \(q\), and set up a 
                                 <b class="itext">system of linear equations and inequalities for the variable \(u\)</b>:
                                 $$\frac{\partial r}{\partial q}(q)u = -Kr(q)$$ 
-                                $$\frac{\partial B_i}{\partial q}(q)u \geq -\eta_i B_i(q)$$
-                                for \(i = 1, \ldots, s\).
+                                $$\frac{\partial B_k}{\partial q}(q)u \geq -\eta_k B_k(q)$$
+                                for \(k = 1, \ldots, s\).
                             </li><br>
                             <li>
                                 There are efficient algorithms to compute such a \(u\), <b class="itext">if it exists</b>. The issue here is that, 
@@ -1200,7 +1200,7 @@ plt.show()
 
                         <ul>
                             <li>
-                                Let's change the formulation. The constraints \(B_i(q) \geq 0\) are usually 
+                                Let's change the formulation. The constraints \(B_k(q) \geq 0\) are usually 
                                 <b class="itext">hard constraints</b> (such as obstacle avoidance). The task, however, is typically something we 
                                 would like to accomplish, but failing to do so would not result in a critical failure.
                             </li><br>
@@ -1249,13 +1249,13 @@ plt.show()
                                 
                                 <b class="ttext">$$\min_{u} \left\| \frac{\partial r}{\partial q}(q)u +Kr(q) \right\|^2$$</b>
                                 <b class="ttext">$$\mbox{such that}$$</b>
-                                <b class="ttext">$$\frac{\partial B_i}{\partial q}(q)u \geq -\eta_i B(q) \ , \ i=1,..,s$$</b>
+                                <b class="ttext">$$\frac{\partial B_k}{\partial q}(q)u \geq -\eta_k B(q) \ , \ k=1,..,s$$</b>
                             </li><br>
                             <li>
                                 Hence, we could set up this optimization problem at each time step, solve for \(u = \dot{q}\), and 
                                 send it to the robot. Rinse and repeat in a closed loop until (hopefully) convergence.
                             </li><br>
-                            <li>It can be shown that if \(q(0)\) starts without violating none of the constraints \(B_i(q) \geq 0\), that this 
+                            <li>It can be shown that if \(q(0)\) starts without violating none of the constraints \(B_k(q) \geq 0\), that this 
                                 optimization problem is always <b class="itext">feasible</b>, furthermore, that the closed control loop  
                                 \(\dot{q} = u(q)\) is <b class="itext">Lyapunov stable</b> (not necessarily asymptotically Lyapunov stable, however).
                             </li><br>
@@ -1308,7 +1308,7 @@ plt.show()
                                 $$f = 2K\frac{\partial r}{\partial q}(q)^{\top}r(q) \in \mathbb{R}^n$$ 
                                 Furthermore, let 
                                 \(A \in \mathbb{R}^{s \times n}, b \in \mathbb{R}^s\) matrices in which the \(i^{th}\) row of  \(A\) 
-                                is \(\frac{\partial B_i}{\partial q}(q)\) and \(i^{th}\) entry of \(b\) the scalar \(-\eta_i B_i(q)\).
+                                is \(\frac{\partial B_k}{\partial q}(q)\) and \(i^{th}\) entry of \(b\) the scalar \(-\eta_k B_k(q)\).
                                 Finally, let \(c = \|Kr(q)\|^2\).
                             </li>
                             
@@ -1350,7 +1350,7 @@ plt.show()
                             </li><br>
                             <li>
                                 This is called a <b class="ttext">quadratic program</b>. If \(H\) is a positive 
-                                definite matrix, it is a <b class="ttext">convex quadratic program</b>; and if \(H\) is 
+                                definite matrix, it is a <b class="ttext">convex quadratic program</b> (CVX-QP); and if \(H\) is 
                                 strictly positive definite, it is a <b class="ttext">strictly convex quadratic program</b>.
                             </li><br>
                             <li>
@@ -1506,7 +1506,7 @@ print("u = "+str(u.T)+"^T")
                     CONTROL BARRIER FUNCTIONS
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    <b class="ttext">A FIRST EXAMPLE</b>
+                    <b class="ttext">EXAMPLE 1</b>
                 </h3>
                 <div
                     style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
@@ -1558,7 +1558,7 @@ print("u = "+str(u.T)+"^T")
                     CONTROL BARRIER FUNCTIONS
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    <b class="ttext">A FIRST EXAMPLE</b>
+                    <b class="ttext">EXAMPLE 1</b>
                 </h3>
                 <div
                     style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
@@ -1652,7 +1652,7 @@ plt.show()
                     CONTROL BARRIER FUNCTIONS
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    <b class="ttext">A SECOND EXAMPLE</b>
+                    <b class="ttext">EXAMPLE 2</b>
                 </h3>
                 <div
                     style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
@@ -1662,9 +1662,9 @@ plt.show()
 
                         <ul>
                             <li>
-                                Lets now assume three circles, with centers \(c_i\) and radius \(R_i\). In this case, 
-                                we use three different CBFs \(B_i(q) = \|q-c_i\|-R_i\), with 
-                                \(\frac{\partial B_i}{\partial q}(q) = (q-c_i)^{\top}/\|q-c_i\| \).
+                                Lets now assume three circles, with centers \(c_k\) and radius \(R_k\). In this case, 
+                                we use three different CBFs \(B_k(q) = \|q-c_k\|-R_k\), with 
+                                \(\frac{\partial B_k}{\partial q}(q) = (q-c_k)^{\top}/\|q-c_k\| \).
                             </li><br>
                             <li>
                                Thus, the optimization problem is:
@@ -1699,7 +1699,7 @@ plt.show()
                     CONTROL BARRIER FUNCTIONS
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    <b class="ttext">A SECOND EXAMPLE</b>
+                    <b class="ttext">EXAMPLE 2</b>
                 </h3>
                 <div
                     style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
@@ -1711,7 +1711,7 @@ plt.show()
                             <li>
                                 Here is the UAIBot code:
 
-<pre><code class="language-python" style="text-align:left">
+<pre><code class="language-python" style="text-align:left; max-width:90%;">
 import numpy as np
 import matplotlib.pyplot as plt
 import uaibot as ub
@@ -1733,7 +1733,7 @@ radius = [0.5,0.5,0.5]
 q = q0
 hist_q = []
 
-for i in range(round(tmax/dt)):
+for k in range(round(tmax/dt)):
 
 
     hist_q.append(np.matrix(q))
@@ -1745,12 +1745,12 @@ for i in range(round(tmax/dt)):
     A = np.matrix(np.zeros((0,2)))
     b = np.matrix(np.zeros((0,1)))
     
-    for i in range(len(centers)):
-        B_i_fun_ = np.linalg.norm(q-centers[i])-radius[i]-delta
-        grad_B_i_fun = (q-centers[i]).T/np.linalg.norm(q-centers[i])
+    for k in range(len(centers)):
+        B_k_fun_ = np.linalg.norm(q-centers[k])-radius[k]-delta
+        grad_B_k_fun = (q-centers[k]).T/np.linalg.norm(q-centers[k])
 
-        A = np.vstack( (A,  grad_B_i_fun) )
-        b = np.vstack( (b,  -eta * B_i_fun_) )
+        A = np.vstack( (A,  grad_B_k_fun) )
+        b = np.vstack( (b,  -eta * B_k_fun_) )
         
 
     #Compute the control input
@@ -1766,8 +1766,7 @@ ax.plot([q[0, 0] for q in hist_q], [q[1, 0] for q in hist_q], color='#81d41a')
 ax.scatter([qF[0,0]],[qF[1,0]], color='magenta',s=40)
 
 for i in range(len(centers)):
-    circle = patches.Circle((centers[i][0], centers[i][1]), radius=radius[i], \
-    color='#5983b0')  
+    circle = patches.Circle((centers[i][0], centers[i][1]), radius=radius[i], color='#5983b0')  
     ax.add_patch(circle)
     
     
@@ -1805,7 +1804,7 @@ plt.show()
                     CONTROL BARRIER FUNCTIONS
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    <b class="ttext">A THIRD EXAMPLE</b>
+                    <b class="ttext">EXAMPLE 3: INTEGRATING WITH GVF</b>
                 </h3>
                 <div
                     style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
@@ -1820,7 +1819,7 @@ plt.show()
                             </li><br>
                             <li>
                                We need a motion planner to generate a path \(\mathcal{P}\). 
-                               We can then use the guidance vector field \(\Psi_{\mathcal{P}}\)  to track it and, if we want an 
+                               We can then use the GVF \(\Psi_{\mathcal{P}}\)  to track it and, if we want an 
                                additional safety layer, we can change the objective function to
                                $$ \|u - \Psi_{\mathcal{P}}(q)\|^2 $$
                                Regularization is not needed because in this case \(H=2I_{n \times n}\) is already positive 
@@ -1853,7 +1852,7 @@ plt.show()
                     CONTROL BARRIER FUNCTIONS
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    <b class="ttext">A THIRD EXAMPLE</b>
+                    <b class="ttext">EXAMPLE 3: INTEGRATING WITH GVF</b>
                 </h3>
                 <div
                     style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
@@ -1865,7 +1864,7 @@ plt.show()
                             <li>
                                 Here is the UAIBot code:
 
-<pre><code class="language-python" style="text-align:left">
+<pre><code class="language-python" style="text-align:left; max-width:80%;">
 import numpy as np
 import matplotlib.pyplot as plt
 import uaibot as ub
@@ -1918,12 +1917,12 @@ for i in range(round(tmax/dt)):
     A = np.matrix(np.zeros((0,2)))
     b = np.matrix(np.zeros((0,1)))
     
-    for i in range(len(centers)):
-        B_i_fun_ = np.linalg.norm(q-centers[i])-radius[i]-delta
-        grad_B_i_fun = (q-centers[i]).T/np.linalg.norm(q-centers[i])
+    for k in range(len(centers)):
+        B_k_fun_ = np.linalg.norm(q-centers[k])-radius[k]-delta
+        grad_B_k_fun = (q-centers[k]).T/np.linalg.norm(q-centers[k])
 
-        A = np.vstack( (A,  grad_B_i_fun) )
-        b = np.vstack( (b,  -eta * B_i_fun_) )
+        A = np.vstack( (A,  grad_B_k_fun) )
+        b = np.vstack( (b,  -eta * B_k_fun_) )
       
     B_unp_fun = np.linalg.norm(q-center_unpl)-radius_unpl-delta
     grad_B_unp_fun = (q-center_unpl).T/np.linalg.norm(q-center_unpl) 
@@ -1940,17 +1939,14 @@ for i in range(round(tmax/dt)):
 fig, ax = plt.subplots()
 ax.set_aspect('equal')
 ax.plot([q[0, 0] for q in hist_q], [q[1, 0] for q in hist_q], color='#81d41a')
-ax.plot([q[0, 0] for q in q_path], [q[1, 0] for q in q_path], color='#084594', \
-        zorder = 20)
+ax.plot([q[0, 0] for q in q_path], [q[1, 0] for q in q_path], color='#084594', zorder = 20)
 ax.scatter([qF[0,0]],[qF[1,0]], color='magenta',s=40)
 
 for i in range(len(centers)):
-    circle = patches.Circle((centers[i][0], centers[i][1]), radius=radius[i], \
-    color='#5983b0')  
+    circle = patches.Circle((centers[i][0], centers[i][1]), radius=radius[i], color='#5983b0')  
     ax.add_patch(circle)
     
-circle = patches.Circle((center_unpl[0,0],center_unpl[1,0]), radius=radius_unpl, \ 
-    color='#ec9ba4', zorder=15) 
+circle = patches.Circle((center_unpl[0,0],center_unpl[1,0]), radius=radius_unpl, color='#ec9ba4', zorder=15) 
 ax.add_patch(circle)    
 ax.set_xlim(-1.8, 1.8)
 ax.set_ylim(-1.8, 2.2)
@@ -1979,6 +1975,332 @@ plt.show()
                     </div>
                 </div>
             </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CONTROL BARRIER FUNCTIONS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">ADDING INPUT CONSTRAINTS</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.4vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul>
+                            <li>
+                                We can easily add constraints \(u \in \mathcal{U}_{safe}\) as <b class="itext">input limits </b>:
+                                $$ u_{min,i} \leq u_i \leq u_{max,i} $$
+                                and the resulting problem is still a CVX - QP since the constraint is linear.
+                            </li><br>
+                            <li>
+                               If \(u_{min,i} \leq 0 \leq u_{max,i}\), that is, \(u=0\) is within the input limits (you 
+                               are allowed to stop), then the optimization problem is still always feasible.
+                            </li><br>
+                        </ul>
+
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 4; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/main.png"
+                                        style="max-width: 90%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CONTROL BARRIER FUNCTIONS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">TIME-VARIANT CONSTRAINTS</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.4vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul>
+                            <li>
+                                Just like time-variant tasks, CBF constraints can be time-variant as well. 
+                                For example, a <b class="itext">moving obstacle</b>.
+                            </li><br>
+                            <li>
+                               In this case, the constraint is \(B(q,t) \geq 0\) and, from the chain rule, 
+                               the specification \(\frac{d}{dt} B(q,t) \geq -\eta B(q,t)\) can be written as:
+                               <b class="ttext">$$\frac{\partial B(q,t)}{\partial q}u \geq -\eta B(q,t)-\frac{\partial B(q,t)}{\partial t}  $$</b>
+                                and thus we have the extra term \(\frac{\partial B(q,t)}{\partial t}\). This is not unlike the 
+                                <b class="itext">feedforward term \(\frac{\partial r(q,t)}{\partial t}\)</b> in the task function approach, and 
+                                , in practice, it could be difficult to find/estimate as well. 
+                            </li><br>
+                        </ul>
+
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 4; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/main.png"
+                                        style="max-width: 90%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CONTROL BARRIER FUNCTIONS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 4</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.4vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul>
+                            <li>
+                                Lets return to the third example and make the circle's position time-varying according 
+                                to \(c_4(t)\). Lets assume we know \(c_4(t)\) (this can be difficult in practice) and 
+                                that it is differentiable.
+                            </li><br>
+                            <li>
+                               In this case, \(B(q,t) = \|q-c_4(t)\| - R_4-\delta\) and 
+                               $$\frac{\partial B}{\partial t}(q,t) = -\dot{c}_4(t)^\top\frac{(q-c_4(t))}{\|q-c_4(t)\|}$$
+                            </li><br>
+                            <li>Lets see how it will work out in practice.</li>
+                        </ul>
+
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 4; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image8_static.png"
+                                        style="max-width: 90%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CONTROL BARRIER FUNCTIONS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 4</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul>
+                            <li>
+                                Here is the UAIBot code:
+
+<pre><code class="language-python" style="text-align:left; max-width:90%;">
+import numpy as np
+import matplotlib.pyplot as plt
+import uaibot as ub
+import matplotlib.patches as patches
+import matplotlib.animation as animation
+
+#We assume a path from a motion planner. Lets  assume that we got some waypoint
+#paths q_path_wp. Then we interpolate using the function 'fun_path' to get 
+#a function handle and sample n_sampled = 1000 points
+
+n_sample = 1000
+q_path_wp = [[-1.5, 0.2],[-1.5, 0.5],[-1.25,0.6],[-1.25,1.0], [-0.5,1.4],[0.5,0.6],[1.5,0]]
+fun_path = ub.Utils.interpolate(q_path_wp, is_closed = False)
+q_path = fun_path([i/n_sample for i in range(n_sample)])
+
+#Parameters
+eta = 0.6
+dt = 0.01
+tmax = 30
+delta = 0.05
+qF = np.matrix([1.5,0]).T
+q0 = np.matrix([-1.5,0.2]).T
+centers = [np.matrix([-0.5,0.7]).T, np.matrix([-0.5,-0.7]).T , np.matrix([0.0,0.0]).T]
+radius = [0.5,0.5,0.5]
+
+#Assume the circle is moving with
+#x_c(t) = 0.5
+#y_c(t) = 0.5+0.3*sin(2*t)
+def center_unpl(_t):
+    return np.matrix([0.5,0.5+0.3*np.sin(2*_t)]).T
+
+def dot_center_unpl(_t):
+    return np.matrix([0,0.6*np.cos(2*_t)]).T
+
+radius_unpl = 0.3
+
+#Start simulation
+q = q0
+hist_q = []
+
+for i in range(round(tmax/dt)):
+
+
+    hist_q.append(np.matrix(q))
+    
+    #Assembly the CBF controller
+    H = 2*np.matrix([[1.0,0.0],[0.0,1.0]])
+    psi, _, index = ub.Robot.vector_field(q,q_path, alpha=1.5, const_vel=0.5)
+    
+    #Since the curve is open, we need a function gamma(p) that vanishes
+    #at the end point. At the end-point the closest index "index" is
+    #index = n_sample
+    
+    gamma = max(min(10*(1-index/n_sample),1),0)
+    f = -2*gamma*psi
+    
+    A = np.matrix(np.zeros((0,2)))
+    b = np.matrix(np.zeros((0,1)))
+    
+    for k in range(len(centers)):
+        B_k_fun_ = np.linalg.norm(q-centers[k])-radius[k]-delta
+        grad_B_k_fun = (q-centers[k]).T/np.linalg.norm(q-centers[k])
+
+        A = np.vstack( (A,  grad_B_k_fun) )
+        b = np.vstack( (b,  -eta * B_k_fun_) )
+      
+
+    t = i*dt
+    c4 = center_unpl(t)
+    c4_dot = dot_center_unpl(t)
+    
+    B_unp_fun = np.linalg.norm(q-c4)-radius_unpl-delta
+    grad_B_unp_fun = (q-c4).T/np.linalg.norm(q-c4) 
+    ff = -c4_dot.T*(grad_B_unp_fun.T)
+    A = np.vstack( (A,  grad_B_unp_fun) )
+    b = np.vstack( (b,  -eta * B_unp_fun-ff) )
+        
+    #Compute the control input
+    u = ub.Utils.solve_qp(H,f,A,b)
+    
+    
+
+    
+    #Integrate the equation \dot{q} = u(q)
+    q+= u*dt
+ 
+############################################
+#From here onwards it is just animation code
+############################################
+
+
+# === Precompute moving circle centers ===
+timesteps = [i * dt for i in range(round(tmax / dt))]
+unpl_centers = [center_unpl(t) for t in timesteps]
+
+# Subsample every 20 steps
+step = 20
+hist_q_sub = hist_q[::step]
+unpl_centers_sub = unpl_centers[::step]
+
+# === Set up plot ===
+fig, ax = plt.subplots()
+ax.set_aspect('equal')
+ax.set_xlim(-1.8, 1.8)
+ax.set_ylim(-1.8, 2.2)
+
+# Static plots
+ax.plot([q[0, 0] for q in q_path], [q[1, 0] for q in q_path], color='#084594', zorder=20)
+ax.scatter([qF[0, 0]], [qF[1, 0]], color='magenta', s=40)
+
+for i in range(len(centers)):
+    circle = patches.Circle((centers[i][0], centers[i][1]), radius=radius[i], color='#5983b0')
+    ax.add_patch(circle)
+
+# Robot path (animated)
+point, = ax.plot([], [], 'o', color='#81d41a', markersize=8, zorder=100)
+traj_line, = ax.plot([], [], color='#81d41a', linewidth=2, zorder=99)
+
+# Moving obstacle
+mov_circle = patches.Circle((0.5, 0.5), radius=radius_unpl, color='#ec9ba4', zorder=15)
+ax.add_patch(mov_circle)
+
+# === Animation logic ===
+traj_x, traj_y = [], []
+
+def init():
+    point.set_data([], [])
+    traj_line.set_data([], [])
+    mov_circle.set_center((0.5, 0.5))
+    return point, traj_line, mov_circle
+
+def update(frame):
+    q = hist_q_sub[frame]
+    center = unpl_centers_sub[frame]
+
+    traj_x.append(q[0, 0])
+    traj_y.append(q[1, 0])
+    point.set_data([q[0, 0]], [q[1, 0]])
+    traj_line.set_data(traj_x, traj_y)
+
+    mov_circle.set_center((center[0, 0], center[1, 0]))
+    return point, traj_line, mov_circle
+
+ani = animation.FuncAnimation(
+    fig, update, frames=len(hist_q_sub), init_func=init, blit=True
+)
+
+plt.show()
+
+
+</code></pre>
+
+                            </li><br>
+
+                        </ul>
+
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 4; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image8.gif"
+                                        style="max-width: 90%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
 
             <style>
 
