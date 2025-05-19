@@ -22,29 +22,39 @@ def curve_C(t, center, radius):
     y = center[1] + radius * np.cos(t)
     return np.stack([x, y], axis=0)
 
-def next_config(q):
+def next_state(q, qdot):
     
     centers = [np.matrix([-0.5,0.7]).T, np.matrix([-0.5,-0.7]).T , np.matrix([0.0,0.0]).T, np.matrix([0.5,0.5]).T]
     radius = [0.5,0.5,0.5,0.3]
     
-    param_kp = 0.5
-    param_eta = 0.4
+    param_kv = 1.0
+    param_eta = 0.8
     
     H = 2*np.matrix([[1.0,0.0],[0.0,1.0]])
     psi, _, index = ub.Robot.vector_field(q,q_path, alpha=1.5, const_vel=0.5, is_closed = False)
-    f = -2*psi
+    
+    psi_next, _, _ = ub.Robot.vector_field(q+qdot*0.05,q_path, alpha=1.5, const_vel=0.5, is_closed = False)
+    psi_ant, _, _ = ub.Robot.vector_field(q-qdot*0.05,q_path, alpha=1.5, const_vel=0.5, is_closed = False)
+    ff = (psi_next-psi_ant)/0.1
+    
+    f = -2*(-param_kv*(qdot-psi)+ff)
     
     A = np.matrix(np.zeros((0,2)))
     b = np.matrix(np.zeros((0,1)))
     
     for i in range(len(centers)):
-        E = np.linalg.norm(q-centers[i])-radius[i]-0.05
-        A = np.vstack( (A, (q-centers[i]).T/np.linalg.norm(q-centers[i]) ) )
-        b = np.vstack( (b, -param_eta*(E)) )
+        dist = np.linalg.norm(q-centers[i])
+        gradE = (q-centers[i]).T/dist
+        E = dist-radius[i]-0.1
+        dotE = gradE*qdot
+        gamma = qdot.T*( np.eye(2) -gradE.T*gradE)*qdot/dist
+        
+        A = np.vstack( (A, gradE ) )
+        b = np.vstack( (b, -2*param_eta*dotE-(param_eta**2)*E-gamma) )
     
     u = ub.Utils.solve_qp(H,f,A,b)
     
-    return q+0.05*u
+    return q+0.05*qdot, qdot+0.05*u
 
 # === Setup figure ===
 fig, ax = plt.subplots()
@@ -92,6 +102,7 @@ traj_line, = ax.plot([], [], color='white', linewidth=2, alpha=0.7, zorder = 100
 
 # Global state
 q = np.matrix([-1.5, 0.2]).T
+qdot = np.matrix([1.0, -1.0]).T
 traj_x, traj_y = [], []
 
 ax.plot([qp[0,0] for qp in q_path], [qp[1,0] for qp in q_path], color='#81d41a', linewidth=2, zorder=25)
@@ -100,12 +111,12 @@ def init():
     return point, traj_line
 
 def update(frame):
-    global q, traj_x, traj_y
+    global q, qdot, traj_x, traj_y
 
-    q = next_config(q)
-    q = next_config(q)
-    q = next_config(q)
-    q = next_config(q)
+    q, qdot = next_state(q, qdot)
+    q, qdot = next_state(q, qdot)
+    q, qdot = next_state(q, qdot)
+    q, qdot = next_state(q, qdot)
     
     traj_x.append(q[0,0])
     traj_y.append(q[1,0])
@@ -120,8 +131,8 @@ ani = FuncAnimation(fig, update, frames=num_frames, init_func=init, blit=False)
 
 # Save the animation
 writer = PillowWriter(fps=15)
-ani.save("/home/vinicius/Desktop/Aulas/Robot Constrained Control/presentation/images/part3/image7.gif", writer=writer)
+ani.save("/home/vinicius/Desktop/Aulas/Robot Constrained Control/presentation/images/part3/image10.gif", writer=writer)
 
-with Image.open("/home/vinicius/Desktop/Aulas/Robot Constrained Control/presentation/images/part3/image7.gif") as im:
+with Image.open("/home/vinicius/Desktop/Aulas/Robot Constrained Control/presentation/images/part3/image10.gif") as im:
     im.seek(0)  # Go to the first frame
-    im.save("/home/vinicius/Desktop/Aulas/Robot Constrained Control/presentation/images/part3/image7_static.png")
+    im.save("/home/vinicius/Desktop/Aulas/Robot Constrained Control/presentation/images/part3/image10_static.png")

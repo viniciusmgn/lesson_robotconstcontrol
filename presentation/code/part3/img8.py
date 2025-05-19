@@ -35,9 +35,8 @@ def next_config(t,q):
     param_eta = 0.6
     
     H = 2*np.matrix([[1.0,0.0],[0.0,1.0]])
-    psi, _, index = ub.Robot.vector_field(q,q_path, alpha=1.5, const_vel=0.5)
-    gamma = max(min(10*(1-index/n_max),1),0)
-    f = -2*gamma*psi
+    psi, _, index = ub.Robot.vector_field(q,q_path, alpha=1.5, const_vel=0.5, is_closed = False)
+    f = -2*psi
     
     A = np.matrix(np.zeros((0,2)))
     b = np.matrix(np.zeros((0,1)))
@@ -65,7 +64,7 @@ def next_config(t,q):
     E_next = np.linalg.norm(q+dt*u-np.matrix([0.5,0.5+0.3*np.sin(2*(t+dt))]).T)-radius_mov-0.05
     dot_E_est = (E_next-E)/dt
     
-    print("E = "+str(round(E,3))+", dotE = "+str(round(dotE[0,0],3))+", dotE_est = "+str(round(dot_E_est,3))+" dotE_min = "+str(round(-param_eta*(E),3)))
+    #print("E = "+str(round(E,3))+", dotE = "+str(round(dotE[0,0],3))+", dotE_est = "+str(round(dot_E_est,3))+" dotE_min = "+str(round(-param_eta*(E),3)))
         
     return q+dt*u
 

@@ -821,7 +821,7 @@
                             <li> The GVF algorithm is implemented in UAIBot in the 
                                 function <b class="itext">vector_field</b>:
 
-        <pre><code class="language-python" style="text-align:left">
+        <pre><code class="language-python" style="text-align:left; max-width:80%;">
 import numpy as np
 import uaibot as ub
 import matplotlib.pyplot as plt
@@ -851,7 +851,9 @@ for i in range(round(t_sim/dt)):
     
     #Return the vector psi, the Euclidean distance to the curve, and 
     #the index with closest point to q
-    psi, dist, index = ub.Robot.vector_field(q,target_curve,alpha=1,const_vel=1)
+    #Since the curve is closed, we use is_closed=True. This is not 
+    #necessary, though, because this parameter is set to 'True' by default.
+    psi, dist, _ = ub.Robot.vector_field(q,target_curve,alpha=1,const_vel=1, is_closed=True)
     
     #First order integration
     q+= psi*dt
@@ -974,7 +976,7 @@ plt.show()
                                 for a positive scalar constant \(\eta\).
                             </li><br>
                             <li>
-                                It can be shown that this ensures \(B(q(t)) \geq 0\) for all \(t \geq 0\), as long as \(B(q(0)) \geq 0\) (i.e., the constraint holds at time \(t = 0\)). 
+                                It can be shown that this ensures \(B(q(t)) \geq 0\) for all \(t \geq 0\), as long as \(B_0 = B(q(0)) \geq 0\) (i.e., the constraint holds at time \(t = 0\)). 
                                 This can be proved by multiplying the inequality by the nonnegative term \(e^{\eta t}\). Then:
                                 $$ e^{\eta t}\frac{d}{dt}B(q(t)) \geq -e^{\eta t}\eta B(q(t)) \ \rightarrow \  $$
                                 $$ e^{\eta t}\frac{d}{dt}B(q(t)) + e^{\eta t}\eta B(q(t)) \geq 0 \ \rightarrow \ \underbrace{\frac{d}{dt}\Big(e^{\eta t} B(q(t))\Big)}_{ \mbox{product rule} } \geq 0.$$
@@ -991,7 +993,7 @@ plt.show()
                             
                                 <div style="width: 100%">
                                     <img src="presentation/images/part3/main.png"
-                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                        style="max-width: 90%; height: auto; max-height: 60vh;">
                                 </div>
                         </div>
                     </div>
@@ -1016,12 +1018,12 @@ plt.show()
                             </li><br>
                             <li>
                                 We then integrate both sides from \(0\) to \(t \geq 0\). Since the upper limit of the integral, \(t\), is greater than or equal to the lower limit, \(0\), the inequality is preserved. Thus:
-                                $$\int_0^t \frac{d}{d \tau}\Big(e^{\eta \tau} B(q(\tau))\Big)d\tau \geq 0 \rightarrow e^{\eta t} B(q(t)) - B(q(0)) \geq 0.$$
+                                $$\int_0^t \frac{d}{d \tau}\Big(e^{\eta \tau} B(q(\tau))\Big)d\tau \geq 0 \rightarrow e^{\eta t} B(q(t)) - B_0 \geq 0.$$
                             </li><br>
                             <li>
                                 By rearranging, we obtain:
-                                $$ B(q(t)) \geq e^{-\eta t}B(q(0)) $$
-                                which makes it clear that if \(B(q(0)) \geq 0\), then \(B(q(t)) \geq 0\) for all \(t \geq 0\). Furthermore, as \(t \rightarrow \infty\), 
+                                $$ B(q(t)) \geq e^{-\eta t}B_0 $$
+                                which makes it clear that if \(B_0 \geq 0\), then \(B(q(t)) \geq 0\) for all \(t \geq 0\). Furthermore, as \(t \rightarrow \infty\), 
                                 we recover the original constraint \(B(q(t)) \geq 0\).
                             </li>
                         </ul>
@@ -1346,7 +1348,7 @@ plt.show()
                             <li>
                                 Under these definitions, we can rewrite our optimization problem as:
                                 <b class="ttext">$$\min_{u} \frac{u^\top H u}{2} + f^{\top} u + c $$</b>
-                                <b class="ttext">$$\text{such that} \ Au \geq b $$</b>
+                                <b class="ttext">$$\text{such that} \ Au \geq b.$$</b>
                             </li><br>
                             <li>
                                 This is called a <b class="ttext">quadratic program</b>. If \(H\) is a positive 
@@ -1506,7 +1508,7 @@ print("u = "+str(u.T)+"^T")
                     CONTROL BARRIER FUNCTIONS
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    <b class="ttext">EXAMPLE 1</b>
+                    <b class="ttext">EXAMPLE 1: BASIC EXAMPLE</b>
                 </h3>
                 <div
                     style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
@@ -1558,7 +1560,7 @@ print("u = "+str(u.T)+"^T")
                     CONTROL BARRIER FUNCTIONS
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    <b class="ttext">EXAMPLE 1</b>
+                    <b class="ttext">EXAMPLE 1: BASIC EXAMPLE</b>
                 </h3>
                 <div
                     style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
@@ -1652,7 +1654,7 @@ plt.show()
                     CONTROL BARRIER FUNCTIONS
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    <b class="ttext">EXAMPLE 2</b>
+                    <b class="ttext">EXAMPLE 2: WHEN IT IS TOO HARD</b>
                 </h3>
                 <div
                     style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
@@ -1699,7 +1701,7 @@ plt.show()
                     CONTROL BARRIER FUNCTIONS
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    <b class="ttext">EXAMPLE 2</b>
+                    <b class="ttext">EXAMPLE 2: WHEN IT IS TOO HARD</b>
                 </h3>
                 <div
                     style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
@@ -1711,7 +1713,7 @@ plt.show()
                             <li>
                                 Here is the UAIBot code:
 
-<pre><code class="language-python" style="text-align:left; max-width:90%;">
+<pre><code class="language-python" style="text-align:left; max-width:80%;">
 import numpy as np
 import matplotlib.pyplot as plt
 import uaibot as ub
@@ -1733,7 +1735,7 @@ radius = [0.5,0.5,0.5]
 q = q0
 hist_q = []
 
-for k in range(round(tmax/dt)):
+for i in range(round(tmax/dt)):
 
 
     hist_q.append(np.matrix(q))
@@ -1814,21 +1816,25 @@ plt.show()
 
                         <ul>
                             <li>
-                                The algorithm failed. It gost stuck in a <b class="itext">spurious equilibrium point</b>, that is, 
-                                a point \(q_{S}\) in which the velocity controller \(u(q_S)\) is zero but the task is not reached.
+                                The algorithm failed. It got stuck in a <b class="itext">spurious equilibrium point</b>, that is, 
+                                a point \(q_{S}\) where the velocity controller \(u(q_S)\) is zero but the task is not completed.
                             </li><br>
                             <li>
-                               We need a motion planner to generate a path \(\mathcal{P}\). 
-                               We can then use the GVF \(\Psi_{\mathcal{P}}\)  to track it and, if we want an 
-                               additional safety layer, we can change the objective function to
-                               $$ \|u - \Psi_{\mathcal{P}}(q)\|^2 $$
-                               Regularization is not needed because in this case \(H=2I_{n \times n}\) is already positive 
-                               definite.
+                                We need a motion planner to generate a path \(\mathcal{P}\). 
+                                We can then use the GVF \(\Psi_{\mathcal{P}}\) to track it and, if we want an 
+                                additional safety layer, we can change the objective function to
+                                $$ \|u - \Psi_{\mathcal{P}}(q)\|^2. $$
                             </li><br>
-                            <li>Lets test it and also add an <b class="itext">unplanned obstacle</b> to see 
-                            what happens.</li>
-
+                            <li>
+                                Regularization is not needed because in this case \(H=2I_{n \times n}\) is already positive 
+                                definite.
+                            </li><br>
+                            <li>
+                                Let's test it and also add an <b class="itext">unplanned obstacle</b> to see 
+                                what happens.
+                            </li>
                         </ul>
+
 
 
                         </div>
@@ -1905,24 +1911,22 @@ for i in range(round(tmax/dt)):
     
     #Assembly the CBF controller
     H = 2*np.matrix([[1.0,0.0],[0.0,1.0]])
-    psi, _, index = ub.Robot.vector_field(q,q_path, alpha=1.5, const_vel=0.5)
+
+    #We should call the vector field with "is_closed = False" because the curve
+    #is not closed
+    psi, _, _ = ub.Robot.vector_field(q,q_path, alpha=1.5, const_vel=0.5, is_closed=False)
     
-    #Since the curve is open, we need a function gamma(p) that vanishes
-    #at the end point. At the end-point the closest index "index" is
-    #index = n_sample
-    
-    gamma = max(min(10*(1-index/n_sample),1),0)
-    f = -2*gamma*psi
+    f = -2*psi
     
     A = np.matrix(np.zeros((0,2)))
     b = np.matrix(np.zeros((0,1)))
     
     for k in range(len(centers)):
-        B_k_fun_ = np.linalg.norm(q-centers[k])-radius[k]-delta
+        B_k_fun = np.linalg.norm(q-centers[k])-radius[k]-delta
         grad_B_k_fun = (q-centers[k]).T/np.linalg.norm(q-centers[k])
 
         A = np.vstack( (A,  grad_B_k_fun) )
-        b = np.vstack( (b,  -eta * B_k_fun_) )
+        b = np.vstack( (b,  -eta * B_k_fun) )
       
     B_unp_fun = np.linalg.norm(q-center_unpl)-radius_unpl-delta
     grad_B_unp_fun = (q-center_unpl).T/np.linalg.norm(q-center_unpl) 
@@ -1991,15 +1995,16 @@ plt.show()
 
                         <ul>
                             <li>
-                                We can easily add constraints \(u \in \mathcal{U}_{safe}\) as <b class="itext">input limits </b>:
+                                We can easily add constraints \(u \in \mathcal{U}_{safe}\) as <b class="itext">input limits</b>:
                                 $$ u_{min,i} \leq u_i \leq u_{max,i} $$
-                                and the resulting problem is still a CVX - QP since the constraint is linear.
+                                and the resulting problem is still a CVX-QP since the constraint is linear.
                             </li><br>
                             <li>
-                               If \(u_{min,i} \leq 0 \leq u_{max,i}\), that is, \(u=0\) is within the input limits (you 
-                               are allowed to stop), then the optimization problem is still always feasible.
+                                If \(u_{min,i} \leq 0 \leq u_{max,i}\), that is, \(u = 0\) is within the input limits (you 
+                                are allowed to stop), then the optimization problem is always feasible.
                             </li><br>
                         </ul>
+
 
 
                         </div>
@@ -2011,7 +2016,7 @@ plt.show()
                             
                                 <div style="width: 100%">
                                     <img src="presentation/images/part3/main.png"
-                                        style="max-width: 90%; height: auto; max-height: 60vh;">
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
                                 </div>
                         </div>
                     </div>
@@ -2033,18 +2038,19 @@ plt.show()
 
                         <ul>
                             <li>
-                                Just like time-variant tasks, CBF constraints can be time-variant as well. 
+                                Just like time-varying tasks, CBF constraints can be time-varying as well. 
                                 For example, a <b class="itext">moving obstacle</b>.
                             </li><br>
                             <li>
-                               In this case, the constraint is \(B(q,t) \geq 0\) and, from the chain rule, 
-                               the specification \(\frac{d}{dt} B(q,t) \geq -\eta B(q,t)\) can be written as:
-                               <b class="ttext">$$\frac{\partial B(q,t)}{\partial q}u \geq -\eta B(q,t)-\frac{\partial B(q,t)}{\partial t}  $$</b>
-                                and thus we have the extra term \(\frac{\partial B(q,t)}{\partial t}\). This is not unlike the 
+                                In this case, the constraint is \(B(q,t) \geq 0\) and, from the chain rule, 
+                                the specification \(\frac{d}{dt} B(q,t) \geq -\eta B(q,t)\) can be written as:
+                                <b class="ttext">$$\frac{\partial B(q,t)}{\partial q}u \geq -\eta B(q,t)-\frac{\partial B(q,t)}{\partial t}  $$</b>
+                                and thus we have the extra term \(\frac{\partial B(q,t)}{\partial t}\). This is similar to the 
                                 <b class="itext">feedforward term \(\frac{\partial r(q,t)}{\partial t}\)</b> in the task function approach, and 
-                                , in practice, it could be difficult to find/estimate as well. 
+                                in practice, it could be difficult to find or estimate as well. 
                             </li><br>
                         </ul>
+
 
 
                         </div>
@@ -2056,7 +2062,7 @@ plt.show()
                             
                                 <div style="width: 100%">
                                     <img src="presentation/images/part3/main.png"
-                                        style="max-width: 90%; height: auto; max-height: 60vh;">
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
                                 </div>
                         </div>
                     </div>
@@ -2069,7 +2075,7 @@ plt.show()
                     CONTROL BARRIER FUNCTIONS
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    <b class="ttext">EXAMPLE 4</b>
+                    <b class="ttext">EXAMPLE 4: TIME-VARIANT CONSTRAINT</b>
                 </h3>
                 <div
                     style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
@@ -2079,16 +2085,19 @@ plt.show()
 
                         <ul>
                             <li>
-                                Lets return to the third example and make the circle's position time-varying according 
-                                to \(c_4(t)\). Lets assume we know \(c_4(t)\) (this can be difficult in practice) and 
+                                Let's return to the third example and make the circle's position time-varying according 
+                                to \(c_4(t)\). Let's assume we know \(c_4(t)\) (this can be difficult in practice) and 
                                 that it is differentiable.
                             </li><br>
                             <li>
-                               In this case, \(B(q,t) = \|q-c_4(t)\| - R_4-\delta\) and 
-                               $$\frac{\partial B}{\partial t}(q,t) = -\dot{c}_4(t)^\top\frac{(q-c_4(t))}{\|q-c_4(t)\|}$$
+                                In this case, \(B(q,t) = \|q-c_4(t)\| - R_4 - \delta\) and 
+                                $$\frac{\partial B}{\partial t}(q,t) = -\dot{c}_4(t)^\top\frac{(q-c_4(t))}{\|q-c_4(t)\|}.$$
                             </li><br>
-                            <li>Lets see how it will work out in practice.</li>
+                            <li>
+                                Let's see how it will work out in practice.
+                            </li>
                         </ul>
+
 
 
                         </div>
@@ -2114,7 +2123,7 @@ plt.show()
                     CONTROL BARRIER FUNCTIONS
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    <b class="ttext">EXAMPLE 4</b>
+                    <b class="ttext">EXAMPLE 4: TIME-VARIANT CONSTRAINT</b>
                 </h3>
                 <div
                     style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
@@ -2174,24 +2183,22 @@ for i in range(round(tmax/dt)):
     
     #Assembly the CBF controller
     H = 2*np.matrix([[1.0,0.0],[0.0,1.0]])
-    psi, _, index = ub.Robot.vector_field(q,q_path, alpha=1.5, const_vel=0.5)
-    
-    #Since the curve is open, we need a function gamma(p) that vanishes
-    #at the end point. At the end-point the closest index "index" is
-    #index = n_sample
-    
-    gamma = max(min(10*(1-index/n_sample),1),0)
-    f = -2*gamma*psi
+
+    #We should call the vector field with "is_closed = False" because the curve
+    #is not closed
+    psi, _, _ = ub.Robot.vector_field(q,q_path, alpha=1.5, const_vel=0.5, is_closed=False)
+
+    f = -2*psi
     
     A = np.matrix(np.zeros((0,2)))
     b = np.matrix(np.zeros((0,1)))
     
     for k in range(len(centers)):
-        B_k_fun_ = np.linalg.norm(q-centers[k])-radius[k]-delta
+        B_k_fun = np.linalg.norm(q-centers[k])-radius[k]-delta
         grad_B_k_fun = (q-centers[k]).T/np.linalg.norm(q-centers[k])
 
         A = np.vstack( (A,  grad_B_k_fun) )
-        b = np.vstack( (b,  -eta * B_k_fun_) )
+        b = np.vstack( (b,  -eta * B_k_fun) )
       
 
     t = i*dt
@@ -2300,7 +2307,681 @@ plt.show()
                 </div>
             </section>
 
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CONTROL BARRIER FUNCTIONS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 4: TIME-VARIANT CONSTRAINT</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.4vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
 
+                        <ul>
+                            <li>
+                                <b class="itext">Be careful, though!</b> In the time-varying case, we can no longer guarantee that 
+                                the optimization problem underlying the controller is always <b class="itext">feasible</b>. It may be the case 
+                                that there is no \(u\) that simultaneously satisfies all the constraints.
+                            </li><br>
+                            <li>
+                                For example, imagine obstacles surrounding the point, trying to capture it. It could be 
+                                simply impossible to make an evasive maneuver.
+                            </li><br>
+                            <li>
+                                Also, when there are input (velocity) limits on \(u\), it could simply be the case that the obstacle is 
+                                too fast for the robot's capabilities to avoid it.
+                            </li>
+                        </ul>
+
+
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 4; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image8.gif"
+                                        style="max-width: 90%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CONTROL BARRIER FUNCTIONS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">GENERALIZING A LITTLE BIT</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.4vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul>
+                            <li>
+                                Just like in task-space kinematic control, the right-hand side of the CBF constraint can 
+                                be something more general than \(-\eta B(q)\) for a positive scalar \(\eta\).
+                            </li><br>
+                            <li>
+                                Intuitively, the constraint \(\dot{B}(q) \geq -\eta B(q)\) limits the speed \(\dot{B}\) at which the frontier 
+                                \(B(q) = 0\) can be approached (remember that approaching means negative \(\dot{B}\)). You can see that the closer \(B(q)\) is to zero, the 
+                                less negative \(-\eta B(q)\) becomes, which means that the controller should be more cautious and approach with lower speeds.
+                                When \(B(q) = 0\), we enforce \(\dot{B}(q) \geq 0\); that is, we can no longer approach, only move away from the boundary.
+                            </li><br>
+                            <li>
+                                Thus, it is intuitive that we can generalize this to
+                                <b class="itext">$$\dot{B} \geq -\kappa(B) $$</b>
+                                where \(\kappa\) is a \(\mathcal{K}_{\infty}\) function (i.e., increasing, continuous, positive, and satisfying 
+                                \(\kappa(0) = 0\), \(\kappa(\infty) = \infty\)).
+                            </li>
+                        </ul>
+
+
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 4; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/main.png"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section>            
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CONTROL BARRIER FUNCTIONS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">SECOND ORDER KINEMATIC CONTROL</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.4vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul>
+                            <li>
+                                What if our system model is 
+                                <b class="itext">$$\ddot{q} = u $$</b>
+                                (i.e., acceleration control) instead of \(\dot{q}=u\)?
+                            </li><br>
+                            <li>
+                                In that case, the CBF constraint \(\dot{B} \geq -\eta B\) won't work, because from the chain rule 
+                                it becomes \(\dot{B} = \frac{\partial B}{\partial q} \dot{q} \geq -\eta B\). Note that 
+                                <b class="itext">this formula does not contain the input variable \(u\)</b>, and thus we have no direct way 
+                                to influence the system to guarantee \(B(q) \geq 0\).
+                            </li><br>
+                            <li>
+                                We can instead use <b class="itext">a second-order CBF constraint:</b>
+                                <b class="itext">$$\ddot{B} \geq -2\eta \dot{B} - \eta^2 B $$</b>
+                                for \(\eta > 0\).
+                            </li>
+                        </ul>
+
+
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 4; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/main.png"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section> 
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CONTROL BARRIER FUNCTIONS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">SECOND ORDER KINEMATIC CONTROL</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.2vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul>
+                            <li>
+                                This can be written, using the chain rule, as:
+                                <b class="ttext">$$\frac{\partial B}{\partial q}(q)u \geq -2\eta \frac{\partial B}{\partial q}(q)\dot{q} - \eta^2 B(q) - \dot{q}^\top \frac{\partial^2 B}{\partial q^2}(q)\dot{q}. $$</b>
+                            </li><br>
+                            <li>
+                                Note that the right-hand side depends only on \(q,\dot{q}\), which must be measured to implement the constraint.
+                            </li><br>
+                            <li>
+                                It can be shown that, if this inequality is satisfied:
+                                $$B(q(t)) \geq \Big( B_0 + \big( \dot{B}_0 + \eta B_0 \big)t  \Big)e^{-\eta t}$$
+                                for all \(t \geq 0\), where \(\dot{B}_0 = \frac{\partial B}{\partial q}(q(0))\dot{q}(0)\) is the 
+                                initial value of \(\frac{d}{dt} B(q(t))\).
+                            </li><br>
+                            <li>
+                                It is a nice calculus exercise to show that if \(B_0 \geq 0\) and \(\dot{B}_0 + \eta B_0 \geq 0\), 
+                                then \(B(q(t)) \geq 0\) for all \(t\). This means we should start without violating the constraint, and also 
+                                with an initial approach speed \(\dot{B}_0\) that is not too fast relative to how far we are from 
+                                violating the constraint.
+                            </li>
+                        </ul>
+
+
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 4; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/main.png"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section> 
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CONTROL BARRIER FUNCTIONS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">SECOND ORDER KINEMATIC CONTROL</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.2vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul>
+                            <li>
+                                We have to change the objective function as well. Let's start with the task-function approach. For the same reasons as before, we cannot simply try to enforce 
+                                \(\dot{r} = \frac{\partial r}{\partial q}\dot{q} = -Kr\), since we can no longer directly control \(\dot{q}\).
+                            </li><br>
+                            <li>
+                                The idea is essentially the same as with second-order CBFs. For \( K \geq 0\), we would like to have:
+                                <b class="itext">$$\ddot{r} = -2K \dot{r} -K^2 r $$</b>
+                                hold as closely as possible. If \(r \in \mathbb{R}^m\), let \(\Gamma \in \mathbb{R}^m\) be the vector such that 
+                                the \(i^{\text{th}}\) entry is \(\Gamma_i(q,\dot{q}) = \dot{q}^\top \frac{\partial^2 r_i}{\partial q^2}(q)\dot{q}\), where \(r_i(q)\) 
+                                is the \(i^{\text{th}}\) entry of \(r(q)\).
+                            </li><br>
+                            <li>
+                                Thus, we can use the following objective function:
+                                <b class="ttext">$$\min_{u} \ \left\|\frac{\partial r}{\partial q}(q)u + 2K \frac{\partial r}{\partial q}(q)\dot{q} + K^2 r(q) + \Gamma(q,\dot{q})\right\|^2 + \epsilon \|u\|^2$$</b>
+                                where again we include the regularization term \(\epsilon \|u\|^2\).
+                            </li>
+                        </ul>
+
+
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 4; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/main.png"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section> 
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CONTROL BARRIER FUNCTIONS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">SECOND ORDER KINEMATIC CONTROL</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.4vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul>
+                            <li>
+                                Many packages, as UAIBot, do not implement the computation of Hessians (task functions, distances, etc...), 
+                                only Jacobians/gradients. But one useful trick is to note that, for any function \(f: \mathbb{R}^n \mapsto \mathbb{R}\):
+                                $$\dot{q}^{\top}\frac{\partial^2 f}{\partial q^2}(q)\dot{q} = \left(\frac{d}{dt}\left(\frac{\partial f}{\partial q}(q)\right)\right)\dot{q}.$$
+
+                            </li><br>
+                            <li>
+                                Thus, we can use the approximation, we get \(q,\dot{q}\) and compute:
+                                $$ \dot{q}^{\top}\frac{\partial^2 f}{\partial q^2}(q)\dot{q} \approx \frac{1}{2\Delta t}\left(\frac{\partial f}{\partial q}(q+\Delta t \dot{q}) - \frac{\partial f}{\partial q}(q-\Delta t \dot{q}) \right) \dot{q} $$
+                                for a small \(\Delta t\).
+                            </li><br>
+                            
+                        </ul>
+
+
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 4; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/main.png"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section> 
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CONTROL BARRIER FUNCTIONS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 5: SECOND ORDER</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.4vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul>
+                            <li>
+                                Let's again make a point \(q\in \mathbb{R}^2\) avoid circular obstacles and 
+                                reach a target point. We start by not using a path and using the task function 
+                                \(r(q) = q-q_F\). Furthermore, \(B_i(q) = \|q-c_i\| - R_i - \delta\).
+                            </li><br>
+                            <li>Note that in this case \(\Gamma(q,\dot{q}) = 0_{2 \times 1}\), because the Hessian of 
+                                each entry of \(r(q)\) is zero (it is a linear function). Furthermore, that:
+                                $$\frac{\partial^2 B}{\partial q^2}(q) = \frac{1}{\|q-c_i\|}\left(I_{2 \times 2} - \frac{(q-c_i)}{\|q-c_i\|}\frac{(q-c_i)^{\top}}{\|q-c_i\|}\right).$$
+                                However, we will implement the aforementioned numerical approximation.
+                            </li><br>
+                            <li>
+                                Let's see how it will work out in practice.
+                            </li>
+                        </ul>
+
+
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 4; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image9_static.png"
+                                        style="max-width: 90%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CONTROL BARRIER FUNCTIONS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 5: SECOND ORDER</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul>
+                            <li>
+                                Here is the UAIBot code:
+
+<pre><code class="language-python" style="text-align:left; max-width:90%;">
+import numpy as np
+import matplotlib.pyplot as plt
+import uaibot as ub
+import matplotlib.patches as patches
+
+
+
+#Parameters
+kp = 0.5
+eta = 0.5
+dt = 0.01
+tmax = 30
+delta = 0.05
+qF = np.matrix([1.5,0]).T
+q0 = np.matrix([-1.5,0.2]).T
+#We also need a starting velocity \dot{q}(0)
+dotq0 = np.matrix([-0.5,0.5]).T
+centers = [np.matrix([-0.2,0.5]).T, np.matrix([1.0,0]).T]
+radius = [0.3,0.4]
+
+
+#Start simulation
+q = q0
+dotq = dotq0
+hist_q = []
+
+for i in range(round(tmax/dt)):
+
+
+    hist_q.append(np.matrix(q))
+    
+    #Assembly the CBF controller
+    H = 2*np.matrix([[1.0,0.0],[0.0,1.0]])
+
+    r = q-qF
+    dotr = dotq
+    Gamma = np.matrix([0.0,0.0]).T
+    
+    f = 2*( 2*kp*dotr + kp*kp*r + Gamma)
+    
+    A = np.matrix(np.zeros((0,2)))
+    b = np.matrix(np.zeros((0,1)))
+    
+    def aux_grad_B_k_fun(_q, _k):
+        return (_q-centers[_k]).T/np.linalg.norm(_q-centers[_k])
+    
+    for k in range(len(centers)):
+        B_k_fun = np.linalg.norm(q-centers[k])-radius[k]-delta
+        grad_B_k_fun = aux_grad_B_k_fun(q,k)
+        dot_B_k_fun = grad_B_k_fun*dotq
+        
+        #Compute B_quad = dotq' * Hessian(B_k) * dotq
+        B_quad = (aux_grad_B_k_fun(q+dt*dotq,k)-aux_grad_B_k_fun(q-dt*dotq,k))*dotq/(2*dt)
+
+        A = np.vstack( (A,  grad_B_k_fun) )
+        b = np.vstack( (b,  -(2*eta*dot_B_k_fun + eta*eta* B_k_fun + B_quad)) )
+      
+
+        
+    #Compute the control input
+    u = ub.Utils.solve_qp(H,f,A,b)
+    
+    #Integrate the equation \ddot{q} = u(q, \dot{q})
+    q+= dotq*dt
+    dotq += u*dt
+ 
+#Plot image
+fig, ax = plt.subplots()
+ax.set_aspect('equal')
+ax.plot([q[0, 0] for q in hist_q], [q[1, 0] for q in hist_q], color='#81d41a')
+ax.scatter([qF[0,0]],[qF[1,0]], color='magenta',s=40)
+
+for i in range(len(centers)):
+    circle = patches.Circle((centers[i][0], centers[i][1]), radius=radius[i], color='#5983b0')  
+    ax.add_patch(circle)
+    
+   
+ax.set_xlim(-1.8, 1.8)
+ax.set_ylim(-1.8, 2.2)
+
+plt.show()
+
+
+</code></pre>
+
+                            </li><br>
+
+                        </ul>
+
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 4; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image9.gif"
+                                        style="max-width: 90%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CONTROL BARRIER FUNCTIONS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 6: SECOND ORDER WITH GVF</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul>
+                            <li>
+                                What if we have to use a path? We can adapt GVF (which were devised for velocities) 
+                                to accelerations. One way is a follows: given a GVF \(\Psi_{\mathcal{P}}(q)\) and 
+                                a constant \(K_{v} > 0\), we can set:
+                                <b class="itext">$$\Omega_{\mathcal{P}}(q,\dot{q}) = -K_v(\dot{q}-\Psi_{\mathcal{P}}(q))+\frac{\partial \Psi_{\mathcal{P}}}{\partial q}(q)\dot{q}.$$</b>
+                            </li><br>
+                            <li>This essentially controls the acceleration \(\ddot{q}\) so the velocity \(\dot{q}\) converges to \(\Psi_{\mathcal{P}}(q)\).
+                                We can then set the objective function to
+                                <b class="itext">$$\|u-\Omega_{\mathcal{P}}(q,\dot{q})\|^2$$</b>
+                            </li><br>
+                            <li>
+                                Computing \(\frac{\partial \Psi_{\mathcal{P}}}{\partial q}(q)\) can be tricky. Again, numerical approximations come 
+                                to rescue us:
+                                $$\frac{\partial\Psi_{\mathcal{P}}}{\partial q}(q)\dot{q} = \frac{d}{dt}\Psi_{\mathcal{P}}(q) \approx \frac{\Psi_{\mathcal{P}}(q+\Delta t \dot{q})-\Psi_{\mathcal{P}}(q-\Delta t \dot{q})  }{2\Delta t}.$$
+                            </li>
+                        </ul>
+
+
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 4; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image10_static.png"
+                                        style="max-width: 90%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CONTROL BARRIER FUNCTIONS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 6: SECOND ORDER WITH GVF</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul>
+                            <li>
+                                Here is the UAIBot code:
+
+<pre><code class="language-python" style="text-align:left; max-width:90%;">
+import numpy as np
+import matplotlib.pyplot as plt
+import uaibot as ub
+import matplotlib.patches as patches
+
+
+#We assume a path from a motion planner. Lets  assume that we got some waypoint
+#paths q_path_wp. Then we interpolate using the function 'fun_path' to get 
+#a function handle and sample n_sampled = 1000 points
+
+n_sample = 1000
+q_path_wp = [[-1.5, 0.2],[-1.5, 0.5],[-1.25,0.6],[-1.25,1.0], [-0.5,1.4],[0.5,0.6],[1.5,0]]
+fun_path = ub.Utils.interpolate(q_path_wp, is_closed = False)
+q_path = fun_path([i/n_sample for i in range(n_sample)])
+
+#Parameters
+kp = 0.5
+kv = 0.5
+eta = 0.8
+dt = 0.01
+tmax = 30
+delta = 0.05
+qF = np.matrix([1.5,0]).T
+q0 = np.matrix([-1.5,0.2]).T
+dotq0 = np.matrix([0.5,-0.25]).T
+centers = [np.matrix([-0.5,0.7]).T, np.matrix([-0.5,-0.7]).T , np.matrix([0.0,0.0]).T]
+radius = [0.5,0.5,0.5]
+center_unpl = np.matrix([0.5,0.4]).T
+radius_unpl = 0.3
+
+#Start simulation
+q = q0
+dotq = dotq0
+hist_q = []
+
+for i in range(round(tmax/dt)):
+
+
+    hist_q.append(np.matrix(q))
+    
+    #Assembly the CBF controller
+    H = 2*np.matrix([[1.0,0.0],[0.0,1.0]])
+
+    #We should call the vector field with "is_closed = False" because the curve
+    #is not closed
+    psi, _, _ = ub.Robot.vector_field(q,q_path, alpha=1.5, const_vel=0.5, is_closed = False)
+    
+    psi_next, _, _ = ub.Robot.vector_field(q+dotq*dt,q_path, alpha=1.5, const_vel=0.5, is_closed = False)
+    psi_ant, _, _ = ub.Robot.vector_field(q-dotq*dt,q_path, alpha=1.5, const_vel=0.5, is_closed = False)
+    dot_psi = (psi_next-psi_ant)/(2*dt)
+    
+    f = -2*(-kv*(dotq-psi)+dot_psi)
+    
+    A = np.matrix(np.zeros((0,2)))
+    b = np.matrix(np.zeros((0,1)))
+    
+    def aux_grad_B_k_fun(_q, _k):
+        return (_q-centers[_k]).T/np.linalg.norm(_q-centers[_k])
+    
+    for k in range(len(centers)):
+        B_k_fun = np.linalg.norm(q-centers[k])-radius[k]-delta
+        grad_B_k_fun = aux_grad_B_k_fun(q,k)
+        dot_B_k_fun = grad_B_k_fun*dotq
+        
+        #Compute B_quad = dotq' * Hessian(B_k) * dotq
+        B_quad = (aux_grad_B_k_fun(q+dt*dotq,k)-aux_grad_B_k_fun(q-dt*dotq,k))*dotq/(2*dt)
+
+        A = np.vstack( (A,  grad_B_k_fun) )
+        b = np.vstack( (b,  -(2*eta*dot_B_k_fun + eta*eta* B_k_fun + B_quad)) )
+      
+      
+      
+    def aux_grad_B_unpl_fun(_q):
+        return (_q-center_unpl).T/np.linalg.norm(_q-center_unpl)
+
+    B_unpl_fun = np.linalg.norm(q-center_unpl)-radius_unpl-delta
+    grad_B_unpl_fun = aux_grad_B_unpl_fun(q)
+    dot_B_unpl_fun = grad_B_unpl_fun*dotq
+    
+    #Compute B_quad = dotq' * Hessian(B_k) * dotq
+    B_quad = (aux_grad_B_unpl_fun(q+dt*dotq)-aux_grad_B_unpl_fun(q-dt*dotq))*dotq/(2*dt)
+
+    A = np.vstack( (A,  grad_B_unpl_fun) )
+    b = np.vstack( (b,  -(2*eta*dot_B_unpl_fun + eta*eta* B_unpl_fun + B_quad)) )
+        
+    #Compute the control input
+    u = ub.Utils.solve_qp(H,f,A,b)
+    
+    #Integrate the equation \ddot{q} = u(q,\dot{q})
+    q+= dotq*dt
+    dotq+= u*dt
+ 
+#Plot image
+fig, ax = plt.subplots()
+ax.set_aspect('equal')
+ax.plot([q[0, 0] for q in hist_q], [q[1, 0] for q in hist_q], color='#81d41a')
+ax.plot([q[0, 0] for q in q_path], [q[1, 0] for q in q_path], color='#084594', zorder = 20)
+ax.scatter([qF[0,0]],[qF[1,0]], color='magenta',s=40)
+
+for i in range(len(centers)):
+    circle = patches.Circle((centers[i][0], centers[i][1]), radius=radius[i], color='#5983b0')  
+    ax.add_patch(circle)
+    
+circle = patches.Circle((center_unpl[0,0],center_unpl[1,0]), radius=radius_unpl, color='#ec9ba4', zorder=15) 
+ax.add_patch(circle)    
+ax.set_xlim(-1.8, 1.8)
+ax.set_ylim(-1.8, 2.2)
+
+plt.show()
+
+</code></pre>
+
+                            </li><br>
+
+                        </ul>
+
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 4; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image10.gif"
+                                        style="max-width: 90%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
             <style>
 
