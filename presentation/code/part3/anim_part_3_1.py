@@ -2,6 +2,17 @@ import numpy as np
 import uaibot as ub
 import matplotlib.pyplot as plt
 
+#Parameters
+param_eta = 0.4*3
+param_eps = 0.001
+param_k = 0.5*2
+param_max_qdot = 1.5
+param_obs_delta = 0.025 #0.05
+param_joint_delta = 2*np.pi/180
+
+
+#####################
+    
 robot = ub.Robot.create_kuka_lbr_iiwa(htm=ub.Utils.rotz(np.pi/2))
 
 
@@ -19,16 +30,19 @@ platform2 = ub.Box(htm=ub.Utils.trn([-0.8+0.1,0,0.25]),width=0.8,depth=1.0,heigh
 platform3 = ub.Box(htm=ub.Utils.trn([-1.2+0.3+0.1,-0.5+0.15,0.7]),width=0.6,depth=0.3,height=0.4,mesh_material=material_steel)
 platform4 = ub.Box(htm=ub.Utils.trn([-1.2+0.3+0.1,0.5-0.15,0.7]),width=0.6,depth=0.3,height=0.4,mesh_material=material_steel)
 platform5 = ub.Box(htm=ub.Utils.trn([-0.8+0.1,0,0.9+0.1]),width=0.8,depth=1.0,height=0.2,mesh_material=material_steel)
-platform6 = ub.Box(htm=ub.Utils.trn([-0.5+0.1,0,0.53]),width=0.1,depth=0.4,height=0.06,mesh_material=material_steel)
+platform6 = ub.Box(htm=ub.Utils.trn([-0.5+0.1,0,0.55]),width=0.1,depth=0.4,height=0.1,mesh_material=material_steel)
+platform7 = ub.Box(htm=ub.Utils.trn([-0.48,0.225,0.7]),width=0.1,depth=0.05,height=0.2,mesh_material=material_steel)
+
+
 
 lever = ub.Cylinder(htm=ub.Utils.trn([-1.2+0.3+0.1+0.3-0.1,0.5-0.15,0.77])*ub.Utils.roty(np.pi/2), radius=0.02, height =0.3, color='magenta')
 
 
 disk = ub.Cylinder(htm=ub.Utils.trn([0.3,0,0.5+0.02]),height=0.04,radius=0.05,color='yellow')
 
-sim = ub.Simulation.create_sim_factory([robot, platform1, platform2, platform3, platform4, platform5, platform6, lever, disk])
+sim = ub.Simulation.create_sim_factory([robot, platform1, platform2, platform3, platform4, platform5, platform6, platform7, lever, disk])
 
-all_obstacles = [platform1, platform2, platform3, platform4, platform5, platform6]
+all_obstacles = [platform1, platform2, platform3, platform4, platform5, platform6, platform7]
 
 
 #######################
@@ -42,23 +56,24 @@ def fun_F(_r, _param_k):
     # out[3:6,0] = 0.2*out[3:6,0] 
     return out
 
-def compute_control(_q, _htm_tg):
     
-    param_eta = 0.4*3
-    param_obs_delta = 0.025 #0.05
-    param_joint_delta = 2*np.pi/180
-    param_eps = 0.001
-    param_k = 0.5*2
-    param_max_qdot = 1.5
+
+def compute_control(_q, _htm_tg, is_handling_disk, care_obstacles):
+    
+
     
     A = np.matrix(np.zeros((0,7)))
     b = np.matrix(np.zeros((0,1)))
     
     #Create the CBF constraints for all obstacles:
-    for obs in all_obstacles:
-        ds = robot.compute_dist(q = _q, obj = obs)
-        A = np.vstack((A, ds.jac_dist_mat))
-        b = np.vstack((b, -param_eta*(ds.dist_vect-param_obs_delta)))
+    
+
+    
+    if care_obstacles:
+        for obs in all_obstacles:
+            ds = robot.compute_dist(q = _q, obj = obs)
+            A = np.vstack((A, ds.jac_dist_mat))
+            b = np.vstack((b, -param_eta*(ds.dist_vect-param_obs_delta)))
         
     A_save = np.matrix(A)
     b_save = np.matrix(b)
@@ -68,6 +83,28 @@ def compute_control(_q, _htm_tg):
     b = np.vstack((b, -param_eta*(_q-robot.joint_limit[:,0]-param_joint_delta) ))  
     A = np.vstack((A, -np.identity(7)))
     b = np.vstack((b, -param_eta*(robot.joint_limit[:,1]-_q-param_joint_delta) ))  
+    
+    
+    #If the disk is in the end-effector, it should also be handled
+    if is_handling_disk and care_obstacles:
+
+        #Call the forward kinematic and differential for the end-effector,
+        #since this is where the disk is attaches
+        jac, htm = robot.jac_geo(q=_q)
+        
+        s_e = htm[0:3,-1]
+        jac_v = jac[0:3,:]
+        jac_w = jac[3:6,:]
+        
+        for obs in all_obstacles:
+            point_disk, point_obs, dist, _ = disk.compute_dist(obs)
+
+            jac_dist = (point_disk - point_obs).T * jac_v + np.cross((point_disk - s_e ).T, (point_disk - point_obs).T)  * jac_w
+            A = np.vstack((A, jac_dist))
+            b = np.vstack((b, -param_eta*(dist-param_obs_delta)))
+            
+
+        
     
     #Implement velocity limits
     A = np.vstack((A, np.identity(7)))
@@ -80,7 +117,7 @@ def compute_control(_q, _htm_tg):
     r, jac_r = robot.task_function(q=_q, htm_tg=_htm_tg)
     
     #Heuristic
-    if np.linalg.norm(r[0:3,:])>=0.3:
+    if np.linalg.norm(r[0:3,:])>=0.1:
         r = r[0:3,:]
         jac_r = jac_r[0:3,:]
     
@@ -89,6 +126,7 @@ def compute_control(_q, _htm_tg):
     
     #Compute the control input
     u = ub.Utils.solve_qp(H, f, A, b)
+
     
     # print("---------------")
     # print((_q-robot.joint_limit[:,0]).T)
@@ -109,15 +147,37 @@ def compute_control(_q, _htm_tg):
 
 dt=0.005
 
-htm_tg_0 = ub.Utils.trn([0.3,0,0.5+0.04])*ub.Utils.roty(np.pi)
-htm_tg_1 = ub.Utils.trn([-0.65,0,0.57])*ub.Utils.roty(np.pi)
-htm_tg_2 = ub.Utils.trn([-1.2+0.3+0.1+0.3+0.3-0.15,0.5-0.15,0.77])*ub.Utils.roty(-np.pi/2)
-htm_tg_3 = ub.Utils.trn([0.3,0.2,0.5+0.03])*ub.Utils.roty(np.pi)
+
+# htm_tg_0 = ub.Utils.trn([0.3,0,0.5+0.04+0.05])*ub.Utils.roty(np.pi)
+# htm_tg_1 = np.matrix([0.3,0,0.5+0.04]).T*ub.Utils.roty(np.pi)
+# htm_tg_2 = np.matrix([0.3,0,0.5+0.04+0.05]).T*ub.Utils.roty(np.pi)
+
+
+# htm_tg_3 = ub.Utils.trn([-0.65,0,0.57+0.03])*ub.Utils.roty(np.pi)
+# htm_tg_4 = np.matrix([-0.65,0,0.57]).T*ub.Utils.roty(np.pi)
+# htm_tg_5 = np.matrix([-0.65,0,0.57+0.03]).T*ub.Utils.roty(np.pi)
+
+# htm_tg_6 = ub.Utils.trn([-1.2+0.3+0.1+0.3+0.3-0.15,0.5-0.15,0.77])*ub.Utils.roty(-np.pi/2)
+# htm_tg_3 = ub.Utils.trn([0.3,0.2,0.5+0.03])*ub.Utils.roty(np.pi)
+
+
+htm_tg_0 = ub.Utils.trn([0.3,0,0.5+0.04+0.1])*ub.Utils.roty(np.pi)
+htm_tg_1 = ub.Utils.trn([0.3,0,0.5+0.04])*ub.Utils.roty(np.pi)
+htm_tg_2 = ub.Utils.trn([0.3,0,0.5+0.04+0.1])*ub.Utils.roty(np.pi)
+
+
+htm_tg_3 = ub.Utils.trn([-0.65,0,0.57+0.06])*ub.Utils.roty(np.pi)
+htm_tg_4 = ub.Utils.trn([-0.65,0,0.57])*ub.Utils.roty(np.pi)
+htm_tg_5 = ub.Utils.trn([-0.65,0,0.57+0.06])*ub.Utils.roty(np.pi)
+
+htm_tg_6 = ub.Utils.trn([-1.2+0.3+0.1+0.3+0.3-0.15,0.5-0.15,0.77])*ub.Utils.roty(-np.pi/2)
+
+htm_tg_7 = ub.Utils.trn([0.3,0.2,0.5+0.04+0.1])*ub.Utils.roty(np.pi)
 
 sim.add(ub.Frame(htm_tg_0, size=0.1))
-sim.add(ub.Frame(htm_tg_1, size=0.1))
-sim.add(ub.Frame(htm_tg_2, size=0.1))
 sim.add(ub.Frame(htm_tg_3, size=0.1))
+sim.add(ub.Frame(htm_tg_6, size=0.1))
+sim.add(ub.Frame(htm_tg_7, size=0.1))
 
 q = np.matrix(robot.q)
 
@@ -137,46 +197,105 @@ while cont:
     
     
     if mode==0:
-        u, r = compute_control(q, htm_tg_0)
+        #Going slightly above the disk
+        u, r = compute_control(q, htm_tg_0, False, True)
         
         print("Mode 0, error = "+str(round(np.linalg.norm(r),3)))
         if np.linalg.norm(r)<=0.01:
             mode = 1
-            robot.attach_object(disk)
 
     if mode==1:
-        u, r = compute_control(q, htm_tg_1)
+        #Downward movement
+        u, r = compute_control(q, htm_tg_1, False, False)
         
         print("Mode 1, error = "+str(round(np.linalg.norm(r),3)))
-        if np.linalg.norm(r)<=0.01: 
+        if np.linalg.norm(r)<=0.01:
             mode = 2
-            robot.detach_object(disk)
-
-    if mode==2:
-        u, r = compute_control(q, htm_tg_2)
-        
-        print("Mode 2, error = "+str(round(np.linalg.norm(r),3)))
-        if np.linalg.norm(r)<=0.005:
-
-            mode = 3
-
-    if mode==3:
-        u, r = compute_control(q, htm_tg_1)
-        
-        print("Mode 3, error = "+str(round(np.linalg.norm(r),3)))
-        if np.linalg.norm(r)<=0.015: 
-            mode = 4
             robot.attach_object(disk)
 
+    if mode==2:
+        #Upward movement
+        u, r = compute_control(q, htm_tg_2, False, False)
+        
+        print("Mode 2, error = "+str(round(np.linalg.norm(r),3)))
+        if np.linalg.norm(r)<=0.01:
+            mode = 3
+
+
+                        
+    if mode==3:
+        #Move object to be delivered
+        try:
+            u, r = compute_control(q, htm_tg_3, True, True)
+        
+            print("Mode 3, error = "+str(round(np.linalg.norm(r),3)))
+            if np.linalg.norm(r)<=0.01: 
+                mode = 4
+            
+        except:
+            cont = False
+            
+
+
+
     if mode==4:
-        u, r = compute_control(q, htm_tg_3)
+        #Move down
+        u, r = compute_control(q, htm_tg_4, True, False)
         
         print("Mode 4, error = "+str(round(np.linalg.norm(r),3)))
-        if np.linalg.norm(r)<=0.015: 
-            cont = False
+        if np.linalg.norm(r)<=0.01: 
+            mode = 5
             robot.detach_object(disk)
-     
-     
+            
+    if mode==5:
+        #Move up
+        u, r = compute_control(q, htm_tg_5, False, False)
+        
+        print("Mode 5, error = "+str(round(np.linalg.norm(r),3)))
+        if np.linalg.norm(r)<=0.01: 
+            mode = 6
+            
+
+                        
+    if mode==6:
+        #Go press the button
+        u, r = compute_control(q, htm_tg_6, False, True)
+        
+        print("Mode 6, error = "+str(round(np.linalg.norm(r),3)))
+        if np.linalg.norm(r)<=0.005:
+            mode = 7
+
+    if mode==7:
+        u, r = compute_control(q, htm_tg_3, False, True)
+        
+        print("Mode 7, error = "+str(round(np.linalg.norm(r),3)))
+        if np.linalg.norm(r)<=0.01: 
+            mode = 8
+            
+
+    if mode==8:
+        u, r = compute_control(q, htm_tg_4, False, False)
+        
+        print("Mode 8, error = "+str(round(np.linalg.norm(r),3)))
+        if np.linalg.norm(r)<=0.015: 
+            mode = 9
+            robot.attach_object(disk)
+            
+    if mode==9:
+        u, r = compute_control(q, htm_tg_5, False, False)
+        
+        print("Mode 9, error = "+str(round(np.linalg.norm(r),3)))
+        if np.linalg.norm(r)<=0.015: 
+            mode = 10    
+            
+
+    if mode==10:
+        u, r = compute_control(q, htm_tg_7, True, True)
+        
+        print("Mode 10, error = "+str(round(np.linalg.norm(r),3)))
+        if np.linalg.norm(r)<=0.01: 
+            cont = False 
+                 
     hist_q.append(np.matrix(q))
     hist_u.append(np.matrix(u))
                                        
