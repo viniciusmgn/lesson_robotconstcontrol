@@ -2983,6 +2983,70 @@ plt.show()
                 </div>
             </section>
 
+
+            <section
+                style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+                <h3 style="font-size: 3.5vw; margin-bottom: 0.5rem;">ADVANCED EXAMPLES</h3>
+
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                    <img src="presentation/images/part3/main.png" style="max-width: 40%; height: auto;">
+                </div>
+            </section>
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    ADVANCED EXAMPLES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 1: A MANIPULATOR WORKING IN A FACTORY</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul>
+                            <li>
+                                In this example, we have a Kuka LBR IIWA manipulator that needs to get objects moving in a belt. He then 
+                            needs to put it to be tested in a machine. And return it to the belt.</b>
+                            </li><br>
+                            <li>We need to respect:
+                                <ul>
+                                    <li>Joint limits;</li>
+                                    <li>Joint velocity limits;</li>
+                                    <li>Obstacle avoidance;</li>
+                                </ul>
+
+                            </b>
+                            </li><br>
+                            <li>
+                                Computing \(\frac{\partial \Psi_{\mathcal{P}}}{\partial q}(q)\) can be tricky. Again, numerical approximations come 
+                                to rescue us:
+                                $$\frac{\partial\Psi_{\mathcal{P}}}{\partial q}(q)\dot{q} = \frac{d}{dt}\Psi_{\mathcal{P}}(q) \approx \frac{\Psi_{\mathcal{P}}(q+\Delta t \dot{q})-\Psi_{\mathcal{P}}(q-\Delta t \dot{q})  }{2\Delta t}.$$
+                            </li>
+                        </ul>
+
+
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 4; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image10_static.png"
+                                        style="max-width: 90%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
             <style>
 
 
