@@ -800,7 +800,7 @@
                 </div>
             </section>
 
-                        <section style="display: flex; flex-direction: column; height: 100vh;">
+            <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     PATH PLANNING VS MOTION CONTROL
                 </h3>
@@ -821,7 +821,13 @@
                             <li> The GVF algorithm is implemented in UAIBot in the 
                                 function <b class="itext">vector_field</b>:
 
-        <pre><code class="language-python" style="text-align:left; max-width:80%;">
+
+                            </li><br>
+                            
+                           
+                        </ul>
+
+<pre style="max-width:100%;"><code class="language-python" style="text-align:left;">
 import numpy as np
 import uaibot as ub
 import matplotlib.pyplot as plt
@@ -865,11 +871,6 @@ plt.plot([a[0,0] for a in hist_q], [a[1,0] for a in hist_q], color='red')
 plt.axis("equal")
 plt.show()
         </code></pre>
-                            </li><br>
-                            
-                           
-                        </ul>
-
 
                         </div>
 
@@ -1455,7 +1456,13 @@ plt.show()
                                 UAIBot can solve convex quadratic programs through the <b class="itext">solve_qp</b> function:
                             
                             
-        <pre><code class="language-python" style="text-align:left">
+
+
+                            </li>
+                            
+                        </ul>
+
+<pre style="max-width:100%;"><code class="language-python" style="text-align:left;">
 import numpy as np
 import uaibot as ub
 
@@ -1479,12 +1486,7 @@ b = np.matrix([1.0,-0.3]).T
 u = ub.Utils.solve_qp(H, f, A, b)
 
 print("u = "+str(u.T)+"^T")
-        </code></pre>
-
-                            </li>
-                            
-                        </ul>
-
+</code></pre>
 
                         </div>
                     </div>
@@ -1572,7 +1574,12 @@ print("u = "+str(u.T)+"^T")
                             <li>
                                 Here is the UAIBot code:
 
-        <pre><code class="language-python" style="text-align:left">
+
+
+                            </li><br>
+
+                        </ul>
+<pre style="max-width:90%;"><code class="language-python" style="text-align:left;">
 import numpy as np
 import matplotlib.pyplot as plt
 import uaibot as ub
@@ -1626,11 +1633,6 @@ ax.set_ylim(-1.5, 1.5)
 plt.show()
 
         </code></pre>
-
-                            </li><br>
-
-                        </ul>
-
 
                         </div>
                     </div>
@@ -1713,7 +1715,12 @@ plt.show()
                             <li>
                                 Here is the UAIBot code:
 
-<pre><code class="language-python" style="text-align:left; max-width:80%;">
+
+
+                            </li><br>
+
+                        </ul>
+<pre style="max-width:90%;"><code class="language-python" style="text-align:left;">
 import numpy as np
 import matplotlib.pyplot as plt
 import uaibot as ub
@@ -1778,11 +1785,6 @@ ax.set_ylim(-1.5, 1.5)
 plt.show()
 
 </code></pre>
-
-                            </li><br>
-
-                        </ul>
-
 
                         </div>
                     </div>
@@ -1870,7 +1872,12 @@ plt.show()
                             <li>
                                 Here is the UAIBot code:
 
-<pre><code class="language-python" style="text-align:left; max-width:80%;">
+
+
+                            </li><br>
+
+                        </ul>
+<pre style="max-width:90%;"><code class="language-python" style="text-align:left;">
 import numpy as np
 import matplotlib.pyplot as plt
 import uaibot as ub
@@ -1958,11 +1965,6 @@ ax.set_ylim(-1.8, 2.2)
 plt.show()
 
 </code></pre>
-
-                            </li><br>
-
-                        </ul>
-
 
                         </div>
                     </div>
@@ -2135,7 +2137,12 @@ plt.show()
                             <li>
                                 Here is the UAIBot code:
 
-<pre><code class="language-python" style="text-align:left; max-width:90%;">
+
+
+                            </li><br>
+
+                        </ul>
+<pre style="max-width:90%;"><code class="language-python" style="text-align:left;">
 import numpy as np
 import matplotlib.pyplot as plt
 import uaibot as ub
@@ -2286,11 +2293,6 @@ plt.show()
 
 </code></pre>
 
-                            </li><br>
-
-                        </ul>
-
-
                         </div>
                     </div>
 
@@ -2365,7 +2367,7 @@ plt.show()
                 <div
                     style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
                     <div
-                        style="flex: 1; min-width: 300px; font-size: 1.4vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        style="flex: 1; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
                         <ul>
@@ -2673,7 +2675,12 @@ plt.show()
                             <li>
                                 Here is the UAIBot code:
 
-<pre><code class="language-python" style="text-align:left; max-width:90%;">
+
+
+                            </li><br>
+
+                        </ul>
+<pre style="max-width:90%;"><code class="language-python" style="text-align:left;">
 import numpy as np
 import matplotlib.pyplot as plt
 import uaibot as ub
@@ -2759,11 +2766,6 @@ plt.show()
 
 </code></pre>
 
-                            </li><br>
-
-                        </ul>
-
-
                         </div>
                     </div>
 
@@ -2796,14 +2798,14 @@ plt.show()
 
                         <ul>
                             <li>
-                                What if we have to use a path? We can adapt GVF (which were devised for velocities) 
+                                What if we have to use a path? We can adapt the GVF (which was devised for velocities) 
                                 to accelerations. One way is a follows: given a GVF \(\Psi_{\mathcal{P}}(q)\) and 
                                 a constant \(K_{v} > 0\), we can set:
                                 <b class="itext">$$\Omega_{\mathcal{P}}(q,\dot{q}) = -K_v(\dot{q}-\Psi_{\mathcal{P}}(q))+\frac{\partial \Psi_{\mathcal{P}}}{\partial q}(q)\dot{q}.$$</b>
                             </li><br>
                             <li>This essentially controls the acceleration \(\ddot{q}\) so the velocity \(\dot{q}\) converges to \(\Psi_{\mathcal{P}}(q)\).
                                 We can then set the objective function to
-                                <b class="itext">$$\|u-\Omega_{\mathcal{P}}(q,\dot{q})\|^2$$.</b>
+                                <b class="itext">$$\|u-\Omega_{\mathcal{P}}(q,\dot{q})\|^2.$$</b>
                             </li><br>
                             <li>
                                 Computing \(\frac{\partial \Psi_{\mathcal{P}}}{\partial q}(q)\) can be tricky. Again, numerical approximations come 
@@ -2849,7 +2851,11 @@ plt.show()
                             <li>
                                 Here is the UAIBot code:
 
-<pre><code class="language-python" style="text-align:left; max-width:70%;">
+
+                            </li><br>
+
+                        </ul>
+<pre style="max-width:90%;"><code class="language-python" style="text-align:left;">
 import numpy as np
 import matplotlib.pyplot as plt
 import uaibot as ub
@@ -2962,10 +2968,6 @@ plt.show()
 
 </code></pre>
 
-                            </li><br>
-
-                        </ul>
-
 
                         </div>
                     </div>
@@ -3047,22 +3049,21 @@ plt.show()
 
                         <ul>
                             <li>
-                                In this example, we have a Kuka LBR IIWA manipulator that needs to get an object (a disk) in a table, put it inside 
-                            a machine that will test the object, press a button to start a machine, get the object inside the machine and put it 
-                        back in a table in another place.</b>
+                                In this example, we have a Kuka LBR IIWA manipulator that needs to pick up an object (a disk) from a table, place it inside 
+                                a machine that will test the object, press a button to start the machine, retrieve the object from the machine, and place it 
+                                back on a table in a different location.
                             </li><br>
                             <li>We assume that we control the joint velocity, i.e., \(\dot{q} = u\).</li><br>
                             <li>
-                                We have many constraints in this case:<br><br><br>
+                                We have several constraints in this case:<br><br><br>
                                 <ul>
                                     <li>Joint limits;</li>
                                     <li>Joint velocity limits;</li>
                                     <li>Obstacle avoidance.</li>
                                 </ul>
-                                
                             </li><br>
-
                         </ul>
+
 
 
 
@@ -3101,18 +3102,16 @@ plt.show()
                                 use the CBF functions:
                                 <b class="itext">$$B_{i}^{JL}(q) = q_i - \underline{q}_i;$$ </b>
                                 <b class="itext">$$B_{i}^{JU}(q) = \overline{q}_i - q_i.$$ </b>  
-                            </b>
                             </li><br>
                             <li>The Jacobians are trivial to compute: <br>
-                                                            <b class="itext">$$B_{i}^{JL}(q) = q_i - \underline{q}_i$$ </b>
+                                <b class="itext">$$B_{i}^{JL}(q) = q_i - \underline{q}_i$$ </b>
                                 <b class="itext">$$\frac{\partial B_{i}^{JL}}{\partial q}(q) = e_i^{\top};$$ </b>
                                 <b class="itext">$$\frac{\partial B_{i}^{JU}}{\partial q}(q) = -e_i^{\top}$$ </b>
                                 
-                                in which \(e_i\) is the \(i^{th}\) column of the \(n \times n\) identity matrix.
+                                where \(e_i\) is the \(i^{th}\) column of the \(n \times n\) identity matrix.
                             </li><br>
-       
-
                         </ul>
+
 
 
 
@@ -3147,8 +3146,8 @@ plt.show()
 
                         <ul>
                             <li>
-                                Suppose we have joint velocity limits \(\underline{u}_i\) (lower) and \(\overline{u}_i\) (upper). We can trivially implement this 
-                                constraint directly (without the need to use any CBF):
+                                Suppose we have joint velocity limits \(\underline{u}_i\) (lower) and \(\overline{u}_i\) (upper). We can trivially implement these 
+                                constraints directly (without the need to use any CBF):
                                 <b class="itext">$$u_i \geq \underline{u}_i$$ </b>
                                 <b class="itext">$$u_i \leq \overline{u}_i \ \rightarrow \ -u_i \geq -\overline{u}_i.$$ </b>  
                             </b>
@@ -3189,22 +3188,22 @@ plt.show()
 
                         <ul>
                             <li>
-                                For obstacle avoidance, we consider that the robot is composed of \(v=1,...,V\) objects (spheres, boxes, etc...) 
-                                and that the static environment by \(w=1,...,W\) objects. For each one of them, we compute the 
-                                <b class="itext">Euclidean distance</b> between the \(v^{th}\) robot object  at configuration \(q\), \(\mathcal{R}(v,q)\),
-                                 and 
-                                the \(w^{th}\) environment object \(\mathcal{O}(w)\):
+                                For obstacle avoidance, we consider that the robot is composed of \(v = 1, \dots, V\) objects (spheres, boxes, etc...), 
+                                and that the static environment is composed of \(w = 1, \dots, W\) objects. For each pair, we compute the 
+                                <b class="itext">Euclidean distance</b> between the \(v^{th}\) robot object at configuration \(q\), \(\mathcal{R}(v, q)\), 
+                                and the \(w^{th}\) environment object \(\mathcal{O}(w)\):
                                 <b class="itext">$$ D_{vw}(q) = \sqrt{2\Lambda_{\mathcal{R}(v,q), \mathcal{O}(w)}}.$$</b>
                             </li><br>
                             <li>
                                 Remember that \(\Lambda\) is the set-to-set half squared distance (hence the \(\sqrt{2\Lambda}\) to recover the distance).
                             </li><br>
-                            <li>We can then just set:
+                            <li>
+                                We can then simply set:
                                 <b class="itext">$$B^{RO}_{vw}(q) = D_{vw}(q) - \delta$$</b>
-                                in which \(\delta\) is a <b class="itext">safety margin</b>.
+                                where \(\delta\) is a <b class="itext">safety margin</b>.
                             </li><br>
-
                         </ul>
+
 
 
 
@@ -3237,22 +3236,26 @@ plt.show()
                         style="flex: 6; min-width: 300px; font-size: 1.4vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
-                        <ul>
-                            <li><b class="itext">Can we use the half-squared distance directly?</b> Yes, but although HSD are more convenient theoretically 
-                                and for computations, when implementing safety, in my experience, the distance is better.
-                            </li><br>
-                            <!--<li><b class="itext">And what about differentiable distances?</b> Not much benefit here, because we have to enter in a tight space 
-                                to deliver the piece inside the machine. In my experience, differentiable distances shine when you are not required to get 
-                                very close to the obstacles. 
+                    <ul>
+                        <li><b class="itext">Can we use the half-squared distance directly?</b> Yes, but although HSD is more convenient theoretically 
+                            and computationally, in my experience, using the distance is better when implementing safety.
+                        </li><br>
+                        <!--<li><b class="itext">And what about differentiable distances?</b> Not much benefit here, because we have to enter a tight space 
+                            to deliver the piece inside the machine. In my experience, differentiable distances shine when you are not required to get 
+                            very close to obstacles. 
 
-                            </li><br>!-->
-                            <li>We can compute the Jacobian of these functions using the distance Jacobian for the S2S-HSD that we learned to compute, since, 
-                                from the chain rule:
-                                $$ \frac{\partial}{\partial q} B^{RO}_{vw}(q) = \frac{1}{\sqrt{2 \Lambda_{\mathcal{R}(v,q), \mathcal{O}(w)}}} \frac{\partial }{\partial q} \Lambda_{\mathcal{R}(v,q), \mathcal{O}(w)}.$$
-                            </li><br>
-                            <li>UAIBot's <b class="itext">compute_dist</b> already compute the Euclidean distance and the Euclidean distance Jacobian, thus already 
-                            implementing this equation.</li>
-                        </ul>
+                        </li><br>!-->
+                        <li>
+                            We can compute the Jacobian of these functions using the distance Jacobian for the S2S-HSD that we learned to compute, since, 
+                            from the chain rule:
+                            $$ \frac{\partial}{\partial q} B^{RO}_{vw}(q) = \frac{1}{\sqrt{2 \Lambda_{\mathcal{R}(v,q), \mathcal{O}(w)}}} \frac{\partial }{\partial q} \Lambda_{\mathcal{R}(v,q), \mathcal{O}(w)}.$$
+                        </li><br>
+                        <li>
+                            UAIBot's <b class="itext">compute_dist</b> already computes the Euclidean distance and the Euclidean distance Jacobian, thus already 
+                            implementing this equation.
+                        </li>
+                    </ul>
+
 
 
 
@@ -3287,15 +3290,18 @@ plt.show()
                         <div style="position:absolute; width: 50%; ">
 
                         <ul>
-                            <li>We need to be careful, because once the robot gets the object, we also need to implement a constraint that 
-                                avoids collision between the disk, being held by the end-effector, and the environment.
+                            <li>
+                                We need to be careful, because once the robot picks up the object, we also need to implement a constraint that 
+                                avoids collisions between the disk, being held by the end-effector, and the environment.
                             </li><br>
-                            <li>When the disk is being held, the space it occupies in the space is given by a set \(\mathcal{D}(q)\) that moves rigidly 
-                                in the space. Thus, we can create a CBF constraint for it as well:
+                            <li>
+                                When the disk is being held, the space it occupies is represented by a set \(\mathcal{D}(q)\) that moves rigidly 
+                                in space. Thus, we can create a CBF constraint for it as well:
                                 $$  B^{DO}_{w}(q) = \sqrt{2 \Lambda_{\mathcal{D}(q), \mathcal{O}(w)}}$$
                                 and we need to implement one constraint for each object \(w\) in the environment.
                             </li><br>
                         </ul>
+
 
 
 
@@ -3335,10 +3341,12 @@ plt.show()
                             <li>We will use our <a href="presentation/part1.html#/61"><b
                             class="hlink">classical task function</b></a> \(r(q)\) to achieve a target pose \(H_{tg}\) pose as the objective function of our 
                                 QP:
-                                $$ \min_u \left\|\frac{\partial r}{\partial q}(q)u + K r(q)\right\|^2 + \epsilon \|u\|^2$$
+                                $$ \min_u \left\|\frac{\partial r}{\partial q}(q)u - G(r(q))\right\|^2 + \epsilon \|u\|^2$$
                                 for a regularization parameter \(\epsilon\).
                             </li><br>
-                            <li>This target pose \(H_{tg}\) will change discretely as we switch between different modes of operation:
+                            <li>\(G\) is the function <a href="presentation/part1.html#/69"><b
+                            class="hlink">described here</b></a>;</li><br>
+                            <li>This target pose \(H_{tg}\) will change discretely as we switch between different modes of operation.
                             </li><br>
                             <li>Thus, we will try our luck without path planning.</li>
                         </ul>
@@ -3375,18 +3383,20 @@ plt.show()
                         <div style="position:absolute; width: 50%; ">
 
                         <ul>
-                            <li>Our task has some discrete states ("Modes"). In each one of them we will have different target poses \(H_{tg}\);
-
-                            </li><br>
-                            <li>In some cases, when we grab the disk, we have to disable collision avoidance. 
-                                This is because we have to get extremely close to an obstacle. 
-                                This is not a problem because it is going to be a very subtle and controlled movement.
+                            <li>
+                                Our task has some discrete states ("Modes"). In each of them, we will have different target poses \(H_{tg}\).
                             </li><br>
                             <li>
-                                In other cases, we need to enable collision with the object (disk), implemeting the CBF functions 
-                                \(B^{DO}_{w}(q)\) that we saw already.
-                            </li>
+                                In some cases, when we grab the disk, we have to disable collision avoidance. 
+                                This is because we need to get extremely close to an obstacle. 
+                                This is not a problem because it will be a very subtle and controlled movement.
+                            </li><br>
+                            <li>
+                                In other cases, we need to enable collision avoidance with the object (disk), implementing the CBF functions 
+                                \(B^{DO}_{w}(q)\) that we have already seen.
+                            </li><br>
                         </ul>
+
 
 
 
@@ -3416,7 +3426,7 @@ plt.show()
                 <div
                     style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
                     <div
-                        style="flex: 6; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        style="flex: 6; min-width: 300px; font-size: 1.2vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
 
@@ -3692,6 +3702,444 @@ plt.show()
                     </div>
                 </div>
             </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                     STUDY CASES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 1: UAIBOT CODE</b>
+                </h3>
+
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 3; min-width: 300px; font-size: 1.5vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+
+
+                        <div style="position:absolute; width: 50%; ">
+
+                        
+                        <ul>
+                            <li>
+                                Here is the UAIBot code.
+                            </li>     
+                        </ul>
+
+<pre style="max-width:100%;"><code class="language-python" style="text-align:left;">
+import numpy as np
+import uaibot as ub
+import matplotlib.pyplot as plt
+
+###############################################################
+#Parameters
+param_eta = 1.2
+param_eps = 0.001
+param_k = 1.0
+param_max_qdot = 1.5
+param_obs_delta = 0.025 
+param_joint_delta = 2*np.pi/180
+dt=0.005
+param_iter_max = 10000
+robot = ub.Robot.create_kuka_lbr_iiwa(htm=ub.Utils.rotz(np.pi/2))
+param_use_pc = False
+tol_error = 0.008
+
+htm_tg_0 = ub.Utils.trn([0.3, 0.0, 0.64])*ub.Utils.roty(np.pi)
+htm_tg_1 = ub.Utils.trn([0.3, 0.0, 0.54])*ub.Utils.roty(np.pi)
+htm_tg_2 = ub.Utils.trn([0.3, 0.0, 0.64])*ub.Utils.roty(np.pi)
+htm_tg_3 = ub.Utils.trn([-0.65, 0.0, 0.63])*ub.Utils.roty(np.pi)
+htm_tg_4 = ub.Utils.trn([-0.65, 0.0, 0.57])*ub.Utils.roty(np.pi)
+htm_tg_5 = ub.Utils.trn([-0.65, 0.0, 0.63])*ub.Utils.roty(np.pi)
+htm_tg_6 = ub.Utils.trn([-0.35, 0.35, 0.77])*ub.Utils.roty(-np.pi/2)
+htm_tg_7 = ub.Utils.trn([0.30,  0.20, 0.64])*ub.Utils.roty(np.pi)
+
+###############################################################
+#Create environment
+
+texture_steel = ub.Texture(
+            url='https://cdn.jsdelivr.net/gh/viniciusmgn/uaibot_content@master/contents/Textures/rough_metal.jpg',
+            wrap_s='RepeatWrapping', wrap_t='RepeatWrapping', repeat=[4, 4])
+
+texture_gold = ub.Texture(
+            url='https://cdn.jsdelivr.net/gh/viniciusmgn/uaibot_content@master/contents/Textures/gold_metal.png',
+            wrap_s='RepeatWrapping', wrap_t='RepeatWrapping', repeat=[4, 4])
+
+
+material_steel= ub.MeshMaterial(metalness=0.7, clearcoat=1, roughness=0.5, normal_scale=[0.5, 0.5], texture_map=texture_steel)
+material_gold= ub.MeshMaterial(metalness=0.7, clearcoat=1, roughness=0.5, normal_scale=[0.5, 0.5], texture_map=texture_gold)
+
+platform1 = ub.Box(htm=ub.Utils.trn([0.3, 0.0, 0.25]),width=0.2,depth=1.0,height=0.5,mesh_material=material_steel)
+platform2 = ub.Box(htm=ub.Utils.trn([-0.7, 0.0, 0.25]),width=0.8,depth=1.0,height=0.5,mesh_material=material_steel)
+platform3 = ub.Box(htm=ub.Utils.trn([-0.8, -0.35, 0.725]),width=0.6,depth=0.3,height=0.45,mesh_material=material_steel)
+platform4 = ub.Box(htm=ub.Utils.trn([-0.8, 0.35, 0.725]),width=0.6,depth=0.3,height=0.45,mesh_material=material_steel)
+platform5 = ub.Box(htm=ub.Utils.trn([-0.7, 0.0, 1.05]),width=0.8,depth=1.0,height=0.2,mesh_material=material_steel)
+platform6 = ub.Box(htm=ub.Utils.trn([-0.4, 0.0, 0.55]),width=0.1,depth=0.4,height=0.1,mesh_material=material_steel)
+platform7 = ub.Box(htm=ub.Utils.trn([-0.48,0.225,0.7]),width=0.1,depth=0.05,height=0.2,mesh_material=material_steel)
+button = ub.Cylinder(htm=ub.Utils.trn([-0.6, 0.35, 0.77])*ub.Utils.roty(np.pi/2), radius=0.02, height =0.3, color='magenta')
+disk = ub.Cylinder(htm=ub.Utils.trn([0.3,0,0.52]),height=0.04,radius=0.05,mesh_material=material_gold)
+
+
+
+all_obstacles = [platform1, platform2, platform3, platform4, platform5, platform6, platform7]
+
+#If point clouds are used, transform all objects in "all_obstalces" 
+#into point clouds
+if param_use_pc:
+    
+    all_points = []
+    for obs in all_obstacles:
+        all_points+=[np.matrix(p).T for p in obs.to_point_cloud(disc=0.04).points.T]
+        
+    all_obstacles = [ub.PointCloud(points=all_points, color='cyan', size=0.02)]
+    
+#Create simulation and add everything
+sim = ub.Simulation.create_sim_factory([robot, button, disk])
+sim.set_parameters(load_screen_color="#191919", background_color="#191919", width=500, height=500, show_world_frame=False, show_grid=False, camera_start_pose=[1.0,-1.0,1.0,-1.0,0.8,0,0.8])
+
+sim.add(ub.Frame(htm_tg_0, size=0.1))
+sim.add(ub.Frame(htm_tg_3, size=0.1))
+sim.add(ub.Frame(htm_tg_6, size=0.1))
+sim.add(ub.Frame(htm_tg_7, size=0.1))
+
+for obs in all_obstacles:
+    sim.add(obs)
+
+
+#################################################################
+
+def fun_G(_r, _param_k):
+    m = np.shape(_r)[0]
+    out = np.matrix(np.zeros((m,1)))
+    for i in range(m):
+        out[i,0] = -_param_k * np.sign(_r[i,0]) * np.sqrt(np.abs(_r[i,0]))
+       
+    return out
+
+def compute_control(_q, _htm_tg, is_handling_disk, care_obstacles):
+    
+    no_joint = np.shape(robot.q)[0]
+    
+    A = np.matrix(np.zeros((0,no_joint)))
+    b = np.matrix(np.zeros((0,1)))
+    
+    #Create the CBF constraints for all obstacles:
+    if care_obstacles:
+        
+        #Between the robot and the objects
+        for obs in all_obstacles:
+            ds = robot.compute_dist(q = _q, obj = obs)
+            A = np.vstack((A, ds.jac_dist_mat))
+            b = np.vstack((b, -param_eta*(ds.dist_vect-param_obs_delta)))
+        
+        #If the disk is in the end-effector, it should also be handled
+        if is_handling_disk:
+
+            #Call the forward kinematic and differential for the end-effector,
+            #since this is where the disk is attaches
+            jac, htm = robot.jac_geo(q=_q)
+            
+            s_e = htm[0:3,-1]
+            jac_v = jac[0:3,:]
+            jac_w = jac[3:6,:]
+            
+            for obs in all_obstacles:
+                point_disk, point_obs, dist, _ = disk.compute_dist(obs)
+
+                jac_dist = (point_disk - point_obs).T * jac_v + np.cross((point_disk - s_e ).T, (point_disk - point_obs).T)  * jac_w
+                A = np.vstack((A, jac_dist))
+                b = np.vstack((b, -param_eta*(dist-param_obs_delta)))
+                    
+    #Create the CBF constraint for joint limits
+    A = np.vstack((A, np.identity(no_joint)))
+    b = np.vstack((b, -param_eta*(_q-robot.joint_limit[:,0]-param_joint_delta) ))  
+    A = np.vstack((A, -np.identity(no_joint)))
+    b = np.vstack((b, -param_eta*(robot.joint_limit[:,1]-_q-param_joint_delta) ))  
+    
+    #Implement velocity limits
+    A = np.vstack((A, np.identity(no_joint)))
+    b = np.vstack((b, -param_max_qdot*np.matrix(np.ones((no_joint,1))) ))  
+    A = np.vstack((A, -np.identity(no_joint)))
+    b = np.vstack((b, -param_max_qdot*np.matrix(np.ones((no_joint,1))) ))      
+    
+    
+    #Create the objective function
+    r, jac_r = robot.task_function(q=_q, htm_tg=_htm_tg)
+        
+    H = 2*(jac_r.T * jac_r + param_eps* np.identity(no_joint))
+    f = -2*jac_r.T*fun_G(r, param_k)
+    
+    #Compute the control input
+    u = ub.Utils.solve_qp(H, f, A, b)
+
+    return u, np.linalg.norm(r)
+        
+#################################################################
+
+q = np.matrix(robot.q)
+
+mode = 0
+cont = True
+i=0
+
+hist_q = []
+hist_u = []
+hist_t = []
+
+while cont:
+    
+    i+=1
+    cont = i < param_iter_max
+    
+    if mode==0:
+        #Going slightly above the disk
+        u, error_r = compute_control(q, htm_tg_0, False, True)
+        
+        print("Mode 0, error = "+str(round(error_r,3)))
+        if error_r<=tol_error:
+            mode = 1
+
+    if mode==1:
+        #Downward movement
+        u, error_r = compute_control(q, htm_tg_1, False, False)
+        
+        print("Mode 1, error = "+str(round(error_r,3)))
+        if error_r<=tol_error:
+            mode = 2
+            robot.attach_object(disk)
+
+    if mode==2:
+        #Upward movement
+        u, error_r = compute_control(q, htm_tg_2, False, False)
+        
+        print("Mode 2, error = "+str(round(error_r,3)))
+        if error_r<=tol_error:
+            mode = 3
+ 
+    if mode==3:
+        #Move object to be delivered
+        u, error_r = compute_control(q, htm_tg_3, True, True)
+    
+        print("Mode 3, error = "+str(round(error_r,3)))
+        if error_r<=tol_error: 
+            mode = 4
+            
+    if mode==4:
+        #Move down
+        u, error_r = compute_control(q, htm_tg_4, True, False)
+        
+        print("Mode 4, error = "+str(round(error_r,3)))
+        if error_r<=tol_error: 
+            mode = 5
+            robot.detach_object(disk)
+            
+    if mode==5:
+        #Move up
+        u, error_r = compute_control(q, htm_tg_5, False, False)
+        
+        print("Mode 5, error = "+str(round(error_r,3)))
+        if error_r<=tol_error: 
+            mode = 6
+                         
+    if mode==6:
+        #Go press the button
+        u, error_r = compute_control(q, htm_tg_6, False, True)
+        
+        print("Mode 6, error = "+str(round(error_r,3)))
+        if error_r<=tol_error:
+            mode = 7
+
+    if mode==7:
+        #Got the object again
+        u, error_r = compute_control(q, htm_tg_3, False, True)
+        
+        print("Mode 7, error = "+str(round(error_r,3)))
+        if error_r<=tol_error: 
+            mode = 8
+            
+
+    if mode==8:
+        #Go down
+        u, error_r = compute_control(q, htm_tg_4, False, False)
+        
+        print("Mode 8, error = "+str(round(error_r,3)))
+        if error_r<=tol_error: 
+            mode = 9
+            robot.attach_object(disk)
+            
+    if mode==9:
+        #Go up
+        u, error_r = compute_control(q, htm_tg_5, False, False)
+        
+        print("Mode 9, error = "+str(round(error_r,3)))
+        if error_r<=tol_error: 
+            mode = 10    
+            
+
+    if mode==10:
+        #Move to final pose
+        u, error_r = compute_control(q, htm_tg_7, True, True)
+        
+        print("Mode 10, error = "+str(round(error_r,3)))
+        if error_r<=tol_error: 
+            cont = False 
+                 
+    hist_q.append(np.matrix(q))
+    hist_u.append(np.matrix(u))
+    hist_t.append(i*dt)
+                                       
+    q = robot.q+u*dt
+    
+    robot.add_ani_frame(time = i*dt, q = q)
+
+###############################################################
+# Plot graphs
+        
+# Plot joint positions
+fig = plt.figure(facecolor='#191919') 
+for i in range(7):
+    ax = plt.subplot(4, 2, i + 1, facecolor='#191919')
+    
+    ax.plot(hist_t, [q[i, 0] for q in hist_q], color='#81d41a')
+    ax.plot(hist_t, [robot.joint_limit[i, 0] + param_joint_delta for _ in hist_q], color='red')
+    ax.plot(hist_t, [robot.joint_limit[i, 1] - param_joint_delta for _ in hist_q], color='red')
+    
+    ax.set_title("Joint " + str(i + 1), color='white')
+    
+    ax.tick_params(colors='white')
+    ax.spines['bottom'].set_color('white')
+    ax.spines['top'].set_color('white')
+    ax.spines['left'].set_color('white')
+    ax.spines['right'].set_color('white')
+    ax.yaxis.label.set_color('white')
+    ax.xaxis.label.set_color('white')
+    ax.grid(True, color='white', linestyle=':', alpha=0.3)
+
+plt.tight_layout()
+
+
+# Plot joint velocities
+fig = plt.figure(facecolor='#191919')   
+for i in range(7):
+    ax = plt.subplot(4, 2, i + 1, facecolor='#191919')
+    
+    ax.plot(hist_t, [u[i, 0] for u in hist_u], color='#81d41a')
+    ax.plot(hist_t, [-param_max_qdot for _ in hist_u], color='red')
+    ax.plot(hist_t, [param_max_qdot for _ in hist_u], color='red')
+    
+    ax.set_title("Velocity " + str(i + 1), color='white')
+    
+    ax.tick_params(colors='white')
+    ax.spines['bottom'].set_color('white')
+    ax.spines['top'].set_color('white')
+    ax.spines['left'].set_color('white')
+    ax.spines['right'].set_color('white')
+    ax.yaxis.label.set_color('white')
+    ax.xaxis.label.set_color('white')
+    ax.grid(True, color='white', linestyle=':', alpha=0.3)
+
+plt.tight_layout()
+plt.show()
+
+</code></pre>
+                            
+                    </div>
+
+
+
+                    </div>
+
+                    <div
+                        style="flex: 3; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+
+                        <div style="flex: 4; flex-direction: row">
+                        <br><br>
+                        <div style="width: 100%">
+                            <iframe src="presentation/images/part3/part_3_2.html" width="550" height="580"
+                                style="border: none;"></iframe>
+                        </div>
+                            
+
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+
+       <section style="display: flex; flex-direction: column; height: 100vh; width: 100%;">
+
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    STUDY CASES:
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 1: JOINT PLOTS</b>
+                </h3>
+              
+                <!-- Container below headers -->
+                <div style="flex-grow: 1; display: flex; flex-direction: column; width: 100%;">
+              
+                  <!-- Top 20% -->
+                  <div style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%; position: relative; ">
+                    
+
+                    <span>Note that joint limit is achieved in several situations.</span>
+                   
+                    
+                  </div>
+              
+                  <!-- Bottom 80% -->
+                  <div style="flex: 1; width: 100%; position: relative; ">
+                    
+
+
+              
+                      <img src="presentation/images/part3/image22.svg"
+                           style="width: 90%; height: 90%; object-fit: contain;">
+                   
+
+                  </div>
+                </div>
+              
+              </section>
+
+
+       <section style="display: flex; flex-direction: column; height: 100vh; width: 100%;">
+
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    STUDY CASES:
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 1: VELOCITY PLOTS</b>
+                </h3>
+              
+                <!-- Container below headers -->
+                <div style="flex-grow: 1; display: flex; flex-direction: column; width: 100%;">
+              
+                  <!-- Top 20% -->
+                  <div style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%; position: relative; ">
+                    
+
+                    <span>Note that joint velocity limit is achieved in several situations.</span>
+                   
+                    
+                  </div>
+              
+                  <!-- Bottom 80% -->
+                  <div style="flex: 1; width: 100%; position: relative; ">
+                    
+
+
+              
+                      <img src="presentation/images/part3/image23.svg"
+                           style="width: 90%; height: 90%; object-fit: contain;">
+                   
+
+                  </div>
+                </div>
+              
+              </section>
 
             <style>
 

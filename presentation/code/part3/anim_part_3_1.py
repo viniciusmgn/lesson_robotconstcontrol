@@ -2,6 +2,7 @@ import numpy as np
 import uaibot as ub
 import matplotlib.pyplot as plt
 
+###############################################################
 #Parameters
 param_eta = 1.2
 param_eps = 0.001
@@ -23,7 +24,7 @@ htm_tg_5 = ub.Utils.trn([-0.65, 0.0, 0.63])*ub.Utils.roty(np.pi)
 htm_tg_6 = ub.Utils.trn([-0.35, 0.35, 0.77])*ub.Utils.roty(-np.pi/2)
 htm_tg_7 = ub.Utils.trn([0.30,  0.20, 0.64])*ub.Utils.roty(np.pi)
 
-#####################
+###############################################################
 #Create environment
 
 texture_steel = ub.Texture(
@@ -75,7 +76,7 @@ for obs in all_obstacles:
     sim.add(obs)
 
 
-#######################
+#################################################################
 
 def fun_F(_r, _param_k):
     m = np.shape(_r)[0]
@@ -143,7 +144,7 @@ def compute_control(_q, _htm_tg, is_handling_disk, care_obstacles):
 
     return u, np.linalg.norm(r)
         
-#######################
+#################################################################
 
 sim.save("/home/vinicius/Desktop/Aulas/Robot Constrained Control/presentation/images/part3/","part_3_1")
 
@@ -168,7 +169,7 @@ while cont:
         u, error_r = compute_control(q, htm_tg_0, False, True)
         
         print("Mode 0, error = "+str(round(error_r,3)))
-        if error_r<=0.01:
+        if error_r<=0.008:
             mode = 1
 
     if mode==1:
@@ -176,7 +177,7 @@ while cont:
         u, error_r = compute_control(q, htm_tg_1, False, False)
         
         print("Mode 1, error = "+str(round(error_r,3)))
-        if error_r<=0.01:
+        if error_r<=0.008:
             mode = 2
             robot.attach_object(disk)
 
@@ -185,7 +186,7 @@ while cont:
         u, error_r = compute_control(q, htm_tg_2, False, False)
         
         print("Mode 2, error = "+str(round(error_r,3)))
-        if error_r<=0.01:
+        if error_r<=0.008:
             mode = 3
  
     if mode==3:
@@ -193,7 +194,7 @@ while cont:
         u, error_r = compute_control(q, htm_tg_3, True, True)
     
         print("Mode 3, error = "+str(round(error_r,3)))
-        if error_r<=0.01: 
+        if error_r<=0.008: 
             mode = 4
             
     if mode==4:
@@ -201,7 +202,7 @@ while cont:
         u, error_r = compute_control(q, htm_tg_4, True, False)
         
         print("Mode 4, error = "+str(round(error_r,3)))
-        if error_r<=0.01: 
+        if error_r<=0.008: 
             mode = 5
             robot.detach_object(disk)
             
@@ -210,7 +211,7 @@ while cont:
         u, error_r = compute_control(q, htm_tg_5, False, False)
         
         print("Mode 5, error = "+str(round(error_r,3)))
-        if error_r<=0.01: 
+        if error_r<=0.008: 
             mode = 6
                          
     if mode==6:
@@ -218,7 +219,7 @@ while cont:
         u, error_r = compute_control(q, htm_tg_6, False, True)
         
         print("Mode 6, error = "+str(round(error_r,3)))
-        if error_r<=0.005:
+        if error_r<=0.008:
             mode = 7
 
     if mode==7:
@@ -226,7 +227,7 @@ while cont:
         u, error_r = compute_control(q, htm_tg_3, False, True)
         
         print("Mode 7, error = "+str(round(error_r,3)))
-        if error_r<=0.01: 
+        if error_r<=0.008: 
             mode = 8
             
 
@@ -235,7 +236,7 @@ while cont:
         u, error_r = compute_control(q, htm_tg_4, False, False)
         
         print("Mode 8, error = "+str(round(error_r,3)))
-        if error_r<=0.01: 
+        if error_r<=0.008: 
             mode = 9
             robot.attach_object(disk)
             
@@ -244,7 +245,7 @@ while cont:
         u, error_r = compute_control(q, htm_tg_5, False, False)
         
         print("Mode 9, error = "+str(round(error_r,3)))
-        if error_r<=0.01: 
+        if error_r<=0.008: 
             mode = 10    
             
 
@@ -253,7 +254,7 @@ while cont:
         u, error_r = compute_control(q, htm_tg_7, True, True)
         
         print("Mode 10, error = "+str(round(error_r,3)))
-        if error_r<=0.01: 
+        if error_r<=0.008: 
             cont = False 
                  
     hist_q.append(np.matrix(q))
@@ -263,28 +264,54 @@ while cont:
     q = robot.q+u*dt
     
     robot.add_ani_frame(time = i*dt, q = q)
-        
-plt.figure() 
-for i in range(7):
-    
-    plt.subplot(4,2,i+1)
-    plt.plot(hist_t, [q[i,0] for q in hist_q])
-    plt.plot(hist_t, [robot.joint_limit[i,0]+param_joint_delta for j in range(len(hist_q))])
-    plt.plot(hist_t, [robot.joint_limit[i,1]-param_joint_delta for j in range(len(hist_q))])
-    plt.title("Joint "+str(i+1))
-    plt.tight_layout()
 
- 
-plt.figure()   
-for i in range(7):
-    
-    plt.subplot(4,2,i+1)
-    plt.plot(hist_t, [u[i,0] for u in hist_u])
-    plt.plot(hist_t, [-param_max_qdot for j in range(len(hist_u))])
-    plt.plot(hist_t, [param_max_qdot for j in range(len(hist_u))])
-    plt.title("Velocity "+str(i+1))
-    plt.tight_layout()
+###############################################################
+# Plot graphs
         
+# Plot joint positions
+fig = plt.figure(facecolor='#191919') 
+for i in range(7):
+    ax = plt.subplot(4, 2, i + 1, facecolor='#191919')
+    
+    ax.plot(hist_t, [q[i, 0] for q in hist_q], color='#81d41a', zorder=10)
+    ax.plot(hist_t, [robot.joint_limit[i, 0] + param_joint_delta for _ in hist_q], color='red')
+    ax.plot(hist_t, [robot.joint_limit[i, 1] - param_joint_delta for _ in hist_q], color='red')
+    
+    ax.set_title("Joint " + str(i + 1), color='white')
+    
+    ax.tick_params(colors='white')
+    ax.spines['bottom'].set_color('white')
+    ax.spines['top'].set_color('white')
+    ax.spines['left'].set_color('white')
+    ax.spines['right'].set_color('white')
+    ax.yaxis.label.set_color('white')
+    ax.xaxis.label.set_color('white')
+    ax.grid(True, color='white', linestyle=':', alpha=0.3)
+
+plt.tight_layout()
+
+
+# Plot joint velocities
+fig = plt.figure(facecolor='#191919')   
+for i in range(7):
+    ax = plt.subplot(4, 2, i + 1, facecolor='#191919')
+    
+    ax.plot(hist_t, [u[i, 0] for u in hist_u], color='#81d41a', zorder=10)
+    ax.plot(hist_t, [-param_max_qdot for _ in hist_u], color='red')
+    ax.plot(hist_t, [param_max_qdot for _ in hist_u], color='red')
+    
+    ax.set_title("Velocity " + str(i + 1), color='white')
+    
+    ax.tick_params(colors='white')
+    ax.spines['bottom'].set_color('white')
+    ax.spines['top'].set_color('white')
+    ax.spines['left'].set_color('white')
+    ax.spines['right'].set_color('white')
+    ax.yaxis.label.set_color('white')
+    ax.xaxis.label.set_color('white')
+    ax.grid(True, color='white', linestyle=':', alpha=0.3)
+
+plt.tight_layout()
 plt.show()
 
 sim.save("/home/vinicius/Desktop/Aulas/Robot Constrained Control/presentation/images/part3/","part_3_2")
