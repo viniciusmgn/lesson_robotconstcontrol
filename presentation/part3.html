@@ -971,7 +971,7 @@ plt.show()
                         <ul>
                             <li>
                                 In the most basic version of the task function approach, \(r \rightarrow 0\) is achieved by specifying that the control input \(u\) 
-                                should satisfy \(\frac{d}{dt} r(q) = -Kr(q)\), for a positive scalar \(K\). Analogously, we enforce the constraint \(B(q) \geq 0\) by 
+                                should satisfy \(\frac{d}{dt} r(q) = -Kr(q)\), for a an appropriate scalar \(K>0\). Analogously, we enforce the constraint \(B(q) \geq 0\) by 
                                 choosing (somehow) the control input \(u\) such that:
                                 <b class="ttext">$$\frac{d}{dt}B(q) \geq -\eta B(q).$$</b>
                                 for a positive scalar constant \(\eta\).
@@ -1158,13 +1158,14 @@ plt.show()
                             <li>
                                 One initial idea is as follows: at each time step, we measure the configuration \(q\), and set up a 
                                 <b class="itext">system of linear equations and inequalities for the variable \(u\)</b>:
-                                $$\frac{\partial r}{\partial q}(q)u = -Kr(q)$$ 
+                                $$\frac{\partial r}{\partial q}(q)u = G(r(q))$$ 
                                 $$\frac{\partial B_k}{\partial q}(q)u \geq -\eta_k B_k(q)$$
-                                for \(k = 1, \ldots, s\).
+                                for \(k = 1, \ldots, s\) and with a function \(G\) with the properties <a href="presentation/part1.html#/69"><b
+                            class="hlink">we discussed here</b></a>.
                             </li><br>
                             <li>
                                 There are efficient algorithms to compute such a \(u\), <b class="itext">if it exists</b>. The issue here is that, 
-                                unless the robot has many degrees of freedom, the equality \(\frac{\partial r}{\partial q}(q)u = -Kr(q)\) 
+                                unless the robot has many degrees of freedom, the equality \(\frac{\partial r}{\partial q}(q)u = G(r(q))\) 
                                 already consumes almost all of them, and the remaining ones may not be sufficient to satisfy the CBF 
                                 constraints.
                             </li><br>
@@ -1208,9 +1209,9 @@ plt.show()
                                 would like to accomplish, but failing to do so would not result in a critical failure.
                             </li><br>
                             <li>
-                                Thus, instead of enforcing \(\frac{\partial r}{\partial q}(q)u = -Kr(q)\) exactly, we could try to minimize 
+                                Thus, instead of enforcing \(\frac{\partial r}{\partial q}(q)u = G(r(q))\) exactly, we could try to minimize 
                                 the error:
-                                $$  \min_{u} \left\| \frac{\partial r}{\partial q}(q)u + Kr(q) \right\|^2. $$
+                                $$  \min_{u} \left\| \frac{\partial r}{\partial q}(q)u - G(r(q)) \right\|^2. $$
                             </li><br>
                             <li>
                                 We can then assemble an <b class="itext">optimization problem</b> to find the control input 
@@ -1250,7 +1251,7 @@ plt.show()
                         <ul>
                             <li>Thus, we have the following formulation:
                                 
-                                <b class="ttext">$$\min_{u} \left\| \frac{\partial r}{\partial q}(q)u +Kr(q) \right\|^2$$</b>
+                                <b class="ttext">$$\min_{u} \left\| \frac{\partial r}{\partial q}(q)u -G(r(q)) \right\|^2$$</b>
                                 <b class="ttext">$$\mbox{such that}$$</b>
                                 <b class="ttext">$$\frac{\partial B_k}{\partial q}(q)u \geq -\eta_k B(q) \ , \ k=1,..,s$$</b>
                             </li><br>
@@ -1301,18 +1302,18 @@ plt.show()
                         <ul>
                             <li>
                                 We can expand the squared norm to write the objective function as:
-                                $$ u^\top \frac{\partial r}{\partial q}(q)^{\top}\frac{\partial r}{\partial q}(q)u + 2Kr(q)^\top\frac{\partial r}{\partial q}(q)u + \|Kr(q)\|^2.$$
+                                $$ u^\top \frac{\partial r}{\partial q}(q)^{\top}\frac{\partial r}{\partial q}(q)u - 2G(r(q))^\top\frac{\partial r}{\partial q}(q)u + \|G(r(q))\|^2.$$
                             </li>
                             <li>
                                 Let 
                                 
                                 $$H = 2\frac{\partial r}{\partial q}(q)^{\top}\frac{\partial r}{\partial q}(q) \in \mathbb{R}^{n \times n}$$ 
                                 and 
-                                $$f = 2K\frac{\partial r}{\partial q}(q)^{\top}r(q) \in \mathbb{R}^n$$ 
+                                $$f = -2\frac{\partial r}{\partial q}(q)^{\top}G(r(q)) \in \mathbb{R}^n$$ 
                                 Furthermore, let 
                                 \(A \in \mathbb{R}^{s \times n}, b \in \mathbb{R}^s\) matrices in which the \(i^{th}\) row of  \(A\) 
                                 is \(\frac{\partial B_k}{\partial q}(q)\) and \(i^{th}\) entry of \(b\) the scalar \(-\eta_k B_k(q)\).
-                                Finally, let \(c = \|Kr(q)\|^2\).
+                                Finally, let \(c = \|G(r(q))\|^2\).
                             </li>
                             
                         </ul>
@@ -1524,7 +1525,7 @@ print("u = "+str(u.T)+"^T")
                                 \(q_F = (1.5 \ \  0)^\top \) and avoid a circle \( \|q\| \leq 1 \).
                             </li><br>
                             <li>
-                               We can use as a task function \(r(q) = q-q_F\) and as a CBF function 
+                               We can use as a task function \(r(q) = q-q_F\), \(G(r)=-Kr\) and as a CBF function 
                                \( B(q) = \|q\| - (1 + \delta) \geq 0 \). The value \(\delta\) is a safety margin.
                                 
                             </li><br>
@@ -2527,7 +2528,7 @@ plt.show()
                         <ul>
                             <li>
                                 We have to change the objective function as well. Let's start with the task-function approach. For the same reasons as before, we cannot simply try to enforce 
-                                \(\dot{r} = \frac{\partial r}{\partial q}\dot{q} = -Kr\), since we can no longer directly control \(\dot{q}\).
+                                \(\dot{r} = \frac{\partial r}{\partial q}\dot{q} = G(r)\), since we can no longer directly control \(\dot{q}\).
                             </li><br>
                             <li>
                                 The idea is essentially the same as with second-order CBFs. For \( K \geq 0\), we would like to have:
