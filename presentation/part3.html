@@ -4158,18 +4158,57 @@ plt.show()
                 <div
                     style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
                     <div
+                        style="flex: 6; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                    <ul>
+                        <li>
+                            Now, we have a <b class="itext">mobile manipulator</b>: a 7-DOF Franka Emika 3 mounted 
+                            on a mobile base that moves in a plane with a <b class="itext">nonholonomic constraint</b> (the base cannot move sideways).
+                        </li><br>
+                        <li>
+                            It should move to a counter that has a white tray with a glass of drink and deliver it 
+                            to a table. It must do this while avoiding people who move around with total disregard for the robot.
+                            It has to deliver two drinks.
+                        </li><br>
+                        <li>
+                            While holding the dish, it must keep it horizontal, or the grasp may slip and fall to the ground!
+                        </li><br>
+                        <li>Obviously, it should respect obstacle avoidance, joint limits and velocity limits, as before.</li>
+                    </ul>
+
+
+
+                        </div>
+                    </div>
+                    <div
+                        style="flex: 5; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 5; flex-direction: row">
+           
+                        <div style="width: 100%">
+                            <iframe src="presentation/images/part3/part_3_3.html" width="550" height="580"
+                                style="border: none;"></iframe>
+                        </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>   
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CASE STUDIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 2: A WAITER MOBILE MANIPULATOR</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
                         style="flex: 1; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
                         <ul>
-                            <li>
-                                Now, we have a <b class="itext">mobile manipulator</b>: a 7-DOF Franka Emika 3 on top of a 
-                                mobile base that moves in a plane with a <b class="itext">nonholonomic constraint</b> (the base cannot move sideways).
-                            </li><br>
-                            <li>
-                                It should move periodically from one point to another, delivering dishes. However, there are people moving around, 
-                                and the mobile manipulator should avoid collision with them.
-                            </li><br>
                             <li>
                                 From the point of view of configuration, we have
                                 $$q = [q_m^{\top} \ \  x \ \ y \ \ \theta]^\top$$
@@ -4177,7 +4216,12 @@ plt.show()
                                 in which \(q_m \in \mathbb{R}^7\) is the manipulator's configuration, \(x,y\) the position of the center of the base, and 
                                 \(\theta\) its rotation normal to the floor (world z axis).
                             </li><br>
-
+                          <li>
+                                We assume that the transformation between the world frame \(\mathcal{F}_{0}\) and the base frame \(\mathcal{F}_{DH0}\) of the manipulator 
+                                (frame DH0) is:
+                                $$T_0^{DH0}(x,y,\theta) = D(x,y,z_b)R_z(\theta)$$
+                                in which \(D\) is a translation and \(R_z\) a rotation in \(z\). \(z_b\) is a constant.
+                            </li><br>
                         </ul>
 
 
@@ -4209,16 +4253,10 @@ plt.show()
                 <div
                     style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
                     <div
-                        style="flex: 1; min-width: 300px; font-size: 1.0vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        style="flex: 1; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
                         <ul>
-                             <li>
-                                We assume that the transformation between the world frame \(\mathcal{F}_{0}\) and the base frame \(\mathcal{F}_{DH0}\) of the manipulator 
-                                (frame DH0) is:
-                                $$T_0^{DH0}(x,y,\theta) = D(x,y,z_b)R_z(\theta)$$
-                                in which \(D\) is a translation and \(R_z\) a rotation in \(z\). \(z_b\) is a constant.
-                            </li><br>
                             <li>
                                 We control <b class="itext">\(\dot{q}_m = u_m\)</b> (joint velocity control), and, as far as the base is concerned, we have the nonholonomic 
                                 system 
@@ -4281,7 +4319,7 @@ plt.show()
                                 be the 3D rotation matrix in the \(z\) axis, \(s_e(q) \in \mathbb{R}^3\) the position of the end-effector (world frame), 
                                 \(p = [x \ \ y \ \ z_b]^{\top}\) and \(e_z = [1 \ \ 0 \ \ 0]^{\top}\). Finally, let \(I_{3 \times 2}\) be the 3x3 identity matrix 
                                 without the last column. It can be shown that (I will leave as an exercise):
-                                <b class="itext">$$J_{geo}(q) = \left(\begin{array}{ccc} Q_z(\theta)J_{v}^{i,m}(q_m) & I_{3 \times 2} & e_z \times (s_e(q)-p) \\
+                                <b class="itext">$$J_{geo}^i(q) = \left(\begin{array}{ccc} Q_z(\theta)J_{v}^{i,m}(q_m) & I_{3 \times 2} & e_z \times (s_e(q)-p) \\
                                                                         Q_z(\theta)J_{\omega}^{i,m}(q_m) & 0_{3 \times 2} & e_z \end{array} \right)$$</b>
                                 which is a \(6 \times (7+3)\) matrix. The first \(7\) columns are respective to \(q_m\), the next two columns respective to \(x,y\), 
                                 and the last column is respective to \(\theta\).
@@ -4306,6 +4344,100 @@ plt.show()
                     </div>
                 </div>
             </section>    
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CASE STUDIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 2: REDEFINING THE JACOBIAN</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul>
+                            <li>
+                                Here is the UAIBot code:
+
+
+                            </li><br>
+
+                        </ul>
+<pre style="max-width:90%;"><code class="language-python" style="text-align:left;">
+#Compute the htm and Jacobians for the end-effector and all the
+#DHi frames, considering the DOFs of the base (x,y,theta)
+
+param_zb = 0.21
+
+def kin_base(_q_m, _x, _y, _theta,_robot):
+    
+    z_0 = np.matrix([0.,0.,1.]).T
+    S_z_0 = ub.Utils.S(z_0)
+    I_3x2 = np.identity(3)[:,0:2]
+    zero_3x2 = np.zeros((3,2))
+    
+    hmt_0_DH0 = ub.Utils.trn([_x,_y,param_zb])*ub.Utils.rotz(_theta)
+    Q_z = hmt_0_DH0[0:3,0:3]
+    p = hmt_0_DH0[0:3,-1]
+    
+    list_jac_DH0_DHi, list_htm_DH0_DHi = _robot.jac_geo(q=_q_m, axis='dh')
+    jac_DH0_eef, htm_DH0_eef = _robot.jac_geo(q=_q_m, axis='eef')
+    
+    list_jac_0_DHi = []
+    list_htm_0_DHi = []
+    
+    #Compute for the end-effector
+    htm_0_eef = hmt_0_DH0 * htm_DH0_eef
+    s_eef  = htm_0_eef[0:3,-1]
+    
+    jac_v = jac_DH0_eef[0:3,:]
+    jac_w = jac_DH0_eef[3:6,:]
+    
+    jac_v_0_eef = np.hstack((Q_z*jac_v, I_3x2, S_z_0*(s_eef-p)))
+    jac_w_0_eef = np.hstack((Q_z*jac_w, zero_3x2, z_0))
+    jac_0_eef = np.vstack( (jac_v_0_eef, jac_w_0_eef))
+    
+    
+    #Compute for the frame DH-i
+    for i in range(len(list_jac_DH0_DHi)):
+        
+        list_htm_0_DHi.append(hmt_0_DH0 * list_htm_DH0_DHi[i])
+        s_i = list_htm_0_DHi[i][0:3,-1]
+        
+        jac_v = list_jac_DH0_DHi[i][0:3,:]
+        jac_w = list_jac_DH0_DHi[i][3:6,:]
+        
+        jac_v_0_DHi = np.hstack((Q_z*jac_v, I_3x2, S_z_0*(s_i-p)))
+        jac_w_0_DHi = np.hstack((Q_z*jac_w, zero_3x2, z_0))
+        
+        list_jac_0_DHi.append(np.vstack( (jac_v_0_DHi, jac_w_0_DHi)   ))
+     
+  
+    return htm_0_eef, jac_0_eef, list_htm_0_DHi, list_jac_0_DHi
+
+</code></pre>
+
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 4; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/main.png"
+                                        style="max-width: 90%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
 
             <style>
 
