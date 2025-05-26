@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 ###############################################################
 #Parameters
-param_eta = 1.2
+param_eta = 0.6
 param_eps = 0.001
 param_k = 1.0
 param_max_qdot = 1.5
@@ -14,6 +14,10 @@ dt=0.005
 param_iter_max = 10000
 robot = ub.Robot.create_kuka_lbr_iiwa(htm=ub.Utils.rotz(np.pi/2))
 param_use_pc = False
+param_tol_error = 0.008
+param_iter_check_convergence  = 50
+param_decay_convergence = 0.99 #0.95
+param_min_diff_error = 0.01
 
 htm_tg_0 = ub.Utils.trn([0.3, 0.0, 0.64])*ub.Utils.roty(np.pi)
 htm_tg_1 = ub.Utils.trn([0.3, 0.0, 0.54])*ub.Utils.roty(np.pi)
@@ -78,7 +82,7 @@ for obs in all_obstacles:
 
 #################################################################
 
-def fun_F(_r, _param_k):
+def fun_G(_r, _param_k):
     m = np.shape(_r)[0]
     out = np.matrix(np.zeros((m,1)))
     for i in range(m):
@@ -86,7 +90,7 @@ def fun_F(_r, _param_k):
        
     return out
 
-def compute_control(_q, _htm_tg, is_handling_disk, care_obstacles):
+def compute_control(_q, _htm_tg, _all_obstacles, _is_handling_disk, _care_obstacles, _perturbation):
     
     no_joint = np.shape(robot.q)[0]
     
@@ -94,16 +98,16 @@ def compute_control(_q, _htm_tg, is_handling_disk, care_obstacles):
     b = np.matrix(np.zeros((0,1)))
     
     #Create the CBF constraints for all obstacles:
-    if care_obstacles:
+    if _care_obstacles:
         
         #Between the robot and the objects
-        for obs in all_obstacles:
+        for obs in _all_obstacles:
             ds = robot.compute_dist(q = _q, obj = obs)
             A = np.vstack((A, ds.jac_dist_mat))
-            b = np.vstack((b, -param_eta*(ds.dist_vect-param_obs_delta)))
+            b = np.vstack((b, -param_eta*(ds.dist_vect-param_obs_delta)) )
         
         #If the disk is in the end-effector, it should also be handled
-        if is_handling_disk:
+        if _is_handling_disk:
 
             #Call the forward kinematic and differential for the end-effector,
             #since this is where the disk is attaches
@@ -113,10 +117,12 @@ def compute_control(_q, _htm_tg, is_handling_disk, care_obstacles):
             jac_v = jac[0:3,:]
             jac_w = jac[3:6,:]
             
-            for obs in all_obstacles:
+            for obs in _all_obstacles:
                 point_disk, point_obs, dist, _ = disk.compute_dist(obs)
+                
+                #print(dist)
 
-                jac_dist = (point_disk - point_obs).T * jac_v + np.cross((point_disk - s_e ).T, (point_disk - point_obs).T)  * jac_w
+                jac_dist = ((point_disk - point_obs).T * jac_v + np.cross((point_disk - s_e ).T, (point_disk - point_obs).T)  * jac_w)/dist
                 A = np.vstack((A, jac_dist))
                 b = np.vstack((b, -param_eta*(dist-param_obs_delta)))
                     
@@ -137,7 +143,7 @@ def compute_control(_q, _htm_tg, is_handling_disk, care_obstacles):
     r, jac_r = robot.task_function(q=_q, htm_tg=_htm_tg)
         
     H = 2*(jac_r.T * jac_r + param_eps* np.identity(no_joint))
-    f = -2*jac_r.T*fun_F(r, param_k)
+    f = -2*jac_r.T*fun_G(r, param_k)+_perturbation
     
     #Compute the control input
     u = ub.Utils.solve_qp(H, f, A, b)
@@ -145,11 +151,12 @@ def compute_control(_q, _htm_tg, is_handling_disk, care_obstacles):
     return u, np.linalg.norm(r)
         
 #################################################################
+#Main loop
 
 sim.save("/home/vinicius/Desktop/Aulas/Robot Constrained Control/presentation/images/part3/","part_3_1")
 
-
 q = np.matrix(robot.q)
+no_joint = np.shape(q)[0]
 
 mode = 0
 cont = True
@@ -158,112 +165,63 @@ i=0
 hist_q = []
 hist_u = []
 hist_t = []
+hist_e = []
 
+htm_tg = [htm_tg_0, htm_tg_1, htm_tg_2, htm_tg_3, htm_tg_4, htm_tg_5, htm_tg_6, htm_tg_3, htm_tg_4, htm_tg_5, htm_tg_7]
+is_handling_disk = [False, False, True, True, True, False, False, False, False, True, True]
+care_obstacles = [True, False, False, True, False, False, True, True, False, False, True]
+
+perturbation = np.matrix(np.zeros((no_joint,1)))
+perturbation_mode = False
 while cont:
     
     i+=1
     cont = i < param_iter_max
     
-    if mode==0:
-        #Going slightly above the disk
-        u, error_r = compute_control(q, htm_tg_0, False, True)
-        
-        print("Mode 0, error = "+str(round(error_r,3)))
-        if error_r<=0.008:
-            mode = 1
 
-    if mode==1:
-        #Downward movement
-        u, error_r = compute_control(q, htm_tg_1, False, False)
-        
-        print("Mode 1, error = "+str(round(error_r,3)))
-        if error_r<=0.008:
-            mode = 2
-            robot.attach_object(disk)
-
-    if mode==2:
-        #Upward movement
-        u, error_r = compute_control(q, htm_tg_2, False, False)
-        
-        print("Mode 2, error = "+str(round(error_r,3)))
-        if error_r<=0.008:
-            mode = 3
- 
-    if mode==3:
-        #Move object to be delivered
-        u, error_r = compute_control(q, htm_tg_3, True, True)
+    u, error_r = compute_control(q, htm_tg[mode], all_obstacles, is_handling_disk[mode], care_obstacles[mode], perturbation)
     
-        print("Mode 3, error = "+str(round(error_r,3)))
-        if error_r<=0.008: 
-            mode = 4
-            
-    if mode==4:
-        #Move down
-        u, error_r = compute_control(q, htm_tg_4, True, False)
+    print("Mode "+str(mode)+", error = "+str(round(error_r,3)))
+    
+    if cont and error_r<=param_tol_error:
         
-        print("Mode 4, error = "+str(round(error_r,3)))
-        if error_r<=0.008: 
-            mode = 5
-            robot.detach_object(disk)
-            
-    if mode==5:
-        #Move up
-        u, error_r = compute_control(q, htm_tg_5, False, False)
+        mode += 1
         
-        print("Mode 5, error = "+str(round(error_r,3)))
-        if error_r<=0.008: 
-            mode = 6
-                         
-    if mode==6:
-        #Go press the button
-        u, error_r = compute_control(q, htm_tg_6, False, True)
-        
-        print("Mode 6, error = "+str(round(error_r,3)))
-        if error_r<=0.008:
-            mode = 7
+        if mode==len(htm_tg):
+            cont = False
+        else:
+            if mode > 0 and not is_handling_disk[mode-1] and is_handling_disk[mode]:
+                robot.attach_object(disk)
 
-    if mode==7:
-        #Got the object again
-        u, error_r = compute_control(q, htm_tg_3, False, True)
-        
-        print("Mode 7, error = "+str(round(error_r,3)))
-        if error_r<=0.008: 
-            mode = 8
-            
+            if mode > 0 and is_handling_disk[mode-1] and not is_handling_disk[mode]:
+                robot.detach_object(disk)
 
-    if mode==8:
-        #Go down
-        u, error_r = compute_control(q, htm_tg_4, False, False)
-        
-        print("Mode 8, error = "+str(round(error_r,3)))
-        if error_r<=0.008: 
-            mode = 9
-            robot.attach_object(disk)
-            
-    if mode==9:
-        #Go up
-        u, error_r = compute_control(q, htm_tg_5, False, False)
-        
-        print("Mode 9, error = "+str(round(error_r,3)))
-        if error_r<=0.008: 
-            mode = 10    
-            
-
-    if mode==10:
-        #Move to final pose
-        u, error_r = compute_control(q, htm_tg_7, True, True)
-        
-        print("Mode 10, error = "+str(round(error_r,3)))
-        if error_r<=0.008: 
-            cont = False 
-                 
+    #Integrate movement
+    q = robot.q+u*dt
+    robot.add_ani_frame(time = i*dt, q = q)
+                       
+    #Store data           
     hist_q.append(np.matrix(q))
     hist_u.append(np.matrix(u))
     hist_t.append(i*dt)
-                                       
-    q = robot.q+u*dt
+    hist_e.append(error_r)
     
-    robot.add_ani_frame(time = i*dt, q = q)
+    #Make the perturbation to avoid getting stuck
+    if i>param_iter_check_convergence and not perturbation_mode:
+        recent = hist_e[-param_iter_check_convergence:]
+        max_diff = (max(recent) - min(recent))/max(recent)
+        if max_diff < param_min_diff_error:
+            perturbation = np.matrix(np.random.randn(no_joint,1))
+            perturbation_mode = True
+            print("CONVERGENCE FAILED")
+    
+    if perturbation_mode:
+        perturbation = param_decay_convergence*perturbation
+        if np.linalg.norm(perturbation)<=0.01:
+            perturbation = np.matrix(np.zeros((no_joint,1)))
+            perturbation_mode = False                     
+
+                   
 
 ###############################################################
 # Plot graphs

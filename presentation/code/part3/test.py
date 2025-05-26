@@ -42,13 +42,13 @@ table_top_2 = ub.Cylinder(htm=ub.Utils.trn([2.5,1,0.8]), radius=0.7,height=0.02,
 table_bot_2 = ub.Cylinder(htm=ub.Utils.trn([2.5,1,0.4]), radius=0.1,height=0.8, mesh_material=material_wood)
 platform = ub.Box(htm=ub.Utils.trn([-2,2.5,0.4]), width=1.8,depth=0.6,height=0.8, mesh_material=material_wood)
 
-dish_plate_1 = ub.Group(
+tray_1 = ub.Group(
     [ub.Cylinder(color='white',radius=0.13,height=0.02),
      ub.Cylinder(htm=ub.Utils.trn([0,0,0.10]), radius=0.05,height=0.18, mesh_material=glass_material),
      ub.Cylinder(htm=ub.Utils.trn([0,0,0.08]), radius=0.04,height=0.12, color='red')]
 , htm = ub.Utils.trn([-1.9,2.3,0.81]))
 
-dish_plate_2 = ub.Group(
+tray_2 = ub.Group(
     [ub.Cylinder(color='white',radius=0.13,height=0.02),
      ub.Cylinder(htm=ub.Utils.trn([0,0,0.10]), radius=0.05,height=0.18, mesh_material=glass_material),
      ub.Cylinder(htm=ub.Utils.trn([0,0,0.08]), radius=0.04,height=0.12, color='black')]
@@ -57,15 +57,32 @@ dish_plate_2 = ub.Group(
 robot = ub.Robot.create_franka_emika_3(ub.Utils.trn([-2,1.7,0.21]))
 ridgeback.add_ani_frame(0,htm = ub.Utils.trn([-2,1.7,0]))
 
-sim = ub.Simulation.create_sim_mountain([ridgeback, robot, table_top_1, table_bot_1, table_top_2, table_bot_2, platform, dish_plate_1, dish_plate_2])
+sim = ub.Simulation.create_sim_mountain([ridgeback, robot, table_top_1, table_bot_1, table_top_2, table_bot_2, platform, tray_1, tray_2])
 sim.set_parameters(show_grid=False)
 
-htm_tg_table_1 = ub.Utils.trn([1.85,0.95,0.9])*ub.Utils.roty(np.pi/2)
-htm_tg_table_2 = ub.Utils.trn([-0.9,-1.5,0.9])*ub.Utils.roty(np.pi/2)*ub.Utils.rotx(np.pi)
+htm_tg_table_0 = ub.Utils.trn([-1.9,2.0,0.81])*ub.Utils.rotx(-np.pi/2)*ub.Utils.rotz(-np.pi/2)
+htm_tg_table_1 = ub.Utils.trn([-1.9,2.15,0.81])*ub.Utils.rotx(-np.pi/2)*ub.Utils.rotz(-np.pi/2)
 
+htm_tg_table_2 = ub.Utils.trn([1.55,0.95,0.9])*ub.Utils.roty(np.pi/2)*ub.Utils.rotz(np.pi)
+htm_tg_table_3 = ub.Utils.trn([1.85,0.95,0.81])*ub.Utils.roty(np.pi/2)*ub.Utils.rotz(np.pi)
+
+htm_tg_table_4 = ub.Utils.trn([-2.2,2.0,0.81])*ub.Utils.rotx(-np.pi/2)*ub.Utils.rotz(-np.pi/2)
+htm_tg_table_5 = ub.Utils.trn([-2.2,2.15,0.81])*ub.Utils.rotx(-np.pi/2)*ub.Utils.rotz(-np.pi/2)
+
+htm_tg_table_6 = ub.Utils.trn([-0.9,-1.5,0.9])*ub.Utils.roty(np.pi/2)*ub.Utils.rotx(np.pi)*ub.Utils.rotz(np.pi)
+htm_tg_table_7 = ub.Utils.trn([-0.6,-1.5,0.9])*ub.Utils.roty(np.pi/2)*ub.Utils.rotx(np.pi)*ub.Utils.rotz(np.pi)
+
+
+sim.add(ub.Frame(htm_tg_table_0, size=0.2))
 sim.add(ub.Frame(htm_tg_table_1, size=0.2))
 sim.add(ub.Frame(htm_tg_table_2, size=0.2))
-sim.set_parameters(load_screen_color="#191919", background_color="#191919", width=500, height=500, show_world_frame=False, show_grid=False, camera_type='perspective', camera_start_pose=[1.0,1.0,5.5,0,0,0,0.8])
+sim.add(ub.Frame(htm_tg_table_3, size=0.2))
+sim.add(ub.Frame(htm_tg_table_4, size=0.2))
+sim.add(ub.Frame(htm_tg_table_5, size=0.2))
+sim.add(ub.Frame(htm_tg_table_6, size=0.2))
+sim.add(ub.Frame(htm_tg_table_7, size=0.2))
+
+sim.set_parameters(load_screen_color="#191919", background_color="#191919", width=500, height=500, show_world_frame=True, show_grid=False, camera_type='perspective', camera_start_pose=[1.0,1.0,5.5,0,0,0,0.8])
 
 #Functions for creating an human and animate it moving around
 def create_human(torso_color):
@@ -124,18 +141,15 @@ dt = 0.01
 human_T = 20
 y_h1 = 0
 x_h2 = -1
-for i in range(3000):
+for i in range(0):
     t = i*dt
     
-    print(t)
     if t % human_T < human_T/4 or t % human_T > 3*human_T/4:
-        print("Pt = "+str(round(t,3)))
         y_h1 += 0.005
         x_h2 += 0.003
         rotz_h1 = ub.Utils.rotz(0)
         rotz_h2 = ub.Utils.rotz(-np.pi/2)
     else:
-        print("Nt = "+str(round(t,3)))
         y_h1 -= 0.005
         x_h2 -= 0.003
         rotz_h1 = ub.Utils.rotz(-np.pi)
@@ -151,19 +165,22 @@ sim.save()
 
 param_zb = 0.21
 
-def kin_base(_q_m, _x, _y, _theta,_robot):
+def fk_whole(_q_m, _x, _y, _theta,_robot):
     
     z_0 = np.matrix([0.,0.,1.]).T
     S_z_0 = ub.Utils.S(z_0)
     I_3x2 = np.identity(3)[:,0:2]
+    I_4x4 = np.identity(4)
     zero_3x2 = np.zeros((3,2))
     
     hmt_0_DH0 = ub.Utils.trn([_x,_y,param_zb])*ub.Utils.rotz(_theta)
     Q_z = hmt_0_DH0[0:3,0:3]
     p = hmt_0_DH0[0:3,-1]
     
-    list_jac_DH0_DHi, list_htm_DH0_DHi = _robot.jac_geo(q=_q_m, axis='dh')
-    jac_DH0_eef, htm_DH0_eef = _robot.jac_geo(q=_q_m, axis='eef')
+    #We need to call the function  jac_geo with htm=np.identity(4), because otherwise it
+    #will use the one stored inside the robot, that was set with .add_ani_frame( htm = ...)
+    list_jac_DH0_DHi, list_htm_DH0_DHi = _robot.jac_geo(q=_q_m, htm = I_4x4, axis='dh')
+    jac_DH0_eef, htm_DH0_eef = _robot.jac_geo(q=_q_m, htm = I_4x4, axis='eef')
     
     list_jac_0_DHi = []
     list_htm_0_DHi = []
@@ -198,5 +215,169 @@ def kin_base(_q_m, _x, _y, _theta,_robot):
     return htm_0_eef, jac_0_eef, list_htm_0_DHi, list_jac_0_DHi
         
         
+def task_fun_whole(_q_m, _x, _y, _theta, _robot, _htm_tg):
+    
+    htm_0_eef, jac_0_eef, _, _  = fk_whole(_q_m, _x, _y, _theta,_robot)
+    
+    x_hat = htm_0_eef[0:3,0]
+    y_hat = htm_0_eef[0:3,1]
+    z_hat = htm_0_eef[0:3,2]
+    s = htm_0_eef[0:3,3]
+
+    x_hat_d = _htm_tg[0:3,0]
+    y_hat_d = _htm_tg[0:3,1]
+    z_hat_d = _htm_tg[0:3,2]
+    s_d = _htm_tg[0:3,3]
+    
+    r = np.matrix(np.zeros((6,1)))
+    r[0:3,0] = s-s_d
+    r[3,0] = 1.0-x_hat_d.T*x_hat
+    r[4,0] = 1.0-y_hat_d.T*y_hat
+    r[5,0] = 1.0-z_hat_d.T*z_hat
+    
+    no_joint = np.shape(robot.q)[0]
+    
+    jac_r = np.matrix(np.zeros((6, no_joint+3)))
+    jac_r[0:3, :] = jac_0_eef[0:3, :]
+    jac_r[3, :] = x_hat_d.T * ub.Utils.S(x_hat) * jac_0_eef[3:6, :]
+    jac_r[4, :] = y_hat_d.T * ub.Utils.S(y_hat) * jac_0_eef[3:6, :]
+    jac_r[5, :] = z_hat_d.T * ub.Utils.S(z_hat) * jac_0_eef[3:6, :]
+    
+    
+    return r, jac_r
+
+def compute_dist_whole(_q_m, _x, _y, _theta, _robot, _obj):
+            
+                
+    htm_0_eef, jac_0_eef, list_htm_0_DHi, list_jac_0_DHi =  fk_whole(_q_m, _x, _y, _theta,_robot)
+    
+    ds = ub.Robot.create_abb_crb().compute_dist(obj = _obj, max_dist=1.0)
+    
+    
+    
+###################################   
+#Parameters
+param_eta = 1.2
+param_eps = 0.001
+param_k = 1.0
+param_max_qdot = 1.5
+param_obs_delta = 0.025 
+param_joint_delta = 2*np.pi/180
+dt=0.005
+param_iter_max = 10000
+param_use_pc = False
+
+def fun_G(_r, _param_k):
+    m = np.shape(_r)[0]
+    out = np.matrix(np.zeros((m,1)))
+    for i in range(m):
+        out[i,0] = -_param_k * np.sign(_r[i,0]) * np.sqrt(np.abs(_r[i,0]))
+       
+    return out
+
+
+def control_fun(_q_m, _x, _y, _theta, _robot, _htm_tg, _holding_tray, _consider_collision):
+    
+    r, jac_r = task_fun_whole(_q_m, _x, _y, _theta, _robot, _htm_tg)
+    
+    no_joint = np.shape(robot.q)[0]
+    
+    H = jac_r.T * jac_r + param_eps * np.identity(no_joint+3)
+    f = -jac_r.T * fun_G(r, param_k)
+    
+    
+    #Add the equality constraint for the non-holonomic constraint
+    #The equality u_x*sin(theta)-u_y*cos(theta) = 0 is written as
+    # u_x*sin(theta)-u_y*cos(theta) >= 0
+    #-u_x*sin(theta)+u_y*cos(theta) >=0
+    A_nhol = np.matrix(np.zeros((1,10)))
+    A_nhol[0,-3] = np.sin(_theta)
+    A_nhol[0,-2] = -np.cos(_theta)
+    
+    A = np.vstack((A_nhol, -A_nhol))
+    b = np.vstack((0,0))
+    
+    #If the robot is holding the tray, the constraint for the orientation
+    #of the axis should be a hard constraint, that is
+    # (d/dt) r_{rot_x}(q) = G(r_{rot,x}(q)) should hold true
+    
+    if _holding_tray:
+        A_r_rot_x = jac_r[3,:]
+        b_r_rot_x = fun_G(np.matrix(r[3,0]), param_k)
         
-htm_0_eef, jac_0_eef, list_htm_0_DHi, list_jac_0_DHi =  kin_base(robot.q,0.,1.0,np.pi/2,robot)
+        A = np.vstack((A, A_r_rot_x, -A_r_rot_x))
+        b = np.vstack((b, b_r_rot_x, -b_r_rot_x))
+        
+ 
+    #Create the CBF constraint for joint limits
+    I_ext = np.hstack( (np.identity(no_joint), np.zeros((no_joint,3)) ) )
+     
+    A = np.vstack((A, I_ext  ))
+    b = np.vstack((b, -param_eta*(_q_m-robot.joint_limit[:,0]-param_joint_delta) ))  
+    A = np.vstack((A, -I_ext))
+    b = np.vstack((b, -param_eta*(robot.joint_limit[:,1]-_q_m-param_joint_delta) ))  
+    
+    #Implement velocity limits
+    A = np.vstack((A, I_ext))
+    b = np.vstack((b, -param_max_qdot*np.matrix(np.ones((no_joint,1))) ))  
+    A = np.vstack((A, -I_ext))
+    b = np.vstack((b, -param_max_qdot*np.matrix(np.ones((no_joint,1))) ))   
+        
+    u = ub.Utils.solve_qp(H, f, A, b)
+    
+    
+    
+    return u[0:7,:], u[7,0], u[8,0], u[9,0], np.linalg.norm(r)
+
+ 
+ 
+ 
+ 
+x = ridgeback.htm[0,-1]
+y = ridgeback.htm[1,-1]
+theta = 0
+q_m = np.matrix(robot.q)
+
+mode = 0
+
+htm_tg = [htm_tg_table_0, htm_tg_table_1, htm_tg_table_0, htm_tg_table_2, htm_tg_table_3, htm_tg_table_2, htm_tg_table_4]
+holding_tray = [False,False,True,True, False, False, False]
+consider_collision = [True,False,False,True, False, False, True]
+
+cont = True
+i = 0
+
+while cont:
+    t = i*dt
+    
+    i+=1
+    
+    
+    qdotm, dotx, doty, dottheta, error = control_fun(q_m, x, y, theta, robot, htm_tg[mode], holding_tray[mode], consider_collision[mode])
+    
+    q_m+=qdotm*dt
+    x+=dotx*dt
+    y+=doty*dt
+    theta+=dottheta*dt
+    
+    robot.add_ani_frame(time = t, q = q_m, htm = ub.Utils.trn([x,y,param_zb])*ub.Utils.rotz(theta))
+    ridgeback.add_ani_frame(time = t, htm = ub.Utils.trn([x,y,0])*ub.Utils.rotz(theta))
+    
+    print("Mode "+str(mode)+" = "+str(round(error,3))+", "+str(i))
+    if error <= 0.005:
+        mode+= 1
+        
+        if mode == 2:
+            robot.attach_object(tray_1)
+            
+        if mode == 5:
+            robot.detach_object(tray_1)    
+        cont = mode < 7 
+
+    
+    cont = cont and i < 3500
+    
+    
+    
+
+sim.save()

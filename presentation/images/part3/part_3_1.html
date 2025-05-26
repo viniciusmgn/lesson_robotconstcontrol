@@ -3,12 +3,12 @@
 .controller:hover{opacity:1 !important;}
 </style>
 <body>
-<div id='canvas_container_17479631641031516' style='width:500px;height:500px;position:relative'>
-<div id='loading_screen_17479631641031516' style='width:500px;height:500px;position:relative; background-color: #191919;text-align:center;align-items:center;display:flex;justify-content:center'> 
+<div id='canvas_container_17481942996296299' style='width:500px;height:500px;position:relative'>
+<div id='loading_screen_17481942996296299' style='width:500px;height:500px;position:relative; background-color: #191919;text-align:center;align-items:center;display:flex;justify-content:center'> 
  <img src='https://cdn.jsdelivr.net/gh/viniciusmgn/uaibot_content@master/contents/SVG/logo_uai_bot.svg' style='width:200px;height:114px'/>
  </div>
 <script id='MathJax-script' async src='https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js'></script>
-<canvas id='scene_17479631641031516' width='500px' height='500px'></canvas>
+<canvas id='scene_17481942996296299' width='500px' height='500px'></canvas>
 <!-- USER DIVS GO HERE --><div class = 'controller' style='width:500px;height:30px;'></div>
 </div>
 
@@ -38,7 +38,7 @@ import { ParametricGeometry } from 'https://cdn.skypack.dev/three@0.135.0/exampl
 const delay = 500; 
  const maxTime = 0; 
  const cameraType= 'perspective'; 
- const sceneID= '17479631641031516'; 
+ const sceneID= '17481942996296299'; 
  const showWorldFrame=false; 
  const showGrid=false; 
  const backgroundColor='#191919'; 
@@ -753,220 +753,220 @@ if (showGrid) {
 
 //--------------- ADDING ELEMENTS TO THIS SCENE ---------------
 
-//BEGIN DECLARATION OF THE ROBOT 'var_robot_id_140701231227280'
+//BEGIN DECLARATION OF THE ROBOT 'var_robot_id_140015231373456'
 
-const object3d_base_var_robot_id_140701231227280_list = [];
+const object3d_base_var_robot_id_140015231373456_list = [];
 
-const material_var_robot_id_140701231227280_obj_base_0 = {type: 'glb',opacity: 1};
+const material_var_robot_id_140015231373456_obj_base_0 = {type: 'glb',opacity: 1};
 
-const htm_var_robot_id_140701231227280_obj_base_0 = new Matrix4(); 
-htm_var_robot_id_140701231227280_obj_base_0.set(1.0,0.0,0.0,0.0,0.0,0.0008,-1.0,0.0,0.0,1.0,0.0008,0.0,0.0,0.0,0.0,1.0);
-const object3d_var_robot_id_140701231227280_obj_base_0={
+const htm_var_robot_id_140015231373456_obj_base_0 = new Matrix4(); 
+htm_var_robot_id_140015231373456_obj_base_0.set(1.0,0.0,0.0,0.0,0.0,0.0008,-1.0,0.0,0.0,1.0,0.0008,0.0,0.0,0.0,0.0,1.0);
+const object3d_var_robot_id_140015231373456_obj_base_0={
 url: 'https://cdn.jsdelivr.net/gh/viniciusmgn/uaibot_content@master/contents/KukaLBRIIWA/iiwa_base_link.glb',
 scale: 1,
-matrix: htm_var_robot_id_140701231227280_obj_base_0,
+matrix: htm_var_robot_id_140015231373456_obj_base_0,
 type: 'glb',
-mesh_material: material_var_robot_id_140701231227280_obj_base_0};
+mesh_material: material_var_robot_id_140015231373456_obj_base_0};
 
-object3d_base_var_robot_id_140701231227280_list.push(object3d_var_robot_id_140701231227280_obj_base_0);
+object3d_base_var_robot_id_140015231373456_list.push(object3d_var_robot_id_140015231373456_obj_base_0);
 
-const list_links_var_robot_id_140701231227280 = [];
+const list_links_var_robot_id_140015231373456 = [];
 
-const object3d_link_0_var_robot_id_140701231227280_list = [];
+const object3d_link_0_var_robot_id_140015231373456_list = [];
 
-const material_link_0_var_robot_id_140701231227280_obj_0 = {type: 'glb',opacity: 1};
+const material_link_0_var_robot_id_140015231373456_obj_0 = {type: 'glb',opacity: 1};
 
-const htm_link_0_var_robot_id_140701231227280_obj_0 = new Matrix4(); 
-htm_link_0_var_robot_id_140701231227280_obj_0.set(1.0,0.0,-0.0016,0.0,0.0,-1.0,0.0,0.36,-0.0016,0.0,-1.0,0.0,0.0,0.0,0.0,1.0);
-const object3d_link_0_var_robot_id_140701231227280_obj_0={
+const htm_link_0_var_robot_id_140015231373456_obj_0 = new Matrix4(); 
+htm_link_0_var_robot_id_140015231373456_obj_0.set(1.0,0.0,-0.0016,0.0,0.0,-1.0,0.0,0.36,-0.0016,0.0,-1.0,0.0,0.0,0.0,0.0,1.0);
+const object3d_link_0_var_robot_id_140015231373456_obj_0={
 url: 'https://cdn.jsdelivr.net/gh/viniciusmgn/uaibot_content@master/contents/KukaLBRIIWA/iiwa_link_1.glb',
 scale: 1,
-matrix: htm_link_0_var_robot_id_140701231227280_obj_0,
+matrix: htm_link_0_var_robot_id_140015231373456_obj_0,
 type: 'glb',
-mesh_material: material_link_0_var_robot_id_140701231227280_obj_0};
+mesh_material: material_link_0_var_robot_id_140015231373456_obj_0};
 
-object3d_link_0_var_robot_id_140701231227280_list.push(object3d_link_0_var_robot_id_140701231227280_obj_0);
+object3d_link_0_var_robot_id_140015231373456_list.push(object3d_link_0_var_robot_id_140015231373456_obj_0);
 
-const link_0_var_robot_id_140701231227280 = {
+const link_0_var_robot_id_140015231373456 = {
 theta: 0, 
 d: 0.36, 
 a: 0, 
 alpha: -1.57, 
 jointType: 0, 
 showFrame: false,
-model3d: object3d_link_0_var_robot_id_140701231227280_list}; 
+model3d: object3d_link_0_var_robot_id_140015231373456_list}; 
  
-list_links_var_robot_id_140701231227280.push(link_0_var_robot_id_140701231227280);
+list_links_var_robot_id_140015231373456.push(link_0_var_robot_id_140015231373456);
 
-const object3d_link_1_var_robot_id_140701231227280_list = [];
+const object3d_link_1_var_robot_id_140015231373456_list = [];
 
-const material_link_1_var_robot_id_140701231227280_obj_0 = {type: 'glb',opacity: 1};
+const material_link_1_var_robot_id_140015231373456_obj_0 = {type: 'glb',opacity: 1};
 
-const htm_link_1_var_robot_id_140701231227280_obj_0 = new Matrix4(); 
-htm_link_1_var_robot_id_140701231227280_obj_0.set(1.0,0.0,-0.0016,0.0,-0.0016,0.0,-1.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,1.0);
-const object3d_link_1_var_robot_id_140701231227280_obj_0={
+const htm_link_1_var_robot_id_140015231373456_obj_0 = new Matrix4(); 
+htm_link_1_var_robot_id_140015231373456_obj_0.set(1.0,0.0,-0.0016,0.0,-0.0016,0.0,-1.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,1.0);
+const object3d_link_1_var_robot_id_140015231373456_obj_0={
 url: 'https://cdn.jsdelivr.net/gh/viniciusmgn/uaibot_content@master/contents/KukaLBRIIWA/iiwa_link_2.glb',
 scale: 1,
-matrix: htm_link_1_var_robot_id_140701231227280_obj_0,
+matrix: htm_link_1_var_robot_id_140015231373456_obj_0,
 type: 'glb',
-mesh_material: material_link_1_var_robot_id_140701231227280_obj_0};
+mesh_material: material_link_1_var_robot_id_140015231373456_obj_0};
 
-object3d_link_1_var_robot_id_140701231227280_list.push(object3d_link_1_var_robot_id_140701231227280_obj_0);
+object3d_link_1_var_robot_id_140015231373456_list.push(object3d_link_1_var_robot_id_140015231373456_obj_0);
 
-const link_1_var_robot_id_140701231227280 = {
+const link_1_var_robot_id_140015231373456 = {
 theta: 0, 
 d: 0, 
 a: 0, 
 alpha: 1.57, 
 jointType: 0, 
 showFrame: false,
-model3d: object3d_link_1_var_robot_id_140701231227280_list}; 
+model3d: object3d_link_1_var_robot_id_140015231373456_list}; 
  
-list_links_var_robot_id_140701231227280.push(link_1_var_robot_id_140701231227280);
+list_links_var_robot_id_140015231373456.push(link_1_var_robot_id_140015231373456);
 
-const object3d_link_2_var_robot_id_140701231227280_list = [];
+const object3d_link_2_var_robot_id_140015231373456_list = [];
 
-const material_link_2_var_robot_id_140701231227280_obj_0 = {type: 'glb',opacity: 1};
+const material_link_2_var_robot_id_140015231373456_obj_0 = {type: 'glb',opacity: 1};
 
-const htm_link_2_var_robot_id_140701231227280_obj_0 = new Matrix4(); 
-htm_link_2_var_robot_id_140701231227280_obj_0.set(1.0,0.0,-0.0016,0.0,0.0,1.0,0.0,-0.42,0.0016,0.0,1.0,0.0,0.0,0.0,0.0,1.0);
-const object3d_link_2_var_robot_id_140701231227280_obj_0={
+const htm_link_2_var_robot_id_140015231373456_obj_0 = new Matrix4(); 
+htm_link_2_var_robot_id_140015231373456_obj_0.set(1.0,0.0,-0.0016,0.0,0.0,1.0,0.0,-0.42,0.0016,0.0,1.0,0.0,0.0,0.0,0.0,1.0);
+const object3d_link_2_var_robot_id_140015231373456_obj_0={
 url: 'https://cdn.jsdelivr.net/gh/viniciusmgn/uaibot_content@master/contents/KukaLBRIIWA/iiwa_link_3.glb',
 scale: 1,
-matrix: htm_link_2_var_robot_id_140701231227280_obj_0,
+matrix: htm_link_2_var_robot_id_140015231373456_obj_0,
 type: 'glb',
-mesh_material: material_link_2_var_robot_id_140701231227280_obj_0};
+mesh_material: material_link_2_var_robot_id_140015231373456_obj_0};
 
-object3d_link_2_var_robot_id_140701231227280_list.push(object3d_link_2_var_robot_id_140701231227280_obj_0);
+object3d_link_2_var_robot_id_140015231373456_list.push(object3d_link_2_var_robot_id_140015231373456_obj_0);
 
-const link_2_var_robot_id_140701231227280 = {
+const link_2_var_robot_id_140015231373456 = {
 theta: 0, 
 d: 0.42, 
 a: 0, 
 alpha: 1.57, 
 jointType: 0, 
 showFrame: false,
-model3d: object3d_link_2_var_robot_id_140701231227280_list}; 
+model3d: object3d_link_2_var_robot_id_140015231373456_list}; 
  
-list_links_var_robot_id_140701231227280.push(link_2_var_robot_id_140701231227280);
+list_links_var_robot_id_140015231373456.push(link_2_var_robot_id_140015231373456);
 
-const object3d_link_3_var_robot_id_140701231227280_list = [];
+const object3d_link_3_var_robot_id_140015231373456_list = [];
 
-const material_link_3_var_robot_id_140701231227280_obj_0 = {type: 'glb',opacity: 1};
+const material_link_3_var_robot_id_140015231373456_obj_0 = {type: 'glb',opacity: 1};
 
-const htm_link_3_var_robot_id_140701231227280_obj_0 = new Matrix4(); 
-htm_link_3_var_robot_id_140701231227280_obj_0.set(1.0,0.0,-0.0016,0.0,-0.0016,0.0,-1.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,1.0);
-const object3d_link_3_var_robot_id_140701231227280_obj_0={
+const htm_link_3_var_robot_id_140015231373456_obj_0 = new Matrix4(); 
+htm_link_3_var_robot_id_140015231373456_obj_0.set(1.0,0.0,-0.0016,0.0,-0.0016,0.0,-1.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,1.0);
+const object3d_link_3_var_robot_id_140015231373456_obj_0={
 url: 'https://cdn.jsdelivr.net/gh/viniciusmgn/uaibot_content@master/contents/KukaLBRIIWA/iiwa_link_4.glb',
 scale: 1,
-matrix: htm_link_3_var_robot_id_140701231227280_obj_0,
+matrix: htm_link_3_var_robot_id_140015231373456_obj_0,
 type: 'glb',
-mesh_material: material_link_3_var_robot_id_140701231227280_obj_0};
+mesh_material: material_link_3_var_robot_id_140015231373456_obj_0};
 
-object3d_link_3_var_robot_id_140701231227280_list.push(object3d_link_3_var_robot_id_140701231227280_obj_0);
+object3d_link_3_var_robot_id_140015231373456_list.push(object3d_link_3_var_robot_id_140015231373456_obj_0);
 
-const link_3_var_robot_id_140701231227280 = {
+const link_3_var_robot_id_140015231373456 = {
 theta: 0, 
 d: 0, 
 a: 0, 
 alpha: -1.57, 
 jointType: 0, 
 showFrame: false,
-model3d: object3d_link_3_var_robot_id_140701231227280_list}; 
+model3d: object3d_link_3_var_robot_id_140015231373456_list}; 
  
-list_links_var_robot_id_140701231227280.push(link_3_var_robot_id_140701231227280);
+list_links_var_robot_id_140015231373456.push(link_3_var_robot_id_140015231373456);
 
-const object3d_link_4_var_robot_id_140701231227280_list = [];
+const object3d_link_4_var_robot_id_140015231373456_list = [];
 
-const material_link_4_var_robot_id_140701231227280_obj_0 = {type: 'glb',opacity: 1};
+const material_link_4_var_robot_id_140015231373456_obj_0 = {type: 'glb',opacity: 1};
 
-const htm_link_4_var_robot_id_140701231227280_obj_0 = new Matrix4(); 
-htm_link_4_var_robot_id_140701231227280_obj_0.set(1.0,0.0,0.0,0.0,0.0,-1.0,0.0,0.4,0.0,0.0,-1.0,0.0,0.0,0.0,0.0,1.0);
-const object3d_link_4_var_robot_id_140701231227280_obj_0={
+const htm_link_4_var_robot_id_140015231373456_obj_0 = new Matrix4(); 
+htm_link_4_var_robot_id_140015231373456_obj_0.set(1.0,0.0,0.0,0.0,0.0,-1.0,0.0,0.4,0.0,0.0,-1.0,0.0,0.0,0.0,0.0,1.0);
+const object3d_link_4_var_robot_id_140015231373456_obj_0={
 url: 'https://cdn.jsdelivr.net/gh/viniciusmgn/uaibot_content@master/contents/KukaLBRIIWA/iiwa_link_5.glb',
 scale: 1,
-matrix: htm_link_4_var_robot_id_140701231227280_obj_0,
+matrix: htm_link_4_var_robot_id_140015231373456_obj_0,
 type: 'glb',
-mesh_material: material_link_4_var_robot_id_140701231227280_obj_0};
+mesh_material: material_link_4_var_robot_id_140015231373456_obj_0};
 
-object3d_link_4_var_robot_id_140701231227280_list.push(object3d_link_4_var_robot_id_140701231227280_obj_0);
+object3d_link_4_var_robot_id_140015231373456_list.push(object3d_link_4_var_robot_id_140015231373456_obj_0);
 
-const link_4_var_robot_id_140701231227280 = {
+const link_4_var_robot_id_140015231373456 = {
 theta: 0, 
 d: 0.4, 
 a: 0, 
 alpha: -1.57, 
 jointType: 0, 
 showFrame: false,
-model3d: object3d_link_4_var_robot_id_140701231227280_list}; 
+model3d: object3d_link_4_var_robot_id_140015231373456_list}; 
  
-list_links_var_robot_id_140701231227280.push(link_4_var_robot_id_140701231227280);
+list_links_var_robot_id_140015231373456.push(link_4_var_robot_id_140015231373456);
 
-const object3d_link_5_var_robot_id_140701231227280_list = [];
+const object3d_link_5_var_robot_id_140015231373456_list = [];
 
-const material_link_5_var_robot_id_140701231227280_obj_0 = {type: 'glb',opacity: 1};
+const material_link_5_var_robot_id_140015231373456_obj_0 = {type: 'glb',opacity: 1};
 
-const htm_link_5_var_robot_id_140701231227280_obj_0 = new Matrix4(); 
-htm_link_5_var_robot_id_140701231227280_obj_0.set(1.0,0.0,0.0,0.0,0.0,0.0,-1.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,1.0);
-const object3d_link_5_var_robot_id_140701231227280_obj_0={
+const htm_link_5_var_robot_id_140015231373456_obj_0 = new Matrix4(); 
+htm_link_5_var_robot_id_140015231373456_obj_0.set(1.0,0.0,0.0,0.0,0.0,0.0,-1.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,1.0);
+const object3d_link_5_var_robot_id_140015231373456_obj_0={
 url: 'https://cdn.jsdelivr.net/gh/viniciusmgn/uaibot_content@master/contents/KukaLBRIIWA/iiwa_link_6.glb',
 scale: 1,
-matrix: htm_link_5_var_robot_id_140701231227280_obj_0,
+matrix: htm_link_5_var_robot_id_140015231373456_obj_0,
 type: 'glb',
-mesh_material: material_link_5_var_robot_id_140701231227280_obj_0};
+mesh_material: material_link_5_var_robot_id_140015231373456_obj_0};
 
-object3d_link_5_var_robot_id_140701231227280_list.push(object3d_link_5_var_robot_id_140701231227280_obj_0);
+object3d_link_5_var_robot_id_140015231373456_list.push(object3d_link_5_var_robot_id_140015231373456_obj_0);
 
-const link_5_var_robot_id_140701231227280 = {
+const link_5_var_robot_id_140015231373456 = {
 theta: 0, 
 d: 0, 
 a: 0, 
 alpha: 1.57, 
 jointType: 0, 
 showFrame: false,
-model3d: object3d_link_5_var_robot_id_140701231227280_list}; 
+model3d: object3d_link_5_var_robot_id_140015231373456_list}; 
  
-list_links_var_robot_id_140701231227280.push(link_5_var_robot_id_140701231227280);
+list_links_var_robot_id_140015231373456.push(link_5_var_robot_id_140015231373456);
 
-const object3d_link_6_var_robot_id_140701231227280_list = [];
+const object3d_link_6_var_robot_id_140015231373456_list = [];
 
-const material_link_6_var_robot_id_140701231227280_obj_0 = {type: 'glb',opacity: 1};
+const material_link_6_var_robot_id_140015231373456_obj_0 = {type: 'glb',opacity: 1};
 
-const htm_link_6_var_robot_id_140701231227280_obj_0 = new Matrix4(); 
-htm_link_6_var_robot_id_140701231227280_obj_0.set(1.0,0.0,0.0,0.0,0.0,0.0008,-1.0,0.0,0.0,1.0,0.0008,-0.17,0.0,0.0,0.0,1.0);
-const object3d_link_6_var_robot_id_140701231227280_obj_0={
+const htm_link_6_var_robot_id_140015231373456_obj_0 = new Matrix4(); 
+htm_link_6_var_robot_id_140015231373456_obj_0.set(1.0,0.0,0.0,0.0,0.0,0.0008,-1.0,0.0,0.0,1.0,0.0008,-0.17,0.0,0.0,0.0,1.0);
+const object3d_link_6_var_robot_id_140015231373456_obj_0={
 url: 'https://cdn.jsdelivr.net/gh/viniciusmgn/uaibot_content@master/contents/KukaLBRIIWA/iiwa_link_7.glb',
 scale: 1,
-matrix: htm_link_6_var_robot_id_140701231227280_obj_0,
+matrix: htm_link_6_var_robot_id_140015231373456_obj_0,
 type: 'glb',
-mesh_material: material_link_6_var_robot_id_140701231227280_obj_0};
+mesh_material: material_link_6_var_robot_id_140015231373456_obj_0};
 
-object3d_link_6_var_robot_id_140701231227280_list.push(object3d_link_6_var_robot_id_140701231227280_obj_0);
+object3d_link_6_var_robot_id_140015231373456_list.push(object3d_link_6_var_robot_id_140015231373456_obj_0);
 
-const link_6_var_robot_id_140701231227280 = {
+const link_6_var_robot_id_140015231373456 = {
 theta: 0, 
 d: 0.152, 
 a: 0, 
 alpha: 0, 
 jointType: 0, 
 showFrame: false,
-model3d: object3d_link_6_var_robot_id_140701231227280_list}; 
+model3d: object3d_link_6_var_robot_id_140015231373456_list}; 
  
-list_links_var_robot_id_140701231227280.push(link_6_var_robot_id_140701231227280);
+list_links_var_robot_id_140015231373456.push(link_6_var_robot_id_140015231373456);
 
-const htm_var_robot_id_140701231227280_base_0 = new Matrix4(); 
-htm_var_robot_id_140701231227280_base_0.set(1.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,1.0);
-const htm_var_robot_id_140701231227280_n_eef = new Matrix4(); 
-htm_var_robot_id_140701231227280_n_eef.set(1.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,1.0,-0.04,0.0,0.0,0.0,1.0);
-const var_var_robot_id_140701231227280 = new Robot(object3d_base_var_robot_id_140701231227280_list, list_links_var_robot_id_140701231227280,[[0, 6.123233995736766e-17, -1.0, 0.0, 0.0, 1.0, 6.123233995736766e-17, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0, 0, 0, 1, [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]]], htm_var_robot_id_140701231227280_base_0, htm_var_robot_id_140701231227280_n_eef,true);
-sceneElements.push(var_var_robot_id_140701231227280);
+const htm_var_robot_id_140015231373456_base_0 = new Matrix4(); 
+htm_var_robot_id_140015231373456_base_0.set(1.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,1.0);
+const htm_var_robot_id_140015231373456_n_eef = new Matrix4(); 
+htm_var_robot_id_140015231373456_n_eef.set(1.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,1.0,-0.04,0.0,0.0,0.0,1.0);
+const var_var_robot_id_140015231373456 = new Robot(object3d_base_var_robot_id_140015231373456_list, list_links_var_robot_id_140015231373456,[[0, 6.123233995736766e-17, -1.0, 0.0, 0.0, 1.0, 6.123233995736766e-17, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0, 0, 0, 1, [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]]], htm_var_robot_id_140015231373456_base_0, htm_var_robot_id_140015231373456_n_eef,true);
+sceneElements.push(var_var_robot_id_140015231373456);
 
-//BEGIN DECLARATION OF THE GROUP 'var_group_id_140701230130576'
+//BEGIN DECLARATION OF THE GROUP 'var_group_id_140015229744144'
 
 
-//BEGIN DECLARATION OF THE CYLINDER 'var_cylinder_id_140701229915088'
+//BEGIN DECLARATION OF THE CYLINDER 'var_cylinder_id_140015229568144'
 
-const material_var_cylinder_id_140701229915088 = new MeshPhysicalMaterial({
+const material_var_cylinder_id_140015229568144 = new MeshPhysicalMaterial({
 opacity: 1,
 transparent: false,
 aoMapIntensity: 1,
@@ -995,13 +995,13 @@ transmission: 0,
 });
 
 
-const var_var_cylinder_id_140701229915088 = new Cylinder(0.004,0.1,[[0, 0.0, 1.0, -0.0, 0.05, 0.0, 0.0, -1.0, 0.0, -1.0, 0.0, -0.0, 0.0, 0, 0, 0, 1], [0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, -0.0, 0.05, -1.0, 0.0, -0.0, 1.292, 0, 0, 0, 1], [0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, -0.0, 0.05, -1.0, 0.0, -0.0, 1.292, 0, 0, 0, 1]], material_var_cylinder_id_140701229915088);
-sceneElements.push(var_var_cylinder_id_140701229915088);
+const var_var_cylinder_id_140015229568144 = new Cylinder(0.004,0.1,[[0, 0.0, 1.0, -0.0, 0.05, 0.0, 0.0, -1.0, 0.0, -1.0, 0.0, -0.0, 0.0, 0, 0, 0, 1], [0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, -0.0, 0.05, -1.0, 0.0, -0.0, 1.292, 0, 0, 0, 1], [0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, -0.0, 0.05, -1.0, 0.0, -0.0, 1.292, 0, 0, 0, 1]], material_var_cylinder_id_140015229568144);
+sceneElements.push(var_var_cylinder_id_140015229568144);
 
 
-//BEGIN DECLARATION OF THE CYLINDER 'var_cylinder_id_140701230110096'
+//BEGIN DECLARATION OF THE CYLINDER 'var_cylinder_id_140015230982800'
 
-const material_var_cylinder_id_140701230110096 = new MeshPhysicalMaterial({
+const material_var_cylinder_id_140015230982800 = new MeshPhysicalMaterial({
 opacity: 1,
 transparent: false,
 aoMapIntensity: 1,
@@ -1030,13 +1030,13 @@ transmission: 0,
 });
 
 
-const var_var_cylinder_id_140701230110096 = new Cylinder(0.004,0.1,[[0, 1.0, 0.0, -0.0, 0.0, 0.0, 1.0, -0.0, 0.05, 0.0, 0.0, 1.0, 0.0, 0, 0, 0, 1], [0, 0.0, -1.0, 0.0, -0.05, 1.0, 0.0, -0.0, 0.0, 0.0, 0.0, 1.0, 1.292, 0, 0, 0, 1], [0, 0.0, -1.0, 0.0, -0.05, 1.0, 0.0, -0.0, 0.0, 0.0, 0.0, 1.0, 1.292, 0, 0, 0, 1]], material_var_cylinder_id_140701230110096);
-sceneElements.push(var_var_cylinder_id_140701230110096);
+const var_var_cylinder_id_140015230982800 = new Cylinder(0.004,0.1,[[0, 1.0, 0.0, -0.0, 0.0, 0.0, 1.0, -0.0, 0.05, 0.0, 0.0, 1.0, 0.0, 0, 0, 0, 1], [0, 0.0, -1.0, 0.0, -0.05, 1.0, 0.0, -0.0, 0.0, 0.0, 0.0, 1.0, 1.292, 0, 0, 0, 1], [0, 0.0, -1.0, 0.0, -0.05, 1.0, 0.0, -0.0, 0.0, 0.0, 0.0, 1.0, 1.292, 0, 0, 0, 1]], material_var_cylinder_id_140015230982800);
+sceneElements.push(var_var_cylinder_id_140015230982800);
 
 
-//BEGIN DECLARATION OF THE CYLINDER 'var_cylinder_id_140701237718800'
+//BEGIN DECLARATION OF THE CYLINDER 'var_cylinder_id_140015231014480'
 
-const material_var_cylinder_id_140701237718800 = new MeshPhysicalMaterial({
+const material_var_cylinder_id_140015231014480 = new MeshPhysicalMaterial({
 opacity: 1,
 transparent: false,
 aoMapIntensity: 1,
@@ -1065,14 +1065,14 @@ transmission: 0,
 });
 
 
-const var_var_cylinder_id_140701237718800 = new Cylinder(0.004,0.1,[[0, 1.0, 0.0, -0.0, 0.0, 0.0, 0.0, -1.0, 0.0, 0.0, 1.0, -0.0, 0.05, 0, 0, 0, 1], [0, 0.0, 0.0, 1.0, 0.0, 1.0, -0.0, -0.0, -0.0, 0.0, 1.0, -0.0, 1.342, 0, 0, 0, 1], [0, 0.0, 0.0, 1.0, 0.0, 1.0, -0.0, -0.0, -0.0, 0.0, 1.0, -0.0, 1.342, 0, 0, 0, 1]], material_var_cylinder_id_140701237718800);
-sceneElements.push(var_var_cylinder_id_140701237718800);
+const var_var_cylinder_id_140015231014480 = new Cylinder(0.004,0.1,[[0, 1.0, 0.0, -0.0, 0.0, 0.0, 0.0, -1.0, 0.0, 0.0, 1.0, -0.0, 0.05, 0, 0, 0, 1], [0, 0.0, 0.0, 1.0, 0.0, 1.0, -0.0, -0.0, -0.0, 0.0, 1.0, -0.0, 1.342, 0, 0, 0, 1], [0, 0.0, 0.0, 1.0, 0.0, 1.0, -0.0, -0.0, -0.0, 0.0, 1.0, -0.0, 1.342, 0, 0, 0, 1]], material_var_cylinder_id_140015231014480);
+sceneElements.push(var_var_cylinder_id_140015231014480);
 
 
 
-//BEGIN DECLARATION OF THE CYLINDER 'var_cylinder_id_140701231428816'
+//BEGIN DECLARATION OF THE CYLINDER 'var_cylinder_id_140015229719440'
 
-const material_var_cylinder_id_140701231428816 = new MeshPhysicalMaterial({
+const material_var_cylinder_id_140015229719440 = new MeshPhysicalMaterial({
 opacity: 1,
 transparent: false,
 aoMapIntensity: 1,
@@ -1101,22 +1101,22 @@ transmission: 0,
 });
 
 
-const var_var_cylinder_id_140701231428816 = new Cylinder(0.02,0.3,[[0, 0.0, 1.0, -0.0, -0.6, 0.0, 0.0, -1.0, 0.35, -1.0, 0.0, -0.0, 0.77, 0, 0, 0, 1]], material_var_cylinder_id_140701231428816);
-sceneElements.push(var_var_cylinder_id_140701231428816);
+const var_var_cylinder_id_140015229719440 = new Cylinder(0.02,0.3,[[0, 0.0, 1.0, -0.0, -0.6, 0.0, 0.0, -1.0, 0.35, -1.0, 0.0, -0.0, 0.77, 0, 0, 0, 1]], material_var_cylinder_id_140015229719440);
+sceneElements.push(var_var_cylinder_id_140015229719440);
 
-//BEGIN DECLARATION OF THE CYLINDER 'var_cylinder_id_140701230206224'
+//BEGIN DECLARATION OF THE CYLINDER 'var_cylinder_id_140015229720528'
 
-const texture_map_var_cylinder_id_140701230206224 = new TextureLoader().load('https://cdn.jsdelivr.net/gh/viniciusmgn/uaibot_content@master/contents/Textures/gold_metal.png');
-texture_map_var_cylinder_id_140701230206224.wrapS = RepeatWrapping;
-texture_map_var_cylinder_id_140701230206224.wrapT = RepeatWrapping;
-texture_map_var_cylinder_id_140701230206224.magFilter = LinearFilter;
-texture_map_var_cylinder_id_140701230206224.minFilter = LinearMipmapLinearFilter;
-texture_map_var_cylinder_id_140701230206224.rotation = 0;
-texture_map_var_cylinder_id_140701230206224.offset.set(0,0);
-texture_map_var_cylinder_id_140701230206224.repeat.set(4,4);
-texture_map_var_cylinder_id_140701230206224.center.set(0,0);
+const texture_map_var_cylinder_id_140015229720528 = new TextureLoader().load('https://cdn.jsdelivr.net/gh/viniciusmgn/uaibot_content@master/contents/Textures/gold_metal.png');
+texture_map_var_cylinder_id_140015229720528.wrapS = RepeatWrapping;
+texture_map_var_cylinder_id_140015229720528.wrapT = RepeatWrapping;
+texture_map_var_cylinder_id_140015229720528.magFilter = LinearFilter;
+texture_map_var_cylinder_id_140015229720528.minFilter = LinearMipmapLinearFilter;
+texture_map_var_cylinder_id_140015229720528.rotation = 0;
+texture_map_var_cylinder_id_140015229720528.offset.set(0,0);
+texture_map_var_cylinder_id_140015229720528.repeat.set(4,4);
+texture_map_var_cylinder_id_140015229720528.center.set(0,0);
 
-const material_var_cylinder_id_140701230206224 = new MeshPhysicalMaterial({
+const material_var_cylinder_id_140015229720528 = new MeshPhysicalMaterial({
 opacity: 1,
 transparent: false,
 aoMapIntensity: 1,
@@ -1127,7 +1127,7 @@ emissiveIntensity: 1,
 envMapIntensity: 1,
 flatShading: false,
 lightMapIntensity: 1,
-map: texture_map_var_cylinder_id_140701230206224,
+map: texture_map_var_cylinder_id_140015229720528,
 metalness: 0.7,
 normalScale: new Vector2(0.5,0.5),
 refractionRatio: 0.98,
@@ -1146,8 +1146,8 @@ transmission: 0,
 });
 
 
-const var_var_cylinder_id_140701230206224 = new Cylinder(0.05,0.04,[[0, 1.0, 0.0, -0.0, 0.3, 0.0, 0.0, -1.0, 0.0, 0.0, 1.0, -0.0, 0.52, 0, 0, 0, 1]], material_var_cylinder_id_140701230206224);
-sceneElements.push(var_var_cylinder_id_140701230206224);
+const var_var_cylinder_id_140015229720528 = new Cylinder(0.05,0.04,[[0, 1.0, 0.0, -0.0, 0.3, 0.0, 0.0, -1.0, 0.0, 0.0, 1.0, -0.0, 0.52, 0, 0, 0, 1]], material_var_cylinder_id_140015229720528);
+sceneElements.push(var_var_cylinder_id_140015229720528);
 
 //BEGIN DECLARATION OF THE BOX 'ground'
 
@@ -1214,12 +1214,12 @@ sceneElements.push(var_light3);
 const var_light4 = new PointLightSim([[0, 'white', 2.5, 0, [[1.0], [1.0], [1.5]]]]);
 sceneElements.push(var_light4);
 
-//BEGIN DECLARATION OF THE GROUP 'var_group_id_140701231748432'
+//BEGIN DECLARATION OF THE GROUP 'var_group_id_140015241980368'
 
 
-//BEGIN DECLARATION OF THE CYLINDER 'var_cylinder_id_140701242069712'
+//BEGIN DECLARATION OF THE CYLINDER 'var_cylinder_id_140015232178320'
 
-const material_var_cylinder_id_140701242069712 = new MeshPhysicalMaterial({
+const material_var_cylinder_id_140015232178320 = new MeshPhysicalMaterial({
 opacity: 1,
 transparent: false,
 aoMapIntensity: 1,
@@ -1248,13 +1248,13 @@ transmission: 0,
 });
 
 
-const var_var_cylinder_id_140701242069712 = new Cylinder(0.004,0.1,[[0, -0.0, -1.0, -0.0, 0.25, 0.0, 0.0, -1.0, 0.0, 1.0, -0.0, -0.0, 0.64, 0, 0, 0, 1]], material_var_cylinder_id_140701242069712);
-sceneElements.push(var_var_cylinder_id_140701242069712);
+const var_var_cylinder_id_140015232178320 = new Cylinder(0.004,0.1,[[0, -0.0, -1.0, -0.0, 0.25, 0.0, 0.0, -1.0, 0.0, 1.0, -0.0, -0.0, 0.64, 0, 0, 0, 1]], material_var_cylinder_id_140015232178320);
+sceneElements.push(var_var_cylinder_id_140015232178320);
 
 
-//BEGIN DECLARATION OF THE CYLINDER 'var_cylinder_id_140701231748496'
+//BEGIN DECLARATION OF THE CYLINDER 'var_cylinder_id_140015230871568'
 
-const material_var_cylinder_id_140701231748496 = new MeshPhysicalMaterial({
+const material_var_cylinder_id_140015230871568 = new MeshPhysicalMaterial({
 opacity: 1,
 transparent: false,
 aoMapIntensity: 1,
@@ -1283,13 +1283,13 @@ transmission: 0,
 });
 
 
-const var_var_cylinder_id_140701231748496 = new Cylinder(0.004,0.1,[[0, -1.0, 0.0, 0.0, 0.3, 0.0, 1.0, -0.0, 0.05, -0.0, -0.0, -1.0, 0.64, 0, 0, 0, 1]], material_var_cylinder_id_140701231748496);
-sceneElements.push(var_var_cylinder_id_140701231748496);
+const var_var_cylinder_id_140015230871568 = new Cylinder(0.004,0.1,[[0, -1.0, 0.0, 0.0, 0.3, 0.0, 1.0, -0.0, 0.05, -0.0, -0.0, -1.0, 0.64, 0, 0, 0, 1]], material_var_cylinder_id_140015230871568);
+sceneElements.push(var_var_cylinder_id_140015230871568);
 
 
-//BEGIN DECLARATION OF THE CYLINDER 'var_cylinder_id_140701229914896'
+//BEGIN DECLARATION OF THE CYLINDER 'var_cylinder_id_140015230863824'
 
-const material_var_cylinder_id_140701229914896 = new MeshPhysicalMaterial({
+const material_var_cylinder_id_140015230863824 = new MeshPhysicalMaterial({
 opacity: 1,
 transparent: false,
 aoMapIntensity: 1,
@@ -1318,17 +1318,17 @@ transmission: 0,
 });
 
 
-const var_var_cylinder_id_140701229914896 = new Cylinder(0.004,0.1,[[0, -1.0, 0.0, -0.0, 0.3, 0.0, 0.0, -1.0, 0.0, -0.0, -1.0, -0.0, 0.59, 0, 0, 0, 1]], material_var_cylinder_id_140701229914896);
-sceneElements.push(var_var_cylinder_id_140701229914896);
+const var_var_cylinder_id_140015230863824 = new Cylinder(0.004,0.1,[[0, -1.0, 0.0, -0.0, 0.3, 0.0, 0.0, -1.0, 0.0, -0.0, -1.0, -0.0, 0.59, 0, 0, 0, 1]], material_var_cylinder_id_140015230863824);
+sceneElements.push(var_var_cylinder_id_140015230863824);
 
 
 
-//BEGIN DECLARATION OF THE GROUP 'var_group_id_140701233462608'
+//BEGIN DECLARATION OF THE GROUP 'var_group_id_140015229731152'
 
 
-//BEGIN DECLARATION OF THE CYLINDER 'var_cylinder_id_140701230118160'
+//BEGIN DECLARATION OF THE CYLINDER 'var_cylinder_id_140015229726864'
 
-const material_var_cylinder_id_140701230118160 = new MeshPhysicalMaterial({
+const material_var_cylinder_id_140015229726864 = new MeshPhysicalMaterial({
 opacity: 1,
 transparent: false,
 aoMapIntensity: 1,
@@ -1357,13 +1357,13 @@ transmission: 0,
 });
 
 
-const var_var_cylinder_id_140701230118160 = new Cylinder(0.004,0.1,[[0, -0.0, -1.0, -0.0, -0.7, 0.0, 0.0, -1.0, 0.0, 1.0, -0.0, -0.0, 0.63, 0, 0, 0, 1]], material_var_cylinder_id_140701230118160);
-sceneElements.push(var_var_cylinder_id_140701230118160);
+const var_var_cylinder_id_140015229726864 = new Cylinder(0.004,0.1,[[0, -0.0, -1.0, -0.0, -0.7, 0.0, 0.0, -1.0, 0.0, 1.0, -0.0, -0.0, 0.63, 0, 0, 0, 1]], material_var_cylinder_id_140015229726864);
+sceneElements.push(var_var_cylinder_id_140015229726864);
 
 
-//BEGIN DECLARATION OF THE CYLINDER 'var_cylinder_id_140701230118672'
+//BEGIN DECLARATION OF THE CYLINDER 'var_cylinder_id_140015231303184'
 
-const material_var_cylinder_id_140701230118672 = new MeshPhysicalMaterial({
+const material_var_cylinder_id_140015231303184 = new MeshPhysicalMaterial({
 opacity: 1,
 transparent: false,
 aoMapIntensity: 1,
@@ -1392,13 +1392,13 @@ transmission: 0,
 });
 
 
-const var_var_cylinder_id_140701230118672 = new Cylinder(0.004,0.1,[[0, -1.0, 0.0, 0.0, -0.65, 0.0, 1.0, -0.0, 0.05, -0.0, -0.0, -1.0, 0.63, 0, 0, 0, 1]], material_var_cylinder_id_140701230118672);
-sceneElements.push(var_var_cylinder_id_140701230118672);
+const var_var_cylinder_id_140015231303184 = new Cylinder(0.004,0.1,[[0, -1.0, 0.0, 0.0, -0.65, 0.0, 1.0, -0.0, 0.05, -0.0, -0.0, -1.0, 0.63, 0, 0, 0, 1]], material_var_cylinder_id_140015231303184);
+sceneElements.push(var_var_cylinder_id_140015231303184);
 
 
-//BEGIN DECLARATION OF THE CYLINDER 'var_cylinder_id_140701231233616'
+//BEGIN DECLARATION OF THE CYLINDER 'var_cylinder_id_140015235039056'
 
-const material_var_cylinder_id_140701231233616 = new MeshPhysicalMaterial({
+const material_var_cylinder_id_140015235039056 = new MeshPhysicalMaterial({
 opacity: 1,
 transparent: false,
 aoMapIntensity: 1,
@@ -1427,17 +1427,17 @@ transmission: 0,
 });
 
 
-const var_var_cylinder_id_140701231233616 = new Cylinder(0.004,0.1,[[0, -1.0, 0.0, -0.0, -0.65, 0.0, 0.0, -1.0, 0.0, -0.0, -1.0, -0.0, 0.58, 0, 0, 0, 1]], material_var_cylinder_id_140701231233616);
-sceneElements.push(var_var_cylinder_id_140701231233616);
+const var_var_cylinder_id_140015235039056 = new Cylinder(0.004,0.1,[[0, -1.0, 0.0, -0.0, -0.65, 0.0, 0.0, -1.0, 0.0, -0.0, -1.0, -0.0, 0.58, 0, 0, 0, 1]], material_var_cylinder_id_140015235039056);
+sceneElements.push(var_var_cylinder_id_140015235039056);
 
 
 
-//BEGIN DECLARATION OF THE GROUP 'var_group_id_140701230223184'
+//BEGIN DECLARATION OF THE GROUP 'var_group_id_140015229738384'
 
 
-//BEGIN DECLARATION OF THE CYLINDER 'var_cylinder_id_140701232708816'
+//BEGIN DECLARATION OF THE CYLINDER 'var_cylinder_id_140015229821904'
 
-const material_var_cylinder_id_140701232708816 = new MeshPhysicalMaterial({
+const material_var_cylinder_id_140015229821904 = new MeshPhysicalMaterial({
 opacity: 1,
 transparent: false,
 aoMapIntensity: 1,
@@ -1466,13 +1466,13 @@ transmission: 0,
 });
 
 
-const var_var_cylinder_id_140701232708816 = new Cylinder(0.004,0.1,[[0, 1.0, 0.0, -0.0, -0.35, 0.0, 0.0, -1.0, 0.35, 0.0, 1.0, -0.0, 0.82, 0, 0, 0, 1]], material_var_cylinder_id_140701232708816);
-sceneElements.push(var_var_cylinder_id_140701232708816);
+const var_var_cylinder_id_140015229821904 = new Cylinder(0.004,0.1,[[0, 1.0, 0.0, -0.0, -0.35, 0.0, 0.0, -1.0, 0.35, 0.0, 1.0, -0.0, 0.82, 0, 0, 0, 1]], material_var_cylinder_id_140015229821904);
+sceneElements.push(var_var_cylinder_id_140015229821904);
 
 
-//BEGIN DECLARATION OF THE CYLINDER 'var_cylinder_id_140701230214032'
+//BEGIN DECLARATION OF THE CYLINDER 'var_cylinder_id_140015229833616'
 
-const material_var_cylinder_id_140701230214032 = new MeshPhysicalMaterial({
+const material_var_cylinder_id_140015229833616 = new MeshPhysicalMaterial({
 opacity: 1,
 transparent: false,
 aoMapIntensity: 1,
@@ -1501,13 +1501,13 @@ transmission: 0,
 });
 
 
-const var_var_cylinder_id_140701230214032 = new Cylinder(0.004,0.1,[[0, 0.0, -0.0, -1.0, -0.35, 0.0, 1.0, -0.0, 0.4, 1.0, 0.0, 0.0, 0.77, 0, 0, 0, 1]], material_var_cylinder_id_140701230214032);
-sceneElements.push(var_var_cylinder_id_140701230214032);
+const var_var_cylinder_id_140015229833616 = new Cylinder(0.004,0.1,[[0, 0.0, -0.0, -1.0, -0.35, 0.0, 1.0, -0.0, 0.4, 1.0, 0.0, 0.0, 0.77, 0, 0, 0, 1]], material_var_cylinder_id_140015229833616);
+sceneElements.push(var_var_cylinder_id_140015229833616);
 
 
-//BEGIN DECLARATION OF THE CYLINDER 'var_cylinder_id_140701250930448'
+//BEGIN DECLARATION OF THE CYLINDER 'var_cylinder_id_140015229835088'
 
-const material_var_cylinder_id_140701250930448 = new MeshPhysicalMaterial({
+const material_var_cylinder_id_140015229835088 = new MeshPhysicalMaterial({
 opacity: 1,
 transparent: false,
 aoMapIntensity: 1,
@@ -1536,17 +1536,17 @@ transmission: 0,
 });
 
 
-const var_var_cylinder_id_140701250930448 = new Cylinder(0.004,0.1,[[0, 0.0, -1.0, -0.0, -0.4, 0.0, 0.0, -1.0, 0.35, 1.0, 0.0, -0.0, 0.77, 0, 0, 0, 1]], material_var_cylinder_id_140701250930448);
-sceneElements.push(var_var_cylinder_id_140701250930448);
+const var_var_cylinder_id_140015229835088 = new Cylinder(0.004,0.1,[[0, 0.0, -1.0, -0.0, -0.4, 0.0, 0.0, -1.0, 0.35, 1.0, 0.0, -0.0, 0.77, 0, 0, 0, 1]], material_var_cylinder_id_140015229835088);
+sceneElements.push(var_var_cylinder_id_140015229835088);
 
 
 
-//BEGIN DECLARATION OF THE GROUP 'var_group_id_140701229963216'
+//BEGIN DECLARATION OF THE GROUP 'var_group_id_140015229837264'
 
 
-//BEGIN DECLARATION OF THE CYLINDER 'var_cylinder_id_140701230130704'
+//BEGIN DECLARATION OF THE CYLINDER 'var_cylinder_id_140015229740368'
 
-const material_var_cylinder_id_140701230130704 = new MeshPhysicalMaterial({
+const material_var_cylinder_id_140015229740368 = new MeshPhysicalMaterial({
 opacity: 1,
 transparent: false,
 aoMapIntensity: 1,
@@ -1575,13 +1575,13 @@ transmission: 0,
 });
 
 
-const var_var_cylinder_id_140701230130704 = new Cylinder(0.004,0.1,[[0, -0.0, -1.0, -0.0, 0.25, 0.0, 0.0, -1.0, 0.2, 1.0, -0.0, -0.0, 0.64, 0, 0, 0, 1]], material_var_cylinder_id_140701230130704);
-sceneElements.push(var_var_cylinder_id_140701230130704);
+const var_var_cylinder_id_140015229740368 = new Cylinder(0.004,0.1,[[0, -0.0, -1.0, -0.0, 0.25, 0.0, 0.0, -1.0, 0.2, 1.0, -0.0, -0.0, 0.64, 0, 0, 0, 1]], material_var_cylinder_id_140015229740368);
+sceneElements.push(var_var_cylinder_id_140015229740368);
 
 
-//BEGIN DECLARATION OF THE CYLINDER 'var_cylinder_id_140701230215696'
+//BEGIN DECLARATION OF THE CYLINDER 'var_cylinder_id_140015237361488'
 
-const material_var_cylinder_id_140701230215696 = new MeshPhysicalMaterial({
+const material_var_cylinder_id_140015237361488 = new MeshPhysicalMaterial({
 opacity: 1,
 transparent: false,
 aoMapIntensity: 1,
@@ -1610,13 +1610,13 @@ transmission: 0,
 });
 
 
-const var_var_cylinder_id_140701230215696 = new Cylinder(0.004,0.1,[[0, -1.0, 0.0, 0.0, 0.3, 0.0, 1.0, -0.0, 0.25, -0.0, -0.0, -1.0, 0.64, 0, 0, 0, 1]], material_var_cylinder_id_140701230215696);
-sceneElements.push(var_var_cylinder_id_140701230215696);
+const var_var_cylinder_id_140015237361488 = new Cylinder(0.004,0.1,[[0, -1.0, 0.0, 0.0, 0.3, 0.0, 1.0, -0.0, 0.25, -0.0, -0.0, -1.0, 0.64, 0, 0, 0, 1]], material_var_cylinder_id_140015237361488);
+sceneElements.push(var_var_cylinder_id_140015237361488);
 
 
-//BEGIN DECLARATION OF THE CYLINDER 'var_cylinder_id_140701230849168'
+//BEGIN DECLARATION OF THE CYLINDER 'var_cylinder_id_140015231376784'
 
-const material_var_cylinder_id_140701230849168 = new MeshPhysicalMaterial({
+const material_var_cylinder_id_140015231376784 = new MeshPhysicalMaterial({
 opacity: 1,
 transparent: false,
 aoMapIntensity: 1,
@@ -1645,24 +1645,24 @@ transmission: 0,
 });
 
 
-const var_var_cylinder_id_140701230849168 = new Cylinder(0.004,0.1,[[0, -1.0, 0.0, -0.0, 0.3, 0.0, 0.0, -1.0, 0.2, -0.0, -1.0, -0.0, 0.59, 0, 0, 0, 1]], material_var_cylinder_id_140701230849168);
-sceneElements.push(var_var_cylinder_id_140701230849168);
+const var_var_cylinder_id_140015231376784 = new Cylinder(0.004,0.1,[[0, -1.0, 0.0, -0.0, 0.3, 0.0, 0.0, -1.0, 0.2, -0.0, -1.0, -0.0, 0.59, 0, 0, 0, 1]], material_var_cylinder_id_140015231376784);
+sceneElements.push(var_var_cylinder_id_140015231376784);
 
 
 
-//BEGIN DECLARATION OF THE BOX 'var_box_id_140701234452688'
+//BEGIN DECLARATION OF THE BOX 'var_box_id_140015234051920'
 
-const texture_map_var_box_id_140701234452688 = new TextureLoader().load('https://cdn.jsdelivr.net/gh/viniciusmgn/uaibot_content@master/contents/Textures/rough_metal.jpg');
-texture_map_var_box_id_140701234452688.wrapS = RepeatWrapping;
-texture_map_var_box_id_140701234452688.wrapT = RepeatWrapping;
-texture_map_var_box_id_140701234452688.magFilter = LinearFilter;
-texture_map_var_box_id_140701234452688.minFilter = LinearMipmapLinearFilter;
-texture_map_var_box_id_140701234452688.rotation = 0;
-texture_map_var_box_id_140701234452688.offset.set(0,0);
-texture_map_var_box_id_140701234452688.repeat.set(4,4);
-texture_map_var_box_id_140701234452688.center.set(0,0);
+const texture_map_var_box_id_140015234051920 = new TextureLoader().load('https://cdn.jsdelivr.net/gh/viniciusmgn/uaibot_content@master/contents/Textures/rough_metal.jpg');
+texture_map_var_box_id_140015234051920.wrapS = RepeatWrapping;
+texture_map_var_box_id_140015234051920.wrapT = RepeatWrapping;
+texture_map_var_box_id_140015234051920.magFilter = LinearFilter;
+texture_map_var_box_id_140015234051920.minFilter = LinearMipmapLinearFilter;
+texture_map_var_box_id_140015234051920.rotation = 0;
+texture_map_var_box_id_140015234051920.offset.set(0,0);
+texture_map_var_box_id_140015234051920.repeat.set(4,4);
+texture_map_var_box_id_140015234051920.center.set(0,0);
 
-const material_var_box_id_140701234452688 = new MeshPhysicalMaterial({
+const material_var_box_id_140015234051920 = new MeshPhysicalMaterial({
 opacity: 1,
 transparent: false,
 aoMapIntensity: 1,
@@ -1673,7 +1673,7 @@ emissiveIntensity: 1,
 envMapIntensity: 1,
 flatShading: false,
 lightMapIntensity: 1,
-map: texture_map_var_box_id_140701234452688,
+map: texture_map_var_box_id_140015234051920,
 metalness: 0.7,
 normalScale: new Vector2(0.5,0.5),
 refractionRatio: 0.98,
@@ -1692,22 +1692,22 @@ transmission: 0,
 });
 
 
-const var_var_box_id_140701234452688 = new Box(0.2,0.5,1.0,[[0, 1.0, 0.0, -0.0, 0.3, 0.0, 0.0, -1.0, 0.0, 0.0, 1.0, -0.0, 0.25, 0, 0, 0, 1]], material_var_box_id_140701234452688);
-sceneElements.push(var_var_box_id_140701234452688);
+const var_var_box_id_140015234051920 = new Box(0.2,0.5,1.0,[[0, 1.0, 0.0, -0.0, 0.3, 0.0, 0.0, -1.0, 0.0, 0.0, 1.0, -0.0, 0.25, 0, 0, 0, 1]], material_var_box_id_140015234051920);
+sceneElements.push(var_var_box_id_140015234051920);
 
-//BEGIN DECLARATION OF THE BOX 'var_box_id_140701230106000'
+//BEGIN DECLARATION OF THE BOX 'var_box_id_140015229746576'
 
-const texture_map_var_box_id_140701230106000 = new TextureLoader().load('https://cdn.jsdelivr.net/gh/viniciusmgn/uaibot_content@master/contents/Textures/rough_metal.jpg');
-texture_map_var_box_id_140701230106000.wrapS = RepeatWrapping;
-texture_map_var_box_id_140701230106000.wrapT = RepeatWrapping;
-texture_map_var_box_id_140701230106000.magFilter = LinearFilter;
-texture_map_var_box_id_140701230106000.minFilter = LinearMipmapLinearFilter;
-texture_map_var_box_id_140701230106000.rotation = 0;
-texture_map_var_box_id_140701230106000.offset.set(0,0);
-texture_map_var_box_id_140701230106000.repeat.set(4,4);
-texture_map_var_box_id_140701230106000.center.set(0,0);
+const texture_map_var_box_id_140015229746576 = new TextureLoader().load('https://cdn.jsdelivr.net/gh/viniciusmgn/uaibot_content@master/contents/Textures/rough_metal.jpg');
+texture_map_var_box_id_140015229746576.wrapS = RepeatWrapping;
+texture_map_var_box_id_140015229746576.wrapT = RepeatWrapping;
+texture_map_var_box_id_140015229746576.magFilter = LinearFilter;
+texture_map_var_box_id_140015229746576.minFilter = LinearMipmapLinearFilter;
+texture_map_var_box_id_140015229746576.rotation = 0;
+texture_map_var_box_id_140015229746576.offset.set(0,0);
+texture_map_var_box_id_140015229746576.repeat.set(4,4);
+texture_map_var_box_id_140015229746576.center.set(0,0);
 
-const material_var_box_id_140701230106000 = new MeshPhysicalMaterial({
+const material_var_box_id_140015229746576 = new MeshPhysicalMaterial({
 opacity: 1,
 transparent: false,
 aoMapIntensity: 1,
@@ -1718,7 +1718,7 @@ emissiveIntensity: 1,
 envMapIntensity: 1,
 flatShading: false,
 lightMapIntensity: 1,
-map: texture_map_var_box_id_140701230106000,
+map: texture_map_var_box_id_140015229746576,
 metalness: 0.7,
 normalScale: new Vector2(0.5,0.5),
 refractionRatio: 0.98,
@@ -1737,22 +1737,22 @@ transmission: 0,
 });
 
 
-const var_var_box_id_140701230106000 = new Box(0.8,0.5,1.0,[[0, 1.0, 0.0, -0.0, -0.7, 0.0, 0.0, -1.0, 0.0, 0.0, 1.0, -0.0, 0.25, 0, 0, 0, 1]], material_var_box_id_140701230106000);
-sceneElements.push(var_var_box_id_140701230106000);
+const var_var_box_id_140015229746576 = new Box(0.8,0.5,1.0,[[0, 1.0, 0.0, -0.0, -0.7, 0.0, 0.0, -1.0, 0.0, 0.0, 1.0, -0.0, 0.25, 0, 0, 0, 1]], material_var_box_id_140015229746576);
+sceneElements.push(var_var_box_id_140015229746576);
 
-//BEGIN DECLARATION OF THE BOX 'var_box_id_140701230129808'
+//BEGIN DECLARATION OF THE BOX 'var_box_id_140015229716688'
 
-const texture_map_var_box_id_140701230129808 = new TextureLoader().load('https://cdn.jsdelivr.net/gh/viniciusmgn/uaibot_content@master/contents/Textures/rough_metal.jpg');
-texture_map_var_box_id_140701230129808.wrapS = RepeatWrapping;
-texture_map_var_box_id_140701230129808.wrapT = RepeatWrapping;
-texture_map_var_box_id_140701230129808.magFilter = LinearFilter;
-texture_map_var_box_id_140701230129808.minFilter = LinearMipmapLinearFilter;
-texture_map_var_box_id_140701230129808.rotation = 0;
-texture_map_var_box_id_140701230129808.offset.set(0,0);
-texture_map_var_box_id_140701230129808.repeat.set(4,4);
-texture_map_var_box_id_140701230129808.center.set(0,0);
+const texture_map_var_box_id_140015229716688 = new TextureLoader().load('https://cdn.jsdelivr.net/gh/viniciusmgn/uaibot_content@master/contents/Textures/rough_metal.jpg');
+texture_map_var_box_id_140015229716688.wrapS = RepeatWrapping;
+texture_map_var_box_id_140015229716688.wrapT = RepeatWrapping;
+texture_map_var_box_id_140015229716688.magFilter = LinearFilter;
+texture_map_var_box_id_140015229716688.minFilter = LinearMipmapLinearFilter;
+texture_map_var_box_id_140015229716688.rotation = 0;
+texture_map_var_box_id_140015229716688.offset.set(0,0);
+texture_map_var_box_id_140015229716688.repeat.set(4,4);
+texture_map_var_box_id_140015229716688.center.set(0,0);
 
-const material_var_box_id_140701230129808 = new MeshPhysicalMaterial({
+const material_var_box_id_140015229716688 = new MeshPhysicalMaterial({
 opacity: 1,
 transparent: false,
 aoMapIntensity: 1,
@@ -1763,7 +1763,7 @@ emissiveIntensity: 1,
 envMapIntensity: 1,
 flatShading: false,
 lightMapIntensity: 1,
-map: texture_map_var_box_id_140701230129808,
+map: texture_map_var_box_id_140015229716688,
 metalness: 0.7,
 normalScale: new Vector2(0.5,0.5),
 refractionRatio: 0.98,
@@ -1782,22 +1782,22 @@ transmission: 0,
 });
 
 
-const var_var_box_id_140701230129808 = new Box(0.6,0.45,0.3,[[0, 1.0, 0.0, -0.0, -0.8, 0.0, 0.0, -1.0, -0.35, 0.0, 1.0, -0.0, 0.725, 0, 0, 0, 1]], material_var_box_id_140701230129808);
-sceneElements.push(var_var_box_id_140701230129808);
+const var_var_box_id_140015229716688 = new Box(0.6,0.45,0.3,[[0, 1.0, 0.0, -0.0, -0.8, 0.0, 0.0, -1.0, -0.35, 0.0, 1.0, -0.0, 0.725, 0, 0, 0, 1]], material_var_box_id_140015229716688);
+sceneElements.push(var_var_box_id_140015229716688);
 
-//BEGIN DECLARATION OF THE BOX 'var_box_id_140701230133392'
+//BEGIN DECLARATION OF THE BOX 'var_box_id_140015229716880'
 
-const texture_map_var_box_id_140701230133392 = new TextureLoader().load('https://cdn.jsdelivr.net/gh/viniciusmgn/uaibot_content@master/contents/Textures/rough_metal.jpg');
-texture_map_var_box_id_140701230133392.wrapS = RepeatWrapping;
-texture_map_var_box_id_140701230133392.wrapT = RepeatWrapping;
-texture_map_var_box_id_140701230133392.magFilter = LinearFilter;
-texture_map_var_box_id_140701230133392.minFilter = LinearMipmapLinearFilter;
-texture_map_var_box_id_140701230133392.rotation = 0;
-texture_map_var_box_id_140701230133392.offset.set(0,0);
-texture_map_var_box_id_140701230133392.repeat.set(4,4);
-texture_map_var_box_id_140701230133392.center.set(0,0);
+const texture_map_var_box_id_140015229716880 = new TextureLoader().load('https://cdn.jsdelivr.net/gh/viniciusmgn/uaibot_content@master/contents/Textures/rough_metal.jpg');
+texture_map_var_box_id_140015229716880.wrapS = RepeatWrapping;
+texture_map_var_box_id_140015229716880.wrapT = RepeatWrapping;
+texture_map_var_box_id_140015229716880.magFilter = LinearFilter;
+texture_map_var_box_id_140015229716880.minFilter = LinearMipmapLinearFilter;
+texture_map_var_box_id_140015229716880.rotation = 0;
+texture_map_var_box_id_140015229716880.offset.set(0,0);
+texture_map_var_box_id_140015229716880.repeat.set(4,4);
+texture_map_var_box_id_140015229716880.center.set(0,0);
 
-const material_var_box_id_140701230133392 = new MeshPhysicalMaterial({
+const material_var_box_id_140015229716880 = new MeshPhysicalMaterial({
 opacity: 1,
 transparent: false,
 aoMapIntensity: 1,
@@ -1808,7 +1808,7 @@ emissiveIntensity: 1,
 envMapIntensity: 1,
 flatShading: false,
 lightMapIntensity: 1,
-map: texture_map_var_box_id_140701230133392,
+map: texture_map_var_box_id_140015229716880,
 metalness: 0.7,
 normalScale: new Vector2(0.5,0.5),
 refractionRatio: 0.98,
@@ -1827,22 +1827,22 @@ transmission: 0,
 });
 
 
-const var_var_box_id_140701230133392 = new Box(0.6,0.45,0.3,[[0, 1.0, 0.0, -0.0, -0.8, 0.0, 0.0, -1.0, 0.35, 0.0, 1.0, -0.0, 0.725, 0, 0, 0, 1]], material_var_box_id_140701230133392);
-sceneElements.push(var_var_box_id_140701230133392);
+const var_var_box_id_140015229716880 = new Box(0.6,0.45,0.3,[[0, 1.0, 0.0, -0.0, -0.8, 0.0, 0.0, -1.0, 0.35, 0.0, 1.0, -0.0, 0.725, 0, 0, 0, 1]], material_var_box_id_140015229716880);
+sceneElements.push(var_var_box_id_140015229716880);
 
-//BEGIN DECLARATION OF THE BOX 'var_box_id_140701230131984'
+//BEGIN DECLARATION OF THE BOX 'var_box_id_140015230636176'
 
-const texture_map_var_box_id_140701230131984 = new TextureLoader().load('https://cdn.jsdelivr.net/gh/viniciusmgn/uaibot_content@master/contents/Textures/rough_metal.jpg');
-texture_map_var_box_id_140701230131984.wrapS = RepeatWrapping;
-texture_map_var_box_id_140701230131984.wrapT = RepeatWrapping;
-texture_map_var_box_id_140701230131984.magFilter = LinearFilter;
-texture_map_var_box_id_140701230131984.minFilter = LinearMipmapLinearFilter;
-texture_map_var_box_id_140701230131984.rotation = 0;
-texture_map_var_box_id_140701230131984.offset.set(0,0);
-texture_map_var_box_id_140701230131984.repeat.set(4,4);
-texture_map_var_box_id_140701230131984.center.set(0,0);
+const texture_map_var_box_id_140015230636176 = new TextureLoader().load('https://cdn.jsdelivr.net/gh/viniciusmgn/uaibot_content@master/contents/Textures/rough_metal.jpg');
+texture_map_var_box_id_140015230636176.wrapS = RepeatWrapping;
+texture_map_var_box_id_140015230636176.wrapT = RepeatWrapping;
+texture_map_var_box_id_140015230636176.magFilter = LinearFilter;
+texture_map_var_box_id_140015230636176.minFilter = LinearMipmapLinearFilter;
+texture_map_var_box_id_140015230636176.rotation = 0;
+texture_map_var_box_id_140015230636176.offset.set(0,0);
+texture_map_var_box_id_140015230636176.repeat.set(4,4);
+texture_map_var_box_id_140015230636176.center.set(0,0);
 
-const material_var_box_id_140701230131984 = new MeshPhysicalMaterial({
+const material_var_box_id_140015230636176 = new MeshPhysicalMaterial({
 opacity: 1,
 transparent: false,
 aoMapIntensity: 1,
@@ -1853,7 +1853,7 @@ emissiveIntensity: 1,
 envMapIntensity: 1,
 flatShading: false,
 lightMapIntensity: 1,
-map: texture_map_var_box_id_140701230131984,
+map: texture_map_var_box_id_140015230636176,
 metalness: 0.7,
 normalScale: new Vector2(0.5,0.5),
 refractionRatio: 0.98,
@@ -1872,22 +1872,22 @@ transmission: 0,
 });
 
 
-const var_var_box_id_140701230131984 = new Box(0.8,0.2,1.0,[[0, 1.0, 0.0, -0.0, -0.7, 0.0, 0.0, -1.0, 0.0, 0.0, 1.0, -0.0, 1.05, 0, 0, 0, 1]], material_var_box_id_140701230131984);
-sceneElements.push(var_var_box_id_140701230131984);
+const var_var_box_id_140015230636176 = new Box(0.8,0.2,1.0,[[0, 1.0, 0.0, -0.0, -0.7, 0.0, 0.0, -1.0, 0.0, 0.0, 1.0, -0.0, 1.05, 0, 0, 0, 1]], material_var_box_id_140015230636176);
+sceneElements.push(var_var_box_id_140015230636176);
 
-//BEGIN DECLARATION OF THE BOX 'var_box_id_140701230104848'
+//BEGIN DECLARATION OF THE BOX 'var_box_id_140016715420624'
 
-const texture_map_var_box_id_140701230104848 = new TextureLoader().load('https://cdn.jsdelivr.net/gh/viniciusmgn/uaibot_content@master/contents/Textures/rough_metal.jpg');
-texture_map_var_box_id_140701230104848.wrapS = RepeatWrapping;
-texture_map_var_box_id_140701230104848.wrapT = RepeatWrapping;
-texture_map_var_box_id_140701230104848.magFilter = LinearFilter;
-texture_map_var_box_id_140701230104848.minFilter = LinearMipmapLinearFilter;
-texture_map_var_box_id_140701230104848.rotation = 0;
-texture_map_var_box_id_140701230104848.offset.set(0,0);
-texture_map_var_box_id_140701230104848.repeat.set(4,4);
-texture_map_var_box_id_140701230104848.center.set(0,0);
+const texture_map_var_box_id_140016715420624 = new TextureLoader().load('https://cdn.jsdelivr.net/gh/viniciusmgn/uaibot_content@master/contents/Textures/rough_metal.jpg');
+texture_map_var_box_id_140016715420624.wrapS = RepeatWrapping;
+texture_map_var_box_id_140016715420624.wrapT = RepeatWrapping;
+texture_map_var_box_id_140016715420624.magFilter = LinearFilter;
+texture_map_var_box_id_140016715420624.minFilter = LinearMipmapLinearFilter;
+texture_map_var_box_id_140016715420624.rotation = 0;
+texture_map_var_box_id_140016715420624.offset.set(0,0);
+texture_map_var_box_id_140016715420624.repeat.set(4,4);
+texture_map_var_box_id_140016715420624.center.set(0,0);
 
-const material_var_box_id_140701230104848 = new MeshPhysicalMaterial({
+const material_var_box_id_140016715420624 = new MeshPhysicalMaterial({
 opacity: 1,
 transparent: false,
 aoMapIntensity: 1,
@@ -1898,7 +1898,7 @@ emissiveIntensity: 1,
 envMapIntensity: 1,
 flatShading: false,
 lightMapIntensity: 1,
-map: texture_map_var_box_id_140701230104848,
+map: texture_map_var_box_id_140016715420624,
 metalness: 0.7,
 normalScale: new Vector2(0.5,0.5),
 refractionRatio: 0.98,
@@ -1917,22 +1917,22 @@ transmission: 0,
 });
 
 
-const var_var_box_id_140701230104848 = new Box(0.1,0.1,0.4,[[0, 1.0, 0.0, -0.0, -0.4, 0.0, 0.0, -1.0, 0.0, 0.0, 1.0, -0.0, 0.55, 0, 0, 0, 1]], material_var_box_id_140701230104848);
-sceneElements.push(var_var_box_id_140701230104848);
+const var_var_box_id_140016715420624 = new Box(0.1,0.1,0.4,[[0, 1.0, 0.0, -0.0, -0.4, 0.0, 0.0, -1.0, 0.0, 0.0, 1.0, -0.0, 0.55, 0, 0, 0, 1]], material_var_box_id_140016715420624);
+sceneElements.push(var_var_box_id_140016715420624);
 
-//BEGIN DECLARATION OF THE BOX 'var_box_id_140701230052496'
+//BEGIN DECLARATION OF THE BOX 'var_box_id_140015229719184'
 
-const texture_map_var_box_id_140701230052496 = new TextureLoader().load('https://cdn.jsdelivr.net/gh/viniciusmgn/uaibot_content@master/contents/Textures/rough_metal.jpg');
-texture_map_var_box_id_140701230052496.wrapS = RepeatWrapping;
-texture_map_var_box_id_140701230052496.wrapT = RepeatWrapping;
-texture_map_var_box_id_140701230052496.magFilter = LinearFilter;
-texture_map_var_box_id_140701230052496.minFilter = LinearMipmapLinearFilter;
-texture_map_var_box_id_140701230052496.rotation = 0;
-texture_map_var_box_id_140701230052496.offset.set(0,0);
-texture_map_var_box_id_140701230052496.repeat.set(4,4);
-texture_map_var_box_id_140701230052496.center.set(0,0);
+const texture_map_var_box_id_140015229719184 = new TextureLoader().load('https://cdn.jsdelivr.net/gh/viniciusmgn/uaibot_content@master/contents/Textures/rough_metal.jpg');
+texture_map_var_box_id_140015229719184.wrapS = RepeatWrapping;
+texture_map_var_box_id_140015229719184.wrapT = RepeatWrapping;
+texture_map_var_box_id_140015229719184.magFilter = LinearFilter;
+texture_map_var_box_id_140015229719184.minFilter = LinearMipmapLinearFilter;
+texture_map_var_box_id_140015229719184.rotation = 0;
+texture_map_var_box_id_140015229719184.offset.set(0,0);
+texture_map_var_box_id_140015229719184.repeat.set(4,4);
+texture_map_var_box_id_140015229719184.center.set(0,0);
 
-const material_var_box_id_140701230052496 = new MeshPhysicalMaterial({
+const material_var_box_id_140015229719184 = new MeshPhysicalMaterial({
 opacity: 1,
 transparent: false,
 aoMapIntensity: 1,
@@ -1943,7 +1943,7 @@ emissiveIntensity: 1,
 envMapIntensity: 1,
 flatShading: false,
 lightMapIntensity: 1,
-map: texture_map_var_box_id_140701230052496,
+map: texture_map_var_box_id_140015229719184,
 metalness: 0.7,
 normalScale: new Vector2(0.5,0.5),
 refractionRatio: 0.98,
@@ -1962,8 +1962,8 @@ transmission: 0,
 });
 
 
-const var_var_box_id_140701230052496 = new Box(0.1,0.2,0.05,[[0, 1.0, 0.0, -0.0, -0.48, 0.0, 0.0, -1.0, 0.225, 0.0, 1.0, -0.0, 0.7, 0, 0, 0, 1]], material_var_box_id_140701230052496);
-sceneElements.push(var_var_box_id_140701230052496);
+const var_var_box_id_140015229719184 = new Box(0.1,0.2,0.05,[[0, 1.0, 0.0, -0.0, -0.48, 0.0, 0.0, -1.0, 0.225, 0.0, 1.0, -0.0, 0.7, 0, 0, 0, 1]], material_var_box_id_140015229719184);
+sceneElements.push(var_var_box_id_140015229719184);
 //USER INPUT GOES HERE
 
 

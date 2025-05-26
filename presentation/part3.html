@@ -1803,6 +1803,203 @@ plt.show()
                 </div>
             </section>
 
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CONTROL BARRIER FUNCTIONS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 2: WHEN IT IS TOO HARD</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul>
+                            <li>
+                                The algorithm failed. It got stuck in a <b class="itext">spurious equilibrium point</b>, that is, 
+                                a point \(q_{S}\) where the velocity controller \(u(q_S)\) is zero but the task is not completed.
+                            </li><br>
+                            <li>
+                               In this case, we need a  <b class="itext">motion planner</b>. But in some situations a 
+                               <b class="itext">random perturbation is enough</b>. For example, the scenario on the right, which is 
+                               slightly less challenging.
+                            </li><br>
+                            <li>
+                                The idea is, once we detect that we got stuck (pick the last \(T\) values of \(\|r(q)\|\) and verify if the difference between 
+                                the maximum and minimum value is very small), we can sample a \(n\) dimensional random vector and add this 
+                                to the vector \(f\) in the objective function. We then decay this value to zero continuously. 
+                            </li><br>
+                            <li>
+                                Note that we make a "safe" perturbation because it is still subject to all 
+                                the constraints.
+                            </li>
+
+                        </ul>
+
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 4; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image6B_static.png"
+                                        style="max-width: 100%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CONTROL BARRIER FUNCTIONS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 2: WHEN IT IS TOO HARD</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul>
+                            <li>
+                                Here is the UAIBot code:
+
+
+
+                            </li><br>
+
+                        </ul>
+<pre style="max-width:90%;"><code class="language-python" style="text-align:left;">
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.patches as patches
+import uaibot as ub
+
+#Parameters
+kp = 0.5
+eta = 0.3
+dt = 0.01
+tmax = 60
+delta = 0.05
+eps = 0.01
+qF = np.matrix([1.5,0]).T
+q0 = np.matrix([-1.5,0.2]).T
+centers = [np.matrix([-0.25,0.5]).T , np.matrix([0.0,0.0]).T]
+radius = [0.3,0.5]
+
+#Parameters for perturbation
+last_T = 50
+tol_stuck = 0.01
+decay_rate = 0.99
+perturb_norm = 3.0
+min_perturb_norm = 0.3
+min_error_start_perturb = 0.05
+
+#Start simulation
+q = q0
+hist_q = []
+hist_e = []
+perturbation = np.matrix([0.,0.]).T
+perturbation_mode = False
+
+for i in range(round(tmax/dt)):
+
+
+    hist_q.append(np.matrix(q))
+    hist_e.append(np.linalg.norm(q-qF))
+
+    #Lets verify if it got stuck
+    if i>last_T and hist_e[-1] > min_error_start_perturb and not perturbation_mode:
+        recent = hist_e[-last_T:]
+        max_diff = max(recent) - min(recent)
+        print(max_diff)
+        if max_diff < tol_stuck:
+            perturbation =  np.matrix(np.random.randn(2,1))
+            perturbation = perturb_norm * perturbation/np.linalg.norm(perturbation)
+            #Set the status to "perturbation mode"
+            perturbation_mode = True
+            print("PERTURBATION MODE")
+    
+    #While at "perturbation_mode", decay the perturbation
+    #to zero exponentially
+    if perturbation_mode:
+        print(perturbation.T)
+        perturbation = decay_rate*perturbation
+        if np.linalg.norm(perturbation)<=min_perturb_norm:
+            perturbation = np.matrix(np.zeros((2,1)))
+            perturbation_mode = False     
+
+    #Assembly the CBF controller
+    H = 2*(1+eps)*np.matrix([[1.0,0.0],[0.0,1.0]])
+    
+    
+    f = 2*kp*(q-qF) +perturbation
+    # if not perturbation_mode:
+    #     f = 2*kp*(q-qF) +perturbation
+    # else:
+    #     f = perturbation
+    
+    A = np.matrix(np.zeros((0,2)))
+    b = np.matrix(np.zeros((0,1)))
+    
+    for k in range(len(centers)):
+        B_k_fun_ = np.linalg.norm(q-centers[k])-radius[k]-delta
+        grad_B_k_fun = (q-centers[k]).T/np.linalg.norm(q-centers[k])
+
+        A = np.vstack( (A,  grad_B_k_fun) )
+        b = np.vstack( (b,  -eta * B_k_fun_) )
+        
+
+    #Compute the control input
+    u = ub.Utils.solve_qp(H,f,A,b)
+    
+    #Integrate the equation \dot{q} = u(q)
+    q+= u*dt
+    
+
+#Plot image
+fig, ax = plt.subplots()
+ax.set_aspect('equal')
+ax.plot([q[0, 0] for q in hist_q], [q[1, 0] for q in hist_q], color='#81d41a')
+ax.scatter([qF[0,0]],[qF[1,0]], color='magenta',s=40)
+
+for i in range(len(centers)):
+    circle = patches.Circle((centers[i][0], centers[i][1]), radius=radius[i], color='#5983b0')  
+    ax.add_patch(circle)
+    
+    
+ax.set_xlim(-1.8, 1.8)
+ax.set_ylim(-1.5, 1.5)
+
+plt.show()
+
+</code></pre>
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 4; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image6B.gif"
+                                        style="max-width: 100%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
@@ -1819,11 +2016,11 @@ plt.show()
 
                         <ul>
                             <li>
-                                The algorithm failed. It got stuck in a <b class="itext">spurious equilibrium point</b>, that is, 
-                                a point \(q_{S}\) where the velocity controller \(u(q_S)\) is zero but the task is not completed.
+                                We will now use a motion planner to generate a path \(\mathcal{P}\) and integrate it into 
+                                motion control. 
                             </li><br>
                             <li>
-                                We need a motion planner to generate a path \(\mathcal{P}\). 
+                                
                                 We can then use the GVF \(\Psi_{\mathcal{P}}\) to track it and, if we want an 
                                 additional safety layer, we can change the objective function to
                                 $$ \|u - \Psi_{\mathcal{P}}(q)\|^2. $$
@@ -3349,7 +3546,7 @@ plt.show()
                             class="hlink">described here</b></a>;</li><br>
                             <li>This target pose \(H_{tg}\) will change discretely as we switch between different modes of operation.
                             </li><br>
-                            <li>Thus, we will try our luck without path planning.</li>
+                            <li>Thus, we will try our luck without path planning, <b class="itext">but we will implement the anti-stuck policy mentioned previously</b>. </li>
                         </ul>
 
 
@@ -3735,7 +3932,7 @@ import matplotlib.pyplot as plt
 
 ###############################################################
 #Parameters
-param_eta = 1.2
+param_eta = 0.6
 param_eps = 0.001
 param_k = 1.0
 param_max_qdot = 1.5
@@ -3745,7 +3942,11 @@ dt=0.005
 param_iter_max = 10000
 robot = ub.Robot.create_kuka_lbr_iiwa(htm=ub.Utils.rotz(np.pi/2))
 param_use_pc = False
-tol_error = 0.008
+param_tol_error = 0.008
+param_iter_check_convergence  = 50
+param_decay_convergence = 0.99 
+param_min_diff_error = 0.01
+param_min_perturbation = 0.01
 
 htm_tg_0 = ub.Utils.trn([0.3, 0.0, 0.64])*ub.Utils.roty(np.pi)
 htm_tg_1 = ub.Utils.trn([0.3, 0.0, 0.54])*ub.Utils.roty(np.pi)
@@ -3818,7 +4019,7 @@ def fun_G(_r, _param_k):
        
     return out
 
-def compute_control(_q, _htm_tg, is_handling_disk, care_obstacles):
+def compute_control(_q, _htm_tg, _all_obstacles, _is_handling_disk, _care_obstacles, _perturbation):
     
     no_joint = np.shape(robot.q)[0]
     
@@ -3826,16 +4027,16 @@ def compute_control(_q, _htm_tg, is_handling_disk, care_obstacles):
     b = np.matrix(np.zeros((0,1)))
     
     #Create the CBF constraints for all obstacles:
-    if care_obstacles:
+    if _care_obstacles:
         
         #Between the robot and the objects
-        for obs in all_obstacles:
+        for obs in _all_obstacles:
             ds = robot.compute_dist(q = _q, obj = obs)
             A = np.vstack((A, ds.jac_dist_mat))
-            b = np.vstack((b, -param_eta*(ds.dist_vect-param_obs_delta)))
+            b = np.vstack((b, -param_eta*(ds.dist_vect-param_obs_delta)) )
         
         #If the disk is in the end-effector, it should also be handled
-        if is_handling_disk:
+        if _is_handling_disk:
 
             #Call the forward kinematic and differential for the end-effector,
             #since this is where the disk is attaches
@@ -3845,10 +4046,12 @@ def compute_control(_q, _htm_tg, is_handling_disk, care_obstacles):
             jac_v = jac[0:3,:]
             jac_w = jac[3:6,:]
             
-            for obs in all_obstacles:
+            for obs in _all_obstacles:
                 point_disk, point_obs, dist, _ = disk.compute_dist(obs)
+                
+                #print(dist)
 
-                jac_dist = (point_disk - point_obs).T * jac_v + np.cross((point_disk - s_e ).T, (point_disk - point_obs).T)  * jac_w
+                jac_dist = ((point_disk - point_obs).T * jac_v + np.cross((point_disk - s_e ).T, (point_disk - point_obs).T)  * jac_w)/dist
                 A = np.vstack((A, jac_dist))
                 b = np.vstack((b, -param_eta*(dist-param_obs_delta)))
                     
@@ -3869,7 +4072,7 @@ def compute_control(_q, _htm_tg, is_handling_disk, care_obstacles):
     r, jac_r = robot.task_function(q=_q, htm_tg=_htm_tg)
         
     H = 2*(jac_r.T * jac_r + param_eps* np.identity(no_joint))
-    f = -2*jac_r.T*fun_G(r, param_k)
+    f = -2*jac_r.T*fun_G(r, param_k)+_perturbation
     
     #Compute the control input
     u = ub.Utils.solve_qp(H, f, A, b)
@@ -3877,8 +4080,10 @@ def compute_control(_q, _htm_tg, is_handling_disk, care_obstacles):
     return u, np.linalg.norm(r)
         
 #################################################################
+#Main loop
 
 q = np.matrix(robot.q)
+no_joint = np.shape(q)[0]
 
 mode = 0
 cont = True
@@ -3887,112 +4092,63 @@ i=0
 hist_q = []
 hist_u = []
 hist_t = []
+hist_e = []
 
+htm_tg = [htm_tg_0, htm_tg_1, htm_tg_2, htm_tg_3, htm_tg_4, htm_tg_5, htm_tg_6, htm_tg_3, htm_tg_4, htm_tg_5, htm_tg_7]
+is_handling_disk = [False, False, True, True, True, False, False, False, False, True, True]
+care_obstacles = [True, False, False, True, False, False, True, True, False, False, True]
+
+perturbation = np.matrix(np.zeros((no_joint,1)))
+perturbation_mode = False
 while cont:
     
     i+=1
     cont = i < param_iter_max
     
-    if mode==0:
-        #Going slightly above the disk
-        u, error_r = compute_control(q, htm_tg_0, False, True)
-        
-        print("Mode 0, error = "+str(round(error_r,3)))
-        if error_r<=tol_error:
-            mode = 1
 
-    if mode==1:
-        #Downward movement
-        u, error_r = compute_control(q, htm_tg_1, False, False)
-        
-        print("Mode 1, error = "+str(round(error_r,3)))
-        if error_r<=tol_error:
-            mode = 2
-            robot.attach_object(disk)
-
-    if mode==2:
-        #Upward movement
-        u, error_r = compute_control(q, htm_tg_2, False, False)
-        
-        print("Mode 2, error = "+str(round(error_r,3)))
-        if error_r<=tol_error:
-            mode = 3
- 
-    if mode==3:
-        #Move object to be delivered
-        u, error_r = compute_control(q, htm_tg_3, True, True)
+    u, error_r = compute_control(q, htm_tg[mode], all_obstacles, is_handling_disk[mode], care_obstacles[mode], perturbation)
     
-        print("Mode 3, error = "+str(round(error_r,3)))
-        if error_r<=tol_error: 
-            mode = 4
-            
-    if mode==4:
-        #Move down
-        u, error_r = compute_control(q, htm_tg_4, True, False)
+    print("Mode "+str(mode)+", error = "+str(round(error_r,3)))
+    
+    if cont and error_r<=param_tol_error:
         
-        print("Mode 4, error = "+str(round(error_r,3)))
-        if error_r<=tol_error: 
-            mode = 5
-            robot.detach_object(disk)
-            
-    if mode==5:
-        #Move up
-        u, error_r = compute_control(q, htm_tg_5, False, False)
+        mode += 1
         
-        print("Mode 5, error = "+str(round(error_r,3)))
-        if error_r<=tol_error: 
-            mode = 6
-                         
-    if mode==6:
-        #Go press the button
-        u, error_r = compute_control(q, htm_tg_6, False, True)
-        
-        print("Mode 6, error = "+str(round(error_r,3)))
-        if error_r<=tol_error:
-            mode = 7
+        if mode==len(htm_tg):
+            cont = False
+        else:
+            if mode > 0 and not is_handling_disk[mode-1] and is_handling_disk[mode]:
+                robot.attach_object(disk)
 
-    if mode==7:
-        #Got the object again
-        u, error_r = compute_control(q, htm_tg_3, False, True)
-        
-        print("Mode 7, error = "+str(round(error_r,3)))
-        if error_r<=tol_error: 
-            mode = 8
-            
+            if mode > 0 and is_handling_disk[mode-1] and not is_handling_disk[mode]:
+                robot.detach_object(disk)
 
-    if mode==8:
-        #Go down
-        u, error_r = compute_control(q, htm_tg_4, False, False)
-        
-        print("Mode 8, error = "+str(round(error_r,3)))
-        if error_r<=tol_error: 
-            mode = 9
-            robot.attach_object(disk)
-            
-    if mode==9:
-        #Go up
-        u, error_r = compute_control(q, htm_tg_5, False, False)
-        
-        print("Mode 9, error = "+str(round(error_r,3)))
-        if error_r<=tol_error: 
-            mode = 10    
-            
-
-    if mode==10:
-        #Move to final pose
-        u, error_r = compute_control(q, htm_tg_7, True, True)
-        
-        print("Mode 10, error = "+str(round(error_r,3)))
-        if error_r<=tol_error: 
-            cont = False 
-                 
+    #Integrate movement
+    q = robot.q+u*dt
+    robot.add_ani_frame(time = i*dt, q = q)
+                       
+    #Store data           
     hist_q.append(np.matrix(q))
     hist_u.append(np.matrix(u))
     hist_t.append(i*dt)
-                                       
-    q = robot.q+u*dt
+    hist_e.append(error_r)
     
-    robot.add_ani_frame(time = i*dt, q = q)
+    #Make the perturbation to avoid getting stuck
+    if i>param_iter_check_convergence and not perturbation_mode:
+        recent = hist_e[-param_iter_check_convergence:]
+        max_diff = (max(recent) - min(recent))/max(recent)
+        if max_diff < param_min_diff_error:
+            perturbation = np.matrix(np.random.randn(no_joint,1))
+            perturbation_mode = True
+            print("CONVERGENCE FAILED")
+    
+    if perturbation_mode:
+        perturbation = param_decay_convergence*perturbation
+        if np.linalg.norm(perturbation)<=param_min_perturbation:
+            perturbation = np.matrix(np.zeros((no_joint,1)))
+            perturbation_mode = False                     
+
+                   
 
 ###############################################################
 # Plot graphs
@@ -4002,7 +4158,7 @@ fig = plt.figure(facecolor='#191919')
 for i in range(7):
     ax = plt.subplot(4, 2, i + 1, facecolor='#191919')
     
-    ax.plot(hist_t, [q[i, 0] for q in hist_q], color='#81d41a')
+    ax.plot(hist_t, [q[i, 0] for q in hist_q], color='#81d41a', zorder=10)
     ax.plot(hist_t, [robot.joint_limit[i, 0] + param_joint_delta for _ in hist_q], color='red')
     ax.plot(hist_t, [robot.joint_limit[i, 1] - param_joint_delta for _ in hist_q], color='red')
     
@@ -4025,7 +4181,7 @@ fig = plt.figure(facecolor='#191919')
 for i in range(7):
     ax = plt.subplot(4, 2, i + 1, facecolor='#191919')
     
-    ax.plot(hist_t, [u[i, 0] for u in hist_u], color='#81d41a')
+    ax.plot(hist_t, [u[i, 0] for u in hist_u], color='#81d41a', zorder=10)
     ax.plot(hist_t, [-param_max_qdot for _ in hist_u], color='red')
     ax.plot(hist_t, [param_max_qdot for _ in hist_u], color='red')
     
@@ -4164,7 +4320,7 @@ plt.show()
                     <ul>
                         <li>
                             Now, we have a <b class="itext">mobile manipulator</b>: a 7-DOF Franka Emika 3 mounted 
-                            on a mobile base that moves in a plane with a <b class="itext">nonholonomic constraint</b> (the base cannot move sideways).
+                            on a mobile base that moves in a plane.
                         </li><br>
                         <li>
                             It should move to a counter that has a white tray with a glass of drink and deliver it 
@@ -4242,201 +4398,6 @@ plt.show()
                 </div>
             </section>    
  
-
-            <section style="display: flex; flex-direction: column; height: 100vh;">
-                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    CASE STUDIES
-                </h3>
-                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    <b class="ttext">EXAMPLE 2: A WAITER MOBILE MANIPULATOR</b>
-                </h3>
-                <div
-                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
-                    <div
-                        style="flex: 1; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
-                        <div style="position:absolute; width: 50%; ">
-
-                        <ul>
-                            <li>
-                                We control <b class="itext">\(\dot{q}_m = u_m\)</b> (joint velocity control), and, as far as the base is concerned, we have the nonholonomic 
-                                system 
-                                
-                                <b class="itext">$$\dot{x} = v_b \cos(\theta), \ \dot{y} = v_b \sin(\theta) \ , \ \dot{\theta} = u_{\theta}$$</b>
-                                in which \(v_b \in \mathbb{R}\) is the base's linear speed (forward) and \(u_{\theta}\) the (scalar) angular velocity of the base. 
-
-                            </li><br>
-                            <li>But since we only learned how to control systems using CBFs that are either \(\dot{q} = u\) or \(\ddot{q} = u\), 
-                                we can use the following trick: we assume that we control \(\dot{q} = u\) (i.e., the control variables are 
-                                \(u_m, u_x, u_y, u_{\theta}\) directly). In order to implement the non-holonomy, we will add 
-                                the equality constraint:
-                                 <b class="itext">$$\sin(\theta)u_x-\cos(\theta)u_y = 0$$</b>
-                                and, we can compute our real control input \(v_m\) through:
-                                <b class="itext">$$ v_b = \cos(\theta)u_x+\sin(\theta)u_y$$</b>
-                                once we compute \(u_x, u_y\).
-                            </li>
-                        </ul>
-
-
-
-                        </div>
-                    </div>
-
-                    <div
-                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
-                        <div style="flex: 4; flex-direction: row">
-                            
-                                <div style="width: 100%">
-                                    <img src="presentation/images/part3/main.png"
-                                        style="max-width: 80%; height: auto; max-height: 60vh;">
-                                </div>
-                        </div>
-                    </div>
-                </div>
-            </section>   
-
-
-            <section style="display: flex; flex-direction: column; height: 100vh;">
-                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    CASE STUDIES
-                </h3>
-                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    <b class="ttext">EXAMPLE 2: REDEFINING THE JACOBIAN</b>
-                </h3>
-                <div
-                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
-                    <div
-                        style="flex: 1; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
-                        <div style="position:absolute; width: 50%; ">
-
-                        <ul>
-                            <li>
-                                We will need the <b class="itext">geometric Jacobian</b> of a frame \(\mathcal{F}_{i}\) attached to the manipulator 
-                                considering that now, not only we have the manipulator's joints \(q_m\) but also \(x,y,\theta\).
-                            </li><br>
-                            <li>
-                                 Let \(J_{v}^{m,i}(q_m), J_{\omega}^{m,i}(q_m)\) 
-                                be the linear and angular velocity Jacobians of this frame, only considering the manipulator. Let \(Q_z(\theta) \in \mathbb{R}^{3 \times 3}\) 
-                                be the 3D rotation matrix in the \(z\) axis, \(s_e(q) \in \mathbb{R}^3\) the position of the end-effector (world frame), 
-                                \(p = [x \ \ y \ \ z_b]^{\top}\) and \(e_z = [1 \ \ 0 \ \ 0]^{\top}\). Finally, let \(I_{3 \times 2}\) be the 3x3 identity matrix 
-                                without the last column. It can be shown that (I will leave as an exercise):
-                                <b class="itext">$$J_{geo}^i(q) = \left(\begin{array}{ccc} Q_z(\theta)J_{v}^{i,m}(q_m) & I_{3 \times 2} & e_z \times (s_e(q)-p) \\
-                                                                        Q_z(\theta)J_{\omega}^{i,m}(q_m) & 0_{3 \times 2} & e_z \end{array} \right)$$</b>
-                                which is a \(6 \times (7+3)\) matrix. The first \(7\) columns are respective to \(q_m\), the next two columns respective to \(x,y\), 
-                                and the last column is respective to \(\theta\).
-                            </li><br>
-
-                        </ul>
-
-
-
-                        </div>
-                    </div>
-
-                    <div
-                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
-                        <div style="flex: 4; flex-direction: row">
-                            
-                                <div style="width: 100%">
-                                    <img src="presentation/images/part3/main.png"
-                                        style="max-width: 80%; height: auto; max-height: 60vh;">
-                                </div>
-                        </div>
-                    </div>
-                </div>
-            </section>    
-
-
-            <section style="display: flex; flex-direction: column; height: 100vh;">
-                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    CASE STUDIES
-                </h3>
-                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    <b class="ttext">EXAMPLE 2: REDEFINING THE JACOBIAN</b>
-                </h3>
-                <div
-                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
-                    <div
-                        style="flex: 1; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
-                        <div style="position:absolute; width: 50%; ">
-
-                        <ul>
-                            <li>
-                                Here is the UAIBot code:
-
-
-                            </li><br>
-
-                        </ul>
-<pre style="max-width:90%;"><code class="language-python" style="text-align:left;">
-#Compute the htm and Jacobians for the end-effector and all the
-#DHi frames, considering the DOFs of the base (x,y,theta)
-
-param_zb = 0.21
-
-def kin_base(_q_m, _x, _y, _theta,_robot):
-    
-    z_0 = np.matrix([0.,0.,1.]).T
-    S_z_0 = ub.Utils.S(z_0)
-    I_3x2 = np.identity(3)[:,0:2]
-    zero_3x2 = np.zeros((3,2))
-    
-    hmt_0_DH0 = ub.Utils.trn([_x,_y,param_zb])*ub.Utils.rotz(_theta)
-    Q_z = hmt_0_DH0[0:3,0:3]
-    p = hmt_0_DH0[0:3,-1]
-    
-    list_jac_DH0_DHi, list_htm_DH0_DHi = _robot.jac_geo(q=_q_m, axis='dh')
-    jac_DH0_eef, htm_DH0_eef = _robot.jac_geo(q=_q_m, axis='eef')
-    
-    list_jac_0_DHi = []
-    list_htm_0_DHi = []
-    
-    #Compute for the end-effector
-    htm_0_eef = hmt_0_DH0 * htm_DH0_eef
-    s_eef  = htm_0_eef[0:3,-1]
-    
-    jac_v = jac_DH0_eef[0:3,:]
-    jac_w = jac_DH0_eef[3:6,:]
-    
-    jac_v_0_eef = np.hstack((Q_z*jac_v, I_3x2, S_z_0*(s_eef-p)))
-    jac_w_0_eef = np.hstack((Q_z*jac_w, zero_3x2, z_0))
-    jac_0_eef = np.vstack( (jac_v_0_eef, jac_w_0_eef))
-    
-    
-    #Compute for the frame DH-i
-    for i in range(len(list_jac_DH0_DHi)):
-        
-        list_htm_0_DHi.append(hmt_0_DH0 * list_htm_DH0_DHi[i])
-        s_i = list_htm_0_DHi[i][0:3,-1]
-        
-        jac_v = list_jac_DH0_DHi[i][0:3,:]
-        jac_w = list_jac_DH0_DHi[i][3:6,:]
-        
-        jac_v_0_DHi = np.hstack((Q_z*jac_v, I_3x2, S_z_0*(s_i-p)))
-        jac_w_0_DHi = np.hstack((Q_z*jac_w, zero_3x2, z_0))
-        
-        list_jac_0_DHi.append(np.vstack( (jac_v_0_DHi, jac_w_0_DHi)   ))
-     
-  
-    return htm_0_eef, jac_0_eef, list_htm_0_DHi, list_jac_0_DHi
-
-</code></pre>
-
-
-                        </div>
-                    </div>
-
-                    <div
-                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
-                        <div style="flex: 4; flex-direction: row">
-                            
-                                <div style="width: 100%">
-                                    <img src="presentation/images/part3/main.png"
-                                        style="max-width: 90%; height: auto; max-height: 60vh;">
-                                </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
 
 
             <style>
