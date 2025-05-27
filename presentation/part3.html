@@ -2291,7 +2291,7 @@ plt.show()
                             </li><br>
                             <li>
                                 In this case, \(B(q,t) = \|q-c_4(t)\| - R_4 - \delta\) and 
-                                $$\frac{\partial B}{\partial t}(q,t) = -\dot{c}_4(t)^\top\frac{(q-c_4(t))}{\|q-c_4(t)\|}.$$
+                                $$\frac{\partial B}{\partial t}(q,t) = -\dot{c}_4(t)\top\frac{(q-c_4(t))}{\|q-c_4(t)\|}.$$
                             </li><br>
                             <li>
                                 Let's see how it will work out in practice.
@@ -2533,6 +2533,10 @@ plt.show()
                             <li>
                                 Also, when there are input (velocity) limits on \(u\), it could simply be the case that the obstacle is 
                                 too fast for the robot's capabilities to avoid it.
+                            </li><br>
+                            <li>
+                                If the problem is unfeasible, one can try to reduce the feedforward term \(\frac{\partial B}{\partial t}(q,t)\) 
+                                to another value \(\alpha \frac{\partial B}{\partial t}(q,t)\), \(0 < \alpha < 1\) and try again.
                             </li>
                         </ul>
 
@@ -3388,16 +3392,16 @@ plt.show()
                             <li>
                                 For obstacle avoidance, we consider that the robot is composed of \(v = 1, \dots, V\) objects (spheres, boxes, etc...), 
                                 and that the static environment is composed of \(w = 1, \dots, W\) objects. For each pair, we compute the 
-                                <b class="itext">Euclidean distance</b> between the \(v^{th}\) robot object at configuration \(q\), \(\mathcal{R}(v, q)\), 
-                                and the \(w^{th}\) environment object \(\mathcal{O}(w)\):
-                                <b class="itext">$$ D_{vw}(q) = \sqrt{2\Lambda_{\mathcal{R}(v,q), \mathcal{O}(w)}}.$$</b>
+                                <b class="itext">Euclidean distance</b> between the \(v^{th}\) robot object's at configuration \(q\), \(\mathcal{R}(v, q) \subseteq \mathbb{R}^3\), 
+                                and the \(w^{th}\) environment object \(\mathcal{O}(w) \subseteq \mathbb{R}^3\):
+                                <b class="itext">$$ D^{RO}_{vw}(q) = \sqrt{2\Lambda_{\mathcal{R}(v,q), \mathcal{O}(w)}}.$$</b>
                             </li><br>
                             <li>
                                 Remember that \(\Lambda\) is the set-to-set half squared distance (hence the \(\sqrt{2\Lambda}\) to recover the distance).
                             </li><br>
                             <li>
                                 We can then simply set:
-                                <b class="itext">$$B^{RO}_{vw}(q) = D_{vw}(q) - \delta$$</b>
+                                <b class="itext">$$B^{RO}_{vw}(q) = D^{RO}_{vw}(q) - \delta$$</b>
                                 where \(\delta\) is a <b class="itext">safety margin</b>.
                             </li><br>
                         </ul>
@@ -3444,9 +3448,10 @@ plt.show()
 
                         </li><br>!-->
                         <li>
-                            We can compute the Jacobian of these functions using the distance Jacobian for the S2S-HSD that we learned to compute, since, 
+                            We can compute the Jacobian of these functions using the distance Jacobian for the S2S-HSD that  <a href="presentation/part2.html#/79"><b
+                            class="hlink">we learned to compute</b></a> , since, 
                             from the chain rule:
-                            $$ \frac{\partial}{\partial q} B^{RO}_{vw}(q) = \frac{1}{\sqrt{2 \Lambda_{\mathcal{R}(v,q), \mathcal{O}(w)}}} \frac{\partial }{\partial q} \Lambda_{\mathcal{R}(v,q), \mathcal{O}(w)}.$$
+                            $$ \frac{\partial}{\partial q} B^{RO}_{vw}(q) = \frac{1}{D^{RO}_{vw}(q)} \frac{\partial }{\partial q} \Lambda_{\mathcal{R}(v,q), \mathcal{O}(w)}.$$
                         </li><br>
                         <li>
                             UAIBot's <b class="itext">compute_dist</b> already computes the Euclidean distance and the Euclidean distance Jacobian, thus already 
@@ -3495,7 +3500,7 @@ plt.show()
                             <li>
                                 When the disk is being held, the space it occupies is represented by a set \(\mathcal{D}(q)\) that moves rigidly 
                                 in space. Thus, we can create a CBF constraint for it as well:
-                                $$  B^{DO}_{w}(q) = \sqrt{2 \Lambda_{\mathcal{D}(q), \mathcal{O}(w)}}$$
+                                <b class="itext">$$  B^{DO}_{w}(q) = D^{DO}_{w}(q) - \delta = \sqrt{2 \Lambda_{\mathcal{D}(q), \mathcal{O}(w)}} - \delta$$</b>
                                 and we need to implement one constraint for each object \(w\) in the environment.
                             </li><br>
                         </ul>
@@ -4232,7 +4237,7 @@ plt.show()
        <section style="display: flex; flex-direction: column; height: 100vh; width: 100%;">
 
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    CASE STUDIES:
+                    CASE STUDIES
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     <b class="ttext">EXAMPLE 1: JOINT PLOTS</b>
@@ -4269,7 +4274,7 @@ plt.show()
        <section style="display: flex; flex-direction: column; height: 100vh; width: 100%;">
 
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    CASE STUDIES:
+                    CASE STUDIES
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     <b class="ttext">EXAMPLE 1: VELOCITY PLOTS</b>
@@ -4320,7 +4325,7 @@ plt.show()
                     <ul>
                         <li>
                             Now, we have a <b class="itext">mobile manipulator</b>: a 7-DOF Franka Emika 3 mounted 
-                            on a mobile base that moves in a plane.
+                            on a mobile base (a <b class="itext">ClearPath's Ridgeback mobile robot with omnidirectional wheels</b>) that moves in a plane.
                         </li><br>
                         <li>
                             It should move to a counter that has a white tray with a glass of drink and deliver it 
@@ -4390,7 +4395,7 @@ plt.show()
                         <div style="flex: 4; flex-direction: row">
                             
                                 <div style="width: 100%">
-                                    <img src="presentation/images/part3/main.png"
+                                    <img src="presentation/images/part3/image24.png"
                                         style="max-width: 80%; height: auto; max-height: 60vh;">
                                 </div>
                         </div>
@@ -4398,6 +4403,531 @@ plt.show()
                 </div>
             </section>    
  
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CASE STUDIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 2: A WAITER MOBILE MANIPULATOR</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.2vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul>
+                        <li>
+                            We can simply model the 3 additional DOFs as <b class="itext">virtual joints</b>: two prismatic (for \(x, y\)) and 
+                            one revolute. This allows us to use everything we have learned so far to compute the 
+                            forward and differential kinematics. The following UAIBot function takes the manipulator robot and outputs a 
+                            new one with the three additional degrees of freedom:
+                        </li>
+                        <br>
+                        </ul>
+<pre style="max-width:100%;"><code class="language-python" style="text-align:left;">
+def add_mobile_base(robot):
+
+    #Get the ClearPath's Ridgeback robot as a base robot
+    ridgeback_3d_model = ub.Model3D(
+    'https://cdn.jsdelivr.net/gh/viniciusmgn/uaibot_content@master/contents/Other/ridgeback_mobile.obj',
+    0.0007,
+    ub.Utils.trn([0,0,-0.2])*ub.Utils.rotz(0)*ub.Utils.rotx(np.pi/2), mesh_material=ub.MeshMaterial(metalness=0.7, clearcoat=1, roughness=0.5, normal_scale=[0.5, 0.5], color="#606060"))
+
+
+    #Create the additional three DH parameters for the three virtual joints
+    links_new = []
+    
+    links_new.append(ub.Link(0,  0      , 0, -np.pi/2, 0, 1, []))
+    links_new.append(ub.Link(1,  -np.pi/2, 0,  np.pi/2, 0, 1, []))
+    links_new.append(ub.Link(2,  0, 0.21, 0, 0, 0, robot.list_object_3d_base+[ridgeback_3d_model]))
+
+    #Add the collision object for the base (a cylinder)
+    links_new[-1].attach_col_object(ub.Cylinder(radius=0.38,height=0.2, color='blue', opacity=0.7), ub.Utils.trn([0,0,-0.1]))
+    
+       
+    #Create and return the robot
+    i = 3
+    for link in robot.links:
+        links_new.append(ub.Link(i, link.theta, link.d, link.alpha, link.a, link.joint_type, link.list_model_3d))
+        
+        for j in range(len(link.col_objects)): 
+            links_new[i].attach_col_object(link.col_objects[j][0], link.col_objects[j][1])
+            
+        i+=1
+        
+    q0 = np.vstack((0,0,0, robot.q0))
+    inf_bound = np.matrix([-1000,1000])
+    joint_limits = np.vstack( (inf_bound, inf_bound, inf_bound, robot.joint_limit))
+    
+    return ub.Robot("base"+robot.name, links_new, [], robot.htm, robot.htm_base_0*ub.Utils.roty(np.pi/2), robot.htm_n_eef, q0, robot.eef_frame_visible, joint_limits)
+        
+</code></pre>
+
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 4; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image24.png"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section>    
+ 
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CASE STUDIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 2: JOINT LIMITS, VELOCITY LIMITS</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.4vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul>
+                        <li>
+                            We implement the joint limits and velocity limits as in Example 1. We just need to be careful that 
+                            the virtual joints \(x, y\) and \(\theta\) should not have any bounds. This is especially important for 
+                            \(\theta\), since the robot's base should be allowed to rotate around itself freely as often as it 
+                            wants.
+                        </li><br>
+
+                        </ul>
+
+
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 4; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image24.png"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section>    
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CASE STUDIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 2: OBSTACLE AVOIDANCE</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul>
+                            <li>
+                                For static obstacles (tables and counter), we implement obstacle avoidance as before. Remember that, when 
+                                the robot is holding the tray, it should also consider the collision between the tray and the objects. We implement 
+                                it similarly to how we did with the disk object in the previous example, considering the tray as a cylindrical object.
+                            </li><br>
+                            <li>
+                                For the collision between the robot (or the tray) and humans, we now need to take into consideration that 
+                                they move. We will model the human as a moving cylinder with a fixed radius. Let \(\mathcal{H}(h,t) \subseteq \mathbb{R}^3\) be 
+                                the cylinder of the \(h^{th}\) human at time \(t\). As before, let \(\mathcal{R}(v, q) \subseteq \mathbb{R}^3\) be the set of 
+                                points of the \(v^{th}\) object that composes the robot at configuration \(q\). We will use:
+                                <b class="itext">$$ B^{RH}_{vh}(q,t) = D^{RH}_{vh}(q,t) - \delta = \sqrt{2 \Lambda_{\mathcal{R}(v,q),\mathcal{H}(h,t)}} - \delta $$</b>
+                                i.e., the Euclidean distance  \(D^{RH}_{vh}(q,t) = \sqrt{2 \Lambda_{\mathcal{R}(v,q),\mathcal{H}(h,t)}}\) between the object and the human minus 
+                                a safety margin.
+                            </li>
+                        </ul>
+
+
+
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 4; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image24.png"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section>    
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CASE STUDIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 2: OBSTACLE AVOIDANCE</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.2vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul>
+                            <li>
+                                For the Jacobian \(\frac{\partial}{\partial q} B^{RH}_{vh}(q,t)\), we can use the <a href="presentation/part3.html#/57"><b
+                                class="hlink">same formula as before</b></a>.
+                            </li><br>
+                            <li>
+                                For the feedforward term \(\frac{\partial}{\partial t} B^{RH}_{vh}(q,t)\), we can use <a href="presentation/part2.html#/79"><b
+                                class="hlink">the same basic result for the derivative of an S2S-HSD</b></a>. Then, it can be shown that, due to the rotational 
+                                symmetry of the cylinder:
+                                <b class="itext">$$ \frac{\partial}{\partial t} B^{RH}_{vh}(q,t) = -v_{h}(t)^{\top}\frac{(a^*_v(q,t)-b^*_h(q,t))}{D^{RH}_{vh}(q,t)} $$</b>
+                                where \(a^*_v\) and \(b^*_h\) are the witness points on the  \(v^{th}\) robot object and the \(h^{th}\) human's cylinder, respectively, and
+                                \(v_{h}(t)\) is the \(h^{th}\) human's linear velocity vector at time \(t\).
+                            </li><br>
+                            <li>
+                                In a real application, it can be challenging to estimate \(v_{h}(t)\). We will assume that we know it perfectly.
+                            </li><br>
+                            <li>
+                                Similarly, we can also define and compute the terms for \(B_w^{TO}(q,t)\) and \(B_h^{TH}(q,t)\), which are the CBFs for obstacle avoidance between 
+                                the tray and the \(w^{th}\) static obstacle, and the tray and the \(h^{th}\) human, respectively.
+                            </li>
+                        </ul>
+
+
+
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 4; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image25.svg"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section>   
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CASE STUDIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 2: TRAY SHOULD BE NORMAL TO THE FLOOR</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+
+                        <ul>
+                            <li>
+                                Another constraint is that the tray should be normal to the ground, otherwise the glass on the tray may slide and fall.
+                            </li><br>
+                            <li>
+                                In this case, the \(x\) axis of the end-effector should coincide with the \(z\) axis of the world, \(e_z = (0 \ \ 0 \ \ 1)^{\top}\).
+                            </li><br>
+                            <li>
+                                The objective function is already trying to regulate the full pose, and thus the \(x\) orientation, but if we don’t do something else, 
+                                it could allow a temporary violation of this alignment (after all, in the objective function we only try to do the best we can)!
+                            </li><br>
+                            <li>
+                                This is unacceptable: what we have is a <b class="itext">hard equality constraint</b> that should be enforced through constraints, not through the objective function!
+                            </li><br>
+                            <li>
+                                But how do we enforce that?
+                            </li>
+                        </ul>
+
+
+
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 4; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image26.svg"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section>   
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CASE STUDIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 2: TRAY SHOULD BE NORMAL TO THE FLOOR</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul>
+                            <li>
+                                We could use only the \(x\) axis part of our <a href="presentation/part1.html#/61"><b
+                                class="hlink">classical task function</b></a> \(r_{ox}(q) = 1 - e_z^{\top}x_e(q)\) and add the linear equality 
+                                constraint:
+                                $$\frac{d}{dt} r_{ox}(q) = \frac{\partial r_{ox}}{\partial q}(q) u = -K_{ox}r_{ox}(q)$$
+                                so that \(r_{ox}(q)\) is regulated to zero.
+                            </li><br>
+                            <li>
+                                The idea is nice, but this task function is <b class="itext">not suitable for this application</b>!
+                            </li><br>
+                            <li>
+                                Since:
+                                $$\frac{\partial r_{ox}}{\partial q}(q) = (e_z \times x_e(q))^{\top}J_{\omega}(q)$$
+                                <b class="itext">the Jacobian obviously vanishes when \(x_e = e_{z}\)!</b> This is a problem because we will 
+                                be dealing with situations in which \(x_e\) is very close to \(e_{z}\) (i.e., small orientation errors). Having the 
+                                left-hand side of the equality constraint vanish will lead to instabilities (abrupt movements) of the robot.
+                            </li>
+                        </ul>
+
+
+
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 4; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image26.svg"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section> 
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CASE STUDIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 2: TRAY SHOULD BE NORMAL TO THE FLOOR</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul>
+                            <li>
+                                But this issue happened with the full task function, and we used it the whole time successfully to regulate 
+                                the pose! Wasn't it expected to cause similar problems when the end-effector was close to the target orientation?
+                            </li><br>
+                            <li>
+                                Yes... but in that case, we were saved by the <b class="itext">damped pseudoinverse</b>, which eliminated this problem. We cannot afford 
+                                to have something similar in a (linear) equality constraint like the one we have here.
+                            </li><br>
+                            <li>
+                                The solution is to use a more adequate task function... or, at the very least, something that resembles a task 
+                                function.
+                            </li>
+                        </ul>
+
+
+
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 4; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image26.svg"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section> 
+
+
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CASE STUDIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 2: TRAY SHOULD BE NORMAL TO THE FLOOR</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul>
+                          <li>
+                              Suppose that we want the \(x\) axis \(x_e(q)\) to have a target value \(x_{d}\). Our old task function enforced
+                              $$   x_d^{\top} x_e(q) = 1.  $$
+                            </li><br>
+                            <li>
+                                Let \(y_d, z_d\) be other normalized vectors such that \(x_d, y_d, z_d\) generates an orthonormal frame. 
+                                The condition $$   x_d^{\top} x_e(q) = 1  $$ is <b class="itext">almost equivalent</b> to the conditions:
+                                $$  y_d^{\top} x_e(q) = 0$$
+                                $$  z_d^{\top} x_e(q) = 0. $$
+                            </li><br>
+                            <li>
+                                "Almost" because these two conditions imply that either \(x_e(q) = x_d\) (as we desire) or \(x_e(q) = -x_d\). 
+                                Try to ponder why this is the case.
+                            </li><br>
+  
+
+                        </ul>
+
+
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 4; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image26.svg"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section> 
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CASE STUDIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 2: TRAY SHOULD BE NORMAL TO THE FLOOR</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.2vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul>
+                            <li>
+                                Inspired by that, we can use the "almost" task function \(r_{xo}: \mathbb{R}^n \mapsto \mathbb{R}^2\) 
+                                <b class="itext">$$r_{xo}(q) = \left(\begin{array}{c} y_d^{\top} x_e(q) \\ z_d^{\top} x_e(q) \end{array}\right).$$</b> 
+                            </li><br>
+                            <li>
+                                This task function has a very well-behaved Jacobian when \(x_e(q) \approx x_d\), provided that 
+                                \(J_w(q)\) is not singular at the configuration (so the robot, not the constraint, is to be blamed). At first glance, the only downside is that 
+                                it could make us converge to \(x_e(q) = -x_d\) instead. 
+                            </li><br>
+                            <li>
+                                Fortunately, this is not a problem in our case because we will start 
+                                with \(x_e(q) \approx x_d\) and we will (hopefully) stay close to that situation, thus very far away from the convergence 
+                                region of the other equilibrium point \(x_e(q) = -x_d\).
+                            </li>
+                        </ul>
+
+
+
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 4; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image26.svg"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section> 
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CASE STUDIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 2: TRAY SHOULD BE NORMAL TO THE FLOOR</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.2vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul>
+                            <li>
+                                One could show that (I will leave as an exercise, use the chain-rule trick):
+                                <b class="itext">$$\frac{\partial r_{ox}}{\partial q}(q) = \left(\begin{array}{c} (x_e(q) \times y_d)^{\top}J_{\omega}(q) \\ (x_e(q) \times z_d)^{\top}J_{\omega}(q) \end{array}\right).$$</b>
+                            </li><br>
+                            <li>
+                                Thus, when \(x_e(q) = x_d\), the Jacobian reduces to:
+                                $$\frac{\partial r_{ox}}{\partial q}(q) = \left(\begin{array}{c} z_d^{\top}J_{\omega}(q) \\ -y_d^{\top}J_{\omega}(q) \end{array}\right).$$
+                                which is a non-singular matrix as long as the rows of \(J_{\omega}(q)\) are linearly independent.                                
+                            </li>
+                        </ul>
+
+
+
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 4; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image26.svg"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section> 
 
 
             <style>

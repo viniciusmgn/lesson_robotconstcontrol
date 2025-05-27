@@ -15,8 +15,8 @@ def add_mobile_base(robot):
     
     links_new.append(ub.Link(0,  0      , 0, -np.pi/2, 0, 1, []))
     links_new.append(ub.Link(1,  -np.pi/2, 0,  np.pi/2, 0, 1, []))
-    #links_new.append(ub.Link(2,  0, 0.21, 0, 0, 0, robot.list_object_3d_base+[ridgeback_3d_model]))
-    links_new.append(ub.Link(2,  0, 0.21, 0, 0, 0, robot.list_object_3d_base))
+    links_new.append(ub.Link(2,  0, 0.21, 0, 0, 0, robot.list_object_3d_base+[ridgeback_3d_model]))
+    #links_new.append(ub.Link(2,  0, 0.21, 0, 0, 0, robot.list_object_3d_base))
     
     #links_new[-1].attach_col_object(ub.Box(width=0.7,depth=0.6,height=0.2, color='blue', opacity=0.7), ub.Utils.trn([0,0,-0.1]))
     links_new[-1].attach_col_object(ub.Cylinder(radius=0.38,height=0.2, color='blue', opacity=0.7), ub.Utils.trn([0,0,-0.1]))
@@ -96,7 +96,7 @@ robot.add_ani_frame(0,q=q0)
 
 
 sim = ub.Simulation.create_sim_mountain([robot, table_top_1, table_bot_1, table_top_2, table_bot_2, platform, tray_1, tray_2])
-sim.set_parameters(show_grid=False)
+sim.set_parameters(show_grid=False, show_world_frame=False)
 
 htm_tg_table_0 = ub.Utils.trn([-1.9,2.0-0.15,0.81])*ub.Utils.rotx(-np.pi/2)*ub.Utils.rotz(-np.pi/2)
 htm_tg_table_1 = ub.Utils.trn([-1.9,2.15,0.81])*ub.Utils.rotx(-np.pi/2)*ub.Utils.rotz(-np.pi/2)
@@ -111,14 +111,14 @@ htm_tg_table_6 = ub.Utils.trn([-0.6+0.15,-1.5-0.4,0.9])*ub.Utils.roty(np.pi/2)*u
 htm_tg_table_7 = ub.Utils.trn([-0.9,-1.5-0.4,0.9])*ub.Utils.roty(np.pi/2)*ub.Utils.rotx(np.pi)*ub.Utils.rotz(np.pi)
 
 
-sim.add(ub.Frame(htm_tg_table_0, size=0.2))
-sim.add(ub.Frame(htm_tg_table_1, size=0.2))
-sim.add(ub.Frame(htm_tg_table_2, size=0.2))
-sim.add(ub.Frame(htm_tg_table_3, size=0.2))
-sim.add(ub.Frame(htm_tg_table_4, size=0.2))
-sim.add(ub.Frame(htm_tg_table_5, size=0.2))
-sim.add(ub.Frame(htm_tg_table_6, size=0.2))
-sim.add(ub.Frame(htm_tg_table_7, size=0.2))
+# sim.add(ub.Frame(htm_tg_table_0, size=0.2))
+# sim.add(ub.Frame(htm_tg_table_1, size=0.2))
+# sim.add(ub.Frame(htm_tg_table_2, size=0.2))
+# sim.add(ub.Frame(htm_tg_table_3, size=0.2))
+# sim.add(ub.Frame(htm_tg_table_4, size=0.2))
+# sim.add(ub.Frame(htm_tg_table_5, size=0.2))
+# sim.add(ub.Frame(htm_tg_table_6, size=0.2))
+# sim.add(ub.Frame(htm_tg_table_7, size=0.2))
 
 sim.set_parameters(load_screen_color="#191919", background_color="#191919", width=500, height=500, show_world_frame=True, show_grid=False, camera_type='perspective', camera_start_pose=[1.0,1.0,5.5,0,0,0,0.8])
 
@@ -159,7 +159,7 @@ def create_human(torso_color):
     objects.append(eye_right)
     
     #Bounding cylinder
-    bcyl = ub.Cylinder(htm=ub.Utils.trn([0, 0, 0.9]),radius=0.4,height=1.8,color=torso_color, opacity=0.3)
+    bcyl = ub.Cylinder(htm=ub.Utils.trn([0, 0, 0.9]),radius=0.4,height=1.8,color=torso_color, opacity=0.0)
     objects.append(bcyl)
         
     return ub.Group(objects)
@@ -204,7 +204,7 @@ param_max_qdot = 1.5
 param_obs_delta = 0.01 #0.15 #0.02 0.10
 param_joint_delta = 2*np.pi/180
 dt=0.01 #dt=0.005
-param_iter_max = 10000
+param_iter_max = 2000+0*10000
 param_use_pc = False
 
 def fun_G(_r, _param_k):
@@ -217,15 +217,27 @@ def fun_G(_r, _param_k):
     return out
 
 
-def control_fun(_q, _robot, _htm_tg, _obstacles, _humans, _tray, hist_dist_human, _vel_human, _holding_tray, _care_obstacles, _old_ds):
+def control_fun(_q, _robot, _htm_tg, _obstacles, _humans, _tray, hist_dist_human, _vel_human, _holding_tray, _care_obstacles, _old_ds, _eta=1.0):
     
 
     no_joint = np.shape(robot.q)[0]
-    r, jac_r = _robot.task_function(_q, _htm_tg)
+    r0, jac_r0 = _robot.task_function(_q, _htm_tg)
+    
+    r = np.matrix(r0)
+    jac_r = np.matrix(jac_r0)
+    rp = np.linalg.norm(r[0:3,:])**2
+    kA = 1.0
+    r[3:6,:] += kA*(rp)
+    jac_rp = 2*r[0:3,:].T*jac_r[0:3,:]
+    jac_r[3,:] += kA*jac_rp
+    jac_r[4,:] += kA*jac_rp
+    jac_r[5,:] += kA*jac_rp
+    
+    
 
-    if np.linalg.norm(r[0:3])>0.5:
-        r = r[0:3]
-        jac_r = jac_r[0:3,:]
+    # if np.linalg.norm(r[0:3])>0.5:
+    #     r = r[0:3]
+    #     jac_r = jac_r[0:3,:]
     
     A = np.matrix(np.zeros((0,no_joint)))
     b = np.matrix(np.zeros((0,1)))
@@ -370,7 +382,7 @@ def control_fun(_q, _robot, _htm_tg, _obstacles, _humans, _tray, hist_dist_human
                     p1 = item.point_object
                     p2 = item.point_link
                     dv = ((p1-p2)/np.linalg.norm(p1-p2)).T
-                    ff = dv[:,0:2]*_vel_human[j]
+                    ff = _eta * dv[:,0:2]*_vel_human[j]
                     
                     A = np.vstack((A, item.jac_distance))
                     b = np.vstack((b, -1.5*param_eta*(item.distance-0.30)-ff)) #param_obs_delta-0.30
@@ -423,11 +435,15 @@ def control_fun(_q, _robot, _htm_tg, _obstacles, _humans, _tray, hist_dist_human
     b = np.vstack((b, -param_max_qdot*np.matrix(np.ones((no_joint-3,1))) ))   
        
 
-    u = ub.Utils.solve_qp(H, f, A, b)
+    try:
+        u = ub.Utils.solve_qp(H, f, A, b)
+        return u, np.linalg.norm(r), hist_dd, hist_ds
+    except:
+        return control_fun(_q, _robot, _htm_tg, _obstacles, _humans, _tray, hist_dist_human, _vel_human, _holding_tray, _care_obstacles, _old_ds, 0.9*_eta)
 
 
     
-    return u, np.linalg.norm(r), hist_dd, hist_ds
+    
 
  
  
@@ -533,7 +549,7 @@ while cont:
          
 
     
-    cont = cont and i < 10000 #6000
+    cont = cont and i < param_iter_max #6000
     
 plt.figure()    
 for i in range(0,3):
