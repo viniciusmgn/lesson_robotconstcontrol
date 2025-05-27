@@ -2291,7 +2291,7 @@ plt.show()
                             </li><br>
                             <li>
                                 In this case, \(B(q,t) = \|q-c_4(t)\| - R_4 - \delta\) and 
-                                $$\frac{\partial B}{\partial t}(q,t) = -\dot{c}_4(t)\top\frac{(q-c_4(t))}{\|q-c_4(t)\|}.$$
+                                $$\frac{\partial B}{\partial t}(q,t) = -\dot{c}_4(t)^{\top}\frac{(q-c_4(t))}{\|q-c_4(t)\|}.$$
                             </li><br>
                             <li>
                                 Let's see how it will work out in practice.
@@ -4333,7 +4333,7 @@ plt.show()
                             It has to deliver two drinks.
                         </li><br>
                         <li>
-                            While holding the dish, it must keep it horizontal, or the grasp may slip and fall to the ground!
+                            While holding the tray, it must keep it horizontal, or the glass may slip and fall to the ground!
                         </li><br>
                         <li>Obviously, it should respect obstacle avoidance, joint limits and velocity limits, as before.</li>
                     </ul>
@@ -4929,6 +4929,147 @@ def add_mobile_base(robot):
                 </div>
             </section> 
 
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CASE STUDIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 2: OBJECTIVE FUNCTION</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.2vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul>
+                            <li>
+                                The objective function will be, again, related to achieving different target poses \(H_{tg}\).
+                            </li><br>
+                            <li>
+                                We could use the same objective function as in the previous case, but note that, as opposed to the previous case, 
+                                the position of the end-effector has to vary a lot to achieve the target poses across the environment.                       
+                            </li><br>
+                            <li>
+                                With the objective function we
+                                currently have, the rotation part of the task will converge too quickly before the position part.        
+                            </li><br>
+                            <li>
+                                It would be more natural to only care about the orientation part of the task when we are relatively close 
+                                to the target position. We can achieve that through a discrete switch in the task function, but there is a 
+                                simple way through a simple reformulation of the task function.
+                            </li>
+                        </ul>
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 4; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image24.png"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section> 
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CASE STUDIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 2: OBJECTIVE FUNCTION</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.2vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul>
+                            <li>
+                                Use the task function: 
+
+                                <b class="itext">$$r(q) = \left(\begin{array} \ s_e(q)-s_d \\ K_r \|s_e(q)-s_d\|^2 + 1-x_d^{\top}x_e(q) \\ K_r \|s_e(q)-s_d\|^2 + 1-y_d^{\top}y_e(q) \\ K_r \|s_e(q)-s_d\|^2 + 1-z_d^{\top}z_e(q) \end{array}\right)  $$</b>
+                                for a scalar \(K_r > 0\).
+                            </li><br>
+                            <li>
+                                This is the same as the classical one, but with \(K_r \|s_e(q)-s_d\|^2\) added to the rotation error components. This has the effect that, 
+                                unless \(s_e(q) \approx s_d\) (i.e., we are close position-wise), the rotation errors (e.g., \(1 - x_d^{\top}x_e(q)\)) of the task are subdued 
+                                by the position error.
+                            </li><br>
+                            <li>
+                                The task Jacobian is (again, use the chain-rule trick):
+                                <b class="itext">$$\frac{\partial r}{\partial q}(q) = \left(\begin{array} \ J_v(q) \\ 2K_r(s_e(q)-s_d)^{\top}J_v(q) + (x_d \times x_e(q))^{\top}J_{\omega}(q) \\ 
+                                    2K_r(s_e(q)-s_d)^{\top}J_v(q) + (y_d \times y_e(q))^{\top}J_{\omega}(q)  
+                                    \\ 2K_r(s_e(q)-s_d)^{\top}J_v(q) + (z_d \times z_e(q))^{\top}J_{\omega}(q)  \end{array}\right) . $$</b>
+                                                                
+                            </li>
+                        </ul>
+
+
+
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 4; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image24.png"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section> 
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CASE STUDIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 2: OPERATION MODES</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.2vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul>
+                            <li>
+                                As before, we have different operation modes.
+                            </li><br>
+
+                        </ul>
+
+
+
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 4; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image24.png"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section> 
 
             <style>
 
