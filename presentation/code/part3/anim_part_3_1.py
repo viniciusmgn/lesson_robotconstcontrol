@@ -97,6 +97,8 @@ def compute_control(_q, _htm_tg, _all_obstacles, _is_handling_disk, _care_obstac
     A = np.matrix(np.zeros((0,no_joint)))
     b = np.matrix(np.zeros((0,1)))
     
+    #### CONSTRAINT 1: COLLISION BETWEEN THE MANIPULATOR AND OBSTACLES ####
+    
     #Create the CBF constraints for all obstacles:
     if _care_obstacles:
         
@@ -125,12 +127,16 @@ def compute_control(_q, _htm_tg, _all_obstacles, _is_handling_disk, _care_obstac
                 jac_dist = ((point_disk - point_obs).T * jac_v + np.cross((point_disk - s_e ).T, (point_disk - point_obs).T)  * jac_w)/dist
                 A = np.vstack((A, jac_dist))
                 b = np.vstack((b, -param_eta*(dist-param_obs_delta)))
-                    
+        
+    #### CONSTRAINT 2: JOINT LIMITS ####
+                
     #Create the CBF constraint for joint limits
     A = np.vstack((A, np.identity(no_joint)))
     b = np.vstack((b, -param_eta*(_q-robot.joint_limit[:,0]-param_joint_delta) ))  
     A = np.vstack((A, -np.identity(no_joint)))
     b = np.vstack((b, -param_eta*(robot.joint_limit[:,1]-_q-param_joint_delta) ))  
+    
+    #### CONSTRAINT 3: VELOCITY LIMITS ####
     
     #Implement velocity limits
     A = np.vstack((A, np.identity(no_joint)))

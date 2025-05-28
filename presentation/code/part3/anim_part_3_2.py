@@ -7,7 +7,8 @@ from helper_anim_part_3_2 import *
 ###################################   
 #Parameters control
 param_eta_static = 0.2
-param_eta_human = 0.3 
+param_eta_human = 0.3
+param_eta_tray = 0.15 
 param_eps = 0.005
 param_k = 0.3
 param_kr = 1.0
@@ -16,6 +17,7 @@ param_max_qdot = 1.5
 param_obs_delta = 0.01
 param_joint_delta = 2*np.pi/180
 param_human_delta = 0.3
+param_tray_delta = 0.01
 param_tol_error = 0.007
 
 #Parameters distance computation
@@ -33,7 +35,7 @@ param_spd_human_2 = 0.2
 
 #Parameters simulation
 dt=0.02 
-param_t_max = 200
+param_t_max = 250
 
 def fun_G(_r, _param_k):
     m = np.shape(_r)[0]
@@ -64,7 +66,7 @@ def control_fun(_q, _robot, _htm_tg, _obstacles, _humans, _tray, _vel_human, _ho
     
     
     #Assembly the H, f matrices
-    no_joint = np.shape(robot.q)[0]
+    no_joint = np.shape(_robot.q)[0]
     
     H = jac_r.T * jac_r + param_eps * np.identity(no_joint)
     f = -jac_r.T * fun_G(r, param_k)
@@ -82,15 +84,19 @@ def control_fun(_q, _robot, _htm_tg, _obstacles, _humans, _tray, _vel_human, _ho
     #this is because we may have to change b_ff many times
     A = np.matrix(np.zeros((0,no_joint)))
     b_basic = np.matrix(np.zeros((0,1)))
+    
+    #### CONSTRAINT 1: JOINT LIMIT ####
 
     #Create the CBF constraint for (manipulator) joint limits
     I_ext = np.hstack( (np.zeros((no_joint-3,3)), np.identity(no_joint-3)) )
      
     A = np.vstack((A, I_ext  ))
-    b_basic = np.vstack((b_basic, -param_eta_static*(_q[3:]-robot.joint_limit[3:,0]-param_joint_delta) ))  
+    b_basic = np.vstack((b_basic, -param_eta_static*(_q[3:]-_robot.joint_limit[3:,0]-param_joint_delta) ))  
     A = np.vstack((A, -I_ext))
-    b_basic = np.vstack((b_basic, -param_eta_static*(robot.joint_limit[3:,1]-_q[3:]-param_joint_delta) )) 
+    b_basic = np.vstack((b_basic, -param_eta_static*(_robot.joint_limit[3:,1]-_q[3:]-param_joint_delta) )) 
 
+    #### CONSTRAINT 2: VELOCITY LIMIT ####
+    
     #Implement velocity limits. We will only implement velocity kimits
     #for the joint velocities
     A = np.vstack((A, I_ext))
@@ -98,6 +104,9 @@ def control_fun(_q, _robot, _htm_tg, _obstacles, _humans, _tray, _vel_human, _ho
     A = np.vstack((A, -I_ext))
     b_basic = np.vstack((b_basic, -param_max_qdot*np.matrix(np.ones((no_joint-3,1))) ))   
         
+    
+    #### CONSTRAINT 3: TRAY PARALLEL TO THE GROUND ####
+    
     #If the robot is holding the tray, the constraint for the orientation
     #of the axis should be a hard constraint, that is
     # (d/dt) r_{ox}(q) = -K_{ox}*ox should hold true
@@ -117,12 +126,14 @@ def control_fun(_q, _robot, _htm_tg, _obstacles, _humans, _tray, _vel_human, _ho
         b_basic = np.vstack((b_basic, b_rotx-0.001, -b_rotx-0.001))
             
         
+    #### CONSTRAINT 4: OBSTACLE AVOIDANCE WITH STATIC OBSTACLES ####
+    
     #Implement obstacle avoidance with static obstacles
     tray_col_obj = _tray.list_of_objects[0]
     
      
     for obs in _obstacles:
-        ds = robot.compute_dist(q = _q, obj = obs, h=param_h_dist, eps=param_eps_dist, 
+        ds = _robot.compute_dist(q = _q, obj = obs, h=param_h_dist, eps=param_eps_dist, 
                                 tol=param_tol_dist, no_iter_max=param_no_iter_max_dist, 
                                 max_dist=param_max_dist_static)
         
@@ -151,7 +162,41 @@ def control_fun(_q, _robot, _htm_tg, _obstacles, _humans, _tray, _vel_human, _ho
                     A = np.vstack((A, jac_dist))
                     b_basic = np.vstack((b_basic, -param_eta_static*(dist-param_obs_delta)))
 
+    
+    
+    #### CONSTRAINT 5: COLLISION BETWEEN THE TRAY AND THE MANIPULATOR ####
+    
+    #Implement the collision between the tray and the body of the robot
+    #Disregard the last link (because this one is colliding with the tray)
+    
+    if _holding_tray and _not_delivering_tray:
+        ds = _robot.compute_dist(q = _q, obj = tray_col_obj, h=param_h_dist, eps=param_eps_dist, 
+                                    tol=param_tol_dist, no_iter_max=param_no_iter_max_dist, 
+                                    max_dist=param_max_dist_static)
+        
+
+        for ind1 in range(len(_robot.links)-3):
+            for ind2 in range(len(_robot.links[ind1].col_objects)):
+                try:
+                    #We need to put the "try" because some of the indexes may
+                    #not have been computed
+                    
+                    item = ds.get_item(ind1,ind2)
+                    p_tray = item.point_object
+                    p_robot = item.point_link
+                    
+                    jac_dist_1 = item.jac_distance
+                    jac_dist_2 = ((p_tray - p_robot).T * jac_v + np.cross((p_tray - s_e ).T, (p_tray - p_robot).T)  * jac_w)/item.distance
+
+                    A = np.vstack((A, jac_dist_1+jac_dist_2))
+                    b_basic = np.vstack((b_basic, -param_eta_tray*(item.distance-param_tray_delta)))
+                    
+                except:
+                    pass            
             
+ 
+    #### CONSTRAINT 6: COLLISION BETWEEN ROBOT AND HUMANS ####
+        
     #Implement obstacle avoidance with moving obstacles (humans)
     
     #Initialize b_ff
@@ -219,7 +264,6 @@ def control_fun(_q, _robot, _htm_tg, _obstacles, _humans, _tray, _vel_human, _ho
             u = ub.Utils.solve_qp(H, f, A, b_basic+_alpha*b_ff)
             return u, np.linalg.norm(r)
         except:
-            print("Failed... try again")
             _alpha = 0.9*_alpha
 
 
