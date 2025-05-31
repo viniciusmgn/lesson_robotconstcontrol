@@ -72,7 +72,7 @@
                     <div
                         style="flex: 3; min-width: 300px; font-size: 1.5vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li> There is an important distinction to be made before we start: the distinction between 
                                 <b class="itext">path planning</b> and <b class="itext">motion control</b>. 
                                 This is necessary because the lines between them will become somewhat blurred starting in this 
@@ -114,7 +114,7 @@
                     <div
                         style="flex: 3; min-width: 300px; font-size: 1.5vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
-                    <ul>
+                    <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                         <li> In 
                             <b class="itext">path planning</b>, we only care about connecting \(q_0\) 
                             and  \(q_{F}\) with a continuous path \(\mathcal{P}\), while staying within 
@@ -161,7 +161,7 @@
                     <div
                         style="flex: 3; min-width: 300px; font-size: 1.5vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li> In 
                                 <b class="itext">motion control</b>, we are now concerned with the control input \(u\). Usually, we 
                                 obtain a path \(\mathcal{P}\) from a motion planning algorithm, and the motion control module should track this 
@@ -208,7 +208,7 @@
                     <div
                         style="flex: 3; min-width: 300px; font-size: 1.5vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                         <li> We can also differentiate the two from the point of view of locality. 
                             Path planning is <b class="itext">global</b>: it gathers information from the entire configuration space 
                             to make its plan and is therefore more holistic.  
@@ -251,7 +251,7 @@
                     <div
                         style="flex: 3; min-width: 300px; font-size: 1.5vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
 
                         <li> The tradeoff is between being fast and being able to handle more complex problems.
                         </li><br>
@@ -299,7 +299,7 @@
                     <div
                         style="flex: 3; min-width: 300px; font-size: 1.5vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
 
                         <li> The lines between the two are somewhat blurred, though, because some motion control algorithms — 
                             <b class="itext">such as the ones we will see in this class</b> — may be capable of solving 
@@ -350,7 +350,7 @@
 
                                     <div style="position:absolute; width: 80%; text-align: justify;"
                                         class="vim_indicator current-visible fragment" data-fragment-index="0">
-                                        <ul>
+                                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                                             <li>Lets start with a  basic, unconstrained (i.e., \(\mathcal{U}_{safe}\) is everything) motion control algorithm that does 
                                                 not implement an additional safety layer.
                                             </li><br>
@@ -374,7 +374,7 @@
 
                                     <div style="position:absolute; width: 80%; text-align: justify;"
                                         class="vim_indicator current-visible fragment" data-fragment-index="1">
-                                   <ul>
+                                   <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                                             <li> Thus, often it is much better to do <b class="itext">path tracking</b> instead: we dont care too much that we 
                                                 have to be at a specific point at a specific time, as long as we stay in the curve following it. 
                                             </li><br>
@@ -438,7 +438,7 @@
 
                                     <div style="position:absolute; width: 80%;  text-align: justify;"
                                         class="vim_indicator current-visible fragment" data-fragment-index="0">
-                                        <ul>
+                                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                                             <li>To use the algorithm the curve \(\mathcal{P}\) should be differentiable and without self-intersections.</li><br>
                                             <li> Given a point \(q\) and a curve \(\mathcal{P}\), we can compute 
                                                 the vector field \(\Psi_{\mathcal{P}}(q)\) as follows: </li>
@@ -448,7 +448,7 @@
 
                                     <div style="position:absolute; width: 80%;  text-align: justify;"
                                         class="vim_indicator current-visible fragment" data-fragment-index="1">
-                                   <ul>
+                                   <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                                             <li> First we compute the <b class="itext">projection</b> \(\Pi_{\mathcal{P}}(q)\) of the point \(q\) into \(\mathcal{P}\).</li><br>
                                             <li>  We usually do this by discretizing the curve \(\mathcal{P}\) into points \(c[i]\) very close to each other, 
                                                 and testing each one for the minimum. We find one (because there can be more than one) minimum index \(i_{min}(q)\).
@@ -465,7 +465,7 @@
 
                                     <div style="position:absolute; width: 80%;  text-align: justify;"
                                         class="vim_indicator current-visible fragment" data-fragment-index="2">
-                                   <ul>
+                                   <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                                             <li> We then compute the  <b class="itext">normal vector</b> \(N_{\mathcal{P}}(q)\), which is the 
                                                 normalized vector from point \(q\) to the projection: 
                                                 $$N_{\mathcal{P}}(p) = \frac{q- \Pi_{\mathcal{P}}(q)}{\|q - \Pi_{\mathcal{P}}(q)\|}.$$
@@ -481,7 +481,7 @@
 
                                     <div style="position:absolute; width: 80%;  text-align: justify;"
                                         class="vim_indicator current-visible fragment" data-fragment-index="3">
-                                   <ul>
+                                   <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                                             <li> We then compute the  <b class="itext">tangent vector</b> \(T_{\mathcal{P}}(q)\). 
                                                 This is the normalized vector tangent to the curve \(\mathcal{P}\) at the point 
                                                 \(\Pi_{\mathcal{P}}(q)\), and can be computed with the previous \(i_{min}(q)\):
@@ -499,7 +499,7 @@
 
                                     <div style="position:absolute; width: 80%;  text-align: justify;"
                                         class="vim_indicator current-visible fragment" data-fragment-index="4">
-                                   <ul>
+                                   <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                                             <li>Note that the order in which the points \(c[i]\) are (clockwise or counterclocwise) determines 
                                                 the direction of path tracking we want.
                                             </li><br>
@@ -516,7 +516,7 @@
 
                                     <div style="position:absolute; width: 80%;  text-align: justify;"
                                         class="vim_indicator current-visible fragment" data-fragment-index="5">
-                                   <ul>
+                                   <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                                             <li> We have all that we need to compute \(\Psi_{\mathcal{P}}(p)\). The idea is that the normal vector makes 
                                                 the point converge to (any point) in the curve, and the tangent vector makes the point \(q\) 
                                                 move along the curve.
@@ -538,7 +538,7 @@
 
                                     <div style="position:absolute; width: 80%;  text-align: justify; font-size: 1.3vw;"
                                         class="vim_indicator current-visible fragment" data-fragment-index="6">
-                                   <ul>
+                                   <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                                             <li>A popular approach is to choose:
                                                 $$G(q) = v_{c} \frac{2}{\pi} atan\big(\alpha E_{\mathcal{S}}(q)^{\beta}\big)$$
                                                 $$H(q) = \sqrt{v_c^2-G(q)^2}$$
@@ -763,7 +763,7 @@
 
                         <div style="position:absolute; width: 50%; ">
 
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li> The algorithm also works when \(\mathcal{P}\) is not a closed curve. We just need to adapt 
                                 \(H(q)\) to vanish at the last point.
                             </li><br>
@@ -817,7 +817,7 @@
 
                         <div style="position:absolute; width: 50%; ">
 
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li> The GVF algorithm is implemented in UAIBot in the 
                                 function <b class="itext">vector_field</b>:
 
@@ -919,7 +919,7 @@ plt.show()
                     <div
                         style="flex: 3; min-width: 300px; font-size: 1.5vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>  
                                 <b class="itext">Control Barrier Functions (CBFs, for short)</b> refer both to a technique used to enforce 
                                 constraints within a control loop, and to the class of functions that play a central role in this technique. 
@@ -968,7 +968,7 @@ plt.show()
                         style="flex: 3; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>
                                 In the most basic version of the task function approach, \(r \rightarrow 0\) is achieved by specifying that the control input \(u\) 
                                 should satisfy \(\frac{d}{dt} r(q) = -Kr(q)\), for a an appropriate scalar \(K>0\). Analogously, we enforce the constraint \(B(q) \geq 0\) by 
@@ -1013,7 +1013,7 @@ plt.show()
                     <div
                         style="flex: 3; min-width: 300px; font-size: 1.4vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>
                                 Note that we can preserve the inequality when multiplying by the integrating factor \(e^{\eta t}\), because it is always nonnegative.
                             </li><br>
@@ -1059,7 +1059,7 @@ plt.show()
                         style="flex: 3; min-width: 300px; font-size: 1.4vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>
                                 Thus, we transformed the algebraic constraint \(B(q(t)) \geq 0\) into a <b class="itext">differential constraint</b>:
                                 \(\frac{d}{dt} B(q(t)) \geq -\eta B(q(t))\).
@@ -1104,7 +1104,7 @@ plt.show()
                         style="flex: 3; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>
                                 Let's start by assuming that  
                                 <b class="itext">$$\dot{q} = u$$</b> 
@@ -1154,7 +1154,7 @@ plt.show()
                         <div style="position:absolute; width: 50%; ">
 
 
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>
                                 One initial idea is as follows: at each time step, we measure the configuration \(q\), and set up a 
                                 <b class="itext">system of linear equations and inequalities for the variable \(u\)</b>:
@@ -1202,7 +1202,7 @@ plt.show()
                         <div style="position:absolute; width: 50%; ">
 
 
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>
                                 Let's change the formulation. The constraints \(B_k(q) \geq 0\) are usually 
                                 <b class="itext">hard constraints</b> (such as obstacle avoidance). The task, however, is typically something we 
@@ -1248,7 +1248,7 @@ plt.show()
                     <div
                         style="flex: 3; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>Thus, we have the following formulation:
                                 
                                 <b class="ttext">$$\min_{u} \left\| \frac{\partial r}{\partial q}(q)u -G(r(q)) \right\|^2$$</b>
@@ -1299,7 +1299,7 @@ plt.show()
                     <div
                         style="flex: 3; min-width: 300px; font-size: 1.4vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>
                                 We can expand the squared norm to write the objective function as:
                                 $$ u^\top \frac{\partial r}{\partial q}(q)^{\top}\frac{\partial r}{\partial q}(q)u - 2G(r(q))^\top\frac{\partial r}{\partial q}(q)u + \|G(r(q))\|^2.$$
@@ -1346,7 +1346,7 @@ plt.show()
                     <div
                         style="flex: 3; min-width: 300px; font-size: 1.4vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>
                                 Under these definitions, we can rewrite our optimization problem as:
                                 <b class="ttext">$$\min_{u} \frac{u^\top H u}{2} + f^{\top} u + c $$</b>
@@ -1397,7 +1397,7 @@ plt.show()
                         style="flex: 3; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>
                                 Convex or strictly convex quadratic programs can be solved <b class="itext">very efficiently</b>, 
                                 even for very large problems.
@@ -1452,7 +1452,7 @@ plt.show()
                         style="flex: 3; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>
                                 UAIBot can solve convex quadratic programs through the <b class="itext">solve_qp</b> function:
                             
@@ -1529,7 +1529,7 @@ print("u = "+str(u.T)+"^T")
                         style="flex: 1; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>
                                 Assume a 2D point with configuration \(q \in \mathbb{R}^2\). We want to converge to a point 
                                 \(q_F = (1.5 \ \  0)^\top \) and avoid a circle \( \|q\| \leq 1 \).
@@ -1581,7 +1581,7 @@ print("u = "+str(u.T)+"^T")
                         style="flex: 1; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>
                                 Here is the UAIBot code:
 
@@ -1675,7 +1675,7 @@ plt.show()
                         style="flex: 1; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>
                                 Lets now assume three circles, with centers \(c_k\) and radius \(R_k\). In this case, 
                                 we use three different CBFs \(B_k(q) = \|q-c_k\|-R_k\), with 
@@ -1722,7 +1722,7 @@ plt.show()
                         style="flex: 1; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>
                                 Here is the UAIBot code:
 
@@ -1826,7 +1826,7 @@ plt.show()
                         style="flex: 1; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>
                                 The algorithm failed. It got stuck in a <b class="itext">spurious equilibrium point</b>, that is, 
                                 a point \(q_{S}\) where the velocity controller \(u(q_S)\) is zero but the task is not completed.
@@ -1879,7 +1879,7 @@ plt.show()
                         style="flex: 1; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>
                                 Here is the UAIBot code:
 
@@ -2024,7 +2024,7 @@ plt.show()
                         style="flex: 1; min-width: 300px; font-size: 1.4vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>
                                 We will now use a motion planner to generate a path \(\mathcal{P}\) and integrate it into 
                                 motion control. 
@@ -2076,7 +2076,7 @@ plt.show()
                         style="flex: 1; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>
                                 Here is the UAIBot code:
 
@@ -2203,7 +2203,7 @@ plt.show()
                         style="flex: 1; min-width: 300px; font-size: 1.4vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>
                                 We can easily add constraints \(u \in \mathcal{U}_{safe}\) as <b class="itext">input limits</b>:
                                 $$ \underline{u}_{i} \leq u_i \leq \overline{u}_{i} $$
@@ -2246,7 +2246,7 @@ plt.show()
                         style="flex: 1; min-width: 300px; font-size: 1.4vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>
                                 Just like time-varying tasks, CBF constraints can be time-varying as well. 
                                 For example, a <b class="itext">moving obstacle</b>.
@@ -2293,7 +2293,7 @@ plt.show()
                         style="flex: 1; min-width: 300px; font-size: 1.4vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>
                                 Let's return to the third example and make the circle's position time-varying according 
                                 to \(c_4(t)\). Let's assume we know \(c_4(t)\) (this can be difficult in practice) and 
@@ -2341,7 +2341,7 @@ plt.show()
                         style="flex: 1; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>
                                 Here is the UAIBot code:
 
@@ -2530,7 +2530,7 @@ plt.show()
                         style="flex: 1; min-width: 300px; font-size: 1.4vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>
                                 <b class="itext">Be careful, though!</b> In the time-varying case, we can no longer guarantee that 
                                 the optimization problem underlying the controller is always <b class="itext">feasible</b>. It may be the case 
@@ -2582,7 +2582,7 @@ plt.show()
                         style="flex: 1; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>
                                 Just like in task-space kinematic control, the right-hand side of the CBF constraint can 
                                 be something more general than \(-\eta B(q)\) for a positive scalar \(\eta\).
@@ -2633,7 +2633,7 @@ plt.show()
                         style="flex: 1; min-width: 300px; font-size: 1.4vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>
                                 What if our system model is 
                                 <b class="itext">$$\ddot{q} = u $$</b>
@@ -2683,7 +2683,7 @@ plt.show()
                         style="flex: 1; min-width: 300px; font-size: 1.2vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>
                                 This can be written, using the chain rule, as:
                                 <b class="ttext">$$\frac{\partial B}{\partial q}(q)u \geq -2\eta \frac{\partial B}{\partial q}(q)\dot{q} - \eta^2 B(q) - \dot{q}^\top \frac{\partial^2 B}{\partial q^2}(q)\dot{q}. $$</b>
@@ -2736,7 +2736,7 @@ plt.show()
                         style="flex: 1; min-width: 300px; font-size: 1.2vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>
                                 We have to change the objective function as well. Let's start with the task-function approach. For the same reasons as before, we cannot simply try to enforce 
                                 \(\dot{r} = \frac{\partial r}{\partial q}\dot{q} = G(r)\), since we can no longer directly control \(\dot{q}\).
@@ -2784,10 +2784,10 @@ plt.show()
                 <div
                     style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
                     <div
-                        style="flex: 1; min-width: 300px; font-size: 1.4vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        style="flex: 1; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>
                                 Many packages, as UAIBot, do not implement the computation of Hessians (task functions, distances, etc...), 
                                 only Jacobians/gradients. But one useful trick is to note that, for any function \(f: \mathbb{R}^n \mapsto \mathbb{R}\):
@@ -2834,7 +2834,7 @@ plt.show()
                         style="flex: 1; min-width: 300px; font-size: 1.4vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>
                                 Let's again make a point \(q\in \mathbb{R}^2\) avoid circular obstacles and 
                                 reach a target point. We start by not using a path and using the task function 
@@ -2883,7 +2883,7 @@ plt.show()
                         style="flex: 1; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>
                                 Here is the UAIBot code:
 
@@ -3008,7 +3008,7 @@ plt.show()
                         style="flex: 1; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>
                                 What if we have to use a path? We can adapt the GVF (which was devised for velocities) 
                                 to accelerations. One way is a follows: given a GVF \(\Psi_{\mathcal{P}}(q)\) and 
@@ -3059,7 +3059,7 @@ plt.show()
                         style="flex: 1; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>
                                 Here is the UAIBot code:
 
@@ -3220,7 +3220,7 @@ plt.show()
                         style="flex: 1; min-width: 300px; font-size: 1.6vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>
                                 We are now going to see more advanced examples. While at it, we will learn some modelling techniques using
                                 CBFs.
@@ -3259,7 +3259,7 @@ plt.show()
                         style="flex: 6; min-width: 300px; font-size: 1.5vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>
                                 In this example, we have a Kuka LBR IIWA manipulator that needs to pick up an object (a disk) from a table, place it inside 
                                 a machine that will test the object, press a button to start the machine, retrieve the object from the machine, and place it 
@@ -3268,7 +3268,7 @@ plt.show()
                             <li>We assume that we control the joint velocity, i.e., \(\dot{q} = u\).</li><br>
                             <li>
                                 We have several constraints in this case:<br><br><br>
-                                <ul>
+                                <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                                     <li>Joint limits;</li>
                                     <li>Joint velocity limits;</li>
                                     <li>Obstacle avoidance.</li>
@@ -3308,7 +3308,7 @@ plt.show()
                         style="flex: 6; min-width: 300px; font-size: 1.4vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>
                                 Suppose we have joint limits \(\underline{q}_i\) (lower) and \(\overline{q}_i\) (upper). We can simply 
                                 use the CBF functions:
@@ -3356,7 +3356,7 @@ plt.show()
                         style="flex: 6; min-width: 300px; font-size: 1.5vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>
                                 Suppose we have joint velocity limits \(\underline{u}_i\) (lower) and \(\overline{u}_i\) (upper). We can trivially implement these 
                                 constraints directly (without the need to use any CBF):
@@ -3398,7 +3398,7 @@ plt.show()
                         style="flex: 6; min-width: 300px; font-size: 1.4vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>
                                 For obstacle avoidance, we consider that the robot is composed of \(r = 1, \dots, R\) objects (spheres, boxes, etc...), 
                                 and that the static environment is composed of \(w = 1, \dots, W\) objects. For each pair, we compute the 
@@ -3448,7 +3448,7 @@ plt.show()
                         style="flex: 6; min-width: 300px; font-size: 1.4vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
-                    <ul>
+                    <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                         <li><b class="itext">Can we use the half-squared distance directly?</b> Yes, but although HSD is more convenient theoretically 
                             and computationally, in my experience, using the distance is better when implementing safety.
                         </li><br>
@@ -3502,7 +3502,7 @@ plt.show()
                         style="flex: 6; min-width: 300px; font-size: 1.5vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>
                                 We need to be careful, because once the robot picks up the object, we also need to implement a constraint that 
                                 avoids collisions between the disk, being held by the end-effector, and the environment.
@@ -3550,7 +3550,7 @@ plt.show()
                         style="flex: 6; min-width: 300px; font-size: 1.5vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>We will use our <a href="presentation/part1.html#/61"><b
                             class="hlink">classical task function</b></a> \(r(q)\) to achieve a target pose \(H_{tg}\) pose as the objective function of our 
                                 QP:
@@ -3646,7 +3646,7 @@ plt.show()
                         style="flex: 6; min-width: 300px; font-size: 1.5vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>
                                 Our task has some discrete states ("Modes"). In each of them, we will have different target poses \(H_{tg}\).
                             </li><br>
@@ -3697,7 +3697,7 @@ plt.show()
                         <div class="vim_indicator current-visible fragment" data-fragment-index="0"
                          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
 
-                            <ul>
+                            <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li><b class="ttext">Mode 0: go to the first pose just on top of the disk;</b></li>
                             </ul>
                         </div>
@@ -3705,7 +3705,7 @@ plt.show()
                             
                         <div class="vim_indicator current-visible fragment" data-fragment-index="1"
                          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
-                            <ul>
+                            <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li><b class="itext">Mode 0:</b> go to the first pose just on top of the disk;</li>
                             <li><b class="ttext">Mode 1: go down a little bit to get the disk. We have to disable collision avoidance here;</b></li>
                             </ul>
@@ -3713,7 +3713,7 @@ plt.show()
 
                         <div class="vim_indicator current-visible fragment" data-fragment-index="2"
                          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
-                            <ul>
+                            <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li><b class="itext">Mode 0:</b> go to the first pose just on top of the disk;</li>
                             <li><b class="itext">Mode 1:</b> go down a little bit to get the disk. We have to disable collision avoidance here;</li>
                             <li><b class="ttext">Mode 2: go up a little bit to take the disk out of the table. We have to disable collision avoidance here;</b></li>
@@ -3722,7 +3722,7 @@ plt.show()
 
                         <div class="vim_indicator current-visible fragment" data-fragment-index="3"
                          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
-                            <ul>
+                            <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li><b class="itext">Mode 0:</b> go to the first pose just on top of the disk;</li>
                             <li><b class="itext">Mode 1:</b> go down a little bit to get the disk. We have to disable collision avoidance here;</li>
                             <li><b class="itext">Mode 2:</b> go up a little bit to take the disk out of the table. We have to disable collision avoidance here;</li>
@@ -3734,7 +3734,7 @@ plt.show()
 
                         <div class="vim_indicator current-visible fragment" data-fragment-index="4"
                          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
-                            <ul>
+                            <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li><b class="itext">Mode 0:</b> go to the first pose just on top of the disk;</li>
                             <li><b class="itext">Mode 1:</b> go down a little bit to get the disk. We have to disable collision avoidance here;</li>
                             <li><b class="itext">Mode 2:</b> go up a little bit to take the disk out of the table. We have to disable collision avoidance here;</li>
@@ -3747,7 +3747,7 @@ plt.show()
 
                         <div class="vim_indicator current-visible fragment" data-fragment-index="5"
                          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
-                            <ul>
+                            <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li><b class="itext">Mode 0:</b> go to the first pose just on top of the disk;</li>
                             <li><b class="itext">Mode 1:</b> go down a little bit to get the disk. We have to disable collision avoidance here;</li>
                             <li><b class="itext">Mode 2:</b> go up a little bit to take the disk out of the table. We have to disable collision avoidance here;</li>
@@ -3762,7 +3762,7 @@ plt.show()
 
                         <div class="vim_indicator current-visible fragment" data-fragment-index="6"
                          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
-                            <ul>
+                            <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li><b class="itext">Mode 0:</b> go to the first pose just on top of the disk;</li>
                             <li><b class="itext">Mode 1:</b> go down a little bit to get the disk. We have to disable collision avoidance here;</li>
                             <li><b class="itext">Mode 2:</b> go up a little bit to take the disk out of the table. We have to disable collision avoidance here;</li>
@@ -3778,7 +3778,7 @@ plt.show()
 
                         <div class="vim_indicator current-visible fragment" data-fragment-index="7"
                          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
-                            <ul>
+                            <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li><b class="itext">Mode 0:</b> go to the first pose just on top of the disk;</li>
                             <li><b class="itext">Mode 1:</b> go down a little bit to get the disk. We have to disable collision avoidance here;</li>
                             <li><b class="itext">Mode 2:</b> go up a little bit to take the disk out of the table. We have to disable collision avoidance here;</li>
@@ -3796,7 +3796,7 @@ plt.show()
 
                         <div class="vim_indicator current-visible fragment" data-fragment-index="8"
                          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
-                            <ul>
+                            <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li><b class="itext">Mode 0:</b> go to the first pose just on top of the disk;</li>
                             <li><b class="itext">Mode 1:</b> go down a little bit to get the disk. We have to disable collision avoidance here;</li>
                             <li><b class="itext">Mode 2:</b> go up a little bit to take the disk out of the table. We have to disable collision avoidance here;</li>
@@ -3814,7 +3814,7 @@ plt.show()
 
                         <div class="vim_indicator current-visible fragment" data-fragment-index="9"
                          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
-                            <ul>
+                            <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li><b class="itext">Mode 0:</b> go to the first pose just on top of the disk;</li>
                             <li><b class="itext">Mode 1:</b> go down a little bit to get the disk. We have to disable collision avoidance here;</li>
                             <li><b class="itext">Mode 2:</b> go up a little bit to take the disk out of the table. We have to disable collision avoidance here;</li>
@@ -3833,7 +3833,7 @@ plt.show()
 
                         <div class="vim_indicator current-visible fragment" data-fragment-index="10"
                          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
-                            <ul>
+                            <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li><b class="itext">Mode 0:</b> go to the first pose just on top of the disk;</li>
                             <li><b class="itext">Mode 1:</b> go down a little bit to get the disk. We have to disable collision avoidance here;</li>
                             <li><b class="itext">Mode 2:</b> go up a little bit to take the disk out of the table. We have to disable collision avoidance here;</li>
@@ -3985,7 +3985,7 @@ plt.show()
                         <div style="position:absolute; width: 50%; ">
 
                         
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>
                                 Here is the UAIBot code.
                             </li>     
@@ -4388,7 +4388,7 @@ plt.show()
                         style="flex: 6; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
-                    <ul>
+                    <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                         <li>
                             Now, we have a <b class="itext">mobile manipulator</b>: a 7-DOF Franka Emika 3 mounted 
                             on a mobile base (a <b class="itext">ClearPath's Ridgeback mobile robot with omnidirectional wheels</b>) that moves in a plane.
@@ -4435,7 +4435,7 @@ plt.show()
                         style="flex: 1; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>
                                 From the point of view of configuration, we have
                                 $$q = [ x \ \ y \ \ \theta \ \ q_m^{\top}]^\top$$
@@ -4482,7 +4482,7 @@ plt.show()
                         style="flex: 1; min-width: 300px; font-size: 1.2vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                         <li>
                             We can simply model the 3 additional DOFs as <b class="itext">virtual joints</b>: two prismatic (for \(x, y\)) and 
                             one revolute. This allows us to use everything we have learned so far to compute the 
@@ -4561,7 +4561,7 @@ def add_mobile_base(robot):
                         style="flex: 1; min-width: 300px; font-size: 1.4vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                         <li>
                             We implement the joint limits and velocity limits as in Example 1. We just need to be careful that 
                             the virtual joints \(x, y\) and \(\theta\) should not have any bounds. This is especially important for 
@@ -4602,9 +4602,9 @@ def add_mobile_base(robot):
                         style="flex: 1; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>We have four types of collision avoidance:<br><br>
-                                <ul>
+                                <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                                     <li>(a) Between the robot (and eventually the tray) and static obstacles (tables and counter);</li><br>
                                     <li>(b) Between the robot (and eventually the tray) and moving obstacles (human);</li><br>
                                     <li>(c) Between the tray and the robot;</li><br>
@@ -4650,7 +4650,7 @@ def add_mobile_base(robot):
                         style="flex: 1; min-width: 300px; font-size: 1.4vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>
                                 In the case (b), we now need to take into consideration that 
                                 they move. We will model the human as a moving cylinder with a fixed radius. Let \(\mathcal{H}(h,t) \subseteq \mathbb{R}^3\) be 
@@ -4694,7 +4694,7 @@ def add_mobile_base(robot):
                         style="flex: 1; min-width: 300px; font-size: 1.2vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>
                                 For the Jacobian \(\frac{\partial}{\partial q} B^{RH}_{rh}(q,t)\), we can use the <a href="presentation/part3.html#/57"><b
                                 class="hlink">same formula as before</b></a>.
@@ -4748,7 +4748,7 @@ def add_mobile_base(robot):
                         style="flex: 6; min-width: 300px; font-size: 1.1vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>
                                 In the case (c), we can use the distance \(D^{RT}_{v}(q)\) between the robot's \(r^{th}\) object and 
                                 the tray to define the CBF:
@@ -4802,7 +4802,7 @@ def add_mobile_base(robot):
                         style="flex: 6; min-width: 300px; font-size: 1.1vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>
                                 In the case (d), we can use the distance \(D^{RR}_{v}(q)\) between the robot's \(r^{th}\) object and 
                                 \(s^{th}\) object:
@@ -4852,7 +4852,7 @@ def add_mobile_base(robot):
                         style="flex: 6; min-width: 300px; font-size: 1.1vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>
                                 In fact, in many manipulators, the manufacturer's joint limits are designed to, among other things, minimize 
                                 auto-collision as much as possible. Franka's geometry, however, make it particularly prone for collision.
@@ -4901,7 +4901,7 @@ def add_mobile_base(robot):
                         <div style="position:absolute; width: 50%; ">
 
 
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>
                                 Another constraint is that the tray should be parallel to the ground, otherwise the glass on the tray may slide and fall.
                             </li><br>
@@ -4953,7 +4953,7 @@ def add_mobile_base(robot):
                         style="flex: 1; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>
                                 We could use only the \(x\) axis part of our <a href="presentation/part1.html#/61"><b
                                 class="hlink">classical task function</b></a> \(r_{ox}(q) = 1 - e_z^{\top}x_e(q)\) and add the linear equality 
@@ -5006,7 +5006,7 @@ def add_mobile_base(robot):
                         style="flex: 1; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>
                                 But this issue happened with the full task function, and we used it the whole time successfully to regulate 
                                 the pose! Wasn't it expected to cause similar problems when the end-effector was close to the target orientation?
@@ -5056,7 +5056,7 @@ def add_mobile_base(robot):
                         style="flex: 1; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                           <li>
                               Suppose that we want the \(x\) axis \(x_e(q)\) to have a target value \(x_{d}\). Our old task function enforced
                               $$   x_d^{\top} x_e(q) = 1.  $$
@@ -5107,7 +5107,7 @@ def add_mobile_base(robot):
                         style="flex: 1; min-width: 300px; font-size: 1.2vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>
                                 Inspired by that, we can use the "almost" task function \(r_{xo}: \mathbb{R}^n \mapsto \mathbb{R}^2\) 
                                 <b class="itext">$$r_{xo}(q) = \left(\begin{array}{c} y_d^{\top} x_e(q) \\ z_d^{\top} x_e(q) \end{array}\right).$$</b> 
@@ -5157,7 +5157,7 @@ def add_mobile_base(robot):
                         style="flex: 1; min-width: 300px; font-size: 1.2vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>
                                 One could show that (I will leave as an exercise, use the chain-rule trick):
                                 <b class="itext">$$\frac{\partial r_{ox}}{\partial q}(q) = \left(\begin{array}{c} (x_e(q) \times y_d)^{\top}J_{\omega}(q) \\ (x_e(q) \times z_d)^{\top}J_{\omega}(q) \end{array}\right).$$</b>
@@ -5201,7 +5201,7 @@ def add_mobile_base(robot):
                         style="flex: 1; min-width: 300px; font-size: 1.2vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>
                                 The objective function will be, again, related to achieving different target poses \(H_{tg}\).
                             </li><br>
@@ -5250,7 +5250,7 @@ def add_mobile_base(robot):
                         style="flex: 1; min-width: 300px; font-size: 1.2vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>
                                 Use the task function: 
 
@@ -5410,7 +5410,7 @@ def add_mobile_base(robot):
 
                         <div class="vim_indicator current-visible fragment" data-fragment-index="0"
                          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
-                            <ul>
+                            <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li><b class="ttext">Mode 0:go to the first pose to start approaching the counter;</b> </li>
                         </ul>
                         </div>
@@ -5419,7 +5419,7 @@ def add_mobile_base(robot):
 
                         <div class="vim_indicator current-visible fragment" data-fragment-index="1"
                          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
-                            <ul>
+                            <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li><b class="itext">Mode 0:</b> go to the first pose to start approaching the counter;</li>
                             <li><b class="ttext">Mode 1: move forward a little bit and grab the first tray;</b></li>
                         </ul>
@@ -5427,7 +5427,7 @@ def add_mobile_base(robot):
 
                         <div class="vim_indicator current-visible fragment" data-fragment-index="2"
                          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
-                            <ul>
+                            <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li><b class="itext">Mode 0:</b> go to the first pose to start approaching the counter;</li>
                             <li><b class="itext">Mode 1:</b> move forward a little bit and grab the first tray;</li>
                             <li><b class="ttext">Mode 2: cautiously move back a little bit;</b></li>
@@ -5436,7 +5436,7 @@ def add_mobile_base(robot):
 
                         <div class="vim_indicator current-visible fragment" data-fragment-index="3"
                          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
-                            <ul>
+                            <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li><b class="itext">Mode 0:</b> go to the first pose to start approaching the counter;</li>
                             <li><b class="itext">Mode 1:</b> move forward a little bit and grab the first tray;</li>
                             <li><b class="itext">Mode 2:</b> cautiously move back a little bit;</li>
@@ -5446,7 +5446,7 @@ def add_mobile_base(robot):
 
                         <div class="vim_indicator current-visible fragment" data-fragment-index="4"
                          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
-                            <ul>
+                            <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li><b class="itext">Mode 0:</b> go to the first pose to start approaching the counter;</li>
                             <li><b class="itext">Mode 1:</b> move forward a little bit and grab the first tray;</li>
                             <li><b class="itext">Mode 2:</b> cautiously move back a little bit;</li>
@@ -5457,7 +5457,7 @@ def add_mobile_base(robot):
 
                         <div class="vim_indicator current-visible fragment" data-fragment-index="5"
                          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
-                            <ul>
+                            <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li><b class="itext">Mode 0:</b> go to the first pose to start approaching the counter;</li>
                             <li><b class="itext">Mode 1:</b> move forward a little bit and grab the first tray;</li>
                             <li><b class="itext">Mode 2:</b> cautiously move back a little bit;</li>
@@ -5470,7 +5470,7 @@ def add_mobile_base(robot):
 
                         <div class="vim_indicator current-visible fragment" data-fragment-index="6"
                          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
-                            <ul>
+                            <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li><b class="itext">Mode 0:</b> go to the first pose to start approaching the counter;</li>
                             <li><b class="itext">Mode 1:</b> move forward a little bit and grab the first tray;</li>
                             <li><b class="itext">Mode 2:</b> cautiously move back a little bit;</li>
@@ -5484,7 +5484,7 @@ def add_mobile_base(robot):
 
                         <div class="vim_indicator current-visible fragment" data-fragment-index="7"
                          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
-                            <ul>
+                            <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li><b class="itext">Mode 0:</b> go to the first pose to start approaching the counter;</li>
                             <li><b class="itext">Mode 1:</b> move forward a little bit and grab the first tray;</li>
                             <li><b class="itext">Mode 2:</b> cautiously move back a little bit;</li>
@@ -5500,7 +5500,7 @@ def add_mobile_base(robot):
 
                         <div class="vim_indicator current-visible fragment" data-fragment-index="8"
                          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
-                            <ul>
+                            <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li><b class="itext">Mode 0:</b> go to the first pose to start approaching the counter;</li>
                             <li><b class="itext">Mode 1:</b> move forward a little bit and grab the first tray;</li>
                             <li><b class="itext">Mode 2:</b> cautiously move back a little bit;</li>
@@ -5516,7 +5516,7 @@ def add_mobile_base(robot):
 
                         <div class="vim_indicator current-visible fragment" data-fragment-index="9"
                          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
-                            <ul>
+                            <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li><b class="itext">Mode 0:</b> go to the first pose to start approaching the counter;</li>
                             <li><b class="itext">Mode 1:</b> move forward a little bit and grab the first tray;</li>
                             <li><b class="itext">Mode 2:</b> cautiously move back a little bit;</li>
@@ -5533,7 +5533,7 @@ def add_mobile_base(robot):
 
                         <div class="vim_indicator current-visible fragment" data-fragment-index="10"
                          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
-                            <ul>
+                            <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li><b class="itext">Mode 0:</b> go to the first pose to start approaching the counter;</li>
                             <li><b class="itext">Mode 1:</b> move forward a little bit and grab the first tray;</li>
                             <li><b class="itext">Mode 2:</b> cautiously move back a little bit;</li>
@@ -5550,7 +5550,7 @@ def add_mobile_base(robot):
 
                         <div class="vim_indicator current-visible fragment" data-fragment-index="11"
                          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
-                            <ul>
+                            <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li><b class="itext">Mode 0:</b> go to the first pose to start approaching the counter;</li>
                             <li><b class="itext">Mode 1:</b> move forward a little bit and grab the first tray;</li>
                             <li><b class="itext">Mode 2:</b> cautiously move back a little bit;</li>
@@ -5713,7 +5713,7 @@ def add_mobile_base(robot):
                         <div style="position:absolute; width: 50%; ">
 
                         
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>
                                 We will split the code into two. Here is the first part, that assembles 
                                 the scenario:
@@ -5928,7 +5928,7 @@ sim.add(all_humans)
                         <div style="width: 100%; ">
 
                         
-                        <ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>
                                 Here is the main code:
                             </li>     
@@ -6448,6 +6448,87 @@ plt.show()
                     </div>
                 </div>
             </section>
+
+
+
+
+       <section style="display: flex; flex-direction: column; height: 100vh; width: 100%;">
+
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CASE STUDIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 2: JOINT PLOTS</b>
+                </h3>
+              
+                <!-- Container below headers -->
+                <div style="flex-grow: 1; display: flex; flex-direction: column; width: 100%;">
+              
+                  <!-- Top 20% -->
+                  <div style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%; position: relative; ">
+                    
+
+                    <span>Note that joint limit is achieved in several situations.</span>
+                   
+                    
+                  </div>
+              
+                  <!-- Bottom 80% -->
+                  <div style="flex: 1; width: 100%; position: relative; ">
+                    
+
+
+              
+                      <img src="presentation/images/part3/image41.svg"
+                           style="width: 85%; height: 85%; object-fit: contain;">
+                   
+
+                  </div>
+                </div>
+              
+              </section>
+
+
+       <section style="display: flex; flex-direction: column; height: 100vh; width: 100%;">
+
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CASE STUDIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 2: VELOCITY PLOTS</b>
+                </h3>
+              
+                <!-- Container below headers -->
+                <div style="flex-grow: 1; display: flex; flex-direction: column; width: 100%;">
+              
+                  <!-- Top 20% -->
+                  <div style="flex: 1; min-width: 300px; font-size: 1.5vw; text-align: left; display: flex; align-items: start; height: 100%; position: relative; ">
+                    
+
+                    <span>Here are the velocity plots:</span>
+                   
+                    
+                  </div>
+              
+                  <!-- Bottom 80% -->
+                  <div style="flex: 1; width: 100%; position: relative; ">
+                    
+
+
+              
+                      <img src="presentation/images/part3/image42.svg"
+                           style="width: 85%; height: 85%; object-fit: contain;">
+                   
+
+                  </div>
+                </div>
+              
+              </section>
+
+
+
+
+
 
             <style>
 
