@@ -1487,6 +1487,16 @@ b = np.matrix([1.0,-0.3]).T
 u = ub.Utils.solve_qp(H, f, A, b)
 
 print("u = "+str(u.T)+"^T")
+
+#We can also add equality constraints. Lets say u1+u2 = 0
+
+A_eq = np.matrix([1.0,1.0,0.])
+b_eq = np.matrix([0.])
+
+u = ub.Utils.solve_qp(H, f, A, b, A_eq, b_eq)
+
+print("u = "+str(u.T)+"^T")
+
 </code></pre>
 
                         </div>
@@ -3600,7 +3610,7 @@ plt.show()
 
                         <a href="presentation/part3.html#/55"><b
                                 class="hlink">Collision avoidance between robot and environment:</b></a>
-                        $$\frac{\partial B^{RO}_{rw}}{\partial q}(q)u \geq -\eta B^{RO}_{rw}(q) \ , \ r=1,..,R , w = 1,...,W$$
+                        $$\frac{\partial B^{RO}_{rw}}{\partial q}(q)u \geq -\eta B^{RO}_{rw}(q) \ , \ r=1,..,R; w = 1,...,W$$
 
                         <a href="presentation/part3.html#/57"><b
                                 class="hlink">Collision avoidance between disk and environment (only when holding disk):</b></a>
@@ -4594,11 +4604,12 @@ def add_mobile_base(robot):
                         <div style="position:absolute; width: 50%; ">
 
                         <ul>
-                            <li>We have three types of collision avoidance:<br><br>
+                            <li>We have four types of collision avoidance:<br><br>
                                 <ul>
                                     <li>(a) Between the robot (and eventually the tray) and static obstacles (tables and counter);</li><br>
                                     <li>(b) Between the robot (and eventually the tray) and moving obstacles (human);</li><br>
-                                    <li>(c) Between the tray and the robot;</li>
+                                    <li>(c) Between the tray and the robot;</li><br>
+                                    <li>(d) Between the robot and itself (autocollision);</li>
                                 </ul>
                             </li><br>
                             <li>
@@ -4632,7 +4643,7 @@ def add_mobile_base(robot):
                     CASE STUDIES
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    <b class="ttext">EXAMPLE 2: COLLISION AVOIDANCE</b>
+                    <b class="ttext">EXAMPLE 2: COLLISION AVOIDANCE (WITH HUMANS)</b>
                 </h3>
                 <div
                     style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
@@ -4676,7 +4687,7 @@ def add_mobile_base(robot):
                     CASE STUDIES
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    <b class="ttext">EXAMPLE 2: COLLISION AVOIDANCE</b>
+                    <b class="ttext">EXAMPLE 2: COLLISION AVOIDANCE (WITH HUMANS)</b>
                 </h3>
                 <div
                     style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
@@ -4730,7 +4741,7 @@ def add_mobile_base(robot):
                     CASE STUDIES
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    <b class="ttext">EXAMPLE 2: COLLISION AVOIDANCE</b>
+                    <b class="ttext">EXAMPLE 2: COLLISION AVOIDANCE (WITH TRAY)</b>
                 </h3>
                 <div
                     style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
@@ -4740,7 +4751,7 @@ def add_mobile_base(robot):
 
                         <ul>
                             <li>
-                                In the case (c), we can use the distance \(D^{RT}_{\upsilon}(q)\) between the robot's \(r^{th}\) object and 
+                                In the case (c), we can use the distance \(D^{RT}_{v}(q)\) between the robot's \(r^{th}\) object and 
                                 the tray to define the CBF:
                                 <b class="itext">$$B^{RT}_r(q) = D^{RT}_r(q)-\delta .$$</b>
                             </li>
@@ -4771,6 +4782,105 @@ def add_mobile_base(robot):
                             
                                 <div style="width: 100%">
                                     <img src="presentation/images/part3/image26.svg"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section> 
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CASE STUDIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 2: COLLISION AVOIDANCE (WITH ITSELF)</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 6; min-width: 300px; font-size: 1.1vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul>
+                            <li>
+                                In the case (d), we can use the distance \(D^{RR}_{v}(q)\) between the robot's \(r^{th}\) object and 
+                                \(s^{th}\) object:
+                                <b class="itext">$$B^{RR}_{rs}(q) = D^{RR}_{rs}(q)-\delta .$$</b>
+                            </li>
+                            <li><b class="itext">Be careful though</b>: we dont need to include collision constraints for objects \(r,s\) that are attached to the 
+                                same link (the distance between them is going to be constant). 
+
+                            </li><br>
+                            <li>
+                                Furthermore, we also dont have to include collision constraints between objects that lie on adjacent links (say link 1 an link 2, or 
+                                link 4 and link 5). This is because the collision between link \(i\) and \(i+1\) is <b class="itext">entirely dependent on the joint \(i\)</b> 
+                                alone. Thus, <b class="itext">joint limits</b> are good enough to handle this.
+                            </li>
+                        </ul>
+
+
+
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 5; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 5; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image27.svg"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section> 
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CASE STUDIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 2: COLLISION AVOIDANCE (WITH ITSELF)</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 6; min-width: 300px; font-size: 1.1vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul>
+                            <li>
+                                In fact, in many manipulators, the manufacturer's joint limits are designed to, among other things, minimize 
+                                auto-collision as much as possible. Franka's geometry, however, make it particularly prone for collision.
+                            </li><br>
+                            <li>The Jacobian can be computed as follows. Let \(J^c_v(q),J^c_{\omega}(q)\) the geometric Jacobian of the frame in which the \(c^{th}\) 
+                                object is attached to, and \(s_c\) its center. Furthermore, let \(a^*_{cd}\) and \(a^*_{dc}\) be the witness points in the 
+                                object in the \(c^{th}\) and \(d^{th}\) robot's objects, respectively. Then:
+                                <b class="itext">$$\frac{\partial B^{RR}_{rs}}{\partial q}(q) = \frac{J_{rs}^{RR}(q)+J_{sr}^{RR}(q)}{ D^{RR}_{rs}(q)}  $$</b>
+                                in which:
+                                <b class="itext">$$J_{cd}^{RR}(q) = (a^*_{cd}(q)-a_{dc}^*(q))^{\top}J_v^c(q) +  $$</b>
+                                <b class="itext">$$\ \ \ \ \ \ \ \ \ \Big( (a^*_{cd}(q)-s_c(q)) \times (a^*_{cd}(q)-a_{dc}^*(q)) \Big)^{\top}J^c_w(q)$$</b>
+                            </li>
+                            <li>The UAIBot's function <b class="itext">compute_dist_auto</b> will take care of that for you!</li>
+                        </ul>
+
+
+
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 5; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 5; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image27.svg"
                                         style="max-width: 80%; height: auto; max-height: 60vh;">
                                 </div>
                         </div>
@@ -4822,7 +4932,7 @@ def add_mobile_base(robot):
                         <div style="flex: 4; flex-direction: row">
                             
                                 <div style="width: 100%">
-                                    <img src="presentation/images/part3/image27.svg"
+                                    <img src="presentation/images/part3/image28.svg"
                                         style="max-width: 80%; height: auto; max-height: 60vh;">
                                 </div>
                         </div>
@@ -4875,7 +4985,7 @@ def add_mobile_base(robot):
                         <div style="flex: 4; flex-direction: row">
                             
                                 <div style="width: 100%">
-                                    <img src="presentation/images/part3/image27.svg"
+                                    <img src="presentation/images/part3/image28.svg"
                                         style="max-width: 80%; height: auto; max-height: 60vh;">
                                 </div>
                         </div>
@@ -4923,7 +5033,7 @@ def add_mobile_base(robot):
                         <div style="flex: 4; flex-direction: row">
                             
                                 <div style="width: 100%">
-                                    <img src="presentation/images/part3/image27.svg"
+                                    <img src="presentation/images/part3/image28.svg"
                                         style="max-width: 80%; height: auto; max-height: 60vh;">
                                 </div>
                         </div>
@@ -4976,7 +5086,7 @@ def add_mobile_base(robot):
                         <div style="flex: 4; flex-direction: row">
                             
                                 <div style="width: 100%">
-                                    <img src="presentation/images/part3/image27.svg"
+                                    <img src="presentation/images/part3/image28.svg"
                                         style="max-width: 80%; height: auto; max-height: 60vh;">
                                 </div>
                         </div>
@@ -5026,7 +5136,7 @@ def add_mobile_base(robot):
                         <div style="flex: 4; flex-direction: row">
                             
                                 <div style="width: 100%">
-                                    <img src="presentation/images/part3/image27.svg"
+                                    <img src="presentation/images/part3/image28.svg"
                                         style="max-width: 80%; height: auto; max-height: 60vh;">
                                 </div>
                         </div>
@@ -5071,7 +5181,7 @@ def add_mobile_base(robot):
                         <div style="flex: 4; flex-direction: row">
                             
                                 <div style="width: 100%">
-                                    <img src="presentation/images/part3/image27.svg"
+                                    <img src="presentation/images/part3/image28.svg"
                                         style="max-width: 80%; height: auto; max-height: 60vh;">
                                 </div>
                         </div>
@@ -5208,7 +5318,7 @@ def add_mobile_base(robot):
 
                         <a href="presentation/part3.html#/55"><b
                                 class="hlink">Collision avoidance between robot and static environment:</b></a>
-                        $$\frac{\partial B^{RO}_{rw}}{\partial q}(q)u \geq -\eta B^{RO}_{rw}(q) \ , \ r=1,..,R , w = 1,...,W$$
+                        $$\frac{\partial B^{RO}_{rw}}{\partial q}(q)u \geq -\eta B^{RO}_{rw}(q) \ , \ r=1,..,R; w = 1,...,W$$
 
                         <a href="presentation/part3.html#/57"><b
                                 class="hlink">Collision avoidance between tray and static environment (only when holding it):</b></a>
@@ -5222,7 +5332,7 @@ def add_mobile_base(robot):
                         style="flex: 5; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
                         <div style="flex: 4; flex-direction: row">
                         <br><br>
-                        <div style="width: 100%">
+                        <div style="width: 80%">
                             <iframe src="presentation/images/part3/image24.png" width="550" height="580"
                                 style="border: none;"></iframe>
                         </div>
@@ -5244,24 +5354,29 @@ def add_mobile_base(robot):
                         style="flex: 6; min-width: 300px; font-size: 1.0vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
-                        $$\min_{u} \ \ \left\|\frac{\partial r}{\partial q}(q)+Kr(q)\right\|^2 + \epsilon \|u\|^2 \ \ \mbox{subject to}$$
 
                         <a href="presentation/part3.html#/70"><b
                                 class="hlink">Collision avoidance between robot and moving humans:</b></a>
-                        $$\frac{\partial B^{RH}_{rh}}{\partial q}(q,t)u \geq -\eta B^{RH}_{rh}(q)-\frac{\partial B^{RH}_{rh}}{\partial t}(q,t)  \ , \ r=1,..,R , ... , h=1,2$$
+                        $$\frac{\partial B^{RH}_{rh}}{\partial q}(q,t)u \geq -\eta B^{RH}_{rh}(q)-\frac{\partial B^{RH}_{rh}}{\partial t}(q,t)  \ , \ r=1,..,R; \  h=1,2$$
 
                         <a href="presentation/part3.html#/71"><b
                                 class="hlink">Collision avoidance between tray and moving humans (only when holding tray):</b></a>
                         $$\frac{\partial B^{TH}_{h}}{\partial q}(q,t)u \geq -\eta B^{TH}_{h}(q)-\frac{\partial B^{TH}_{h}}{\partial t}(q,t)  \ , \ h=1,2$$
 
-
+                        
                         <a href="presentation/part3.html#/71"><b
                                 class="hlink">Collision avoidance between robot and tray (dont put here objects at the end of the kinematic chain that are close
                                  to the tray but never are going to collide):</b></a>
                         $$\frac{\partial B^{RD}_{r}}{\partial q}(q)u \geq -\eta B^{RD}_{r}(q) \ , \   r = 1,...,R'$$
 
-                        <a href="presentation/part3.html#/74"><b
-                                class="hlink">Tray parallel to the ground:</b></a>
+ 
+                        <a href="presentation/part3.html#/73"><b
+                                class="hlink">Collision avoidance between robot and itself:</b></a>
+                        $$\frac{\partial B^{RR}_{rs}}{\partial q}(q)u \geq -\eta B^{RR}_{rs}(q) \ , \ r = 1,...,R; \ s=1,...,R; \  |r-s|>1$$
+
+
+                        <a href="presentation/part3.html#/75"><b
+                                class="hlink">Tray parallel to the ground (only when holding tray):</b></a>
                         $$\frac{\partial r_{ox}}{\partial q}(q)u = -K_{ox}r_{ox}(q).$$
 
 
@@ -5272,7 +5387,7 @@ def add_mobile_base(robot):
                         style="flex: 5; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
                         <div style="flex: 4; flex-direction: row">
                         <br><br>
-                        <div style="width: 100%">
+                        <div style="width: 80%">
                             <iframe src="presentation/images/part3/image24.png" width="550" height="580"
                                 style="border: none;"></iframe>
                         </div>
@@ -5281,44 +5396,304 @@ def add_mobile_base(robot):
                 </div>
             </section>
 
+
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     CASE STUDIES
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    <b class="ttext">EXAMPLE 2: OPERATION MODES</b>
+                    <b class="ttext">EXAMPLE 2: MODES OF OPERATION</b>
                 </h3>
                 <div
                     style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
                     <div
-                        style="flex: 1; min-width: 300px; font-size: 1.2vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        style="flex: 6; min-width: 300px; font-size: 1.2vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
-                        <ul>
-                            <li>
-                                As before, we have different operation modes.
-                            </li><br>
 
+                        <div class="vim_indicator current-visible fragment" data-fragment-index="0"
+                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                            <ul>
+                            <li><b class="ttext">Mode 0:go to the first pose to start approaching the counter;</b> </li>
                         </ul>
+                        </div>
+                        
+                            
+
+                        <div class="vim_indicator current-visible fragment" data-fragment-index="1"
+                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                            <ul>
+                            <li><b class="itext">Mode 0:</b> go to the first pose to start approaching the counter;</li>
+                            <li><b class="ttext">Mode 1: move forward a little bit and grab the first tray;</b></li>
+                        </ul>
+                        </div>
+
+                        <div class="vim_indicator current-visible fragment" data-fragment-index="2"
+                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                            <ul>
+                            <li><b class="itext">Mode 0:</b> go to the first pose to start approaching the counter;</li>
+                            <li><b class="itext">Mode 1:</b> move forward a little bit and grab the first tray;</li>
+                            <li><b class="ttext">Mode 2: cautiously move back a little bit;</b></li>
+                        </ul>
+                        </div>
+
+                        <div class="vim_indicator current-visible fragment" data-fragment-index="3"
+                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                            <ul>
+                            <li><b class="itext">Mode 0:</b> go to the first pose to start approaching the counter;</li>
+                            <li><b class="itext">Mode 1:</b> move forward a little bit and grab the first tray;</li>
+                            <li><b class="itext">Mode 2:</b> cautiously move back a little bit;</li>
+                            <li><b class="ttext">Mode 3: go close to the first table;</b></li>
+                        </ul>
+                        </div>
+
+                        <div class="vim_indicator current-visible fragment" data-fragment-index="4"
+                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                            <ul>
+                            <li><b class="itext">Mode 0:</b> go to the first pose to start approaching the counter;</li>
+                            <li><b class="itext">Mode 1:</b> move forward a little bit and grab the first tray;</li>
+                            <li><b class="itext">Mode 2:</b> cautiously move back a little bit;</li>
+                            <li><b class="itext">Mode 3:</b> go close to the first table;</li>
+                            <li><b class="ttext">Mode 4: move forward a little bit, deliver the tray;</b></li>   
+                        </ul>
+                        </div>
+
+                        <div class="vim_indicator current-visible fragment" data-fragment-index="5"
+                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                            <ul>
+                            <li><b class="itext">Mode 0:</b> go to the first pose to start approaching the counter;</li>
+                            <li><b class="itext">Mode 1:</b> move forward a little bit and grab the first tray;</li>
+                            <li><b class="itext">Mode 2:</b> cautiously move back a little bit;</li>
+                            <li><b class="itext">Mode 3:</b> go close to the first table;</li>
+                            <li><b class="itext">Mode 4:</b> move forward a little bit, deliver the tray;</li>
+                            <li><b class="ttext">Mode 5: cautiously move backward a little bit;</b></li>    
+                        </ul>
+                        </div>
+
+
+                        <div class="vim_indicator current-visible fragment" data-fragment-index="6"
+                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                            <ul>
+                            <li><b class="itext">Mode 0:</b> go to the first pose to start approaching the counter;</li>
+                            <li><b class="itext">Mode 1:</b> move forward a little bit and grab the first tray;</li>
+                            <li><b class="itext">Mode 2:</b> cautiously move back a little bit;</li>
+                            <li><b class="itext">Mode 3:</b> go close to the first table;</li>
+                            <li><b class="itext">Mode 4:</b> move forward a little bit, deliver the tray;</li>
+                            <li><b class="itext">Mode 5:</b> cautiously move backward a little bit;</li>    
+                            <li><b class="ttext">Mode 6: go to the counter again, this time close to the second tray;</b></li>    
+                        </ul>
+                        </div>
+
+
+                        <div class="vim_indicator current-visible fragment" data-fragment-index="7"
+                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                            <ul>
+                            <li><b class="itext">Mode 0:</b> go to the first pose to start approaching the counter;</li>
+                            <li><b class="itext">Mode 1:</b> move forward a little bit and grab the first tray;</li>
+                            <li><b class="itext">Mode 2:</b> cautiously move back a little bit;</li>
+                            <li><b class="itext">Mode 3:</b> go close to the first table;</li>
+                            <li><b class="itext">Mode 4:</b> move forward a little bit, deliver the tray;</li>
+                            <li><b class="itext">Mode 5:</b> cautiously move backward a little bit;</li>    
+                            <li><b class="itext">Mode 6:</b> go to the counter again, this time close to the second tray;</li>
+                            <li><b class="ttext">Mode 7: move forward a little bit, get the tray;</b></li>    
+                        </ul>
+                        </div>
 
 
 
+                        <div class="vim_indicator current-visible fragment" data-fragment-index="8"
+                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                            <ul>
+                            <li><b class="itext">Mode 0:</b> go to the first pose to start approaching the counter;</li>
+                            <li><b class="itext">Mode 1:</b> move forward a little bit and grab the first tray;</li>
+                            <li><b class="itext">Mode 2:</b> cautiously move back a little bit;</li>
+                            <li><b class="itext">Mode 3:</b> go close to the first table;</li>
+                            <li><b class="itext">Mode 4:</b> move forward a little bit, deliver the tray;</li>
+                            <li><b class="itext">Mode 5:</b> cautiously move backward a little bit;</li>    
+                            <li><b class="itext">Mode 6:</b> go to the counter again, this time close to the second tray;</li>
+                            <li><b class="itext">Mode 7:</b> move forward a little bit, get the tray;</li>   
+                            <li><b class="ttext">Mode 8: move backward a little bit;</b></li>   
+                        </ul>
+                        </div>
+
+
+                        <div class="vim_indicator current-visible fragment" data-fragment-index="9"
+                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                            <ul>
+                            <li><b class="itext">Mode 0:</b> go to the first pose to start approaching the counter;</li>
+                            <li><b class="itext">Mode 1:</b> move forward a little bit and grab the first tray;</li>
+                            <li><b class="itext">Mode 2:</b> cautiously move back a little bit;</li>
+                            <li><b class="itext">Mode 3:</b> go close to the first table;</li>
+                            <li><b class="itext">Mode 4:</b> move forward a little bit, deliver the tray;</li>
+                            <li><b class="itext">Mode 5:</b> cautiously move backward a little bit;</li>    
+                            <li><b class="itext">Mode 6:</b> go to the counter again, this time close to the second tray;</li>
+                            <li><b class="itext">Mode 7:</b> move forward a little bit, get the tray;</li>   
+                            <li><b class="itext">Mode 8:</b> move backward a little bit;</li>   
+                            <li><b class="ttext">Mode 9: go to the second table;</b></li>
+                        </ul>
+                        </div>
+
+
+                        <div class="vim_indicator current-visible fragment" data-fragment-index="10"
+                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                            <ul>
+                            <li><b class="itext">Mode 0:</b> go to the first pose to start approaching the counter;</li>
+                            <li><b class="itext">Mode 1:</b> move forward a little bit and grab the first tray;</li>
+                            <li><b class="itext">Mode 2:</b> cautiously move back a little bit;</li>
+                            <li><b class="itext">Mode 3:</b> go close to the first table;</li>
+                            <li><b class="itext">Mode 4:</b> move forward a little bit, deliver the tray;</li>
+                            <li><b class="itext">Mode 5:</b> cautiously move backward a little bit;</li>    
+                            <li><b class="itext">Mode 6:</b> go to the counter again, this time close to the second tray;</li>
+                            <li><b class="itext">Mode 7:</b> move forward a little bit, get the tray;</li>   
+                            <li><b class="itext">Mode 8:</b> move backward a little bit;</li>   
+                            <li><b class="itext">Mode 9:</b> go to the second table;</li>
+                            <li><b class="ttext">Mode 10: move forward a little bit, deliver the tray;</b></li>
+                        </ul>
+                        </div>
+
+                        <div class="vim_indicator current-visible fragment" data-fragment-index="11"
+                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                            <ul>
+                            <li><b class="itext">Mode 0:</b> go to the first pose to start approaching the counter;</li>
+                            <li><b class="itext">Mode 1:</b> move forward a little bit and grab the first tray;</li>
+                            <li><b class="itext">Mode 2:</b> cautiously move back a little bit;</li>
+                            <li><b class="itext">Mode 3:</b> go close to the first table;</li>
+                            <li><b class="itext">Mode 4:</b> move forward a little bit, deliver the tray;</li>
+                            <li><b class="itext">Mode 5:</b> cautiously move backward a little bit;</li>    
+                            <li><b class="itext">Mode 6:</b> go to the counter again, this time close to the second tray;</li>
+                            <li><b class="itext">Mode 7:</b> move forward a little bit, get the tray;</li>   
+                            <li><b class="itext">Mode 8:</b> move backward a little bit;</li>   
+                            <li><b class="itext">Mode 9:</b> go to the second table;</li>
+                            <li><b class="itext">Mode 10:</b> move forward a little bit, deliver the tray;</li>
+                            <li><b class="ttext">Mode 11: go to the starting pose;</b></li>    
+                        </ul>
+                        </div>
 
                         </div>
                     </div>
 
                     <div
-                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        style="flex: 5; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
                         <div style="flex: 4; flex-direction: row">
-                            
-                                <div style="width: 100%">
-                                    <img src="presentation/images/part3/image24.png"
-                                        style="max-width: 80%; height: auto; max-height: 60vh;">
-                                </div>
+
+                        
+                        <div style="position:absolute; width: 50%; ">
+
+                            <div class="vim_indicator current-visible fragment" data-fragment-index="0"
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                                
+                                    <div style="width: 100%">
+                                        <img src="presentation/images/part3/image29.png"
+                                            style="max-width: 70%; height: auto; max-height: 60vh;">
+                                    </div>
+                                    
+                            </div>
+                            <div class="vim_indicator current-visible fragment" data-fragment-index="1"
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                                
+                                    <div style="width: 100%">
+                                        <img src="presentation/images/part3/image30.png"
+                                            style="max-width: 70%; height: auto; max-height: 60vh;">
+                                    </div>
+                                    
+                            </div>
+                            <div class="vim_indicator current-visible fragment" data-fragment-index="2"
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                                
+                                    <div style="width: 100%">
+                                        <img src="presentation/images/part3/image31.png"
+                                            style="max-width: 70%; height: auto; max-height: 60vh;">
+                                    </div>
+                                    
+                            </div>
+                            <div class="vim_indicator current-visible fragment" data-fragment-index="3"
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                                
+                                    <div style="width: 100%">
+                                        <img src="presentation/images/part3/image32.png"
+                                            style="max-width: 70%; height: auto; max-height: 60vh;">
+                                    </div>
+                                    
+                            </div>
+                            <div class="vim_indicator current-visible fragment" data-fragment-index="4"
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                                
+                                    <div style="width: 100%">
+                                        <img src="presentation/images/part3/image33.png"
+                                            style="max-width: 70%; height: auto; max-height: 60vh;">
+                                    </div>
+                                    
+                            </div>
+                            <div class="vim_indicator current-visible fragment" data-fragment-index="5"
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                                
+                                    <div style="width: 100%">
+                                        <img src="presentation/images/part3/image34.png"
+                                            style="max-width: 70%; height: auto; max-height: 60vh;">
+                                    </div>
+                                    
+                            </div>
+                            <div class="vim_indicator current-visible fragment" data-fragment-index="6"
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                                
+                                    <div style="width: 100%">
+                                        <img src="presentation/images/part3/image35.png"
+                                            style="max-width: 70%; height: auto; max-height: 60vh;">
+                                    </div>
+                                    
+                            </div>
+                            <div class="vim_indicator current-visible fragment" data-fragment-index="7"
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                                
+                                    <div style="width: 100%">
+                                        <img src="presentation/images/part3/image36.png"
+                                            style="max-width: 70%; height: auto; max-height: 60vh;">
+                                    </div>
+                                    
+                            </div>
+                            <div class="vim_indicator current-visible fragment" data-fragment-index="8"
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                                
+                                    <div style="width: 100%">
+                                        <img src="presentation/images/part3/image37.png"
+                                            style="max-width: 70%; height: auto; max-height: 60vh;">
+                                    </div>
+                                    
+                            </div>
+                            <div class="vim_indicator current-visible fragment" data-fragment-index="9"
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                                
+                                    <div style="width: 100%">
+                                        <img src="presentation/images/part3/image38.png"
+                                            style="max-width: 70%; height: auto; max-height: 60vh;">
+                                    </div>
+                                    
+                            </div>
+                            <div class="vim_indicator current-visible fragment" data-fragment-index="10"
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                                
+                                    <div style="width: 100%">
+                                        <img src="presentation/images/part3/image39.png"
+                                            style="max-width: 70%; height: auto; max-height: 60vh;">
+                                    </div>
+                                    
+                            </div>
+                            <div class="vim_indicator current-visible fragment" data-fragment-index="11"
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                                
+                                    <div style="width: 100%">
+                                        <img src="presentation/images/part3/image40.png"
+                                            style="max-width: 70%; height: auto; max-height: 60vh;">
+                                    </div>
+                                    
+                            </div>
+
+                        </div>
+
                         </div>
                     </div>
                 </div>
-            </section> 
+            </section>
 
             <style>
 

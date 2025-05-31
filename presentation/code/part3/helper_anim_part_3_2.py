@@ -17,10 +17,9 @@ def add_mobile_base(robot):
     
     links_new.append(ub.Link(0,  0      , 0, -np.pi/2, 0, 1, []))
     links_new.append(ub.Link(1,  -np.pi/2, 0,  np.pi/2, 0, 1, []))
-    #links_new.append(ub.Link(2,  0, 0.21, 0, 0, 0, robot.list_object_3d_base+[ridgeback_3d_model]))
-    links_new.append(ub.Link(2,  0, 0.21, 0, 0, 0, robot.list_object_3d_base))
+    links_new.append(ub.Link(2,  0, 0.21, 0, 0, 0, robot.list_object_3d_base+[ridgeback_3d_model]))
+    #links_new.append(ub.Link(2,  0, 0.21, 0, 0, 0, robot.list_object_3d_base))
     
-    #links_new[-1].attach_col_object(ub.Box(width=0.7,depth=0.6,height=0.2, color='blue', opacity=0.7), ub.Utils.trn([0,0,-0.1]))
     links_new[-1].attach_col_object(ub.Cylinder(radius=0.38,height=0.2, color='blue', opacity=0.7), ub.Utils.trn([0,0,-0.1]))
     
         
@@ -95,16 +94,8 @@ def set_human_pose(_t, _human, _htm, walk_cycle):
  
  
 #Create some materials
-texture_wood = ub.Texture(
-            url='https://cdn.jsdelivr.net/gh/viniciusmgn/uaibot_content@master/contents/Textures/wood_1.jpg',
-            wrap_s='RepeatWrapping', wrap_t='RepeatWrapping', repeat=[4, 4])
-
-material_wood= ub.MeshMaterial(metalness=0, clearcoat=0, roughness=1.0, flat_shading=True, normal_scale=[0, 0], texture_map=texture_wood)
-
-glass_material = ub.MeshMaterial(opacity=1.0, transmission=0.98, roughness=0.2, metalness=0.0,                 
-    ior=1.52, reflectivity=0.7, env_map_intensity=1.2, refraction_ratio=0.985, clearcoat=0.0,                 
-    clearcoat_roughness=0.0, specular_intensity=1.0, color='white', emissive_intensity=0.0,        
-    flat_shading=False, normal_scale=[0.5, 0.5], side="DoubleSide")
+material_wood = ub.MeshMaterial.create_wood()
+material_glass= ub.MeshMaterial.create_glass()
 
 #Create the static obstacles    
 table_top_1 = ub.Cylinder(htm=ub.Utils.trn([-1.5,-1.5-0.4,0.8]), radius=0.7,height=0.02, mesh_material=material_wood)
@@ -118,13 +109,13 @@ all_obstacles=[table_top_1,table_bot_1,table_top_2,table_bot_2,platform]
 #Create the tray objects
 tray_1 = ub.Group(
     [ub.Cylinder(color='white',radius=0.13,height=0.02),
-     ub.Cylinder(htm=ub.Utils.trn([0,0,0.10]), radius=0.05,height=0.18, mesh_material=glass_material),
+     ub.Cylinder(htm=ub.Utils.trn([0,0,0.10]), radius=0.05,height=0.18, mesh_material=material_glass),
      ub.Cylinder(htm=ub.Utils.trn([0,0,0.08]), radius=0.04,height=0.12, color='red')]
 , htm = ub.Utils.trn([-1.9,2.3,0.81]))
 
 tray_2 = ub.Group(
     [ub.Cylinder(color='white',radius=0.13,height=0.02),
-     ub.Cylinder(htm=ub.Utils.trn([0,0,0.10]), radius=0.05,height=0.18, mesh_material=glass_material),
+     ub.Cylinder(htm=ub.Utils.trn([0,0,0.10]), radius=0.05,height=0.18, mesh_material=material_glass),
      ub.Cylinder(htm=ub.Utils.trn([0,0,0.08]), radius=0.04,height=0.12, color='black')]
 , htm = ub.Utils.trn([-2.2,2.3,0.81]))
 
@@ -160,7 +151,9 @@ sim.add(ub.Frame(htm_tg_table_5, size=0.2))
 sim.add(ub.Frame(htm_tg_table_6, size=0.2))
 sim.add(ub.Frame(htm_tg_table_7, size=0.2))
 
-sim.set_parameters(load_screen_color="#191919", background_color="#191919", width=500, height=500, show_world_frame=True, show_grid=False, camera_type='perspective', camera_start_pose=[1.0,1.0,5.5,0,0,0,0.8])
+sim.set_parameters(load_screen_color="#191919", background_color="#191919", 
+                   width=500, height=500, show_world_frame=True, show_grid=False, camera_type='perspective', 
+                   camera_start_pose=[1.0,1.0,5.5,0,0,0,0.8], pixel_ratio=0.8)
 
 human_john_connor = create_human('blue')
 human_kyle_reese = create_human('red')

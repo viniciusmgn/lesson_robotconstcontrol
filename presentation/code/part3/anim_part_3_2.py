@@ -8,25 +8,46 @@ from helper_anim_part_3_2 import *
 #Parameters control
 param_eta_static = 0.2
 param_eta_human = 0.3
-param_eta_tray = 0.15 
+param_eta_tray = 0.15
+param_eta_auto = 0.15
 param_eps = 0.005
 param_k = 0.3
 param_kr = 1.0
 param_kox = 0.3
 param_max_qdot = 1.5
-param_obs_delta = 0.01
-param_joint_delta = 2*np.pi/180
-param_human_delta = 0.3
-param_tray_delta = 0.01
-param_tol_error = 0.007
+param_tol_error = 0.007   
+param_decay_alpha = 0.9
+param_min_alpha = 0.02
 
-#Parameters distance computation
-param_h_dist = 0.05
-param_eps_dist = 0.02
-param_tol_dist = 1e-5
-param_no_iter_max_dist = 2000
+#Parameters distance computation and safety
+param_no_iter_max_dist = 3000
 param_max_dist_static = 0.6
 param_max_dist_human = 2.5
+param_joint_delta = 2*np.pi/180
+param_use_smooth_dist = True
+param_use_pc = False
+
+
+if param_use_smooth_dist:
+    #When using smooth distances, all 'delta' 
+    #should be smaller, because smooth distances
+    #are smaller than Euclidean when close to obstacles
+    param_h_dist = 0.05
+    param_eps_dist = 0.02
+    param_tol_dist = 1e-6
+    param_obs_delta = 0.01
+    param_human_delta = 0.3
+    param_tray_delta = 0.01
+    param_auto_delta = 0.001
+else:
+    param_h_dist = 1e-9
+    param_eps_dist = 1e-9
+    param_tol_dist = 1e-5
+    param_obs_delta = 0.05
+    param_human_delta = 0.4
+    param_tray_delta = 0.05
+    param_auto_delta = 0.015
+    
 
 #Parameters of the human movement
 param_human_T = 15
@@ -36,6 +57,13 @@ param_spd_human_2 = 0.2
 #Parameters simulation
 dt=0.02 
 param_t_max = 250
+
+
+
+##########################################################################
+
+
+#Definition of the control functions
 
 def fun_G(_r, _param_k):
     m = np.shape(_r)[0]
@@ -85,6 +113,8 @@ def control_fun(_q, _robot, _htm_tg, _obstacles, _humans, _tray, _vel_human, _ho
     A = np.matrix(np.zeros((0,no_joint)))
     b_basic = np.matrix(np.zeros((0,1)))
     
+
+    
     #### CONSTRAINT 1: JOINT LIMIT ####
 
     #Create the CBF constraint for (manipulator) joint limits
@@ -110,7 +140,7 @@ def control_fun(_q, _robot, _htm_tg, _obstacles, _humans, _tray, _vel_human, _ho
     #If the robot is holding the tray, the constraint for the orientation
     #of the axis should be a hard constraint, that is
     # (d/dt) r_{ox}(q) = -K_{ox}*ox should hold true
-       
+               
     if _holding_tray:
         y_d = _htm_tg[0:3,1]
         z_d = _htm_tg[0:3,2]
@@ -120,10 +150,14 @@ def control_fun(_q, _robot, _htm_tg, _obstacles, _humans, _tray, _vel_human, _ho
         b_rotx = -param_kox*r_rotx
         jac_r_rotx = -np.vstack(( (y_d.T*ub.Utils.S(x_e))*jac[3:6,:], (z_d.T*ub.Utils.S(x_e))*jac[3:6,:]))
         
-        #We implement the constraint A_eq *u = b_eq as
-        #A_eq * u <= b_eq, -Ae_q * u >= -b_eq (with a margin)
-        A = np.vstack((A, jac_r_rotx, -jac_r_rotx))
-        b_basic = np.vstack((b_basic, b_rotx-0.001, -b_rotx-0.001))
+        #Implement an equality constraint
+        
+        A_eq = jac_r_rotx
+        b_eq = np.matrix(b_rotx)
+    else:
+        A_eq = None
+        b_eq = None
+    
             
         
     #### CONSTRAINT 4: OBSTACLE AVOIDANCE WITH STATIC OBSTACLES ####
@@ -164,9 +198,9 @@ def control_fun(_q, _robot, _htm_tg, _obstacles, _humans, _tray, _vel_human, _ho
 
     
     
-    #### CONSTRAINT 5: COLLISION BETWEEN THE TRAY AND THE MANIPULATOR ####
+    #### CONSTRAINT 5: COLLISION AVOIDANCE BETWEEN THE TRAY AND THE MANIPULATOR ####
     
-    #Implement the collision between the tray and the body of the robot
+    #Implement the collision avoidance between the tray and the body of the robot
     #Disregard the last link (because this one is colliding with the tray)
     
     if _holding_tray and _not_delivering_tray:
@@ -195,9 +229,18 @@ def control_fun(_q, _robot, _htm_tg, _obstacles, _humans, _tray, _vel_human, _ho
                     pass            
             
  
-    #### CONSTRAINT 6: COLLISION BETWEEN ROBOT AND HUMANS ####
+    #### CONSTRAINT 6: COLLISION AVOIDANCE BETWEEN THE MANIPULATOR AND ITSELF ####
+    
+    ds = robot.compute_dist_auto(q=_q, h=param_h_dist, eps=param_eps_dist, 
+                                    tol=param_tol_dist, no_iter_max=param_no_iter_max_dist)
+    
+    
+    A = np.vstack((A, ds.jac_dist_mat))
+    b_basic = np.vstack((b_basic, -param_eta_auto*(ds.dist_vect-param_auto_delta)))
+                    
+    #### CONSTRAINT 7: COLLISION AVOIDANCE WITH MOVING OBSTACLES (HUMANS) ####
         
-    #Implement obstacle avoidance with moving obstacles (humans)
+    #Implement collision avoidance with moving obstacles (humans)
     
     #Initialize b_ff
     b_ff = np.matrix(np.zeros(np.shape(b_basic)))
@@ -253,18 +296,21 @@ def control_fun(_q, _robot, _htm_tg, _obstacles, _humans, _tray, _vel_human, _ho
                 b_ff = np.vstack((b_ff, -ff))        
             
         
-
+    ##### FINALLY TRY TO SOLVE #############
     #Try to compute the controller
     #If it fails, reduce the feedforward term
-    _alpha = 1.0
+    alpha = 1.0
     
     while cont:
     
         try:
-            u = ub.Utils.solve_qp(H, f, A, b_basic+_alpha*b_ff)
+            u = ub.Utils.solve_qp(H, f, A, b_basic+alpha*b_ff, A_eq, b_eq)
             return u, np.linalg.norm(r)
         except:
-            _alpha = 0.9*_alpha
+            alpha = param_decay_alpha*alpha
+            
+            if alpha < param_min_alpha:
+                return np.matrix(0*_robot.q), np.linalg.norm(r)
 
 
     
@@ -280,6 +326,8 @@ not_delivering_tray = [True,False,False,True, False, False, True, False, False, 
 
 #Initialize some variables
 q = np.matrix(robot.q)
+q[8]+=np.pi/2
+
 mode = 0
 cont = True
 y_h1 = 0.5
@@ -291,7 +339,20 @@ obj_to_hold = tray_1
 
 hist_u = []
 hist_error = []
+hist_mode = []
+hist_t = []
+hist_q = []
 
+
+if param_use_pc:
+    
+    all_points = []
+    for obs in all_obstacles:
+        all_points+=[np.matrix(p).T for p in obs.to_point_cloud(disc=0.04).points.T]
+        
+    all_obstacles = [ub.PointCloud(points=all_points, color='cyan', size=0.02)]
+    
+    
 while cont:
     
     
@@ -328,6 +389,10 @@ while cont:
     
     hist_u.append(dotq)
     hist_error.append(error)
+    hist_mode.append(mode)
+    hist_t.append(t)
+    hist_q.append(np.matrix(q))
+
     
     t += dt
     q+=dotq*dt
@@ -355,16 +420,95 @@ while cont:
 
     
     cont = cont and t < param_t_max 
+ 
+ 
+###############################################################
+# Plot graphs
+        
+# Plot joint positions
+fig = plt.figure(facecolor='#191919') 
+for i in range(10):
+    ax = plt.subplot(5, 2, i + 1, facecolor='#191919')
+    
+    ax.plot(hist_t, [q[i, 0] for q in hist_q], color='#81d41a', zorder=10)
+    ax.plot(hist_t, [robot.joint_limit[i, 0] + param_joint_delta for _ in hist_q], color='red')
+    ax.plot(hist_t, [robot.joint_limit[i, 1] - param_joint_delta for _ in hist_q], color='red')
+    
+    if i==0:
+        ax.set_title("x", color='white')
+    if i==1:
+        ax.set_title("y", color='white')
+    if i==2:
+        ax.set_title("theta", color='white')
+    if i>=3:    
+        ax.set_title("Manip joint " + str(i -2), color='white')
+    
+    ax.tick_params(colors='white')
+    ax.spines['bottom'].set_color('white')
+    ax.spines['top'].set_color('white')
+    ax.spines['left'].set_color('white')
+    ax.spines['right'].set_color('white')
+    ax.yaxis.label.set_color('white')
+    ax.xaxis.label.set_color('white')
+    ax.grid(True, color='white', linestyle=':', alpha=0.3)
+
+plt.tight_layout()
+
+
+# Plot joint velocities
+fig = plt.figure(facecolor='#191919')   
+for i in range(10):
+    ax = plt.subplot(5, 2, i + 1, facecolor='#191919')
+    
+    ax.plot(hist_t, [u[i, 0] for u in hist_u], color='#81d41a', zorder=10)
+    ax.plot(hist_t, [-param_max_qdot for _ in hist_u], color='red')
+    ax.plot(hist_t, [param_max_qdot for _ in hist_u], color='red')
+    
+    
+    if i==0:
+        ax.set_title("velocity x", color='white')
+    if i==1:
+        ax.set_title("velocity y", color='white')
+    if i==2:
+        ax.set_title("velocity theta", color='white')
+    if i>=3:    
+        ax.set_title("velocity joint " + str(i -2), color='white')
+    
+    ax.tick_params(colors='white')
+    ax.spines['bottom'].set_color('white')
+    ax.spines['top'].set_color('white')
+    ax.spines['left'].set_color('white')
+    ax.spines['right'].set_color('white')
+    ax.yaxis.label.set_color('white')
+    ax.xaxis.label.set_color('white')
+    ax.grid(True, color='white', linestyle=':', alpha=0.3)
+
+plt.tight_layout()
+plt.show()
+
+   
+# plt.figure()    
+# plt.plot([j for j in range(len(hist_norm_A))], [u[0,0] for u in hist_norm_A] )    
     
 plt.figure()    
 for i in range(0,3):
     plt.plot([j for j in range(len(hist_u))], [u[i,0] for u in hist_u])    
 
+plt.figure()    
+for i in range(0,3):
+    plt.plot([j for j in range(len(hist_u))], [u[i+3,0] for u in hist_u])    
 
+plt.figure()    
+for i in range(0,4):
+    plt.plot([j for j in range(len(hist_u))], [u[i+6,0] for u in hist_u]) 
+    
 plt.figure()    
 plt.plot([j for j in range(len(hist_error))], hist_error)  
     
+plt.figure()    
+plt.plot([j for j in range(len(hist_mode))], hist_mode)  
         
 plt.show()
 
-sim.save()
+sim.set_parameters(pixel_ratio=0.9)
+sim.save("/home/vinicius/Desktop/Aulas/Robot Constrained Control/presentation/images/part3/","part_3_4")

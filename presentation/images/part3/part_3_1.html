@@ -729,7 +729,7 @@ camera.updateProjectionMatrix();
 const renderer = new WebGLRenderer({ canvas, antialias: true });//Instantiate renderer
 renderer.physicallyCorrectLights = true;//Enable physically Correct Lights
 renderer.setSize(canvas.clientWidth, canvas.clientHeight);//Set render size
-renderer.setPixelRatio(window.devicePixelRatio);//Set pixel ratio
+renderer.setPixelRatio(window.devicePixelRatio*0.9);//Set pixel ratio
 
 let sceneElements = [];
 
