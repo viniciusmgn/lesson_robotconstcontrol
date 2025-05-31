@@ -1,3 +1,6 @@
+
+
+
 import numpy as np
 import uaibot as ub
 import matplotlib.pyplot as plt
@@ -25,13 +28,13 @@ param_max_dist_static = 0.6
 param_max_dist_human = 2.5
 param_joint_delta = 2*np.pi/180
 param_use_smooth_dist = True
-param_use_pc = False
+
 
 
 if param_use_smooth_dist:
     #When using smooth distances, all 'delta' 
     #should be smaller, because smooth distances
-    #are smaller than Euclidean when close to obstacles
+    #are smaller than Euclidean when objects are close
     param_h_dist = 0.05
     param_eps_dist = 0.02
     param_tol_dist = 1e-6
@@ -344,14 +347,6 @@ hist_t = []
 hist_q = []
 
 
-if param_use_pc:
-    
-    all_points = []
-    for obs in all_obstacles:
-        all_points+=[np.matrix(p).T for p in obs.to_point_cloud(disc=0.04).points.T]
-        
-    all_obstacles = [ub.PointCloud(points=all_points, color='cyan', size=0.02)]
-    
     
 while cont:
     
@@ -421,6 +416,7 @@ while cont:
     
     cont = cont and t < param_t_max 
  
+
  
 ###############################################################
 # Plot graphs
@@ -431,8 +427,10 @@ for i in range(10):
     ax = plt.subplot(5, 2, i + 1, facecolor='#191919')
     
     ax.plot(hist_t, [q[i, 0] for q in hist_q], color='#81d41a', zorder=10)
-    ax.plot(hist_t, [robot.joint_limit[i, 0] + param_joint_delta for _ in hist_q], color='red')
-    ax.plot(hist_t, [robot.joint_limit[i, 1] - param_joint_delta for _ in hist_q], color='red')
+    
+    if i>=3:
+        ax.plot(hist_t, [robot.joint_limit[i, 0] + param_joint_delta for _ in hist_q], color='red')
+        ax.plot(hist_t, [robot.joint_limit[i, 1] - param_joint_delta for _ in hist_q], color='red')
     
     if i==0:
         ax.set_title("x", color='white')
@@ -453,7 +451,7 @@ for i in range(10):
     ax.grid(True, color='white', linestyle=':', alpha=0.3)
 
 plt.tight_layout()
-
+fig.subplots_adjust(hspace=0.4)
 
 # Plot joint velocities
 fig = plt.figure(facecolor='#191919')   
@@ -461,8 +459,10 @@ for i in range(10):
     ax = plt.subplot(5, 2, i + 1, facecolor='#191919')
     
     ax.plot(hist_t, [u[i, 0] for u in hist_u], color='#81d41a', zorder=10)
-    ax.plot(hist_t, [-param_max_qdot for _ in hist_u], color='red')
-    ax.plot(hist_t, [param_max_qdot for _ in hist_u], color='red')
+    
+    if i>=3:
+        ax.plot(hist_t, [-param_max_qdot for _ in hist_u], color='red')
+        ax.plot(hist_t, [param_max_qdot for _ in hist_u], color='red')
     
     
     if i==0:
@@ -484,31 +484,12 @@ for i in range(10):
     ax.grid(True, color='white', linestyle=':', alpha=0.3)
 
 plt.tight_layout()
+fig.subplots_adjust(hspace=0.4)
+
 plt.show()
 
    
-# plt.figure()    
-# plt.plot([j for j in range(len(hist_norm_A))], [u[0,0] for u in hist_norm_A] )    
-    
-plt.figure()    
-for i in range(0,3):
-    plt.plot([j for j in range(len(hist_u))], [u[i,0] for u in hist_u])    
-
-plt.figure()    
-for i in range(0,3):
-    plt.plot([j for j in range(len(hist_u))], [u[i+3,0] for u in hist_u])    
-
-plt.figure()    
-for i in range(0,4):
-    plt.plot([j for j in range(len(hist_u))], [u[i+6,0] for u in hist_u]) 
-    
-plt.figure()    
-plt.plot([j for j in range(len(hist_error))], hist_error)  
-    
-plt.figure()    
-plt.plot([j for j in range(len(hist_mode))], hist_mode)  
-        
-plt.show()
 
 sim.set_parameters(pixel_ratio=0.9)
 sim.save("/home/vinicius/Desktop/Aulas/Robot Constrained Control/presentation/images/part3/","part_3_4")
+# %%
