@@ -4001,7 +4001,7 @@ import matplotlib.pyplot as plt
 param_eta = 0.6
 param_eps = 0.001
 param_k = 1.0
-param_max_qdot = 1.5
+param_max_dotq = 1.5
 param_obs_delta = 0.025 
 param_joint_delta = 2*np.pi/180
 dt=0.005
@@ -4085,7 +4085,7 @@ def fun_G(_r, _param_k):
        
     return out
 
-def compute_control(_q, _htm_tg, _all_obstacles, _is_handling_disk, _care_obstacles, _perturbation):
+def control_fun(_q, _htm_tg, _all_obstacles, _is_handling_disk, _care_obstacles, _perturbation):
     
     no_joint = np.shape(robot.q)[0]
     
@@ -4135,9 +4135,9 @@ def compute_control(_q, _htm_tg, _all_obstacles, _is_handling_disk, _care_obstac
     
     #Implement velocity limits
     A = np.vstack((A, np.identity(no_joint)))
-    b = np.vstack((b, -param_max_qdot*np.matrix(np.ones((no_joint,1))) ))  
+    b = np.vstack((b, -param_max_dotq*np.matrix(np.ones((no_joint,1))) ))  
     A = np.vstack((A, -np.identity(no_joint)))
-    b = np.vstack((b, -param_max_qdot*np.matrix(np.ones((no_joint,1))) ))      
+    b = np.vstack((b, -param_max_dotq*np.matrix(np.ones((no_joint,1))) ))      
     
     
     #Create the objective function
@@ -4178,7 +4178,7 @@ while cont:
     cont = i < param_iter_max
     
 
-    u, error_r = compute_control(q, htm_tg[mode], all_obstacles, is_handling_disk[mode], care_obstacles[mode], perturbation)
+    u, error_r = control_fun(q, htm_tg[mode], all_obstacles, is_handling_disk[mode], care_obstacles[mode], perturbation)
     
     print("Mode "+str(mode)+", error = "+str(round(error_r,3)))
     
@@ -4254,8 +4254,8 @@ for i in range(7):
     ax = plt.subplot(4, 2, i + 1, facecolor='#191919')
     
     ax.plot(hist_t, [u[i, 0] for u in hist_u], color='#81d41a', zorder=10)
-    ax.plot(hist_t, [-param_max_qdot for _ in hist_u], color='red')
-    ax.plot(hist_t, [param_max_qdot for _ in hist_u], color='red')
+    ax.plot(hist_t, [-param_max_dotq for _ in hist_u], color='red')
+    ax.plot(hist_t, [param_max_dotq for _ in hist_u], color='red')
     
     ax.set_title("Velocity " + str(i + 1), color='white')
     
@@ -5725,7 +5725,7 @@ import numpy as np
 import uaibot as ub
 
 ##IMPORTANT!###
-#Save this code as "helper_anim_part_3_2.py" or put it in a google colab cell 
+#Save this code as "helper_anim_part_3_ex2.py" or put it in a google colab cell 
 #and run it first
 
 #Add the mobile base to a manipulator
@@ -5940,7 +5940,7 @@ import uaibot as ub
 import matplotlib.pyplot as plt
 
 #You only need this if you are not using cells
-from helper_anim_part_3_2 import * 
+from helper_anim_part_3_ex2 import * 
 
     
 ###################################   
@@ -5953,7 +5953,7 @@ param_eps = 0.005
 param_k = 0.3
 param_kr = 1.0
 param_kox = 0.3
-param_max_qdot = 1.5
+param_max_dotq = 1.5
 param_tol_error = 0.007   
 param_decay_alpha = 0.9
 param_min_alpha = 0.02
@@ -6069,9 +6069,9 @@ def control_fun(_q, _robot, _htm_tg, _obstacles, _humans, _tray, _vel_human, _ho
     #Implement velocity limits. We will only implement velocity kimits
     #for the joint velocities
     A = np.vstack((A, I_ext))
-    b_basic = np.vstack((b_basic, -param_max_qdot*np.matrix(np.ones((no_joint-3,1))) ))  
+    b_basic = np.vstack((b_basic, -param_max_dotq*np.matrix(np.ones((no_joint-3,1))) ))  
     A = np.vstack((A, -I_ext))
-    b_basic = np.vstack((b_basic, -param_max_qdot*np.matrix(np.ones((no_joint-3,1))) ))   
+    b_basic = np.vstack((b_basic, -param_max_dotq*np.matrix(np.ones((no_joint-3,1))) ))   
         
     
     #### CONSTRAINT 3: TRAY PARALLEL TO THE GROUND ####
@@ -6397,8 +6397,8 @@ for i in range(10):
     ax.plot(hist_t, [u[i, 0] for u in hist_u], color='#81d41a', zorder=10)
     
     if i>=3:
-        ax.plot(hist_t, [-param_max_qdot for _ in hist_u], color='red')
-        ax.plot(hist_t, [param_max_qdot for _ in hist_u], color='red')
+        ax.plot(hist_t, [-param_max_dotq for _ in hist_u], color='red')
+        ax.plot(hist_t, [param_max_dotq for _ in hist_u], color='red')
     
     
     if i==0:
