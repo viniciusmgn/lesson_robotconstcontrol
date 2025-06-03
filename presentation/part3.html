@@ -3000,6 +3000,55 @@ plt.show()
                     CONTROL BARRIER FUNCTIONS
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">SECOND ORDER KINEMATIC CONTROL</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>
+                               There are some constraints that are of the form \(B(q,\dot{q}) \geq 0\) instead of 
+                               \(B(q) \geq 0\).
+                            </li><br>
+                            <li>
+                                For example, the constraint that norm of the velocity \(\dot{q}\) should be less than 
+                                \(1\).
+                            </li><br>
+                            <li>
+                                In this case, we can implement the original CBF constraint \(\frac{d}{dt}B(q,\dot{q}) \geq -\eta B(q,\dot{q})\):
+                                <b class="itext">$$\frac{\partial B}{\partial \dot{q}}(q,\dot{q})u + \frac{\partial B}{\partial q}(q,\dot{q})\dot{q} \geq -\eta B(q,\dot{q}). $$</b>
+                            </li><br>
+                            <li>For example, for \(B(q,\dot{q}) = 1-\|\dot{q}\|^2\):
+                                $$-2\dot{q}^{\top} u \geq -\eta(1-\|\dot{q}\|^2).$$
+                            </li>
+                        </ul>
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 4; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/main.png"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CONTROL BARRIER FUNCTIONS
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
                     <b class="ttext">EXAMPLE 6: SECOND ORDER WITH GVF</b>
                 </h3>
                 <div
@@ -3598,21 +3647,21 @@ plt.show()
 
                         $$\min_{u} \ \ \left\|\frac{\partial r}{\partial q}(q)+Kr(q)\right\|^2 + \epsilon \|u\|^2 \ \ \mbox{subject to}$$
 
-                        <a href="presentation/part3.html#/53"><b
+                        <a href="presentation/part3.html#/54"><b
                                 class="hlink">Joint limits:</b></a>
                         $$u_i \geq -\eta(q_i - \underline{q}_i) \ , \ i=1,..,N$$
                         $$-u_i \geq -\eta(\overline{q}_i - q_i) \ , \ i=1,..,N$$
 
-                        <a href="presentation/part3.html#/54"><b
+                        <a href="presentation/part3.html#/55"><b
                                 class="hlink">Velocity limits:</b></a>
                         $$u_i \geq \underline{u}_i \ , \ i=1,..,n$$
                         $$-u_i \geq -\overline{u}_i \ , \ i=1,..,n$$
 
-                        <a href="presentation/part3.html#/55"><b
+                        <a href="presentation/part3.html#/56"><b
                                 class="hlink">Collision avoidance between robot and environment:</b></a>
                         $$\frac{\partial B^{RO}_{rw}}{\partial q}(q)u \geq -\eta B^{RO}_{rw}(q) \ , \ r=1,..,R; w = 1,...,W$$
 
-                        <a href="presentation/part3.html#/57"><b
+                        <a href="presentation/part3.html#/58"><b
                                 class="hlink">Collision avoidance between disk and environment (only when holding disk):</b></a>
                         $$\frac{\partial B^{DO}_{w}}{\partial q}(q)u \geq -\eta B^{DO}_{w}(q) \ , \ w = 1,...,W$$
 
@@ -5305,21 +5354,21 @@ def add_mobile_base(robot):
 
                         $$\min_{u} \ \ \left\|\frac{\partial r}{\partial q}(q)+Kr(q)\right\|^2 + \epsilon \|u\|^2 \ \ \mbox{subject to}$$
 
-                        <a href="presentation/part3.html#/53"><b
+                        <a href="presentation/part3.html#/54"><b
                                 class="hlink">Joint limits (not for \(x, y\) and \(\theta\)):</b></a>
                         $$u_i \geq -\eta(q_i - \underline{q}_i) \ , \ i=4,..,N$$
                         $$-u_i \geq -\eta(\overline{q}_i - q_i) \ , \ i=4,..,N$$
 
-                        <a href="presentation/part3.html#/54"><b
+                        <a href="presentation/part3.html#/55"><b
                                 class="hlink">Velocity limits:</b></a>
                         $$u_i \geq \underline{u}_i \ , \ i=1,..,n$$
                         $$-u_i \geq -\overline{u}_i \ , \ i=1,..,n$$
 
-                        <a href="presentation/part3.html#/55"><b
+                        <a href="presentation/part3.html#/56"><b
                                 class="hlink">Collision avoidance between robot and static environment:</b></a>
                         $$\frac{\partial B^{RO}_{rw}}{\partial q}(q)u \geq -\eta B^{RO}_{rw}(q) \ , \ r=1,..,R; w = 1,...,W$$
 
-                        <a href="presentation/part3.html#/57"><b
+                        <a href="presentation/part3.html#/58"><b
                                 class="hlink">Collision avoidance between tray and static environment (only when holding it):</b></a>
                         $$\frac{\partial B^{TO}_{w}}{\partial q}(q)u \geq -\eta B^{TO}_{w}(q) \ , \ w = 1,...,W$$
 
@@ -5353,27 +5402,27 @@ def add_mobile_base(robot):
                         <div style="position:absolute; width: 50%; ">
 
 
-                        <a href="presentation/part3.html#/70"><b
+                        <a href="presentation/part3.html#/71"><b
                                 class="hlink">Collision avoidance between robot and moving humans:</b></a>
                         $$\frac{\partial B^{RH}_{rh}}{\partial q}(q,t)u \geq -\eta B^{RH}_{rh}(q)-\frac{\partial B^{RH}_{rh}}{\partial t}(q,t)  \ , \ r=1,..,R; \  h=1,2$$
 
-                        <a href="presentation/part3.html#/71"><b
+                        <a href="presentation/part3.html#/72"><b
                                 class="hlink">Collision avoidance between tray and moving humans (only when holding tray):</b></a>
                         $$\frac{\partial B^{TH}_{h}}{\partial q}(q,t)u \geq -\eta B^{TH}_{h}(q)-\frac{\partial B^{TH}_{h}}{\partial t}(q,t)  \ , \ h=1,2$$
 
                         
-                        <a href="presentation/part3.html#/71"><b
+                        <a href="presentation/part3.html#/73"><b
                                 class="hlink">Collision avoidance between robot and tray (dont put here objects at the end of the kinematic chain that are close
                                  to the tray but never are going to collide):</b></a>
                         $$\frac{\partial B^{RD}_{r}}{\partial q}(q)u \geq -\eta B^{RD}_{r}(q) \ , \   r = 1,...,R'$$
 
  
-                        <a href="presentation/part3.html#/73"><b
+                        <a href="presentation/part3.html#/74"><b
                                 class="hlink">Collision avoidance between robot and itself:</b></a>
                         $$\frac{\partial B^{RR}_{rs}}{\partial q}(q)u \geq -\eta B^{RR}_{rs}(q) \ , \ r = 1,...,R; \ s=1,...,R; \  |r-s|>1$$
 
 
-                        <a href="presentation/part3.html#/75"><b
+                        <a href="presentation/part3.html#/76"><b
                                 class="hlink">Tray parallel to the ground (only when holding tray):</b></a>
                         $$\frac{\partial r_{ox}}{\partial q}(q)u = -K_{ox}r_{ox}(q).$$
 

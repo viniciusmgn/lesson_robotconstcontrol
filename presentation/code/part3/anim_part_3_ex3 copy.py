@@ -1,5 +1,5 @@
 
-
+#%%
 
 import numpy as np
 import uaibot as ub
@@ -12,12 +12,16 @@ from helper_anim_part_3_ex3 import *
 param_k = 1.0 
 param_eta = 0.6 
 param_eta_v = 0.3
-param_v_max = 0.8 
+param_v_max = 0.3 #0.8
 param_a_max = 0.5
 param_radius = 0.25
 param_n_robots=9
 param_dist_interm = 0.15
 param_dist_final = 0.03
+
+param_h_dist = 0.2
+param_eps_dist = 0.01
+param_delta_dist = 0.01
 
 
 model_drone = ub.Model3D(
@@ -41,11 +45,11 @@ for i in range(param_n_robots):
 #Create the obstacles
 
 obs1 = ub.Box(htm=ub.Utils.trn([0,0,0.5]),width=1.0,depth=0.2,height=1.0)
-obs2 = ub.Box(htm=ub.Utils.trn([0.5+0.1,0.1,0.5]),width=0.2,depth=1.0,height=1.0)
+obs2 = ub.Box(htm=ub.Utils.trn([0.6,0.1,0.5]),width=0.2,depth=1.0,height=1.0)
 obs3 = ub.Box(htm=ub.Utils.trn([-1.0,-1.0,0.3]),width=0.4,depth=0.4,height=0.6)
 obs4 = ub.Box(htm=ub.Utils.trn([-1.0,1.0,0.2]),width=0.4,depth=0.4,height=0.4)
 obs5 = ub.Box(htm=ub.Utils.trn([0.6,-0.9,0.95]),width=0.2,depth=1.0,height=0.1)
-obs6 = ub.Box(htm=ub.Utils.trn([0.5+0.1,-1.4,0.5]),width=0.2,depth=0.2,height=1.0)
+obs6 = ub.Box(htm=ub.Utils.trn([0.6,-1.4,0.5]),width=0.2,depth=0.2,height=1.0)
 
 wallxp = ub.Box(htm=ub.Utils.trn([-2.0,0.,0.5]),width=0.05,depth=4.0,height=1.0)
 wallxn = ub.Box(htm=ub.Utils.trn([2.0,0.,0.5]),width=0.05,depth=4.0,height=1.0)
@@ -88,7 +92,7 @@ for i in range(param_n_robots):
 
             
             ball_drone_j = drones[j].list_of_objects[-1]
-            collided = ball_drone_i.compute_dist(ball_drone_j)[2] < 0.3
+            collided = ball_drone_i.compute_dist(ball_drone_j)[2] < param_radius
             j+=1
          
   
@@ -152,8 +156,6 @@ sim.set_parameters(pixel_ratio=0.9)
 
 
 
-dt = 0.01
-
 def dfun(_q, _i, _j):
     
     qi = _q[3*_i:3*(_i+1),:]
@@ -193,14 +195,12 @@ def jac_dfun(_q, _i, _j):
 def dofun(_q, _i, _pc):
     qi = _q[3*_i:3*(_i+1),:]
     
-    h=0.1
-    
-    return ub.Ball(htm=ub.Utils.trn(qi), radius=param_radius).compute_dist(obj = _pc, h=0.2, eps=0.01)[2]-0.01
+    return ub.Ball(htm=ub.Utils.trn(qi), radius=param_radius).compute_dist(obj = _pc, h=param_h_dist, eps=param_eps_dist)[2]-param_delta_dist
 
 def jac_dofun(_q, _i, _pc):
     
     qi = _q[3*_i:3*(_i+1),:]
-    pball, ppc, dist, _ = ub.Ball(htm=ub.Utils.trn(qi), radius=param_radius).compute_dist(obj = _pc, h=0.2, eps=0.01)
+    pball, ppc, dist, _ = ub.Ball(htm=ub.Utils.trn(qi), radius=param_radius).compute_dist(obj = _pc, h=param_h_dist, eps=param_eps_dist)
     
 
     n = param_n_robots
@@ -378,6 +378,35 @@ while cont:
 
 sim.save()
 # %%
+
+plt.figure()
+
+n = param_n_robots
+
+T = len(hist_dotq)
+
+fig, axes = plt.subplots(int(np.ceil(n/2)), 2, figsize=(8, 2.5 * n), sharex=True)
+axes = axes.flatten()
+
+if n == 1:
+    axes = [axes]
+
+for i in range(n):
+    axes[i].plot(hist_t, [u[3*i,0] for u in hist_dotq], color='red')
+    axes[i].plot(hist_t, [u[3*i+1,0] for u in hist_dotq], color='green')
+    axes[i].plot(hist_t, [u[3*i+2,0] for u in hist_dotq], color='blue')
+    axes[i].plot(hist_t, [param_v_max for t in hist_t], color='magenta')
+    axes[i].plot(hist_t, [-param_v_max for t in hist_t], color='magenta')
+    
+    
+    axes[i].set_ylabel(f'Group {i}')
+    axes[i].legend([f'{3*i}', f'{3*i+1}', f'{3*i+2}'])
+    axes[i].grid(True)
+
+axes[-1].set_xlabel('Time')
+plt.tight_layout()
+plt.show()
+
 
 plt.figure()
 
