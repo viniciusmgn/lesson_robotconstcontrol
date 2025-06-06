@@ -48,7 +48,7 @@ def simplify_path(_path, _pc, _radius, _bounds):
 
     return simplified
 
-def random_path_planner(_p_start, _p_goal, _pc, _radius, _bounds,  _max_steps=12000, _step_size=0.5):
+def random_path_planner(_p_start, _p_goal, _pc, _radius, _bounds,  _max_steps=16000, _step_size=0.5):
     path = [_p_start]
     current = _p_start.copy()
 

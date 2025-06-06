@@ -827,7 +827,7 @@
                            
                         </ul>
 
-<pre style="max-width:100%;"><code class="language-python" style="text-align:left;">
+<pre style="max-width:80%;"><code class="language-python" style="text-align:left;">
 import numpy as np
 import uaibot as ub
 import matplotlib.pyplot as plt
@@ -965,7 +965,7 @@ plt.show()
                 <div
                     style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
                     <div
-                        style="flex: 3; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        style="flex: 3; min-width: 300px; font-size: 1.25vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
@@ -3133,7 +3133,6 @@ fun_path = ub.Utils.interpolate(q_path_wp, is_closed = False)
 q_path = fun_path([i/n_sample for i in range(n_sample)])
 
 #Parameters
-kp = 0.5
 kv = 0.5
 eta = 0.8
 dt = 0.01
@@ -6669,7 +6668,65 @@ plt.show()
                     height: auto !important;
                     z-index: -1;
                 }
+
+                .copy-button {
+                position: absolute;
+                top: 0;
+                right: 0;
+                background-color: #272822;
+                color: #34eb5e;
+                border: none;
+                padding: 6px 10px;
+                font-size: 0.6em;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                border-top-right-radius: 4px;
+                border-bottom-left-radius: 4px;
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                }
+
+                .copy-button:hover {
+                background-color: #34eb5e;
+                color: #272822;
+                }
+                .copy-button svg {
+                width: 14px;
+                height: 14px;
+                fill: currentColor;
+                }
             </style>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                document.querySelectorAll('pre > code').forEach((codeBlock) => {
+                    const pre = codeBlock.parentElement;
+                    pre.style.position = "relative";
+
+                    const button = document.createElement("button");
+                    button.className = "copy-button";
+                    button.innerHTML = `
+                    <svg viewBox="0 0 24 24">
+                        <path d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 18H8V7h11v16z"/>
+                    </svg>
+                    <span>Copy</span>
+                    `;
+
+                    pre.appendChild(button);
+
+                    button.addEventListener("click", () => {
+                    navigator.clipboard.writeText(codeBlock.textContent).then(() => {
+                        const original = button.innerHTML;
+                        button.innerHTML = `<span>Copied!</span>`;
+                        setTimeout(() => {
+                        button.innerHTML = original;
+                        }, 2000);
+                    });
+                    });
+                });
+                });
+            </script>
 
             <script id="MathJax-script" async
                 src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
@@ -6691,7 +6748,7 @@ plt.show()
                     maxScale: 2.0,
                     plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealMenu],
                     slideNumber: true,
-                    viewDistance: 1
+                    viewDistance: 2
                 });
                 var frames = document.getElementsByTagName("iframe");
 
