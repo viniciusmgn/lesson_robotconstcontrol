@@ -414,7 +414,7 @@ def add_mobile_base(robot):
                 <div
                     style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
                     <div
-                        style="flex: 6; min-width: 300px; font-size: 1.1vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        style="flex: 12; min-width: 300px; font-size: 1.1vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
@@ -445,12 +445,16 @@ def add_mobile_base(robot):
                     </div>
 
                     <div
-                        style="flex: 5; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        style="flex: 1; min-width: 300px; font-size: 1.1vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                    </div>
+
+                    <div
+                        style="flex: 10; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
                         <div style="flex: 5; flex-direction: row">
                             
                                 <div style="width: 100%">
                                     <img src="presentation/images/part3/image26.svg"
-                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                        style="max-width: 100%; height: auto; max-height: 60vh;">
                                 </div>
                         </div>
                     </div>
@@ -974,21 +978,21 @@ def add_mobile_base(robot):
 
                         $$\min_{u} \ \ \left\|\frac{\partial r}{\partial q}(q)+Kr(q)\right\|^2 + \epsilon \|u\|^2 \ \ \mbox{subject to}$$
 
-                        <a href="presentation/part3.html#/54"><b
+                        <a href="presentation/part3_B.html#/4"><b
                                 class="hlink">Joint limits (not for \(x, y\) and \(\theta\)):</b></a>
                         $$u_i \geq -\eta(q_i - \underline{q}_i) \ , \ i=4,..,N$$
                         $$-u_i \geq -\eta(\overline{q}_i - q_i) \ , \ i=4,..,N$$
 
-                        <a href="presentation/part3.html#/55"><b
+                        <a href="presentation/part3_B.html#/5"><b
                                 class="hlink">Velocity limits:</b></a>
                         $$u_i \geq \underline{u}_i \ , \ i=1,..,n$$
                         $$-u_i \geq -\overline{u}_i \ , \ i=1,..,n$$
 
-                        <a href="presentation/part3.html#/56"><b
+                        <a href="presentation/part3_B.html#/6"><b
                                 class="hlink">Collision avoidance between robot and static environment:</b></a>
                         $$\frac{\partial B^{RO}_{rw}}{\partial q}(q)u \geq -\eta B^{RO}_{rw}(q) \ , \ r=1,..,R; w = 1,...,W$$
 
-                        <a href="presentation/part3.html#/58"><b
+                        <a href="presentation/part3_B.html#/8"><b
                                 class="hlink">Collision avoidance between tray and static environment (only when holding it):</b></a>
                         $$\frac{\partial B^{TO}_{w}}{\partial q}(q)u \geq -\eta B^{TO}_{w}(q) \ , \ w = 1,...,W$$
 
@@ -1022,27 +1026,27 @@ def add_mobile_base(robot):
                         <div style="position:absolute; width: 50%; ">
 
 
-                        <a href="presentation/part3.html#/71"><b
+                        <a href="presentation/part3_C.html#/6"><b
                                 class="hlink">Collision avoidance between robot and moving humans:</b></a>
                         $$\frac{\partial B^{RH}_{rh}}{\partial q}(q,t)u \geq -\eta B^{RH}_{rh}(q)-\frac{\partial B^{RH}_{rh}}{\partial t}(q,t)  \ , \ r=1,..,R; \  h=1,2$$
 
-                        <a href="presentation/part3.html#/72"><b
+                        <a href="presentation/part3_C.html#/7"><b
                                 class="hlink">Collision avoidance between tray and moving humans (only when holding tray):</b></a>
                         $$\frac{\partial B^{TH}_{h}}{\partial q}(q,t)u \geq -\eta B^{TH}_{h}(q)-\frac{\partial B^{TH}_{h}}{\partial t}(q,t)  \ , \ h=1,2$$
 
                         
-                        <a href="presentation/part3.html#/73"><b
+                        <a href="presentation/part3_C.html#/8"><b
                                 class="hlink">Collision avoidance between robot and tray (dont put here objects at the end of the kinematic chain that are close
                                  to the tray but never are going to collide):</b></a>
                         $$\frac{\partial B^{RD}_{r}}{\partial q}(q)u \geq -\eta B^{RD}_{r}(q) \ , \   r = 1,...,R'$$
 
  
-                        <a href="presentation/part3.html#/74"><b
+                        <a href="presentation/part3_C.html#/9"><b
                                 class="hlink">Collision avoidance between robot and itself:</b></a>
                         $$\frac{\partial B^{RR}_{rs}}{\partial q}(q)u \geq -\eta B^{RR}_{rs}(q) \ , \ r = 1,...,R; \ s=1,...,R; \  |r-s|>1$$
 
 
-                        <a href="presentation/part3.html#/76"><b
+                        <a href="presentation/part3_C.html#/11"><b
                                 class="hlink">Tray parallel to the ground (only when holding tray):</b></a>
                         $$\frac{\partial r_{ox}}{\partial q}(q)u = -K_{ox}r_{ox}(q).$$
 
@@ -2369,7 +2373,7 @@ plt.show()
                         const offset = 67;  // adjust as needed
                         return [offset + Reveal.getSlidePastCount() + 1];
                     },
-                    viewDistance: 2
+                    viewDistance: 1
                 });
                 var frames = document.getElementsByTagName("iframe");
 
