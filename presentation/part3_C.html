@@ -1,0 +1,2417 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv='cache-control' content='no-cache'>
+    <meta http-equiv='expires' content='0'>
+    <meta http-equiv='pragma' content='no-cache'>
+    <meta name="robots" content="noindex, nofollow">
+
+    <script>
+        // Check if the site is being served from GitHub Pages
+        if (window.location.hostname === "viniciusmgn.github.io") {
+            document.write('<base href="/lesson_robotconstcontrol/">');
+        } else {
+            document.write('<base href="/">');  // Local development base
+        }
+    </script>
+
+    <title>Part 3 - Control</title>
+
+    <link rel="stylesheet" href="presentation/dist/reset.css">
+    <link rel="stylesheet" href="presentation/dist/reveal.css">
+    <link rel="stylesheet" href="presentation/dist/theme/black.css">
+
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="presentation/plugin/highlight/monokai.css">
+    <style>
+        .reveal .slides section {
+            padding: 1.5rem;
+            /* Adjust the value as needed */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <img src="presentation/images/intro/logo_ufmg.svg" class="logo">
+
+            <section data-menu-exclude="true" data-menu-title=""></section>
+
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CASE STUDIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 2: A WAITER MOBILE MANIPULATOR</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 6; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                    <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                        <li>
+                            Now, we have a <b class="itext">mobile manipulator</b>: a 7-DOF Franka Emika 3 mounted 
+                            on a mobile base (a <b class="itext">ClearPath's Ridgeback mobile robot with omnidirectional wheels</b>) that moves in a plane.
+                        </li><br>
+                        <li>
+                            It should move to a counter that has a white tray with a glass of drink and deliver it 
+                            to a table. It must do this while avoiding people who move around with total disregard for the robot.
+                            It has to deliver two drinks.
+                        </li><br>
+                        <li>
+                            While holding the tray, it must keep it horizontal, or the glass may slip and fall to the ground!
+                        </li><br>
+                        <li>Obviously, it should respect collision avoidance, joint limits and velocity limits, as before.</li>
+                    </ul>
+
+
+
+                        </div>
+                    </div>
+                    <div
+                        style="flex: 5; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 5; flex-direction: row">
+           
+                        <div style="width: 100%">
+                            <iframe src="presentation/images/part3/part_3_3.html" width="550" height="580"
+                                style="border: none;"></iframe>
+                        </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>   
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CASE STUDIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 2: A WAITER MOBILE MANIPULATOR</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>
+                                From the point of view of configuration, we have
+                                $$q = [ x \ \ y \ \ \theta \ \ q_m^{\top}]^\top$$
+                                
+                                in which ,\(x,y\) the position of the center of the base, 
+                                \(\theta\) its rotation normal to the floor (world z axis) and \(q_m \in \mathbb{R}^7\) is the manipulator's configuration.
+                            </li><br>
+                          <li>
+                                We assume that the transformation between the world frame \(\mathcal{F}_{0}\) and the base frame \(\mathcal{F}_{DH0}\) of the manipulator 
+                                (frame DH0) is:
+                                $$T_0^{DH0}(x,y,\theta) = D(x,y,z_b)R_z(\theta)$$
+                                in which \(D\) is a translation and \(R_z\) a rotation in \(z\). \(z_b\) is a constant.
+                            </li><br>
+                        </ul>
+
+
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 4; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image24.png"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section>    
+ 
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CASE STUDIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 2: A WAITER MOBILE MANIPULATOR</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.2vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                        <li>
+                            We can simply model the 3 additional DOFs as <b class="itext">virtual joints</b>: two prismatic (for \(x, y\)) and 
+                            one revolute. This allows us to use everything we have learned so far to compute the 
+                            forward and differential kinematics. The following UAIBot function takes the manipulator robot and outputs a 
+                            new one with the three additional degrees of freedom:
+                        </li>
+                        <br>
+                        </ul>
+<pre style="max-width:100%;"><code class="language-python" style="text-align:left;">
+def add_mobile_base(robot):
+
+    #Get the ClearPath's Ridgeback robot as a base robot
+    ridgeback_3d_model = ub.Model3D(
+    'https://cdn.jsdelivr.net/gh/viniciusmgn/uaibot_content@master/contents/Other/ridgeback_mobile.obj',
+    0.0007,
+    ub.Utils.trn([0,0,-0.2])*ub.Utils.rotz(0)*ub.Utils.rotx(np.pi/2), mesh_material=ub.MeshMaterial(metalness=0.7, clearcoat=1, roughness=0.5, normal_scale=[0.5, 0.5], color="#606060"))
+
+
+    #Create the additional three DH parameters for the three virtual joints
+    links_new = []
+    
+    links_new.append(ub.Link(0,  0      , 0, -np.pi/2, 0, 1, []))
+    links_new.append(ub.Link(1,  -np.pi/2, 0,  np.pi/2, 0, 1, []))
+    links_new.append(ub.Link(2,  0, 0.21, 0, 0, 0, robot.list_object_3d_base+[ridgeback_3d_model]))
+
+    #Add the collision object for the base (a cylinder)
+    links_new[-1].attach_col_object(ub.Cylinder(radius=0.38,height=0.2, color='blue', opacity=0.7), ub.Utils.trn([0,0,-0.1]))
+    
+       
+    #Create and return the robot
+    i = 3
+    for link in robot.links:
+        links_new.append(ub.Link(i, link.theta, link.d, link.alpha, link.a, link.joint_type, link.list_model_3d))
+        
+        for j in range(len(link.col_objects)): 
+            links_new[i].attach_col_object(link.col_objects[j][0], link.col_objects[j][1])
+            
+        i+=1
+        
+    q0 = np.vstack((0,0,0, robot.q0))
+    inf_bound = np.matrix([-1000,1000])
+    joint_limits = np.vstack( (inf_bound, inf_bound, inf_bound, robot.joint_limit))
+    
+    return ub.Robot("base"+robot.name, links_new, [], robot.htm, robot.htm_base_0*ub.Utils.roty(np.pi/2), robot.htm_n_eef, q0, robot.eef_frame_visible, joint_limits)
+        
+</code></pre>
+
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 4; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image24.png"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section>    
+ 
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CASE STUDIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 2: JOINT LIMITS, VELOCITY LIMITS</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.4vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                        <li>
+                            We implement the joint limits and velocity limits as in Example 1. We just need to be careful that 
+                            the virtual joints \(x, y\) and \(\theta\) should not have any bounds. This is especially important for 
+                            \(\theta\), since the robot's base should be allowed to rotate around itself freely as often as it 
+                            wants.
+                        </li><br>
+
+                        </ul>
+
+
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 4; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image24.png"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section>    
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CASE STUDIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 2: COLLISION AVOIDANCE</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>We have four types of collision avoidance:<br><br>
+                                <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                                    <li>(a) Between the robot (and eventually the tray) and static obstacles (tables and counter);</li><br>
+                                    <li>(b) Between the robot (and eventually the tray) and moving obstacles (human);</li><br>
+                                    <li>(c) Between the tray and the robot;</li><br>
+                                    <li>(d) Between the robot and itself (autocollision);</li>
+                                </ul>
+                            </li><br>
+                            <li>
+                                For the situation (a), we implement collision avoidance as before. Remember that, when 
+                                the robot is holding the tray, it should also consider the collision between the tray and the objects. We implement 
+                                it similarly to how we did with the disk object in the previous example, considering the tray as a cylindrical object.
+                            </li><br>
+                        </ul>
+
+
+
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 4; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image24.png"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section>    
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CASE STUDIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 2: COLLISION AVOIDANCE (WITH HUMANS)</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.4vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>
+                                In the case (b), we now need to take into consideration that 
+                                they move. We will model the human as a moving cylinder with a fixed radius. Let \(\mathcal{H}(h,t) \subseteq \mathbb{R}^3\) be 
+                                the cylinder of the \(h^{th}\) human at time \(t\). As before, let \(\mathcal{R}(r, q) \subseteq \mathbb{R}^3\) be the set of 
+                                points of the \(r^{th}\) object that composes the robot at configuration \(q\). We will use:
+                                <b class="itext">$$ B^{RH}_{rh}(q,t) = D^{RH}_{rh}(q,t) - \delta = \sqrt{2 \Lambda_{\mathcal{R}(r,q),\mathcal{H}(h,t)}} - \delta $$</b>
+                                i.e., the Euclidean distance  \(D^{RH}_{rh}(q,t) = \sqrt{2 \Lambda_{\mathcal{R}(r,q),\mathcal{H}(h,t)}}\) between the object and the human minus 
+                                a safety margin.
+                            </li>
+                        </ul>
+
+
+
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 4; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image24.png"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section>    
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CASE STUDIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 2: COLLISION AVOIDANCE (WITH HUMANS)</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.2vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>
+                                For the Jacobian \(\frac{\partial}{\partial q} B^{RH}_{rh}(q,t)\), we can use the <a href="presentation/part3.html#/57"><b
+                                class="hlink">same formula as before</b></a>.
+                            </li><br>
+                            <li>
+                                For the feedforward term \(\frac{\partial}{\partial t} B^{RH}_{rh}(q,t)\), we can use <a href="presentation/part2.html#/79"><b
+                                class="hlink">the same basic result for the derivative of an S2S-HSD</b></a>. Then, it can be shown that, due to the rotational 
+                                symmetry of the cylinder:
+                                <b class="itext">$$ \frac{\partial}{\partial t} B^{RH}_{rh}(q,t) = -v_{h}(t)^{\top}\frac{(a^*_{rh}(q,t)-b^*_{rh}(q,t))}{D^{RH}_{rh}(q,t)} $$</b>
+                                where \(a^*_{rh}\) and \(b^*_{rh}\) are the witness points on the  \(r^{th}\) robot object and the \(h^{th}\) human's cylinder, respectively, and
+                                \(v_{h}(t)\) is the \(h^{th}\) human's linear velocity vector at time \(t\).
+                            </li><br>
+                            <li>
+                                In a real application, it can be challenging to estimate \(v_{h}(t)\). We will assume that we know it perfectly.
+                            </li><br>
+                            <li>
+                                Similarly, we can also define and compute the terms for \(B_w^{TO}(q,t)\) and \(B_h^{TH}(q,t)\), which are the CBFs for obstacle avoidance between 
+                                the tray and the \(w^{th}\) static obstacle, and the tray and the \(h^{th}\) human, respectively.
+                            </li>
+                        </ul>
+
+
+
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 4; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image25.svg"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section>   
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CASE STUDIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 2: COLLISION AVOIDANCE (WITH TRAY)</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 6; min-width: 300px; font-size: 1.1vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>
+                                In the case (c), we can use the distance \(D^{RT}_{v}(q)\) between the robot's \(r^{th}\) object and 
+                                the tray to define the CBF:
+                                <b class="itext">$$B^{RT}_r(q) = D^{RT}_r(q)-\delta .$$</b>
+                            </li>
+                            <li>The objects \(r\) at the end of the kinematic chain should not be included, because they are already 
+                                "in collision" with the tray (since the tray is attached to it).
+                            </li><br>
+                            <li>
+                                The Jacobian can be computed as follows. Let \(J_v(q),J_{\omega}(q)\) be the end-effector geometric 
+                                Jacobian, \(s_e\) the end-effector position, \(J^r_v(q),J^r_{\omega}(q)\) the geometric Jacobian of the frame in which the \(r^{th}\) 
+                                object is attached to, and \(s_r\) its center. Furthermore, let \(a^*_r\) and \(c^*_r\) be the witness points in the 
+                                \(r^{th}\) object and tray, respectively. Then:
+                                <b class="itext">$$\frac{\partial B^{RT}_r}{\partial q}(q) = \frac{J_r^R(q)+J_r^{T}(q)}{ D^{RT}_r(q)}  $$</b>
+                                in which:
+                                <b class="itext">$$J_r^R(q) = (a^*_r(q)-c_r^*(q))^{\top}J_v(q) +  \Big( (a^*_r(q)-s_r(q)) \times (a^*_r(q)-c_r^*(q)) \Big)^{\top}J_w(q) $$</b>
+                                <b class="itext">$$J_r^T(q) = (c_r^*(q)-a^*_r(q))^{\top}J_v^r(q) +  \Big( (c_r^*(q)-s_e(q)) \times (c^*_r(q)-a^*_r(q)) \Big)^{\top}J^r_w(q). $$</b>
+                            </li>
+                        </ul>
+
+
+
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 5; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 5; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image26.svg"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section> 
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CASE STUDIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 2: COLLISION AVOIDANCE (WITH ITSELF)</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 6; min-width: 300px; font-size: 1.1vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>
+                                In the case (d), we can use the distance \(D^{RR}_{v}(q)\) between the robot's \(r^{th}\) object and 
+                                \(s^{th}\) object:
+                                <b class="itext">$$B^{RR}_{rs}(q) = D^{RR}_{rs}(q)-\delta .$$</b>
+                            </li>
+                            <li><b class="itext">Be careful though</b>: we dont need to include collision constraints for objects \(r,s\) that are attached to the 
+                                same link (the distance between them is going to be constant). 
+
+                            </li><br>
+                            <li>
+                                Furthermore, we also dont have to include collision constraints between objects that lie on adjacent links (say link 1 an link 2, or 
+                                link 4 and link 5). This is because the collision between link \(i\) and \(i+1\) is <b class="itext">entirely dependent on the joint \(i\)</b> 
+                                alone. Thus, <b class="itext">joint limits</b> are good enough to handle this.
+                            </li>
+                        </ul>
+
+
+
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 5; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 5; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image27.svg"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section> 
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CASE STUDIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 2: COLLISION AVOIDANCE (WITH ITSELF)</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 6; min-width: 300px; font-size: 1.1vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>
+                                In fact, in many manipulators, the manufacturer's joint limits are designed to, among other things, minimize 
+                                auto-collision as much as possible. Franka's geometry, however, make it particularly prone for collision.
+                            </li><br>
+                            <li>The Jacobian can be computed as follows. Let \(J^c_v(q),J^c_{\omega}(q)\) the geometric Jacobian of the frame in which the \(c^{th}\) 
+                                object is attached to, and \(s_c\) its center. Furthermore, let \(a^*_{cd}\) and \(a^*_{dc}\) be the witness points in the 
+                                object in the \(c^{th}\) and \(d^{th}\) robot's objects, respectively. Then:
+                                <b class="itext">$$\frac{\partial B^{RR}_{rs}}{\partial q}(q) = \frac{J_{rs}^{RR}(q)+J_{sr}^{RR}(q)}{ D^{RR}_{rs}(q)}  $$</b>
+                                in which:
+                                <b class="itext">$$J_{cd}^{RR}(q) = (a^*_{cd}(q)-a_{dc}^*(q))^{\top}J_v^c(q) +  $$</b>
+                                <b class="itext">$$\ \ \ \ \ \ \ \ \ \Big( (a^*_{cd}(q)-s_c(q)) \times (a^*_{cd}(q)-a_{dc}^*(q)) \Big)^{\top}J^c_w(q)$$</b>
+                            </li>
+                            <li>The UAIBot's function <b class="itext">compute_dist_auto</b> will take care of that for you!</li>
+                        </ul>
+
+
+
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 5; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 5; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image27.svg"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section> 
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CASE STUDIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 2: TRAY SHOULD BE PARALLEL TO THE FLOOR</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>
+                                Another constraint is that the tray should be parallel to the ground, otherwise the glass on the tray may slide and fall.
+                            </li><br>
+                            <li>
+                                In this case, the \(x\) axis of the end-effector should coincide with the \(z\) axis of the world, \(e_z = (0 \ \ 0 \ \ 1)^{\top}\).
+                            </li><br>
+                            <li>
+                                The objective function is already trying to regulate the full pose, and thus the \(x\) orientation, but if we don’t do something else, 
+                                it could allow a temporary violation of this alignment (after all, in the objective function we only try to do the best we can)!
+                            </li><br>
+                            <li>
+                                This is unacceptable: what we have is a <b class="itext">hard equality constraint</b> that should be enforced through constraints, not through the objective function!
+                            </li><br>
+                            <li>
+                                But how do we enforce that?
+                            </li>
+                        </ul>
+
+
+
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 4; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image28.svg"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section>   
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CASE STUDIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 2: TRAY SHOULD BE PARALLEL TO THE FLOOR</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>
+                                We could use only the \(x\) axis part of our <a href="presentation/part1.html#/61"><b
+                                class="hlink">classical task function</b></a> \(r_{ox}(q) = 1 - e_z^{\top}x_e(q)\) and add the linear equality 
+                                constraint:
+                                $$\frac{d}{dt} r_{ox}(q) = \frac{\partial r_{ox}}{\partial q}(q) u = -K_{ox}r_{ox}(q)$$
+                                so that \(r_{ox}(q)\) is regulated to zero.
+                            </li><br>
+                            <li>
+                                The idea is nice, but this task function is <b class="itext">not suitable for this application</b>!
+                            </li><br>
+                            <li>
+                                Since:
+                                $$\frac{\partial r_{ox}}{\partial q}(q) = (e_z \times x_e(q))^{\top}J_{\omega}(q)$$
+                                <b class="itext">the Jacobian obviously vanishes when \(x_e = e_{z}\)!</b> This is a problem because we will 
+                                be dealing with situations in which \(x_e\) is very close to \(e_{z}\) (i.e., small orientation errors). Having the 
+                                left-hand side of the equality constraint vanish will lead to instabilities (abrupt movements) of the robot.
+                            </li>
+                        </ul>
+
+
+
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 4; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image28.svg"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section> 
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CASE STUDIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 2: TRAY SHOULD BE PARALLEL TO THE FLOOR</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>
+                                But this issue happened with the full task function, and we used it the whole time successfully to regulate 
+                                the pose! Wasn't it expected to cause similar problems when the end-effector was close to the target orientation?
+                            </li><br>
+                            <li>
+                                Yes... but in that case, we were saved by the <b class="itext">damped pseudoinverse</b>, which eliminated this problem. We cannot afford 
+                                to have something similar in a (linear) equality constraint like the one we have here.
+                            </li><br>
+                            <li>
+                                The solution is to use a more adequate task function... or, at the very least, something that resembles a task 
+                                function.
+                            </li>
+                        </ul>
+
+
+
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 4; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image28.svg"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section> 
+
+
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CASE STUDIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 2: TRAY SHOULD BE PARALLEL TO THE FLOOR</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                          <li>
+                              Suppose that we want the \(x\) axis \(x_e(q)\) to have a target value \(x_{d}\). Our old task function enforced
+                              $$   x_d^{\top} x_e(q) = 1.  $$
+                            </li><br>
+                            <li>
+                                Let \(y_d, z_d\) be other normalized vectors such that \(x_d, y_d, z_d\) generates an orthonormal frame. 
+                                The condition $$   x_d^{\top} x_e(q) = 1  $$ is <b class="itext">almost equivalent</b> to the conditions:
+                                $$  y_d^{\top} x_e(q) = 0$$
+                                $$  z_d^{\top} x_e(q) = 0. $$
+                            </li><br>
+                            <li>
+                                "Almost" because these two conditions imply that either \(x_e(q) = x_d\) (as we desire) or \(x_e(q) = -x_d\). 
+                                Try to ponder why this is the case.
+                            </li><br>
+  
+
+                        </ul>
+
+
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 4; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image28.svg"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section> 
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CASE STUDIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 2: TRAY SHOULD BE PARALLEL TO THE FLOOR</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.2vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>
+                                Inspired by that, we can use the "almost" task function \(r_{xo}: \mathbb{R}^n \mapsto \mathbb{R}^2\) 
+                                <b class="itext">$$r_{xo}(q) = \left(\begin{array}{c} y_d^{\top} x_e(q) \\ z_d^{\top} x_e(q) \end{array}\right).$$</b> 
+                            </li><br>
+                            <li>
+                                This task function has a very well-behaved Jacobian when \(x_e(q) \approx x_d\), provided that 
+                                \(J_w(q)\) is not singular at the configuration (so the robot, not the constraint, is to be blamed). At first glance, the only downside is that 
+                                it could make us converge to \(x_e(q) = -x_d\) instead. 
+                            </li><br>
+                            <li>
+                                Fortunately, this is not a problem in our case because we will start 
+                                with \(x_e(q) \approx x_d\) and we will (hopefully) stay close to that situation, thus very far away from the convergence 
+                                region of the other equilibrium point \(x_e(q) = -x_d\).
+                            </li>
+                        </ul>
+
+
+
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 4; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image28.svg"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section> 
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CASE STUDIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 2: TRAY SHOULD BE PARALLEL TO THE FLOOR</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.2vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>
+                                One could show that (I will leave as an exercise, use the chain-rule trick):
+                                <b class="itext">$$\frac{\partial r_{ox}}{\partial q}(q) = \left(\begin{array}{c} (x_e(q) \times y_d)^{\top}J_{\omega}(q) \\ (x_e(q) \times z_d)^{\top}J_{\omega}(q) \end{array}\right).$$</b>
+                            </li><br>
+                            <li>
+                                Thus, when \(x_e(q) = x_d\), the Jacobian reduces to:
+                                $$\frac{\partial r_{ox}}{\partial q}(q) = \left(\begin{array}{c} z_d^{\top}J_{\omega}(q) \\ -y_d^{\top}J_{\omega}(q) \end{array}\right).$$
+                                which is a non-singular matrix as long as the rows of \(J_{\omega}(q)\) are linearly independent.                                
+                            </li>
+                        </ul>
+
+
+
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 4; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image28.svg"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section> 
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CASE STUDIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 2: OBJECTIVE FUNCTION</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.2vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>
+                                The objective function will be, again, related to achieving different target poses \(H_{tg}\).
+                            </li><br>
+                            <li>
+                                We could use the same objective function as in the previous case, but note that, as opposed to the previous case, 
+                                the position of the end-effector has to vary a lot to achieve the target poses across the environment.                       
+                            </li><br>
+                            <li>
+                                With the objective function we
+                                currently have, the rotation part of the task will converge too quickly before the position part.        
+                            </li><br>
+                            <li>
+                                It would be more natural to only care about the orientation part of the task when we are relatively close 
+                                to the target position. We can achieve that through a discrete switch in the task function, but there is a 
+                                simple way through a simple reformulation of the task function.
+                            </li>
+                        </ul>
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 4; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image24.png"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section> 
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CASE STUDIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 2: OBJECTIVE FUNCTION</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.2vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>
+                                Use the task function: 
+
+                                <b class="itext">$$r(q) = \left(\begin{array} \ s_e(q)-s_d \\ K_r \|s_e(q)-s_d\|^2 + 1-x_d^{\top}x_e(q) \\ K_r \|s_e(q)-s_d\|^2 + 1-y_d^{\top}y_e(q) \\ K_r \|s_e(q)-s_d\|^2 + 1-z_d^{\top}z_e(q) \end{array}\right)  $$</b>
+                                for a scalar \(K_r > 0\).
+                            </li><br>
+                            <li>
+                                This is the same as the classical one, but with \(K_r \|s_e(q)-s_d\|^2\) added to the rotation error components. This has the effect that, 
+                                unless \(s_e(q) \approx s_d\) (i.e., we are close position-wise), the rotation errors (e.g., \(1 - x_d^{\top}x_e(q)\)) of the task are subdued 
+                                by the position error.
+                            </li><br>
+                            <li>
+                                The task Jacobian is (again, use the chain-rule trick):
+                                <b class="itext">$$\frac{\partial r}{\partial q}(q) = \left(\begin{array} \ J_v(q) \\ 2K_r(s_e(q)-s_d)^{\top}J_v(q) + (x_d \times x_e(q))^{\top}J_{\omega}(q) \\ 
+                                    2K_r(s_e(q)-s_d)^{\top}J_v(q) + (y_d \times y_e(q))^{\top}J_{\omega}(q)  
+                                    \\ 2K_r(s_e(q)-s_d)^{\top}J_v(q) + (z_d \times z_e(q))^{\top}J_{\omega}(q)  \end{array}\right) . $$</b>
+                                                                
+                            </li>
+                        </ul>
+
+
+
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 4; flex-direction: row">
+                            
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image24.png"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </section> 
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CASE STUDIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 2: FINAL FORMULATION</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 6; min-width: 300px; font-size: 1.0vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        $$\min_{u} \ \ \left\|\frac{\partial r}{\partial q}(q)+Kr(q)\right\|^2 + \epsilon \|u\|^2 \ \ \mbox{subject to}$$
+
+                        <a href="presentation/part3.html#/54"><b
+                                class="hlink">Joint limits (not for \(x, y\) and \(\theta\)):</b></a>
+                        $$u_i \geq -\eta(q_i - \underline{q}_i) \ , \ i=4,..,N$$
+                        $$-u_i \geq -\eta(\overline{q}_i - q_i) \ , \ i=4,..,N$$
+
+                        <a href="presentation/part3.html#/55"><b
+                                class="hlink">Velocity limits:</b></a>
+                        $$u_i \geq \underline{u}_i \ , \ i=1,..,n$$
+                        $$-u_i \geq -\overline{u}_i \ , \ i=1,..,n$$
+
+                        <a href="presentation/part3.html#/56"><b
+                                class="hlink">Collision avoidance between robot and static environment:</b></a>
+                        $$\frac{\partial B^{RO}_{rw}}{\partial q}(q)u \geq -\eta B^{RO}_{rw}(q) \ , \ r=1,..,R; w = 1,...,W$$
+
+                        <a href="presentation/part3.html#/58"><b
+                                class="hlink">Collision avoidance between tray and static environment (only when holding it):</b></a>
+                        $$\frac{\partial B^{TO}_{w}}{\partial q}(q)u \geq -\eta B^{TO}_{w}(q) \ , \ w = 1,...,W$$
+
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 5; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 4; flex-direction: row">
+                        <div style="width: 100%">
+                                    <img src="presentation/images/part3/image24.png"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CASE STUDIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 2: FINAL FORMULATION</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 6; min-width: 300px; font-size: 1.0vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+
+                        <a href="presentation/part3.html#/71"><b
+                                class="hlink">Collision avoidance between robot and moving humans:</b></a>
+                        $$\frac{\partial B^{RH}_{rh}}{\partial q}(q,t)u \geq -\eta B^{RH}_{rh}(q)-\frac{\partial B^{RH}_{rh}}{\partial t}(q,t)  \ , \ r=1,..,R; \  h=1,2$$
+
+                        <a href="presentation/part3.html#/72"><b
+                                class="hlink">Collision avoidance between tray and moving humans (only when holding tray):</b></a>
+                        $$\frac{\partial B^{TH}_{h}}{\partial q}(q,t)u \geq -\eta B^{TH}_{h}(q)-\frac{\partial B^{TH}_{h}}{\partial t}(q,t)  \ , \ h=1,2$$
+
+                        
+                        <a href="presentation/part3.html#/73"><b
+                                class="hlink">Collision avoidance between robot and tray (dont put here objects at the end of the kinematic chain that are close
+                                 to the tray but never are going to collide):</b></a>
+                        $$\frac{\partial B^{RD}_{r}}{\partial q}(q)u \geq -\eta B^{RD}_{r}(q) \ , \   r = 1,...,R'$$
+
+ 
+                        <a href="presentation/part3.html#/74"><b
+                                class="hlink">Collision avoidance between robot and itself:</b></a>
+                        $$\frac{\partial B^{RR}_{rs}}{\partial q}(q)u \geq -\eta B^{RR}_{rs}(q) \ , \ r = 1,...,R; \ s=1,...,R; \  |r-s|>1$$
+
+
+                        <a href="presentation/part3.html#/76"><b
+                                class="hlink">Tray parallel to the ground (only when holding tray):</b></a>
+                        $$\frac{\partial r_{ox}}{\partial q}(q)u = -K_{ox}r_{ox}(q).$$
+
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 5; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 4; flex-direction: row">
+                        <div style="width: 100%">
+                                    <img src="presentation/images/part3/image24.png"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CASE STUDIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 2: MODES OF OPERATION</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 6; min-width: 300px; font-size: 1.2vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+
+                        <div class="vim_indicator current-visible fragment" data-fragment-index="0"
+                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                            <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li><b class="ttext">Mode 0:go to the first pose to start approaching the counter;</b> </li>
+                        </ul>
+                        </div>
+                        
+                            
+
+                        <div class="vim_indicator current-visible fragment" data-fragment-index="1"
+                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                            <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li><b class="itext">Mode 0:</b> go to the first pose to start approaching the counter;</li>
+                            <li><b class="ttext">Mode 1: move forward a little bit and grab the first tray;</b></li>
+                        </ul>
+                        </div>
+
+                        <div class="vim_indicator current-visible fragment" data-fragment-index="2"
+                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                            <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li><b class="itext">Mode 0:</b> go to the first pose to start approaching the counter;</li>
+                            <li><b class="itext">Mode 1:</b> move forward a little bit and grab the first tray;</li>
+                            <li><b class="ttext">Mode 2: cautiously move back a little bit;</b></li>
+                        </ul>
+                        </div>
+
+                        <div class="vim_indicator current-visible fragment" data-fragment-index="3"
+                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                            <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li><b class="itext">Mode 0:</b> go to the first pose to start approaching the counter;</li>
+                            <li><b class="itext">Mode 1:</b> move forward a little bit and grab the first tray;</li>
+                            <li><b class="itext">Mode 2:</b> cautiously move back a little bit;</li>
+                            <li><b class="ttext">Mode 3: go close to the first table;</b></li>
+                        </ul>
+                        </div>
+
+                        <div class="vim_indicator current-visible fragment" data-fragment-index="4"
+                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                            <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li><b class="itext">Mode 0:</b> go to the first pose to start approaching the counter;</li>
+                            <li><b class="itext">Mode 1:</b> move forward a little bit and grab the first tray;</li>
+                            <li><b class="itext">Mode 2:</b> cautiously move back a little bit;</li>
+                            <li><b class="itext">Mode 3:</b> go close to the first table;</li>
+                            <li><b class="ttext">Mode 4: move forward a little bit, deliver the tray;</b></li>   
+                        </ul>
+                        </div>
+
+                        <div class="vim_indicator current-visible fragment" data-fragment-index="5"
+                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                            <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li><b class="itext">Mode 0:</b> go to the first pose to start approaching the counter;</li>
+                            <li><b class="itext">Mode 1:</b> move forward a little bit and grab the first tray;</li>
+                            <li><b class="itext">Mode 2:</b> cautiously move back a little bit;</li>
+                            <li><b class="itext">Mode 3:</b> go close to the first table;</li>
+                            <li><b class="itext">Mode 4:</b> move forward a little bit, deliver the tray;</li>
+                            <li><b class="ttext">Mode 5: cautiously move backward a little bit;</b></li>    
+                        </ul>
+                        </div>
+
+
+                        <div class="vim_indicator current-visible fragment" data-fragment-index="6"
+                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                            <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li><b class="itext">Mode 0:</b> go to the first pose to start approaching the counter;</li>
+                            <li><b class="itext">Mode 1:</b> move forward a little bit and grab the first tray;</li>
+                            <li><b class="itext">Mode 2:</b> cautiously move back a little bit;</li>
+                            <li><b class="itext">Mode 3:</b> go close to the first table;</li>
+                            <li><b class="itext">Mode 4:</b> move forward a little bit, deliver the tray;</li>
+                            <li><b class="itext">Mode 5:</b> cautiously move backward a little bit;</li>    
+                            <li><b class="ttext">Mode 6: go to the counter again, this time close to the second tray;</b></li>    
+                        </ul>
+                        </div>
+
+
+                        <div class="vim_indicator current-visible fragment" data-fragment-index="7"
+                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                            <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li><b class="itext">Mode 0:</b> go to the first pose to start approaching the counter;</li>
+                            <li><b class="itext">Mode 1:</b> move forward a little bit and grab the first tray;</li>
+                            <li><b class="itext">Mode 2:</b> cautiously move back a little bit;</li>
+                            <li><b class="itext">Mode 3:</b> go close to the first table;</li>
+                            <li><b class="itext">Mode 4:</b> move forward a little bit, deliver the tray;</li>
+                            <li><b class="itext">Mode 5:</b> cautiously move backward a little bit;</li>    
+                            <li><b class="itext">Mode 6:</b> go to the counter again, this time close to the second tray;</li>
+                            <li><b class="ttext">Mode 7: move forward a little bit, get the tray;</b></li>    
+                        </ul>
+                        </div>
+
+
+
+                        <div class="vim_indicator current-visible fragment" data-fragment-index="8"
+                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                            <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li><b class="itext">Mode 0:</b> go to the first pose to start approaching the counter;</li>
+                            <li><b class="itext">Mode 1:</b> move forward a little bit and grab the first tray;</li>
+                            <li><b class="itext">Mode 2:</b> cautiously move back a little bit;</li>
+                            <li><b class="itext">Mode 3:</b> go close to the first table;</li>
+                            <li><b class="itext">Mode 4:</b> move forward a little bit, deliver the tray;</li>
+                            <li><b class="itext">Mode 5:</b> cautiously move backward a little bit;</li>    
+                            <li><b class="itext">Mode 6:</b> go to the counter again, this time close to the second tray;</li>
+                            <li><b class="itext">Mode 7:</b> move forward a little bit, get the tray;</li>   
+                            <li><b class="ttext">Mode 8: move backward a little bit;</b></li>   
+                        </ul>
+                        </div>
+
+
+                        <div class="vim_indicator current-visible fragment" data-fragment-index="9"
+                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                            <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li><b class="itext">Mode 0:</b> go to the first pose to start approaching the counter;</li>
+                            <li><b class="itext">Mode 1:</b> move forward a little bit and grab the first tray;</li>
+                            <li><b class="itext">Mode 2:</b> cautiously move back a little bit;</li>
+                            <li><b class="itext">Mode 3:</b> go close to the first table;</li>
+                            <li><b class="itext">Mode 4:</b> move forward a little bit, deliver the tray;</li>
+                            <li><b class="itext">Mode 5:</b> cautiously move backward a little bit;</li>    
+                            <li><b class="itext">Mode 6:</b> go to the counter again, this time close to the second tray;</li>
+                            <li><b class="itext">Mode 7:</b> move forward a little bit, get the tray;</li>   
+                            <li><b class="itext">Mode 8:</b> move backward a little bit;</li>   
+                            <li><b class="ttext">Mode 9: go to the second table;</b></li>
+                        </ul>
+                        </div>
+
+
+                        <div class="vim_indicator current-visible fragment" data-fragment-index="10"
+                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                            <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li><b class="itext">Mode 0:</b> go to the first pose to start approaching the counter;</li>
+                            <li><b class="itext">Mode 1:</b> move forward a little bit and grab the first tray;</li>
+                            <li><b class="itext">Mode 2:</b> cautiously move back a little bit;</li>
+                            <li><b class="itext">Mode 3:</b> go close to the first table;</li>
+                            <li><b class="itext">Mode 4:</b> move forward a little bit, deliver the tray;</li>
+                            <li><b class="itext">Mode 5:</b> cautiously move backward a little bit;</li>    
+                            <li><b class="itext">Mode 6:</b> go to the counter again, this time close to the second tray;</li>
+                            <li><b class="itext">Mode 7:</b> move forward a little bit, get the tray;</li>   
+                            <li><b class="itext">Mode 8:</b> move backward a little bit;</li>   
+                            <li><b class="itext">Mode 9:</b> go to the second table;</li>
+                            <li><b class="ttext">Mode 10: move forward a little bit, deliver the tray;</b></li>
+                        </ul>
+                        </div>
+
+                        <div class="vim_indicator current-visible fragment" data-fragment-index="11"
+                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                            <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li><b class="itext">Mode 0:</b> go to the first pose to start approaching the counter;</li>
+                            <li><b class="itext">Mode 1:</b> move forward a little bit and grab the first tray;</li>
+                            <li><b class="itext">Mode 2:</b> cautiously move back a little bit;</li>
+                            <li><b class="itext">Mode 3:</b> go close to the first table;</li>
+                            <li><b class="itext">Mode 4:</b> move forward a little bit, deliver the tray;</li>
+                            <li><b class="itext">Mode 5:</b> cautiously move backward a little bit;</li>    
+                            <li><b class="itext">Mode 6:</b> go to the counter again, this time close to the second tray;</li>
+                            <li><b class="itext">Mode 7:</b> move forward a little bit, get the tray;</li>   
+                            <li><b class="itext">Mode 8:</b> move backward a little bit;</li>   
+                            <li><b class="itext">Mode 9:</b> go to the second table;</li>
+                            <li><b class="itext">Mode 10:</b> move forward a little bit, deliver the tray;</li>
+                            <li><b class="ttext">Mode 11: go to the starting pose;</b></li>    
+                        </ul>
+                        </div>
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 5; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 4; flex-direction: row">
+
+                        
+                        <div style="position:absolute; width: 50%; ">
+
+                            <div class="vim_indicator current-visible fragment" data-fragment-index="0"
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                                
+                                    <div style="width: 100%">
+                                        <img src="presentation/images/part3/image29.png"
+                                            style="max-width: 70%; height: auto; max-height: 60vh;">
+                                    </div>
+                                    
+                            </div>
+                            <div class="vim_indicator current-visible fragment" data-fragment-index="1"
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                                
+                                    <div style="width: 100%">
+                                        <img src="presentation/images/part3/image30.png"
+                                            style="max-width: 70%; height: auto; max-height: 60vh;">
+                                    </div>
+                                    
+                            </div>
+                            <div class="vim_indicator current-visible fragment" data-fragment-index="2"
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                                
+                                    <div style="width: 100%">
+                                        <img src="presentation/images/part3/image31.png"
+                                            style="max-width: 70%; height: auto; max-height: 60vh;">
+                                    </div>
+                                    
+                            </div>
+                            <div class="vim_indicator current-visible fragment" data-fragment-index="3"
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                                
+                                    <div style="width: 100%">
+                                        <img src="presentation/images/part3/image32.png"
+                                            style="max-width: 70%; height: auto; max-height: 60vh;">
+                                    </div>
+                                    
+                            </div>
+                            <div class="vim_indicator current-visible fragment" data-fragment-index="4"
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                                
+                                    <div style="width: 100%">
+                                        <img src="presentation/images/part3/image33.png"
+                                            style="max-width: 70%; height: auto; max-height: 60vh;">
+                                    </div>
+                                    
+                            </div>
+                            <div class="vim_indicator current-visible fragment" data-fragment-index="5"
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                                
+                                    <div style="width: 100%">
+                                        <img src="presentation/images/part3/image34.png"
+                                            style="max-width: 70%; height: auto; max-height: 60vh;">
+                                    </div>
+                                    
+                            </div>
+                            <div class="vim_indicator current-visible fragment" data-fragment-index="6"
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                                
+                                    <div style="width: 100%">
+                                        <img src="presentation/images/part3/image35.png"
+                                            style="max-width: 70%; height: auto; max-height: 60vh;">
+                                    </div>
+                                    
+                            </div>
+                            <div class="vim_indicator current-visible fragment" data-fragment-index="7"
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                                
+                                    <div style="width: 100%">
+                                        <img src="presentation/images/part3/image36.png"
+                                            style="max-width: 70%; height: auto; max-height: 60vh;">
+                                    </div>
+                                    
+                            </div>
+                            <div class="vim_indicator current-visible fragment" data-fragment-index="8"
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                                
+                                    <div style="width: 100%">
+                                        <img src="presentation/images/part3/image37.png"
+                                            style="max-width: 70%; height: auto; max-height: 60vh;">
+                                    </div>
+                                    
+                            </div>
+                            <div class="vim_indicator current-visible fragment" data-fragment-index="9"
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                                
+                                    <div style="width: 100%">
+                                        <img src="presentation/images/part3/image38.png"
+                                            style="max-width: 70%; height: auto; max-height: 60vh;">
+                                    </div>
+                                    
+                            </div>
+                            <div class="vim_indicator current-visible fragment" data-fragment-index="10"
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                                
+                                    <div style="width: 100%">
+                                        <img src="presentation/images/part3/image39.png"
+                                            style="max-width: 70%; height: auto; max-height: 60vh;">
+                                    </div>
+                                    
+                            </div>
+                            <div class="vim_indicator current-visible fragment" data-fragment-index="11"
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                                
+                                    <div style="width: 100%">
+                                        <img src="presentation/images/part3/image40.png"
+                                            style="max-width: 70%; height: auto; max-height: 60vh;">
+                                    </div>
+                                    
+                            </div>
+
+                        </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                     CASE STUDIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 2: UAIBOT CODE</b>
+                </h3>
+
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 3; min-width: 300px; font-size: 1.4vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+
+
+                        <div style="position:absolute; width: 50%; ">
+
+                        
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>
+                                We will split the code into two. Here is the first part, that assembles 
+                                the scenario:
+                            </li>     
+                        </ul>
+
+<pre style="max-width:100%;"><code class="language-python" style="text-align:left;">
+import numpy as np
+import uaibot as ub
+
+##IMPORTANT!###
+#Save this code as "helper_anim_part_3_ex2.py" or put it in a google colab cell 
+#and run it first
+
+#Add the mobile base to a manipulator
+def add_mobile_base(robot):
+
+    ridgeback_3d_model = ub.Model3D(
+    'https://cdn.jsdelivr.net/gh/viniciusmgn/uaibot_content@master/contents/Other/ridgeback_mobile.obj',
+    0.0007,
+    ub.Utils.trn([0,0,-0.2])*ub.Utils.rotz(0)*ub.Utils.rotx(np.pi/2), mesh_material=ub.MeshMaterial(metalness=0.7, clearcoat=1, roughness=0.5, normal_scale=[0.5, 0.5], color="#606060"))
+
+
+    links_new = []
+    
+    links_new.append(ub.Link(0,  0      , 0, -np.pi/2, 0, 1, []))
+    links_new.append(ub.Link(1,  -np.pi/2, 0,  np.pi/2, 0, 1, []))
+    links_new.append(ub.Link(2,  0, 0.21, 0, 0, 0, robot.list_object_3d_base+[ridgeback_3d_model]))
+    #links_new.append(ub.Link(2,  0, 0.21, 0, 0, 0, robot.list_object_3d_base))
+    
+    links_new[-1].attach_col_object(ub.Cylinder(radius=0.38,height=0.2, color='blue', opacity=0.7), ub.Utils.trn([0,0,-0.1]))
+    
+        
+    i = 3
+    for link in robot.links:
+        links_new.append(ub.Link(i, link.theta, link.d, link.alpha, link.a, link.joint_type, link.list_model_3d))
+        
+        for j in range(len(link.col_objects)): 
+            links_new[i].attach_col_object(link.col_objects[j][0], link.col_objects[j][1])
+            
+        i+=1
+        
+    q0 = np.vstack((0,0,0, robot.q0))
+    inf_bound = np.matrix([-1000,1000])
+    joint_limits = np.vstack( (inf_bound, inf_bound, inf_bound, robot.joint_limit))
+    
+    return ub.Robot("base"+robot.name, links_new, [], robot.htm, robot.htm_base_0*ub.Utils.roty(np.pi/2), robot.htm_n_eef, q0, robot.eef_frame_visible, joint_limits)
+        
+        
+#Functions for creating an human 
+def create_human(torso_color):
+    objects = []
+
+    # Head
+    head = ub.Ball(htm=ub.Utils.trn([0 ,   0 ,   1.3500]),radius=0.15,color="peachpuff")
+    objects.append(head)
+
+    # Torso
+    torso = ub.Cylinder(htm=ub.Utils.trn([0, 0, 1.0]),radius=0.22,height=0.5,color=torso_color)
+    objects.append(torso)
+
+    # Left  Arm
+    left_lower_arm = ub.Cylinder(htm=ub.Utils.trn([0.29, 0, 0.90]) ,radius=0.07,height=0.6,color="peachpuff")
+    objects.append(left_lower_arm)
+
+    # Right  Arm
+    right_lower_arm = ub.Cylinder(htm=ub.Utils.trn([-0.29, 0, 0.90]) ,radius=0.07,height=0.6,color="peachpuff")
+    objects.append(right_lower_arm)
+
+    # Left  Leg
+    left_lower_leg = ub.Cylinder(htm=ub.Utils.trn([0.10, 0, 0.40]),radius=0.08,height=0.8,color="green")
+    objects.append(left_lower_leg)
+
+    # Right  Leg
+    right_lower_leg = ub.Cylinder(htm=ub.Utils.trn([-0.10, 0, 0.40]),radius=0.08,height=0.8,color="green")
+    objects.append(right_lower_leg)
+    
+    # Eye left
+    eye_left = ub.Ball(htm=ub.Utils.trn([-0.06 ,   0.12 ,   1.400]),radius=0.02,color="black")
+    objects.append(eye_left)
+
+    # Eye right
+    eye_right = ub.Ball(htm=ub.Utils.trn([0.06 ,   0.12 ,   1.400]),radius=0.02,color="black")
+    objects.append(eye_right)
+    
+    #Bounding cylinder
+    bcyl = ub.Cylinder(htm=ub.Utils.trn([0, 0, 0.9]),radius=0.4,height=1.8,color=torso_color, opacity=0.0)
+    objects.append(bcyl)
+        
+    return ub.Group(objects)
+
+#Function to set human pose
+def set_human_pose(_t, _human, _htm, walk_cycle):
+    
+    _human.add_ani_frame(time = _t, htm = _htm)
+    
+    theta = 0.15*np.sin(2*np.pi*walk_cycle)
+    _human.list_of_objects[2].add_ani_frame(time =_t, htm = _human.list_of_objects[2].htm * ub.Utils.trn([0,0,0.3]) * ub.Utils.rotx(theta) * ub.Utils.trn([0,0,-0.3]))
+    _human.list_of_objects[3].add_ani_frame(time =_t, htm = _human.list_of_objects[3].htm * ub.Utils.trn([0,0,0.3]) * ub.Utils.rotx(-theta) * ub.Utils.trn([0,0,-0.3]))    
+    _human.list_of_objects[4].add_ani_frame(time =_t, htm = _human.list_of_objects[4].htm * ub.Utils.trn([0,0,0.4]) * ub.Utils.rotx(-theta) * ub.Utils.trn([0,0,-0.4]))
+    _human.list_of_objects[5].add_ani_frame(time =_t, htm = _human.list_of_objects[5].htm * ub.Utils.trn([0,0,0.4]) * ub.Utils.rotx(theta) * ub.Utils.trn([0,0,-0.4])) 
+ 
+ 
+#Create some materials
+material_wood = ub.MeshMaterial.create_wood()
+material_glass= ub.MeshMaterial.create_glass()
+
+#Create the static obstacles    
+table_top_1 = ub.Cylinder(htm=ub.Utils.trn([-1.5,-1.5-0.4,0.8]), radius=0.7,height=0.02, mesh_material=material_wood)
+table_bot_1 = ub.Cylinder(htm=ub.Utils.trn([-1.5,-1.5-0.4,0.4]), radius=0.1,height=0.8, mesh_material=material_wood)
+table_top_2 = ub.Cylinder(htm=ub.Utils.trn([2.5,1,0.8]), radius=0.7,height=0.02, mesh_material=material_wood)
+table_bot_2 = ub.Cylinder(htm=ub.Utils.trn([2.5,1,0.4]), radius=0.1,height=0.8, mesh_material=material_wood)
+platform = ub.Box(htm=ub.Utils.trn([-2,2.5,0.4]), width=1.8,depth=0.6,height=0.8, mesh_material=material_wood)
+
+all_obstacles=[table_top_1,table_bot_1,table_top_2,table_bot_2,platform]
+
+#Create the tray objects
+tray_1 = ub.Group(
+    [ub.Cylinder(color='white',radius=0.13,height=0.02),
+     ub.Cylinder(htm=ub.Utils.trn([0,0,0.10]), radius=0.05,height=0.18, mesh_material=material_glass),
+     ub.Cylinder(htm=ub.Utils.trn([0,0,0.08]), radius=0.04,height=0.12, color='red')]
+, htm = ub.Utils.trn([-1.9,2.3,0.81]))
+
+tray_2 = ub.Group(
+    [ub.Cylinder(color='white',radius=0.13,height=0.02),
+     ub.Cylinder(htm=ub.Utils.trn([0,0,0.10]), radius=0.05,height=0.18, mesh_material=material_glass),
+     ub.Cylinder(htm=ub.Utils.trn([0,0,0.08]), radius=0.04,height=0.12, color='black')]
+, htm = ub.Utils.trn([-2.2,2.3,0.81]))
+
+#Create the robot
+robot = add_mobile_base(ub.Robot.create_franka_emika_3())
+
+#Create the target poses
+htm_tg_table_0 = ub.Utils.trn([-1.9,2.0-0.15,0.81])*ub.Utils.rotx(-np.pi/2)*ub.Utils.rotz(-np.pi/2)
+htm_tg_table_1 = ub.Utils.trn([-1.9,2.15,0.81])*ub.Utils.rotx(-np.pi/2)*ub.Utils.rotz(-np.pi/2)
+
+htm_tg_table_2 = ub.Utils.trn([1.55-0.15,0.95,0.9])*ub.Utils.roty(np.pi/2)*ub.Utils.rotz(np.pi)
+htm_tg_table_3 = ub.Utils.trn([1.85,0.95,0.81+0.09])*ub.Utils.roty(np.pi/2)*ub.Utils.rotz(np.pi)
+
+htm_tg_table_4 = ub.Utils.trn([-2.2,2.0-0.15,0.81])*ub.Utils.rotx(-np.pi/2)*ub.Utils.rotz(-np.pi/2)
+htm_tg_table_5 = ub.Utils.trn([-2.2,2.15,0.81])*ub.Utils.rotx(-np.pi/2)*ub.Utils.rotz(-np.pi/2)
+
+htm_tg_table_6 = ub.Utils.trn([-0.6+0.15,-1.5-0.4,0.9])*ub.Utils.roty(np.pi/2)*ub.Utils.rotx(np.pi)*ub.Utils.rotz(np.pi)
+htm_tg_table_7 = ub.Utils.trn([-0.9,-1.5-0.4,0.9])*ub.Utils.roty(np.pi/2)*ub.Utils.rotx(np.pi)*ub.Utils.rotz(np.pi)
+
+#Set the initial configuration
+q0 = np.matrix([-2.0, 1.7, 0.0, 0.0, 0.0, 0.0 ,-0.0698, 0.0, 0.0, 0.0])
+robot.add_ani_frame(0,q=q0)
+
+#Create simulation
+sim = ub.Simulation.create_sim_mountain([robot, table_top_1, table_bot_1, table_top_2, table_bot_2, platform, tray_1, tray_2])
+sim.set_parameters(show_grid=False)
+sim.add(ub.Frame(htm_tg_table_0, size=0.2))
+sim.add(ub.Frame(htm_tg_table_1, size=0.2))
+sim.add(ub.Frame(htm_tg_table_2, size=0.2))
+sim.add(ub.Frame(htm_tg_table_3, size=0.2))
+sim.add(ub.Frame(htm_tg_table_4, size=0.2))
+sim.add(ub.Frame(htm_tg_table_5, size=0.2))
+sim.add(ub.Frame(htm_tg_table_6, size=0.2))
+sim.add(ub.Frame(htm_tg_table_7, size=0.2))
+
+sim.set_parameters(load_screen_color="#191919", background_color="#191919", 
+                   width=500, height=500, show_world_frame=True, show_grid=False, camera_type='perspective', 
+                   camera_start_pose=[1.0,1.0,5.5,0,0,0,0.8], pixel_ratio=0.8)
+
+human_john_connor = create_human('blue')
+human_kyle_reese = create_human('red')
+all_humans = [human_john_connor, human_kyle_reese]
+
+sim.add(all_humans)
+</code></pre>
+                            
+                    </div>
+
+
+
+                    </div>
+
+                    <div
+                        style="flex: 3; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+
+                        <div style="flex: 4; flex-direction: row">
+                        <div style="width: 100%">
+                                    <img src="presentation/images/part3/image24.png"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                        </div>
+                            
+
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                     CASE STUDIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 2: UAIBOT CODE</b>
+                </h3>
+
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 4; min-width: 300px; font-size: 1.4vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+
+
+                        <div style="width: 100%; ">
+
+                        
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>
+                                Here is the main code:
+                            </li>     
+                        </ul>
+
+<pre style="max-width:100%;"><code class="language-python" style="text-align:left;">
+import numpy as np
+import uaibot as ub
+import matplotlib.pyplot as plt
+
+#You only need this if you are not using cells
+from helper_anim_part_3_ex2 import * 
+
+    
+###################################   
+#Parameters control
+param_eta_static = 0.2
+param_eta_human = 0.3
+param_eta_tray = 0.15
+param_eta_auto = 0.15
+param_eps = 0.005
+param_k = 0.3
+param_kr = 1.0
+param_kox = 0.3
+param_max_dotq = 1.5
+param_tol_error = 0.007   
+param_decay_alpha = 0.9
+param_min_alpha = 0.02
+
+#Parameters distance computation and safety
+param_no_iter_max_dist = 3000
+param_max_dist_static = 0.6
+param_max_dist_human = 2.5
+param_joint_delta = 2*np.pi/180
+param_use_smooth_dist = True
+
+
+
+if param_use_smooth_dist:
+    #When using smooth distances, all 'delta' 
+    #should be smaller, because smooth distances
+    #are smaller than Euclidean when objects are close
+    param_h_dist = 0.05
+    param_eps_dist = 0.02
+    param_tol_dist = 1e-6
+    param_obs_delta = 0.01
+    param_human_delta = 0.3
+    param_tray_delta = 0.01
+    param_auto_delta = 0.001
+else:
+    param_h_dist = 1e-9
+    param_eps_dist = 1e-9
+    param_tol_dist = 1e-5
+    param_obs_delta = 0.05
+    param_human_delta = 0.4
+    param_tray_delta = 0.05
+    param_auto_delta = 0.015
+    
+
+#Parameters of the human movement
+param_human_T = 15
+param_spd_human_1 = 0.3 
+param_spd_human_2 = 0.2 
+
+#Parameters simulation
+dt=0.02 
+param_t_max = 250
+
+
+
+##########################################################################
+
+
+#Definition of the control functions
+
+def fun_G(_r, _param_k):
+    m = np.shape(_r)[0]
+    out = np.matrix(np.zeros((m,1)))
+    for i in range(m):
+        out[i,0] = -_param_k * np.sign(_r[i,0]) * np.sqrt(np.abs(_r[i,0]))
+      
+
+    return out
+
+
+#The control function
+def control_fun(_q, _robot, _htm_tg, _obstacles, _humans, _tray, _vel_human, _holding_tray, _not_delivering_tray):
+    
+
+    #Compute the "base task function"
+    r0, jac_r0 = _robot.task_function(_q, _htm_tg)
+    
+    #Compute the new task function from the base one 
+    r = np.matrix(r0)
+    jac_r = np.matrix(jac_r0)
+    rp = np.linalg.norm(r[0:3,:])**2
+    r[3:6,:] += param_kr*(rp)
+    jac_rp = 2*r[0:3,:].T*jac_r[0:3,:]
+    jac_r[3,:] += param_kr*jac_rp
+    jac_r[4,:] += param_kr*jac_rp
+    jac_r[5,:] += param_kr*jac_rp
+    
+    
+    #Assembly the H, f matrices
+    no_joint = np.shape(_robot.q)[0]
+    
+    H = jac_r.T * jac_r + param_eps * np.identity(no_joint)
+    f = -jac_r.T * fun_G(r, param_k)
+ 
+    #Compute the end-effector Jacobian, this will be used in 
+    #some places
+    jac, htm = _robot.jac_geo(_q)
+    s_e = htm[0:3,-1]
+    jac_v = jac[0:3,:]
+    jac_w = jac[3:6,:]   
+       
+    # Start assembling the matrices A and b
+    #The vector b will be written as b_basic+b_ff
+    #b_ff will include the feedforward terms
+    #this is because we may have to change b_ff many times
+    A = np.matrix(np.zeros((0,no_joint)))
+    b_basic = np.matrix(np.zeros((0,1)))
+    
+
+    
+    #### CONSTRAINT 1: JOINT LIMIT ####
+
+    #Create the CBF constraint for (manipulator) joint limits
+    I_ext = np.hstack( (np.zeros((no_joint-3,3)), np.identity(no_joint-3)) )
+     
+    A = np.vstack((A, I_ext  ))
+    b_basic = np.vstack((b_basic, -param_eta_static*(_q[3:]-_robot.joint_limit[3:,0]-param_joint_delta) ))  
+    A = np.vstack((A, -I_ext))
+    b_basic = np.vstack((b_basic, -param_eta_static*(_robot.joint_limit[3:,1]-_q[3:]-param_joint_delta) )) 
+
+    #### CONSTRAINT 2: VELOCITY LIMIT ####
+    
+    #Implement velocity limits. We will only implement velocity kimits
+    #for the joint velocities
+    A = np.vstack((A, I_ext))
+    b_basic = np.vstack((b_basic, -param_max_dotq*np.matrix(np.ones((no_joint-3,1))) ))  
+    A = np.vstack((A, -I_ext))
+    b_basic = np.vstack((b_basic, -param_max_dotq*np.matrix(np.ones((no_joint-3,1))) ))   
+        
+    
+    #### CONSTRAINT 3: TRAY PARALLEL TO THE GROUND ####
+    
+    #If the robot is holding the tray, the constraint for the orientation
+    #of the axis should be a hard constraint, that is
+    # (d/dt) r_{ox}(q) = -K_{ox}*ox should hold true
+               
+    if _holding_tray:
+        y_d = _htm_tg[0:3,1]
+        z_d = _htm_tg[0:3,2]
+        x_e = htm[0:3,0]
+        
+        r_rotx = np.vstack((y_d.T*x_e,z_d.T*x_e))
+        b_rotx = -param_kox*r_rotx
+        jac_r_rotx = -np.vstack(( (y_d.T*ub.Utils.S(x_e))*jac[3:6,:], (z_d.T*ub.Utils.S(x_e))*jac[3:6,:]))
+        
+        #Implement an equality constraint
+        
+        A_eq = jac_r_rotx
+        b_eq = np.matrix(b_rotx)
+    else:
+        A_eq = None
+        b_eq = None
+    
+            
+        
+    #### CONSTRAINT 4: OBSTACLE AVOIDANCE WITH STATIC OBSTACLES ####
+    
+    #Implement obstacle avoidance with static obstacles
+    tray_col_obj = _tray.list_of_objects[0]
+    
+     
+    for obs in _obstacles:
+        ds = _robot.compute_dist(q = _q, obj = obs, h=param_h_dist, eps=param_eps_dist, 
+                                tol=param_tol_dist, no_iter_max=param_no_iter_max_dist, 
+                                max_dist=param_max_dist_static)
+        
+        #If we are not delivering the tray in the table
+        #we have to consider the full collision. If not, we disregard collision
+        #with the last five collision objects in the kinematic chain
+        
+        if _not_delivering_tray:
+            A = np.vstack((A, ds.jac_dist_mat))
+            b_basic = np.vstack((b_basic, -param_eta_static*(ds.dist_vect-param_obs_delta)))
+        else:
+            A = np.vstack((A, ds.jac_dist_mat[0:-5,:]))
+            b_basic = np.vstack((b_basic, -param_eta_static*(ds.dist_vect[0:-5,:]-param_obs_delta)))  
+           
+        #If we are holding the tray, we also have to check this collision  
+        if _holding_tray and _not_delivering_tray:
+            for obs in _obstacles:
+                #Only make computation if the AABB dist is less than the maximum distance
+                #to consider
+                
+                if ub.Utils.compute_aabbdist(obs, tray_col_obj) < param_max_dist_static:
+                    p_tray, p_obs, dist, _ = tray_col_obj.compute_dist(obs, h=param_h_dist, 
+                                    eps=param_eps_dist, tol=param_tol_dist,no_iter_max=param_no_iter_max_dist)
+
+                    jac_dist = ((p_tray - p_obs).T * jac_v + np.cross((p_tray - s_e ).T, (p_tray - p_obs).T)  * jac_w)/dist
+                    A = np.vstack((A, jac_dist))
+                    b_basic = np.vstack((b_basic, -param_eta_static*(dist-param_obs_delta)))
+
+    
+    
+    #### CONSTRAINT 5: COLLISION AVOIDANCE BETWEEN THE TRAY AND THE MANIPULATOR ####
+    
+    #Implement the collision avoidance between the tray and the body of the robot
+    #Disregard the last link (because this one is colliding with the tray)
+    
+    if _holding_tray and _not_delivering_tray:
+        ds = _robot.compute_dist(q = _q, obj = tray_col_obj, h=param_h_dist, eps=param_eps_dist, 
+                                    tol=param_tol_dist, no_iter_max=param_no_iter_max_dist, 
+                                    max_dist=param_max_dist_static)
+        
+
+        for ind1 in range(len(_robot.links)-3):
+            for ind2 in range(len(_robot.links[ind1].col_objects)):
+                try:
+                    #We need to put the "try" because some of the indexes may
+                    #not have been computed
+                    
+                    item = ds.get_item(ind1,ind2)
+                    p_tray = item.point_object
+                    p_robot = item.point_link
+                    
+                    jac_dist_1 = item.jac_distance
+                    jac_dist_2 = ((p_tray - p_robot).T * jac_v + np.cross((p_tray - s_e ).T, (p_tray - p_robot).T)  * jac_w)/item.distance
+
+                    A = np.vstack((A, jac_dist_1+jac_dist_2))
+                    b_basic = np.vstack((b_basic, -param_eta_tray*(item.distance-param_tray_delta)))
+                    
+                except:
+                    pass            
+            
+ 
+    #### CONSTRAINT 6: COLLISION AVOIDANCE BETWEEN THE MANIPULATOR AND ITSELF ####
+    
+    ds = robot.compute_dist_auto(q=_q, h=param_h_dist, eps=param_eps_dist, 
+                                    tol=param_tol_dist, no_iter_max=param_no_iter_max_dist)
+    
+    
+    A = np.vstack((A, ds.jac_dist_mat))
+    b_basic = np.vstack((b_basic, -param_eta_auto*(ds.dist_vect-param_auto_delta)))
+                    
+    #### CONSTRAINT 7: COLLISION AVOIDANCE WITH MOVING OBSTACLES (HUMANS) ####
+        
+    #Implement collision avoidance with moving obstacles (humans)
+    
+    #Initialize b_ff
+    b_ff = np.matrix(np.zeros(np.shape(b_basic)))
+    
+    for j in range(len(_humans)):
+        
+        human_col_obj = _humans[j].list_of_objects[-1]
+        
+        ds = _robot.compute_dist(q = _q, obj = human_col_obj, h=param_h_dist, 
+                                 eps=param_eps_dist, tol=param_tol_dist, no_iter_max=param_no_iter_max_dist, 
+                                 max_dist=param_max_dist_human)
+        
+        for ind1 in range(len(_robot.links)):
+            for ind2 in range(len(_robot.links[ind1].col_objects)):
+                try:
+                    #We need to put the "try" because some of the indexes may
+                    #not have been computed
+                    
+                    item = ds.get_item(ind1,ind2)
+                    p_human = item.point_object
+                    p_robot = item.point_link
+                    dv = (p_human-p_robot)/item.distance
+                    ff = dv.T *_vel_human[j]
+                    
+                    A = np.vstack((A, item.jac_distance))
+                    b_basic = np.vstack((b_basic, -param_eta_human*(item.distance-param_human_delta)))
+                    b_ff = np.vstack((b_ff, -ff))
+                except:
+                    pass
+
+        
+        #If we are holding the tray, we also have to check this collision
+        if _holding_tray and _not_delivering_tray:
+            
+            #Only make computation if the AABB dist is less than the maximum distance
+            #to consider
+            
+            if ub.Utils.compute_aabbdist(tray_col_obj, human_col_obj) < param_max_dist_static:
+                            
+                p_tray, p_human, dist, _ = tray_col_obj.compute_dist(human_col_obj, 
+                            h=param_h_dist, eps=param_eps_dist, tol=param_tol_dist, 
+                            no_iter_max=param_no_iter_max_dist)
+                
+                
+                jac_dist = ((p_tray - p_human).T * jac_v + np.cross((p_tray - s_e).T, (p_tray - p_human).T)  * jac_w)/dist
+                
+                
+                dv = (p_human-p_tray)/dist
+                ff = dv.T *_vel_human[j]
+                
+                A = np.vstack((A, jac_dist))
+                b_basic = np.vstack((b_basic, -param_eta_human*(dist-param_human_delta)))
+                b_ff = np.vstack((b_ff, -ff))        
+            
+        
+    ##### FINALLY TRY TO SOLVE #############
+    #Try to compute the controller
+    #If it fails, reduce the feedforward term
+    alpha = 1.0
+    
+    while cont:
+    
+        try:
+            u = ub.Utils.solve_qp(H, f, A, b_basic+alpha*b_ff, A_eq, b_eq)
+            return u, np.linalg.norm(r)
+        except:
+            alpha = param_decay_alpha*alpha
+            
+            if alpha < param_min_alpha:
+                return np.matrix(0*_robot.q), np.linalg.norm(r)
+
+
+    
+#####################################################
+
+#Model the task
+
+htm_tg = [htm_tg_table_0, htm_tg_table_1, htm_tg_table_0, htm_tg_table_2, htm_tg_table_3, htm_tg_table_2, 
+          htm_tg_table_4, htm_tg_table_5, htm_tg_table_4, htm_tg_table_6, htm_tg_table_7,htm_tg_table_0]
+holding_tray = [False, False, True, True, True, False, False , False, True, True, True, False]
+not_delivering_tray = [True,False,False,True, False, False, True, False, False, True, False, True]
+
+
+#Initialize some variables
+q = np.matrix(robot.q)
+q[8]+=np.pi/2
+
+mode = 0
+cont = True
+y_h1 = 0.5
+x_h2 = -0.5
+t = 0
+
+vel_human = [np.matrix([0.,0.,0.]).T, np.matrix([0.,0.,0.]).T]
+obj_to_hold = tray_1
+
+hist_u = []
+hist_error = []
+hist_mode = []
+hist_t = []
+hist_q = []
+
+
+    
+while cont:
+    
+    
+    #Implement human movement
+    if t % param_human_T < param_human_T/4 or t % param_human_T > 3*param_human_T/4:
+        y_h1 += param_spd_human_1*dt
+        x_h2 += param_spd_human_2*dt
+        rotz_h1 = ub.Utils.rotz(0)
+        rotz_h2 = ub.Utils.rotz(-np.pi/2)
+        
+        vel_human[0] = np.matrix([0.,param_spd_human_1, 0.]).T
+        vel_human[1] = np.matrix([param_spd_human_2,0., 0.]).T
+    else:
+        y_h1 -= param_spd_human_1*dt
+        x_h2 -= param_spd_human_2*dt
+        rotz_h1 = ub.Utils.rotz(-np.pi)
+        rotz_h2 = ub.Utils.rotz(np.pi/2)
+
+        vel_human[0] = np.matrix([0.,-param_spd_human_1, 0.]).T
+        vel_human[1] = np.matrix([-param_spd_human_2,0., 0.]).T
+                
+    set_human_pose(t,human_john_connor, ub.Utils.trn([.01,y_h1,0])*rotz_h1,t)
+    set_human_pose(t,human_kyle_reese, ub.Utils.trn([x_h2,0,0])*rotz_h2,t)
+    
+    
+    ###    
+    
+    
+        
+    dotq, error = control_fun(q, robot, htm_tg[mode], all_obstacles, all_humans,  
+                              obj_to_hold, vel_human, holding_tray[mode], not_delivering_tray[mode])
+    
+
+    
+    hist_u.append(dotq)
+    hist_error.append(error)
+    hist_mode.append(mode)
+    hist_t.append(t)
+    hist_q.append(np.matrix(q))
+
+    
+    t += dt
+    q+=dotq*dt
+
+    
+    robot.add_ani_frame(time = t, q = q)
+    robot.update_col_object(time=t)
+
+    
+    print("Mode "+str(mode)+" = "+str(round(error,3))+", t = "+str(round(t,2)))
+    if error <= param_tol_error:
+        
+        try:
+            mode+= 1
+            
+            if mode>0 and not holding_tray[mode-1] and holding_tray[mode]:
+                robot.attach_object(obj_to_hold)
+                
+            if mode>0 and holding_tray[mode-1] and not holding_tray[mode]:
+                robot.detach_object(obj_to_hold)
+                obj_to_hold = tray_2
+        except:
+            cont = False    
+         
+
+    
+    cont = cont and t < param_t_max 
+ 
+
+ 
+###############################################################
+# Plot graphs
+        
+# Plot joint positions
+fig = plt.figure(facecolor='#191919') 
+for i in range(10):
+    ax = plt.subplot(5, 2, i + 1, facecolor='#191919')
+    
+    ax.plot(hist_t, [q[i, 0] for q in hist_q], color='#81d41a', zorder=10)
+    
+    if i>=3:
+        ax.plot(hist_t, [robot.joint_limit[i, 0] + param_joint_delta for _ in hist_q], color='red')
+        ax.plot(hist_t, [robot.joint_limit[i, 1] - param_joint_delta for _ in hist_q], color='red')
+    
+    if i==0:
+        ax.set_title("x", color='white')
+    if i==1:
+        ax.set_title("y", color='white')
+    if i==2:
+        ax.set_title("theta", color='white')
+    if i>=3:    
+        ax.set_title("Manip joint " + str(i -2), color='white')
+    
+    ax.tick_params(colors='white')
+    ax.spines['bottom'].set_color('white')
+    ax.spines['top'].set_color('white')
+    ax.spines['left'].set_color('white')
+    ax.spines['right'].set_color('white')
+    ax.yaxis.label.set_color('white')
+    ax.xaxis.label.set_color('white')
+    ax.grid(True, color='white', linestyle=':', alpha=0.3)
+
+plt.tight_layout()
+fig.subplots_adjust(hspace=0.4)
+
+# Plot joint velocities
+fig = plt.figure(facecolor='#191919')   
+for i in range(10):
+    ax = plt.subplot(5, 2, i + 1, facecolor='#191919')
+    
+    ax.plot(hist_t, [u[i, 0] for u in hist_u], color='#81d41a', zorder=10)
+    
+    if i>=3:
+        ax.plot(hist_t, [-param_max_dotq for _ in hist_u], color='red')
+        ax.plot(hist_t, [param_max_dotq for _ in hist_u], color='red')
+    
+    
+    if i==0:
+        ax.set_title("velocity x", color='white')
+    if i==1:
+        ax.set_title("velocity y", color='white')
+    if i==2:
+        ax.set_title("velocity theta", color='white')
+    if i>=3:    
+        ax.set_title("velocity joint " + str(i -2), color='white')
+    
+    ax.tick_params(colors='white')
+    ax.spines['bottom'].set_color('white')
+    ax.spines['top'].set_color('white')
+    ax.spines['left'].set_color('white')
+    ax.spines['right'].set_color('white')
+    ax.yaxis.label.set_color('white')
+    ax.xaxis.label.set_color('white')
+    ax.grid(True, color='white', linestyle=':', alpha=0.3)
+
+plt.tight_layout()
+fig.subplots_adjust(hspace=0.4)
+
+plt.show()
+
+
+</code></pre>
+                            
+                    </div>
+
+
+
+                    </div>
+
+                    <div
+                        style="flex: 4; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+
+                        <div style="flex: 4; flex-direction: row">
+                        <div style="width: 100%">
+                            <iframe src="presentation/images/part3/part_3_4.html" width="590" height="580"
+                                style="border: none;"></iframe>
+                        </div>
+                            
+
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+
+
+
+       <section style="display: flex; flex-direction: column; height: 100vh; width: 100%;">
+
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CASE STUDIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 2: JOINT PLOTS</b>
+                </h3>
+              
+                <!-- Container below headers -->
+                <div style="flex-grow: 1; display: flex; flex-direction: column; width: 100%;">
+              
+                  <!-- Top 20% -->
+                  <div style="flex: 1; min-width: 300px; font-size: 1.4vw; text-align: left; display: flex; align-items: start; height: 100%; position: relative; ">
+                    
+
+                    <span>Note that joint limit is achieved in several situations.</span>
+                   
+                    
+                  </div>
+              
+                  <!-- Bottom 80% -->
+                  <div style="flex: 1; width: 100%; position: relative; ">
+                    
+
+
+              
+                      <img src="presentation/images/part3/image41.svg"
+                           style="width: 85%; height: 85%; object-fit: contain;">
+                   
+
+                  </div>
+                </div>
+              
+              </section>
+
+
+       <section style="display: flex; flex-direction: column; height: 100vh; width: 100%;">
+
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CASE STUDIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 2: VELOCITY PLOTS</b>
+                </h3>
+              
+                <!-- Container below headers -->
+                <div style="flex-grow: 1; display: flex; flex-direction: column; width: 100%;">
+              
+                  <!-- Top 20% -->
+                  <div style="flex: 1; min-width: 300px; font-size: 1.4vw; text-align: left; display: flex; align-items: start; height: 100%; position: relative; ">
+                    
+
+                    <span>Here are the velocity plots:</span>
+                   
+                    
+                  </div>
+              
+                  <!-- Bottom 80% -->
+                  <div style="flex: 1; width: 100%; position: relative; ">
+                    
+
+
+              
+                      <img src="presentation/images/part3/image42.svg"
+                           style="width: 85%; height: 85%; object-fit: contain;">
+                   
+
+                  </div>
+                </div>
+              
+              </section>
+
+
+
+            <style>
+
+
+
+                .reveal .progress {
+                    color: #34eb5e;
+                }
+
+                .reveal .controls {
+                    color: #34eb5e;
+                }
+
+                body {
+                    background-image: url(presentation/images/aula1/logo_ufmg.svg) !important;
+                    background-color: black;
+                    background-size: 8% !important;
+                    background-repeat: no-repeat !important;
+                    background-position: 96% 3% !important;
+                }
+
+                .itext {
+                    color: #8af2a2;
+                }
+
+                .ttext {
+                    color: #34eb5e;
+                }
+
+                /* width */
+                ::-webkit-scrollbar {
+                    width: 20px;
+                }
+
+                /* Track */
+                ::-webkit-scrollbar-track {
+                    box-shadow: inset 0 0 5px grey;
+                    border-radius: 10px;
+                }
+
+                /* Handle */
+                ::-webkit-scrollbar-thumb {
+                    background: #34eb5e;
+                    border-radius: 10px;
+                }
+
+                /* Handle on hover */
+                ::-webkit-scrollbar-thumb:hover {
+                    background: #01b82b;
+                }
+
+                ::-webkit-scrollbar-corner {
+                    background: rgba(0, 0, 0, 0);
+                }
+
+                .hlink {
+                    color: #f5bf42;
+                }
+
+                .hlink:hover {
+                    text-decoration: underline;
+                }
+
+                .logo {
+                    position: absolute;
+                    top: 1%;
+                    right: 1%;
+                    width: 6%;
+                    /* Adjust size as needed */
+                    z-index: 10;
+                    /* Ensures it appears above the video and overlay */
+                }
+                .reveal .slide-number {
+                    font-size: 30px;
+                    position: absolute;
+                    bottom: 30px;
+                    left: 50px;
+                    background: none !important;
+                    /* remove any background */
+                    box-shadow: none !important;
+                    /* remove shadows */
+                    padding: 0 !important;
+                    margin: 0 !important;
+                    border: none !important;
+                    color: white;
+                    /* or whatever color you want */
+                    opacity: 1.0;
+                    width: auto !important;
+                    height: auto !important;
+                    z-index: -1;
+                }
+
+                .copy-button {
+                position: absolute;
+                top: 0;
+                right: 0;
+                background-color: #272822;
+                color: #34eb5e;
+                border: none;
+                padding: 6px 10px;
+                font-size: 0.6em;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                border-top-right-radius: 4px;
+                border-bottom-left-radius: 4px;
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                }
+
+                .copy-button:hover {
+                background-color: #34eb5e;
+                color: #272822;
+                }
+                .copy-button svg {
+                width: 14px;
+                height: 14px;
+                fill: currentColor;
+                }
+            </style>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                document.querySelectorAll('pre > code').forEach((codeBlock) => {
+                    const pre = codeBlock.parentElement;
+                    pre.style.position = "relative";
+
+                    const button = document.createElement("button");
+                    button.className = "copy-button";
+                    button.innerHTML = `
+                    <svg viewBox="0 0 24 24">
+                        <path d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 18H8V7h11v16z"/>
+                    </svg>
+                    <span>Copy</span>
+                    `;
+
+                    pre.appendChild(button);
+
+                    button.addEventListener("click", () => {
+                    navigator.clipboard.writeText(codeBlock.textContent).then(() => {
+                        const original = button.innerHTML;
+                        button.innerHTML = `<span>Copied!</span>`;
+                        setTimeout(() => {
+                        button.innerHTML = original;
+                        }, 2000);
+                    });
+                    });
+                });
+                });
+            </script>
+
+            <script id="MathJax-script" async
+                src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+            <script src="presentation/dist/reveal.js"></script>
+            <script src="presentation/plugin/notes/notes.js"></script>
+            <script src="presentation/plugin/markdown/markdown.js"></script>
+            <script src="presentation/plugin/highlight/highlight.js"></script>
+            <script src="presentation/plugin/menu/menu.js"></script>
+            <script>
+                // More info about initialization & config:
+                // - https://revealjs.com/initialization/
+                // - https://revealjs.com/config/
+                Reveal.initialize({
+                    hash: true,
+                    width: 1200,
+                    height: 800,
+                    margin: 0,
+                    minScale: 0.2,
+                    maxScale: 2.0,
+                    plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealMenu],
+                    slideNumber: function () {
+                        const offset = 67;  // adjust as needed
+                        return [offset + Reveal.getSlidePastCount() + 1];
+                    },
+                    viewDistance: 2
+                });
+                var frames = document.getElementsByTagName("iframe");
+
+
+                Reveal.on('slidechanged', event => {
+                    for (let i = 0; i < frames.length; ++i) {
+                        frames[i].contentWindow.location.reload(true);
+                    }
+                });
+
+                Reveal.on('ready', () => {
+                    if (Reveal.getIndices().h === 0 && !window.location.hash) {
+                    Reveal.slide(1);
+                    }
+                    });
+
+                var frames = document.getElementsByTagName("iframe");
+
+
+                Reveal.on('slidechanged', event => {
+                    for (let i = 0; i < frames.length; ++i) {
+                        frames[i].contentWindow.location.reload(true);
+                    }
+                });
+
+
+                Reveal.on('slidechanged', function () {
+                
+                const indices = Reveal.getIndices();
+                const isSecondSlide = indices.h === 1 && indices.v === 0;
+
+                if (isSecondSlide) {
+                    
+                    document.addEventListener('keydown', function (event) {
+                    if (event.key === "ArrowLeft") {
+                        window.location.href = "presentation/part3_B.html#/15";  
+                    }
+                    }, { once: true });
+                     
+                }
+                });
+            </script>
+</body>
+
+</html>
