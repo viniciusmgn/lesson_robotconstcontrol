@@ -77,13 +77,13 @@
 
                         </div>
                     </div>
-                    <div
-                        style="flex: 5; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                    <div style="flex: 5; flex-direction: row; position: relative; overflow: visible;">
                         <div style="flex: 5; flex-direction: row">
            
-                        <div style="width: 100%">
-                            <iframe src="presentation/images/part3/part_3_3.html" width="550" height="580"
-                                style="border: none;"></iframe>
+                        <div style="width: 100%" class="iframe-wrapper">
+                            <button class="iframe-button">[]</button>
+                            <iframe src="presentation/images/part3/part_3_3.html"></iframe>
+                                
                         </div>
 
                         </div>
@@ -1692,7 +1692,7 @@ def control_fun(_q, _robot, _htm_tg, _obstacles, _humans, _tray, _vel_human, _ho
     
 
     #Compute the "base task function"
-    r0, jac_r0 = _robot.task_function(_q, _htm_tg)
+    r0, jac_r0 = _robot.task_function(q = _q, htm_tg = _htm_tg)
     
     #Compute the new task function from the base one 
     r = np.matrix(r0)
@@ -2106,14 +2106,13 @@ plt.show()
 
                     </div>
 
-                    <div
-                        style="flex: 4; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
-
+                    <div style="flex: 4; flex-direction: row; position: relative; overflow: visible;">
                         <div style="flex: 4; flex-direction: row">
-                        <div style="width: 100%">
-                            <iframe src="presentation/images/part3/part_3_4.html" width="590" height="580"
-                                style="border: none;"></iframe>
-                        </div>
+
+
+                         <div style="width: 100%" class="iframe-wrapper">
+                            <button class="iframe-button">[]</button>
+                            <iframe src="presentation/images/part3/part_3_4.html"></iframe>
                             
 
                         </div>
@@ -2197,6 +2196,8 @@ plt.show()
                 </div>
               
               </section>
+
+              <section></section>
 
 
 
@@ -2318,6 +2319,60 @@ plt.show()
                 height: 14px;
                 fill: currentColor;
                 }
+
+
+
+                .iframe-wrapper {
+                    position: relative;
+                    width: 100%;
+                    height: 580px;
+                    transition: all 0.3s ease;
+                }
+
+                .iframe-wrapper iframe {
+                    width: 100%;
+                    height: 100%;
+                    border: none;
+                    display: block;
+                }
+
+                .iframe-button {
+                    position: absolute;
+                    top: 0px;
+                    right: 50px;
+                    padding: 5px 10px;
+                    font-size: 10px;
+                    cursor: pointer;
+                    color: #34eb5e;
+                    border: 1px solid #191919;
+                    background-color: #191919;
+                    z-index: 10;
+                }
+                .iframe-button:hover {
+                background-color: #34eb5e;
+                color: #272822;
+                }
+
+                /* Fullscreen mode */
+                .iframe-wrapper.fullscreen {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100vw;
+                    height: 100vh;
+                    background-color: #191919;
+                    z-index: 9999;
+                }
+
+                .iframe-wrapper.fullscreen iframe {
+                    width: 70%;
+                    height: 70%;
+
+                    position: absolute;
+                    top: 2%;
+                    left: 60%;
+                    transform: translate(-50%, 0);
+                }
             </style>
 
             <script>
@@ -2415,6 +2470,54 @@ plt.show()
                      
                 }
                 });
+
+
+                Reveal.on('slidechanged', function(event) {
+                const indices = Reveal.getIndices();
+                const lastH = Reveal.getTotalSlides() - 1;
+
+                // only go to next file when no vertical slides remain
+                const isLast = Reveal.isLastSlide() || (
+                    !Reveal.availableRoutes().down && !Reveal.availableRoutes().right
+                );
+
+                if (isLast) {
+                    window.location.href = 'presentation/part3_D.html#/1';
+                }
+                });
+
+
+                document.addEventListener('DOMContentLoaded', () => {
+                    document.querySelectorAll('.iframe-wrapper').forEach(wrapper => {
+                        const button = wrapper.querySelector('.iframe-button');
+                        const iframe = wrapper.querySelector('iframe');
+
+                        const updateButton = () => {
+                            button.textContent = wrapper.classList.contains('fullscreen') ? 'X' : '[]';
+                        };
+
+                        button.addEventListener('click', () => {
+                            const isFullscreen = wrapper.classList.contains('fullscreen');
+
+                            if (isFullscreen) {
+                                // Exit fullscreen
+                                wrapper.classList.remove('fullscreen');
+                            } else {
+                                // Enter fullscreen
+                                wrapper.classList.add('fullscreen');
+                            }
+
+                            updateButton();
+                        });
+
+                        // Set initial button symbol
+                        updateButton();
+                    });
+                });
+
+
+
+
             </script>
 </body>
 

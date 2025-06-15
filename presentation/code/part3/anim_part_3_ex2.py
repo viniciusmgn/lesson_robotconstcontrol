@@ -83,7 +83,9 @@ def control_fun(_q, _robot, _htm_tg, _obstacles, _humans, _tray, _vel_human, _ho
     
 
     #Compute the "base task function"
-    r0, jac_r0 = _robot.task_function(_q, _htm_tg)
+    r0, jac_r0 = _robot.task_function(q = _q, htm_tg = _htm_tg)
+    
+
     
     #Compute the new task function from the base one 
     r = np.matrix(r0)
@@ -490,6 +492,6 @@ plt.show()
 
    
 
-sim.set_parameters(pixel_ratio=0.9)
-sim.save("/home/vinicius/Desktop/Aulas/Robot Constrained Control/presentation/images/part3/","part_3_4")
+sim.set_parameters(load_screen_color="#191919", background_color="#191919", width=500, height=500, pixel_ratio=0.9)
+sim.save("/home/vinicius/Desktop/Aulas/Robot Constrained Control/presentation/images/part3/","part_3_4_b")
 # %%

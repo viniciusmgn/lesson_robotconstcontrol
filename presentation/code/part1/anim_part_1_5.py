@@ -61,10 +61,10 @@ for i in range(len(robot.links)):
     p_A = (htm[i] * Utils.trn([0, 0, robot.links[i].d]))[0:3, 3]
     p_B = htm[i + 1][0:3, 3]
 
-    n_points = floor(np.linalg.norm(p_A - p_B) / dist_between_points)
+    n_points = np.floor(np.linalg.norm(p_A - p_B) / dist_between_points)
     start_lines.append(len(line_between_points))
 
-    for j in range(n_points):
+    for j in range(int(n_points)):
         line_between_points.append((1 - j / n_points) * p_A + (j / n_points) * p_B)
 
     end_lines.append(len(line_between_points))
@@ -92,8 +92,7 @@ for i in range(len(robot.links) + 1):
     sim.add(y_axis[-1])
     sim.add(z_axis[-1])
 
-style = "top:" + str(0.75 * height) + "px;right:" + str(0) + "px;width:" + str(
-    width) + "px;position:absolute;text-align:center;color:white;background-color:#222224;font-smooth:always;font-family:arial"
+style = "top:65%; right: 0; font-size: 2.5vw; width:100%;position:absolute;text-align:center;color:white;background-color:#222224;font-smooth:always;font-family:arial"
 
 explanation = HTMLDiv(html_text="", style=style)
 
@@ -258,9 +257,9 @@ for i in range(len(robot.links) + 1):
             i) + " is attached to the link and blinking in <span style='color:gold'><b>yellow</b></span>.<br>So" \
                  ", any joint that moves this link moves the frame.")
         for j in range(10):
-            k += floor(0.1 * deltak)
+            k += np.floor(0.1 * deltak)
             links_alternative[i - 1].add_ani_frame(k * dt, robot.fkm(axis="dh")[i - 1])
-            k += floor(0.1 * deltak)
+            k += np.floor(0.1 * deltak)
             links_alternative[i - 1].add_ani_frame(k * dt, far)
     else:
         explanation.add_ani_frame(k * dt,
@@ -275,8 +274,8 @@ for i in range(len(robot.links) + 1):
         explanation.add_ani_frame(k * dt,
                                   html_text="When the joint " + txt_joint(j) + " moves, it moves " + txt_frame(i) + ".")
 
-        for l in range(floor(0.5 * deltak)):
-            q[j - 1] += (robot.joint_limit[j - 1,0] - robot.q0[j-1])/ (floor(0.5 * deltak) - 1)
+        for l in range(int(np.floor(0.5 * deltak))):
+            q[j - 1] += (robot.joint_limit[j - 1,0] - robot.q0[j-1])/ (np.floor(0.5 * deltak) - 1)
             htm_i = robot.fkm(axis="dh", q=q)[i - 1]
             robot.add_ani_frame(k * dt, q=q)
             x_axis[i].add_ani_frame(k * dt, htm=htm_i * Utils.roty(3.14 / 2) * Utils.trn([0, 0, vector_length / 2]))
@@ -295,8 +294,8 @@ for i in range(len(robot.links) + 1):
             z_axis[i].add_ani_frame(k * dt, htm=htm_i * Utils.trn([0, 0, vector_length / 2]))
             k += 1
 
-        for l in range(floor(0.5 * deltak)):
-            q[j - 1] += -(robot.joint_limit[j - 1,1]- robot.q0[j-1]) / (floor(0.5 * deltak) - 1)
+        for l in range(int(np.floor(0.5 * deltak))):
+            q[j - 1] += -(robot.joint_limit[j - 1,1]- robot.q0[j-1]) / (np.floor(0.5 * deltak) - 1)
             robot.add_ani_frame(k * dt, q=q)
             htm_i = robot.fkm(axis="dh", q=q)[i - 1]
             x_axis[i].add_ani_frame(k * dt, htm=htm_i * Utils.roty(3.14 / 2) * Utils.trn([0, 0, vector_length / 2]))
@@ -326,8 +325,8 @@ for i in range(len(robot.links) + 1):
             i) + ". The same is true for <b>joint<sub>i</sub></b> with i > " + str(i) + ".")
 
         q = robot.q0
-        for l in range(floor(0.5 * deltak)):
-            q[i] += (robot.joint_limit[i,0]  - robot.q0[i])/ (floor(0.5 * deltak) - 1)
+        for l in range(int(np.floor(0.5 * deltak))):
+            q[i] += (robot.joint_limit[i,0]  - robot.q0[i])/ (np.floor(0.5 * deltak) - 1)
             robot.add_ani_frame(k * dt, q=q)
             k += 1
 
@@ -336,8 +335,8 @@ for i in range(len(robot.links) + 1):
             robot.add_ani_frame(k * dt, q=q)
             k += 1
 
-        for l in range(floor(0.5 * deltak)):
-            q[i] += -(robot.joint_limit[i,1]- robot.q0[i]) / (floor(0.5 * deltak) - 1)
+        for l in range(int(np.floor(0.5 * deltak))):
+            q[i] += -(robot.joint_limit[i,1]- robot.q0[i]) / (np.floor(0.5 * deltak) - 1)
             robot.add_ani_frame(k * dt, q=q)
             k += 1
 

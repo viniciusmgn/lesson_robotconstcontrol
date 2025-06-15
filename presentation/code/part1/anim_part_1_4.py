@@ -9,7 +9,9 @@ import numpy as np
 
 robot = Robot.create_epson_t6(htm=Utils.rotz(3.14/2), color="gray", opacity=0.3)
 sim = Simulation([robot], load_screen_color="#191919", show_grid=False, show_world_frame=False, background_color="#191919",
-                 camera_type="orthographic", width=500, height=400, camera_start_pose=[1,0.1,0.35,-3.14,3.14/2,-3.14/2,4])
+                 camera_type="orthographic", width=500, height=400, camera_start_pose=[0.9384, 0.3430, 0.4565, -0.0013, 0.2491, 0.1276, 4.2105])
+
+                                                                       
 
 
 fact = 0.25/0.3
@@ -29,8 +31,7 @@ light2 = PointLight(name="light2", color="white", intensity=8, htm=Utils.trn([-1
 light3 = PointLight(name="light3", color="white", intensity=8, htm=Utils.trn([1, -1, 1.5]))
 light4 = PointLight(name="light4", color="white", intensity=8, htm=Utils.trn([1, 1, 1.5]))
 
-style = "top:" + str(0.8 * sim.height) + "px;right:" + str(0) + "px;width:" + str(
-    sim.width) + "px;position:absolute;text-align:center;background-color:#191919;color:white;font-smooth:always;font-family:arial"
+style = "top:75%; right: 0; font-size: 2.5vw;  width:100%;position:absolute;text-align:center;background-color:#191919;color:white;font-smooth:always;font-family:arial"
 explanation = HTMLDiv(html_text="", style=style)
 
 sim.add(joint_0)
@@ -46,15 +47,15 @@ q0 = robot.q
 
 
 for i in range(3000):
-    robot.add_ani_frame(i*dt, q=q0+np.array([0.3*sin(i*dt),0,0.095+0.075*cos(i*dt)]).reshape((3,1)))
+    robot.add_ani_frame(i*dt, q=q0+np.array([0.3*np.sin(i*dt),0,0.095+0.075*np.cos(i*dt)]).reshape((3,1)))
     htm2 = robot.fkm(axis='dh')[2]
-    joint_0.add_ani_frame(i*dt, htm =  Utils.trn([0,0,0.2]) * Utils.rotz(0.3*sin(i*dt)) )
+    joint_0.add_ani_frame(i*dt, htm =  Utils.trn([0,0,0.2]) * Utils.rotz(0.3*np.sin(i*dt)) )
     joint_1.add_ani_frame(i*dt, Utils.trn([0,0,0.1]) * robot.fkm(axis='dh')[0] )
     joint_2.add_ani_frame(i*dt, htm =  htm2*Utils.trn([0,0,-0.2]) )
     
     joint_cylinder_1.add_ani_frame(i*dt, htm =  Utils.trn([0,0,0.1]) * robot.fkm(axis='dh')[0] )
     joint_cylinder_2.add_ani_frame(i*dt, htm =  htm2*Utils.trn([0,0,-0.2]) )
-    message = "<div style=\'item-align:center;text-align:center;width:500px\'><div style=\'width:100%;display: inline-block;float:left;vertical-align: middle\'>q(" + str(
+    message = "<div style=\'item-align:center;text-align:center;width:100%\'><div style=\'width:100%;display: inline-block;float:left;vertical-align: middle\'>q(" + str(
         round(100 * i * dt) / 100) + "s) = "+str(round(robot.q[0,0],2))+" rad, "+str(round(robot.q[1,0],2))+" rad, "+str(round(robot.q[2,0],2))+" m</div></div>"
     
     explanation.add_ani_frame(i*dt, html_text=message)

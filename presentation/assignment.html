@@ -581,7 +581,66 @@ print("Projection = "+str(proj.transpose()))
                     height: auto !important;
                     z-index: -1;
                 }
+
+                .copy-button {
+                position: absolute;
+                top: 0;
+                right: 0;
+                background-color: #272822;
+                color: #34eb5e;
+                border: none;
+                padding: 6px 10px;
+                font-size: 0.6em;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                border-top-right-radius: 4px;
+                border-bottom-left-radius: 4px;
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                }
+
+                .copy-button:hover {
+                background-color: #34eb5e;
+                color: #272822;
+                }
+                .copy-button svg {
+                width: 14px;
+                height: 14px;
+                fill: currentColor;
+                }
             </style>
+
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                document.querySelectorAll('pre > code').forEach((codeBlock) => {
+                    const pre = codeBlock.parentElement;
+                    pre.style.position = "relative";
+
+                    const button = document.createElement("button");
+                    button.className = "copy-button";
+                    button.innerHTML = `
+                    <svg viewBox="0 0 24 24">
+                        <path d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 18H8V7h11v16z"/>
+                    </svg>
+                    <span>Copy</span>
+                    `;
+
+                    pre.appendChild(button);
+
+                    button.addEventListener("click", () => {
+                    navigator.clipboard.writeText(codeBlock.textContent).then(() => {
+                        const original = button.innerHTML;
+                        button.innerHTML = `<span>Copied!</span>`;
+                        setTimeout(() => {
+                        button.innerHTML = original;
+                        }, 2000);
+                    });
+                    });
+                });
+                });
+            </script>
 
             <script id="MathJax-script" async
                 src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>

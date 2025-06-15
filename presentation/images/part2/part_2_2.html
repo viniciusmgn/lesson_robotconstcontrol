@@ -1500,6 +1500,55 @@ renderer.setAnimationLoop(() => {
 	renderer.render(scene, camera);
 });
 //------------------------------------------------------------
- </script>
- </body>
+ 
+window.addEventListener('resize', onWindowResize, false);
+
+function onWindowResize() {
+    
+    const canvas = document.querySelector('canvas');
+    const widthAttr = canvas.getAttribute('width');
+    const heightAttr = canvas.getAttribute('height');
+    const factor = widthAttr/heightAttr
+    
+    const width = Math.round(0.9*factor*window.innerHeight);
+    const height = 0.9*window.innerHeight;   
+	    
+    camera.aspect = width / height;
+    camera.updateProjectionMatrix();
+    renderer.setSize(width, height);
+
+    // ---- GUI WIDTH FIX ----
+    const canvasWidth = renderer.domElement.clientWidth;
+    const customContainer = document.getElementById('canvas_container_' + sceneID);
+
+    if (customContainer) {
+        try {
+            customContainer.getElementsByClassName('c')[0].style.width = (canvasWidth - 20) + 'px';
+            customContainer.getElementsByClassName('dg main')[0].style.width = canvasWidth + 'px';
+            customContainer.getElementsByClassName('slider')[0].style.width = (canvasWidth - 100) + 'px';
+        } catch (e) {
+            console.warn('GUI resize skipped:', e);
+        }
+    }
+}
+
+</script>
+ 
+<style>
+    html, body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+    }
+
+    canvas {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+</style>
+
+</body>
  </html>

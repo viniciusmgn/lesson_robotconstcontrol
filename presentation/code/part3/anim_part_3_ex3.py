@@ -83,7 +83,7 @@ all_points = []
 for obs in all_obstacles:
     all_points+=  [np.matrix(p).T for p in obs.to_point_cloud(disc=0.06).points.T]
 
-pc = ub.PointCloud(points=all_points,size=0.03,color='white')
+pc = ub.PointCloud(points=all_points,size=0.03,color='#005500')
 
 
 
@@ -154,6 +154,7 @@ for i in range(param_n_robots):
     all_tg_points.append(tg_point_try)
     all_tg_box.append(ub.Box(htm=ub.Utils.trn(tg_point_try), color=drone_colors[i],width=0.03,depth=0.03,height=0.03))
                     
+print("Finished!")
      
 #Use motion planer
 
@@ -168,7 +169,7 @@ for i in range(param_n_robots):
 
            
         
-sim = ub.Simulation.create_sim_hill(drones, light_intensity=1.5)
+sim = ub.Simulation.create_sim_mountain(drones, light_intensity=1.5)
 sim.add(pc)
 sim.add(all_tg_box)
 sim.set_parameters(pixel_ratio=0.9)
@@ -388,7 +389,7 @@ while cont:
         total_finished = total_finished and finished[j]
     
 
-    cont = t < param_t_max and not total_finished
+    cont = t < 0*param_t_max and not total_finished
     i = i + 1
     
     
@@ -403,7 +404,8 @@ while cont:
     for j in range(param_n_robots):
         drones[j].add_ani_frame(time=i*dt,htm=ub.Utils.trn(q[3*j:3*(j+1),:]))
 
-sim.save()
+sim.set_parameters(load_screen_color="#191919", background_color="#191919", width=500, height=500, pixel_ratio=0.9)
+sim.save("/home/vinicius/Desktop/Aulas/Robot Constrained Control/presentation/images/part3/","part_3_5")
 # %%
 
 

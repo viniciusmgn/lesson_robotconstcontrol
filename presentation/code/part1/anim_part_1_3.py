@@ -12,11 +12,9 @@ from uaibot.utils import *
 sim = Simulation([], load_screen_color="#191919", background_color="#191919", width=500, height=500,
                  camera_type="orthographic")
 
-texture_box = Texture(
-    url='https://raw.githubusercontent.com/viniciusmgn/uaibot_content/master/contents/Textures/gold_metal.png',
-    wrap_s='RepeatWrapping', wrap_t='RepeatWrapping', repeat=[1, 1])
 
-material_box = MeshMaterial(texture_map=texture_box, roughness=1, metalness=1, opacity=0.8)
+
+material_box = MeshMaterial.create_colored_metal('yellow')
 box = Box(htm = np.identity(4), width=0.1, depth=0.2, height=0.3, mesh_material=material_box)
 
 light1 = PointLight(name="light1", color="white", intensity=8, htm=Utils.trn([-1, -1, 1.5]))
@@ -25,8 +23,7 @@ light3 = PointLight(name="light3", color="white", intensity=8, htm=Utils.trn([1,
 light4 = PointLight(name="light4", color="white", intensity=8, htm=Utils.trn([1, 1, 1.5]))
 
 frame = Frame(htm = np.identity(4))
-style = "top:" + str(0.8 * sim.height) + "px;right:" + str(0) + "px;width:" + str(
-    sim.width) + "px;position:absolute;text-align:center;background-color:#191919;color:white;font-smooth:always;font-family:arial"
+style = "top:75%; right: 0; font-size: 1.5vw;  width:100%;position:absolute;text-align:center;background-color:#191919;color:white;font-smooth:always;font-family:arial"
 explanation = HTMLDiv(html_text="", style=style)
 
 sim.add([box, frame,light1,light2,light3,light4, explanation])
@@ -39,9 +36,9 @@ for i in range(3000):
     box.add_ani_frame(i*dt,htm=htm)
     frame.add_ani_frame(i*dt,htm=htm)
     H = box.htm
-    table = "<div style=\'item-align:center;text-align:center;width:500px\'><div style=\'width:20%;display: inline-block;float:left;vertical-align: middle\'>q(" + str(
+    table = "<div style=\'item-align:center;font-size: 1.5vw;text-align:center;width:100%\'><div style=\'width:20%;font-size: 2.5vw;display: inline-block;float:left;vertical-align: middle\'>q(" + str(
         round(
-            100 * i * dt) / 100) + "s) = </div><div style=\'width:80%;display: inline-block;float:right;\'><table style=\'color:white;text-align:right\'><tr><td width=\'60px\'>" + str(
+            100 * i * dt) / 100) + "s) = </div><div style=\'width:80%;font-size: 1.5vw;display: inline-block;float:right;\'><table style=\'color:white;text-align:right\'><tr><td width=\'60px\'>" + str(
         round(100 * H[0, 0]) / 100) + "</td><td width=\'60px\'>" + str(
         round(100 * H[0, 1]) / 100) + "</td><td width=\'60px\'>" + str(
         round(100 * H[0, 2]) / 100) + "</td><td width=\'60px\'>" + str(

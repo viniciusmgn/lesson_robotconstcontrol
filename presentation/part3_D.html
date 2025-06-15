@@ -1,0 +1,472 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv='cache-control' content='no-cache'>
+    <meta http-equiv='expires' content='0'>
+    <meta http-equiv='pragma' content='no-cache'>
+    <meta name="robots" content="noindex, nofollow">
+
+    <script>
+        // Check if the site is being served from GitHub Pages
+        if (window.location.hostname === "viniciusmgn.github.io") {
+            document.write('<base href="/lesson_robotconstcontrol/">');
+        } else {
+            document.write('<base href="/">');  // Local development base
+        }
+    </script>
+
+    <title>Part 3 - Control</title>
+
+    <link rel="stylesheet" href="presentation/dist/reset.css">
+    <link rel="stylesheet" href="presentation/dist/reveal.css">
+    <link rel="stylesheet" href="presentation/dist/theme/black.css">
+
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="presentation/plugin/highlight/monokai.css">
+    <style>
+        .reveal .slides section {
+            padding: 1.5rem;
+            /* Adjust the value as needed */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <img src="presentation/images/intro/logo_ufmg.svg" class="logo">
+
+            <section data-menu-exclude="true" data-menu-title=""></section>
+
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CASE STUDIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 3: MULTIPLE AGENTS</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 6; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                    <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                        <li>
+                            Now, we have \(N\)  <b class="itext">flying mobile robots (drones)</b> that move in the 3D space 
+                            in an environment modelled by a point cloud.
+                        </li><br>
+                        <li>
+                            They should go to designated target points while avoiding collisions with the environment and between 
+                            themselves. 
+                        </li><br>
+                        <li>
+                            Let \(p_i \in \mathbb{R}^3\) be the 3D position of the \(i^{th}\) agent. The system's configuration 
+                            \(q \in \mathbb{R}^{3N}\) is the stacked position of all agents. 
+                        </li><br>
+                        <li>We assume that we control each agent's 3D <b class="itext">acceleration</b>, so, from the point of view 
+                        of configuration, the system dynamics is <b class="itext">\(\ddot{q} = u\)</b>.</li>
+                    </ul>
+
+
+
+                        </div>
+                    </div>
+                    <div
+                        style="flex: 5; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 5; flex-direction: row">
+           
+                        <div style="width: 100%"  class="iframe-wrapper" id="iframeWrapper">
+                            <iframe src="presentation/images/part3/part_3_5.html" width="550" height="580"
+                                style="border: none;"></iframe>
+
+                            <button class="iframe-button" id="toggleButton">⛶</button>
+                        </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>   
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CASE STUDIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 3: CENTRALIZED VS DECENTRALIZED</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 6; min-width: 300px; font-size: 1.4vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>
+                                In this case in which we have a <b class="itext">multi-agent system</b> (e.g., many robots), 
+                                there is an important distinction between a <b class="ttext">centralized</b> and 
+                                <b class="ttext">decentralized</b> approach.
+                            </li><br>
+                            <li>
+                                In the  <b class="itext">centralized</b> approach, all the robots communicate with a central computer, that processes 
+                                everything and then send back to each agent the control input.
+                            </li><br>
+                            <li>
+                                In the  <b class="itext">decentralized</b> approach, all the robots communicate only locally 
+                                (with neighbor agents, using sensors) and decide individually, based on this information, its control 
+                                input.
+                            </li><br>
+                            <li>The latter is more practical, because the former requires communication that we dont always have available. 
+                                However, assuming that we can implement it, the former is easy to implement.
+                            </li><br>
+                            <li>We will assume a <b class="itext">centralized approach</b> here.</li>
+                        </ul>
+                        </div>
+                    </div>
+                    <div
+                        style="flex: 5; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 5; flex-direction: row">
+           
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image43.svg"
+                                        style="max-width: 90%; height: auto; max-height: 60vh;">
+                                </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>  
+            
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CASE STUDIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 3: CONSTRAINTS</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 6; min-width: 300px; font-size: 1.4vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>
+                                We have the following constraints:<br><br>
+                                <ul>
+                                    <li>Input (acceleration) limits for the agents;</li><br>
+                                    <li>Speed limits for the agents;</li><br>
+                                    <li>Obstacle avoidance between the agent and the environment;</li><br>
+                                    <li>Obstacle avoidance between the agents;</li>
+                                    
+                                    
+                                </ul>
+                            </li><br>
+                        </ul>
+                        </div>
+                    </div>
+                    <div
+                        style="flex: 5; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 5; flex-direction: row">
+           
+                        <div style="width: 100%">
+                            <iframe src="presentation/images/part3/part_3_5.html" width="550" height="580"
+                                style="border: none;"></iframe>
+                        </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>   
+
+            <style>
+
+
+
+                .reveal .progress {
+                    color: #34eb5e;
+                }
+
+                .reveal .controls {
+                    color: #34eb5e;
+                }
+
+                body {
+                    background-image: url(presentation/images/aula1/logo_ufmg.svg) !important;
+                    background-color: black;
+                    background-size: 8% !important;
+                    background-repeat: no-repeat !important;
+                    background-position: 96% 3% !important;
+                }
+
+                .itext {
+                    color: #8af2a2;
+                }
+
+                .ttext {
+                    color: #34eb5e;
+                }
+
+                /* width */
+                ::-webkit-scrollbar {
+                    width: 20px;
+                }
+
+                /* Track */
+                ::-webkit-scrollbar-track {
+                    box-shadow: inset 0 0 5px grey;
+                    border-radius: 10px;
+                }
+
+                /* Handle */
+                ::-webkit-scrollbar-thumb {
+                    background: #34eb5e;
+                    border-radius: 10px;
+                }
+
+                /* Handle on hover */
+                ::-webkit-scrollbar-thumb:hover {
+                    background: #01b82b;
+                }
+
+                ::-webkit-scrollbar-corner {
+                    background: rgba(0, 0, 0, 0);
+                }
+
+                .hlink {
+                    color: #f5bf42;
+                }
+
+                .hlink:hover {
+                    text-decoration: underline;
+                }
+
+                .logo {
+                    position: absolute;
+                    top: 1%;
+                    right: 1%;
+                    width: 6%;
+                    /* Adjust size as needed */
+                    z-index: 10;
+                    /* Ensures it appears above the video and overlay */
+                }
+                .reveal .slide-number {
+                    font-size: 30px;
+                    position: absolute;
+                    bottom: 30px;
+                    left: 50px;
+                    background: none !important;
+                    /* remove any background */
+                    box-shadow: none !important;
+                    /* remove shadows */
+                    padding: 0 !important;
+                    margin: 0 !important;
+                    border: none !important;
+                    color: white;
+                    /* or whatever color you want */
+                    opacity: 1.0;
+                    width: auto !important;
+                    height: auto !important;
+                    z-index: -1;
+                }
+
+                .copy-button {
+                position: absolute;
+                top: 0;
+                right: 0;
+                background-color: #272822;
+                color: #34eb5e;
+                border: none;
+                padding: 6px 10px;
+                font-size: 0.6em;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                border-top-right-radius: 4px;
+                border-bottom-left-radius: 4px;
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                }
+
+                .copy-button:hover {
+                background-color: #34eb5e;
+                color: #272822;
+                }
+                .copy-button svg {
+                width: 14px;
+                height: 14px;
+                fill: currentColor;
+                }
+
+
+                .iframe-wrapper {
+                position: relative;
+                width: 200%;
+                max-width: 1500px;
+                height: 580px;
+                transition: all 0.3s ease-in-out;
+                overflow: hidden;
+                }
+
+                .iframe-wrapper.fullscreen {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 200vw;
+                height: 100vh;
+                z-index: 9999;
+                background: #191919;
+                }
+
+                .iframe-wrapper iframe {
+                width: 600px;
+                height: 100%;
+                border: none;
+                transition: width 0.3s ease-in-out;
+                }
+
+                .iframe-wrapper.fullscreen iframe {
+                width: 200%;
+                }
+
+                .iframe-button {
+                    position: absolute;
+                    top: 10px;
+                    right: 10px;
+                    z-index: 10000;
+                    background-color: rgba(0, 0, 0, 0.6);
+                    color: #81d41a;
+                    border: none;
+                    border-radius: 4px;
+                    padding: 6px 10px;
+                    cursor: pointer;
+                    font-size: 14px;
+                }
+            </style>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                document.querySelectorAll('pre > code').forEach((codeBlock) => {
+                    const pre = codeBlock.parentElement;
+                    pre.style.position = "relative";
+
+                    const button = document.createElement("button");
+                    button.className = "copy-button";
+                    button.innerHTML = `
+                    <svg viewBox="0 0 24 24">
+                        <path d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 18H8V7h11v16z"/>
+                    </svg>
+                    <span>Copy</span>
+                    `;
+
+                    pre.appendChild(button);
+
+                    button.addEventListener("click", () => {
+                    navigator.clipboard.writeText(codeBlock.textContent).then(() => {
+                        const original = button.innerHTML;
+                        button.innerHTML = `<span>Copied!</span>`;
+                        setTimeout(() => {
+                        button.innerHTML = original;
+                        }, 2000);
+                    });
+                    });
+                });
+                });
+            </script>
+
+            <script id="MathJax-script" async
+                src="https://cdn.jsdelivr.net/npm/mathjax@3.0.1/es5/tex-mml-chtml.js"></script>
+            <script src="presentation/dist/reveal.js"></script>
+            <script src="presentation/plugin/notes/notes.js"></script>
+            <script src="presentation/plugin/markdown/markdown.js"></script>
+            <script src="presentation/plugin/highlight/highlight.js"></script>
+            <script src="presentation/plugin/menu/menu.js"></script>
+            <script>
+                // More info about initialization & config:
+                // - https://revealjs.com/initialization/
+                // - https://revealjs.com/config/
+                Reveal.initialize({
+                    hash: true,
+                    width: 1200,
+                    height: 800,
+                    margin: 0,
+                    minScale: 0.2,
+                    maxScale: 2.0,
+                    plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealMenu],
+                    slideNumber: function () {
+                        const offset = 92;  // adjust as needed
+                        return [offset + Reveal.getSlidePastCount() + 1];
+                    },
+                    viewDistance: 1
+                });
+                var frames = document.getElementsByTagName("iframe");
+
+
+                Reveal.on('slidechanged', event => {
+                    for (let i = 0; i < frames.length; ++i) {
+                        frames[i].contentWindow.location.reload(true);
+                    }
+                });
+
+                Reveal.on('ready', () => {
+                    if (Reveal.getIndices().h === 0 && !window.location.hash) {
+                    Reveal.slide(1);
+                    }
+                    });
+
+                var frames = document.getElementsByTagName("iframe");
+
+
+                Reveal.on('slidechanged', event => {
+                    for (let i = 0; i < frames.length; ++i) {
+                        frames[i].contentWindow.location.reload(true);
+                    }
+                });
+
+
+                Reveal.on('slidechanged', function () {
+                
+                const indices = Reveal.getIndices();
+                const isSecondSlide = indices.h === 1 && indices.v === 0;
+
+                if (isSecondSlide) {
+                    
+                    document.addEventListener('keydown', function (event) {
+                    if (event.key === "ArrowLeft") {
+                        window.location.href = "presentation/part3_C.html#/25";  
+                    }
+                    }, { once: true });
+                     
+                }
+                });
+
+
+ 
+                const wrapper = document.getElementById('iframeWrapper');
+                const button = document.getElementById('toggleButton');
+
+                window.addEventListener('DOMContentLoaded', () => {
+                    button.textContent = wrapper.classList.contains('fullscreen') ? 'X' : '[]';
+                });
+
+
+                button.addEventListener('click', () => {
+                    const goingFullscreen = !wrapper.classList.contains('fullscreen');
+                    button.textContent = goingFullscreen ? 'X' : '[]';
+
+                    // Defer the toggle to the next event loop tick
+                    setTimeout(() => {
+                        wrapper.classList.toggle('fullscreen');
+                    }, 0);
+                });
+            </script>
+</body>
+
+</html>

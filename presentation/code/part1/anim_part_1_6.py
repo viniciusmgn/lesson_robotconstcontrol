@@ -62,10 +62,10 @@ for i in range(len(robot.links)):
     p_A = (htm[i] * Utils.trn([0, 0, robot.links[i].d]))[0:3, 3]
     p_B = htm[i + 1][0:3, 3]
 
-    n_points = floor(np.linalg.norm(p_A - p_B) / dist_between_points)
+    n_points = np.floor(np.linalg.norm(p_A - p_B) / dist_between_points)
     start_lines.append(len(line_between_points))
 
-    for j in range(n_points):
+    for j in range(int(n_points)):
         line_between_points.append((1 - j / n_points) * p_A + (j / n_points) * p_B)
 
     end_lines.append(len(line_between_points))
@@ -90,12 +90,11 @@ for i in range(len(robot.links) + 1):
     sim.add(y_axis[-1])
     sim.add(z_axis[-1])
 
-style = "top:" + str(0.8 * height) + "px;right:" + str(0) + "px;width:" + str(
-    width) + "px;position:absolute;text-align:center;color:white;background-color:#222224;font-smooth:always;font-family:arial"
+style = "top:75%; right: 0; width:100%;font-size: 2.5vw;position:absolute;text-align:center;color:white;background-color:#222224;font-smooth:always;font-family:arial"
 
 explanation = HTMLDiv(name="expl", html_text="", style=style)
 
-style = "top:" + str(0.05 * height) + "px;right:10px;width:200px;position:absolute;text-align:center;color:white;background-color:#222224;font-smooth:always;font-family:arial;"
+style = "top:5%;right:5%;width:40%;font-size: 2.5vw;position:absolute;text-align:center;color:white;background-color:#222224;font-smooth:always;font-family:arial;"
 
 table_html = HTMLDiv(name="table", html_text="", style=style)
 
@@ -154,15 +153,15 @@ def txt_a(i):
     return "a<sub>" + str(i) + "</sub>"
 
 def create_table(table, i_max, j_max):
-    strtable = "<table style=\'color:white; width:200px; text-align:right; border: 1px solid white; font-size:12px\'>"
-    strtable += "<tr> <th>i</th> <th>&#952<sub>i</sub></th> <th>d<sub>i</dub></th> <th>&#945<sub>i</sub></th> <th>a<sub>i</dub></th> </tr>"
+    strtable = "<table style=\'color:white;  width:100%; text-align:right; border: 1px solid white; font-size:12px\'>"
+    strtable += "<tr> <th style=\'font-size: 2.0vw;\'>i</th> <th style=\'font-size: 2.0vw;\'>&#952<sub>i</sub></th> <th style=\'font-size: 2.0vw;\' >d<sub>i</dub></th> <th style=\'font-size: 2.0vw;\'>&#945<sub>i</sub></th> <th style=\'font-size: 2.0vw;\'>a<sub>i</dub></th> </tr>"
     for i in range(len(table)):
         strtable += "<tr>"
-        strtable += "<td width=\'8%\'>" + str(i+1) + "</td>"
-        strtable += "<td width=\'23%\'>" + (table[i][0] if i+1<=i_max or (i <= i_max and j_max > 0) else "") + "</td>"
-        strtable += "<td width=\'23%\'>" + (table[i][1] if i+1<=i_max or (i <= i_max and j_max > 1) else "") + "</td>"
-        strtable += "<td width=\'23%\'>" + (table[i][2] if i+1<=i_max or (i <= i_max and j_max > 2) else "") + "</td>"
-        strtable += "<td width=\'23%\'>" + (table[i][3] if i+1<=i_max or (i <= i_max and j_max > 3) else "") + "</td>"
+        strtable += "<td style=\'font-size: 2.0vw;\' width=\'8%\'>" + str(i+1) + "</td>"
+        strtable += "<td style=\'font-size: 2.0vw;\' width=\'23%\'>" + (table[i][0] if i+1<=i_max or (i <= i_max and j_max > 0) else "") + "</td>"
+        strtable += "<td style=\'font-size: 2.0vw;\' width=\'23%\'>" + (table[i][1] if i+1<=i_max or (i <= i_max and j_max > 1) else "") + "</td>"
+        strtable += "<td style=\'font-size: 2.0vw;\' width=\'23%\'>" + (table[i][2] if i+1<=i_max or (i <= i_max and j_max > 2) else "") + "</td>"
+        strtable += "<td style=\'font-size: 2.0vw;\' width=\'23%\'>" + (table[i][3] if i+1<=i_max or (i <= i_max and j_max > 3) else "") + "</td>"
         strtable += "</tr>"
 
     strtable += "</table>"

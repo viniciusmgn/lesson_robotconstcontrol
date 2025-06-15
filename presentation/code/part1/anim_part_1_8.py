@@ -8,16 +8,12 @@ height=500
 sim = Simulation([], load_screen_color="#191919", background_color="#191919", width=500, height=500,
                  camera_type="orthographic", show_grid = False, show_world_frame=False)
 
-vector_w = Vector(color="orange",thickness=2)
-vector_v = Vector(color="cyan",thickness=2)
-vector_uv = Vector(color="magenta",thickness=2)
+vector_w = Arrow(color="orange",thickness=2)
+vector_v = Arrow(color="cyan",thickness=2)
+vector_uv = Arrow(color="magenta",thickness=2)
 point_u = Ball(color='magenta',radius=0.02)
 
-texture_box = Texture(
-    url='https://raw.githubusercontent.com/viniciusmgn/uaibot_content/master/contents/Textures/gold_metal.png',
-    wrap_s='RepeatWrapping', wrap_t='RepeatWrapping', repeat=[1, 1])
-
-material_box = MeshMaterial(texture_map=texture_box, roughness=1, metalness=1, opacity=0.8)
+material_box = MeshMaterial.create_colored_metal('blue')
 box = Box(htm = np.identity(4), width=0.3, depth=0.2, height=0.1, mesh_material=material_box)
 
 light1 = PointLight(name="light1", color="white", intensity=8, htm=Utils.trn([-1, -1, 1.5]))
