@@ -2371,18 +2371,17 @@ style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                     <div
                         style="flex: 9; min-width: 300px; font-size: 1.3vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
-                            <li>Thus, we have the nice formula
-                                <b class="ttext">$$\frac{dF}{dt} = (a^*-b^*)^\top\Big( \big(\omega_{\mathcal{A}} \times (a^*-s_{\mathcal{A}})+v_{\mathcal{A}}\big) - \big(\omega_{\mathcal{B}} \times (b^*-s_{\mathcal{B}}) + v_{\mathcal{B}}\big)  \Big)
-                                $$</b>
+                            <li>Thus, we have 
+                                $$\frac{dF}{dt} = (a^*-b^*)^\top\Big( \big(\omega_{\mathcal{A}} \times (a^*-s_{\mathcal{A}})+v_{\mathcal{A}}\big) - \big(\omega_{\mathcal{B}} \times (b^*-s_{\mathcal{B}}) + v_{\mathcal{B}}\big)  \Big)
+                                $$
                                 in which the dependencies on \(t\) were again omitted. The closest points \(a^*(t)\) and \(b^*(t)\) at a given time 
                                 \(t\) can be computed by running any of the distance computation algorithms for \(\mathcal{A}(t)\) and \(\mathcal{B}(t)\).
                             </li><br>
-                            <li>Further, if you remember the formula to compute the velocity of a point that is at position \(c\) in a rigid body with linear velocity \(v\), angular velocity \(\omega\) and 
-                                central point of the attached frame \(s\):
-                                <b class="ttext">$$v_{c} = \omega \times (c-s)+v$$</b> 
-                                Then the formula becomes even simpler:
-                                <b class="ttext">$$\frac{dF}{dt} = (a^*-b^*)^\top( v_{a^*} - v_{b^*}).
-                                    $$</b>                                
+                            <li>This can be rewritten in a more convenient way. For this, we use the <b class="itext">cross product formula</b> 
+                                 <b class="itext">\(u_1^\top (u_2 \times u_3) = (u_3 \times u_1)^\top u_2\)</b> and thus :
+                                 $$\underbrace{(a^*-b^*)^\top}_{u_1}\Big(\underbrace{\omega_{\mathcal{A}}}_{u_2} \times \underbrace{(a^*-s_{\mathcal{A}})}_{u_3} \Big) = \Big((a^*-s_{\mathcal{A}}) \times (a^*-b^*)\Big)^{\top} \omega_{\mathcal{A}}$$ 
+                                 and similarly:
+                                 $$\underbrace{(b^*-a^*)^\top}_{u_1}\Big(\underbrace{\omega_{\mathcal{B}}}_{u_2} \times \underbrace{(b^*-s_{\mathcal{B}})}_{u_3} \Big) = \Big((b^*-s_{\mathcal{B}}) \times (b^*-a^*)\Big)^{\top} \omega_{\mathcal{B}}.$$                          
                             </li>
                         </ul>
                     </div>
@@ -2405,28 +2404,29 @@ style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                 <div
                     style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
                     <div
-                        style="flex: 9; min-width: 300px; font-size: 1.3vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        style="flex: 6; min-width: 300px; font-size: 1.2vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
-                            <li>This formula can be used to compute more complex gradients using the <b class="itext">chain rule trick</b>.
+                            <li>Using this, we have the nice result:
+                                <b class="itext">$$\frac{dF}{dt} = \Delta^v_{\mathcal{A},\mathcal{B}}v_{\mathcal{A}}+\Delta^{\omega}_{\mathcal{A},\mathcal{B}}\omega_{\mathcal{A}}
+                                    + \Delta^v_{\mathcal{B},\mathcal{A}}v_{\mathcal{B}}+\Delta^{\omega}_{\mathcal{B},\mathcal{A}}\omega_{\mathcal{B}}
+                                $$</b>
+                                in which:
+                                <b class="itext">$$\Delta^v_{\mathcal{A},\mathcal{B}} = (a^*-b^*)^\top \ , \ \Delta^v_{\mathcal{B},\mathcal{A}} = (b^*-a^*)^\top$$</b>
+                                <b class="itext">$$\Delta^{\omega}_{\mathcal{A},\mathcal{B}} = \Big((a^*-s_{\mathcal{A}}) \times (a^*-b^*)\Big)^{\top} \ , \ \Delta^{\omega}_{\mathcal{B},\mathcal{A}} = \Big((b^*-s_{\mathcal{B}}) \times (b^*-a^*)\Big)^{\top}.$$</b>
+                                                 
                             </li><br>
-                            <li>For example, suppose \(\mathcal{A}\) is one of a manipulator's covering objects, that move (as a rigid body) as a function of the 
-                                configuration \(q\), and that \(\mathcal{B}\) is a fixed obstacle. In this case, \(\mathcal{A} = \mathcal{A}(q(t))\). 
-                                Compute \(\frac{\partial F}{\partial q} = \frac{\partial}{\partial q} \Lambda_{\mathcal{A}(q),\mathcal{B}}\).
-                            </b><br><br>
-                            </li>                                
-                            <li>Instead of computing \(\frac{\partial F}{\partial q}(q)\), lets compute \(\frac{d}{dt} F(q(t))\) first. 
-                                Using the previous result, we have that \(v_{\mathcal{A}},\omega_{\mathcal{A}}\) are the linear and angular velocity of 
-                                the rigid link in which \(\mathcal{A}\) is attached to. Furthermore, since \(\mathcal{B}\) is static, \(v_{\mathcal{B}},\omega_{\mathcal{B}}\) 
-                                are zero. Thus:
-                                $$\frac{d}{dt} F(q) = \big(a^*-b^*\big)^{\top}\Big( \omega_{\mathcal{A}} \times (a^*-s_{\mathcal{A}}) + v_{\mathcal{A}}\Big).$$
-                                In this case, the dependencies of \(a^*, b^*, s_{\mathcal{A}}\) on \(t\) were omitted. To be more precise, they are functions 
-                                of the configuration \(q\), which, in turn, is a function of time \(t\). As you already know from differential kinematics, 
-                                \(v_{\mathcal{A}}, \omega_{\mathcal{A}}\) are functions of \(q\) and \(\dot{q}\).
+                            <li>
+                                Remember that all the quantities are measured in world frame.
                             </li>
                         </ul>
                     </div>
+                    <div  style="flex: 1;"></div>
                     <div
-                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        style="flex: 4; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+
+                        <div style="width: 100%">
+                            <img src="presentation/images/part2/image36B.svg" style="max-width: 100%; height: auto;">
+                        </div>
                     </div>
 
                 </div>
@@ -2445,16 +2445,22 @@ style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                     <div
                         style="flex: 11; min-width: 300px; font-size: 1.3vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
-                            <li>We now use the <b class="itext">mixed product formula</b> for vectors (that can be easily proved using the connection between 
-                                the cross product and the S operator, along with basic properties of matrices). It says that, for three 3D vectors \(u_1,u_2,u_2\):
-                                $$u_1^\top (u_2 \times u_3) = (u_3 \times u_1)^\top u_2.$$
+                            <li>This formula can be used to compute more complex gradients using the <b class="itext">chain rule trick</b>.
                             </li><br>
-                            <li>Thus:
-                                $$\frac{d}{dt} F(q) = \big(a^*-b^*\big)^\top v_{\mathcal{A}} + \Big(\big(a^*-s_{\mathcal{A}}\big) \times \big(a^*-b^*\big)\Big)^\top \omega_{\mathcal{A}}  .$$
-                                in which the dependencies on \(t\) were omitted. But, through differential kinematics, \(v_{\mathcal{A}} = J_v(q)\dot{q}\) and 
-                                \(\omega_{\mathcal{A}} = J_{\omega}(q)\dot{q}\) , in which \(J_v,J_{\omega}\) <b class="itext">are the linear and angular velocity Jacobians associated to 
-                                the link in which \(\mathcal{A}\) is attached</b>. Thus, making the substitution:
-                                $$\frac{d}{dt} F(q) = \Big( \big(a^*-b^*\big)^\top J_v + \Big(\big(a^*-s_{\mathcal{A}}\big) \times \big(a^*-b^*\big)\Big)^\top J_{\omega}\Big)\dot{q}.$$
+                            <li>For example, suppose \(\mathcal{A}\) is one of a manipulator's covering objects, that move (as a rigid body) as a function of the 
+                                configuration \(q\), and that \(\mathcal{B}\) is a fixed obstacle. In this case, \(\mathcal{A} = \mathcal{A}(q(t))\). 
+                                Compute \(\frac{\partial F}{\partial q} = \frac{\partial}{\partial q} \Lambda_{\mathcal{A}(q),\mathcal{B}}\).
+                            </b><br><br>
+                            </li>                                
+                            <li>Instead of computing \(\frac{\partial F}{\partial q}(q)\), lets compute \(\frac{d}{dt} F(q(t))\) first. 
+                                Using the previous result, we have that \(v_{\mathcal{A}},\omega_{\mathcal{A}}\) are the linear and angular velocity of 
+                                the rigid link in which \(\mathcal{A}\) is attached to. Furthermore, since \(\mathcal{B}\) is static, \(v_{\mathcal{B}},\omega_{\mathcal{B}}\) 
+                                are zero. Thus, using the formula in the previous slide:
+
+                                $$\frac{d}{dt} F(q) = \Delta^v_{\mathcal{A},\mathcal{B}}v_{\mathcal{A}} + \Delta^{\omega}_{\mathcal{A},\mathcal{B}}\omega_{\mathcal{A}}.$$
+                                
+                                In this case, the dependencies of \(a^*, b^*, s_{\mathcal{A}}\) on \(t\) were omitted. To be more precise, they are functions 
+                                of the configuration \(q\), which, in turn, is a function of time \(t\).
                             </li>
                         </ul>
                     </div>
@@ -2479,14 +2485,17 @@ style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                     <div
                         style="flex: 9; min-width: 300px; font-size: 1.2vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
-                            <li>Now it is time for the chain rule trick. On one hand, we deduced that:
-                                $$\frac{d}{dt} F(q) = \Big( \big(a^*-b^*\big)^\top J_v + \Big(\big(a^*-s_{\mathcal{A}}\big) \times \big(a^*-b^*\big)\Big)^\top J_{\omega}\Big)\dot{q}.$$
-                            </li><br>
-                            <li>On the other hand, we know from chain rule that:
+                            <li> As you already know from differential kinematics, 
+                                \(v_{\mathcal{A}}, \omega_{\mathcal{A}}\) are functions of \(q\) and \(\dot{q}\) as 
+                                \(v_{\mathcal{A}} = J_v(q) \dot{q}\) and \(\omega_{\mathcal{A}} = J_{\omega}(q) \dot{q}\), in which the Jacobians are 
+                                the ones for the frame in which the robot's object \(\mathcal{A}\) is attached to. Plugging these 
+                            in the previous formula and factoring out \(\dot{q}\) at the right:
+                            $$\frac{d}{dt} F(q) = \Big(\Delta^v_{\mathcal{A},\mathcal{B}} J_v + \Delta^{\omega}_{\mathcal{A},\mathcal{B}} J_{\omega}\Big)\dot{q}.$$</li>
+                            <li>Now it is time for the chain rule trick. On one hand, we deduced this formula for \(\frac{d}{dt} F(q)). On the other hand, we know from chain rule that:
                                 $$\frac{d}{dt} F(q) = \frac{\partial F}{\partial q}(q)\dot{q}.$$
                             </li>
                             <li>Comparing both, we get our answer:
-                                <b class="ttext">$$\frac{\partial F}{\partial q}(q) = \big(a^*(q)-b^*(q)\big)^\top J_v(q) + \Big(\big(a^*(q)-s_{\mathcal{A}}(q)\big) \times \big(a^*(q)-b^*(q)\big)\Big)^\top J_{\omega}(q).$$</b> 
+                                <b class="ttext">$$\frac{\partial F}{\partial q}(q) =\Delta^v_{\mathcal{A},\mathcal{B}}(q) J_v(q) + \Delta^{\omega}_{\mathcal{A},\mathcal{B}}(q) J_{\omega}(q)$$</b> 
                                 which is a \(1\times n\) matrix, in which \(n\) is the number of configurations of the manipulator.
                             </li>
                         </ul>

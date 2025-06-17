@@ -16,7 +16,7 @@ param_v_max = 0.4 #0.3
 param_a_max = 0.5
 param_radius = 0.25
 param_height = 0.35
-param_n_robots = 10
+param_n_robots = 9
 param_dist_interm = 0.3
 param_dist_final = 0.03
 
@@ -173,6 +173,8 @@ sim = ub.Simulation.create_sim_mountain(drones, light_intensity=1.5)
 sim.add(pc)
 sim.add(all_tg_box)
 sim.set_parameters(pixel_ratio=0.9)
+sim.set_parameters(camera_start_pose=[ 4.2967, 2.4381, 3.5080, 3.6016, 2.0036, 2.9353, 1.0000])
+sim.set_parameters(width=550,height=500)
 
 
 

@@ -8,3 +8,35 @@ light orange ffb66c
 magenta ec2ed7
 
 
+function logCameraParams() {
+    const pos = camera.position;
+
+    const dir = new Vector3();
+    camera.getWorldDirection(dir);
+
+    const lookAtPoint = new Vector3(
+        pos.x + dir.x,
+        pos.y + dir.y,
+        pos.z + dir.z
+    );
+
+    const values = [
+        pos.x, pos.y, pos.z,
+        lookAtPoint.x, lookAtPoint.y, lookAtPoint.z,
+        camera.zoom
+    ];
+
+    console.log("Camera Params:", values.map(v => v.toFixed(4)).join(", "));
+}
+
+function animate() {
+    requestAnimationFrame(animate);
+
+    renderer.render(scene, camera);
+
+    // Print camera parameters every frame
+    logCameraParams();
+}
+
+animate();
+

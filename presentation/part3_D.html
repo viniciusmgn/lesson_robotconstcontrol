@@ -78,18 +78,15 @@
 
                         </div>
                     </div>
-                    <div
-                        style="flex: 5; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
-                        <div style="flex: 5; flex-direction: row">
-           
-                        <div style="width: 100%"  class="iframe-wrapper" id="iframeWrapper">
-                            <iframe src="presentation/images/part3/part_3_5.html" width="550" height="580"
-                                style="border: none;"></iframe>
+                    <div style="flex: 5; flex-direction: row; position: relative; overflow: visible;">
+                        <div style="flex: 4; flex-direction: row">
 
-                            <button class="iframe-button" id="toggleButton">⛶</button>
-                        </div>
 
-                        </div>
+                            <div style="width: 100%" class="iframe-wrapper">
+                            <button class="iframe-button">[]</button>
+                            <iframe src="presentation/images/part3/part_3_5.html"></iframe>
+                            </div>
+      
                     </div>
                 </div>
             </section>   
@@ -163,8 +160,9 @@
                                 <ul>
                                     <li>Input (acceleration) limits for the agents;</li><br>
                                     <li>Speed limits for the agents;</li><br>
-                                    <li>Obstacle avoidance between the agent and the environment;</li><br>
-                                    <li>Obstacle avoidance between the agents;</li>
+                                    <li>Obstacle avoidance between the agents;</li><br>
+                                    <li>Obstacle avoidance between the agent and the environment;</li>
+                                    
                                     
                                     
                                 </ul>
@@ -172,19 +170,148 @@
                         </ul>
                         </div>
                     </div>
-                    <div
-                        style="flex: 5; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
-                        <div style="flex: 5; flex-direction: row">
-           
-                        <div style="width: 100%">
-                            <iframe src="presentation/images/part3/part_3_5.html" width="550" height="580"
-                                style="border: none;"></iframe>
-                        </div>
+                   <div style="flex: 5; flex-direction: row; position: relative; overflow: visible;">
+                        <div style="flex: 4; flex-direction: row">
 
-                        </div>
+
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image44.png"
+                                        style="max-width: 90%; height: auto; max-height: 60vh;">
+                                </div>
+      
                     </div>
                 </div>
             </section>   
+
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CASE STUDIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 3: INPUT AND SPEED LIMITS</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 6; min-width: 300px; font-size: 1.4vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>
+                                Inputs limits are easy to implement:
+                                <b class="itext">$$ \underline{u}_i \leq u_i \leq \overline{u}_i  $$</b>
+                            </li><br>
+                            <li>
+                                For velocity limits, we use the CBFs \(B_i^{LS}(q) = \dot{q}_i-\underline{v}_i\)  
+                                and \(B_i^{US}(q) = \overline{v}_i-\dot{q}_i\) :
+                                <b class="itext">$$\frac{d}{dt} B_i^{LS}(q) \geq -\eta B_i^{LS}(q) \ \rightarrow \ u_i \geq -\eta( \dot{q}_i-\underline{v}_i);$$</b>
+                                <b class="itext">$$\frac{d}{dt} B_i^{US}(q) \geq -\eta B_i^{US}(q) \ \rightarrow \ -u_i \geq -\eta( \overline{v}_i-\dot{q}_i);$$</b>
+                            </li>
+                        </ul>
+                        </div>
+                    </div>
+                   <div style="flex: 5; flex-direction: row; position: relative; overflow: visible;">
+                        <div style="flex: 4; flex-direction: row">
+
+
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image44.png"
+                                        style="max-width: 90%; height: auto; max-height: 60vh;">
+                                </div>
+      
+                    </div>
+                </div>
+            </section>
+
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CASE STUDIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 3: INTER-AGENT COLLISION</b>
+                </h3>
+                <div style="display: flex;  flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div  style="flex: 6; min-width: 300px; font-size: 1.4vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>For collision, we model all the robots with spheres of radius \(R\).</li><br>
+                            <li>
+                                For inter-agent collision, we consider robots \(i=1,...,N\) and for each pair 
+                                \(i=1,...,N\), \(j=i+1,...,N\), we have the CBF:
+                                <b class="itext">$$B_{ij}^{RR}(q) = \|p_i-p_j\| -2R.$$</b>
+                            </li><br>
+                            <li>
+                                The Jacobian is given by a \(1 \times 3N\) vector such that the entry for 
+                                \(k=i,i+1,i+2\) is 
+                                <b class="itext">$$(p_i-p_j)^{\top}/\|p_i-p_j\|$$</b>
+                                
+                                and for \(k=j,j+1,j+2\) we have 
+                                <b class="itext">$$-(p_i-p_j)^{\top}/\|p_i-p_j\|$$</b>
+                                
+                                and \(0\) for all other \(k\).
+                                
+                            </li><br>
+
+                        </ul>
+                        </div>
+                    </div>
+                    <div style ="flex:2;"></div>
+                   <div style="flex: 7; flex-direction: row; position: relative; overflow: visible;">
+                        
+
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image44.png"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+      
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CASE STUDIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 3: INTER-AGENT COLLISION</b>
+                </h3>
+                <div style="display: flex;  flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div  style="flex: 6; min-width: 300px; font-size: 1.2vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>
+                                The Hessian can be computed analytically with relative ease. But we will use the trick 
+                                explained <a href="presentation/part3_A.html#/45"" target="_blank">
+                                    <b class="hlink">here</b>
+                                </a> :
+                                $$\dot{q}^{\top} \frac{\partial^2 B_{ij}^{RR}}{\partial q^2}(q)\dot{q} \approx \left( \frac{\partial B_{ij}^{RR}}{\partial q}(q{+}\Delta t \dot{q}) {-} \frac{\partial B_{ij}^{RR}}{\partial q}(q{-}\Delta t \dot{q}) \right)\frac{\dot{q}}{2\Delta t}  $$
+
+                            </li><br>
+                            <li>
+                                We can then implement the constraint, as a <a href="presentation/part3_A.html#/42" target="_blank">
+                                    <b class="hlink">explained here</b></a>:
+                                <b class="itext">$$\frac{\partial B_{ij}^{RR}}{\partial q}(q)u \geq -2\eta \underbrace{\frac{\partial B_{ij}^{RR}}{\partial q}(q)\dot{q}}_{\dot{B}_{ij}^{RR}} - \eta^2 B_{ij}^{RR}(q)-\dot{q}^{\top} \frac{\partial^2 B_{ij}^{RR}}{\partial q^2}(q) \dot{q}$$</b>
+                            </li>
+
+                        </ul>
+                        </div>
+                    </div>
+                    <div style ="flex:2;"></div>
+                   <div style="flex: 7; flex-direction: row; position: relative; overflow: visible;">
+                        
+
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image44.png"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+      
+                </div>
+            </section>
 
             <style>
 
@@ -307,47 +434,55 @@
 
 
                 .iframe-wrapper {
-                position: relative;
-                width: 200%;
-                max-width: 1500px;
-                height: 580px;
-                transition: all 0.3s ease-in-out;
-                overflow: hidden;
-                }
-
-                .iframe-wrapper.fullscreen {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 200vw;
-                height: 100vh;
-                z-index: 9999;
-                background: #191919;
+                    position: relative;
+                    width: 100%;
+                    height: 580px;
+                    transition: all 0.3s ease;
                 }
 
                 .iframe-wrapper iframe {
-                width: 600px;
-                height: 100%;
-                border: none;
-                transition: width 0.3s ease-in-out;
-                }
-
-                .iframe-wrapper.fullscreen iframe {
-                width: 200%;
+                    width: 100%;
+                    height: 100%;
+                    border: none;
+                    display: block;
                 }
 
                 .iframe-button {
                     position: absolute;
-                    top: 10px;
-                    right: 10px;
-                    z-index: 10000;
-                    background-color: rgba(0, 0, 0, 0.6);
-                    color: #81d41a;
-                    border: none;
-                    border-radius: 4px;
-                    padding: 6px 10px;
+                    top: 0px;
+                    right: 50px;
+                    padding: 5px 10px;
+                    font-size: 10px;
                     cursor: pointer;
-                    font-size: 14px;
+                    color: #34eb5e;
+                    border: 1px solid #191919;
+                    background-color: #191919;
+                    z-index: 10;
+                }
+                .iframe-button:hover {
+                background-color: #34eb5e;
+                color: #272822;
+                }
+
+                /* Fullscreen mode */
+                .iframe-wrapper.fullscreen {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100vw;
+                    height: 100vh;
+                    background-color: #191919;
+                    z-index: 9999;
+                }
+
+                .iframe-wrapper.fullscreen iframe {
+                    width: 70%;
+                    height: 70%;
+
+                    position: absolute;
+                    top: 2%;
+                    left: 60%;
+                    transform: translate(-50%, 0);
                 }
             </style>
 
@@ -457,15 +592,36 @@
                 });
 
 
-                button.addEventListener('click', () => {
-                    const goingFullscreen = !wrapper.classList.contains('fullscreen');
-                    button.textContent = goingFullscreen ? 'X' : '[]';
+                document.addEventListener('DOMContentLoaded', () => {
+                    document.querySelectorAll('.iframe-wrapper').forEach(wrapper => {
+                        const button = wrapper.querySelector('.iframe-button');
+                        const iframe = wrapper.querySelector('iframe');
 
-                    // Defer the toggle to the next event loop tick
-                    setTimeout(() => {
-                        wrapper.classList.toggle('fullscreen');
-                    }, 0);
+                        const updateButton = () => {
+                            button.textContent = wrapper.classList.contains('fullscreen') ? 'X' : '[]';
+                        };
+
+                        button.addEventListener('click', () => {
+                            const isFullscreen = wrapper.classList.contains('fullscreen');
+
+                            if (isFullscreen) {
+                                // Exit fullscreen
+                                wrapper.classList.remove('fullscreen');
+                            } else {
+                                // Enter fullscreen
+                                wrapper.classList.add('fullscreen');
+                            }
+
+                            updateButton();
+                        });
+
+                        // Set initial button symbol
+                        updateButton();
+                    });
                 });
+
+
+
             </script>
 </body>
 
