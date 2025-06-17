@@ -40,9 +40,8 @@
 
             <img src="presentation/images/intro/logo_ufmg.svg" class="logo">
 
-            <section data-menu-exclude="true" data-menu-title=""></section>
-
-
+          
+            <section></section>
 
             <section style="display: flex; flex-direction: column; height: 100vh;">
                 <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
@@ -624,7 +623,7 @@ def add_mobile_base(robot):
                 <div
                     style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
                     <div
-                        style="flex: 1; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        style="flex: 1; min-width: 300px; font-size: 1.25vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
@@ -2449,43 +2448,27 @@ plt.show()
                 var frames = document.getElementsByTagName("iframe");
 
 
-                Reveal.on('slidechanged', event => {
-                    for (let i = 0; i < frames.length; ++i) {
-                        frames[i].contentWindow.location.reload(true);
-                    }
-                });
+        document.addEventListener('keydown', function(event) {
+            const indices = Reveal.getIndices();
+            const totalSlides = Reveal.getTotalSlides();
+            const available = Reveal.availableRoutes();
 
-
-                Reveal.on('slidechanged', function () {
-                
-                const indices = Reveal.getIndices();
-                const isSecondSlide = indices.h === 1 && indices.v === 0;
-
-                if (isSecondSlide) {
-                    
-                    document.addEventListener('keydown', function (event) {
-                    if (event.key === "ArrowLeft") {
-                        window.location.href = "presentation/part3_B.html#/15";  
-                    }
-                    }, { once: true });
-                     
+            // Trigger when pressing RIGHT on the second-to-last slide
+            if (event.key === "ArrowRight" || event.key === "PageDown") {
+                const isSecondToLast = (indices.h === totalSlides - 2);
+                if (isSecondToLast) {
+                    window.location.href = 'presentation/part3_D.html';
                 }
-                });
+            }
 
-
-                Reveal.on('slidechanged', function(event) {
-                const indices = Reveal.getIndices();
-                const lastH = Reveal.getTotalSlides() - 1;
-
-                // only go to next file when no vertical slides remain
-                const isLast = Reveal.isLastSlide() || (
-                    !Reveal.availableRoutes().down && !Reveal.availableRoutes().right
-                );
-
-                if (isLast) {
-                    window.location.href = 'presentation/part3_D.html#/1';
+            // Trigger when pressing LEFT on the first real slide (horizontal index 1)
+            if (event.key === "ArrowLeft" || event.key === "PageUp") {
+                const isFirstSlide = (indices.h === 1 && indices.v === 0);
+                if (isFirstSlide) {
+                    window.location.href = 'presentation/part3_B.html#/15';
                 }
-                });
+            }
+        });
 
 
                 document.addEventListener('DOMContentLoaded', () => {

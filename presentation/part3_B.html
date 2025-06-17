@@ -40,7 +40,7 @@
 
             <img src="presentation/images/intro/logo_ufmg.svg" class="logo">
 
-            <section data-menu-exclude="true" data-menu-title=""></section>
+            <section></section>
 
             <section
                 style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
@@ -1206,54 +1206,8 @@ plt.show()
               
               </section>
 
+              <section></section>
 
-
-            <section style="display: flex; flex-direction: column; height: 100vh;">
-                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    CASE STUDIES
-                </h3>
-                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    <b class="ttext">EXAMPLE 2: A WAITER MOBILE MANIPULATOR</b>
-                </h3>
-                <div
-                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
-                    <div
-                        style="flex: 6; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
-                        <div style="position:absolute; width: 50%; ">
-
-                    <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
-                        <li>
-                            Now, we have a <b class="itext">mobile manipulator</b>: a 7-DOF Franka Emika 3 mounted 
-                            on a mobile base (a <b class="itext">ClearPath's Ridgeback mobile robot with omnidirectional wheels</b>) that moves in a plane.
-                        </li><br>
-                        <li>
-                            It should move to a counter that has a white tray with a glass of drink and deliver it 
-                            to a table. It must do this while avoiding people who move around with total disregard for the robot.
-                            It has to deliver two drinks.
-                        </li><br>
-                        <li>
-                            While holding the tray, it must keep it horizontal, or the glass may slip and fall to the ground!
-                        </li><br>
-                        <li>Obviously, it should respect collision avoidance, joint limits and velocity limits, as before.</li>
-                    </ul>
-
-
-
-                        </div>
-                    </div>
-                    <div
-                        style="flex: 5; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
-                        <div style="flex: 5; flex-direction: row">
-           
-                        <div style="width: 100%">
-                            <iframe src="presentation/images/part3/image24.png" width="550" height="580"
-                                style="border: none;"></iframe>
-                        </div>
-
-                        </div>
-                    </div>
-                </div>
-            </section>   
 
             <style>
 
@@ -1424,7 +1378,7 @@ plt.show()
 
                     position: absolute;
                     top: 2%;
-                    left: 60%;
+                    left: 55%;
                     transform: translate(-50%, 0);
                 }
             </style>
@@ -1509,36 +1463,27 @@ plt.show()
                 });
 
 
-                Reveal.on('slidechanged', function () {
-                
-                const indices = Reveal.getIndices();
-                const isSecondSlide = indices.h === 1 && indices.v === 0;
+        document.addEventListener('keydown', function(event) {
+            const indices = Reveal.getIndices();
+            const totalSlides = Reveal.getTotalSlides();
+            const available = Reveal.availableRoutes();
 
-                if (isSecondSlide) {
-                    
-                    document.addEventListener('keydown', function (event) {
-                    if (event.key === "ArrowLeft") {
-                        window.location.href = "presentation/part3_A.html#/50";  
-                    }
-                    }, { once: true });
-                     
+            // Trigger when pressing RIGHT on the second-to-last slide
+            if (event.key === "ArrowRight" || event.key === "PageDown") {
+                const isSecondToLast = (indices.h === totalSlides - 2);
+                if (isSecondToLast) {
+                    window.location.href = 'presentation/part3_C.html';
                 }
-                });
+            }
 
-                Reveal.on('slidechanged', function(event) {
-                const indices = Reveal.getIndices();
-                const lastH = Reveal.getTotalSlides() - 1;
-
-                // only go to next file when no vertical slides remain
-                const isLast = Reveal.isLastSlide() || (
-                    !Reveal.availableRoutes().down && !Reveal.availableRoutes().right
-                );
-
-                if (isLast) {
-                    window.location.href = 'presentation/part3_C.html#/1';
+            // Trigger when pressing LEFT on the first real slide (horizontal index 1)
+            if (event.key === "ArrowLeft" || event.key === "PageUp") {
+                const isFirstSlide = (indices.h === 1 && indices.v === 0);
+                if (isFirstSlide) {
+                    window.location.href = 'presentation/part3_A.html#/50';
                 }
-                });
-
+            }
+        });
 
                 document.addEventListener('DOMContentLoaded', () => {
                     document.querySelectorAll('.iframe-wrapper').forEach(wrapper => {

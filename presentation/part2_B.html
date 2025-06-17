@@ -40,7 +40,7 @@
 
             <img src="presentation/images/intro/logo_ufmg.svg" class="logo">
 
-            <section data-menu-exclude="true" data-menu-title=""></section>
+            <section></section>
 
             <section
                 style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
@@ -3881,28 +3881,20 @@ point_link_2 = ds.get_item(link_number_1 = 0, link_col_obj_number_1=0,link_numbe
                 var frames = document.getElementsByTagName("iframe");
 
 
-                Reveal.on('slidechanged', event => {
-                    for (let i = 0; i < frames.length; ++i) {
-                        frames[i].contentWindow.location.reload(true);
-                    }
-                });
-
-
-                Reveal.on('slidechanged', function () {
-                
+            document.addEventListener('keydown', function(event) {
                 const indices = Reveal.getIndices();
-                const isSecondSlide = indices.h === 1 && indices.v === 0;
+                const totalHorizontal = Reveal.getTotalSlides() - 1;
+                const available = Reveal.availableRoutes();
 
-                if (isSecondSlide) {
-                    
-                    document.addEventListener('keydown', function (event) {
-                    if (event.key === "ArrowLeft") {
-                        window.location.href = "presentation/part2_A.html#/46";  
+
+                // User pressed LEFT key at the first slide
+                if (event.key === "ArrowLeft" || event.key === "PageUp") {
+                    const isFirst = (indices.h === 1 && indices.v === 0);
+                    if (isFirst) {
+                        window.location.href = 'presentation/part2_A.html#/46';
                     }
-                    }, { once: true });
-                     
                 }
-                });
+            });
 
 
 

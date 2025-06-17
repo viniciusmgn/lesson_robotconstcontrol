@@ -2072,16 +2072,9 @@ for link in robot.links:
                 </div>
             </section>
 
-            <section
-                style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
-                <h3 style="font-size: 3.5vw; margin-bottom: 0.5rem;">DISTANCES AND <br> OTHER QUANTITIES</h3>
+            <section></section>
 
-                <div style="display: flex; flex-direction: column; align-items: center;">
-                    <img src="presentation/images/part2/main.png" style="max-width: 40%; height: auto;">
-                </div>
 
-                    
-            </section>
 
 
             <style>
@@ -2318,12 +2311,6 @@ for link in robot.links:
                 var frames = document.getElementsByTagName("iframe");
 
 
-                Reveal.on('slidechanged', event => {
-                    for (let i = 0; i < frames.length; ++i) {
-                        frames[i].contentWindow.location.reload(true);
-                    }
-                });
-
                 Reveal.on('slidechanged', function(event) {
                 const indices = Reveal.getIndices();
                 const lastH = Reveal.getTotalSlides() - 1;
@@ -2334,7 +2321,7 @@ for link in robot.links:
                 );
 
                 if (isLast) {
-                    window.location.href = 'presentation/part2_B.html#/1';
+                    window.location.href = 'presentation/part2_B.html#/0';
                 }
                 });
 
