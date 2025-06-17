@@ -293,7 +293,7 @@
 
                             </li><br>
                             <li>
-                                We can then implement the constraint, as a <a href="presentation/part3_A.html#/42" target="_blank">
+                                We can then implement the constraint, as <a href="presentation/part3_A.html#/42" target="_blank">
                                     <b class="hlink">explained here</b></a>:
                                 <b class="itext">$$\frac{\partial B_{ij}^{RR}}{\partial q}(q)u \geq -2\eta \underbrace{\frac{\partial B_{ij}^{RR}}{\partial q}(q)\dot{q}}_{\dot{B}_{ij}^{RR}} - \eta^2 B_{ij}^{RR}(q)-\dot{q}^{\top} \frac{\partial^2 B_{ij}^{RR}}{\partial q^2}(q) \dot{q}$$</b>
                             </li>
@@ -312,6 +312,1196 @@
       
                 </div>
             </section>
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CASE STUDIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 3: COLLISION WITH THE ENVIRONMENT</b>
+                </h3>
+                <div style="display: flex;  flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div  style="flex: 6; min-width: 300px; font-size: 1.2vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>
+                                For the collision avoidance between the static environment, modelled as a point cloud, 
+                                and the agent, we can again use the Euclidean distance between each agent's sphere and the point cloud:
+                                $$B^{RO}_i(q) = D_i^{RO}(q)-\delta$$
+                            </li><br>
+                            <li>
+                                However, we will need the second order term \(\dot{q}^{\top}\frac{\partial^2 B^{RO}_i(q)}{\partial q^2}\dot{q}\). 
+                                But, <a href="presentation/part2_B.html#/39" target="_blank">
+                                    <b class="hlink">as discussed before</b></a>, for point clouds \( D_i^{RO}\) (and thus \(B^{RO}_i\) ) has a discontinuous first derivative 
+                                when we deal with discrete point clouds, and thus the second derivative will sometimes <b class="itext">blow up</b>.
+                            </li><br>
+                            <li>This can cause discontinuities in the control input and even render the CBF constraint unfeasible, because it could 
+                                require an acceleration so high that it violates our acceleration limits.
+                            </li><br>
+                            <li>Thats where differentiable distances (especially the <a href="presentation/part2_B.html#/56" target="_blank">
+                                    <b class="hlink">short circuit algorithm</b></a>) can help!</li>
+
+                        </ul>
+                        </div>
+                    </div>
+                    <div style ="flex:2;"></div>
+                   <div style="flex: 7; flex-direction: row; position: relative; overflow: visible;">
+                        
+
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image44.png"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+      
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CASE STUDIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 3: COLLISION WITH THE ENVIRONMENT</b>
+                </h3>
+                <div style="display: flex;  flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div  style="flex: 6; min-width: 300px; font-size: 1.1vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>
+                                So, lets assume \(D^{RO}_i(q)\) is computed as follows: we apply the short-circuit algorithm 
+                                to all the Goncalves P2S-HSD distance between the agent \(i\)'s sphere \(\mathcal{B}(q,i)\) 
+                                and each one of the \(n\) obstacle points \(o_k\), namely \(\hat{E}_{\mathcal{B}(q,i)}(o_k)\). What we get 
+                                at the end is a differentiable half-squared distance. To recover a distance, we multiply by 
+                                two and take the square root, obtaining:
+
+                                $$D^{RO}_i(q) = \sqrt{2\left( \sum_{k=1}^n \hat{E}_{\mathcal{B}(q,i)}(o_k)^{-1/r} \right)^{-r}}$$
+                                in which \(r\) is a smoothing parameter.
+                            </li><br>
+                            <li>
+                               UAIBot's function <b class="itext">compute_dist</b> between a Ball and a Point Cloud with 
+                               parameter \(h\) and \(\epsilon\) will compute this: 
+<pre style="max-width:100%;"><code class="language-python" style="text-align:left;">
+import numpy as np
+import uaibot as ub
+
+#Create a ball
+ball = ub.Ball(htm=ub.Utils.trn([1,0,0]),radius=0.3)
+#Create a point cloud with 3 points
+pc = ub.PointCloud(points=[[0.,0.,0.],[0.1,0.1,0.1],[0.2,0.2.0.2]])
+#Compute differentiable distances and the respective witness points
+p_ball, p_pc, dist, _ = ball.compute_dist(pc,h=0.1,eps=0.01)
+</code></pre>
+                            </li>
+                            <li>
+                                In this case, \(r=h\), and 
+                               \(h\) and \(\epsilon\) are parameters necessary to compute the Gonçalves P2S-HSD, as 
+                               <a href="presentation/part2_B.html#/48" target="_blank">
+                                    <b class="hlink">as seen here</b></a>.
+                            </li>
+
+
+                        </ul>
+                        </div>
+                    </div>
+                    <div style ="flex:2;"></div>
+                   <div style="flex: 7; flex-direction: row; position: relative; overflow: visible;">
+                        
+
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image44.png"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+      
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CASE STUDIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 3: COLLISION WITH THE ENVIRONMENT</b>
+                </h3>
+                <div style="display: flex;  flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div  style="flex: 6; min-width: 300px; font-size: 1.4vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>
+                                The aforementioned UAIBot function will return two 3D witness points, one for the ball, 
+                                \(p_i^*\), and another for the point cloud, \(o^*\). They are given by the following formulae:
+                                $$ p_i^* = \sum_{k=1}^n W_{ik} \hat{\Pi}_{\mathcal{B}(q,i)}(o_k),$$
+                                $$ o_i^* = \sum_{k=1}^n W_{ik} o_k$$
+                                in which \(\hat{\Pi}_{\mathcal{B}(q,i)}(o_k)\) is <a href="presentation/part2_B.html#/51" target="_blank">
+                                    <b class="hlink">Gonçalves' projection</b></a> and:
+
+                                $$W_{ik} = \frac{\hat{E}_{\mathcal{B}(q,i)}(o_k)^{-(1/r+1)}}{\left( \sum_{j=1}^n \hat{E}_{\mathcal{B}(q,i)}(o_j)^{-1/r} \right)^{1+r}}.$$
+                            </li><br>
+
+                            
+
+                        </ul>
+                        </div>
+                    </div>
+                    <div style ="flex:2;"></div>
+                   <div style="flex: 7; flex-direction: row; position: relative; overflow: visible;">
+                        
+
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image44.png"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+      
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CASE STUDIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 3: COLLISION WITH THE ENVIRONMENT</b>
+                </h3>
+                <div style="display: flex;  flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div  style="flex: 6; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li> As opposed to Gonçalves' S2S-HSD between two convex objects computed from the Alternating algorithm, we 
+                                cant, strictly speaking, use <a href="presentation/part2_B.html#/34" target="_blank">
+                                    <b class="hlink">this formula</b></a> for the derivative. However, it is a very good approximation, especially when \(r\) is 
+                                small, as it usually is. Thus:
+                                <b class="itext">$$\frac{\partial}{\partial p_i} B^{RO}_i(q) = \frac{\partial}{\partial p_i} D^{RO}_i(q) \approx \frac{1}{D^{RO}_i(q)}(p_i^*-o_i^*)^{\top}.$$</b>
+                                in which we used the fact that the obstacle is static and the symmetry of the ball+the fact that its frame is attached to 
+                                its center (so no need to consider the angular velocity of the ball).
+                            </li>
+                            <li>
+                                Note that the derivative is with respect to \(p_i\), which is part of the full configuration \(q\). 
+                                But computing \(\frac{\partial D^{RO}_i}{\partial q}\) from this is easy, as all the other configurations 
+                                except the three ones for agent \(i\) ar going to have \(0\) partial derivative with respect to 
+                                agent i's obstacle avoidance with the environment.
+                            </li>
+                            
+
+                        </ul>
+                        </div>
+                    </div>
+                    <div style ="flex:2;"></div>
+                   <div style="flex: 7; flex-direction: row; position: relative; overflow: visible;">
+                        
+
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image44.png"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+      
+                </div>
+            </section>
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CASE STUDIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 3: COLLISION WITH THE ENVIRONMENT</b>
+                </h3>
+                <div style="display: flex;  flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div  style="flex: 6; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li> This time, the Hessian of \(B^{RO}_i(q)\) is much harder to compute 
+                                (even for our appropximation). As before, we will use the trick:
+                                $$\dot{q}^{\top} \frac{\partial^2 B_{i}^{RO}}{\partial q^2}(q)\dot{q} \approx \left( \frac{\partial B_{i}^{RO}}{\partial q}(q{+}\Delta t \dot{q}) {-} \frac{\partial B_{i}^{RO}}{\partial q}(q{-}\Delta t \dot{q}) \right)\frac{\dot{q}}{2\Delta t}.$$
+
+                            </li>
+                            <li>
+                               With this, we have everything we need to implement the obstacle avoidance constraint.
+                            </li>
+                            
+
+                        </ul>
+                        </div>
+                    </div>
+                    <div style ="flex:2;"></div>
+                   <div style="flex: 7; flex-direction: row; position: relative; overflow: visible;">
+                        
+
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image44.png"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+      
+                </div>
+            </section>
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CASE STUDIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 3: OBJECTIVE FUNCTION</b>
+                </h3>
+                <div style="display: flex;  flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div  style="flex: 6; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li> Each agent \(i\) will have its target point \(p_{d,i}\). We will see soon that these target points 
+                                will be updated once the agent reach it but, regardless, if we stack those vertically into a (3N)-dimensional 
+                                column vector \(q_{d}\) we can use the task function:
+                                $$r(q) = q-q_d$$
+                                for which the Jacobian is simply the \((3N) \times (3N)\) identity matrix.
+                            </li><br>
+                            <li>
+                               Thus, we can set as objective function, following <a href="presentation/part3_A.html#/44" target="_blank">
+                                    <b class="hlink">this</b></a>:
+                               <b class="itext">$$\min_u \|u+2K\dot{q}+K^2(q-q_d)\|^2$$</b>
+                               for a positive scalar \(K\).
+                            </li><br>
+                            <li>
+                               There is no need for regularization term \(\epsilon \|u\|^2\) because the Jacobian is already 
+                               full rank.
+                            </li>
+                            
+
+                        </ul>
+                        </div>
+                    </div>
+                    <div style ="flex:2;"></div>
+                   <div style="flex: 7; flex-direction: row; position: relative; overflow: visible;">
+                        
+
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image44.png"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+      
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CASE STUDIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 3: SIMPLE MOTION PLANNING</b>
+                </h3>
+                <div style="display: flex;  flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div  style="flex: 6; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li> Just setting \(p_{d,i}\) as the final target point for each agent most likely wont do. 
+                                Most likely the system will get stuck in an equilibrium point.
+                            </li><br>
+                            <li>
+                               We can run a very crude motion planning that computes some intermediate points to help the 
+                               agent reach the final point.
+                            </li><br>
+                            <li>
+                               We will proceed as follows: for each agent, we will implement a simple probabilistic method 
+                               that does a <b class="itext">random walk</b> in the environment, checking if the movement 
+                               between points can be done with a straight line. Every once in a while, we try to connect 
+                               the current point with the final point. Once we succeed, we run a simple algorithm for 
+                               post-processing the path and removing the zig-zag behavior. 
+                            </li><br>
+                            <li>
+                                This algorithm will be used for each agent individually, without any regard to the other agents, 
+                                only the static obstacles. Its up to the CBF controller to handle this inter-agent collision
+                                avoidance behavior.
+                            </li>
+                            
+
+                        </ul>
+                        </div>
+                    </div>
+                    <div style ="flex:2;"></div>
+                   <div style="flex: 7; flex-direction: row; position: relative; overflow: visible;">
+                        
+
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image45.gif"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+      
+                </div>
+            </section>
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CASE STUDIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 3: FINAL FORMULATION</b>
+                </h3>
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 6; min-width: 300px; font-size: 1.0vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        $$\min_{u} \ \ \|u+2K\dot{q}+K^2(q-q_{d})\|^2 \ \ \mbox{subject to}$$
+
+                        <a href="presentation/part3_D.html#/4"><b
+                                class="hlink">Velocity and acceleration limits:</b></a>
+                        $$u_i \geq \underline{u}_i \ , \ i=1,..,N$$
+                        $$-u_i \geq -\overline{u}_i \ , \ i=1,..,N$$
+                        $$u_i \geq -\eta(\dot{q}_i-\underline{v}_i) \ , \ i=1,..,N$$
+                        $$-u_i \geq -\eta(\overline{v}_i-\dot{q}_i) \ , \ i=1,..,N$$
+
+                        <a href="presentation/part3_D.html#/5"><b
+                                class="hlink">Inter-agent collision avoidance:</b></a>
+                                $$\mbox{For} \ i=1,..,N \ , \  j=i+1,...,N:$$
+                        $$\frac{\partial B_{ij}^{RR}(q)}{\partial q}u \geq -2\eta \frac{\partial B_{ij}^{RR}(q)}{\partial q}\dot{q} -\eta^2B_{ij}^{RR}(q) -\dot{q}^\top \frac{\partial^2 B_{ij}^{RR}(q)}{\partial q^2} \dot{q}  $$
+
+                        <a href="presentation/part3_D.html#/7"><b
+                                class="hlink">Agent-environment collision avoidance:</b></a>
+                        $$\frac{\partial B_{i}^{RO}(q)}{\partial q}u \geq -2\eta \frac{\partial B_{i}^{RO}(q)}{\partial q}\dot{q} -\eta^2B_{i}^{RO}(q) -\dot{q}^\top \frac{\partial^2 B_{i}^{RO}(q)}{\partial q^2} \dot{q}  \ , \ i=1,..,N$$
+
+
+
+                        </div>
+                    </div>
+
+                    <div
+                        style="flex: 5; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items: start; height: 100%;">
+                        <div style="flex: 4; flex-direction: row">
+                        <div style="width: 100%">
+                                    <img src="presentation/images/part3/image44.png"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CASE STUDIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 3: UAIBOT CODE</b>
+                </h3>
+                <div style="display: flex;  flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div  style="flex: 6; min-width: 300px; font-size: 1.1vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        <div style="position:absolute; width: 50%; ">
+
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>
+                              Here is the code for the crude motion planning.
+                            </li>
+                        </ul>
+                               
+<pre style="max-width:100%;"><code class="language-python" style="text-align:left;">
+import numpy as np
+import uaibot as ub
+
+
+def check_free(_p, _pc, _radius, _bounds):
+    
+    if _p[0,0]&lt; _bounds[0] or _p[0,0]>_bounds[1] or \
+       _p[1,0]&lt; _bounds[2] or _p[1,0]>_bounds[3] or \
+       _p[2,0]&lt; _bounds[4] or _p[2,0]>_bounds[5]:
+           return False
+    else:
+
+        return _pc.projection(_p)[1]>1.2*_radius
+    
+def sample_random_direction(_p, _p_goal, _step_size):
+    
+    if np.random.uniform()&lt;0.5:
+        vec = np.random.randn(3)
+        vec = vec/np.linalg.norm(vec)
+        return _step_size* np.matrix(vec).T
+    else:
+        return _p_goal-_p
+
+def is_line_free(_p1, _p2, _pc, _radius, _bounds):
+    dist = np.linalg.norm(_p1-_p2)
+    no_steps = int(dist/0.05)+1
+    for i in range(no_steps):
+        alpha = i/(no_steps-1+0.01)
+        point = (1 - alpha) * _p1 + alpha * _p2
+        if not check_free(point, _pc, _radius, _bounds):
+            return False
+    return True
+
+def simplify_path(_path, _pc, _radius, _bounds):
+    if len(_path) &lt;= 2:
+        return _path
+
+    simplified = [_path[0]]
+    i = 0
+    while i &lt; len(_path) - 1:
+        j = len(_path) - 1
+        while j > i + 1:
+            if is_line_free(_path[i], _path[j], _pc, _radius, _bounds):
+                break
+            j -= 1
+        simplified.append(_path[j])
+        i = j
+
+    return simplified
+
+def random_path_planner(_p_start, _p_goal, _pc, _radius, _bounds,  _max_steps=16000, _step_size=0.5):
+    path = [_p_start]
+    current = _p_start.copy()
+
+    found = False
+    
+    
+    for i in range(_max_steps):
+        direction = sample_random_direction(current, _p_goal, _step_size)
+        new_point = current + direction 
+
+        # Check line from current to new_point is free
+        if not is_line_free(current, new_point, _pc, _radius, _bounds):
+            continue
+
+        path.append(new_point)
+        
+        current = new_point
+
+        # Try to connect to goal if close enough
+        if np.linalg.norm(_p_goal - current) &lt; _step_size:
+            if is_line_free(current, _p_goal, _pc, _radius, _bounds):
+                path.append(_p_goal)
+                found = True
+                break
+
+    if found:
+        simpl_path = simplify_path(path, _pc, _radius, _bounds)
+        print("Path found with "+str(len(simpl_path)-1))
+        return simpl_path[1:]
+    else:
+        print("Path not found!")
+        return [_p_goal]
+</code></pre>
+
+
+                        </div>
+                    </div>
+                    <div style ="flex:2;"></div>
+                   <div style="flex: 7; flex-direction: row; position: relative; overflow: visible;">
+                        
+
+                                <div style="width: 100%">
+                                    <img src="presentation/images/part3/image44.png"
+                                        style="max-width: 80%; height: auto; max-height: 60vh;">
+                                </div>
+      
+                </div>
+            </section>
+
+
+
+           <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                     CASE STUDIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 3: UAIBOT CODE</b>
+                </h3>
+
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 4; min-width: 300px; font-size: 1.4vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+
+
+                        <div style="width: 100%; ">
+
+                        
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>
+                                Here is the main code:
+                            </li>     
+                        </ul>
+
+<pre style="max-width:100%;"><code class="language-python" style="text-align:left;">
+import numpy as np
+import uaibot as ub
+import matplotlib.pyplot as plt
+#Add the motion planning in the file 'helper_anim_part_3_ex3' and
+#put in the same folder
+from helper_anim_part_3_ex3 import *
+
+###################################   
+#Parameters control
+
+param_k = 1.4 #1.0
+param_eta = 0.6 
+param_eta_v = 0.3
+param_v_max = 0.4 #0.3 
+param_a_max = 0.5
+param_radius = 0.25
+param_height = 0.35
+param_n_robots = 8
+param_dist_interm = 0.3
+param_dist_final = 0.03
+
+param_h_dist =  1e-6  #0.2
+param_eps_dist = 1e-6 #0.01
+param_delta = 0.05 #0.01
+
+param_h_dist =  0.2  
+param_eps_dist = 0.01 
+param_delta = 0.01 
+
+
+param_min_dist_drone_tg = 1.0
+param_min_dist_tg = 1.0
+
+param_t_max = 50
+
+
+param_xmin = -1.5
+param_xmax = 1.5
+param_ymin = -1.5
+param_ymax = 1.5
+param_zmin = 0.5
+param_zmax = 1.0
+
+dt = 0.02
+
+model_drone = ub.Model3D(
+    'https://cdn.jsdelivr.net/gh/viniciusmgn/uaibot_content@master/contents/CrazyFlie/crazyflie.obj',
+    scale=1.5, mesh_material=ub.MeshMaterial.create_rough_metal())
+
+drones= []
+drone_colors = ['red','green','blue','yellow','magenta','cyan','gray','brown','DarkSlateGray','black']
+
+
+#Create the drones
+    
+for i in range(param_n_robots):
+    drone_body = ub.RigidObject(list_model_3d=[model_drone],htm=ub.Utils.trn([0,0,0])*ub.Utils.rotx(np.pi/2))
+    drone_ball = ub.Ball(color=drone_colors[i], radius=0.2, opacity=0.2)
+    new_drone = ub.Group(list_of_objects=[drone_body, drone_ball])
+    
+    
+    drones.append(new_drone)
+    
+#Create the obstacles
+
+obs1 = ub.Box(htm=ub.Utils.trn([0,0,0.5]),width=1.0,depth=0.2,height=1.0)
+obs2 = ub.Box(htm=ub.Utils.trn([0.6,0.1,0.5]),width=0.2,depth=1.0,height=1.0)
+obs3 = ub.Box(htm=ub.Utils.trn([-1.0,-1.0,0.3]),width=0.4,depth=0.4,height=0.6)
+obs4 = ub.Box(htm=ub.Utils.trn([-1.0,1.0,0.2]),width=0.4,depth=0.4,height=0.4)
+obs5 = ub.Box(htm=ub.Utils.trn([0.6,-0.9,0.95]),width=0.2,depth=1.0,height=0.1)
+obs6 = ub.Box(htm=ub.Utils.trn([0.6,-1.4,0.5]),width=0.2,depth=0.2,height=1.0)
+
+wallxp = ub.Box(htm=ub.Utils.trn([-2.0,0.,0.5]),width=0.05,depth=4.0,height=1.0)
+wallxn = ub.Box(htm=ub.Utils.trn([2.0,0.,0.5]),width=0.05,depth=4.0,height=1.0)
+wallyp = ub.Box(htm=ub.Utils.trn([0,2.,0.5]),width=4.0,depth=0.05,height=1.0)
+wallyn = ub.Box(htm=ub.Utils.trn([0,-2.,0.5]),width=4.0,depth=0.05,height=1.0)
+
+all_obstacles = [obs1, obs2, obs3, obs4, obs5, obs6, wallxp, wallxn, wallyp, wallyn]
+
+all_points = []
+
+for obs in all_obstacles:
+    all_points+=  [np.matrix(p).T for p in obs.to_point_cloud(disc=0.06).points.T]
+
+pc = ub.PointCloud(points=all_points,size=0.03,color='#005500')
+
+
+
+#Sample initial poses for the drones
+
+start_points = [np.matrix([0,0,0]).T for i in range(param_n_robots)]
+
+for i in range(param_n_robots):
+    
+    cont = True
+    
+    print("Finding initial pose for drone "+str(i+1)+" ... ")
+       
+    while cont:
+    
+        htm=ub.Utils.htm_rand([param_xmin,param_ymin,param_zmin],[param_xmax,param_ymax,param_zmax],0)
+        drones[i].add_ani_frame(0,htm)
+        start_points[i] = htm[0:3,-1]
+        
+        #Check if this is ok
+        ball_drone_i = drones[i].list_of_objects[-1]
+        
+        
+        collided = ball_drone_i.compute_dist(pc)[2]&lt;param_radius
+        
+        j = 0
+        while (not collided) and (j&lt;i) :
+
+            
+            ball_drone_j = drones[j].list_of_objects[-1]
+            collided = ball_drone_i.compute_dist(ball_drone_j)[2] &lt; param_radius
+            j+=1
+         
+  
+        cont = collided
+            
+#Sample target points that are far apart from each other, not coliding
+#and far for the respective drone
+
+all_tg_points = []
+all_tg_box = []
+
+for i in range(param_n_robots):
+    
+    cont = True
+    
+    print("Finding target points for drone "+str(i+1)+" ... ")
+       
+    while cont:
+    
+        tg_point_try=ub.Utils.htm_rand([param_xmin,param_ymin,param_zmin],[param_xmax,param_ymax,param_zmax],0)[0:3,-1]
+ 
+        #Check if this is ok
+        ball_drone_i = drones[i].list_of_objects[-1]
+        
+        
+        unfit = pc.projection(tg_point_try)[1]&lt;0.3 or ball_drone_i.projection(tg_point_try)[1]&lt;param_min_dist_drone_tg 
+        
+        #Check if far away from others points
+        j = 0
+        while (not unfit) and (j&lt;i) :
+            unfit = np.linalg.norm(all_tg_points[j]-tg_point_try)&lt;param_min_dist_tg
+            j+=1
+         
+  
+        cont = unfit
+        
+    all_tg_points.append(tg_point_try)
+    all_tg_box.append(ub.Box(htm=ub.Utils.trn(tg_point_try), color=drone_colors[i],width=0.03,depth=0.03,height=0.03))
+                    
+print("Finished!")
+     
+#Use motion planer
+
+path_points = []
+
+for i in range(param_n_robots):
+    path = random_path_planner(start_points[i], all_tg_points[i], pc, param_radius, 
+                               [param_xmin-param_radius/2, param_xmax+param_radius/2, 
+                                param_ymin-param_radius/2, param_ymax+param_radius/2,
+                                param_zmin-param_radius/2, param_zmax+param_radius/2])
+    path_points.append(path)
+
+           
+        
+sim = ub.Simulation.create_sim_mountain(drones, light_intensity=1.5)
+sim.add(pc)
+sim.add(all_tg_box)
+sim.set_parameters(pixel_ratio=0.9)
+sim.set_parameters(camera_start_pose=[ 4.2967, 2.4381, 3.5080, 3.6016, 2.0036, 2.9353, 1.0000])
+sim.set_parameters(width=550,height=500)
+
+
+
+#################################################
+
+def dfun(_q, _i, _j):
+    
+    qi = _q[3*_i:3*(_i+1),:]
+    qj = _q[3*_j:3*(_j+1),:]
+    
+    return np.linalg.norm(qi-qj)-(2*param_radius)
+
+def jac_dfun(_q, _i, _j):
+    
+    n = param_n_robots
+    jac_dist = np.zeros((1,3*n))
+    
+    qi = _q[3*_i:3*(_i+1),:]
+    qj = _q[3*_j:3*(_j+1),:]
+    
+    norm_ij = np.linalg.norm(qi-qj)
+    
+    jac_dist[0,3*_i:3*(_i+1)] = (qi-qj).T/norm_ij
+    jac_dist[0,3*_j:3*(_j+1)] = (qj-qi).T/norm_ij
+    
+    return jac_dist
+
+def dofun(_q, _i, _pc):
+    qi = _q[3*_i:3*(_i+1),:]
+    
+    ball_i = ub.Ball(htm=ub.Utils.trn(qi), radius=param_radius)
+    
+    return ball_i.compute_dist(obj = _pc, h=param_h_dist, eps=param_eps_dist)[2]-param_delta
+
+def dofun_real(_q, _i, _pc):
+    qi = _q[3*_i:3*(_i+1),:]
+    
+    ball_i = ub.Ball(htm=ub.Utils.trn(qi), radius=param_radius)
+    
+    return ball_i.compute_dist(obj = _pc)[2]
+
+def jac_dofun(_q, _i, _pc):
+    
+    qi = _q[3*_i:3*(_i+1),:]
+    ball_i =  ub.Ball(htm=ub.Utils.trn(qi), radius=param_radius)
+    pball, ppc, dist, _ = ball_i.compute_dist(obj = _pc, h=param_h_dist, eps=param_eps_dist)
+    
+
+    n = param_n_robots
+    jac_dist = np.zeros((1,3*n))
+    jac_dist[0,3*_i:3*(_i+1)] = (pball-ppc).T/(1e-5+dist+0.03)
+
+    return jac_dist
+
+
+############################
+        
+def control_fun(_q, _dotq, _all_tg, _pc):
+    
+    n = param_n_robots
+    
+    #Create the objective function
+    H = 2*np.identity(3*n)
+    f = np.zeros((3*n,1))
+    
+    error = 0
+    
+    for i in range(n):
+        qi = _q[3*i:3*(i+1),:]
+        dotqi = _dotq[3*i:3*(i+1),:]
+        f[3*i:3*i+3,:] = ( 2*param_k*dotqi+ (param_k*param_k)*(qi-_all_tg[i]) )
+        error+= np.linalg.norm(qi-_all_tg[i])
+        
+    f = 2*f
+    
+    
+    #Create the constraints
+    A = np.matrix(np.zeros((0,3*n)))
+    b = np.matrix(np.zeros((0,1)))
+    
+    min_dist_agents = 1e6
+    min_dist_obs = 1e6
+    
+
+    #Create the inter-agent collision constraints
+    for i in range(n):
+        for j in range(0,i):
+            
+            
+            dist = dfun(_q, i, j)
+            jac_dist = jac_dfun(_q, i, j)
+            dist_dot = (dfun(_q+dt*_dotq, i, j)-dfun(_q-dt*_dotq, i, j))/(2*dt)
+            dist_hess = ( (jac_dfun(_q+dt*_dotq, i, j)-jac_dfun(_q-dt*_dotq, i, j))/(2*dt))*_dotq
+
+            
+            #Implement extra safety
+            dist_hess = min(dist_hess, 0)
+            
+            A = np.vstack((A, jac_dist))
+            b = np.vstack((b, -2*param_eta*dist_dot - (param_eta*param_eta)*dist-dist_hess ) )
+            
+            min_dist_agents = min(dist, min_dist_agents)
+            
+    #Create the constraints with collisions with the environment
+    for i in range(n):
+            dist = dofun(_q, i, _pc)
+            jac_dist = jac_dofun(_q, i, _pc)
+            dist_dot = (dofun(_q+dt*_dotq, i, _pc)-dofun(_q-dt*_dotq, i, _pc))/(2*dt)
+            dist_hess = ( (jac_dofun(_q+dt*_dotq, i, _pc)-jac_dofun(_q-dt*_dotq, i, _pc))/(2*dt))*_dotq
+            
+            #Implement extra safety
+            dist_hess = min(dist_hess, 0)
+            
+            A = np.vstack((A, jac_dist))
+            b = np.vstack((b, -2*param_eta*dist_dot - (param_eta*param_eta)*dist-dist_hess ) )
+            
+            min_dist_obs = min(dofun_real(_q, i, _pc), min_dist_obs)
+
+
+    idm = np.identity(3*n)
+    onev = np.ones((3*n,1))
+                
+    A =   np.vstack((A, idm, -idm)) 
+    b =   np.vstack((b, -param_a_max*onev, -param_a_max*onev)) 
+           
+    A =   np.vstack((A, idm, -idm)) 
+    b =   np.vstack((b, -2*param_eta_v*(_dotq+param_v_max*onev), -2*param_eta_v*(param_v_max*onev-_dotq) ))
+    
+    
+    for i in range(n):
+          jac_dist = np.zeros((1,3*n))
+          jac_dist[0,3*i+2] = -1.0
+          
+          A =   np.vstack((A, jac_dist))
+          b =   np.vstack((b, -2*param_eta*(-_dotq[3*i+2,-1])-(param_eta*param_eta)*( param_zmax+0.2 - _q[3*i+2,-1] ) )) 
+          
+          jac_dist[0,3*i+2] = 1.0
+          
+          A =   np.vstack((A, jac_dist))
+          b =   np.vstack((b, -2*param_eta*(dotq[3*i+2,-1])-(param_eta*param_eta)*(_q[3*i+2,-1]-param_radius) )) 
+      
+    try:                 
+        return ub.Utils.solve_qp(H,f,A,b), min_dist_agents, min_dist_obs
+    except:
+        #If it is not able to find a solution, brake for safety.
+        norm_dotq = np.linalg.norm(_dotq)
+        return -min(param_a_max,norm_dotq)*_dotq/(norm_dotq+1e-6), min_dist_agents, min_dist_obs
+            
+    
+ 
+######################   
+
+q = np.matrix(np.zeros((3*param_n_robots,1)))
+for i in range(param_n_robots):
+    q[3*i:3*(i+1),:] = start_points[i]
+    
+#Everyone starts stopped
+dotq = np.matrix(0*q)
+
+
+hist_dotq = []
+hist_ddotq = []
+hist_t = []
+hist_dist_agent = []
+hist_dist_obs = []
+
+
+init_index = [0 for i in range(param_n_robots)]
+current_tg = [path_points[i][0] for i in range(param_n_robots)]
+finished = [False for i in range(param_n_robots)]
+
+for i in range(param_n_robots):
+    all_tg_box[i].add_ani_frame(0,htm=ub.Utils.trn(current_tg[i]))
+
+cont = True 
+
+
+min_dist_agents = 1e6
+min_dist_obs = 1e6
+
+while cont:
+    
+    t = i*dt
+    
+    ddotq, min_dist_agents_now, min_dist_obs_now = control_fun(q, dotq, current_tg, pc)
+    
+    
+    min_dist_agents = min(min_dist_agents_now, min_dist_agents)
+    min_dist_obs = min(min_dist_obs_now, min_dist_obs)
+    
+    print("Time "+str(round(t,2))+", min_dist_agent = "+str(round(min_dist_agents,2))+", min_dist_obs = "+str(round(min_dist_obs,2)))
+    
+    total_finished = True
+    for j in range(param_n_robots):
+        qj = q[3*j:3*(j+1),:]
+        error = np.linalg.norm(qj-current_tg[j])
+        
+        
+        no_targets = len(path_points[j])
+        
+        if finished[j]:
+            print("Robot "+str(j+1)+", FINISHED!, error  = "+str(round(error,2)))
+        else:
+            print("Robot "+str(j+1)+", ind = "+str(init_index[j]+1)+"/"+str(no_targets)+", error = "+str(round(error,2)))
+            
+        
+        if error &lt;= (param_dist_interm if init_index[j] &lt; no_targets-1 else param_dist_final):
+            init_index[j]+=1
+            if init_index[j] == no_targets:
+                init_index[j] = no_targets-1
+                finished[j] = True
+                
+            current_tg[j] = path_points[j][init_index[j]]
+            all_tg_box[j].add_ani_frame(i*dt,htm=ub.Utils.trn(current_tg[j]))
+            
+        total_finished = total_finished and finished[j]
+    
+
+    cont = t &lt; param_t_max and not total_finished
+    i = i + 1
+    
+    
+    q += dotq*dt
+    dotq += ddotq*dt
+    
+    hist_dotq.append(np.matrix(dotq))
+    hist_ddotq.append(ddotq)
+    hist_t.append(t)
+    hist_dist_agent.append(min_dist_agents_now)
+    hist_dist_obs.append(min_dist_obs_now)
+
+    
+    for j in range(param_n_robots):
+        drones[j].add_ani_frame(time=i*dt,htm=ub.Utils.trn(q[3*j:3*(j+1),:]))
+
+sim.set_parameters(load_screen_color="#191919", background_color="#191919", width=500, height=500, pixel_ratio=0.9)
+sim.save("/home/vinicius/Desktop/Aulas/Robot Constrained Control/presentation/images/part3/","part_3_5")
+# %%
+
+
+
+def style_axes(ax):
+    ax.tick_params(colors='white')
+    for spine in ax.spines.values():
+        spine.set_color('white')
+    ax.yaxis.label.set_color('white')
+    ax.xaxis.label.set_color('white')
+    ax.grid(True, color='white', linestyle=':', alpha=0.3)
+    legend = ax.get_legend()
+    if legend:
+        for text in legend.get_texts():
+            text.set_color('white')
+
+# ---- First Plot (hist_dotq) ----
+import matplotlib.pyplot as plt
+import numpy as np
+
+def style_axes(ax):
+    ax.tick_params(colors='white')
+    for spine in ax.spines.values():
+        spine.set_color('white')
+    ax.yaxis.label.set_color('white')
+    ax.xaxis.label.set_color('white')
+    ax.grid(True, color='white', linestyle=':', alpha=0.3)
+
+def format_legend(ax):
+    leg = ax.legend(loc='upper right', frameon=True)
+    leg.get_frame().set_edgecolor('white')
+    leg.get_frame().set_facecolor('#191919')
+    for text in leg.get_texts():
+        text.set_color('white')
+
+# ---- First Plot (hist_dotq) ----
+import matplotlib.pyplot as plt
+import numpy as np
+
+def style_axes(ax):
+    ax.tick_params(colors='white')
+    for spine in ax.spines.values():
+        spine.set_color('white')
+    ax.yaxis.label.set_color('white')
+    ax.xaxis.label.set_color('white')
+    ax.grid(True, color='white', linestyle=':', alpha=0.3)
+
+def format_legend(ax):
+    leg = ax.legend(loc='upper right', frameon=True)
+    leg.get_frame().set_edgecolor('white')
+    leg.get_frame().set_facecolor('#191919')
+    for text in leg.get_texts():
+        text.set_color('white')
+
+# ---- First Plot (hist_dotq) ----
+n = param_n_robots
+T = len(hist_dotq)
+
+fig, axes = plt.subplots(int(np.ceil(n/2)), 2, figsize=(8, 3 * n), sharex=True, facecolor='#191919')
+fig.patch.set_facecolor('#191919')
+axes = axes.flatten()
+
+if n == 1:
+    axes = [axes]
+
+for i in range(n):
+    axes[i].set_facecolor('#191919')
+    axes[i].plot(hist_t, [u[3*i,0] for u in hist_dotq], color='#ec9ba4', label='x')
+    axes[i].plot(hist_t, [u[3*i+1,0] for u in hist_dotq], color='#81d41a', label='y')
+    axes[i].plot(hist_t, [u[3*i+2,0] for u in hist_dotq], color='#5983b0', label='z')
+    axes[i].plot(hist_t, [param_v_max for t in hist_t], color='magenta')
+    axes[i].plot(hist_t, [-param_v_max for t in hist_t], color='magenta')
+    axes[i].set_ylabel(f'Velocity agent {i+1}')
+    style_axes(axes[i])
+    format_legend(axes[i])
+
+axes[-1].set_xlabel('Time', color='white')
+axes[-2].set_xlabel('Time', color='white')
+
+plt.subplots_adjust(hspace=0.1, bottom=0.1, top=0.95)  # Extra space for xlabel and legend
+plt.show()
+
+# ---- Second Plot (hist_ddotq) ----
+fig, axes = plt.subplots(int(np.ceil(n/2)), 2, figsize=(8, 3 * n), sharex=True, facecolor='#191919')
+fig.patch.set_facecolor('#191919')
+axes = axes.flatten()
+
+if n == 1:
+    axes = [axes]
+
+for i in range(n):
+    axes[i].set_facecolor('#191919')
+    axes[i].plot(hist_t, [u[3*i,0] for u in hist_ddotq], color='#ec9ba4', label='x')
+    axes[i].plot(hist_t, [u[3*i+1,0] for u in hist_ddotq], color='#81d41a', label='y')
+    axes[i].plot(hist_t, [u[3*i+2,0] for u in hist_ddotq], color='#5983b0', label='z')
+    axes[i].plot(hist_t, [param_a_max for t in hist_t], color='magenta')
+    axes[i].plot(hist_t, [-param_a_max for t in hist_t], color='magenta')
+    axes[i].set_ylabel(f'Acceleration agent {i+1}')
+    style_axes(axes[i])
+    format_legend(axes[i])
+
+axes[-1].set_xlabel('Time', color='white')
+axes[-2].set_xlabel('Time', color='white')
+
+plt.subplots_adjust(hspace=0.1, bottom=0.05, top=0.95)  # Extra space for xlabel and legend
+plt.show()
+
+# ---- Third Plot (hist_ddotq) ----
+fig, axes = plt.subplots(2, 1, figsize=(8, 3 * n), sharex=True, facecolor='#191919')
+fig.patch.set_facecolor('#191919')
+axes = axes.flatten()
+
+i=0
+axes[i].set_facecolor('#191919')
+axes[i].plot(hist_t, hist_dist_agent, color='#81d41a')
+axes[i].set_ylabel(f'Distance agent-to-agent')
+style_axes(axes[i])
+
+
+i=1
+axes[i].set_facecolor('#191919')
+axes[i].plot(hist_t, hist_dist_obs, color='#81d41a')
+axes[i].set_ylabel(f'Distance agent-to-obstacles')
+style_axes(axes[i])
+
+axes[0].set_xlabel('Time', color='white')
+axes[1].set_xlabel('Time', color='white')
+
+plt.subplots_adjust(hspace=0.2, bottom=0.05, top=0.95)  # Extra space for xlabel and legend
+plt.show()
+
+
+</code></pre>
+                            
+                    </div>
+
+
+
+                    </div>
+
+                    <div style="flex: 4; flex-direction: row; position: relative; overflow: visible;">
+                        <div style="flex: 4; flex-direction: row">
+
+
+                         <div style="width: 100%" class="iframe-wrapper">
+                            <button class="iframe-button">[]</button>
+                            <iframe src="presentation/images/part3/part_3_5.html"></iframe>
+                            
+
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+                   <section style="display: flex; flex-direction: column; height: 100vh; width: 100%;">
+
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CASE STUDIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 3: VELOCITY PLOTS</b>
+                </h3>
+              
+                <!-- Container below headers -->
+                <div style="flex-grow: 1; display: flex; flex-direction: column; width: 100%;">
+              
+                  <!-- Top 20% -->
+                  <div style="flex: 1; min-width: 300px; font-size: 1.4vw; text-align: left; display: flex; align-items: start; height: 100%; position: relative; ">
+                    
+
+                    <span>Here are the velocity plots:</span>
+                   
+                    
+                  </div>
+              
+                  <!-- Bottom 80% -->
+                  <div style="flex: 1; width: 100%; position: relative; ">
+                    
+
+
+              
+                      <img src="presentation/images/part3/image46.svg"
+                           style="width: 85%; height: 85%; object-fit: contain;">
+                   
+
+                  </div>
+                </div>
+              
+              </section>
+
+                   <section style="display: flex; flex-direction: column; height: 100vh; width: 100%;">
+
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CASE STUDIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 3: ACCELERATION PLOTS</b>
+                </h3>
+              
+                <!-- Container below headers -->
+                <div style="flex-grow: 1; display: flex; flex-direction: column; width: 100%;">
+              
+                  <!-- Top 20% -->
+                  <div style="flex: 1; min-width: 300px; font-size: 1.4vw; text-align: left; display: flex; align-items: start; height: 100%; position: relative; ">
+                    
+
+                    <span>Here are the acceleration plots:</span>
+                   
+                    
+                  </div>
+              
+                  <!-- Bottom 80% -->
+                  <div style="flex: 1; width: 100%; position: relative; ">
+                    
+
+
+              
+                      <img src="presentation/images/part3/image47.svg"
+                           style="width: 85%; height: 85%; object-fit: contain;">
+                   
+
+                  </div>
+                </div>
+              
+              </section>
+
+                   <section style="display: flex; flex-direction: column; height: 100vh; width: 100%;">
+
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    CASE STUDIES
+                </h3>
+                <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    <b class="ttext">EXAMPLE 3: DISTANCE PLOTS</b>
+                </h3>
+              
+                <!-- Container below headers -->
+                <div style="flex-grow: 1; display: flex; flex-direction: column; width: 100%;">
+              
+                  <!-- Top 20% -->
+                  <div style="flex: 1; min-width: 300px; font-size: 1.4vw; text-align: left; display: flex; align-items: start; height: 100%; position: relative; ">
+                    
+
+                    <span>Here are the distance plots:</span>
+                   
+                    
+                  </div>
+              
+                  <!-- Bottom 80% -->
+                  <div style="flex: 1; width: 100%; position: relative; ">
+                    
+
+
+              
+                      <img src="presentation/images/part3/image48.svg"
+                           style="width: 85%; height: 85%; object-fit: contain;">
+                   
+
+                  </div>
+                </div>
+              
+              </section>
 
             <style>
 
@@ -476,12 +1666,12 @@
                 }
 
                 .iframe-wrapper.fullscreen iframe {
-                    width: 70%;
-                    height: 70%;
+                    width: 65%;
+                    height: 80%;
 
                     position: absolute;
                     top: 2%;
-                    left: 60%;
+                    left: 50%;
                     transform: translate(-50%, 0);
                 }
             </style>

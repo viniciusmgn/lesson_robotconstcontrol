@@ -16,7 +16,7 @@ param_v_max = 0.4 #0.3
 param_a_max = 0.5
 param_radius = 0.25
 param_height = 0.35
-param_n_robots = 9
+param_n_robots = 8
 param_dist_interm = 0.3
 param_dist_final = 0.03
 
@@ -338,6 +338,8 @@ dotq = np.matrix(0*q)
 hist_dotq = []
 hist_ddotq = []
 hist_t = []
+hist_dist_agent = []
+hist_dist_obs = []
 
 
 init_index = [0 for i in range(param_n_robots)]
@@ -391,7 +393,7 @@ while cont:
         total_finished = total_finished and finished[j]
     
 
-    cont = t < 0*param_t_max and not total_finished
+    cont = t < param_t_max and not total_finished
     i = i + 1
     
     
@@ -401,6 +403,8 @@ while cont:
     hist_dotq.append(np.matrix(dotq))
     hist_ddotq.append(ddotq)
     hist_t.append(t)
+    hist_dist_agent.append(min_dist_agents_now)
+    hist_dist_obs.append(min_dist_obs_now)
 
     
     for j in range(param_n_robots):
@@ -411,57 +415,131 @@ sim.save("/home/vinicius/Desktop/Aulas/Robot Constrained Control/presentation/im
 # %%
 
 
-n = param_n_robots
 
+def style_axes(ax):
+    ax.tick_params(colors='white')
+    for spine in ax.spines.values():
+        spine.set_color('white')
+    ax.yaxis.label.set_color('white')
+    ax.xaxis.label.set_color('white')
+    ax.grid(True, color='white', linestyle=':', alpha=0.3)
+    legend = ax.get_legend()
+    if legend:
+        for text in legend.get_texts():
+            text.set_color('white')
+
+# ---- First Plot (hist_dotq) ----
+import matplotlib.pyplot as plt
+import numpy as np
+
+def style_axes(ax):
+    ax.tick_params(colors='white')
+    for spine in ax.spines.values():
+        spine.set_color('white')
+    ax.yaxis.label.set_color('white')
+    ax.xaxis.label.set_color('white')
+    ax.grid(True, color='white', linestyle=':', alpha=0.3)
+
+def format_legend(ax):
+    leg = ax.legend(loc='upper right', frameon=True)
+    leg.get_frame().set_edgecolor('white')
+    leg.get_frame().set_facecolor('#191919')
+    for text in leg.get_texts():
+        text.set_color('white')
+
+# ---- First Plot (hist_dotq) ----
+import matplotlib.pyplot as plt
+import numpy as np
+
+def style_axes(ax):
+    ax.tick_params(colors='white')
+    for spine in ax.spines.values():
+        spine.set_color('white')
+    ax.yaxis.label.set_color('white')
+    ax.xaxis.label.set_color('white')
+    ax.grid(True, color='white', linestyle=':', alpha=0.3)
+
+def format_legend(ax):
+    leg = ax.legend(loc='upper right', frameon=True)
+    leg.get_frame().set_edgecolor('white')
+    leg.get_frame().set_facecolor('#191919')
+    for text in leg.get_texts():
+        text.set_color('white')
+
+# ---- First Plot (hist_dotq) ----
+n = param_n_robots
 T = len(hist_dotq)
 
-fig, axes = plt.subplots(int(np.ceil(n/2)), 2, figsize=(8, 2.5 * n), sharex=True)
+fig, axes = plt.subplots(int(np.ceil(n/2)), 2, figsize=(8, 3 * n), sharex=True, facecolor='#191919')
+fig.patch.set_facecolor('#191919')
 axes = axes.flatten()
 
 if n == 1:
     axes = [axes]
 
 for i in range(n):
-    axes[i].plot(hist_t, [u[3*i,0] for u in hist_dotq], color='red')
-    axes[i].plot(hist_t, [u[3*i+1,0] for u in hist_dotq], color='green')
-    axes[i].plot(hist_t, [u[3*i+2,0] for u in hist_dotq], color='blue')
+    axes[i].set_facecolor('#191919')
+    axes[i].plot(hist_t, [u[3*i,0] for u in hist_dotq], color='#ec9ba4', label='x')
+    axes[i].plot(hist_t, [u[3*i+1,0] for u in hist_dotq], color='#81d41a', label='y')
+    axes[i].plot(hist_t, [u[3*i+2,0] for u in hist_dotq], color='#5983b0', label='z')
     axes[i].plot(hist_t, [param_v_max for t in hist_t], color='magenta')
     axes[i].plot(hist_t, [-param_v_max for t in hist_t], color='magenta')
-    
-    
-    axes[i].set_ylabel(f'Group {i}')
-    axes[i].legend([f'{3*i}', f'{3*i+1}', f'{3*i+2}'])
-    axes[i].grid(True)
+    axes[i].set_ylabel(f'Velocity agent {i+1}')
+    style_axes(axes[i])
+    format_legend(axes[i])
 
-axes[-1].set_xlabel('Time')
-plt.tight_layout()
+axes[-1].set_xlabel('Time', color='white')
+axes[-2].set_xlabel('Time', color='white')
+
+plt.subplots_adjust(hspace=0.1, bottom=0.1, top=0.95)  # Extra space for xlabel and legend
 plt.show()
 
-plt.figure()
-
-n = param_n_robots
-
-T = len(hist_dotq)
-
-fig, axes = plt.subplots(int(np.ceil(n/2)), 2, figsize=(8, 2.5 * n), sharex=True)
+# ---- Second Plot (hist_ddotq) ----
+fig, axes = plt.subplots(int(np.ceil(n/2)), 2, figsize=(8, 3 * n), sharex=True, facecolor='#191919')
+fig.patch.set_facecolor('#191919')
 axes = axes.flatten()
 
 if n == 1:
     axes = [axes]
 
 for i in range(n):
-    axes[i].plot(hist_t, [u[3*i,0] for u in hist_ddotq], color='red')
-    axes[i].plot(hist_t, [u[3*i+1,0] for u in hist_ddotq], color='green')
-    axes[i].plot(hist_t, [u[3*i+2,0] for u in hist_ddotq], color='blue')
+    axes[i].set_facecolor('#191919')
+    axes[i].plot(hist_t, [u[3*i,0] for u in hist_ddotq], color='#ec9ba4', label='x')
+    axes[i].plot(hist_t, [u[3*i+1,0] for u in hist_ddotq], color='#81d41a', label='y')
+    axes[i].plot(hist_t, [u[3*i+2,0] for u in hist_ddotq], color='#5983b0', label='z')
     axes[i].plot(hist_t, [param_a_max for t in hist_t], color='magenta')
     axes[i].plot(hist_t, [-param_a_max for t in hist_t], color='magenta')
-    
-    
-    axes[i].set_ylabel(f'Group {i}')
-    axes[i].legend([f'{3*i}', f'{3*i+1}', f'{3*i+2}'])
-    axes[i].grid(True)
+    axes[i].set_ylabel(f'Acceleration agent {i+1}')
+    style_axes(axes[i])
+    format_legend(axes[i])
 
-axes[-1].set_xlabel('Time')
-plt.tight_layout()
+axes[-1].set_xlabel('Time', color='white')
+axes[-2].set_xlabel('Time', color='white')
+
+plt.subplots_adjust(hspace=0.1, bottom=0.05, top=0.95)  # Extra space for xlabel and legend
+plt.show()
+
+# ---- Third Plot (hist_ddotq) ----
+fig, axes = plt.subplots(2, 1, figsize=(8, 3 * n), sharex=True, facecolor='#191919')
+fig.patch.set_facecolor('#191919')
+axes = axes.flatten()
+
+i=0
+axes[i].set_facecolor('#191919')
+axes[i].plot(hist_t, hist_dist_agent, color='#81d41a')
+axes[i].set_ylabel(f'Distance agent-to-agent')
+style_axes(axes[i])
+
+
+i=1
+axes[i].set_facecolor('#191919')
+axes[i].plot(hist_t, hist_dist_obs, color='#81d41a')
+axes[i].set_ylabel(f'Distance agent-to-obstacles')
+style_axes(axes[i])
+
+axes[0].set_xlabel('Time', color='white')
+axes[1].set_xlabel('Time', color='white')
+
+plt.subplots_adjust(hspace=0.2, bottom=0.05, top=0.95)  # Extra space for xlabel and legend
 plt.show()
 

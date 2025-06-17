@@ -360,7 +360,7 @@ def add_mobile_base(robot):
                 <div
                     style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
                     <div
-                        style="flex: 1; min-width: 300px; font-size: 1.2vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                        style="flex: 1; min-width: 300px; font-size: 1.1vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
@@ -370,11 +370,12 @@ def add_mobile_base(robot):
                             </li><br>
                             <li>
                                 For the feedforward term \(\frac{\partial}{\partial t} B^{RH}_{rh}(q,t)\), we can use <a href="presentation/part2_B.html#/31"><b
-                                class="hlink">the same basic result for the derivative of an S2S-HSD</b></a>. Then, it can be shown that, due to the rotational 
-                                symmetry of the cylinder:
+                                class="hlink">the same basic result for the derivative of an S2S-HSD</b></a>. Then, it can be shown that:
                                 <b class="itext">$$ \frac{\partial}{\partial t} B^{RH}_{rh}(q,t) = -v_{h}(t)^{\top}\frac{(a^*_{rh}(q,t)-b^*_{rh}(q,t))}{D^{RH}_{rh}(q,t)} $$</b>
                                 where \(a^*_{rh}\) and \(b^*_{rh}\) are the witness points on the  \(r^{th}\) robot object and the \(h^{th}\) human's cylinder, respectively, and
-                                \(v_{h}(t)\) is the \(h^{th}\) human's linear velocity vector at time \(t\).
+                                \(v_{h}(t)\) is the \(h^{th}\) human's linear velocity vector at time \(t\). There is no angular velocity of the 
+                                human in this formula due to the cylinder's rotational symmetry and the fact that the cylinder's frame has its center in the 
+                                center of the cylinder.
                             </li><br>
                             <li>
                                 In a real application, it can be challenging to estimate \(v_{h}(t)\). We will assume that we know it perfectly.
@@ -2370,7 +2371,7 @@ plt.show()
 
                     position: absolute;
                     top: 2%;
-                    left: 60%;
+                    left: 55%;
                     transform: translate(-50%, 0);
                 }
             </style>
