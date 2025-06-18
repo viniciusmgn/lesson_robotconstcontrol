@@ -56,22 +56,25 @@
                         style="flex: 6; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
-                    <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
-                        <li>
-                            Now, we have \(N\)  <b class="itext">flying mobile robots (drones)</b> that move in the 3D space 
-                            in an environment modelled by a point cloud.
-                        </li><br>
-                        <li>
-                            They should go to designated target points while avoiding collisions with the environment and between 
-                            themselves. 
-                        </li><br>
-                        <li>
-                            Let \(p_i \in \mathbb{R}^3\) be the 3D position of the \(i^{th}\) agent. The system's configuration 
-                            \(q \in \mathbb{R}^{3N}\) is the stacked position of all agents. 
-                        </li><br>
-                        <li>We assume that we control each agent's 3D <b class="itext">acceleration</b>, so, from the point of view 
-                        of configuration, the system dynamics is <b class="itext">\(\ddot{q} = u\)</b>.</li>
-                    </ul>
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>
+                                We now have \(N\) <b class="itext">flying mobile robots (drones)</b> moving in 3D space 
+                                within an environment modeled as a point cloud.
+                            </li><br>
+                            <li>
+                                They should reach designated target points while avoiding collisions with the environment and with 
+                                each other.
+                            </li><br>
+                            <li>
+                                Let \(p_i \in \mathbb{R}^3\) denote the 3D position of the \(i^{th}\) agent. The system configuration 
+                                \(q \in \mathbb{R}^{3N}\) is the stacked vector of all agent positions.
+                            </li><br>
+                            <li>
+                                We assume that we control each agent's 3D <b class="itext">acceleration</b>. From the configuration's point of view, 
+                                the system dynamics is <b class="itext">\(\ddot{q} = u\)</b>.
+                            </li>
+                        </ul>
+
 
 
 
@@ -104,26 +107,30 @@
                         style="flex: 6; min-width: 300px; font-size: 1.4vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
-                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
-                            <li>
-                                In this case in which we have a <b class="itext">multi-agent system</b> (e.g., many robots), 
-                                there is an important distinction between a <b class="ttext">centralized</b> and 
-                                <b class="ttext">decentralized</b> approach.
-                            </li><br>
-                            <li>
-                                In the  <b class="itext">centralized</b> approach, all the robots communicate with a central computer, that processes 
-                                everything and then send back to each agent the control input.
-                            </li><br>
-                            <li>
-                                In the  <b class="itext">decentralized</b> approach, all the robots communicate only locally 
-                                (with neighbor agents, using sensors) and decide individually, based on this information, its control 
-                                input.
-                            </li><br>
-                            <li>The latter is more practical, because the former requires communication that we dont always have available. 
-                                However, assuming that we can implement it, the former is easy to implement.
-                            </li><br>
-                            <li>We will assume a <b class="itext">centralized approach</b> here.</li>
-                        </ul>
+                       <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                        <li>
+                            In this case, where we have a <b class="itext">multi-agent system</b> (e.g., many robots), 
+                            there is an important distinction between a <b class="ttext">centralized</b> and 
+                            a <b class="ttext">decentralized</b> approach.
+                        </li><br>
+                        <li>
+                            In the <b class="itext">centralized</b> approach, all robots communicate with a central computer, 
+                            which processes everything and then sends the control inputs back to each agent.
+                        </li><br>
+                        <li>
+                            In the <b class="itext">decentralized</b> approach, robots communicate only locally 
+                            (with neighboring agents, using sensors) and each agent decides its control input individually 
+                            based on this information.
+                        </li><br>
+                        <li>
+                            The latter is more practical because the former requires communication infrastructure that is not always available. 
+                            However, assuming it is feasible, the former is easier to implement.
+                        </li><br>
+                        <li>
+                            Here, we will assume a <b class="itext">centralized approach</b>.
+                        </li>
+                    </ul>
+
                         </div>
                     </div>
                     <div
@@ -288,13 +295,13 @@
                                 explained <a href="presentation/part3_A.html#/45"" target="_blank">
                                     <b class="hlink">here</b>
                                 </a> :
-                                $$\dot{q}^{\top} \frac{\partial^2 B_{ij}^{RR}}{\partial q^2}(q)\dot{q} \approx \left( \frac{\partial B_{ij}^{RR}}{\partial q}(q{+}\Delta t \dot{q}) {-} \frac{\partial B_{ij}^{RR}}{\partial q}(q{-}\Delta t \dot{q}) \right)\frac{\dot{q}}{2\Delta t}  $$
+                                $$\dot{q}^{\top} \frac{\partial^2 B_{ij}^{RR}}{\partial q^2}(q)\dot{q} \approx \left( \frac{\partial B_{ij}^{RR}}{\partial q}(q{+}\Delta t \dot{q}) {-} \frac{\partial B_{ij}^{RR}}{\partial q}(q{-}\Delta t \dot{q}) \right)\frac{\dot{q}}{2\Delta t}.$$
 
                             </li><br>
                             <li>
                                 We can then implement the constraint, as <a href="presentation/part3_A.html#/42" target="_blank">
                                     <b class="hlink">explained here</b></a>:
-                                <b class="itext">$$\frac{\partial B_{ij}^{RR}}{\partial q}(q)u \geq -2\eta \underbrace{\frac{\partial B_{ij}^{RR}}{\partial q}(q)\dot{q}}_{\dot{B}_{ij}^{RR}} - \eta^2 B_{ij}^{RR}(q)-\dot{q}^{\top} \frac{\partial^2 B_{ij}^{RR}}{\partial q^2}(q) \dot{q}$$</b>
+                                <b class="itext">$$\frac{\partial B_{ij}^{RR}}{\partial q}(q)u \geq -2\eta \underbrace{\frac{\partial B_{ij}^{RR}}{\partial q}(q)\dot{q}}_{\dot{B}_{ij}^{RR}} - \eta^2 B_{ij}^{RR}(q)-\dot{q}^{\top} \frac{\partial^2 B_{ij}^{RR}}{\partial q^2}(q) \dot{q}.$$</b>
                             </li>
 
                         </ul>
@@ -323,26 +330,28 @@
                 <div style="display: flex;  flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
                     <div  style="flex: 6; min-width: 300px; font-size: 1.2vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
+                    <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                        <li>
+                            For collision avoidance between the static environment, modeled as a point cloud, 
+                            and the agents, we can again use the Euclidean distance between each agent's sphere and the point cloud:
+                            $$B^{RO}_i(q) = D_i^{RO}(q)-\delta.$$
+                        </li><br>
+                        <li>
+                            However, we will need the second-order term \(\dot{q}^{\top}\frac{\partial^2 B^{RO}_i(q)}{\partial q^2}\dot{q}\). 
+                            But, <a href="presentation/part2_B.html#/39" target="_blank">
+                                <b class="hlink">as discussed before</b></a>, for point clouds, \(D_i^{RO}\) (and thus \(B^{RO}_i\)) has a discontinuous first derivative 
+                            when dealing with discrete point clouds, and therefore the second derivative will sometimes <b class="itext">blow up</b>.
+                        </li><br>
+                        <li>
+                            This can cause discontinuities in the control input and even render the CBF constraint unfeasible, as it could 
+                            require an acceleration so high that it violates our acceleration limits.
+                        </li><br>
+                        <li>
+                            That’s where differentiable distances (especially the <a href="presentation/part2_B.html#/56" target="_blank">
+                                <b class="hlink">short-circuit algorithm</b></a>) can help!
+                        </li>
+                    </ul>
 
-                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
-                            <li>
-                                For the collision avoidance between the static environment, modelled as a point cloud, 
-                                and the agent, we can again use the Euclidean distance between each agent's sphere and the point cloud:
-                                $$B^{RO}_i(q) = D_i^{RO}(q)-\delta$$
-                            </li><br>
-                            <li>
-                                However, we will need the second order term \(\dot{q}^{\top}\frac{\partial^2 B^{RO}_i(q)}{\partial q^2}\dot{q}\). 
-                                But, <a href="presentation/part2_B.html#/39" target="_blank">
-                                    <b class="hlink">as discussed before</b></a>, for point clouds \( D_i^{RO}\) (and thus \(B^{RO}_i\) ) has a discontinuous first derivative 
-                                when we deal with discrete point clouds, and thus the second derivative will sometimes <b class="itext">blow up</b>.
-                            </li><br>
-                            <li>This can cause discontinuities in the control input and even render the CBF constraint unfeasible, because it could 
-                                require an acceleration so high that it violates our acceleration limits.
-                            </li><br>
-                            <li>Thats where differentiable distances (especially the <a href="presentation/part2_B.html#/56" target="_blank">
-                                    <b class="hlink">short circuit algorithm</b></a>) can help!</li>
-
-                        </ul>
                         </div>
                     </div>
                     <div style ="flex:2;"></div>
@@ -369,16 +378,17 @@
                         <div style="position:absolute; width: 50%; ">
 
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
-                            <li>
-                                So, lets assume \(D^{RO}_i(q)\) is computed as follows: we apply the short-circuit algorithm 
-                                to all the Goncalves P2S-HSD distance between the agent \(i\)'s sphere \(\mathcal{B}(q,i)\) 
-                                and each one of the \(n\) obstacle points \(o_k\), namely \(\hat{E}_{\mathcal{B}(q,i)}(o_k)\). What we get 
-                                at the end is a differentiable half-squared distance. To recover a distance, we multiply by 
-                                two and take the square root, obtaining:
+                        <li>
+                            So, let's assume \(D^{RO}_i(q)\) is computed as follows: we apply the short-circuit algorithm 
+                            to all the Goncalves P2S-HSD distances between agent \(i\)'s sphere \(\mathcal{B}(q,i)\) 
+                            and each of the \(n\) obstacle points \(o_k\), namely \(\hat{E}_{\mathcal{B}(q,i)}(o_k)\). 
+                            What we get in the end is a differentiable half-squared distance. To recover the distance, we multiply by 
+                            two and take the square root, obtaining:
 
-                                $$D^{RO}_i(q) = \sqrt{2\left( \sum_{k=1}^n \hat{E}_{\mathcal{B}(q,i)}(o_k)^{-1/r} \right)^{-r}}$$
-                                in which \(r\) is a smoothing parameter.
-                            </li><br>
+                            $$D^{RO}_i(q) = \sqrt{2\left( \sum_{k=1}^n \hat{E}_{\mathcal{B}(q,i)}(o_k)^{-1/r} \right)^{-r}}$$
+                            where \(r\) is a smoothing parameter.
+                        </li><br>
+
                             <li>
                                UAIBot's function <b class="itext">compute_dist</b> between a Ball and a Point Cloud with 
                                parameter \(h\) and \(\epsilon\) will compute this: 
@@ -428,21 +438,19 @@ p_ball, p_pc, dist, _ = ball.compute_dist(pc,h=0.1,eps=0.01)
                     <div  style="flex: 6; min-width: 300px; font-size: 1.4vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
-                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
-                            <li>
-                                The aforementioned UAIBot function will return two 3D witness points, one for the ball, 
-                                \(p_i^*\), and another for the point cloud, \(o^*\). They are given by the following formulae:
-                                $$ p_i^* = \sum_{k=1}^n W_{ik} \hat{\Pi}_{\mathcal{B}(q,i)}(o_k),$$
-                                $$ o_i^* = \sum_{k=1}^n W_{ik} o_k$$
-                                in which \(\hat{\Pi}_{\mathcal{B}(q,i)}(o_k)\) is <a href="presentation/part2_B.html#/51" target="_blank">
-                                    <b class="hlink">Gonçalves' projection</b></a> and:
+                    <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                        <li>
+                            The aforementioned UAIBot function will return two 3D witness points: one for the ball, 
+                            \(p_i^*\), and another for the point cloud, \(o^*\). They are given by the following formulas:
+                            $$ p_i^* = \sum_{k=1}^n W_{ik} \hat{\Pi}_{\mathcal{B}(q,i)}(o_k),$$
+                            $$ o_i^* = \sum_{k=1}^n W_{ik} o_k$$
+                            where \(\hat{\Pi}_{\mathcal{B}(q,i)}(o_k)\) is <a href="presentation/part2_B.html#/51" target="_blank">
+                                <b class="hlink">Gonçalves' projection</b></a>, and:
 
-                                $$W_{ik} = \frac{\hat{E}_{\mathcal{B}(q,i)}(o_k)^{-(1/r+1)}}{\left( \sum_{j=1}^n \hat{E}_{\mathcal{B}(q,i)}(o_j)^{-1/r} \right)^{1+r}}.$$
-                            </li><br>
+                            $$W_{ik} = \frac{\hat{E}_{\mathcal{B}(q,i)}(o_k)^{-(1/r+1)}}{\left( \sum_{j=1}^n \hat{E}_{\mathcal{B}(q,i)}(o_j)^{-1/r} \right)^{1+r}}.$$
+                        </li><br>
+                    </ul>
 
-                            
-
-                        </ul>
                         </div>
                     </div>
                     <div style ="flex:2;"></div>
@@ -469,23 +477,23 @@ p_ball, p_pc, dist, _ = ball.compute_dist(pc,h=0.1,eps=0.01)
                         <div style="position:absolute; width: 50%; ">
 
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
-                            <li> As opposed to Gonçalves' S2S-HSD between two convex objects computed from the Alternating algorithm, we 
-                                cant, strictly speaking, use <a href="presentation/part2_B.html#/34" target="_blank">
+                            <li>
+                                As opposed to Gonçalves' S2S-HSD between two convex objects computed using the Alternating algorithm, we 
+                                can’t, strictly speaking, use <a href="presentation/part2_B.html#/34" target="_blank">
                                     <b class="hlink">this formula</b></a> for the derivative. However, it is a very good approximation, especially when \(r\) is 
                                 small, as it usually is. Thus:
                                 <b class="itext">$$\frac{\partial}{\partial p_i} B^{RO}_i(q) = \frac{\partial}{\partial p_i} D^{RO}_i(q) \approx \frac{1}{D^{RO}_i(q)}(p_i^*-o_i^*)^{\top}.$$</b>
-                                in which we used the fact that the obstacle is static and the symmetry of the ball+the fact that its frame is attached to 
-                                its center (so no need to consider the angular velocity of the ball).
-                            </li>
+                                Here, we used the fact that the obstacle is static, the symmetry of the ball, and the fact that its frame is attached to 
+                                its center (so there is no need to consider the angular velocity of the ball).
+                            </li><br>
                             <li>
                                 Note that the derivative is with respect to \(p_i\), which is part of the full configuration \(q\). 
-                                But computing \(\frac{\partial D^{RO}_i}{\partial q}\) from this is easy, as all the other configurations 
-                                except the three ones for agent \(i\) ar going to have \(0\) partial derivative with respect to 
-                                agent i's obstacle avoidance with the environment.
+                                However, computing \(\frac{\partial D^{RO}_i}{\partial q}\) from this is easy, as all other configurations 
+                                except the three coordinates for agent \(i\) will have a zero partial derivative with respect to 
+                                agent \(i\)'s obstacle avoidance with the environment.
                             </li>
-                            
-
                         </ul>
+
                         </div>
                     </div>
                     <div style ="flex:2;"></div>
@@ -512,18 +520,17 @@ p_ball, p_pc, dist, _ = ball.compute_dist(pc,h=0.1,eps=0.01)
                     <div  style="flex: 6; min-width: 300px; font-size: 1.3vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
-                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
-                            <li> This time, the Hessian of \(B^{RO}_i(q)\) is much harder to compute 
-                                (even for our appropximation). As before, we will use the trick:
+                       <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>
+                                This time, the Hessian of \(B^{RO}_i(q)\) is much harder to compute 
+                                (even for our approximation). As before, we will use the following trick:
                                 $$\dot{q}^{\top} \frac{\partial^2 B_{i}^{RO}}{\partial q^2}(q)\dot{q} \approx \left( \frac{\partial B_{i}^{RO}}{\partial q}(q{+}\Delta t \dot{q}) {-} \frac{\partial B_{i}^{RO}}{\partial q}(q{-}\Delta t \dot{q}) \right)\frac{\dot{q}}{2\Delta t}.$$
-
                             </li>
                             <li>
-                               With this, we have everything we need to implement the obstacle avoidance constraint.
+                                With this, we have everything we need to implement the obstacle avoidance constraint.
                             </li>
-                            
-
                         </ul>
+
                         </div>
                     </div>
                     <div style ="flex:2;"></div>
@@ -551,25 +558,25 @@ p_ball, p_pc, dist, _ = ball.compute_dist(pc,h=0.1,eps=0.01)
                         <div style="position:absolute; width: 50%; ">
 
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
-                            <li> Each agent \(i\) will have its target point \(p_{d,i}\). We will see soon that these target points 
-                                will be updated once the agent reach it but, regardless, if we stack those vertically into a (3N)-dimensional 
-                                column vector \(q_{d}\) we can use the task function:
-                                $$r(q) = q-q_d$$
+                            <li>
+                                Each agent \(i\) will have its target point \(p_{d,i}\). We will see soon that these target points 
+                                will be updated once the agent reaches it. Regardless, if we stack these vertically into a \((3N)\)-dimensional 
+                                column vector \(q_{d}\), we can use the task function:
+                                $$r(q) = q - q_d$$
                                 for which the Jacobian is simply the \((3N) \times (3N)\) identity matrix.
                             </li><br>
                             <li>
-                               Thus, we can set as objective function, following <a href="presentation/part3_A.html#/44" target="_blank">
+                                Thus, we can set the following objective function, as shown in <a href="presentation/part3_A.html#/44" target="_blank">
                                     <b class="hlink">this</b></a>:
-                               <b class="itext">$$\min_u \|u+2K\dot{q}+K^2(q-q_d)\|^2$$</b>
-                               for a positive scalar \(K\).
+                                <b class="itext">$$\min_u \|u + 2K\dot{q} + K^2(q - q_d)\|^2$$</b>
+                                for a positive scalar \(K\).
                             </li><br>
                             <li>
-                               There is no need for regularization term \(\epsilon \|u\|^2\) because the Jacobian is already 
-                               full rank.
+                                There is no need for a regularization term \(\epsilon \|u\|^2\) because the Jacobian is already 
+                                full rank.
                             </li>
-                            
-
                         </ul>
+
                         </div>
                     </div>
                     <div style ="flex:2;"></div>
@@ -596,28 +603,28 @@ p_ball, p_pc, dist, _ = ball.compute_dist(pc,h=0.1,eps=0.01)
                         <div style="position:absolute; width: 50%; ">
 
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
-                            <li> Just setting \(p_{d,i}\) as the final target point for each agent most likely wont do. 
-                                Most likely the system will get stuck in an equilibrium point.
+                            <li>
+                                Simply setting \(p_{d,i}\) as the final target point for each agent most likely won’t work. 
+                                The system will probably get stuck in an equilibrium point.
                             </li><br>
                             <li>
-                               We can run a very crude motion planning that computes some intermediate points to help the 
-                               agent reach the final point.
+                                We can run a very crude motion planning algorithm that computes some intermediate points to help the 
+                                agent reach the final target.
                             </li><br>
                             <li>
-                               We will proceed as follows: for each agent, we will implement a simple probabilistic method 
-                               that does a <b class="itext">random walk</b> in the environment, checking if the movement 
-                               between points can be done with a straight line. Every once in a while, we try to connect 
-                               the current point with the final point. Once we succeed, we run a simple algorithm for 
-                               post-processing the path and removing the zig-zag behavior. 
+                                We will proceed as follows: for each agent, we will implement a simple probabilistic method 
+                                that performs a <b class="itext">random walk</b> in the environment, checking if movement 
+                                between points can be done with a straight line. Every once in a while, we attempt to connect 
+                                the current point with the final target. Once successful, we run a simple algorithm to 
+                                post-process the path and reduce the zig-zag behavior. 
                             </li><br>
                             <li>
-                                This algorithm will be used for each agent individually, without any regard to the other agents, 
-                                only the static obstacles. Its up to the CBF controller to handle this inter-agent collision
-                                avoidance behavior.
+                                This algorithm will be used for each agent individually, considering only the static obstacles, 
+                                without regard for the other agents. It is up to the CBF controller to handle inter-agent collision
+                                avoidance.
                             </li>
-                            
-
                         </ul>
+
                         </div>
                     </div>
                     <div style ="flex:2;"></div>
@@ -689,7 +696,7 @@ p_ball, p_pc, dist, _ = ball.compute_dist(pc,h=0.1,eps=0.01)
                     <b class="ttext">EXAMPLE 3: UAIBOT CODE</b>
                 </h3>
                 <div style="display: flex;  flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
-                    <div  style="flex: 6; min-width: 300px; font-size: 1.1vw; display: flex; align-items: start; height: 100%; text-align: justify;">
+                    <div  style="flex: 6; min-width: 300px; font-size: 1.4vw; display: flex; align-items: start; height: 100%; text-align: justify;">
                         <div style="position:absolute; width: 50%; ">
 
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
@@ -1665,12 +1672,12 @@ plt.show()
                 }
 
                 .iframe-wrapper.fullscreen iframe {
-                    width: 65%;
-                    height: 80%;
+                    width: 60%;
+                    height: 70%;
 
                     position: absolute;
                     top: 2%;
-                    left: 55%;
+                    left: 52%;
                     transform: translate(-50%, 0);
                 }
             </style>
@@ -1748,28 +1755,20 @@ plt.show()
                 var frames = document.getElementsByTagName("iframe");
 
 
-                Reveal.on('slidechanged', event => {
-                    for (let i = 0; i < frames.length; ++i) {
-                        frames[i].contentWindow.location.reload(true);
-                    }
-                });
+        document.addEventListener('keydown', function(event) {
+            const indices = Reveal.getIndices();
+            const totalSlides = Reveal.getTotalSlides();
+            const available = Reveal.availableRoutes();
 
 
-                Reveal.on('slidechanged', function () {
-                
-                const indices = Reveal.getIndices();
-                const isSecondSlide = indices.h === 1 && indices.v === 0;
-
-                if (isSecondSlide) {
-                    
-                    document.addEventListener('keydown', function (event) {
-                    if (event.key === "ArrowLeft") {
-                        window.location.href = "presentation/part3_C.html#/25";  
-                    }
-                    }, { once: true });
-                     
+            // Trigger when pressing LEFT on the first real slide (horizontal index 1)
+            if (event.key === "ArrowLeft" || event.key === "PageUp") {
+                const isFirstSlide = (indices.h === 1 && indices.v === 0);
+                if (isFirstSlide) {
+                    window.location.href = 'presentation/part3_C.html#/25';
                 }
-                });
+            }
+        });
 
 
  
