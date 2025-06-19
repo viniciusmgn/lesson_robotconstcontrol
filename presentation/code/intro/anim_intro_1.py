@@ -92,7 +92,7 @@ for i in range(len(robot.links) + 1):
     sim.add(y_axis[-1])
     sim.add(z_axis[-1])
 
-style = "top:75%; right: 0; width:100%; font-size: 1.5vw; position:absolute; text-align:center; color:white; background-color:#222224; font-smooth:always; font-family:arial"
+style = "top:75%; right: 0; width:100%; font-size: 2.5vw; position:absolute; text-align:center; color:white; background-color:#222224; font-smooth:always; font-family:arial"
 
 explanation = HTMLDiv(html_text="", style=style)
 
