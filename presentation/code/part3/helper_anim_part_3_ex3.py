@@ -1,6 +1,7 @@
 import numpy as np
 import uaibot as ub
 
+np.random.seed(44)
 
 def check_free(_p, _pc, _radius, _bounds):
     

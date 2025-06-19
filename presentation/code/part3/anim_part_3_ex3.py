@@ -6,6 +6,8 @@ import uaibot as ub
 import matplotlib.pyplot as plt
 from helper_anim_part_3_ex3 import *
 
+np.random.seed(44)
+
 ###################################   
 #Parameters control
 
@@ -16,7 +18,7 @@ param_v_max = 0.4 #0.3
 param_a_max = 0.5
 param_radius = 0.25
 param_height = 0.35
-param_n_robots = 8
+param_n_robots = 10
 param_dist_interm = 0.3
 param_dist_final = 0.03
 
@@ -393,7 +395,7 @@ while cont:
         total_finished = total_finished and finished[j]
     
 
-    cont = t < param_t_max and not total_finished
+    cont = t < 0*param_t_max and not total_finished
     i = i + 1
     
     
