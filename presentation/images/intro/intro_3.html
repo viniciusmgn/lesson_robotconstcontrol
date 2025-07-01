@@ -44,7 +44,7 @@ const delay = 500;
  const backgroundColor='#191919'; 
  const ambientLightIntensity = 0;
  const ldrUrls = [];
- const cameraStartPose = [1.76, 1.1, 1.45, 0.0, 0.0, 0.0, 1.0];
+ const cameraStartPose = [1.5376, 0.6986, 1.0442, 0.6653, 0.3153, 0.7408, 1.0000];
  //SIMULATION PARAMETERS GO HERE
 
 function elapsedMs() {
@@ -1571,6 +1571,7 @@ renderer.setAnimationLoop(() => {
 		}
 	}
 
+	logCameraParams();
 	renderer.render(scene, camera);
 });
 //------------------------------------------------------------
@@ -1606,6 +1607,26 @@ function onWindowResize() {
     }
 }
 
+function logCameraParams() {
+    const pos = camera.position;
+
+    const dir = new Vector3();
+    camera.getWorldDirection(dir);
+
+    const lookAtPoint = new Vector3(
+        pos.x + dir.x,
+        pos.y + dir.y,
+        pos.z + dir.z
+    );
+
+    const values = [
+        pos.x, pos.y, pos.z,
+        lookAtPoint.x, lookAtPoint.y, lookAtPoint.z,
+        camera.zoom
+    ];
+
+    //console.log("Camera Params:", values.map(v => v.toFixed(4)).join(", "));
+}
 </script>
  
 <style>
