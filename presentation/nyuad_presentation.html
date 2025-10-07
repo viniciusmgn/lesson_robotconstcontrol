@@ -65,7 +65,8 @@
                             <br>
                             <li> Brazilian. Bachelor’s degree in Control and Automation Engineering (2011), PhD in
                                 Electrical Engineering
-                                (2014). Internship at Universite d'Angers, France. Became a professor at UFMG in 2016.
+                                (2014), both from UFMG. Internship at Universite d'Angers, France. Became a professor at
+                                UFMG in 2016.
                                 <b class="itext">Two year post-doc period at NYU-AD (2022-2024)</b>
                             </li>
                             <br>
@@ -584,14 +585,124 @@
   margin: auto;        /* centers the video */
   border-radius: 1rem; /* optional aesthetic */
 ">
-                            <video src="presentation/images/cbf_presentation/sample_experiment_2.mp4" autoplay muted loop
-                                style="
+                            <video src="presentation/images/cbf_presentation/sample_experiment_2.mp4" autoplay muted
+                                loop style="
            width: 100%;             /* make it wider than container */
            height: 100%;
            object-fit: cover;       /* keeps aspect ratio */
            object-position: center; /* crop evenly on left/right */
          ">
                             </video>
+                        </div>
+
+
+                    </div>
+                </div>
+            </section>
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    DIFFERENTIABLE DISTANCES
+                </h3>
+
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.3vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>While working with CBFs at NYU Abu Dhabi on obstacle avoidance, I noticed that in some
+                                cases the controller
+                                exhibited poor performance (very noisy control inputs) or required extremely high
+                                control efforts.</li>
+                            <br>
+
+                            <li>I realized this occurred because the algorithm relied on derivatives of the Euclidean
+                                distance — but the
+                                <b class="itext">Euclidean distance is not always differentiable</b>!
+                            </li>
+                            <br>
+
+                            <li>This observation led to my research on developing an alternative to the Euclidean
+                                distance that is
+                                <b class="itext">smooth</b> (e.g., differentiable infinitely or at least a finite number
+                                of times).
+                            </li>
+                            <br>
+
+                            <li>This is a fascinating topic, both from practical and theoretical perspectives, and it
+                                appears to be
+                                largely underexplored.</li>
+                            <br>
+
+
+
+
+
+
+
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items:center; height: 100%;">
+
+                        <div style="width: 80%">
+                            <img src="presentation/images/part2/image37.gif"
+                                style="max-width: 100%; height: auto; max-height: 60vh;">
+                        </div>
+
+
+                    </div>
+                </div>
+            </section>
+
+
+            <section style="display: flex; flex-direction: column; height: 100vh;">
+                <h3 style="font-size: 3vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
+                    DIFFERENTIABLE DISTANCES
+                </h3>
+
+
+                <div
+                    style="display: flex; flex-grow: 1; width: 90vw; max-width: 1200px; margin: auto; align-items: stretch; height: 60%;">
+                    <div
+                        style="flex: 1; min-width: 300px; font-size: 1.3vw; text-align: left; display: flex; align-items: start; height: 100%;">
+                        <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
+                            <li>We have already developed promising algorithms for
+                                <b class="itext">convex-to-convex distance computation</b>, currently under review.
+                            </li>
+                            <br>
+
+                            <li>We are also working on <b class="itext">convex-to-point cloud</b> distance computation,
+                                which is highly useful in practical applications,
+                                but there remains <b class="itext">significant room for improvement</b> in both
+                                computational efficiency and theoretical understanding.</li>
+                            <br>
+
+                            <li>In my <b class="itext">research proposal</b>, I outline several goals related to
+                                differentiable distance metrics,
+                                including key research questions and potential applications.</li>
+                            <br>
+                            <br>
+
+
+
+
+
+
+
+
+                        </ul>
+                    </div>
+
+                    <div
+                        style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; align-items:center; height: 100%;">
+
+                        <div style="width: 80%">
+                            <img src="presentation/images/part2/image37.gif"
+                                style="max-width: 100%; height: auto; max-height: 60vh;">
                         </div>
 
 
