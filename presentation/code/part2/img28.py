@@ -60,7 +60,7 @@ def plot_line(a, p0, axis, xlim=(-10, 10)):
     else:
         # Parametric equation: p = p0 + t * a
         x_vals = np.linspace(xlim[0], xlim[1], 100)
-        y_vals = y0 - (ay / ax) * (x_vals - x0)
+        y_vals = y0 - (ax / ay) * (x_vals - x0)
 
     axis.plot(x_vals, y_vals, color='yellow', linewidth=2)
 
@@ -294,7 +294,7 @@ c_dir = polygon[-2]
 P = [c_dir]
     
 k = 0
-for i in range(4):
+for i in range(2):
 
     c_new = support(polygon, c_dir)
     

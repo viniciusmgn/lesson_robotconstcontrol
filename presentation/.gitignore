@@ -9,3 +9,10 @@ log/*.log
 tmp/**
 node_modules/
 .sass-cache
+images/cbf_presentation
+cnrs_presentation.html
+cnrs_presentation_final.html
+cnrs_presentation_2.html
+other_presentation.html
+cbf_presentation.html
+
