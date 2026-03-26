@@ -2808,11 +2808,18 @@ style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>Ok, so we sought this new \(\hat{\Lambda}_{\mathcal{A},\mathcal{B}}\) that <b class="itext"> is differentiable</b>!
                             </li><br>
-                            <li>Instead of going straight to this new S2S-HSD, we will start by defining <b class="ttext"> Gonçalves' P2S-HSD \(\hat{E}_{\mathcal{S}}(p)\)</b> and 
-                                <b class="ttext"> Gonçalves' projections \(\hat{\Pi}_{\mathcal{S}}(p)\) </b>.
+                            <li>Instead of going straight to this new S2S-HSD, we will start by defining <b class="ttext"> Generalized P2S-HSD \(\hat{E}_{\mathcal{S}}(p)\)</b> and 
+                                <b class="ttext"> Generalized projections \(\hat{\Pi}_{\mathcal{S}}(p)\) </b>.
 
                             </li><br>
-                            <li>(I know the name is vain, there are reasons for that, it will be changed in the future).</li>
+                            <li>Proposed in the paper: 
+                             <a href="https://doi.org/10.1109/LRA.2026.3655272" target="_blank"
+                                style="font-size: 1.2vw;">
+                                <b class="hlink">A Differentiable Distance Metric for Robotics
+Through Generalized Alternating Projection</b>
+                            </a>
+
+                            </li>
                         </ul>
                     </div>
 
@@ -2830,7 +2837,7 @@ style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                     DIFFERENTIABLE DISTANCES
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    <b class="ttext">GONÇALVES' P2S-HSD</b>
+                    <b class="ttext">Generalized P2S-HSD</b>
                 </h3>
 
                 <div
@@ -2855,7 +2862,7 @@ style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                             <li>The last property is not intuitive, but it limits the growth rate of P2S-HSD. It says, roughly, that half squared distances 
                                 should not grow faster than \(\frac{\|p\|^2}{2}\), which is, perhaps, more intuitive.
                             </li><br>
-                            <li>Gonçalves' P2S-HSD slightly modifies this.</li>
+                            <li>Generalized P2S-HSD slightly modifies this.</li>
                         </ul>
                     </div>
 
@@ -2873,7 +2880,7 @@ style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                     DIFFERENTIABLE DISTANCES
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    <b class="ttext">GONÇALVES' P2S-HSD</b>
+                    <b class="ttext">Generalized P2S-HSD</b>
                 </h3>
 
                 <div
@@ -2881,7 +2888,7 @@ style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                     <div
                         style="flex: 1; min-width: 300px; font-size: 1.35vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
-                            <li> Consider a convex set \(\mathcal{S}\). A <b class="ttext">Gonçalves P2S-HSD for this set \(\mathcal{S}\)</b> \(\hat{E}_{\mathcal{S}}(p)\) is <b class="itext">any (there are infinitely many choices!)</b> function \(\hat{E}_{\mathcal{S}} : \mathbb{R}^n \mapsto \mathbb{R}^+\) such that <br><br>
+                            <li> Consider a convex set \(\mathcal{S}\). A <b class="ttext">Generalized P2S-HSD for this set \(\mathcal{S}\)</b> \(\hat{E}_{\mathcal{S}}(p)\) is <b class="itext">any (there are infinitely many choices!)</b> function \(\hat{E}_{\mathcal{S}} : \mathbb{R}^n \mapsto \mathbb{R}^+\) such that <br><br>
                                 <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                                     <li>
                                         (0) : <b class="itext">\(\hat{E}_{\mathcal{S}}(p)\) is twice differentiable in \(p\);</b>
@@ -2921,7 +2928,7 @@ style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                     DIFFERENTIABLE DISTANCES
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    <b class="ttext">COMPUTING GONÇALVES' P2S-HSD</b>
+                    <b class="ttext">COMPUTING Generalized P2S-HSD</b>
                 </h3>
 
                 <div
@@ -2929,15 +2936,15 @@ style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                     <div
                         style="flex: 1; min-width: 300px; font-size: 1.4vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
-                            <li> Gonçalves' P2S-HSD <b class="itext">does not necessarily come from an optimization problem</b> (as opposed to the 
+                            <li> Generalized P2S-HSD <b class="itext">does not necessarily come from an optimization problem</b> (as opposed to the 
                                 Euclidean P2S-HSD). In fact, unlike the Euclidean P2S-HSD, <b class="itext">it is relatively simple and 
-                                computationally efficient to compute Gonçalves' P2S-HSD even for a complex polytope!</b>
+                                computationally efficient to compute Generalized P2S-HSD even for a complex polytope!</b>
                             </li>
                             
                                 
                             </li><br>
-                            <li> For this, we define a <b class="ttext"> basic Gonçalves' P2S-HSD</b> \(\Phi: \mathbb{R} \mapsto \mathbb{R}^+\) as any 
-                                Gonçalves' P2S-HSD for the 1-dimensional convex set \((-\infty,0]\) (i.e., the nonpositive reals).
+                            <li> For this, we define a <b class="ttext"> basic Generalized P2S-HSD</b> \(\Phi: \mathbb{R} \mapsto \mathbb{R}^+\) as any 
+                                Generalized P2S-HSD for the 1-dimensional convex set \((-\infty,0]\) (i.e., the nonpositive reals).
                             </li><br>
                             <li> One simple example is as follows, for any positive scalar \(h\):
                                 $$
@@ -2967,7 +2974,7 @@ style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                     DIFFERENTIABLE DISTANCES
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    <b class="ttext">COMPUTING GONÇALVES' P2S-HSD</b>
+                    <b class="ttext">COMPUTING Generalized P2S-HSD</b>
                 </h3>
 
                 <div
@@ -2979,11 +2986,11 @@ style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                                 without loss of generality, that \(\|a_i\|=1\).
                                 
                             </li><br>
-                            <li> We can define a <b class="ttext"> weak Gonçalves' P2S-HSD for the set \(\mathcal{S}\)</b> , 
+                            <li> We can define a <b class="ttext"> weak Generalized P2S-HSD for the set \(\mathcal{S}\)</b> , 
                                 \(\hat{e}_{\mathcal{S}}(p)\) as follows:
                                 <b class="ttext">$$ \hat{e}_{\mathcal{S}}(p) = \frac{1}{N} \sum_{i=1}^N \Phi(a_i^\top p-b_i).$$  </b>
                             </li><br>
-                            <li>This satisfies almost all properties of a <b class="itext"> Gonçalves' P2S-HSD</b> (hence the adjective <b class="itext">weak</b>), except that property (2) 
+                            <li>This satisfies almost all properties of a <b class="itext"> Generalized P2S-HSD</b> (hence the adjective <b class="itext">weak</b>), except that property (2) 
                                 holds true only with \(\geq\) instead of with \(>\). We solve this through a <b class="itext">bulging procedure</b>.</li>
                         </ul>
                     </div>
@@ -3003,7 +3010,7 @@ style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                     DIFFERENTIABLE DISTANCES
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    <b class="ttext">COMPUTING GONÇALVES' P2S-HSD</b>
+                    <b class="ttext">COMPUTING Generalized P2S-HSD</b>
                 </h3>
 
                 <div
@@ -3016,7 +3023,7 @@ style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                             </li><br>
                             <li> Let \(\rho(p) = 0.5(\|p-p_c\|^2-R^2) \). It can be shown that for a sufficiently small but positive \(\epsilon\):
                                 <b class="ttext">$$ \hat{E}_{\mathcal{S}}(p) = \epsilon \rho(p) +\sqrt{\epsilon^2 \rho(p)^2 + (1-2\epsilon)\hat{e}_{\mathcal{S}}(p)^2  }$$  </b>
-                                is a Gonçalves' P2S-HSD.
+                                is a Generalized P2S-HSD.
                             </li><br>
                             <li>This is called the <b class="itext">bulging procedure</b> because if one compares the non-zero level sets of \(\hat{e}_{\mathcal{S}}\) and 
                                 \(\hat{E}_{\mathcal{S}}\) for a convex set \(\mathcal{S}\) with flat sides (e.g., a square), the former's level sets have flat sides, whereas the 
@@ -3039,7 +3046,7 @@ style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                     DIFFERENTIABLE DISTANCES
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    <b class="ttext">GONÇALVES' PROJECTION</b>
+                    <b class="ttext">Generalized PROJECTION</b>
                 </h3>
 
                 <div
@@ -3050,11 +3057,11 @@ style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                             <li> Remember that there is a <b class="itext"> theorem </b> that relates the Euclidean P2S-HSD and the Euclidean projection:
                                 $$\Pi_{\mathcal{S}}(p) = p - \nabla E_{\mathcal{S}}(p).$$
                             </li><br>
-                            <li> By analogy, we <b class="itext"> define </b> the <b class="ttext"> Gonçalves' projection for the set \(\mathcal{S}\) </b> as: </b>
+                            <li> By analogy, we <b class="itext"> define </b> the <b class="ttext"> Generalized projection for the set \(\mathcal{S}\) </b> as: </b>
                                 <b class="ttext"> $$\hat{\Pi}_{\mathcal{S}}(p) = p - \nabla \hat{E}_{\mathcal{S}}(p).$$ </b>
                             </li><br>
-                            <li> Note that Gonçalves' projection does not come from an optimization problem, it simply comes from a mathematical definition. </li><br>
-                            <li>Gonçalves' P2S-HSD and projections will be useful for our two next algorithms.</li>
+                            <li> Note that Generalized projection does not come from an optimization problem, it simply comes from a mathematical definition. </li><br>
+                            <li>Generalized P2S-HSD and projections will be useful for our two next algorithms.</li>
                         </ul>
                     </div>
 
@@ -3104,7 +3111,7 @@ style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                     DIFFERENTIABLE DISTANCES
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    <b class="ttext">GONÇALVES' ALTERNATING PROJECTION</b>
+                    <b class="ttext">Generalized ALTERNATING PROJECTION</b>
                 </h3>
 
                 <div
@@ -3113,12 +3120,12 @@ style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                         style="flex: 1; min-width: 300px; font-size: 1.4vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li> We can use <b class="itext"> exactly the same algorithm as Von Neumann's alternating projection but 
-                                using Gonçalves's projections instead of Euclidean projections! </b>
+                                using Generalizeds projections instead of Euclidean projections! </b>
                                 <b class="itext">$$b[k] = \hat{\Pi}_{\mathcal{A}}(a[k])$$</b>
                                 <b class="itext">$$a[k+1] = \hat{\Pi}_{\mathcal{B}}(b[k])$$</b>
                             </li><br>
                             <li> If both sets are convex, <b class="itext">this algorithm will converge to points </b> \(a^*,b^*\), called 
-                                <b class="itext">Gonçalves's witness points</b>. Furthermore, if the sets do not overlap, <b class="itext">this pair is unique </b>
+                                <b class="itext">Generalizeds witness points</b>. Furthermore, if the sets do not overlap, <b class="itext">this pair is unique </b>
                                 (regardless if the sets are strictly convex or not).
                             </li><br>
                             <li> How do we use these witness points to compute \(\hat{\Lambda}_{\mathcal{A},\mathcal{B}}\)?</li>
@@ -3140,7 +3147,7 @@ style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                     DIFFERENTIABLE DISTANCES
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    <b class="ttext">GONÇALVES' ALTERNATING PROJECTION</b>
+                    <b class="ttext">Generalized ALTERNATING PROJECTION</b>
                 </h3>
 
                 <div
@@ -3157,7 +3164,7 @@ style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                             <li> Why this "bizarre" formula? It comes from <b class="itext">Game theory</b>!</li><br>
                             <li>Among some of the benefits of this formula, the formula for derivative of the distance that we obtained 
                                 <a href="presentation/part2_B.html#/33"><b
-                            class="hlink">some slides ago </b></a> <b class="itext">is still valid</b>, just by changing traditional witness points by Gonçalves' (this would not hold true if we used the simpler definition of \(\hat{\Lambda}_{\mathcal{A},\mathcal{B}}\)).
+                            class="hlink">some slides ago </b></a> <b class="itext">is still valid</b>, just by changing traditional witness points by Generalized (this would not hold true if we used the simpler definition of \(\hat{\Lambda}_{\mathcal{A},\mathcal{B}}\)).
                             </li>
                         </ul>
                     </div>
@@ -3177,7 +3184,7 @@ style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                     DIFFERENTIABLE DISTANCES
                 </h3>
                 <h3 style="font-size: 1.5vw; text-align: left; flex-shrink: 0; margin-bottom: 1rem;">
-                    <b class="ttext">GONÇALVES' ALTERNATING PROJECTION</b>
+                    <b class="ttext">Generalized ALTERNATING PROJECTION</b>
                 </h3>
 
                 <div
@@ -3231,7 +3238,7 @@ style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                             <li>This formula is not differentiable for two reasons. First, because \(E_{\mathcal{B}}(a_i)\) isnt. Second, because the minimum 
                                 is not differentiable when there are more than one index \(i\) that achieves the minimum. 
                             </li><br>
-                            <li>The first source of non-differentiability can be solved by using Gonçalves's S2S-HSD \(\hat{E}_{\mathcal{B}}(a_i)\) instead 
+                            <li>The first source of non-differentiability can be solved by using Generalizeds S2S-HSD \(\hat{E}_{\mathcal{B}}(a_i)\) instead 
                                 of \(E_{\mathcal{B}}(a_i)\). </li>
                             
                         </ul>
@@ -3335,7 +3342,7 @@ style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 1em; text-align: justify;">
                             <li>Thus, we can simply choose a \(r>0\) and use:
                                 <b class="ttext">$$\hat{\Lambda}_{\mathcal{A},\mathcal{B}} = \left(\sum_{i=1}^N \hat{E}_{\mathcal{B}}(a_i)^{-1/r} \right)^{-r}$$</b>
-                                for any Gonçalves' S2S-HSD function \(\hat{E}_{\mathcal{B}}\) for the set \(\mathcal{B}\).
+                                for any Generalized S2S-HSD function \(\hat{E}_{\mathcal{B}}\) for the set \(\mathcal{B}\).
                             </li><br>
                             <li>This expression is differentiable, but we <b class="itext">cannot use the formula from the previous slides</b>. It is not difficult to find 
                                 one for the derivative, though (it is a nice Calculus exercise).
@@ -3372,7 +3379,7 @@ style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                             <li>
                                 However, even then, BVHs can help. Note that points \(a_i\) that have  
                                 $$\alpha_i = \hat{E}_{\mathcal{B}}(a_i)/\Lambda_{\mathcal{A},\mathcal{B}}$$ 
-                                (the ratio between the i-th Gonçalves P2S-HSD and the Euclidean S2S-HSD)
+                                (the ratio between the i-th Generalized P2S-HSD and the Euclidean S2S-HSD)
                                 much greater than one do not contribute much in the short-circuit operation. 
                             </li><br>
                             <li>Thus, if we approximate \(\hat{E}_{\mathcal{B}}(a_i) \approx E_{\mathcal{B}}(a_i)\), then \(\alpha_i \approx  E_{\mathcal{B}}(a_i)/\Lambda_{\mathcal{A},\mathcal{B}}\). 
@@ -3413,7 +3420,7 @@ style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                     <div
                         style="flex: 1; min-width: 300px; font-size: 1.3vw; text-align: left; display: flex; align-items: start; height: 100%;">
                         <ul style="list-style-type: disc; padding-left: 0em; text-align: justify;">
-                            <li>UAIBot implements <b class="itext">GJK, BVH, Gonçalves' Alternating Method and Short-Circuit</b> inside  <b class="itext">compute_dist</b>, 
+                            <li>UAIBot implements <b class="itext">GJK, BVH, Generalized Alternating Method and Short-Circuit</b> inside  <b class="itext">compute_dist</b>, 
                                 depending on the parameters and context: </li>
                                 <pre><code class="language-python" style="text-align:left">
 import uaibot as ub
@@ -3438,15 +3445,15 @@ pointA, pointB, dist, _ = cvx1.compute_dist(cvx2)
 pointA, pointB, dist, _ = pc1.compute_dist(cvx1)
 
 # When compute_dist is called between two solid objects with nonzero h and eps,
-# it uses Gonçalves' Alternating Projection method.
-# It returns the Gonçalves' witness points (pointA, pointB), the Gonçalves distance
+# it uses Generalized Alternating Projection method.
+# It returns the Generalized witness points (pointA, pointB), the Generalized distance
 # (i.e., sqrt(2*Lambda)), and some debugging information.
 
 pointA, pointB, dist, _ = cvx1.compute_dist(cvx2, h=0.1, eps=0.05)
 
 # When compute_dist is called between a solid object and a point cloud with nonzero
 # h and eps, it uses the Short-Circuit algorithm.
-# It returns the Gonçalves' witness points (pointA, pointB), the distance
+# It returns the Generalized witness points (pointA, pointB), the distance
 # (i.e., sqrt(2*Lambda)), and some debugging information.
 #It uses r=h.
 
